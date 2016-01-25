@@ -17,20 +17,22 @@ aux_source_directory(. SRC_LIST)
 
 set(CMAKE_C_COMPILER_INIT g++)
 enable_language(ASM)
-add_definitions(-lstdc++ )
-set( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fpic -nostartfiles -fno-short-enums -fno-strict-aliasing -Wall  -std=c++11 " )
-set( CMAKE_C_FLAGS "${CMAKE_C_FLAGS}   -fpic -pthread  -Wall " )
-set( CMAKE_ASM_FLAGS "${CMAKE_C_FLAGS}" )
+
+#set( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fpic -nostartfiles -fno-short-enums -fno-strict-aliasing -Wall  -std=c++11 " )
+#set( CMAKE_C_FLAGS "${CMAKE_C_FLAGS}   -fpic -pthread  -Wall " )
+#set( CMAKE_ASM_FLAGS "${CMAKE_C_FLAGS}" )
 
 set( CMAKE_EXE_LINKER_FLAGS "${CMAKE_C_FLAGS}" )
 set( CMAKE_SHARED_LINKER_FLAGS "${CMAKE_C_FLAGS}" )
 set( CMAKE_MODULE_LINKER_FLAGS "${CMAKE_C_FLAGS}" )
 
+set (ENGINE_ROOT "${PROJECT_SOURCE_DIR}/DT3Core")
+
 #External Variable for
 if(EXISTS "${DT3_CORE_OUTPUT_PATH}")
-	SET(LIBRARY_OUTPUT_PATH ${THIRD_PARTY_OUTPUT_LIBRARY_PATH})
+    SET(LIBRARY_OUTPUT_PATH ${THIRD_PARTY_OUTPUT_LIBRARY_PATH})
 else()
-	SET(LIBRARY_OUTPUT_PATH "${ENGINE_ROOT}/bin/unix")
+    SET(LIBRARY_OUTPUT_PATH "${ENGINE_ROOT}/bin/unix")
 endif(EXISTS "${DT3_CORE_OUTPUT_PATH}")
 
 #
@@ -48,7 +50,6 @@ MACRO(HEADER_DIRECTORIES new_list return_list)
     SET(${return_list} ${dir_list})
 ENDMACRO()
 
-set (ENGINE_ROOT "${PROJECT_SOURCE_DIR}/DT3Core")
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${LIBRARY_OUTPUT_PATH})
 
 #
@@ -93,7 +94,7 @@ endif (EXISTS "${PROJECT_MODULE}")
 set (PROJECT_MODULE "${ENGINE_ROOT}/")
 if (EXISTS "${PROJECT_MODULE}")
         #Add libraries
-        set(MODULE_LIBS ${MODULE_LIBS} "freetype" "zlib" "lpng" "md5" "jenkins" "libjpeg.a" )
+        set(MODULE_LIBS ${MODULE_LIBS} "freetype" "zlib" "lpng" "jenkins" "libjpeg.a" )
         #set(MODULE_LIBS_DIRS ${MODULE_LIBS_DIRS} "${ENGINE_ROOT}/3rdParty/libjpeg-turbo-1.3.0/libjpeg-turbo-android/lib/${ANDROID_NDK_ABI_NAME}" )
 
         # Library includes
@@ -101,7 +102,7 @@ if (EXISTS "${PROJECT_MODULE}")
         include_directories("${ENGINE_ROOT}/3rdParty/")
         include_directories("${ENGINE_ROOT}/3rdParty/freetype-2.4.7/include")
         include_directories("${ENGINE_ROOT}/3rdParty/lpng151")
-        include_directories("${ENGINE_ROOT}/3rdParty/md5-cc")
+        #include_directories("${ENGINE_ROOT}/3rdParty/md5-cc")
         #include_directories("${ENGINE_ROOT}/3rdParty/libjpeg-turbo-1.3.0/libjpeg-turbo-android/include")
 
         # Compile files
@@ -133,15 +134,15 @@ endif (EXISTS "${PROJECT_MODULE}")
 
 #### SDL2 Optionals
 if(USE_SDL2)
-	message(DEBUG "USE SDLDT3CORE")
-	set(MODULE_LIBS  ${MODULE_LIBS}  "SDL2" )
-	add_definitions( "-lSDL2" )
-	include_directories("${ENGINE_ROOT}/3rdParty/SDL2/include")
+    message(DEBUG "USE SDLDT3CORE")
+    set(MODULE_LIBS  ${MODULE_LIBS}  "SDL2" )
+    add_definitions( "-lSDL2" )
+    include_directories("${ENGINE_ROOT}/3rdParty/SDL2/include")
 ##needs tweaking, cause not all platform code belongs to SDL2....
-	file(GLOB_RECURSE PROJECT_SRCS 
+    file(GLOB_RECURSE PROJECT_SRCS
                 "${ENGINE_ROOT}/Platform/*.cpp"
                 "${ENGINE_ROOT}/Platform/*.h"
-          ) 
+          )
         SET(PROJECT_SOURCE ${PROJECT_SOURCE} ${PROJECT_SRCS})
 endif(USE_SDL2)
 
@@ -368,7 +369,7 @@ include_directories(${HEADER_INCLUDES})
 
 link_directories(${NDK_PLATFORM_LIBS} ${MODULE_LIBS_DIRS})
 
-add_library(DT3Core STATIC ${PROJECT_SOURCE})
+add_library(DT3Core SHARED ${PROJECT_SOURCE})
 
 ##
 #set_target_properties(DT3Core PROPERTIES
@@ -389,6 +390,7 @@ add_library(DT3Core STATIC ${PROJECT_SOURCE})
 #)
 
 
+qt5_use_modules(DT3Core Core Gui)
 
 
 
