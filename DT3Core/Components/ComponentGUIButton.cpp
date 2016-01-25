@@ -20,8 +20,7 @@
 
 //==============================================================================
 //==============================================================================
-
-namespace DT3 {
+using namespace DT3;
 
 //==============================================================================
 /// Register with object factory
@@ -137,7 +136,7 @@ void ComponentGUIButton::remove_from_owner (void)
 //==============================================================================
 //==============================================================================
 
-void ComponentGUIButton::touches_began (GUITouchEvent *event)
+void ComponentGUIButton::touches_began (GUITouchEvent */*event*/)
 {
     GUIObject *gui = checked_cast<GUIObject*>(owner());
     if (!gui)
@@ -207,6 +206,4 @@ void ComponentGUIButton::touches_cancelled (GUITouchEvent *event)
 
 //==============================================================================
 //==============================================================================
-
-} // DT3
 

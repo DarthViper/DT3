@@ -13,7 +13,7 @@
 //==============================================================================
 
 #include "DT3Core/Types/Memory/Memory.hpp"
-//#include "AppConfig.hpp"
+#include "DT3Core/System/AppConfig.hpp"
 
 #include <stdint.h>
 #include <memory>

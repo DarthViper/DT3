@@ -1,12 +1,12 @@
 //==============================================================================
-///	
+///
 ///	File: ScriptingARTracker.cpp
-///	
+///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
 /// This file is subject to the terms and conditions defined in
 /// file 'LICENSE.txt', which is part of this source code package.
-///	
+///
 //==============================================================================
 
 #include "DT3Core/Scripting/ScriptingARTracker.hpp"
@@ -22,7 +22,7 @@
 //==============================================================================
 //==============================================================================
 
-namespace DT3 {
+using namespace DT3;
 
 //==============================================================================
 /// Register with object factory
@@ -30,7 +30,7 @@ namespace DT3 {
 
 IMPLEMENT_FACTORY_CREATION_SCRIPT(ScriptingARTracker,"Input",NULL)
 IMPLEMENT_PLUG_NODE(ScriptingARTracker)
-		
+
 IMPLEMENT_PLUG_INFO_INDEX(_orientation)
 IMPLEMENT_PLUG_INFO_INDEX(_is_calibrating)
 IMPLEMENT_PLUG_INFO_INDEX(_is_calibrated)
@@ -42,14 +42,14 @@ IMPLEMENT_EVENT_INFO_INDEX(_begin_auto_calibration)
 
 BEGIN_IMPLEMENT_PLUGS(ScriptingARTracker)
 
-	PLUG_INIT(_orientation, "Orientation")
-		.set_output(true);
+    PLUG_INIT(_orientation, "Orientation")
+        .set_output(true);
 
-	PLUG_INIT(_is_calibrating, "Is_Calibrating")
-		.set_output(true);
+    PLUG_INIT(_is_calibrating, "Is_Calibrating")
+        .set_output(true);
 
-	PLUG_INIT(_is_calibrated, "Is_Calibrated")
-		.set_output(true);
+    PLUG_INIT(_is_calibrated, "Is_Calibrated")
+        .set_output(true);
 
     EVENT_INIT(_begin_auto_calibration,"Begin_Auto_Calibration")
         .set_input(true)
@@ -68,8 +68,8 @@ ScriptingARTracker::ScriptingARTracker (void)
         _orientation                    (PLUG_INFO_INDEX(_orientation), Matrix3::identity()),
         _correction_mix_factor          (0.02F),
         _correction_mode                (CORRECTION_ACCELEROMETER_AND_MAGNETOMETER),
-		_is_calibrating                 (PLUG_INFO_INDEX(_is_calibrating), false),
-		_is_calibrated                  (PLUG_INFO_INDEX(_is_calibrated), false),
+        _is_calibrating                 (PLUG_INFO_INDEX(_is_calibrating), false),
+        _is_calibrated                  (PLUG_INFO_INDEX(_is_calibrated), false),
         _calibration_directions         (0),
         _num_calibration_samples        (0),
         _calibration                    (Vector3(0.0F,0.0F,0.0F)),
@@ -77,7 +77,7 @@ ScriptingARTracker::ScriptingARTracker (void)
 {
 
 }
-		
+
 ScriptingARTracker::ScriptingARTracker (const ScriptingARTracker &rhs)
     :   ScriptingBase                   (rhs),
         _gyro_orientation               (rhs._gyro_orientation),
@@ -86,8 +86,8 @@ ScriptingARTracker::ScriptingARTracker (const ScriptingARTracker &rhs)
         _orientation                    (rhs._orientation),
         _correction_mix_factor          (rhs._correction_mix_factor),
         _correction_mode                (rhs._correction_mode),
-		_is_calibrating                 (PLUG_INFO_INDEX(_is_calibrating), false),
-		_is_calibrated                  (PLUG_INFO_INDEX(_is_calibrated), false),
+        _is_calibrating                 (PLUG_INFO_INDEX(_is_calibrating), false),
+        _is_calibrated                  (PLUG_INFO_INDEX(_is_calibrated), false),
         _calibration_directions         (0),
         _num_calibration_samples        (0),
         _calibration                    (Vector3(0.0F,0.0F,0.0F)),
@@ -99,9 +99,9 @@ ScriptingARTracker::ScriptingARTracker (const ScriptingARTracker &rhs)
 ScriptingARTracker & ScriptingARTracker::operator = (const ScriptingARTracker &rhs)
 {
     // Make sure we are not assigning the class to itself
-    if (&rhs != this) {        
-		ScriptingBase::operator = (rhs);
-        
+    if (&rhs != this) {
+        ScriptingBase::operator = (rhs);
+
         _gyro_orientation = rhs._gyro_orientation;
         _accelerometer = rhs._accelerometer;
 
@@ -110,18 +110,18 @@ ScriptingARTracker & ScriptingARTracker::operator = (const ScriptingARTracker &r
 
         _orientation = rhs._orientation;
         _correction_mix_factor = rhs._correction_mix_factor;
-        
+
         _correction_mode = rhs._correction_mode;
 
-		_is_calibrating = false;
-		_is_calibrated = false;
+        _is_calibrating = false;
+        _is_calibrated = false;
         _calibration_directions = 0;
         _num_calibration_samples = 0;
         _calibration = Vector3(0.0F,0.0F,0.0F);
     }
     return (*this);
 }
-			
+
 ScriptingARTracker::~ScriptingARTracker (void)
 {
 
@@ -132,7 +132,7 @@ ScriptingARTracker::~ScriptingARTracker (void)
 
 void ScriptingARTracker::initialize (void)
 {
-	ScriptingBase::initialize();
+    ScriptingBase::initialize();
 }
 
 //==============================================================================
@@ -144,7 +144,7 @@ void ScriptingARTracker::archive (const std::shared_ptr<Archive> &archive)
 
     archive->push_domain (class_id ());
 
-	*archive << ARCHIVE_DATA(_correction_mix_factor, DATA_PERSISTENT | DATA_SETTABLE);
+    *archive << ARCHIVE_DATA(_correction_mix_factor, DATA_PERSISTENT | DATA_SETTABLE);
     *archive << ARCHIVE_DATA(_correction_mode, DATA_PERSISTENT | DATA_SETTABLE)
         .add_enum("None")
         .add_enum("Accelerometer")
@@ -160,10 +160,10 @@ void ScriptingARTracker::begin_auto_calibration (PlugNode *sender)
 {
     _is_calibrating = true;
     _is_calibrated = false;
-    
+
     // Reset the samples
     _num_calibration_samples = 0;
-    
+
     // Reset the heuristic for calibration being complete
     _calibration_directions = 0;
 }
@@ -173,85 +173,85 @@ void ScriptingARTracker::begin_auto_calibration (PlugNode *sender)
 
 void ScriptingARTracker::gyro (const Vector3 &w)
 {
-	PROFILER(SCRIPTING);
-   
+    PROFILER(SCRIPTING);
+
     DTfloat dt = static_cast<DTfloat>(_gyro_sample_timer.delta_time());
-    
+
     Vector3 gyro = w * dt;
 
     DTfloat angle = std::sqrt(gyro.x*gyro.x + gyro.y*gyro.y + gyro.z*gyro.z);
     if (angle <= 0.0F)
         return;
-    
+
     Vector3 axis = gyro/angle;
-    
+
     Matrix3 rot = Matrix3::set_rotation_around(axis, angle);
-    
+
     _gyro_orientation = _gyro_orientation * rot;
     _gyro_orientation.ortho();
 }
 
 void ScriptingARTracker::accelerometer (const Vector3 &a)
 {
-	PROFILER(SCRIPTING);
+    PROFILER(SCRIPTING);
 
     _accelerometer = a;
 }
 
 void ScriptingARTracker::magnetometer (const Vector3 &m)
 {
-	PROFILER(SCRIPTING);
+    PROFILER(SCRIPTING);
 
     _magnetometer = m - _calibration;
-    
+
     if (_is_calibrating) {
-    
+
         // Add calibration samples
         if (append_calibration_sample(m)) {
-        
+
             // Restart face check if we found a better sample
             _calibration_directions = 0;
 
             if (!process_calibration_samples())
                 return;
-            
+
         }
-        
+
         //
         // Testing for completeness
         //
-        
+
         // See if the device has been moved enough. Keep track of all of the directions
         // (i.e. six sides of cube) that the magnetometer is oriented towards. This
         // is like making sure the player looks in every direction.
-        
+
         Vector3 diff = m - _calibration;
-        
+
         DTfloat abs_x = std::abs(diff.x);
         DTfloat abs_y = std::abs(diff.y);
         DTfloat abs_z = std::abs(diff.z);
-        
+
         DTboolean x_major = (abs_x >= abs_y) && (abs_x >= abs_z);
         DTboolean y_major = (abs_y >= abs_x) && (abs_y >= abs_z);
         DTboolean z_major = (!x_major) && (!y_major);
-        
+
         // First 6 bits for faces
         if ( (_calibration_directions & 0x0000003F) != 0x0000003F) {
             if (x_major)        _calibration_directions |= (diff.x > 0.0F) ? (0x00000001 << 0) : (0x00000001 << 1);
             else if (y_major)   _calibration_directions |= (diff.y > 0.0F) ? (0x00000001 << 2) : (0x00000001 << 3);
             else if (z_major)   _calibration_directions |= (diff.z > 0.0F) ? (0x00000001 << 4) : (0x00000001 << 5);
-            
+
         // Done!
         } else {
             _calibration_directions = 0;
 
             _is_calibrating = false;
             _is_calibrated = true;
-            
+
             LOG_MESSAGE << "Calibration done!";
-            
+
         }
-                
+
     }
 }
 
@@ -260,31 +260,31 @@ void ScriptingARTracker::magnetometer (const Vector3 &m)
 
 DTboolean ScriptingARTracker::append_calibration_sample (const Vector3 &m)
 {
-	PROFILER(SCRIPTING);
+    PROFILER(SCRIPTING);
 
     // Fill up the samples first
     if (_num_calibration_samples < 6) {
         _calibration_samples[_num_calibration_samples] = m;
         ++_num_calibration_samples;
-        
+
     // Add samples that are more "distinct" than the existing samples
     } else {
-    
+
         DTint closest_sum_dist_index = -1;
         DTfloat closest_sum_dist_distance = std::numeric_limits<DTfloat>::infinity();
-    
+
         // Rank all of the existing samples
         for (DTuint i = 0; i < ARRAY_SIZE(_calibration_samples); ++i) {
-        
+
             DTfloat dist = 0.0F;
-        
+
             for (DTuint j = 0; j < ARRAY_SIZE(_calibration_samples); ++j) {
                 if (i == j)
                     continue;
-                
-                dist += (_calibration_samples[i] - _calibration_samples[j]).abs();                
+
+                dist += (_calibration_samples[i] - _calibration_samples[j]).abs();
             }
-            
+
             // pick closest distance
             if (dist < closest_sum_dist_distance) {
                 closest_sum_dist_distance = dist;
@@ -292,13 +292,13 @@ DTboolean ScriptingARTracker::append_calibration_sample (const Vector3 &m)
             }
 
         }
-        
+
         // Rank new sample
         DTfloat new_sample_sum_dist_distance = 0.0F;
-        for (DTint j = 0; j < ARRAY_SIZE(_calibration_samples); ++j) {
-            if (j == closest_sum_dist_index)    // Skip the sample we're replacing
+        for (size_t j = 0; j < ARRAY_SIZE(_calibration_samples); ++j) {
+            if (j == (size_t)closest_sum_dist_index)    // Skip the sample we're replacing
                 continue;
-            
+
             new_sample_sum_dist_distance += (m - _calibration_samples[j]).abs();
         }
 
@@ -308,22 +308,22 @@ DTboolean ScriptingARTracker::append_calibration_sample (const Vector3 &m)
             LOG_MESSAGE << "Replaced sample " << closest_sum_dist_index << " at distance " << new_sample_sum_dist_distance;
             return true;
         }
-    
+
     }
-    
+
     return false;
 }
 
 DTboolean ScriptingARTracker::process_calibration_samples (void)
 {
-	PROFILER(SCRIPTING);
+    PROFILER(SCRIPTING);
 
     // Note: Looks like there's significant error by using only floats
     // instead of doubles. TODO: Change me when I redo Matrix4 for doubles
 
     // This process is described in Freescale App Note AN4246
     // http://www.freescale.com/files/sensors/doc/app_note/AN4246.pdf
-    
+
     // Sample data from freescale docs
     //    _calibration_samples[0] = Vector3(167.4F, -242.4F, 91.7F);
     //    _calibration_samples[1] = Vector3(140.3F, -221.9F, 86.8F);
@@ -331,19 +331,19 @@ DTboolean ScriptingARTracker::process_calibration_samples (void)
     //    _calibration_samples[3] = Vector3(180.3F, -270.6F, 71.0F);
     //    _calibration_samples[4] = Vector3(190.9F, -212.4F, 62.7F);
     //    _calibration_samples[5] = Vector3(192.9F, -242.4F, 17.1F);
-    
-    
+
+
     // Calculate Y
     DTfloat Y[ARRAY_SIZE(_calibration_samples)];
-    
+
     for (DTuint i = 0; i < ARRAY_SIZE(_calibration_samples); ++i) {
         Y[i] = _calibration_samples[i].abs2();
     }
-    
+
     // Build X
     DTfloat X[ARRAY_SIZE(_calibration_samples)][4];
     DTfloat XT[4][ARRAY_SIZE(_calibration_samples)];
-    
+
     for (DTuint i = 0; i < ARRAY_SIZE(_calibration_samples); ++i) {
         X[i][0] = _calibration_samples[i].x;
         X[i][1] = _calibration_samples[i].y;
@@ -355,56 +355,56 @@ DTboolean ScriptingARTracker::process_calibration_samples (void)
         XT[2][i] = _calibration_samples[i].z;
         XT[3][i] = 1.0F;
     }
-    
+
     //
     // B = (XT * X)^-1 (XT * Y)
     //
-    
+
     // XT * X   (Note: 4x6 matrix times 6x4 matrix = 4x4 matrix so then we can use matrix4)
     Matrix4 temp1;
 
     for (DTint i = 0; i < 4; i++) {
         for (DTint j = 0; j < 4; j++) {
-        
+
             DTfloat sum = 0.0F;
-            
-            for (DTint k = 0; k < ARRAY_SIZE(_calibration_samples); k++)
+
+            for (size_t k = 0; k < ARRAY_SIZE(_calibration_samples); k++)
                 sum += (XT[i][k] * X[k][j]);
-            
+
             temp1._m[i][j] = sum;
         }
     }
-    
+
     //
     // XT * Y
     //
-    
+
     Vector4 temp2;
-    
+
     for (DTint i = 0; i < 4; ++i) {
         DTfloat sum = 0.0F;
-        
+
         for (DTuint j = 0; j < ARRAY_SIZE(_calibration_samples); ++j) {
             sum += XT[i][j] * Y[j];
         }
-        
+
         temp2.v[i] = sum;
     }
-    
+
     //
     // Calculate B
     //
     Vector4 B = temp1.inversed() * temp2;
     _calibration = B * 0.5F;
-    
+
     // Check valid result
     if (B.v[3] < 0.0F)
         return false;
-    
+
     //
     // Display results
     //
-        
+
     DTfloat field_strength = std::sqrt( B.v[3] +
                                         _calibration.x*_calibration.x +
                                         _calibration.y*_calibration.y +
@@ -412,7 +412,7 @@ DTboolean ScriptingARTracker::process_calibration_samples (void)
 
     LOG_MESSAGE << "V: " << _calibration.x << " " << _calibration.y << " " << _calibration.z << " uT";
     LOG_MESSAGE << "Field Strength: " << field_strength << " uT";
-    
+
     return true;
 }
 
@@ -421,14 +421,14 @@ DTboolean ScriptingARTracker::process_calibration_samples (void)
 
 void ScriptingARTracker::tick (const DTfloat dt)
 {
-	PROFILER(SCRIPTING);
+    PROFILER(SCRIPTING);
 
     // If the magnetometer is calibrated, we can use it to correct our orientation
     if (_is_calibrated && (_correction_mode == CORRECTION_ACCELEROMETER_AND_MAGNETOMETER) ) {
-    
+
         if (_accelerometer.abs2() == 0.0F || _magnetometer.abs2() == 0.0F)
             return;
-        
+
         // So, this is what we are trying to do here...
         // The Accelerometer and Magnetometer are combined to generate an orientation matrix.
         // This matrix is the world reference coordinate system in device (i.e. Camera)
@@ -444,7 +444,7 @@ void ScriptingARTracker::tick (const DTfloat dt)
         //
         // But, this is pretty noisy... so it gets mixed into the gyro orientation a little
         // bit every frame.
-        
+
         //
         // Build world reference coordinate
         //
@@ -452,52 +452,52 @@ void ScriptingARTracker::tick (const DTfloat dt)
         // Combine accelerometer and magnetometer
         Vector3 accelerometer_norm = -_accelerometer.normalized();
         Vector3 magnetometer_norm = -_magnetometer.normalized();
-        
+
         Vector3 perp = Vector3::cross(accelerometer_norm, magnetometer_norm).normalized();
         magnetometer_norm = Vector3::cross(perp, accelerometer_norm).normalized();
-        
+
         Matrix3 world_reference_coord_system = Matrix3( perp.x, accelerometer_norm.x, magnetometer_norm.x,
                                                         perp.y, accelerometer_norm.y, magnetometer_norm.y,
                                                         perp.z, accelerometer_norm.z, magnetometer_norm.z).inversed();
-        
+
         //
         // Mix in with gyro orientation
         //
-                
+
         _gyro_orientation = (_correction_mix_factor * world_reference_coord_system) + ((1.0F - _correction_mix_factor) * _gyro_orientation);
         _gyro_orientation.ortho();
-        
+
     } else if (_correction_mode == CORRECTION_ACCELEROMETER || _correction_mode == CORRECTION_ACCELEROMETER_AND_MAGNETOMETER) {
-    
+
         if (_accelerometer.abs2() == 0.0F)
             return;
 
         // Same as above but the magnetometer is ignored for heading direction
-    
+
         Vector3 accelerometer_norm = -_accelerometer.normalized();
         Vector3 backwards = _gyro_orientation.inversed().z_axis();
-    
+
         Vector3 perp = Vector3::cross(accelerometer_norm, backwards);
         backwards = Vector3::cross(perp, accelerometer_norm);
-        
+
         Matrix3 world_reference_coord_system = Matrix3( perp.x, accelerometer_norm.x, backwards.x,
                                                         perp.y, accelerometer_norm.y, backwards.y,
                                                         perp.z, accelerometer_norm.z, backwards.z).inversed();
-    
+
         //
         // Mix in with gyro orientation
         //
-                
+
         _gyro_orientation = (_correction_mix_factor * world_reference_coord_system) + ((1.0F - _correction_mix_factor) * _gyro_orientation);
         _gyro_orientation.ortho();
 
     }
-    
-    
+
+
     //
     // Output orientation
     //
-    
+
     _orientation = _gyro_orientation;
 }
 
@@ -507,7 +507,7 @@ void ScriptingARTracker::tick (const DTfloat dt)
 void ScriptingARTracker::add_to_world(World *world)
 {
     ScriptingBase::add_to_world(world);
-    
+
     SystemCallbacks::gyro_cb().add(make_callback(this, &type::gyro));
     SystemCallbacks::acceleration_cb().add(make_callback(this, &type::accelerometer));
     SystemCallbacks::magnetometer_cb().add(make_callback(this, &type::magnetometer));
@@ -528,6 +528,3 @@ void ScriptingARTracker::remove_from_world (void)
 
 //==============================================================================
 //==============================================================================
-
-} // DT3
-

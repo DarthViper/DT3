@@ -17,6 +17,8 @@
 #include <string>
 #include <map>
 #include <mutex>
+#include <QHash>
+#include <QString>
 
 //==============================================================================
 //==============================================================================
@@ -50,9 +52,9 @@ class Globals {
         };
 
         struct GlobalsEntry {
-            DTint           lifetime;
-            StringCopier    name;
-            StringCopier	value;
+            DTint       lifetime;
+            std::string name;
+            std::string	value;
         };
 
 
@@ -69,7 +71,7 @@ class Globals {
         /// Gets value of global
         /// \param name name of global
         /// \return value of global
-        static const std::map<StringCopier, GlobalsEntry>&  all_globals             (void)  {   return _globals;    }
+        static const QHash<QString, GlobalsEntry>&  all_globals             (void)  {   return _globals;    }
 
         /// Gets value of global
         /// \param name name of global
@@ -109,7 +111,7 @@ class Globals {
 
     private:
         static std::mutex                                   _globals_lock;
-        static std::map<StringCopier, GlobalsEntry>         _globals;
+        static QHash<QString, GlobalsEntry>         _globals;
 };
 
 //==============================================================================

@@ -144,7 +144,9 @@ void DT3OpenGL::open_display (DTint width, DTint height)
     // init Glew
     GLenum err = glewInit();
     if (GLEW_OK != err) {
-        WARNINGMSG("Could not initialize glew.");
+        char buf[256];
+        snprintf(buf,256,"Could not initialize glew - %s.",glewGetErrorString(err));
+        WARNINGMSG(buf);
         return;
     }
 #endif
@@ -1906,7 +1908,7 @@ void DT3OpenGL::activate_framebuffer (const std::shared_ptr<DT3GLFramebufferReso
         std::vector<GLenum> buffers;
         buffers.resize(rfb->num_targets);
 
-        for (DTsize i = 0; i < buffers.size(); ++i) {
+        for (size_t i = 0; i < buffers.size(); ++i) {
             buffers[i] = GL_COLOR_ATTACHMENT0M + i;
         }
 

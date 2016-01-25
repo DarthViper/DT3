@@ -180,7 +180,7 @@ void ComponentDrawCamera::archive (const std::shared_ptr<Archive> &archive)
 //==============================================================================
 //==============================================================================
 
-void ComponentDrawCamera::draw (const std::shared_ptr<CameraObject> &camera, const DTfloat lag)
+void ComponentDrawCamera::draw (const std::shared_ptr<CameraObject> &camera, const DTfloat /*lag*/)
 {
     if (!_material.as_ref() || !_shader.as_ref())
         return;

@@ -1,12 +1,12 @@
 //==============================================================================
-///	
+///
 ///	File: EdLevelAppMain.cpp
-///	
+///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
 /// This file is subject to the terms and conditions defined in
 /// file 'LICENSE.txt', which is part of this source code package.
-///	
+///
 //==============================================================================
 
 // Editor include
@@ -45,32 +45,32 @@ using namespace DT3;
 
 //==============================================================================
 //==============================================================================
-
 int main (int argc, char *argv[])
 {
+ //   scriptingTimerReferer();
     GameMainThread::initialize_engine();
 
     QCoreApplication::setAttribute(Qt::AA_DontCreateNativeWidgetSiblings);
     QApplication::setStyle("fusion");
-    
+
     // Set style sheet
     QFile file(":/LevelEditor.qss");
     file.open(QIODevice::ReadOnly | QIODevice::Text);
     QString style_sheet = file.readAll();
     file.close();
-     
+
     QApplication app(argc, argv);
     app.setStyleSheet(style_sheet);
-        
+
     EdLevelMainWindow *window = new EdLevelMainWindow();
     window->show();
-        
-	QObject::connect(	&app,       SIGNAL(focusChanged(QWidget*,QWidget*)),
+
+    QObject::connect(	&app,       SIGNAL(focusChanged(QWidget*,QWidget*)),
                         window,     SLOT(onAppFocusChanged(QWidget*,QWidget*))	);
 
-    
+
     app.exec();
-        
+
     GameMainThread::destroy_engine();
 }
 

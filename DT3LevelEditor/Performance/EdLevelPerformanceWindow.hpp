@@ -85,7 +85,7 @@ class EdLevelPerformanceWindow : public QWidget
     public slots:
         void                        onSample                (void);
         void                        onScroll                (int scroll);
-
+        void                        onRefreshPerformance    (void);
 };
 
 //==============================================================================

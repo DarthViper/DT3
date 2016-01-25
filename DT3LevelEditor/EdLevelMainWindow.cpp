@@ -49,6 +49,7 @@
 #include "DT3Core/System/FileManager.hpp"
 #include "DT3Core/Types/Utility/CommandContext.hpp"
 #include "DT3Core/Types/Utility/MoreStrings.hpp"
+#include "DT3Core/Types/Node/Group.hpp"
 #include "DT3Core/Types/FileBuffer/ArchiveTextWriter.hpp"
 #include "DT3Core/Types/FileBuffer/ArchiveObjectQueue.hpp"
 #include "DT3Core/Components/ComponentBase.hpp"
@@ -447,94 +448,111 @@ EdLevelMainWindow::EdLevelMainWindow(void)
     //setWindowIcon(QIcon(":/images/icon.png"));
     setCurrentLevelFile("");
 
-    QWidget *widgets1[] = { this, _hierarchy_widget, _world_widget, _script_widget, _animation_widget, _sound_widget, /*_sound_fx_widget,*/ _console_widget, _resources_widget, _library_widget, _performance_widget, _properties_widget };
+    connect(this,&EdLevelMainWindow::doSelectionChanged,this,&EdLevelMainWindow::onSelectionChanged);
 
-    for (DTuint i = 0; i < ARRAY_SIZE(widgets1); ++i) {
-        for (DTint j = 0; j < ARRAY_SIZE(widgets1); ++j) {
-            connect(	widgets1[i],     SIGNAL(doRefreshScript()),
-                        widgets1[j],     SLOT(onRefreshScript()) );
+    connect(this,&EdLevelMainWindow::doSelectionChanged,_hierarchy_widget,&EdLevelHierarchyWindow::onSelectionChanged);
+    connect(this,&EdLevelMainWindow::doRefreshHierarchy,_hierarchy_widget,&EdLevelHierarchyWindow::onRefreshHierarchy);
 
-            connect(	widgets1[i],     SIGNAL(doRefreshWorld()),
-                        widgets1[j],     SLOT(onRefreshWorld())	);
+    connect(this,&EdLevelMainWindow::doSelectionChanged,_world_widget,&EdLevelWorldWindow::onSelectionChanged);
+    connect(this,&EdLevelMainWindow::doRefreshWorld,_world_widget,&EdLevelWorldWindow::onRefreshWorld);
 
-            connect(	widgets1[i],     SIGNAL(doRefreshHierarchy()),
-                        widgets1[j],     SLOT(onRefreshHierarchy())	);
+    connect(this,&EdLevelMainWindow::doSelectionChanged,_script_widget,&EdLevelScriptWindow::onSelectionChanged);
+    connect(this,&EdLevelMainWindow::doRefreshScript,_script_widget,&EdLevelScriptWindow::onRefreshScript);
 
-            connect(	widgets1[i],     SIGNAL(doRefreshProperties()),
-                        widgets1[j],     SLOT(onRefreshProperties()) );
+    connect(this,&EdLevelMainWindow::doSelectionChanged,_animation_widget,&EdLevelAnimationWindow::onSelectionChanged);
+    connect(this,&EdLevelMainWindow::doRefreshAnimation,_animation_widget,&EdLevelAnimationWindow::onRefreshAnimation);
 
-            connect(	widgets1[i],     SIGNAL(doRefreshLibrary()),
-                        widgets1[j],     SLOT(onRefreshLibrary()) );
+    connect(this,&EdLevelMainWindow::doSelectionChanged,_sound_widget,&EdLevelSoundWindow::onSelectionChanged);
+    connect(this,&EdLevelMainWindow::doRefreshSound,_sound_widget,&EdLevelSoundWindow::onRefreshSound);
+    connect(this,&EdLevelMainWindow::doRefreshProperties,_sound_widget,&EdLevelSoundWindow::onRefreshProperties);
 
-            connect(	widgets1[i],     SIGNAL(doRefreshResources()),
-                        widgets1[j],     SLOT(onRefreshResources())	);
+    connect(this,&EdLevelMainWindow::doRefreshResources,_resources_widget,&EdLevelResourcesWindow::onRefreshResources);
 
-            connect(	widgets1[i],     SIGNAL(doRefreshAnimation()),
-                        widgets1[j],     SLOT(onRefreshAnimation())	);
+    connect(this,&EdLevelMainWindow::doRefreshLibrary,_library_widget,&EdLevelLibraryWindow::onRefreshLibrary);
 
-            connect(	widgets1[i],     SIGNAL(doRefreshConsole()),
-                        widgets1[j],     SLOT(onRefreshConsole()) );
+    connect(this,&EdLevelMainWindow::doRefreshPerformance,_performance_widget,&EdLevelPerformanceWindow::onRefreshPerformance);
 
-            connect(	widgets1[i],     SIGNAL(doRefreshPerformance()),
-                        widgets1[j],     SLOT(onRefreshPerformance()) );
+    connect(this,&EdLevelMainWindow::doSelectionChanged,_properties_widget,&EdLevelPropertiesWindow::onSelectionChanged);
+    connect(this,&EdLevelMainWindow::doRefreshProperties,_properties_widget,&EdLevelPropertiesWindow::onRefreshProperties);
 
-            connect(	widgets1[i],     SIGNAL(doRefreshSound()),
-                        widgets1[j],     SLOT(onRefreshSound()) );
+    connect(_hierarchy_widget,&EdLevelHierarchyWindow::doSelectionChanged,this,&EdLevelMainWindow::onSelectionChanged);
+    connect(_hierarchy_widget,&EdLevelHierarchyWindow::doSelectionChanged,_hierarchy_widget,&EdLevelHierarchyWindow::onSelectionChanged);
+    connect(_hierarchy_widget,&EdLevelHierarchyWindow::doSelectionChanged,_world_widget,&EdLevelWorldWindow::onSelectionChanged);
+    connect(_hierarchy_widget,&EdLevelHierarchyWindow::doSelectionChanged,_script_widget,&EdLevelScriptWindow::onSelectionChanged);
+    connect(_hierarchy_widget,&EdLevelHierarchyWindow::doSelectionChanged,_animation_widget,&EdLevelAnimationWindow::onSelectionChanged);
+    connect(_hierarchy_widget,&EdLevelHierarchyWindow::doSelectionChanged,_sound_widget,&EdLevelSoundWindow::onSelectionChanged);
+    connect(_hierarchy_widget,&EdLevelHierarchyWindow::doSelectionChanged,_properties_widget,&EdLevelPropertiesWindow::onSelectionChanged);
 
-            connect(	widgets1[i],     SIGNAL(doRefreshSoundFX()),
-                        widgets1[j],     SLOT(onRefreshSoundFX()) );
+    connect(_world_widget,&EdLevelWorldWindow::doSelectionChanged,this,&EdLevelMainWindow::onSelectionChanged);
+    connect(_world_widget,&EdLevelWorldWindow::doSelectionChanged,_hierarchy_widget,&EdLevelHierarchyWindow::onSelectionChanged);
+    connect(_world_widget,&EdLevelWorldWindow::doSelectionChanged,_world_widget,&EdLevelWorldWindow::onSelectionChanged);
+    connect(_world_widget,&EdLevelWorldWindow::doSelectionChanged,_script_widget,&EdLevelScriptWindow::onSelectionChanged);
+    connect(_world_widget,&EdLevelWorldWindow::doSelectionChanged,_animation_widget,&EdLevelAnimationWindow::onSelectionChanged);
+    connect(_world_widget,&EdLevelWorldWindow::doSelectionChanged,_sound_widget,&EdLevelSoundWindow::onSelectionChanged);
+    connect(_world_widget,&EdLevelWorldWindow::doSelectionChanged,_properties_widget,&EdLevelPropertiesWindow::onSelectionChanged);
 
-            connect(	widgets1[i],     SIGNAL(doSelectionChanged(const std::list<std::shared_ptr<PlugNode>> &)),
-                        widgets1[j],     SLOT(onSelectionChanged(const std::list<std::shared_ptr<PlugNode>> &))	);
-        }
-    }
+    connect(_script_widget,&EdLevelScriptWindow::doSelectionChanged,this,&EdLevelMainWindow::onSelectionChanged);
+    connect(_script_widget,&EdLevelScriptWindow::doSelectionChanged,_hierarchy_widget,&EdLevelHierarchyWindow::onSelectionChanged);
+    connect(_script_widget,&EdLevelScriptWindow::doSelectionChanged,_world_widget,&EdLevelWorldWindow::onSelectionChanged);
+    connect(_script_widget,&EdLevelScriptWindow::doSelectionChanged,_script_widget,&EdLevelScriptWindow::onSelectionChanged);
+    connect(_script_widget,&EdLevelScriptWindow::doSelectionChanged,_animation_widget,&EdLevelAnimationWindow::onSelectionChanged);
+    connect(_script_widget,&EdLevelScriptWindow::doSelectionChanged,_sound_widget,&EdLevelSoundWindow::onSelectionChanged);
+    connect(_script_widget,&EdLevelScriptWindow::doSelectionChanged,_properties_widget,&EdLevelPropertiesWindow::onSelectionChanged);
 
-    QWidget *widgets2[] = { _hierarchy_widget, _world_widget, _script_widget, _animation_widget, _sound_widget, /*_sound_fx_widget,*/ _console_widget, _resources_widget, _library_widget, _performance_widget, _properties_widget };
+    connect(_script_widget,&EdLevelScriptWindow::doRefreshScript,_script_widget,&EdLevelScriptWindow::onRefreshScript);
 
-    for (DTuint i = 0; i < ARRAY_SIZE(widgets2); ++i) {
-        connect(	widgets2[i],        SIGNAL(doCommand(QString)),
-                    this,               SLOT(onCommand(QString))	);
+    connect(_animation_widget,&EdLevelAnimationWindow::doSelectionChanged,this,&EdLevelMainWindow::onSelectionChanged);
+    connect(_animation_widget,&EdLevelAnimationWindow::doSelectionChanged,_hierarchy_widget,&EdLevelHierarchyWindow::onSelectionChanged);
+    connect(_animation_widget,&EdLevelAnimationWindow::doSelectionChanged,_world_widget,&EdLevelWorldWindow::onSelectionChanged);
+    connect(_animation_widget,&EdLevelAnimationWindow::doSelectionChanged,_script_widget,&EdLevelScriptWindow::onSelectionChanged);
+    connect(_animation_widget,&EdLevelAnimationWindow::doSelectionChanged,_animation_widget,&EdLevelAnimationWindow::onSelectionChanged);
+    connect(_animation_widget,&EdLevelAnimationWindow::doSelectionChanged,_sound_widget,&EdLevelSoundWindow::onSelectionChanged);
+    connect(_animation_widget,&EdLevelAnimationWindow::doSelectionChanged,_properties_widget,&EdLevelPropertiesWindow::onSelectionChanged);
 
-        connect(	widgets2[i],        SIGNAL(doUndoBlock()),
-                    this,               SLOT(onUndoBlock())	);
+// Command connections
 
-        // Engine events
-        connect(    this,               SIGNAL(doAddNode(WorldNode*)),
-                    widgets2[i],        SLOT(onAddNode(WorldNode*))  );
+    connect(_hierarchy_widget,&EdLevelHierarchyWindow::doCommand,this,&EdLevelMainWindow::onCommand);
+    connect(_hierarchy_widget,&EdLevelHierarchyWindow::doUndoBlock,this,&EdLevelMainWindow::onUndoBlock);
+    connect(this,&EdLevelMainWindow::doAddNode,_hierarchy_widget,&EdLevelHierarchyWindow::onAddNode);
+    connect(this,&EdLevelMainWindow::doRemoveNode,_hierarchy_widget,&EdLevelHierarchyWindow::onRemoveNode);
+    connect(this,&EdLevelMainWindow::doReparentNode,_hierarchy_widget,&EdLevelHierarchyWindow::onReparentNode);
+    connect(this,&EdLevelMainWindow::doConnectPlug,_hierarchy_widget,&EdLevelHierarchyWindow::onConnectPlug);
+    connect(this,&EdLevelMainWindow::doDisconnectPlug,_hierarchy_widget,&EdLevelHierarchyWindow::onDisconnectPlug);
+    connect(this,&EdLevelMainWindow::doConnectEvent,_hierarchy_widget,&EdLevelHierarchyWindow::onConnectEvent);
+    connect(this,&EdLevelMainWindow::doDisconnectEvent,_hierarchy_widget,&EdLevelHierarchyWindow::onDisconnectEvent);
 
-        connect(    this,               SIGNAL(doRemoveNode(WorldNode*)),
-                    widgets2[i],        SLOT(onRemoveNode(WorldNode*))  );
+    connect(_world_widget,&EdLevelWorldWindow::doCommand,this,&EdLevelMainWindow::onCommand);
+    connect(_world_widget,&EdLevelWorldWindow::doUndoBlock,this,&EdLevelMainWindow::onUndoBlock);
 
-        connect(    this,               SIGNAL(doReparentNode(WorldNode*, WorldNode*, WorldNode*)),
-                    widgets2[i],        SLOT(onReparentNode(WorldNode*, WorldNode*, WorldNode*))  );
+    connect(_script_widget,&EdLevelScriptWindow::doCommand,this,&EdLevelMainWindow::onCommand);
+    connect(_script_widget,&EdLevelScriptWindow::doUndoBlock,this,&EdLevelMainWindow::onUndoBlock);
+    connect(this,&EdLevelMainWindow::doAddNode,_script_widget,&EdLevelScriptWindow::onAddNode);
+    connect(this,&EdLevelMainWindow::doRemoveNode,_script_widget,&EdLevelScriptWindow::onRemoveNode);
+    connect(this,&EdLevelMainWindow::doReparentNode,_script_widget,&EdLevelScriptWindow::onReparentNode);
+    connect(this,&EdLevelMainWindow::doAddGroup,_script_widget,&EdLevelScriptWindow::onAddGroup);
+    connect(this,&EdLevelMainWindow::doRemoveGroup,_script_widget,&EdLevelScriptWindow::onRemoveGroup);
+    connect(this,&EdLevelMainWindow::doAddComponent,_script_widget,&EdLevelScriptWindow::onAddComponent);
+    connect(this,&EdLevelMainWindow::doRemoveComponent,_script_widget,&EdLevelScriptWindow::onRemoveComponent);
+    connect(this,&EdLevelMainWindow::doConnectPlug,_script_widget,&EdLevelScriptWindow::onConnectPlug);
+    connect(this,&EdLevelMainWindow::doDisconnectPlug,_script_widget,&EdLevelScriptWindow::onDisconnectPlug);
+    connect(this,&EdLevelMainWindow::doConnectEvent,_script_widget,&EdLevelScriptWindow::onConnectEvent);
+    connect(this,&EdLevelMainWindow::doDisconnectEvent,_script_widget,&EdLevelScriptWindow::onDisconnectEvent);
+
+    connect(_animation_widget,&EdLevelAnimationWindow::doCommand,this,&EdLevelMainWindow::onCommand);
+    connect(_animation_widget,&EdLevelAnimationWindow::doUndoBlock,this,&EdLevelMainWindow::onUndoBlock);
+
+    connect(_sound_widget,&EdLevelSoundWindow::doCommand,this,&EdLevelMainWindow::onCommand);
+    connect(this,&EdLevelMainWindow::doAddNode,_sound_widget,&EdLevelSoundWindow::onAddNode);
+    connect(this,&EdLevelMainWindow::doRemoveNode,_sound_widget,&EdLevelSoundWindow::onRemoveNode);
+    /*_sound_fx_widget,*/
+
+    connect(_console_widget,&EdLevelConsoleWindow::doCommand,this,&EdLevelMainWindow::onCommand);
 
 
-        connect(    this,               SIGNAL(doAddGroup(Group*)),
-                    widgets2[i],        SLOT(onAddGroup(Group*))  );
-
-        connect(    this,               SIGNAL(doRemoveGroup(Group*)),
-                    widgets2[i],        SLOT(onRemoveGroup(Group*))  );
-
-
-        connect(    this,               SIGNAL(doAddComponent(ComponentBase*)),
-                    widgets2[i],        SLOT(onAddComponent(ComponentBase*))  );
-
-        connect(    this,               SIGNAL(doRemoveComponent(ComponentBase*)),
-                    widgets2[i],        SLOT(onRemoveComponent(ComponentBase*))  );
-
-        connect(    this,               SIGNAL(doConnectPlug(PlugBase*, PlugBase*)),
-                    widgets2[i],        SLOT(onConnectPlug(PlugBase*, PlugBase*))  );
-
-        connect(    this,               SIGNAL(doDisconnectPlug(PlugBase*, PlugBase*)),
-                    widgets2[i],        SLOT(onDisconnectPlug(PlugBase*, PlugBase*))  );
-
-        connect(    this,               SIGNAL(doConnectEvent(Event*, Event*)),
-                    widgets2[i],        SLOT(onConnectEvent(Event*, Event*))  );
-
-        connect(    this,               SIGNAL(doDisconnectEvent(Event*, Event*)),
-                    widgets2[i],        SLOT(onDisconnectEvent(Event*, Event*))  );
-
-    }
+    connect(_properties_widget,&EdLevelPropertiesWindow::doCommand,this,&EdLevelMainWindow::onCommand);
+    connect(_properties_widget,&EdLevelPropertiesWindow::doUndoBlock,this,&EdLevelMainWindow::onUndoBlock);
+    connect(this,&EdLevelMainWindow::doAddComponent,_properties_widget,&EdLevelPropertiesWindow::onAddComponent);
+    connect(this,&EdLevelMainWindow::doRemoveComponent,_properties_widget,&EdLevelPropertiesWindow::onRemoveComponent);
 
     // Context menus
     connect(    _script_widget,         SIGNAL(doNodeContextMenu(std::shared_ptr<WorldNode>, const QPointF &)),
@@ -577,8 +595,7 @@ EdLevelMainWindow::EdLevelMainWindow(void)
     _autosave_timer.start(60*1000*1, this); // 1 minute
 
     emit doRefreshWorld();
-
-    GameMainThread::show_engine(1,1);
+//    GameMainThread::show_engine(1,1);
 }
 
 EdLevelMainWindow::~EdLevelMainWindow(void)
@@ -772,6 +789,16 @@ void EdLevelMainWindow::onAbout()
 
 void EdLevelMainWindow::onOpenRecent()
 {
+    QObject *ob = sender();
+    for (int i = 0; i < MaxRecentFiles; ++i) {
+        if (i < _recent_files.count()) {
+            QAction *act = qobject_cast<QAction *>(ob);
+            if(!act)
+                continue;
+            QString file_to_open = act->data().toString();
+            qDebug() << "Open recent requested to open file:" << file_to_open;
+        }
+    }
 
 }
 
@@ -1170,8 +1197,7 @@ void EdLevelMainWindow::createActions()
     for (int i = 0; i < MaxRecentFiles; ++i) {
         _recent_file_actions[i] = new QAction(this);
         _recent_file_actions[i]->setVisible(false);
-        connect(_recent_file_actions[i], SIGNAL(triggered()),
-                this, SLOT(openRecentFile()));
+        connect(_recent_file_actions[i], SIGNAL(triggered()), this, SLOT(onOpenRecent()));
     }
 
     _exit_action = new QAction(tr("E&xit"), this);
@@ -1843,7 +1869,4 @@ void EdLevelMainWindow::showWarning (const DTcharacter* file, const DTcharacter*
 
 //==============================================================================
 //==============================================================================
-
-
-#include "moc_EdLevelMainWindow.cpp"
 

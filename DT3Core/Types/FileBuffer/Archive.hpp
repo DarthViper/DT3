@@ -1,6 +1,4 @@
 #pragma once
-#ifndef DT3_ARCHIVE
-#define DT3_ARCHIVE
 //==============================================================================
 ///
 ///	File: Archive.hpp
@@ -12,9 +10,9 @@
 ///
 //==============================================================================
 
+#include "DT3Core/System/AppConfig.hpp"
 #include "DT3Core/Types/Base/BaseClass.hpp"
 #include "DT3Core/Types/Utility/Config.hpp"
-#include "DT3Core/System/AppConfig.hpp"
 #include <list>
 #include <memory>
 
@@ -116,5 +114,3 @@ class Archive: public BaseClass {
 //==============================================================================
 
 } // DT3
-
-#endif

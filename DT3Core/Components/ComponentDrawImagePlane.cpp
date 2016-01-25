@@ -1,12 +1,12 @@
 //==============================================================================
-///	
+///
 ///	File: ComponentDrawImagePlane.cpp
-///	
+///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
 /// This file is subject to the terms and conditions defined in
 /// file 'LICENSE.txt', which is part of this source code package.
-///	
+///
 //==============================================================================
 
 #include "DT3Core/Components/ComponentDrawImagePlane.hpp"
@@ -44,28 +44,28 @@ IMPLEMENT_PLUG_INFO_INDEX(_tex_mul_t)
 //==============================================================================
 
 BEGIN_IMPLEMENT_PLUGS(ComponentDrawImagePlane)
-        
+
     PLUG_INIT(_material, "Material")
-		.set_input(true);
+        .set_input(true);
 
     PLUG_INIT(_shader, "Shader")
-		.set_input(true);
-    
+        .set_input(true);
+
     PLUG_INIT(_color, "Color")
-		.set_input(true);
-        
+        .set_input(true);
+
     PLUG_INIT(_flip_horz, "Flip_Horz")
-		.set_input(true);
-        
+        .set_input(true);
+
     PLUG_INIT(_flip_vert, "Flip_Vert")
-		.set_input(true);
+        .set_input(true);
 
     PLUG_INIT(_tex_mul_s, "Tex_Mul_S")
-		.set_input(true);
+        .set_input(true);
 
     PLUG_INIT(_tex_mul_t, "Tex_Mul_T")
-		.set_input(true);
-    
+        .set_input(true);
+
 END_IMPLEMENT_PLUGS
 
 //==============================================================================
@@ -84,7 +84,7 @@ ComponentDrawImagePlane::ComponentDrawImagePlane (void)
 {
 
 }
-		
+
 ComponentDrawImagePlane::ComponentDrawImagePlane (const ComponentDrawImagePlane &rhs)
     :   ComponentBase       (rhs),
         _material           (rhs._material),
@@ -102,24 +102,24 @@ ComponentDrawImagePlane::ComponentDrawImagePlane (const ComponentDrawImagePlane 
 ComponentDrawImagePlane & ComponentDrawImagePlane::operator = (const ComponentDrawImagePlane &rhs)
 {
     // Make sure we are not assigning the class to itself
-    if (&rhs != this) {        
-		ComponentBase::operator = (rhs);
-        
+    if (&rhs != this) {
+        ComponentBase::operator = (rhs);
+
         _material = rhs._material;
         _shader = rhs._shader;
 
         _aspect = rhs._aspect;
         _color = rhs._color;
-        
+
         _flip_horz = rhs._flip_horz;
         _flip_vert = rhs._flip_vert;
-        
+
         _tex_mul_s = rhs._tex_mul_s;
         _tex_mul_t = rhs._tex_mul_t;
     }
     return (*this);
 }
-			
+
 ComponentDrawImagePlane::~ComponentDrawImagePlane (void)
 {
 
@@ -130,7 +130,7 @@ ComponentDrawImagePlane::~ComponentDrawImagePlane (void)
 
 void ComponentDrawImagePlane::initialize (void)
 {
-	ComponentBase::initialize();
+    ComponentBase::initialize();
 }
 
 //==============================================================================
@@ -141,16 +141,16 @@ void ComponentDrawImagePlane::archive (const std::shared_ptr<Archive> &archive)
     ComponentBase::archive(archive);
 
     archive->push_domain (class_id ());
-	
+
     if (archive->isa(ArchivePropertyReaderWriter::kind()))
         *archive << ARCHIVE_DATA_ACCESSORS("Material", ComponentDrawImagePlane::material, ComponentDrawImagePlane::set_material_prop, DATA_PERSISTENT | DATA_SETTABLE);
-	else
+    else
         *archive << ARCHIVE_DATA_ACCESSORS("Material", ComponentDrawImagePlane::material, ComponentDrawImagePlane::set_material, DATA_PERSISTENT | DATA_SETTABLE);
 
-	*archive << ARCHIVE_DATA_ACCESSORS("Shader", ComponentDrawImagePlane::shader, ComponentDrawImagePlane::set_shader, DATA_PERSISTENT | DATA_SETTABLE);
+    *archive << ARCHIVE_DATA_ACCESSORS("Shader", ComponentDrawImagePlane::shader, ComponentDrawImagePlane::set_shader, DATA_PERSISTENT | DATA_SETTABLE);
 
-	*archive << ARCHIVE_PLUG(_color, DATA_PERSISTENT | DATA_SETTABLE);
-	*archive << ARCHIVE_DATA(_aspect, DATA_PERSISTENT | DATA_SETTABLE);
+    *archive << ARCHIVE_PLUG(_color, DATA_PERSISTENT | DATA_SETTABLE);
+    *archive << ARCHIVE_DATA(_aspect, DATA_PERSISTENT | DATA_SETTABLE);
 
     *archive << ARCHIVE_PLUG(_flip_horz, DATA_PERSISTENT | DATA_SETTABLE);
     *archive << ARCHIVE_PLUG(_flip_vert, DATA_PERSISTENT | DATA_SETTABLE);
@@ -177,7 +177,7 @@ void ComponentDrawImagePlane::set_material (const std::shared_ptr<MaterialResour
 void ComponentDrawImagePlane::set_material_prop (const std::shared_ptr<MaterialResource> &material)
 {
     _material = material;
-    
+
 //#ifdef DT3_EDITOR
 //
 //    //
@@ -185,12 +185,12 @@ void ComponentDrawImagePlane::set_material_prop (const std::shared_ptr<MaterialR
 //    //
 //
 //    if (_material->isValid()) {
-//        
+//
 //        // Take a stab at the aspect ratio
 //        (*_material)->setCurrentUnit(0);
-//        
+//
 //        Vector3 scale = (*_material)->getScale();
-//        if (scale.y > 0.0F) 
+//        if (scale.y > 0.0F)
 //            setAspect(scale.x/scale.y);
 //    }
 //#endif
@@ -212,23 +212,23 @@ void ComponentDrawImagePlane::set_shader (const std::shared_ptr<ShaderResource> 
 //==============================================================================
 //==============================================================================
 
-void ComponentDrawImagePlane::draw (const std::shared_ptr<CameraObject> &camera, const DTfloat lag)
+void ComponentDrawImagePlane::draw (const std::shared_ptr<CameraObject> &camera, const DTfloat /*lag*/)
 {
     if (!_material.as_ref() || !_shader.as_ref())
         return;
-        
+
     if (color().a_as_float() <= 0)
         return;
-        
+
     PlaceableObject *placeable = checked_cast<PlaceableObject*>(owner());
     if (!placeable)
         return;
-        
+
     DTfloat width, height;
     if (_aspect > 1.0F) {
         width = 1.0F;
         height = 1.0F / _aspect;
-        
+
     } else if (_aspect < 1.0F) {
         width = _aspect;
         height = 1.0F;
@@ -238,17 +238,17 @@ void ComponentDrawImagePlane::draw (const std::shared_ptr<CameraObject> &camera,
         height = 1.0F;
 
     }
-    
+
     DTfloat tc_s_min = 0.0F;
     DTfloat tc_s_max = _tex_mul_s;
     DTfloat tc_t_min = 0.0F;
     DTfloat tc_t_max = _tex_mul_t;
-    
+
     if (_flip_horz) std::swap(tc_s_min, tc_s_max);
     if (_flip_vert) std::swap(tc_t_min, tc_t_max);
-    
+
     Color4b c(_color);
-    
+
     _b.batch_begin(  camera,
                     _material,
                     _shader,
@@ -256,12 +256,12 @@ void ComponentDrawImagePlane::draw (const std::shared_ptr<CameraObject> &camera,
                     DT3GL_PRIM_TRI_STRIP,
                     DrawBatcher::FMT_V | DrawBatcher::FMT_T0 | DrawBatcher::FMT_C,
                     4);
-    
+
     _b.add().v(-width,+height,0.0F)  .t0(tc_s_min,tc_t_max)  .c(c);
     _b.add().v(-width,-height,0.0F)  .t0(tc_s_min,tc_t_min)  .c(c);
     _b.add().v(+width,+height,0.0F)  .t0(tc_s_max,tc_t_max)  .c(c);
     _b.add().v(+width,-height,0.0F)  .t0(tc_s_max,tc_t_min)  .c(c);
-    
+
     _b.batch_end();
     _b.draw();
 }
@@ -272,7 +272,7 @@ void ComponentDrawImagePlane::draw (const std::shared_ptr<CameraObject> &camera,
 void ComponentDrawImagePlane::add_to_owner (ObjectBase *owner)
 {
     ComponentBase::add_to_owner(owner);
-    
+
     World *w = owner->world();
 
     w->register_for_draw(owner, make_callback(this, &type::draw));

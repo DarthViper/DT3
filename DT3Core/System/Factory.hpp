@@ -198,16 +198,14 @@ extern std::map<std::string, std::set<std::string>>&           script_map       
     }
 
 #define IMPLEMENT_FACTORY_CREATION_SCRIPT(Class,Category,Adapter) \
-    namespace { \
-        struct registration_class##Class: public StaticInitializerCallback { \
+        struct registration_class##Class: public DT3::StaticInitializerCallback { \
             void initialize() { \
-                DT3::factory_map()[Class::class_id_static()] = std::shared_ptr<CreatorBase>(new ("FactoryObjectCreator") Creator<Class>); \
+                DT3::factory_map()[Class::class_id_static()] = std::shared_ptr<DT3::CreatorBase>(new ("FactoryObjectCreator") DT3::Creator<Class>); \
                 if (std::string(Category) != "")																						\
                     DT3::script_map()[Category].insert( Class::class_id_static() ); \
                 DT3::adapter_map()[Class::class_id_static()] = #Adapter; \
             } \
         } registration_obj##Class; \
-    }
 
 #define IMPLEMENT_FACTORY_TOOL(Class)	\
     namespace { \

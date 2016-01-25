@@ -1,13 +1,13 @@
 
 //==============================================================================
-///	
+///
 ///	File: GUIObject.cpp
-///	
+///
 /// Copyright (C) 2000-2014 by Smells Like Donkey, Inc. All rights reserved.
 ///
 /// This file is subject to the terms and conditions defined in
 /// file 'LICENSE.txt', which is part of this source code package.
-///	
+///
 //==============================================================================
 
 #include "DT3Core/Objects/GUIObject.hpp"
@@ -26,7 +26,7 @@
 //==============================================================================
 //==============================================================================
 
-namespace DT3 {
+using namespace DT3;
 
 //==============================================================================
 /// Register with object factory
@@ -44,23 +44,23 @@ IMPLEMENT_PLUG_INFO_INDEX(_skin)
 //==============================================================================
 //==============================================================================
 
-BEGIN_IMPLEMENT_PLUGS(GUIObject)        
+BEGIN_IMPLEMENT_PLUGS(GUIObject)
 
     PLUG_INIT(_width, "Width")
-		.set_input(true)
-		.set_output(true);
+        .set_input(true)
+        .set_output(true);
 
     PLUG_INIT(_height, "Height")
-		.set_input(true)
-		.set_output(true);
-        
+        .set_input(true)
+        .set_output(true);
+
     PLUG_INIT(_color, "Color")
-		.set_input(true)
-		.set_output(true);
-        
+        .set_input(true)
+        .set_output(true);
+
     PLUG_INIT(_label, "Label")
-		.set_input(true)
-		.set_output(true);
+        .set_input(true)
+        .set_output(true);
 
 END_IMPLEMENT_PLUGS
 
@@ -78,11 +78,11 @@ GUIObject::GUIObject (void)
         _label          (PLUG_INFO_INDEX(_label), ""),
         _state          (STATE_NORMAL)
 {
-    
+
 }
-		
+
 GUIObject::GUIObject (const GUIObject &rhs)
-	:	PlaceableObject      (rhs),
+    :	PlaceableObject      (rhs),
         _width          (rhs._width),
         _height         (rhs._height),
         _size_mode      (rhs._size_mode),
@@ -98,8 +98,8 @@ GUIObject::GUIObject (const GUIObject &rhs)
 GUIObject & GUIObject::operator = (const GUIObject &rhs)
 {
     // Make sure we are not assigning the class to itself
-    if (&rhs != this) {        
-		PlaceableObject::operator = (rhs);
+    if (&rhs != this) {
+        PlaceableObject::operator = (rhs);
 
         _width = rhs._width;
         _height = rhs._height;
@@ -112,7 +112,7 @@ GUIObject & GUIObject::operator = (const GUIObject &rhs)
     }
     return (*this);
 }
-			
+
 GUIObject::~GUIObject (void)
 {
 
@@ -126,10 +126,10 @@ void GUIObject::archive (const std::shared_ptr<Archive> &archive)
     PlaceableObject::archive(archive);
 
     archive->push_domain (class_id ());
-    
-	*archive << ARCHIVE_PLUG(_width, DATA_PERSISTENT | DATA_SETTABLE);
-	*archive << ARCHIVE_PLUG(_height, DATA_PERSISTENT | DATA_SETTABLE);
-	*archive << ARCHIVE_DATA_ACCESSORS("Size_Mode", GUIObject::size_mode, GUIObject::set_size_mode, DATA_PERSISTENT | DATA_SETTABLE)
+
+    *archive << ARCHIVE_PLUG(_width, DATA_PERSISTENT | DATA_SETTABLE);
+    *archive << ARCHIVE_PLUG(_height, DATA_PERSISTENT | DATA_SETTABLE);
+    *archive << ARCHIVE_DATA_ACCESSORS("Size_Mode", GUIObject::size_mode, GUIObject::set_size_mode, DATA_PERSISTENT | DATA_SETTABLE)
         .add_enum("No Change")
         .add_enum("Width Constant")
         .add_enum("Height Constant")
@@ -140,9 +140,9 @@ void GUIObject::archive (const std::shared_ptr<Archive> &archive)
         .add_enum("Top Right")
         .add_enum("Bottom Left")
         .add_enum("Bottom Right");
-        
-	*archive << ARCHIVE_PLUG(_color, DATA_PERSISTENT | DATA_SETTABLE);
-	*archive << ARCHIVE_PLUG(_label, DATA_PERSISTENT | DATA_SETTABLE);
+
+    *archive << ARCHIVE_PLUG(_color, DATA_PERSISTENT | DATA_SETTABLE);
+    *archive << ARCHIVE_PLUG(_label, DATA_PERSISTENT | DATA_SETTABLE);
     *archive << ARCHIVE_DATA(_no_focus, DATA_PERSISTENT | DATA_SETTABLE);
 
     archive->pop_domain ();
@@ -153,9 +153,9 @@ void GUIObject::archive (const std::shared_ptr<Archive> &archive)
 
 void GUIObject::initialize (void)
 {
-	PlaceableObject::initialize();
-    
-	_shader = ShaderResource::import_resource(FilePath("{SYS_MASK_SHADER}"));
+    PlaceableObject::initialize();
+
+    _shader = ShaderResource::import_resource(FilePath("{SYS_MASK_SHADER}"));
 
     _mask_material = MaterialResource::create();
     _mask_material->set_blend_enable(false);
@@ -207,15 +207,15 @@ void GUIObject::initialize (void)
 GUIController* GUIObject::controller (void)
 {
     PlaceableObject *cur = checked_static_cast<PlaceableObject*>(this);
-    
+
     while (cur && !cur->isa(GUIController::kind())) {
         cur = cur->parent();
     }
-    
+
     // Check result
     if (cur->isa(GUIController::kind()))
         return checked_static_cast<GUIController*>(cur);
-    else   
+    else
         return NULL;
 }
 
@@ -231,14 +231,14 @@ void GUIObject::draw_gui_mask (const std::shared_ptr<CameraObject> &camera)
                     DT3GL_PRIM_TRI_STRIP,
                     DrawBatcher::FMT_V,
                     4);
-    
+
     Rectangle rect = rectangle();
-    
+
     _b.add().v(rect.plus_x(),rect.plus_y(),0.0F);
     _b.add().v(rect.minus_x(),rect.plus_y(),0.0F);
     _b.add().v(rect.plus_x(),rect.minus_y(),0.0F);
     _b.add().v(rect.minus_x(),rect.minus_y(),0.0F);
-    
+
     _b.batch_end();
     _b.draw();
 }
@@ -252,14 +252,14 @@ void GUIObject::draw_gui_unmask (const std::shared_ptr<CameraObject> &camera)
                     DT3GL_PRIM_TRI_STRIP,
                     DrawBatcher::FMT_V,
                     4);
-    
+
     Rectangle rect = rectangle();
-    
+
     _b.add().v(rect.plus_x(),rect.plus_y(),0.0F);
     _b.add().v(rect.minus_x(),rect.plus_y(),0.0F);
     _b.add().v(rect.plus_x(),rect.minus_y(),0.0F);
     _b.add().v(rect.minus_x(),rect.minus_y(),0.0F);
-    
+
     _b.batch_end();
     _b.draw();
 }
@@ -292,7 +292,7 @@ Vector2 GUIObject::position_to_object_coord  (Vector2 pixel_pos)
     // Transform position into widget coordinates
     DTfloat x = (DTfloat) pixel_pos.x / System::renderer()->screen_width();
     DTfloat y = 1.0F - (DTfloat) pixel_pos.y / System::renderer()->screen_height();
-    
+
     Vector2 pos = draw_transform().inversed() * Vector2(x,y);
     return pos;
 }
@@ -302,7 +302,7 @@ Vector2 GUIObject::velocity_to_object_coord  (Vector2 pixel_velocity)
     // Transform position into widget coordinates
     DTfloat dx = (DTfloat) pixel_velocity.x / System::renderer()->screen_width();
     DTfloat dy = -(DTfloat) pixel_velocity.y / System::renderer()->screen_height();
-    
+
     Vector2 vel = draw_transform().orientation().inversed() * Vector2(dx,dy);
     return vel;
 }
@@ -314,7 +314,7 @@ Rectangle GUIObject::rectangle (void) const
 {
     DTfloat half_width = _width/2.0F;
     DTfloat half_height = _height/2.0F;
-    
+
     Rectangle r;
     r.set (-half_width, half_width, -half_height, half_height);
     return r;
@@ -342,15 +342,15 @@ Rectangle GUIObject::screen_rectangle (void) const
 Matrix4 GUIObject::draw_transform (void) const
 {
     DTfloat aspect = System::renderer()->screen_aspect();
-    
+
     DTfloat half_width = _width/2.0F;
     DTfloat half_height = _height/2.0F;
-    
-    
+
+
     //
     // Calculate offset
-    // 
-    
+    //
+
     Matrix4 offset;
     switch (_pivot) {
         case PIVOT_TOP_LEFT:
@@ -375,30 +375,30 @@ Matrix4 GUIObject::draw_transform (void) const
     //
 
     switch (_size_mode) {
-    
+
         case SIZE_MODE_NO_CHANGE: {
                 return transform();
             } break;
-        
+
         case SIZE_MODE_WIDTH_CONSTANT: {
                 Matrix4 t = transform();
                 Vector3 translation = t.translation();
-            
+
                 Matrix3 distortion( 1.0F,   0.0F,   0.0F,
                                     0.0F,   aspect, 0.0F,
                                     0.0F,   0.0F,   1.0F    );
-            
+
                 return Matrix4(distortion * t.orientation(), translation, t.scale()) * offset;
             } break;
 
         case SIZE_MODE_HEIGHT_CONSTANT: {
                 Matrix4 t = transform();
                 Vector3 translation = t.translation();
-                
+
                 Matrix3 distortion( 1.0F/aspect,0.0F,   0.0F,
                                     0.0F,       1.0F,   0.0F,
                                     0.0F,       0.0F,   1.0F    );
-            
+
                 return Matrix4(distortion * t.orientation(), translation, t.scale()) * offset;
             } break;
 
@@ -408,21 +408,20 @@ Matrix4 GUIObject::draw_transform (void) const
 
                 DTfloat width = 1.0F / System::renderer()->screen_width();
                 DTfloat height = 1.0F / System::renderer()->screen_height();
-                
+
                 Matrix3 distortion( width,  0.0F,   0.0F,
                                     0.0F,   height, 0.0F,
                                     0.0F,   0.0F,   1.0F    );
-            
+
                 return Matrix4(distortion * t.orientation(), translation, t.scale()) * offset;
 
             } break;
 
         default:
-            return transform() * offset;
             break;
 
-    };
-    
+    }
+    return transform() * offset;
 }
 
 //==============================================================================
@@ -443,42 +442,42 @@ Rectangle GUIObject::children_content_rectangle (void) const
     if (c.size() == 0) {
         return rectangle();
     } else {
-        
+
         Matrix4 transform = draw_transform().inversed();
         Rectangle r;
         r.clear();
-        
+
         DTuint num = 0;
-        
+
         for (auto &i : c) {
             GUIObject *gui = checked_cast<GUIObject*>(i);
             if (!gui)
                 continue;
-                
+
             if (gui->color().r_as_float() <= 0.0F)
                 continue;
-        
+
             Rectangle child_rect = gui->content_rectangle();
             Matrix4 gui_transform = transform * gui->draw_transform();
-        
+
             // 4 corners
             Vector2 p0 = Vector2( gui_transform * Vector3(child_rect.minus_x(), child_rect.plus_y(), 0.0F));
             Vector2 p1 = Vector2( gui_transform * Vector3(child_rect.plus_x(), child_rect.plus_y(), 0.0F));
             Vector2 p2 = Vector2( gui_transform * Vector3(child_rect.minus_x(), child_rect.minus_y(), 0.0F));
             Vector2 p3 = Vector2( gui_transform * Vector3(child_rect.plus_x(), child_rect.minus_y(), 0.0F));
-            
+
             r = Rectangle::calc_union(r, p0);
             r = Rectangle::calc_union(r, p1);
             r = Rectangle::calc_union(r, p2);
             r = Rectangle::calc_union(r, p3);
-            
+
             ++num;
         }
-        
+
         if (num == 0) {
             r.set(0.0F,0.0F,0.0F,0.0F);
         }
-    
+
         return r;
     }
 }
@@ -489,7 +488,7 @@ Rectangle GUIObject::children_content_rectangle (void) const
 void GUIObject::scroll_contents (DTfloat dx, DTfloat dy)
 {
     std::list<PlaceableObject*> c = children();
-    
+
     for (auto &i : c)
         i->set_translation( i->translation() + Vector3(dx, dy, 0.0F) );
 }
@@ -498,18 +497,18 @@ DTboolean GUIObject::is_contents_animating (void) const
 {
     if (has_anim_key())
         return true;
- 
+
     std::list<PlaceableObject*> c = children();
 
     for (auto &i : c) {
         GUIObject *gui = checked_cast<GUIObject*>(i);
         if (!gui)
             continue;
-    
+
         if ( gui->is_contents_animating() )
             return true;
     }
-            
+
     return false;
 }
 
@@ -518,46 +517,46 @@ DTboolean GUIObject::is_contents_animating (void) const
 
 void GUIObject::animate (DTfloat dt)
 {
-	// If there are animation pending
-	if (_anim_keys.size() > 0) {
-	
-		GUIAnimKey &front_key = _anim_keys.front();
-		
-		// Animate the frame
-		if (!front_key.animate(dt,this)) {
+    // If there are animation pending
+    if (_anim_keys.size() > 0) {
 
-			// Resubmit keyframe if repeated
-			if (front_key.is_repeat())
-				_anim_keys.push_back(front_key);
+        GUIAnimKey &front_key = _anim_keys.front();
 
-			// Load in the next key frame
-			_anim_keys.pop_front();
-			
-			// Cache current state for next keyframe
-			if (_anim_keys.size() > 0) {
-				GUIAnimKey &next_front_key = _anim_keys.front();
-				next_front_key.cache_frame_state(this);
-			} else {
+        // Animate the frame
+        if (!front_key.animate(dt,this)) {
+
+            // Resubmit keyframe if repeated
+            if (front_key.is_repeat())
+                _anim_keys.push_back(front_key);
+
+            // Load in the next key frame
+            _anim_keys.pop_front();
+
+            // Cache current state for next keyframe
+            if (_anim_keys.size() > 0) {
+                GUIAnimKey &next_front_key = _anim_keys.front();
+                next_front_key.cache_frame_state(this);
+            } else {
                 // Stop getting ticks
                 world()->unregister_for_tick(this, make_callback(this, &type::animate));
             }
-		}
-	}
+        }
+    }
 }
 
 GUIAnimKey& GUIObject::add_anim_key (void)
 {
-	if (_anim_keys.size() == 0) {
+    if (_anim_keys.size() == 0) {
 
         // Start getting ticks
         world()->register_for_tick(this, make_callback(this, &type::animate));
     }
 
-	GUIAnimKey new_key;
-	new_key.cache_frame_state(this);
+    GUIAnimKey new_key;
+    new_key.cache_frame_state(this);
     _anim_keys.push_back(new_key);
-	
-	return _anim_keys.back();
+
+    return _anim_keys.back();
 }
 
 void GUIObject::add_anim_key (const GUIAnimKey& key)
@@ -569,31 +568,31 @@ void GUIObject::add_anim_key (const GUIAnimKey& key)
 
 void GUIObject::cancel_repeating_anims (void)
 {
-	for (auto &i : _anim_keys) {
-		i.set_repeat(false);
-	}
+    for (auto &i : _anim_keys) {
+        i.set_repeat(false);
+    }
 }
 
 //==============================================================================
 //==============================================================================
 
 void GUIObject::clear_anims (void)
-{	    
-	for (auto i = _anim_keys.begin(); i != _anim_keys.end();) {
-    
+{
+    for (auto i = _anim_keys.begin(); i != _anim_keys.end();) {
+
         // Skip if keyframe is running. This can be called in a callback and bad stuff would happen
         if (i->is_busy())   ++i;
         else                i = _anim_keys.erase(i);
-            
+
     }
-    
+
 }
 
 //==============================================================================
 //==============================================================================
 
 namespace {
-    
+
     struct CompareTouch {
         DTint operator() (PlaceableObject *a, PlaceableObject *b) const {
           return (a->translation().z > b->translation().z);
@@ -618,35 +617,35 @@ void GUIObject::hit_test (GUITouchEvent *event, GUIObject* &hit_object, const Co
     Color4f c = parent_color * color();
 
     if (_hit_object_callbacks.size() == 0) {
-    
+
         if (c.a_as_float() == 0)
             return;
-    
+
         Vector2 object_pos = position_to_object_coord (event->position());
         if (rectangle().is_touching(object_pos)) {
-            
+
             std::list<PlaceableObject*> cc = children();
-            
+
             cc.sort(CompareTouch());
 
             for (auto &i : cc) {
                 GUIObject *gui = checked_cast<GUIObject*>(i);
                 if (!gui)
                     continue;
-                    
+
                 gui->hit_test(event, hit_object, c);
                 if (hit_object)
                     return;
-            }   
+            }
 
             hit_object = this;
         }
-     
+
     } else {
         _hit_object_callbacks.fire(event, hit_object, c);
     }
 }
-        
+
 void GUIObject::touches_began (GUITouchEvent *event)
 {
     _touches_began_callbacks.fire(event);
@@ -684,6 +683,3 @@ void GUIObject::remove_from_world (void)
 
 //==============================================================================
 //==============================================================================
-
-} // DT3
-

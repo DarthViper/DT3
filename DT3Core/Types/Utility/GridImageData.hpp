@@ -43,8 +43,8 @@ class GridImageData {
 
     public:
 
-        inline DTboolean	operator ==                     (const GridImageData& rhs) const  {	return false;		}
-        inline DTboolean	operator !=                     (const GridImageData& rhs) const  {	return true;		}
+        inline DTboolean	operator ==                     (const GridImageData& /*rhs*/) const  {	return false;		}
+        inline DTboolean	operator !=                     (const GridImageData& /*rhs*/) const  {	return true;		}
 
 
         /// Set number of control points in X direction
@@ -53,7 +53,7 @@ class GridImageData {
 
         /// Returns number of control points in X direction
         /// \return number of control points
-        const DTuint				num_x                   (void) const;
+        DTuint				num_x                   (void) const;
 
         /// Set number of control points in Y direction
         /// \param num_y number of control points
@@ -61,7 +61,7 @@ class GridImageData {
 
         /// Returns number of control points in Y direction
         /// \return number of control points
-        const DTuint				num_y                   (void) const;
+        DTuint				num_y                   (void) const;
 
         /// Returns the control point at x,y location
         /// \param x x index

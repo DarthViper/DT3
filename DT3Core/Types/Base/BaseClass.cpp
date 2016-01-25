@@ -1,12 +1,12 @@
 //==============================================================================
-///	
+///
 ///	File: BaseClass.cpp
-///	
+///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
 /// This file is subject to the terms and conditions defined in
 /// file 'LICENSE.txt', which is part of this source code package.
-///	
+///
 //==============================================================================
 
 #include "DT3Core/Types/Base/BaseClass.hpp"
@@ -29,26 +29,27 @@ std::atomic<DTuint> BaseClass::_unique_id_counter(0);
 //==============================================================================
 
 BaseClass::BaseClass (void)
-	:	_streamable				(true)
-{  
-	new_unique_id();
-}
-		
-BaseClass::BaseClass (const BaseClass &rhs)
-    :   _streamable             (rhs._streamable)
+    :   _streamable				(true)
 {
-	new_unique_id();
+    new_unique_id();
+}
+
+BaseClass::BaseClass (const BaseClass &rhs)
+    :   std::enable_shared_from_this<BaseClass>(rhs),
+        _streamable             (rhs._streamable)
+{
+    new_unique_id();
 }
 
 BaseClass & BaseClass::operator = (const BaseClass &rhs)
 {
     // Make sure we are not assigning the class to itself
     if (&rhs != this) {
-		_streamable = rhs._streamable;
+        _streamable = rhs._streamable;
     }
     return (*this);
 }
-			
+
 BaseClass::~BaseClass (void)
 {
 
@@ -84,13 +85,13 @@ void BaseClass::uninitialize (void)
 {
 
 }
-		
+
 //==============================================================================
 //==============================================================================
 
 void BaseClass::new_unique_id (void)
 {
-	// Increments counter and returns previous value
+    // Increments counter and returns previous value
     _unique_id = _unique_id_counter.fetch_add(1);
 }
 

@@ -232,11 +232,11 @@ void MaterialResource::reset (void)
     _rasterizer_state_dirty = true;
     _rasterizer_resource.reset();
 
-    for (DTint i = 0; i < ARRAY_SIZE(_textures); ++i) {
-        DeviceGraphics::reset (_textures[i]._sampler_state);
+    for (TextureSlot & tex : _textures) {
+        DeviceGraphics::reset (tex._sampler_state);
 
-        _textures[i]._sampler_state_dirty = true;
-        _textures[i]._sampler_state_resource.reset();
+        tex._sampler_state_dirty = true;
+        tex._sampler_state_resource.reset();
     }
 }
 

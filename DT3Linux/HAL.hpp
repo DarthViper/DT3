@@ -74,7 +74,7 @@ class HAL {
                 /// Run a command on the command line
                 /// \param command command to run
                 /// \return args Array or arguments to command line
-                static void					run_on_command_line     (const std::string &command, const std::vector<std::string> &args);
+        static void					run_on_command_line     (const std::string &command, const std::vector<std::string> &args);
 
 
         //
@@ -83,12 +83,12 @@ class HAL {
 
                 /// Returns a list of supported display modes
                 /// \param modes Display modes
-        static void                 display_modes           (std::map<DTint, std::vector<DisplayMode>> &modes);
+        //static void                 display_modes           (std::map<DTint, std::vector<DisplayMode>> &modes);
 
                 /// Switches to a display mode
                 /// \param display index of display
                 /// \param mode resolution of display
-        static void                 switch_display_mode     (DTint display, DisplayMode mode);
+        //static void                 switch_display_mode     (DTint display, DisplayMode mode);
 
                 /// Returns the rectangle of the display
                 /// \param display index of display
@@ -96,14 +96,14 @@ class HAL {
                 /// \param y y location
                 /// \param width width of display
                 /// \param height height of display
-        static void                 display_rect            (DTint display, DTint &x, DTint &y, DTint &width, DTint &height);
+        //static void                 display_rect            (DTint display, DTint &x, DTint &y, DTint &width, DTint &height);
 
         //
         // Web Browser
         //
 
-                static void                 launch_browser          (const URL &url);
-                static void                 launch_editor           (const FilePath &path);
+        static void                 launch_browser          (const URL &url);
+        static void                 launch_editor           (const FilePath &path);
 
         //
         // CPU Query
@@ -132,12 +132,12 @@ class HAL {
                 /// Description
                 /// \param param description
                 /// \return description
-                static std::string          region                  (void);
+        static std::string          region                  (void);
 
                 /// Description
                 /// \param param description
                 /// \return description
-                static std::string          language                (void);
+        static std::string          language                (void);
 
         //
         // Globals
@@ -146,12 +146,12 @@ class HAL {
                 /// Description
                 /// \param param description
                 /// \return description
-                static std::map<StringCopier, Globals::GlobalsEntry>  load_globals            (void);
+        static std::map<StringCopier, Globals::GlobalsEntry>  load_globals            (void);
 
                 /// Description
                 /// \param param description
                 /// \return description
-                static void                 save_globals            (std::map<StringCopier, Globals::GlobalsEntry> globals);
+        static void                 save_globals            (QHash<QString, Globals::GlobalsEntry> &globals);
 
 
 };

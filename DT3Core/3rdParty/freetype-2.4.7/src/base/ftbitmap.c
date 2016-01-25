@@ -231,7 +231,7 @@
     if ( ( ( FT_PIX_ROUND( xStrength ) >> 6 ) > FT_INT_MAX ) ||
          ( ( FT_PIX_ROUND( yStrength ) >> 6 ) > FT_INT_MAX ) )
       return FT_Err_Invalid_Argument;
-       
+
     xstr = (FT_Int)FT_PIX_ROUND( xStrength ) >> 6;
     ystr = (FT_Int)FT_PIX_ROUND( yStrength ) >> 6;
 
@@ -418,7 +418,7 @@
         target->pitch = source->width + pad;
 
         if ( target->pitch > 0                           &&
-             target->rows > FT_ULONG_MAX / target->pitch )
+             target->rows > (int)(FT_ULONG_MAX / target->pitch) )
           return FT_Err_Invalid_Argument;
 
         if ( target->rows * target->pitch > old_size             &&

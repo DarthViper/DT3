@@ -62,11 +62,11 @@ class ArchiveData: public BaseClass {
     public:
         /// Writes the value to a stream
         /// \param s stream
-        virtual void                    value                   (Stream &s) const	{					}
+        virtual void                    value                   (Stream &/*s*/) const	{					}
 
         /// Reads the value from a stream
         /// \param s stream
-        virtual void                    set_value				(Stream &s) const	{					}
+        virtual void                    set_value				(Stream &/*s*/) const	{					}
 
 
 
@@ -323,12 +323,12 @@ class ArchiveDataEvent: public ArchiveData {
 
         /// Writes the value to a stream
         /// \param s stream
-        virtual void                value                   (Stream &s) const {
+        virtual void                value                   (Stream &/*s*/) const {
         }
 
         /// Reads the value from a stream
         /// \param s stream
-        virtual void                set_value				(Stream &s) const {
+        virtual void                set_value				(Stream &/*s*/) const {
         }
 
         /// Returns event

@@ -1,6 +1,4 @@
 #pragma once
-#ifndef DT3_DEVICENETWORK
-#define DT3_DEVICENETWORK
 //==============================================================================
 ///
 ///	File: DeviceNetwork.hpp
@@ -41,8 +39,8 @@ class DeviceNetwork: public DeviceBase {
 
                                         DeviceNetwork   (void);
     private:
-                                        DeviceNetwork   (const DeviceNetwork &rhs)	{UNUSED(rhs)}
-        DeviceNetwork &                 operator =      (const DeviceNetwork UNUSED(&rhs))	{	return *this;	}
+                                        DeviceNetwork   (const DeviceNetwork &rhs)  = default;
+        DeviceNetwork &                 operator =      (const DeviceNetwork &UNUSED(rhs))	{	return *this;	}
     public:
         virtual                         ~DeviceNetwork  (void);
 
@@ -137,5 +135,3 @@ class DeviceNetwork: public DeviceBase {
 //==============================================================================
 
 } // DT3
-
-#endif

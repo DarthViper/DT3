@@ -62,7 +62,7 @@ class World: public PlugNode {
         virtual void                ready_to_go             (void)                      {}
 
         /// Process arguments
-        virtual void                process_args            (const std::string &args)   {}
+        virtual void                process_args            (const std::string &/*args*/)  {}
 
 
         //

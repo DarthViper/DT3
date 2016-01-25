@@ -51,24 +51,24 @@ class DeviceAudio: public DeviceBase {
 
     public:
         /// Shuts down the audio system
-        virtual void                            shutdown_audio          (void)  {};
+        virtual void                            shutdown_audio          (void)  {}
 
         /// Shuts down the audio system
-        virtual void                            restart_audio           (void)  {};
+        virtual void                            restart_audio           (void)  {}
 
 
         /// Sets the camera object which defines the properties of the listener
         /// \param camera listener camera
-        virtual void                            set_camera              (const std::shared_ptr<CameraObject> &camera)   { }
+        virtual void                            set_camera              (const std::shared_ptr<CameraObject> &/*camera*/)   { }
 
         /// Returns the camera object used as the listener
         /// \return listener camera
-        virtual std::shared_ptr<CameraObject>   camera                  (void) const    {   return NULL;    }
+        virtual std::shared_ptr<CameraObject>   camera                  (void) const    {   return nullptr;    }
 
 
         /// Sets the gain for the entire world
         /// \param gain for the world
-        virtual void                            set_world_gain          (const std::shared_ptr<World> &world, DTfloat gain) {}
+        virtual void                            set_world_gain          (const std::shared_ptr<World> &/*world*/, DTfloat gain) {}
 
 
         /// Plays the sound group

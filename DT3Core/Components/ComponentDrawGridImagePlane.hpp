@@ -70,7 +70,7 @@ class ComponentDrawGridImagePlane: public ComponentBase {
 
         /// Returns the number of grid points in the X direction
         /// \return Number of grid points in X
-        const DTuint				num_x				(void) const;
+        DTuint				num_x				(void) const;
 
         /// Sets the number of grid points in the Y direction
         /// \param num_y Number of grid points
@@ -78,7 +78,7 @@ class ComponentDrawGridImagePlane: public ComponentBase {
 
         /// Returns the number of grid points in the Y direction
         /// \return Number of grid points in Y
-        const DTuint				num_y				(void) const;
+        DTuint				num_y				(void) const;
 
 
         /// Called when this component is added to the owner. Note that this will

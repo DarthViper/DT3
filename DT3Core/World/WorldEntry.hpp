@@ -1,6 +1,4 @@
 #pragma once
-#ifndef DT3_WORLDENTRY
-#define DT3_WORLDENTRY
 //==============================================================================
 ///
 ///	File: WorldEntry.hpp
@@ -93,5 +91,3 @@ typedef WorldEntry<TouchCallbackType> TouchCallbackEntry;
 //==============================================================================
 
 } // DT3
-
-#endif

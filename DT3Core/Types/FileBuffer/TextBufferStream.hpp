@@ -35,7 +35,7 @@ class Stream;
 class TextBufferStream: public TextStream {
     public:
         DEFINE_TYPE(TextBufferStream,TextStream)
-                DEFINE_CREATE
+        DEFINE_CREATE
 
                                 TextBufferStream		(void);
         explicit                TextBufferStream		(const std::string &s)  {	set_buffer(s);	}

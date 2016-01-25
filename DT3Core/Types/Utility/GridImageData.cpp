@@ -117,7 +117,7 @@ void GridImageData::set_num_x (const DTuint num_x)
     clear();
 }
 
-const DTuint GridImageData::num_x (void) const
+DTuint GridImageData::num_x(void) const
 {
     return _num_x;
 }
@@ -129,7 +129,7 @@ void GridImageData::set_num_y (const DTuint num_y)
     clear();
 }
 
-const DTuint GridImageData::num_y (void) const
+DTuint GridImageData::num_y(void) const
 {
     return _num_y;
 }

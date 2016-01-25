@@ -29,10 +29,7 @@ class LatentCall {
     public:
         DEFINE_TYPE_BASE(LatentCall)
 
-                        LatentCall          (void)                      {}
-                        LatentCall          (const LatentCall &rhs)     {}
-        LatentCall&     operator =          (const LatentCall& rhs)     {	return (*this);     }
-                        ~LatentCall         (void)                      {}
+        LatentCall&     operator =          (const LatentCall& /*rhs*/)     {	return (*this);     }
 
     public:
         virtual void    fire            (void) = 0;

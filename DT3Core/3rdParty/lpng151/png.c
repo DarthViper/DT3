@@ -12,9 +12,9 @@
  */
 
 #include "pngpriv.h"
-
 /* Generate a compiler error if there is an old png.h in the search path. */
 typedef png_libpng_version_1_5_1 Your_png_h_is_not_version_1_5_1;
+extern unsigned long crc32(unsigned long crc, const unsigned char FAR *buf, uInt len);
 
 /* Tells libpng that we have already handled the first "num_bytes" bytes
  * of the PNG file signature.  If the PNG data is embedded into another

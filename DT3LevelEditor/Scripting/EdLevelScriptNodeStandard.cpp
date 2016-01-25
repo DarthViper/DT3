@@ -241,8 +241,8 @@ bool EdLevelScriptNodeStandard::checkClick (const QPointF &scene_pos, const QPoi
     if ( getNodeEditorRect().contains(mapFromScene(scene_pos)) )
         return true;
 
-    for (int i = 0; i < _titles.size(); ++i) {
-        if ( getTitleActionRect(_titles[i]).contains(mapFromScene(scene_pos)) )
+    for (const QComponentTitle & t : _titles) {
+        if ( getTitleActionRect(t).contains(mapFromScene(scene_pos)) )
             return true;
     }
 
@@ -270,9 +270,9 @@ bool EdLevelScriptNodeStandard::handleClick (const QPointF &scene_pos, const QPo
         return true;
     }
 
-    for (int i = 0; i < _titles.size(); ++i) {
-        if ( getTitleActionRect(_titles[i]).contains(mapFromScene(scene_pos)) ) {
-            emit doComponentContextMenu(_titles[i]._component, global_pos);
+    for (const QComponentTitle & t : _titles) {
+        if ( getTitleActionRect(t).contains(mapFromScene(scene_pos)) ) {
+            emit doComponentContextMenu(t._component, global_pos);
             return true;
         }
     }
@@ -423,21 +423,21 @@ void EdLevelScriptNodeStandard::layoutNode (void)
         _height = TITLE_HEIGHT + std::max(input_pos,output_pos) * ITEM_HEIGHT;
 
         // Plugs first
-        for (int i = 0; i < _plugs.size(); ++i) {
-            if (_plugs[i]._plug->is_input())
-                _plugs[i]._input_location = QPoint(0.0F, _plugs[i]._input_position * ITEM_HEIGHT + TITLE_HEIGHT * 1.5F);
+        for (QInputOutputPlug & plug :  _plugs) {
+            if (plug._plug->is_input())
+                plug._input_location = QPoint(0.0F, plug._input_position * ITEM_HEIGHT + TITLE_HEIGHT * 1.5F);
 
-            if (_plugs[i]._plug->is_output())
-                _plugs[i]._output_location = QPoint(_width, _plugs[i]._output_position * ITEM_HEIGHT + TITLE_HEIGHT * 1.5F);
+            if (plug._plug->is_output())
+                plug._output_location = QPoint(_width, plug._output_position * ITEM_HEIGHT + TITLE_HEIGHT * 1.5F);
         }
 
         // Events second
-        for (int i = 0; i < _events.size(); ++i) {
-            if (_events[i]._event->is_input())
-                _events[i]._input_location = QPoint(0.0F, _events[i]._input_position * ITEM_HEIGHT + TITLE_HEIGHT * 1.5F);
+        for (QInputOutputEvent &event : _events) {
+            if (event._event->is_input())
+                event._input_location = QPoint(0.0F, event._input_position * ITEM_HEIGHT + TITLE_HEIGHT * 1.5F);
 
-            if (_events[i]._event->is_output())
-                _events[i]._output_location = QPoint(_width, _events[i]._output_position * ITEM_HEIGHT + TITLE_HEIGHT * 1.5F);
+            if (event._event->is_output())
+                event._output_location = QPoint(_width, event._output_position * ITEM_HEIGHT + TITLE_HEIGHT * 1.5F);
         }
 
     }
@@ -550,59 +550,59 @@ void EdLevelScriptNodeStandard::paint(QPainter *painter, const QStyleOptionGraph
     painter->setBrush(QBrush(QColor(150,220,150,255)));
 
     // Plugs first
-    for (int i = 0; i < _plugs.size(); ++i) {
-        if (_plugs[i]._input_position >= 0) {
+    for (QInputOutputPlug & plug :  _plugs) {
+        if (plug._input_position >= 0) {
             painter->drawText(	QRectF(	ITEM_PAD,
-                                        _plugs[i]._input_position * ITEM_HEIGHT + TITLE_HEIGHT,
+                                        plug._input_position * ITEM_HEIGHT + TITLE_HEIGHT,
                                         _input_width,
                                         ITEM_HEIGHT),
-                                Qt::AlignLeft | Qt::AlignVCenter, MoreStrings::captialize_and_format(_plugs[i]._plug->name()).c_str());
+                                Qt::AlignLeft | Qt::AlignVCenter, MoreStrings::captialize_and_format(plug._plug->name()).c_str());
 
-            painter->drawEllipse( QPointF(_plugs[i]._input_location), CONNECTOR_RADIUS, CONNECTOR_RADIUS );
+            painter->drawEllipse( QPointF(plug._input_location), CONNECTOR_RADIUS, CONNECTOR_RADIUS );
 
         }
 
-        if (_plugs[i]._output_position >= 0) {
+        if (plug._output_position >= 0) {
             painter->drawText(	QRectF(	_width - ITEM_PAD - _output_width,
-                                        _plugs[i]._output_position * ITEM_HEIGHT + TITLE_HEIGHT,
+                                        plug._output_position * ITEM_HEIGHT + TITLE_HEIGHT,
                                         _output_width,
                                         ITEM_HEIGHT),
-                                Qt::AlignRight | Qt::AlignVCenter, MoreStrings::captialize_and_format(_plugs[i]._plug->name()).c_str());
+                                Qt::AlignRight | Qt::AlignVCenter, MoreStrings::captialize_and_format(plug._plug->name()).c_str());
 
-            painter->drawEllipse( QPointF(_plugs[i]._output_location), CONNECTOR_RADIUS, CONNECTOR_RADIUS );
+            painter->drawEllipse( QPointF(plug._output_location), CONNECTOR_RADIUS, CONNECTOR_RADIUS );
         }
     }
 
     painter->setBrush(QBrush(QColor(150,150,220,255)));
 
     // Events second
-    for (int i = 0; i < _events.size(); ++i) {
-        if (_events[i]._input_position >= 0) {
+    for (QInputOutputEvent &event : _events) {
+        if (event._input_position >= 0) {
             painter->drawText(	QRectF(	ITEM_PAD,
-                                        _events[i]._input_position * ITEM_HEIGHT + TITLE_HEIGHT,
+                                        event._input_position * ITEM_HEIGHT + TITLE_HEIGHT,
                                         _input_width,
                                         ITEM_HEIGHT),
-                                Qt::AlignLeft | Qt::AlignVCenter, MoreStrings::captialize_and_format(_events[i]._event->name()).c_str());
+                                Qt::AlignLeft | Qt::AlignVCenter, MoreStrings::captialize_and_format(event._event->name()).c_str());
 
 
-            painter->drawRect ( QRectF(0.0F - CONNECTOR_RADIUS, _events[i]._input_location.y() - CONNECTOR_RADIUS, CONNECTOR_RADIUS * 2.0F, CONNECTOR_RADIUS * 2.0F ));
+            painter->drawRect ( QRectF(0.0F - CONNECTOR_RADIUS, event._input_location.y() - CONNECTOR_RADIUS, CONNECTOR_RADIUS * 2.0F, CONNECTOR_RADIUS * 2.0F ));
         }
 
-        if (_events[i]._output_position >= 0) {
+        if (event._output_position >= 0) {
             painter->drawText(	QRectF(	_width - ITEM_PAD - _output_width,
-                                        _events[i]._output_position * ITEM_HEIGHT + TITLE_HEIGHT,
+                                        event._output_position * ITEM_HEIGHT + TITLE_HEIGHT,
                                         _output_width,
                                         ITEM_HEIGHT),
-                                Qt::AlignRight | Qt::AlignVCenter, MoreStrings::captialize_and_format(_events[i]._event->name()).c_str());
+                                Qt::AlignRight | Qt::AlignVCenter, MoreStrings::captialize_and_format(event._event->name()).c_str());
 
-            painter->drawRect ( QRectF(_width - CONNECTOR_RADIUS, _events[i]._output_location.y() - CONNECTOR_RADIUS, CONNECTOR_RADIUS * 2.0F, CONNECTOR_RADIUS * 2.0F ));
+            painter->drawRect ( QRectF(_width - CONNECTOR_RADIUS, event._output_location.y() - CONNECTOR_RADIUS, CONNECTOR_RADIUS * 2.0F, CONNECTOR_RADIUS * 2.0F ));
         }
     }
 
     // Titles third
     painter->setFont ( _title_font);
 
-    for (int i = 0; i < _titles.size(); ++i) {
+    for (const QComponentTitle & tile : _titles) {
         painter->setPen(Qt::NoPen);
 
         if (isSelected()) {
@@ -612,7 +612,7 @@ void EdLevelScriptNodeStandard::paint(QPainter *painter, const QStyleOptionGraph
         }
 
         QRectF bounds = QRectF(  0,
-                                _titles[i]._position * ITEM_HEIGHT + TITLE_HEIGHT,
+                                tile._position * ITEM_HEIGHT + TITLE_HEIGHT,
                                 _width,
                                 TITLE_HEIGHT);
         bounds.adjust (2, 2, -2, -2);
@@ -622,9 +622,9 @@ void EdLevelScriptNodeStandard::paint(QPainter *painter, const QStyleOptionGraph
         painter->setPen(QPen(QColor(40,40,40,255),1));
 
         painter->drawText(  bounds,
-                            Qt::AlignHCenter | Qt::AlignVCenter, _titles[i]._title);
+                            Qt::AlignHCenter | Qt::AlignVCenter, tile._title);
 
-        painter->drawImage(getTitleActionRect(_titles[i]), QImage(":/images/gear.png"));
+        painter->drawImage(getTitleActionRect(tile), QImage(":/images/gear.png"));
 
     }
 

@@ -202,7 +202,8 @@ class Plug: public PlugBase {
                                                                                     _value = rhs;
                                                                                 }
 
-                            Plug                (const Plug<T> &rhs)            {	_info_index = rhs._info_index;
+                            Plug                (const Plug<T> &rhs)  : PlugBase(rhs)
+                                                                                {   _info_index = rhs._info_index;
                                                                                     _is_dirty = true;
                                                                                     _value = rhs;
                                                                                 }

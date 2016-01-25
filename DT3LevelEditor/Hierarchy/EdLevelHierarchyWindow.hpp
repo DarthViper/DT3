@@ -71,8 +71,8 @@ class EdLevelHierarchyWindow: public QTreeWidget
         void                            keyPressEvent               (QKeyEvent *event);
 
     private:
-        static const DTuint AUTO_SCROLL_TIMER = 30;
-        static const DTuint AUTO_SCROLL_MARIGN = 30;
+        static constexpr const DTint AUTO_SCROLL_TIMER = 30;
+        static constexpr const DTint AUTO_SCROLL_MARIGN = 30;
 
         EdLevelDocument                 *_document;
         EdLevelLineEdit                 *_filter;

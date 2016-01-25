@@ -82,7 +82,7 @@ class Resource: public BaseClass {
 
         /// Pass time in the resource if needed
         /// \param dt delta time
-        virtual void				tick                (const DTfloat dt)                  {}
+        virtual void				tick                (const DTfloat /*dt*/)              {}
 
         /// Resource lock (used in multi threaded applications)
         void                        lock                (void)                              {   _lock.lock();   }

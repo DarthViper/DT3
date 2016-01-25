@@ -1,6 +1,4 @@
 #pragma once
-#ifndef DT3_ANIMATIONKEYFRAME
-#define DT3_ANIMATIONKEYFRAME
 //==============================================================================
 ///
 ///	File: AnimationKeyframe.hpp
@@ -74,6 +72,3 @@ class AnimationKeyframe {
 //==============================================================================
 
 } // DT3
-
-#endif
-

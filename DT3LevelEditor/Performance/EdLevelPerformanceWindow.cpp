@@ -14,6 +14,8 @@
 #include "EdLevelDocument.hpp"
 
 // Qt include
+#include <QtCore/QDebug>
+
 // Engine includes
 #include "DT3Core/System/Profiler.hpp"
 #include "DT3Core/Types/Utility/MoreStrings.hpp"
@@ -220,6 +222,11 @@ void EdLevelPerformanceWindow::onSample (void)
 void EdLevelPerformanceWindow::onScroll (int scroll)
 {
     update();
+}
+
+void EdLevelPerformanceWindow::onRefreshPerformance()
+{
+    qDebug() << "unimplemented onRefreshPerformance()";
 }
 
 void EdLevelPerformanceWindow::wheelEvent (QWheelEvent *event)

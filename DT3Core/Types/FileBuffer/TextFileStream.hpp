@@ -37,7 +37,7 @@ class Progress;
 class TextFileStream: public TextStream {
     public:
         DEFINE_TYPE(TextFileStream,TextStream)
-                DEFINE_CREATE
+        DEFINE_CREATE
 
                                             TextFileStream          (void);
         explicit                            TextFileStream          (const FilePath &pathname);

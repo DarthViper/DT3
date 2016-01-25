@@ -79,25 +79,25 @@ class GUIGridLayout: public GUILayout {
         /// Sets the policy for resizing a column
         /// \param column column index
         /// \param p Policy
-        void                        set_column_policy       (DTint column, const GUILayoutPolicy &p);
+        void                        set_column_policy       (DTuint column, const GUILayoutPolicy &p);
 
         /// Sets the policy for resizing a row
         /// \param row row index
         /// \param p Policy
-        void                        set_row_policy          (DTint row, const GUILayoutPolicy &p);
+        void                        set_row_policy          (DTuint row, const GUILayoutPolicy &p);
 
         /// Add an item to the layout
         /// \param row row index
         /// \param column column index
         /// \param object object to add
         /// \param resize_mode how to resize the item
-        void                        add_item                (DTint row, DTint column, const std::shared_ptr<GUIObject> &object, GUIGridLayoutItem::ResizeMode resize_mode = GUIGridLayoutItem::RESIZE_MODE_RESIZE);
+        void                        add_item                (DTuint row, DTuint column, const std::shared_ptr<GUIObject> &object, GUIGridLayoutItem::ResizeMode resize_mode = GUIGridLayoutItem::RESIZE_MODE_RESIZE);
 
         /// Add sub layout to the layout
         /// \param row row index
         /// \param column column index
         /// \param layout layout to add
-        void                        add_item                (DTint row, DTint column, const std::shared_ptr<GUILayout> &layout);
+        void                        add_item                (DTuint row, DTuint column, const std::shared_ptr<GUILayout> &layout);
 
         /// Set the border item
         /// \param object object to add
@@ -149,8 +149,8 @@ class GUIGridLayout: public GUILayout {
         std::vector<GUILayoutPolicy>        _column_policies;
 
         std::vector<GUIGridLayoutItem>      _items;
-        DTint                               _num_rows;
-        DTint                               _num_columns;
+        DTuint                              _num_rows;
+        DTuint                              _num_columns;
 
         Rectangle                           _border_rect;
         std::shared_ptr<GUIObject>          _border_item;

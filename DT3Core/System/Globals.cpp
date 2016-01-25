@@ -1,12 +1,12 @@
 //==============================================================================
-///	
+///
 ///	File: Globals.cpp
-///	
+///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
 /// This file is subject to the terms and conditions defined in
 /// file 'LICENSE.txt', which is part of this source code package.
-///	
+///
 //==============================================================================
 
 #include "DT3Core/System/Globals.hpp"
@@ -25,7 +25,7 @@ namespace DT3 {
 //==============================================================================
 
 std::mutex                                      Globals::_globals_lock;
-std::map<StringCopier, Globals::GlobalsEntry>   Globals::_globals;
+QHash<QString, Globals::GlobalsEntry>   Globals::_globals;
 
 //==============================================================================
 //==============================================================================
@@ -51,14 +51,14 @@ void Globals::destroy (void)
 
 DTboolean Globals::has_global (const std::string &name_with_case)
 {
-	std::string name = MoreStrings::lowercase(name_with_case);
-    
+    std::string name = MoreStrings::lowercase(name_with_case);
+
     std::unique_lock<std::mutex> lock(_globals_lock);
-    
-    if (_globals.find(name) == _globals.end())
+
+    if (_globals.find(name.c_str()) == _globals.end())
         return false;
-	else
-		return true;
+    else
+        return true;
 }
 
 //==============================================================================
@@ -66,36 +66,36 @@ DTboolean Globals::has_global (const std::string &name_with_case)
 
 std::string Globals::global (const std::string &name_with_case)
 {
-	// Convert name to lowercase
-	std::string name = MoreStrings::lowercase(name_with_case);
+    // Convert name to lowercase
+    std::string name = MoreStrings::lowercase(name_with_case);
 
     std::unique_lock<std::mutex> lock(_globals_lock);
 
-    auto i = _globals.find(name);
+    auto i = _globals.find(name.c_str());
 
     if (i != _globals.end())
-        return	_globals[name].value;
+        return	_globals[name.c_str()].value;
     else
         return "";
 }
 
 DTboolean Globals::global (const std::string &name_with_case, std::string &value)
 {
-	// Convert name to lowercase
-	std::string name = MoreStrings::lowercase(name_with_case);
+    // Convert name to lowercase
+    std::string name = MoreStrings::lowercase(name_with_case);
 
     std::unique_lock<std::mutex> lock(_globals_lock);
 
-    auto i = _globals.find(name);
+    auto i = _globals.find(name.c_str());
 
     if (i != _globals.end()) {
-        value =	_globals[name].value;
-		return true;
+        value =	_globals[name.c_str()].value;
+        return true;
     } else {
         value = "";
-		return false;
-	}
-	
+        return false;
+    }
+
 }
 
 //==============================================================================
@@ -103,21 +103,21 @@ DTboolean Globals::global (const std::string &name_with_case, std::string &value
 
 void Globals::set_global (const std::string &name_with_case, const std::string &value, const DTint lifetime)
 {
-	// Convert name to lowercase
-	std::string name = MoreStrings::lowercase(name_with_case);
+    // Convert name to lowercase
+    std::string name = MoreStrings::lowercase(name_with_case);
 
     std::unique_lock<std::mutex> lock(_globals_lock);
 
-    auto i = _globals.find(name);
+    auto i = _globals.find(name.c_str());
 
-    if ((i != _globals.end() && i->second.lifetime != READ_ONLY) || (i == _globals.end())) {
+    if ((i != _globals.end() && i->lifetime != READ_ONLY) || (i == _globals.end())) {
         GlobalsEntry entry;
 
         entry.lifetime = lifetime;
         entry.name = name;
         entry.value = value;
 
-        _globals[name] = entry;
+        _globals[name.c_str()] = entry;
     }
 
 }
@@ -127,12 +127,12 @@ void Globals::set_global (const std::string &name_with_case, const std::string &
 
 void Globals::set_global_default (const std::string &name_with_case, const std::string &value, const DTint lifetime)
 {
-	// Convert name to lowercase
-	std::string name = MoreStrings::lowercase(name_with_case);
+    // Convert name to lowercase
+    std::string name = MoreStrings::lowercase(name_with_case);
 
     std::unique_lock<std::mutex> lock(_globals_lock);
 
-    auto i = _globals.find(name);
+    auto i = _globals.find(name.c_str());
 
     if (i == _globals.end()) {
         GlobalsEntry entry;
@@ -141,7 +141,7 @@ void Globals::set_global_default (const std::string &name_with_case, const std::
         entry.name = name;
         entry.value = value;
 
-        _globals[name] = entry;
+        _globals[name.c_str()] = entry;
     }
 }
 
@@ -150,11 +150,11 @@ void Globals::set_global_default (const std::string &name_with_case, const std::
 
 std::string Globals::substitute_global	(const std::string &s)
 {
-	std::string value;
+    std::string value;
     DTboolean success = substitute_global (s, value);
-	
-	if (success)	return value;
-	else			return s;
+
+    if (success)	return value;
+    else			return s;
 }
 
 DTboolean Globals::substitute_global (const std::string &s, std::string &value)
@@ -171,18 +171,18 @@ DTboolean Globals::substitute_global (const std::string &s, std::string &value)
 
         std::string key = MoreStrings::lowercase(value.substr(first + 1, last - first - 1));
         std::string replacement;
-        
-		// if global not found then return fail
-		if (!global(key,replacement))
-			return false;
-        
+
+        // if global not found then return fail
+        if (!global(key,replacement))
+            return false;
+
         // Do replacement
         value.replace(first, last-first+1, replacement);
-	}
+    }
 
-	WARNINGMSG("Exceeded maximum iterations. Infinite loop?");
-	
-	return false;
+    WARNINGMSG("Exceeded maximum iterations. Infinite loop?");
+
+    return false;
 }
 
 //==============================================================================
@@ -195,9 +195,10 @@ void Globals::load (void)
 
     // Note: This doesn't overwrite existing elements so we have to manually copy below
     //_globals.insert(globals.begin(), globals.end());
-
-    for(auto& i : globals)
-        _globals[i.first] = i.second;
+    for(auto& i : globals) {
+        std::string v = (StringCopier &)i.first;
+        _globals[v.c_str()] = i.second;
+    }
 
 }
 

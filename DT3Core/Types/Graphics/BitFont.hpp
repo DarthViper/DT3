@@ -35,7 +35,7 @@ class BitFont {
         /// Returns an 8x8 bitmap for the character that is passed in.
         /// \param c character to get bitmap for
         /// \return 8 bytes of bitmap data
-        static const DTubyte*       character_bitmap        (DTcharacter c)   {   return bit_font_data[c];    }
+        static const DTubyte*       character_bitmap        (DTcharacter c)   {   return bit_font_data[int(c)];    }
 
     private:
         static const DTubyte bit_font_data[128][8];

@@ -41,7 +41,7 @@ class BaseClass: public std::enable_shared_from_this<BaseClass> {
         virtual                     ~BaseClass                      (void);
 
         virtual void                archive                         (const std::shared_ptr<Archive> &archive);
-        virtual void                archive_done                    (const std::shared_ptr<Archive> UNUSED(&archive))  {};
+        virtual void                archive_done                    (const std::shared_ptr<Archive> &UNUSED(archive))  {}
 
     public:
 

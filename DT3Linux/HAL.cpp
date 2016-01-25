@@ -18,6 +18,13 @@
 #include "DT3Core/Types/Utility/Assert.hpp"
 #include "DT3Core/Types/Network/URL.hpp"
 #include "DT3Core/System/Globals.hpp"
+
+#include <QtCore/QProcess>
+#include <QtCore/QUrl>
+#include <QtCore/QCoreApplication>
+#include <QtCore/QSettings>
+#include <QtGui/QDesktopServices>
+
 #include <iostream>
 #include <algorithm>
 #include <thread>
@@ -27,6 +34,7 @@
 #include <unistd.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <QDir>
 
 #define MAX_KEY_LENGTH 255
 #define MAX_VALUE_NAME 16383
@@ -140,42 +148,17 @@ DTdouble HAL::program_running_time(void)
 
 void HAL::run_on_command_line (const std::string &command, const std::vector<std::string> &args)
 {
-
-#if DT3_OS == DT3_MACOSX
-
-    // Build args array
-    std::vector<char *> args_array;
-
-    args_array.push_back(const_cast<char*>(command.c_str()));	// TODO: Icky const_cast
-    for (DTuint i = 0; i < args.size(); ++i)
-        args_array.push_back(const_cast<char*>(args[i].c_str()));	// TODO: Icky const_cast
-    args_array.push_back(NULL);
-
-    // Fork and run
-    pid_t pid;
-
-    switch(pid = fork()) {
-        case -1:
-            ERRORMSG("Unable to start Game");
-            break;
-
-        case 0:
-            execv(const_cast<char*>(command.c_str()), &args_array[0]);
-            ERRORMSG("Unable to start Game");
-            exit(1);
-            break;
-
-        default:
-            // Hopefully a success
-            break;
+    QStringList qt_args;
+    for(const std::string &s : args)
+        qt_args.push_back(QString::fromStdString(s));
+    if(0!=QProcess::execute(QString::fromStdString(command),qt_args)) {
+        ERRORMSG("Unable to start Game");
     }
-
-#endif
 }
 
 //==============================================================================
 //==============================================================================
-
+# if 0
 void HAL::display_modes (std::map<DTint, std::vector<DisplayMode>> &modes)
 {
     modes.clear();
@@ -286,7 +269,6 @@ void HAL::switch_display_mode (DTint display, DisplayMode mode)
 #endif
 
 }
-
 void HAL::display_rect (DTint display, DTint &x, DTint &y, DTint &width, DTint &height)
 {
 #if DT3_OS == DT3_MACOSX
@@ -304,22 +286,13 @@ void HAL::display_rect (DTint display, DTint &x, DTint &y, DTint &width, DTint &
 #endif
 }
 
+#endif
 //==============================================================================
 //==============================================================================
 
 void HAL::launch_browser (const URL &url)
 {
-#if DT3_OS == DT3_MACOSX
-    NSString *url_ns = [NSString stringWithUTF8String:url.full_url().c_str()];
-    NSURL *nsurl = [NSURL URLWithString: url_ns];
-
-    LSOpenCFURLRef( (CFURLRef)nsurl, NULL);
-#elif DT3_OS == DT3_IOS
-    NSString *url_ns = [NSString stringWithCString:url.full_url().c_str()];
-    NSURL *nsurl = [NSURL URLWithString: url_ns];
-
-    [[UIApplication sharedApplication] openURL: nsurl];
-#endif
+    QDesktopServices::openUrl(QUrl(url.full_url().c_str(), QUrl::TolerantMode));
 }
 
 //==============================================================================
@@ -327,10 +300,7 @@ void HAL::launch_browser (const URL &url)
 
 void HAL::launch_editor (const FilePath &path)
 {
-#if DT3_OS == DT3_MACOSX
-    NSString* url_ns = [NSString stringWithUTF8String:path.full_path().c_str()];
-    [[NSWorkspace sharedWorkspace] openFile:url_ns];
-#endif
+    QDesktopServices::openUrl(QUrl(QString("file::///%1").arg(path.full_path().c_str()), QUrl::TolerantMode));
 }
 
 //==============================================================================
@@ -345,7 +315,7 @@ DTuint HAL::num_CPU_cores (void)
 //==============================================================================
 
 DTboolean HAL::move_file (const FilePath &from, const FilePath &to)
-{  
+{
     if (link(from.full_path().c_str(), to.full_path().c_str()) == -1)
         return false;
 
@@ -400,34 +370,25 @@ void HAL::list_directory (const FilePath &pathname, DTboolean recursive, std::ve
         dir_queue.pop_back();
 
         // Build the name list
-        struct dirent **namelist = NULL;
-        DTint n = scandir(dir.c_str(), &namelist, NULL, NULL);
-
-        // process and free the name list
-        for (DTint i = 0; i < n; ++i) {
+        QDir curdir(dir.c_str());
+        for(const QFileInfo &fi : curdir.entryInfoList()) {
             // Skip invisible files
-            if (namelist[i]->d_name[0] != '.') {
+            if(fi.fileName().startsWith('.'))
+                continue;
+            if(fi.isDir()) {
+                std::string entry = dir + "/" + fi.fileName().toStdString();
 
-                if (namelist[i]->d_type == DT_DIR) {
-                    std::string entry = dir + "/" + namelist[i]->d_name;
+                paths.push_back(FilePath(entry));
 
-                    paths.push_back(FilePath(entry));
-
-                    if (recursive) {
-                        dir_queue.push_back(entry);
-                    }
-
-                } else {
-
-                    std::string entry = dir + "/" + namelist[i]->d_name;
-                    paths.push_back(FilePath(entry));
-
+                if (recursive) {
+                    dir_queue.push_back(entry);
                 }
-
             }
-            ::free(namelist[i]);
+            else if(fi.isFile()) {
+                std::string entry = dir + "/" + fi.fileName().toStdString();
+                paths.push_back(FilePath(entry));
+            }
         }
-        if (namelist) ::free(namelist);
 
     }
 
@@ -584,101 +545,65 @@ std::string HAL::language (void)
 
 std::map<StringCopier, Globals::GlobalsEntry> HAL::load_globals (void)
 {
-    /*
-    CFStringRef app = ::CFStringCreateWithCString(NULL, PROJECT_NAME, kCFStringEncodingASCII);
-
-    CFDictionaryRef prefs = ::CFPreferencesCopyMultiple(NULL, app, kCFPreferencesCurrentUser, kCFPreferencesAnyHost);
-
+    QString app_org;
+    QString app_name("DT3");
+    if(qApp && !qApp->applicationName().isEmpty()) {
+        app_org = qApp->organizationName();
+        app_name = qApp->applicationName();
+    }
+    QSettings prefs(app_org,app_name);
     std::map<StringCopier, Globals::GlobalsEntry> g;
+    for(QString name : prefs.allKeys()) {
+        QString value = prefs.value(name).toString();
+        DTuint lifetime = Globals::PERSISTENT;
 
-    if (prefs) {
-        CFIndex dict_count;
-        CFIndex dict_index;
-
-        dict_count = CFDictionaryGetCount(prefs);
-
-        std::vector<CFTypeRef> keys;
-        std::vector<CFTypeRef> values;
-
-        keys.resize(dict_count);
-        values.resize(dict_count);
-
-        ::CFDictionaryGetKeysAndValues(prefs, &keys[0], &values[0]);
-
-        for (dict_index = 0; dict_index < dict_count; dict_index++) {
-            if (keys[dict_index] && values[dict_index]) {
-                DTcharacter name_c[MAX_KEY_LENGTH];
-                DTcharacter value_c[MAX_VALUE_NAME];
-
-                ::CFStringGetCString((CFStringRef) keys[dict_index], name_c, MAX_KEY_LENGTH, kCFStringEncodingASCII);
-                ::CFStringGetCString((CFStringRef) values[dict_index], value_c, MAX_VALUE_NAME, kCFStringEncodingASCII);
-
-                std::string name(name_c);
-                std::string value(value_c);
-                DTuint lifetime = Globals::PERSISTENT;
-
-                if (name[0] == '-') {
-                    name.erase(0,1);
-                    value = MoreStrings::from_obfuscated(name,value);
-                    lifetime = Globals::PERSISTENT_OBFUSCATED;
-                }
-
-                log("Reading persistent value: " + name + " = " + value);
-
-                Globals::GlobalsEntry e;
-                e.name = name;
-                e.value = value;
-                e.lifetime = lifetime;
-
-                g[name] = e;
-            }
-
+        if (name.startsWith('-')) {
+            name.remove(0,1);
+            value = MoreStrings::from_obfuscated(name.toStdString(),value.toStdString()).c_str();
+            lifetime = Globals::PERSISTENT_OBFUSCATED;
         }
 
-         ::CFRelease(prefs);
+        log("Reading persistent value: " + name.toStdString() + " = " + value.toStdString());
 
+        Globals::GlobalsEntry e;
+        e.name = name.toStdString();
+        e.value = value.toStdString();
+        e.lifetime = lifetime;
+
+        g[name.toStdString()] = e;
     }
-
-    ::CFRelease(app);*/
-
-    return std::map<StringCopier, Globals::GlobalsEntry>();
+    return g;
 }
 
-void HAL::save_globals (std::map<StringCopier, Globals::GlobalsEntry> globals)
+void HAL::save_globals (QHash<QString, Globals::GlobalsEntry> &globals)
 {
-    /*
-    CFStringRef app = ::CFStringCreateWithCString(NULL, PROJECT_NAME, kCFStringEncodingASCII);
-
-    for (auto &i : globals) {
-        if (i.second.lifetime == Globals::PERSISTENT || i.second.lifetime == Globals::PERSISTENT_OBFUSCATED) {
-            std::string name = i.second.name;
-            std::string value = i.second.value;
+    QString app_org;
+    QString app_name("DT3");
+    if(qApp && !qApp->applicationName().isEmpty()) {
+        app_org = qApp->organizationName();
+        app_name = qApp->applicationName();
+    }
+    QSettings prefs(app_org,app_name);
+    for (const Globals::GlobalsEntry &i : globals) {
+        if (i.lifetime == Globals::PERSISTENT || i.lifetime == Globals::PERSISTENT_OBFUSCATED) {
+            std::string name = i.name;
+            std::string value = i.value;
 
             if (name.size() <= 0 || value.size() <= 0)
                 continue;
 
-            if (i.second.lifetime == Globals::PERSISTENT_OBFUSCATED) {
+            if (i.lifetime == Globals::PERSISTENT_OBFUSCATED) {
                 value = MoreStrings::to_obfuscated(name, value);
                 name = "-" + name;
 
-                log("Writing persistent value: " + name + " = " + std::string(i.second.value) + " (Obfuscated form is " + value + ")");
+                log("Writing persistent value: " + name + " = " + std::string(i.value) + " (Obfuscated form is " + value + ")");
             } else {
                 log("Writing persistent value: " + name + " = " + value);
             }
-
-            CFStringRef key = ::CFStringCreateWithCString(NULL, name.c_str(), kCFStringEncodingASCII);
-            CFStringRef val = ::CFStringCreateWithCString(NULL, value.c_str(), kCFStringEncodingASCII);
-
-            ::CFPreferencesSetAppValue(key, val, app);
-
-            ::CFRelease(key);
-            ::CFRelease(val);
+            prefs.setValue(name.c_str(),value.c_str());
         }
+
     }
-
-    ::CFPreferencesAppSynchronize(app);
-
-    ::CFRelease(app); */
 }
 
 //==============================================================================
