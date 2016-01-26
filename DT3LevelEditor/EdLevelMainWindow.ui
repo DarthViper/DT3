@@ -1,0 +1,725 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>EdLevelMainWindow</class>
+ <widget class="QMainWindow" name="EdLevelMainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>979</width>
+    <height>713</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <property name="dockNestingEnabled">
+   <bool>false</bool>
+  </property>
+  <property name="dockOptions">
+   <set>QMainWindow::AllowTabbedDocks|QMainWindow::AnimatedDocks</set>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QWidget" name="world_section" native="true">
+    <property name="geometry">
+     <rect>
+      <x>9</x>
+      <y>9</y>
+      <width>201</width>
+      <height>121</height>
+     </rect>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>979</width>
+     <height>24</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="_file_menu">
+    <property name="title">
+     <string>&amp;File</string>
+    </property>
+    <widget class="QMenu" name="_new_menu">
+     <property name="title">
+      <string>&amp;New</string>
+     </property>
+     <addaction name="separator"/>
+    </widget>
+    <widget class="QMenu" name="menuRecent_Files">
+     <property name="title">
+      <string>Recent &amp;Files</string>
+     </property>
+     <addaction name="separator"/>
+    </widget>
+    <addaction name="_new_menu"/>
+    <addaction name="_open_action"/>
+    <addaction name="separator"/>
+    <addaction name="_save_level_action"/>
+    <addaction name="_save_level_as_action"/>
+    <addaction name="separator"/>
+    <addaction name="_export_selection_action"/>
+    <addaction name="_import_selection_action"/>
+    <addaction name="separator"/>
+    <addaction name="menuRecent_Files"/>
+    <addaction name="separator"/>
+    <addaction name="_run_script_action"/>
+    <addaction name="separator"/>
+    <addaction name="_exit_action"/>
+   </widget>
+   <widget class="QMenu" name="_edit_menu">
+    <property name="title">
+     <string>&amp;Edit</string>
+    </property>
+    <addaction name="_undo_action"/>
+    <addaction name="separator"/>
+    <addaction name="_cut_action"/>
+    <addaction name="_copy_action"/>
+    <addaction name="_paste_action"/>
+    <addaction name="_clear_action"/>
+    <addaction name="separator"/>
+    <addaction name="_select_all_action"/>
+    <addaction name="_select_none_action"/>
+    <addaction name="separator"/>
+    <addaction name="_duplicate_action"/>
+    <addaction name="_duplicate_hierarchy_action"/>
+    <addaction name="separator"/>
+    <addaction name="_group_action"/>
+    <addaction name="_ungroup_action"/>
+   </widget>
+   <widget class="QMenu" name="_object_menu">
+    <property name="title">
+     <string>Ob&amp;jects</string>
+    </property>
+   </widget>
+   <widget class="QMenu" name="_component_menu">
+    <property name="title">
+     <string>&amp;Components</string>
+    </property>
+   </widget>
+   <widget class="QMenu" name="_script_menu">
+    <property name="title">
+     <string>Scripts</string>
+    </property>
+   </widget>
+   <widget class="QMenu" name="_level_menu">
+    <property name="title">
+     <string>Le&amp;vel</string>
+    </property>
+    <addaction name="_play_level_action"/>
+    <addaction name="_play_options_action"/>
+   </widget>
+   <widget class="QMenu" name="_tools_menu">
+    <property name="title">
+     <string>&amp;Tools</string>
+    </property>
+    <addaction name="_mesh_builder_action"/>
+    <addaction name="_package_builder_action"/>
+   </widget>
+   <widget class="QMenu" name="_help_menu">
+    <property name="title">
+     <string>Help</string>
+    </property>
+    <addaction name="_about_action"/>
+   </widget>
+   <addaction name="_file_menu"/>
+   <addaction name="_edit_menu"/>
+   <addaction name="_object_menu"/>
+   <addaction name="_component_menu"/>
+   <addaction name="_script_menu"/>
+   <addaction name="_level_menu"/>
+   <addaction name="_tools_menu"/>
+   <addaction name="_help_menu"/>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+  <widget class="QToolBar" name="_file_toolbar">
+   <property name="windowTitle">
+    <string>&amp;File</string>
+   </property>
+   <property name="iconSize">
+    <size>
+     <width>16</width>
+     <height>16</height>
+    </size>
+   </property>
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+   <addaction name="_new_action"/>
+   <addaction name="_open_action"/>
+   <addaction name="_save_level_action"/>
+  </widget>
+  <widget class="QDockWidget" name="scriptDock">
+   <property name="features">
+    <set>QDockWidget::DockWidgetFloatable|QDockWidget::DockWidgetMovable</set>
+   </property>
+   <property name="allowedAreas">
+    <set>Qt::BottomDockWidgetArea|Qt::LeftDockWidgetArea|Qt::RightDockWidgetArea</set>
+   </property>
+   <property name="windowTitle">
+    <string>Sc&amp;ript</string>
+   </property>
+   <attribute name="dockWidgetArea">
+    <number>8</number>
+   </attribute>
+   <widget class="QWidget" name="script_section"/>
+  </widget>
+  <widget class="QDockWidget" name="animationDock">
+   <property name="features">
+    <set>QDockWidget::DockWidgetFloatable|QDockWidget::DockWidgetMovable</set>
+   </property>
+   <property name="allowedAreas">
+    <set>Qt::BottomDockWidgetArea|Qt::LeftDockWidgetArea|Qt::RightDockWidgetArea</set>
+   </property>
+   <property name="windowTitle">
+    <string>A&amp;nimation</string>
+   </property>
+   <attribute name="dockWidgetArea">
+    <number>8</number>
+   </attribute>
+   <widget class="QWidget" name="animation_section"/>
+  </widget>
+  <widget class="QDockWidget" name="soundDock">
+   <property name="features">
+    <set>QDockWidget::DockWidgetFloatable|QDockWidget::DockWidgetMovable</set>
+   </property>
+   <property name="allowedAreas">
+    <set>Qt::BottomDockWidgetArea|Qt::LeftDockWidgetArea|Qt::RightDockWidgetArea</set>
+   </property>
+   <property name="windowTitle">
+    <string>So&amp;und</string>
+   </property>
+   <attribute name="dockWidgetArea">
+    <number>8</number>
+   </attribute>
+   <widget class="QWidget" name="sound_section"/>
+  </widget>
+  <widget class="QDockWidget" name="consoleDock">
+   <property name="features">
+    <set>QDockWidget::DockWidgetFloatable|QDockWidget::DockWidgetMovable</set>
+   </property>
+   <property name="allowedAreas">
+    <set>Qt::BottomDockWidgetArea|Qt::LeftDockWidgetArea|Qt::RightDockWidgetArea</set>
+   </property>
+   <property name="windowTitle">
+    <string>Conso&amp;le</string>
+   </property>
+   <attribute name="dockWidgetArea">
+    <number>8</number>
+   </attribute>
+   <widget class="QWidget" name="console_section"/>
+  </widget>
+  <widget class="QDockWidget" name="hierarchyDock">
+   <property name="features">
+    <set>QDockWidget::DockWidgetFloatable|QDockWidget::DockWidgetMovable</set>
+   </property>
+   <property name="allowedAreas">
+    <set>Qt::BottomDockWidgetArea|Qt::LeftDockWidgetArea|Qt::RightDockWidgetArea</set>
+   </property>
+   <property name="windowTitle">
+    <string>H&amp;ierarchy</string>
+   </property>
+   <attribute name="dockWidgetArea">
+    <number>2</number>
+   </attribute>
+   <widget class="QWidget" name="hierarchy_section"/>
+  </widget>
+  <widget class="QDockWidget" name="performanceDock">
+   <property name="features">
+    <set>QDockWidget::DockWidgetFloatable|QDockWidget::DockWidgetMovable</set>
+   </property>
+   <property name="allowedAreas">
+    <set>Qt::BottomDockWidgetArea|Qt::LeftDockWidgetArea|Qt::RightDockWidgetArea</set>
+   </property>
+   <property name="windowTitle">
+    <string>Perfor&amp;mance</string>
+   </property>
+   <attribute name="dockWidgetArea">
+    <number>8</number>
+   </attribute>
+   <widget class="QWidget" name="performance_section"/>
+  </widget>
+  <widget class="QDockWidget" name="propertiesDock">
+   <property name="features">
+    <set>QDockWidget::DockWidgetFloatable|QDockWidget::DockWidgetMovable</set>
+   </property>
+   <property name="allowedAreas">
+    <set>Qt::BottomDockWidgetArea|Qt::LeftDockWidgetArea|Qt::RightDockWidgetArea</set>
+   </property>
+   <property name="windowTitle">
+    <string>&amp;Properties</string>
+   </property>
+   <attribute name="dockWidgetArea">
+    <number>2</number>
+   </attribute>
+   <widget class="QWidget" name="dockWidgetContents"/>
+  </widget>
+  <widget class="QDockWidget" name="libraryDock">
+   <property name="features">
+    <set>QDockWidget::DockWidgetFloatable|QDockWidget::DockWidgetMovable</set>
+   </property>
+   <property name="allowedAreas">
+    <set>Qt::BottomDockWidgetArea|Qt::LeftDockWidgetArea|Qt::RightDockWidgetArea</set>
+   </property>
+   <property name="windowTitle">
+    <string>Librar&amp;y</string>
+   </property>
+   <attribute name="dockWidgetArea">
+    <number>2</number>
+   </attribute>
+   <widget class="QWidget" name="dockWidgetContents_2"/>
+  </widget>
+  <widget class="QDockWidget" name="resourcesDock">
+   <property name="features">
+    <set>QDockWidget::DockWidgetFloatable|QDockWidget::DockWidgetMovable</set>
+   </property>
+   <property name="allowedAreas">
+    <set>Qt::BottomDockWidgetArea|Qt::LeftDockWidgetArea|Qt::RightDockWidgetArea</set>
+   </property>
+   <property name="windowTitle">
+    <string>Resources</string>
+   </property>
+   <attribute name="dockWidgetArea">
+    <number>2</number>
+   </attribute>
+   <widget class="QWidget" name="resources_section"/>
+  </widget>
+  <widget class="QToolBar" name="_edit_toolbar">
+   <property name="sizePolicy">
+    <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+     <horstretch>0</horstretch>
+     <verstretch>0</verstretch>
+    </sizepolicy>
+   </property>
+   <property name="minimumSize">
+    <size>
+     <width>0</width>
+     <height>0</height>
+    </size>
+   </property>
+   <property name="windowTitle">
+    <string>Edit</string>
+   </property>
+   <property name="iconSize">
+    <size>
+     <width>16</width>
+     <height>16</height>
+    </size>
+   </property>
+   <property name="toolButtonStyle">
+    <enum>Qt::ToolButtonIconOnly</enum>
+   </property>
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+   <addaction name="_cut_action"/>
+   <addaction name="_copy_action"/>
+   <addaction name="_paste_action"/>
+  </widget>
+  <widget class="QToolBar" name="_level_toolbar">
+   <property name="windowTitle">
+    <string>Level</string>
+   </property>
+   <property name="iconSize">
+    <size>
+     <width>16</width>
+     <height>16</height>
+    </size>
+   </property>
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+   <addaction name="_play_level_action"/>
+   <addaction name="_play_options_action"/>
+  </widget>
+  <widget class="QToolBar" name="_tools_toolbar">
+   <property name="windowTitle">
+    <string>&amp;Tools</string>
+   </property>
+   <property name="iconSize">
+    <size>
+     <width>16</width>
+     <height>16</height>
+    </size>
+   </property>
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+   <addaction name="_mesh_builder_action"/>
+   <addaction name="_package_builder_action"/>
+  </widget>
+  <action name="_new_action">
+   <property name="icon">
+    <iconset>
+     <normalon>:/images/new.png</normalon>
+    </iconset>
+   </property>
+   <property name="text">
+    <string>&amp;New</string>
+   </property>
+   <property name="toolTip">
+    <string>New</string>
+   </property>
+   <property name="statusTip">
+    <string>Create a new Level file</string>
+   </property>
+  </action>
+  <action name="_open_action">
+   <property name="icon">
+    <iconset>
+     <normalon>:/images/open.png</normalon>
+    </iconset>
+   </property>
+   <property name="text">
+    <string>&amp;Open...</string>
+   </property>
+   <property name="toolTip">
+    <string>Open</string>
+   </property>
+   <property name="statusTip">
+    <string>Open an existing Level file</string>
+   </property>
+  </action>
+  <action name="_save_level_action">
+   <property name="icon">
+    <iconset>
+     <normalon>:/images/save.png</normalon>
+    </iconset>
+   </property>
+   <property name="text">
+    <string>&amp;Save Level</string>
+   </property>
+   <property name="toolTip">
+    <string>Save Level</string>
+   </property>
+   <property name="statusTip">
+    <string>Save the Level to disk</string>
+   </property>
+  </action>
+  <action name="_save_level_as_action">
+   <property name="text">
+    <string>Save Level &amp;As...</string>
+   </property>
+   <property name="toolTip">
+    <string>Save Level As</string>
+   </property>
+   <property name="statusTip">
+    <string>Save a copy of the Level to disk</string>
+   </property>
+  </action>
+  <action name="_export_selection_action">
+   <property name="text">
+    <string>&amp;Export Selection...</string>
+   </property>
+   <property name="statusTip">
+    <string>Export the selection to disk</string>
+   </property>
+  </action>
+  <action name="_import_selection_action">
+   <property name="text">
+    <string>&amp;Import Selection...</string>
+   </property>
+   <property name="toolTip">
+    <string>Import Selection</string>
+   </property>
+   <property name="statusTip">
+    <string>Import the selection from disk</string>
+   </property>
+  </action>
+  <action name="_run_script_action">
+   <property name="text">
+    <string>&amp;Run Script...</string>
+   </property>
+   <property name="toolTip">
+    <string>Run script file</string>
+   </property>
+  </action>
+  <action name="_exit_action">
+   <property name="text">
+    <string>E&amp;xit</string>
+   </property>
+   <property name="toolTip">
+    <string>Exit</string>
+   </property>
+   <property name="statusTip">
+    <string>Exit the application</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Q</string>
+   </property>
+  </action>
+  <action name="_undo_action">
+   <property name="text">
+    <string>&amp;Undo</string>
+   </property>
+   <property name="toolTip">
+    <string>Undo</string>
+   </property>
+   <property name="statusTip">
+    <string>Undo the last operation</string>
+   </property>
+  </action>
+  <action name="_cut_action">
+   <property name="icon">
+    <iconset>
+     <normalon>:/images/cut.png</normalon>
+    </iconset>
+   </property>
+   <property name="text">
+    <string>Cu&amp;t</string>
+   </property>
+   <property name="toolTip">
+    <string>Cut</string>
+   </property>
+   <property name="statusTip">
+    <string>Cut the current selection's contents to the clipboard</string>
+   </property>
+  </action>
+  <action name="_copy_action">
+   <property name="icon">
+    <iconset resource="LevelEditor.qrc">
+     <normaloff>:/images/copy.png</normaloff>:/images/copy.png</iconset>
+   </property>
+   <property name="text">
+    <string>&amp;Copy</string>
+   </property>
+   <property name="toolTip">
+    <string>Copy</string>
+   </property>
+   <property name="statusTip">
+    <string>Copy the current selection's contents to the clipboard</string>
+   </property>
+  </action>
+  <action name="_paste_action">
+   <property name="icon">
+    <iconset resource="LevelEditor.qrc">
+     <normaloff>:/images/paste.png</normaloff>:/images/paste.png</iconset>
+   </property>
+   <property name="text">
+    <string>&amp;Paste</string>
+   </property>
+   <property name="toolTip">
+    <string>Paste</string>
+   </property>
+   <property name="statusTip">
+    <string>Paste the clipboard's contents into the current selection</string>
+   </property>
+  </action>
+  <action name="_clear_action">
+   <property name="text">
+    <string>C&amp;lear</string>
+   </property>
+   <property name="statusTip">
+    <string>Clear the current selection's contents</string>
+   </property>
+  </action>
+  <action name="_select_all_action">
+   <property name="text">
+    <string>Select &amp;All</string>
+   </property>
+   <property name="statusTip">
+    <string>Select all parts</string>
+   </property>
+  </action>
+  <action name="_select_none_action">
+   <property name="text">
+    <string>Select &amp;None</string>
+   </property>
+   <property name="statusTip">
+    <string>Deselect all parts</string>
+   </property>
+  </action>
+  <action name="_duplicate_action">
+   <property name="text">
+    <string>&amp;Duplicate</string>
+   </property>
+   <property name="statusTip">
+    <string>Duplicate Selection</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+D</string>
+   </property>
+  </action>
+  <action name="_duplicate_hierarchy_action">
+   <property name="text">
+    <string>Dupl&amp;icate Hierarchy</string>
+   </property>
+   <property name="statusTip">
+    <string>Duplicate Selection and all children</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Shift+D</string>
+   </property>
+  </action>
+  <action name="_group_action">
+   <property name="text">
+    <string>&amp;Group</string>
+   </property>
+   <property name="statusTip">
+    <string>Group Selection</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+G</string>
+   </property>
+  </action>
+  <action name="_ungroup_action">
+   <property name="text">
+    <string>Ung&amp;roup</string>
+   </property>
+   <property name="statusTip">
+    <string>Ungroup Selection</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Shift+G</string>
+   </property>
+  </action>
+  <action name="_play_level_action">
+   <property name="icon">
+    <iconset>
+     <normalon>:/images/play.png</normalon>
+    </iconset>
+   </property>
+   <property name="text">
+    <string>&amp;Play</string>
+   </property>
+   <property name="statusTip">
+    <string>Play Level</string>
+   </property>
+  </action>
+  <action name="_play_options_action">
+   <property name="icon">
+    <iconset>
+     <normalon>:/images/settings.png</normalon>
+    </iconset>
+   </property>
+   <property name="text">
+    <string>Play &amp;Options</string>
+   </property>
+   <property name="statusTip">
+    <string>Set startup options</string>
+   </property>
+  </action>
+  <action name="_about_action">
+   <property name="text">
+    <string>&amp;About</string>
+   </property>
+   <property name="statusTip">
+    <string>Show the application's About box</string>
+   </property>
+  </action>
+  <action name="_mesh_builder_action">
+   <property name="icon">
+    <iconset>
+     <normalon>:/images/mesh_builder.png</normalon>
+    </iconset>
+   </property>
+   <property name="text">
+    <string>&amp;Mesh Builder</string>
+   </property>
+   <property name="statusTip">
+    <string>Mesh Builder</string>
+   </property>
+  </action>
+  <action name="_package_builder_action">
+   <property name="icon">
+    <iconset>
+     <normalon>:/images/package_builder.png</normalon>
+    </iconset>
+   </property>
+   <property name="text">
+    <string>&amp;Package Builder</string>
+   </property>
+   <property name="statusTip">
+    <string>Package Builder</string>
+   </property>
+  </action>
+ </widget>
+ <resources>
+  <include location="LevelEditor.qrc"/>
+ </resources>
+ <connections>
+  <connection>
+   <sender>_edit_menu</sender>
+   <signal>aboutToShow()</signal>
+   <receiver>EdLevelMainWindow</receiver>
+   <slot>onUpdateMenus()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>104</x>
+     <y>146</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>489</x>
+     <y>356</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>_object_menu</sender>
+   <signal>aboutToShow()</signal>
+   <receiver>EdLevelMainWindow</receiver>
+   <slot>onUpdateMenus()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>72</x>
+     <y>18</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>489</x>
+     <y>356</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>_component_menu</sender>
+   <signal>aboutToShow()</signal>
+   <receiver>EdLevelMainWindow</receiver>
+   <slot>onUpdateMenus()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>72</x>
+     <y>18</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>489</x>
+     <y>356</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>_script_menu</sender>
+   <signal>aboutToShow()</signal>
+   <receiver>EdLevelMainWindow</receiver>
+   <slot>onUpdateMenus()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>72</x>
+     <y>18</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>489</x>
+     <y>356</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+ <slots>
+  <slot>onUpdateMenus()</slot>
+ </slots>
+</ui>

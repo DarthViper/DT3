@@ -1,6 +1,4 @@
 #pragma once
-#ifndef EDLEVELMAINWINDOW
-#define EDLEVELMAINWINDOW
 //==============================================================================
 ///
 ///	File: EdLevelMainWindow.hpp
@@ -26,8 +24,11 @@
 #include "DT3Core/Types/Base/BaseInclude.hpp"
 #include "DT3Core/Types/Utility/CommandParams.hpp"
 #include <list>
-#include<memory>
+#include <memory>
 
+namespace Ui {
+class EdLevelMainWindow;
+}
 //==============================================================================
 /// Forward declarations
 //==============================================================================
@@ -89,8 +90,6 @@ class EdLevelMainWindow : public QMainWindow
         void 									createActions();
         void 									createMenus();
         void 									createContextMenu();
-        void 									createToolBars();
-        void 									createStatusBar();
 
         // Read and Write prefs
         void 									readSettings();
@@ -133,21 +132,6 @@ class EdLevelMainWindow : public QMainWindow
 
         static const DTint MaxRecentFiles = 5;
         QAction *								_recent_file_actions[MaxRecentFiles];
-        QAction *								_separator_action;
-
-        QMenu *									_file_menu;
-        QMenu *									_edit_menu;
-        QMenu *									_object_menu;
-        QMenu *									_component_menu;
-        QMenu *									_script_menu;
-        QMenu *									_level_menu;
-        QMenu *									_tools_menu;
-        QMenu *									_help_menu;
-
-        QToolBar *								_file_toolbar;
-        QToolBar *								_edit_toolbar;
-        QToolBar *								_level_toolbar;
-        QToolBar *								_tools_toolbar;
 
         QToolBar *								_world_toolbar;
         QToolBar *								_script_toolbar;
@@ -160,40 +144,13 @@ class EdLevelMainWindow : public QMainWindow
         QToolBar *								_hierarchy_toolbar;
         QToolBar *								_performance_toolbar;
 
-        QAction *								_new_action;
-        QAction *								_open_action;
-        QAction *								_save_level_action;
-        QAction *								_save_level_as_action;
-        QAction *                               _export_selection_action;
-        QAction *                               _import_selection_action;
-        QAction *                               _run_script_action;
-        QAction *								_exit_action;
-
-        QAction *								_undo_action;
-        QAction *								_cut_action;
-        QAction *								_copy_action;
-        QAction *								_paste_action;
-        QAction *								_clear_action;
-        QAction *								_select_all_action;
-        QAction *								_select_none_action;
-        QAction *								_duplicate_action;
-        QAction *								_duplicate_hierarchy_action;
-        QAction *								_group_action;
-        QAction *								_ungroup_action;
-
-        QAction *								_about_action;
-
-        QAction *								_play_level_action;
-        QAction *                               _play_options_action;
-
-        QAction *                               _mesh_builder_action;
-        QAction *                               _package_builder_action;
 
         // Undo Queue
         std::list<CommandParams>                _undo_queue;
 
         // Document
         EdLevelDocument                         *_document;
+        Ui::EdLevelMainWindow *                 ui;
 
         // Error handlers
         struct ErrorEntry {
@@ -316,9 +273,9 @@ class EdLevelMainWindow : public QMainWindow
         void                                    doRefreshSoundFX();
 
         void                                    doSelectionChanged(const std::list<std::shared_ptr<PlugNode>> &selection_list);
+    protected:
+        void                                    changeEvent(QEvent *e);
 };
 
 //==============================================================================
 //==============================================================================
-
-#endif

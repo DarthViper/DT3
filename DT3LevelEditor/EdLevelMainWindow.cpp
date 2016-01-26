@@ -10,8 +10,10 @@
 //==============================================================================
 
 // Editor include
-#include "EdLevelDocument.hpp"
 #include "EdLevelMainWindow.hpp"
+#include "ui_EdLevelMainWindow.h"
+
+#include "EdLevelDocument.hpp"
 #include "EdLevelWorldWindow.hpp"
 #include "EdLevelScriptWindow.hpp"
 #include "EdLevelAnimationWindow.hpp"
@@ -77,9 +79,17 @@ using namespace DT3;
 //==============================================================================
 //==============================================================================
 
-EdLevelMainWindow::EdLevelMainWindow(void)
+EdLevelMainWindow::EdLevelMainWindow(void) : QMainWindow(nullptr), ui(new Ui::EdLevelMainWindow)
 {
+    // Turn on Anti aliasing
+    QGLFormat glf = QGLFormat::defaultFormat();
+    glf.setSampleBuffers(true);
+    glf.setSamples(4);
+    QGLFormat::setDefaultFormat(glf);
+
     setAttribute(Qt::WA_TranslucentBackground, false);
+
+    ui->setupUi(this);
 
     createActions();
 
@@ -110,13 +120,6 @@ EdLevelMainWindow::EdLevelMainWindow(void)
 
 
     // Set editor callbacks
-
-    // Turn on Anti aliasing
-    QGLFormat glf = QGLFormat::defaultFormat();
-    glf.setSampleBuffers(true);
-    glf.setSamples(4);
-    QGLFormat::setDefaultFormat(glf);
-
     // Dock config
     setCorner( Qt::TopLeftCorner, Qt::LeftDockWidgetArea );
     setCorner( Qt::TopRightCorner, Qt::RightDockWidgetArea );
@@ -127,7 +130,7 @@ EdLevelMainWindow::EdLevelMainWindow(void)
     // World Window
     //
 
-    QWidget *world_section = new QWidget(this);
+    QWidget *world_section = ui->world_section;
 
     _world_toolbar = new QToolBar(world_section);
     _world_toolbar->setIconSize(QSize(16,16));
@@ -154,12 +157,11 @@ EdLevelMainWindow::EdLevelMainWindow(void)
 
 
     // Script window
-    QWidget *script_section = new QWidget(this);
 
-    _script_toolbar = new QToolBar(script_section);
+    _script_toolbar = new QToolBar(ui->script_section);
     _script_toolbar->setIconSize(QSize(16,16));
 
-    _script_widget = new EdLevelScriptWindow(script_section, _script_toolbar, _document);
+    _script_widget = new EdLevelScriptWindow(ui->script_section, _script_toolbar, _document);
 
     QGridLayout *layout3 = new QGridLayout;
     layout3->setContentsMargins(0,0,0,0);
@@ -168,23 +170,13 @@ EdLevelMainWindow::EdLevelMainWindow(void)
     layout3->addWidget(_script_toolbar);
     layout3->addWidget(_script_widget);
 
-    script_section->setLayout(layout3);
-
-    QDockWidget *scriptDock = new QDockWidget(tr("Script"), this);
-    scriptDock->setAllowedAreas(Qt::LeftDockWidgetArea | Qt::RightDockWidgetArea | Qt::BottomDockWidgetArea);
-    scriptDock->setFeatures ( QDockWidget::DockWidgetMovable | QDockWidget::DockWidgetFloatable );
-    scriptDock->setWidget(script_section);
-    addDockWidget(Qt::BottomDockWidgetArea, scriptDock);
-
-
+    ui->script_section->setLayout(layout3);
 
     // Animation Window
-    QWidget *animation_section = new QWidget(this);
-
-    _animation_toolbar = new QToolBar(animation_section);
+    _animation_toolbar = new QToolBar(ui->animation_section);
     _animation_toolbar->setIconSize(QSize(16,16));
 
-    _animation_widget = new EdLevelAnimationWindow(animation_section, _animation_toolbar, _document);
+    _animation_widget = new EdLevelAnimationWindow(ui->animation_section, _animation_toolbar, _document);
 
     QGridLayout *layout4 = new QGridLayout;
     layout4->setContentsMargins(0,0,0,0);
@@ -193,22 +185,13 @@ EdLevelMainWindow::EdLevelMainWindow(void)
     layout4->addWidget(_animation_toolbar);
     layout4->addWidget(_animation_widget);
 
-    animation_section->setLayout(layout4);
-
-    QDockWidget *animationDock = new QDockWidget(tr("Animation"), this);
-    animationDock->setAllowedAreas(Qt::LeftDockWidgetArea | Qt::RightDockWidgetArea | Qt::BottomDockWidgetArea);
-    animationDock->setFeatures ( QDockWidget::DockWidgetMovable | QDockWidget::DockWidgetFloatable );
-    animationDock->setWidget(animation_section);
-    addDockWidget(Qt::BottomDockWidgetArea, animationDock);
-
+    ui->animation_section->setLayout(layout4);
 
     // Sound Window
-    QWidget *sound_section = new QWidget(this);
-
-    _sound_toolbar = new QToolBar(sound_section);
+    _sound_toolbar = new QToolBar(ui->sound_section);
     _sound_toolbar->setIconSize(QSize(16,16));
 
-    _sound_widget = new EdLevelSoundWindow(sound_section, _sound_toolbar, _document);
+    _sound_widget = new EdLevelSoundWindow(ui->sound_section, _sound_toolbar, _document);
 
     QGridLayout *layout8 = new QGridLayout;
     layout8->setContentsMargins(0,0,0,0);
@@ -217,14 +200,7 @@ EdLevelMainWindow::EdLevelMainWindow(void)
     layout8->addWidget(_sound_toolbar);
     layout8->addWidget(_sound_widget);
 
-    sound_section->setLayout(layout8);
-
-    QDockWidget *soundDock = new QDockWidget(tr("Sound"), this);
-    soundDock->setAllowedAreas(Qt::LeftDockWidgetArea | Qt::RightDockWidgetArea | Qt::BottomDockWidgetArea);
-    soundDock->setFeatures ( QDockWidget::DockWidgetMovable | QDockWidget::DockWidgetFloatable );
-    soundDock->setWidget(sound_section);
-    addDockWidget(Qt::BottomDockWidgetArea, soundDock);
-
+    ui->sound_section->setLayout(layout8);
 
     /*// Sound FX Window
     QWidget *sound_fx_section = new QWidget(this);
@@ -251,13 +227,11 @@ EdLevelMainWindow::EdLevelMainWindow(void)
 
 
     // Console Window
-    QWidget *console_section = new QWidget(this);
-
-    _console_toolbar = new QToolBar(console_section);
+    _console_toolbar = new QToolBar(ui->console_section);
     _console_toolbar->setIconSize(QSize(16,16));
     //_console_toolbar->addAction(_script_align);
 
-    _console_widget = new EdLevelConsoleWindow(console_section, _console_toolbar, _document);
+    _console_widget = new EdLevelConsoleWindow(ui->console_section, _console_toolbar, _document);
 
     QGridLayout *layout5 = new QGridLayout;
     layout5->setContentsMargins(0,0,0,0);
@@ -266,24 +240,15 @@ EdLevelMainWindow::EdLevelMainWindow(void)
     layout5->addWidget(_console_toolbar);
     layout5->addWidget(_console_widget);
 
-    console_section->setLayout(layout5);
-
-    QDockWidget *consoleDock = new QDockWidget(tr("Console"), this);
-    consoleDock->setAllowedAreas(Qt::LeftDockWidgetArea | Qt::RightDockWidgetArea | Qt::BottomDockWidgetArea);
-    consoleDock->setFeatures ( QDockWidget::DockWidgetMovable | QDockWidget::DockWidgetFloatable );
-    consoleDock->setWidget(console_section);
-    addDockWidget(Qt::BottomDockWidgetArea, consoleDock);
-
-
+    ui->console_section->setLayout(layout5);
 
     // Performance Window
-    QWidget *performance_section = new QWidget(this);
 
-    _performance_toolbar = new QToolBar(performance_section);
+    _performance_toolbar = new QToolBar(ui->performance_section);
     _performance_toolbar->setIconSize(QSize(16,16));
     //_performance_toolbar->addAction(_performance_widget);
 
-    _performance_widget = new EdLevelPerformanceWindow(performance_section, _performance_toolbar, _document);
+    _performance_widget = new EdLevelPerformanceWindow(ui->performance_section, _performance_toolbar, _document);
 
     QGridLayout *layout7 = new QGridLayout;
     layout7->setContentsMargins(0,0,0,0);
@@ -292,27 +257,17 @@ EdLevelMainWindow::EdLevelMainWindow(void)
     layout7->addWidget(_performance_toolbar);
     layout7->addWidget(_performance_widget);
 
-    performance_section->setLayout(layout7);
+    ui->performance_section->setLayout(layout7);
 
-    QDockWidget *performanceDock = new QDockWidget(tr("Performance"), this);
-    performanceDock->setAllowedAreas(Qt::LeftDockWidgetArea | Qt::RightDockWidgetArea | Qt::BottomDockWidgetArea);
-    performanceDock->setFeatures ( QDockWidget::DockWidgetMovable | QDockWidget::DockWidgetFloatable );
-    performanceDock->setWidget(performance_section);
-    addDockWidget(Qt::BottomDockWidgetArea, performanceDock);
+    tabifyDockWidget ( ui->scriptDock, ui->animationDock);
+    tabifyDockWidget ( ui->animationDock, ui->soundDock);
+    tabifyDockWidget ( ui->soundDock, ui->consoleDock);
+//  tabifyDockWidget ( soundDock, soundfxDock);
+//  tabifyDockWidget ( soundfxDock, consoleDock);
+    tabifyDockWidget ( ui->consoleDock, ui->performanceDock);
 
-//    tabifyDockWidget ( scriptDock, animationDock);
-//    tabifyDockWidget ( animationDock, soundDock);
-//    tabifyDockWidget ( soundDock, soundfxDock);
-//    tabifyDockWidget ( soundfxDock, consoleDock);
-//    tabifyDockWidget ( consoleDock, performanceDock);
-
-    tabifyDockWidget ( scriptDock, animationDock);
-    tabifyDockWidget ( animationDock, soundDock);
-    tabifyDockWidget ( soundDock, consoleDock);
-    tabifyDockWidget ( consoleDock, performanceDock);
-
-    scriptDock->show();
-    scriptDock->raise();
+    ui->scriptDock->show();
+    ui->scriptDock->raise();
 
 
 //    QTabWidget *tabWidget = new QTabWidget(this);
@@ -338,12 +293,10 @@ EdLevelMainWindow::EdLevelMainWindow(void)
     //
     // Hierarchy Window
     //
-    QWidget *hierarchy_section = new QWidget(this);
-
-    _hierarchy_toolbar = new QToolBar(hierarchy_section);
+    _hierarchy_toolbar = new QToolBar(ui->hierarchy_section);
     _hierarchy_toolbar->setIconSize(QSize(16,16));
 
-    _hierarchy_widget = new EdLevelHierarchyWindow(hierarchy_section, _hierarchy_toolbar, _document);
+    _hierarchy_widget = new EdLevelHierarchyWindow(ui->hierarchy_section, _hierarchy_toolbar, _document);
 
     QGridLayout *layout11 = new QGridLayout;
     layout11->setContentsMargins(0,0,0,0);
@@ -352,52 +305,31 @@ EdLevelMainWindow::EdLevelMainWindow(void)
     layout11->addWidget(_hierarchy_toolbar);
     layout11->addWidget(_hierarchy_widget);
 
-    hierarchy_section->setLayout(layout11);
-
-    QDockWidget *hierarchyDock = new QDockWidget(tr("Hierarchy"), this);
-    hierarchyDock->setAllowedAreas(Qt::LeftDockWidgetArea | Qt::RightDockWidgetArea | Qt::BottomDockWidgetArea);
-    hierarchyDock->setFeatures ( QDockWidget::DockWidgetMovable | QDockWidget::DockWidgetFloatable );
-    hierarchyDock->setWidget(hierarchy_section);
-    addDockWidget(Qt::RightDockWidgetArea, hierarchyDock);
+    ui->hierarchy_section->setLayout(layout11);
 
     //
     // Properties
     //
-
     _properties_widget = new EdLevelPropertiesWindow(this, NULL, _document);
-
     // Properties Dock
-    QDockWidget *propertiesDock = new QDockWidget(tr("Properties"), this);
-    propertiesDock->setAllowedAreas(Qt::LeftDockWidgetArea | Qt::RightDockWidgetArea | Qt::BottomDockWidgetArea);
-    propertiesDock->setFeatures ( QDockWidget::DockWidgetMovable | QDockWidget::DockWidgetFloatable );
-    propertiesDock->setWidget(_properties_widget);
-    addDockWidget(Qt::RightDockWidgetArea, propertiesDock);
+    ui->propertiesDock->setWidget(_properties_widget);
 
     //
     // Library
     //
-
     _library_widget = new EdLevelLibraryWindow(this, NULL, _document);
-
     // Library Dock
-    QDockWidget *libraryDock = new QDockWidget(tr("Library"), this);
-    libraryDock->setAllowedAreas(Qt::LeftDockWidgetArea | Qt::RightDockWidgetArea | Qt::BottomDockWidgetArea);
-    libraryDock->setFeatures ( QDockWidget::DockWidgetMovable | QDockWidget::DockWidgetFloatable );
-    libraryDock->setWidget(_library_widget);
-    addDockWidget(Qt::RightDockWidgetArea, libraryDock);
-
+    ui->libraryDock->setWidget(_library_widget);
 
     //
     // Resources
     //
 
     // Resources Window
-    QWidget *resources_section = new QWidget(this);
-
-    _resources_toolbar = new QToolBar(resources_section);
+    _resources_toolbar = new QToolBar(ui->resources_section);
     _resources_toolbar->setIconSize(QSize(16,16));
 
-    _resources_widget = new EdLevelResourcesWindow(resources_section, _resources_toolbar, _document,_world_widget);
+    _resources_widget = new EdLevelResourcesWindow(ui->resources_section, _resources_toolbar, _document,_world_widget);
 
     QGridLayout *layout6 = new QGridLayout;
     layout6->setContentsMargins(0,0,0,0);
@@ -406,23 +338,14 @@ EdLevelMainWindow::EdLevelMainWindow(void)
     layout6->addWidget(_resources_toolbar);
     layout6->addWidget(_resources_widget);
 
-    resources_section->setLayout(layout6);
-
-    QDockWidget *resourcesDock = new QDockWidget(tr("Resources"), this);
-
-    resourcesDock->setAllowedAreas(Qt::LeftDockWidgetArea | Qt::RightDockWidgetArea | Qt::BottomDockWidgetArea);
-    resourcesDock->setFeatures ( QDockWidget::DockWidgetMovable | QDockWidget::DockWidgetFloatable );
-    resourcesDock->setWidget(resources_section);
-    addDockWidget(Qt::RightDockWidgetArea, resourcesDock);
-
-
+    ui->resources_section->setLayout(layout6);
 
     //
     // Tabify docks
     //
 
-    tabifyDockWidget ( resourcesDock, libraryDock);
-    tabifyDockWidget ( libraryDock, propertiesDock);
+    tabifyDockWidget ( ui->resourcesDock, ui->libraryDock);
+    tabifyDockWidget ( ui->libraryDock, ui->propertiesDock);
 
 
 
@@ -437,8 +360,6 @@ EdLevelMainWindow::EdLevelMainWindow(void)
 
     createMenus();
     createContextMenu();
-    createToolBars();
-    createStatusBar();
 
     setCentralWidget(world_section);
     setWindowTitle(tr("Level Editor"));
@@ -563,28 +484,9 @@ EdLevelMainWindow::EdLevelMainWindow(void)
 
 
     /*// Script Tools
-    connect(    this,                   SIGNAL(doScriptAlign(void)),
-                _script_widget,         SLOT(onScriptAlign(void))  );
-    connect(    this,                   SIGNAL(doScriptToggleValues(void)),
-                _script_widget,         SLOT(onScriptToggleValues(void))  );
-    connect(    this,                   SIGNAL(doScriptAddToLibrary(void)),
-                _script_widget,         SLOT(onScriptAddToLibrary(void))  );*/
-
-    // Menu updating
-    connect(    _file_menu,             SIGNAL(aboutToShow(void)),
-                this,                   SLOT(onUpdateMenus(void))  );
-    connect(    _edit_menu,             SIGNAL(aboutToShow(void)),
-                this,                   SLOT(onUpdateMenus(void))  );
-    connect(    _object_menu,           SIGNAL(aboutToShow(void)),
-                this,                   SLOT(onUpdateMenus(void))  );
-    connect(    _component_menu,        SIGNAL(aboutToShow(void)),
-                this,                   SLOT(onUpdateMenus(void))  );
-    connect(    _script_menu,           SIGNAL(aboutToShow(void)),
-                this,                   SLOT(onUpdateMenus(void))  );
-    connect(    _level_menu,            SIGNAL(aboutToShow(void)),
-                this,                   SLOT(onUpdateMenus(void))  );
-    connect(    _help_menu,             SIGNAL(aboutToShow(void)),
-                this,                   SLOT(onUpdateMenus(void))  );
+    connect(    this,                   SIGNAL(doScriptAlign(void)), _script_widget,         SLOT(onScriptAlign(void))  );
+    connect(    this,                   SIGNAL(doScriptToggleValues(void)), _script_widget,         SLOT(onScriptToggleValues(void))  );
+    connect(    this,                   SIGNAL(doScriptAddToLibrary(void)), _script_widget,         SLOT(onScriptAddToLibrary(void))  );*/
 
     // Set the default selection
     std::list<std::shared_ptr<PlugNode>> empty_selection;
@@ -603,6 +505,7 @@ EdLevelMainWindow::~EdLevelMainWindow(void)
     GameMainThread::hide_engine();
 
     delete _document;
+    delete ui;
 }
 
 //==============================================================================
@@ -610,7 +513,7 @@ EdLevelMainWindow::~EdLevelMainWindow(void)
 
 void EdLevelMainWindow::setSaveIcon (DTboolean icon_state)
 {
-    _save_level_action->setEnabled(icon_state);
+    ui->_save_level_action->setEnabled(icon_state);
 }
 
 //==============================================================================
@@ -658,16 +561,16 @@ void EdLevelMainWindow::closeEvent(QCloseEvent *event)
 void EdLevelMainWindow::onUpdateMenus()
 {
     if (_undo_queue.size() > 0) {
-        _undo_action->setEnabled(true);
+        ui->_undo_action->setEnabled(true);
     } else {
-        _undo_action->setEnabled(false);
+        ui->_undo_action->setEnabled(false);
     }
 
     const std::list<std::shared_ptr<PlugNode>>& selection = _document->selection();
     if (selection.size() > 0) {
-        _export_selection_action->setEnabled(true);
+        ui->_export_selection_action->setEnabled(true);
     } else {
-        _export_selection_action->setEnabled(false);
+        ui->_export_selection_action->setEnabled(false);
     }
 
 }
@@ -688,7 +591,7 @@ void EdLevelMainWindow::onOpen()
 
         if (!filename.isEmpty()) {
             loadLevel(filename);
-            _save_level_action->setEnabled(false);
+            ui->_save_level_action->setEnabled(false);
         }
     }
 }
@@ -699,7 +602,7 @@ bool EdLevelMainWindow::onSaveLevel()
         return onSaveLevelAs();
     } else {
         bool saved = saveLevel(_current_level_file);
-        _save_level_action->setEnabled(!saved);
+        ui->_save_level_action->setEnabled(!saved);
         return saved;
     }
 }
@@ -914,13 +817,13 @@ bool EdLevelMainWindow::onCommand(QString command)
         }
 
         // Update Menu
-        _undo_action->setEnabled(true);
+        ui->_undo_action->setEnabled(true);
 
     } else {
         _undo_queue.clear();
 
         // Update Menu
-        _undo_action->setEnabled(false);
+        ui->_undo_action->setEnabled(false);
     }
 
     _console_widget->append (command + "      // " + QString(result.message().c_str()));
@@ -938,7 +841,7 @@ bool EdLevelMainWindow::onCommand(QString command)
     updateWidgets(h);
 
     // Reenable save
-    _save_level_action->setEnabled(true);
+    ui->_save_level_action->setEnabled(true);
 
     return result.result();
 }
@@ -997,7 +900,7 @@ void EdLevelMainWindow::onUndo()
 
     if (_undo_queue.size() == 0) {
         // Update Menu
-        _undo_action->setEnabled(false);
+        ui->_undo_action->setEnabled(false);
     }
 
     _console_widget->append ("// Undo Ends");
@@ -1085,9 +988,9 @@ void EdLevelMainWindow::onSelectionChanged(const std::list<std::shared_ptr<PlugN
 
     // Update menus
     if (selection_list.size() == 1 && selection_list.front()->isa(ObjectBase::kind()) ) {
-        _component_menu->setDisabled(false);
+        ui->_component_menu->setDisabled(false);
     } else {
-        _component_menu->setDisabled(true);
+        ui->_component_menu->setDisabled(true);
     }
 
 
@@ -1161,38 +1064,21 @@ void EdLevelMainWindow::onComponentContextMenu(std::shared_ptr<ComponentBase> co
 
 void EdLevelMainWindow::createActions()
 {
-    _new_action = new QAction(tr("&New"), this);
-    _new_action->setIcon(QIcon(":/images/new.png"));
-    _new_action->setShortcut(QKeySequence::New);
-    _new_action->setStatusTip(tr("Create a new Level file"));
+    ui->_new_action->setShortcut(QKeySequence::New);
 
-    _open_action = new QAction(tr("&Open..."), this);
-    _open_action->setIcon(QIcon(":/images/open.png"));
-    _open_action->setShortcut(QKeySequence::Open);
-    _open_action->setStatusTip(tr("Open an existing Level file"));
-    connect(_open_action, SIGNAL(triggered()), this, SLOT(onOpen()));
+    ui->_open_action->setShortcut(QKeySequence::Open);
+    connect(ui->_open_action, SIGNAL(triggered()), this, SLOT(onOpen()));
 
-    _save_level_action = new QAction(tr("&Save Level"), this);
-    _save_level_action->setIcon(QIcon(":/images/save.png"));
-    _save_level_action->setShortcut(QKeySequence::Save);
-    _save_level_action->setStatusTip(tr("Save the Level to disk"));
-    connect(_save_level_action, SIGNAL(triggered()), this, SLOT(onSaveLevel()));
+    ui->_save_level_action->setShortcut(QKeySequence::Save);
+    connect(ui->_save_level_action, SIGNAL(triggered()), this, SLOT(onSaveLevel()));
 
-    _save_level_as_action = new QAction(tr("Save Level &As..."), this);
-    _save_level_as_action->setStatusTip(tr("Save a copy of the Level to disk"));
-    connect(_save_level_as_action, SIGNAL(triggered()), this, SLOT(onSaveLevelAs()));
+    connect(ui->_save_level_as_action, SIGNAL(triggered()), this, SLOT(onSaveLevelAs()));
 
-    _export_selection_action = new QAction(tr("Export Selection..."), this);
-    _export_selection_action->setStatusTip(tr("Export the selection to disk"));
-    connect(_export_selection_action, SIGNAL(triggered()), this, SLOT(onExportSelection()));
+    connect(ui->_export_selection_action, SIGNAL(triggered()), this, SLOT(onExportSelection()));
 
-    _import_selection_action = new QAction(tr("Import Selection..."), this);
-    _import_selection_action->setStatusTip(tr("Import the selection from disk"));
-    connect(_import_selection_action, SIGNAL(triggered()), this, SLOT(onImportSelection()));
+    connect(ui->_import_selection_action, SIGNAL(triggered()), this, SLOT(onImportSelection()));
 
-    _run_script_action = new QAction(tr("Run Script..."), this);
-    _run_script_action->setStatusTip(tr("Run script file"));
-    connect(_run_script_action, SIGNAL(triggered()), this, SLOT(onRunScript()));
+    connect(ui->_run_script_action, SIGNAL(triggered()), this, SLOT(onRunScript()));
 
     for (int i = 0; i < MaxRecentFiles; ++i) {
         _recent_file_actions[i] = new QAction(this);
@@ -1200,78 +1086,35 @@ void EdLevelMainWindow::createActions()
         connect(_recent_file_actions[i], SIGNAL(triggered()), this, SLOT(onOpenRecent()));
     }
 
-    _exit_action = new QAction(tr("E&xit"), this);
-    _exit_action->setShortcut(tr("Ctrl+Q"));
-    _exit_action->setStatusTip(tr("Exit the application"));
-    connect(_exit_action, SIGNAL(triggered()), this, SLOT(close()));
+    connect(ui->_exit_action, SIGNAL(triggered()), this, SLOT(close()));
 
     //
     // Edit menu
     //
 
-    _undo_action = new QAction(tr("&Undo"), this);
-    _undo_action->setShortcut(QKeySequence::Undo);
-    _undo_action->setStatusTip(tr("Undo the last operation"));
-    connect(_undo_action, SIGNAL(triggered()), this, SLOT(onUndo()));
+    ui->_undo_action->setShortcut(QKeySequence::Undo);
+    connect(ui->_undo_action, SIGNAL(triggered()), this, SLOT(onUndo()));
 
-    _cut_action = new QAction(tr("Cu&t"), this);
-    _cut_action->setIcon(QIcon(":/images/cut.png"));
-    _cut_action->setShortcut(QKeySequence::Cut);
-    _cut_action->setStatusTip(tr("Cut the current selection's contents to the clipboard"));
-    connect(_cut_action, SIGNAL(triggered()), this, SLOT(onCut()));
+    ui->_cut_action->setShortcut(QKeySequence::Cut);
+    connect(ui->_cut_action, SIGNAL(triggered()), this, SLOT(onCut()));
 
-    _copy_action = new QAction(tr("&Copy"), this);
-    _copy_action->setIcon(QIcon(":/images/copy.png"));
-    _copy_action->setShortcut(QKeySequence::Copy);
-    _copy_action->setStatusTip(tr("Copy the current selection's contents to the clipboard"));
-    connect(_copy_action, SIGNAL(triggered()), this, SLOT(onCopy()));
+    ui->_copy_action->setShortcut(QKeySequence::Copy);
+    connect(ui->_copy_action, SIGNAL(triggered()), this, SLOT(onCopy()));
 
-    _paste_action = new QAction(tr("&Paste"), this);
-    _paste_action->setIcon(QIcon(":/images/paste.png"));
-    _paste_action->setShortcut(QKeySequence::Paste);
-    _paste_action->setStatusTip(tr("Paste the clipboard's contents into the current selection"));
-    connect(_paste_action, SIGNAL(triggered()), this, SLOT(onPaste()));
+    ui->_paste_action->setShortcut(QKeySequence::Paste);
+    connect(ui->_paste_action, SIGNAL(triggered()), this, SLOT(onPaste()));
 
-    _clear_action = new QAction(tr("&Clear"), this);
-    //_clear_action->setShortcut(Qt::CTRL + QKeySequence::Delete);
-    _clear_action->setStatusTip(tr("Clear the current selection's contents"));
-    connect(_clear_action, SIGNAL(triggered()),
-            this, SLOT(onClear()));
+    connect(ui->_clear_action, SIGNAL(triggered()), this, SLOT(onClear()));
 
-    _select_all_action = new QAction(tr("Select All"), this);
-    _select_all_action->setShortcut(QKeySequence::SelectAll);
-    _select_all_action->setStatusTip(tr("Select all parts"));
-    connect(_select_all_action, SIGNAL(triggered()),
-            this, SLOT(onSelectAll()));
+    ui->_select_all_action->setShortcut(QKeySequence::SelectAll);
+    connect(ui->_select_all_action, SIGNAL(triggered()), this, SLOT(onSelectAll()));
+    connect(ui->_select_none_action, SIGNAL(triggered()), this, SLOT(onSelectNone()));
 
-    _select_none_action = new QAction(tr("Select None"), this);
-    _select_none_action->setStatusTip(tr("Deselect all parts"));
-    connect(_select_none_action, SIGNAL(triggered()),
-            this, SLOT(onSelectNone()));
+    connect(ui->_duplicate_action, SIGNAL(triggered()), this, SLOT(onDuplicate()));
+    connect(ui->_duplicate_hierarchy_action, SIGNAL(triggered()), this, SLOT(onDuplicateHierarchy()));
 
-    _duplicate_action = new QAction(tr("Duplicate"), this);
-    _duplicate_action->setShortcut(tr("Ctrl+d"));
-    _duplicate_action->setStatusTip(tr("Duplicate Selection"));
-    connect(_duplicate_action, SIGNAL(triggered()),
-            this, SLOT(onDuplicate()));
-
-    _duplicate_hierarchy_action = new QAction(tr("Duplicate Hierarchy"), this);
-    _duplicate_hierarchy_action->setShortcut(tr("Ctrl+Shift+d"));
-    _duplicate_hierarchy_action->setStatusTip(tr("Duplicate Selection and all children"));
-    connect(_duplicate_hierarchy_action, SIGNAL(triggered()),
-            this, SLOT(onDuplicateHierarchy()));
-
-    _group_action = new QAction(tr("Group"), this);
-    _group_action->setShortcut(tr("Ctrl+g"));
-    _group_action->setStatusTip(tr("Group Selection"));
-    connect(_group_action, SIGNAL(triggered()),
-            this, SLOT(onGroup()));
-
-    _ungroup_action = new QAction(tr("Ungroup"), this);
-    _ungroup_action->setShortcut(tr("Ctrl+Shift+g"));
-    _ungroup_action->setStatusTip(tr("Ungroup Selection"));
-    connect(_ungroup_action, SIGNAL(triggered()),
-            this, SLOT(onUngroup()));
+    connect(ui->_group_action, SIGNAL(triggered()), this, SLOT(onGroup()));
+    connect(ui->_ungroup_action, SIGNAL(triggered()), this, SLOT(onUngroup()));
 
 
 
@@ -1280,47 +1123,29 @@ void EdLevelMainWindow::createActions()
     // About item
     //
 
-    _about_action = new QAction(tr("&About"), this);
-    _about_action->setStatusTip(tr("Show the application's About box"));
-    connect(_about_action, SIGNAL(triggered()), this, SLOT(onAbout()));
+    connect(ui->_about_action, SIGNAL(triggered()), this, SLOT(onAbout()));
 
     //
     // Level
     //
 
-    _play_level_action = new QAction(tr("Play"), this);
-    _play_level_action->setIcon(QIcon(":/images/play.png"));
-    //_play_level_action->setShortcut(QKeySequence::New);
-    _play_level_action->setStatusTip(tr("Play Level"));
-    connect(_play_level_action, SIGNAL(triggered()), this, SLOT(onPlayLevel()));
-
-    _play_options_action = new QAction(tr("Play Options"), this);
-    _play_options_action->setIcon(QIcon(":/images/settings.png"));
-    //_play_options_action->setShortcut(QKeySequence::New);
-    _play_options_action->setStatusTip(tr("Stop Level"));
-    connect(_play_options_action, SIGNAL(triggered()), this, SLOT(onPlayOptions()));
+    connect(ui->_play_level_action, SIGNAL(triggered()), this, SLOT(onPlayLevel()));
+    connect(ui->_play_options_action, SIGNAL(triggered()), this, SLOT(onPlayOptions()));
 
     //
     // Tools
     //
 
-    _mesh_builder_action = new QAction(tr("Mesh Builder"), this);
-    _mesh_builder_action->setIcon(QIcon(":/images/mesh_builder.png"));
-    _mesh_builder_action->setStatusTip(tr("Mesh Builder"));
-    connect(_mesh_builder_action, SIGNAL(triggered()), this, SLOT(onMeshBuilder()));
+    connect(ui->_mesh_builder_action, SIGNAL(triggered()), this, SLOT(onMeshBuilder()));
 
-    _package_builder_action = new QAction(tr("Package Builder"), this);
-    _package_builder_action->setIcon(QIcon(":/images/package_builder.png"));
-    _package_builder_action->setStatusTip(tr("Package Builder"));
-    connect(_package_builder_action, SIGNAL(triggered()), this, SLOT(onPackageBuilder()));
+    connect(ui->_package_builder_action, SIGNAL(triggered()), this, SLOT(onPackageBuilder()));
 }
 
 void EdLevelMainWindow::createMenus()
 {
-    _file_menu = menuBar()->addMenu(tr("&File"));
 
     //_file_menu->addAction(_new_action);
-    QMenu *new_menu = _file_menu->addMenu("New");
+    QMenu *new_menu = ui->_new_menu;
 
     std::map<std::string,std::shared_ptr<CreatorBase>> &world_types = world_map();
 
@@ -1331,53 +1156,19 @@ void EdLevelMainWindow::createMenus()
         add_world_action->setData(k->first.c_str());
         add_world_action->setVisible(true);
 
-        connect(add_world_action, SIGNAL(triggered()),
-                this, SLOT(onCreateWorld()));
+        connect(add_world_action, SIGNAL(triggered()), this, SLOT(onCreateWorld()));
 
         new_menu->addAction(add_world_action);
     }
 
-
-    _file_menu->addAction(_open_action);
-    _file_menu->addSeparator();
-    _file_menu->addAction(_save_level_action);
-    _file_menu->addAction(_save_level_as_action);
-    _file_menu->addSeparator();
-    _file_menu->addAction(_export_selection_action);
-    _file_menu->addAction(_import_selection_action);
-    _file_menu->addSeparator();
-    _file_menu->addAction(_run_script_action);
-    _file_menu->addSeparator();
-    _separator_action = _file_menu->addSeparator();
     for (int i = 0; i < MaxRecentFiles; ++i)
-        _file_menu->addAction(_recent_file_actions[i]);
-    _file_menu->addSeparator();
-    _file_menu->addAction(_exit_action);
-
-    _edit_menu = menuBar()->addMenu(tr("&Edit"));
-    _edit_menu->addAction(_undo_action);
-    _edit_menu->addSeparator();
-    _edit_menu->addAction(_cut_action);
-    _edit_menu->addAction(_copy_action);
-    _edit_menu->addAction(_paste_action);
-    _edit_menu->addAction(_clear_action);
-    _edit_menu->addSeparator();
-    _edit_menu->addAction(_select_all_action);
-    _edit_menu->addAction(_select_none_action);
-    _edit_menu->addSeparator();
-    _edit_menu->addAction(_duplicate_action);
-    _edit_menu->addAction(_duplicate_hierarchy_action);
-    _edit_menu->addSeparator();
-    _edit_menu->addAction(_group_action);
-    _edit_menu->addAction(_ungroup_action);
+        ui->menuRecent_Files->addAction(_recent_file_actions[i]);
 
     // Object Menu
-    _object_menu = menuBar()->addMenu(tr("Objects"));
-
     std::map<std::string,std::set<std::string>> &placeable_types = placeable_map();
 
     FOR_EACH (i,placeable_types) {
-        QMenu *menu = _object_menu->addMenu(i->first.c_str());
+        QMenu *menu = ui->_object_menu->addMenu(i->first.c_str());
 
         std::set<std::string> &placeable = i->second;
 
@@ -1388,8 +1179,7 @@ void EdLevelMainWindow::createMenus()
             add_object_action->setData(j->c_str());
             add_object_action->setVisible(true);
 
-            connect(add_object_action,      SIGNAL(triggered()),
-                    this,                   SLOT(onCreateObject()));
+            connect(add_object_action, SIGNAL(triggered()), this, SLOT(onCreateObject()));
 
             menu->addAction(add_object_action);
         }
@@ -1397,12 +1187,10 @@ void EdLevelMainWindow::createMenus()
     }
 
     // Component Menu
-    _component_menu = menuBar()->addMenu(tr("Components"));
-
     std::map<std::string,std::set<std::string>> &component_types = component_map();
 
     FOR_EACH (i,component_types) {
-        QMenu *menu = _component_menu->addMenu(i->first.c_str());
+        QMenu *menu = ui->_component_menu->addMenu(i->first.c_str());
 
         std::set<std::string> &components = i->second;
 
@@ -1422,14 +1210,12 @@ void EdLevelMainWindow::createMenus()
     }
 
     // Script Menu
-    _script_menu = menuBar()->addMenu(tr("Scripts"));
-
     std::map<std::string,std::set<std::string>> &script_types = script_map();
 
-    FOR_EACH (i,script_types) {
-        QMenu *menu = _script_menu->addMenu(i->first.c_str());
+    for( const std::pair<std::string,std::set<std::string>> &i : script_types) {
+        QMenu *menu = ui->_script_menu->addMenu(i.first.c_str());
 
-        std::set<std::string> &scripts = i->second;
+        const std::set<std::string> &scripts = i.second;
 
         FOR_EACH (j,scripts) {
             QAction *add_script_action = new QAction(this);
@@ -1438,66 +1224,20 @@ void EdLevelMainWindow::createMenus()
             add_script_action->setData(j->c_str());
             add_script_action->setVisible(true);
 
-            connect(add_script_action,   SIGNAL(triggered()),
-                    this, SLOT(onCreateScripts()));
+            connect(add_script_action,   SIGNAL(triggered()), this, SLOT(onCreateScripts()));
 
             menu->addAction(add_script_action);
         }
 
     }
-
-    // Level Menu
-    _level_menu = menuBar()->addMenu(tr("Level"));
-    _level_menu->addAction(_play_level_action);
-    _level_menu->addAction(_play_options_action);
-
-    // Tools Menu
-    _tools_menu = menuBar()->addMenu(tr("Tools"));
-    _tools_menu->addAction(_mesh_builder_action);
-    _tools_menu->addAction(_package_builder_action);
-
-    menuBar()->addSeparator();
-
-    _help_menu = menuBar()->addMenu(tr("&Help"));
-    _help_menu->addAction(_about_action);
 }
 
 void EdLevelMainWindow::createContextMenu()
 {
-    this->addAction(_cut_action);
-    this->addAction(_copy_action);
-    this->addAction(_paste_action);
+    this->addAction(ui->_cut_action);
+    this->addAction(ui->_copy_action);
+    this->addAction(ui->_paste_action);
     this->setContextMenuPolicy(Qt::ActionsContextMenu);
-}
-
-void EdLevelMainWindow::createToolBars()
-{
-    _file_toolbar = addToolBar(tr("&File"));
-    _file_toolbar->setIconSize(QSize(16,16));
-    _file_toolbar->addAction(_new_action);
-    _file_toolbar->addAction(_open_action);
-    _file_toolbar->addAction(_save_level_action);
-
-    _edit_toolbar = addToolBar(tr("&Edit"));
-    _edit_toolbar->setIconSize(QSize(16,16));
-    _edit_toolbar->addAction(_cut_action);
-    _edit_toolbar->addAction(_copy_action);
-    _edit_toolbar->addAction(_paste_action);
-
-    _level_toolbar = addToolBar(tr("&Level"));
-    _level_toolbar->setIconSize(QSize(16,16));
-    _level_toolbar->addAction(_play_level_action);
-    _level_toolbar->addAction(_play_options_action);
-
-    _tools_toolbar = addToolBar(tr("&Tools"));
-    _tools_toolbar->addAction(_mesh_builder_action);
-    _tools_toolbar->addAction(_package_builder_action);
-
-}
-
-void EdLevelMainWindow::createStatusBar()
-{
-    onOpenRecent();
 }
 
 //==============================================================================
@@ -1637,7 +1377,7 @@ void EdLevelMainWindow::updateRecentFileActions()
             _recent_file_actions[j]->setVisible(false);
         }
     }
-    _separator_action->setVisible(!_recent_files.isEmpty());
+    ui->menuRecent_Files->setVisible(!_recent_files.isEmpty());
 }
 
 QString EdLevelMainWindow::strippedName(const QString &fullFileName)
@@ -1867,6 +1607,17 @@ void EdLevelMainWindow::showWarning (const DTcharacter* file, const DTcharacter*
     }
 }
 
+void EdLevelMainWindow::changeEvent(QEvent *e)
+{
+    QMainWindow::changeEvent(e);
+    switch (e->type()) {
+    case QEvent::LanguageChange:
+        ui->retranslateUi(this);
+        break;
+    default:
+        break;
+    }
+}
 //==============================================================================
 //==============================================================================
 
