@@ -1,6 +1,4 @@
-cmake_minimum_required(VERSION 2.8)
 aux_source_directory(. SRC_LIST)
-
 
 #==============================================================================
 #
@@ -13,8 +11,6 @@ aux_source_directory(. SRC_LIST)
 #
 #==============================================================================
 
-#cmake_minimum_required(VERSION 2.8)
-
 set(CMAKE_C_COMPILER_INIT g++)
 enable_language(ASM)
 
@@ -25,8 +21,6 @@ enable_language(ASM)
 set( CMAKE_EXE_LINKER_FLAGS "${CMAKE_C_FLAGS}" )
 set( CMAKE_SHARED_LINKER_FLAGS "${CMAKE_C_FLAGS}" )
 set( CMAKE_MODULE_LINKER_FLAGS "${CMAKE_C_FLAGS}" )
-
-set (ENGINE_ROOT "${PROJECT_SOURCE_DIR}/DT3Core")
 
 #External Variable for
 if(EXISTS "${DT3_CORE_OUTPUT_PATH}")

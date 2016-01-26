@@ -22,7 +22,6 @@
 #include "EdLevelPropertyEnumField.hpp"
 #include "EdLevelPropertyRangeField.hpp"
 #include "EdLevelLineEdit.hpp"
-
 // Qt include
 #include <QtGui/QPainter>
 #include <QtGui/QMouseEvent>
@@ -36,6 +35,7 @@
 // Engine includes
 #include "DT3Core/Types/Node/PlugNode.hpp"
 #include "DT3Core/Types/FileBuffer/ArchiveData.hpp"
+#include "DT3Core/Types/FileBuffer/ArchivePropertyReaderWriter.hpp"
 #include "DT3Core/Types/Utility/ConsoleStream.hpp"
 #include "DT3Core/Objects/ObjectBase.hpp"
 #include "DT3Core/Types/Math/Color4f.hpp"

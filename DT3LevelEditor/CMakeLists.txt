@@ -6,6 +6,7 @@
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 set(CMAKE_AUTORCC ON)
+set(CMAKE_AUTOUIC ON)
 include_directories(
 ${CMAKE_CURRENT_SOURCE_DIR}/../DT3Core/3rdParty/zlib-1.2.5
                ${CMAKE_CURRENT_SOURCE_DIR}/../DT3Core/3rdParty/lpng151
@@ -93,6 +94,7 @@ set(HEADERS
 set(SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/EdLevelAppMain.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/EdLevelMainWindow.cpp
+    EdLevelMainWindow.ui
     ${CMAKE_CURRENT_SOURCE_DIR}/Properties/EdLevelPropertiesWindow.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/Properties/EdLevelPropertyBase.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/Properties/EdLevelPropertyDefaultField.cpp

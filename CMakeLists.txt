@@ -1,4 +1,5 @@
 project(DT3)
+cmake_minimum_required(VERSION 2.8)
 
 IF(CMAKE_BUILD_TOOL MATCHES "(msdev|devenv|nmake)")
     ADD_DEFINITIONS(-D_CRT_SECURE_NO_WARNINGS -D__UNIX__ -D_CRT_NONSTDC_NO_DEPRECATE)
@@ -16,5 +17,7 @@ find_package(Qt5Widgets)
 find_package(Qt5Multimedia)
 find_package(Threads REQUIRED)
 
+set (ENGINE_ROOT "${PROJECT_SOURCE_DIR}/DT3Core")
+INCLUDE_DIRECTORIES(.)
 add_subdirectory(DT3Core)
 add_subdirectory(DT3LevelEditor)

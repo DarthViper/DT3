@@ -18,8 +18,7 @@
 #include <QtWidgets/QListWidget>
 #include <QtWidgets/QToolBar>
 
-// Engine includes
-#include "DT3Core/Types/FileBuffer/ArchivePropertyReaderWriter.hpp"
+#include <memory>
 #include <list>
 
 //==============================================================================
@@ -29,6 +28,7 @@
 namespace DT3 {
     class ComponentBase;
     class PlugNode;
+    class ArchivePropertyReaderWriter;
 }
 
 class EdLevelDocument;
