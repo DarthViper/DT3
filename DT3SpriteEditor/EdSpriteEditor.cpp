@@ -1,27 +1,27 @@
 //==============================================================================
-///	
+///
 ///	File: EdSpriteEditor.cpp
-///	
+///
 /// Copyright (C) 2000-2013 by Smells Like Donkey, Inc. All rights reserved.
 ///
 /// This file is subject to the terms and conditions defined in
 /// file 'LICENSE.txt', which is part of this source code package.
-///	
+///
 //==============================================================================
 
 #include "EdSpriteEditor.hpp"
 #include <QtGui/QPainter>
 #include <QtGui/QMouseEvent>
 
-#include "System.hpp"
-#include "DeviceGraphics.hpp"
-#include "ConsoleStream.hpp"
-#include "DrawBatcher.hpp"
-#include "DrawBatcherQuads.hpp"
-#include "ShaderResource.hpp"
-#include "CameraObject.hpp"
+#include "DT3Core/System/System.hpp"
+#include "DT3Core/Devices/DeviceGraphics.hpp"
+#include "DT3Core/Types/Utility/ConsoleStream.hpp"
+#include "DT3Core/Types/Graphics/DrawBatcher.hpp"
+//#include "DrawBatcherQuads.hpp"
+#include "DT3Core/Resources/ResourceTypes/ShaderResource.hpp"
+#include "DT3Core/Objects/CameraObject.hpp"
 
-using namespace DT2;
+using namespace DT3;
 
 //==============================================================================
 //==============================================================================
@@ -39,34 +39,34 @@ EdSpriteEditor::EdSpriteEditor(EdSpriteMainWindow *main_window, QGLWidget *share
         _current_handle_joint    (NULL)
 {
     _main_window = main_window;
-    
-    _bounds_material.setBlending(false);
-    _bounds_material.setDepthTest(false);
-    _bounds_material.setCulling(false);
-    _bounds_material.setColor(Color(0.3F,0.3F,0.3F,1.0F));
-	_bounds_material.setShader(ShaderResource::getShader(FilePath("{editorline.shdr}")));
-    _bounds_material.setRecacheParameters(true);
 
-    _outline_material.setBlending(false);
-    _outline_material.setDepthTest(false);
-    _outline_material.setCulling(false);
-    _outline_material.setColor(Color(0.5F,0.5F,0.5F,1.0F));
-	_outline_material.setShader(ShaderResource::getShader(FilePath("{editorline.shdr}")));
-    _outline_material.setRecacheParameters(true);
+    _bounds_material.set_blend_enable(false);
+    _bounds_material.set_depth_enable(false);
+    _bounds_material.set_cull_mode(DT3GL_CULL_NONE);
+    //_bounds_material.set_color(Color(0.3F,0.3F,0.3F,1.0F));
+//    _bounds_material.setShader(ShaderResource::getShader(FilePath("{editorline.shdr}")));
+//    _bounds_material.setRecacheParameters(true);
 
-    _selected_material.setBlending(false);
-    _selected_material.setDepthTest(false);
-    _selected_material.setCulling(false);
-    _selected_material.setColor(Color(0.0F,1.0F,0.0F,1.0F));
-	_selected_material.setShader(ShaderResource::getShader(FilePath("{editorline.shdr}")));
-    _selected_material.setRecacheParameters(true);
+    _outline_material.set_blend_enable(false);
+    _outline_material.set_depth_enable(false);
+    _outline_material.set_cull_mode(DT3GL_CULL_NONE);
+//    _outline_material.setColor(Color(0.5F,0.5F,0.5F,1.0F));
+//    _outline_material.setShader(ShaderResource::getShader(FilePath("{editorline.shdr}")));
+//    _outline_material.setRecacheParameters(true);
 
-    _handle_material.setBlending(false);
-    _handle_material.setDepthTest(false);
-    _handle_material.setCulling(false);
-    _handle_material.setColor(Color(1.0F,0.0F,0.0F,1.0F));
-	_handle_material.setShader(ShaderResource::getShader(FilePath("{editorline.shdr}")));
-    _handle_material.setRecacheParameters(true);
+    _selected_material.set_blend_enable(false);
+    _selected_material.set_depth_enable(false);
+    _selected_material.set_cull_mode(DT3GL_CULL_NONE);
+//    _selected_material.setColor(Color(0.0F,1.0F,0.0F,1.0F));
+//    _selected_material.setShader(ShaderResource::getShader(FilePath("{editorline.shdr}")));
+//    _selected_material.setRecacheParameters(true);
+
+    _handle_material.set_blend_enable(false);
+    _handle_material.set_depth_enable(false);
+    _handle_material.set_cull_mode(DT3GL_CULL_NONE);
+//    _handle_material.setColor(Color(1.0F,0.0F,0.0F,1.0F));
+//    _handle_material.setShader(ShaderResource::getShader(FilePath("{editorline.shdr}")));
+//    _handle_material.setRecacheParameters(true);
 
     setAutoBufferSwap(false);
 }
@@ -77,23 +77,23 @@ EdSpriteEditor::EdSpriteEditor(EdSpriteMainWindow *main_window, QGLWidget *share
 void EdSpriteEditor::updateTransforms (void)
 {
     // Update viewport transform
-    DTfloat width = System::getRenderer()->getScreenWidth();
-    DTfloat height = System::getRenderer()->getScreenHeight();
-                                    
-    Matrix4 obj_to_proj = _camera.getProjection() * _camera.getModelview();
+    DTfloat width = System::renderer()->viewport_width();
+    DTfloat height = System::renderer()->viewport_height();
+
+    Matrix4 obj_to_proj = _camera.projection() * _camera.modelview();
     Matrix4 proj_to_vp = Matrix4(   width/2.0F,     0.0F,           0.0F,       width/2.0F,
                                     0.0F,           -height/2.0F,   0.0F,       height/2.0F,
                                     0.0F,           0.0F,           0.0F,       0.0F,
                                     0.0F,           0.0F,           0.0F,       1.0F        );
     Matrix4 obj_to_viewport = proj_to_vp * obj_to_proj;
-                                                                               
+
     _object_to_viewport_transform = Matrix3(    obj_to_viewport._m11,   obj_to_viewport._m12,   obj_to_viewport._m14,
                                                 obj_to_viewport._m21,   obj_to_viewport._m22,   obj_to_viewport._m24,
                                                 0.0F,                   0.0F,                   1.0F                    );
 
     // Object transforms
-    _main_window->getSprite()->updateTransforms();
-    _main_window->getSprite()->updateOrder();
+    _main_window->getSprite()->update_transforms();
+    _main_window->getSprite()->update_order();
 }
 
 Vector2 EdSpriteEditor::getHandleObjectPosition (const KeyedSpriteAnimationPoseJoint *joint, DTint handle)
@@ -125,10 +125,10 @@ Vector2 EdSpriteEditor::getHandleObjectPosition (const KeyedSpriteAnimationPoseJ
 
         default: {
             DTint i = handle - HANDLE_GRID;
-        
-            const Array<Vector2>& grid = joint->gridPoints();
+
+            const std::vector<Vector2>& grid = joint->gridPoints();
             Vector2 v = grid[i];
-            
+
             Vector2 p0 = joint->getJointToObjectTransform() * Vector2(-joint->getMinusX(), -joint->getMinusY());
             Vector2 p1 = joint->getJointToObjectTransform() * Vector2(joint->getPlusX(), -joint->getMinusY());
             Vector2 p2 = joint->getJointToObjectTransform() * Vector2(joint->getPlusX(), joint->getPlusY());
@@ -162,11 +162,11 @@ DTint EdSpriteEditor::getClickedHandle (const Matrix3 &object_to_viewport_transf
 
     handle_pos = object_to_viewport_transform * getHandleObjectPosition(joint, HANDLE_POSITION);
     if ( (handle_pos - Vector2(x,y)).abs() <= HANDLE_CLICK_SIZE)    return HANDLE_POSITION;
-    
-    const Array<Vector2>& grid = joint->gridPoints();
-    for (DTint i = 0; i < grid.size(); ++i) {
+
+    const std::vector<Vector2>& grid = joint->gridPoints();
+    for (size_t i = 0; i < grid.size(); ++i) {
         handle_pos = object_to_viewport_transform * getHandleObjectPosition(joint, HANDLE_GRID + i);
-        if ( (handle_pos - Vector2(x,y)).abs() <= HANDLE_CLICK_SIZE)    
+        if ( (handle_pos - Vector2(x,y)).abs() <= HANDLE_CLICK_SIZE)
             return HANDLE_GRID + i;
     }
 
@@ -185,7 +185,7 @@ bool EdSpriteEditor::isClickedPart (const Matrix3 &object_to_viewport_transform,
     float minusx = joint->getMinusX();
     float plusy = joint->getPlusY();
     float minusy = joint->getMinusY();
-    
+
     float min_x = std::min(-minusx, plusx);
     float max_x = std::max(-minusx, plusx);
 
@@ -200,7 +200,7 @@ bool EdSpriteEditor::isClickedPart (const Matrix3 &object_to_viewport_transform,
 
 int EdSpriteEditor::getClickedPart (const Matrix3 &object_to_viewport_transform, int x, int y)
 {
-    Array<KeyedSpriteAnimationPoseJoint*> &joints = _main_window->getSprite()->getJoints();
+    std::vector<KeyedSpriteAnimationPoseJoint*> &joints = _main_window->getSprite()->joints();
 
     for (DTuint i = 0; i < joints.size(); ++i) {
         if (isClickedPart(object_to_viewport_transform, joints[i], x,y))
@@ -217,46 +217,46 @@ void EdSpriteEditor::drawCube (const Vector3 &position)
 {
     DTfloat size = _zoom * 0.01F;
 
-    DrawBatcherQuads b;
-    b.batchBegin(&_handle_material, Matrix4::identity(), DrawBatcher::FMT_V);
-    
-    b.vertex( position + Vector3(-size,size,-size) );
-    b.vertex( position + Vector3(size,size,-size) );
-    b.vertex( position + Vector3(size,size,size) );
-    b.vertex( position + Vector3(-size,size,size) );
+    DrawBatcher b;
+    b.batch_begin(_camera,&_handle_material, Matrix4::identity(), DrawBatcher::FMT_V);
 
-    b.vertex( position + Vector3(-size,-size,-size) );
-    b.vertex( position + Vector3(size,-size,-size) );
-    b.vertex( position + Vector3(size,-size,size) );
-    b.vertex( position + Vector3(-size,-size,size) );
-    
-    b.vertex( position + Vector3(-size,size,-size) );
-    b.vertex( position + Vector3(-size,-size,-size) );
-    b.vertex( position + Vector3(-size,-size,size) );
-    b.vertex( position + Vector3(-size,size,size) );
-    
-    b.vertex( position + Vector3(size,size,-size) );
-    b.vertex( position + Vector3(size,-size,-size) );
-    b.vertex( position + Vector3(size,-size,size) );
-    b.vertex( position + Vector3(size,size,size) );
-    
-    b.vertex( position + Vector3(-size,size,size) );
-    b.vertex( position + Vector3(-size,-size,size) );
-    b.vertex( position + Vector3(size,-size,size) );
-    b.vertex( position + Vector3(size,size,size) );
+    b.v( position + Vector3(-size,size,-size) );
+    b.v( position + Vector3(size,size,-size) );
+    b.v( position + Vector3(size,size,size) );
+    b.v( position + Vector3(-size,size,size) );
 
-    b.vertex( position + Vector3(-size,size,-size) );
-    b.vertex( position + Vector3(-size,-size,-size) );
-    b.vertex( position + Vector3(size,-size,-size) );
-    b.vertex( position + Vector3(size,size,-size) );
-    
-    b.batchEnd();
+    b.v( position + Vector3(-size,-size,-size) );
+    b.v( position + Vector3(size,-size,-size) );
+    b.v( position + Vector3(size,-size,size) );
+    b.v( position + Vector3(-size,-size,size) );
+
+    b.v( position + Vector3(-size,size,-size) );
+    b.v( position + Vector3(-size,-size,-size) );
+    b.v( position + Vector3(-size,-size,size) );
+    b.v( position + Vector3(-size,size,size) );
+
+    b.v( position + Vector3(size,size,-size) );
+    b.v( position + Vector3(size,-size,-size) );
+    b.v( position + Vector3(size,-size,size) );
+    b.v( position + Vector3(size,size,size) );
+
+    b.v( position + Vector3(-size,size,size) );
+    b.v( position + Vector3(-size,-size,size) );
+    b.v( position + Vector3(size,-size,size) );
+    b.v( position + Vector3(size,size,size) );
+
+    b.v( position + Vector3(-size,size,-size) );
+    b.v( position + Vector3(-size,-size,-size) );
+    b.v( position + Vector3(size,-size,-size) );
+    b.v( position + Vector3(size,size,-size) );
+
+    b.batch_end();
 }
 
 
 void EdSpriteEditor::drawPart(const Matrix3 &object_to_viewport_transform, KeyedSpriteAnimationPoseJoint *joint, bool selected)
 {
-    
+
     float plusx = joint->getPlusX();
     float minusx = joint->getMinusX();
     float plusy = joint->getPlusY();
@@ -267,68 +267,68 @@ void EdSpriteEditor::drawPart(const Matrix3 &object_to_viewport_transform, Keyed
     Vector2 p2 = joint->getJointToObjectTransform() * Vector2(plusx, plusy);
     Vector2 p3 = joint->getJointToObjectTransform() * Vector2(-minusx, plusy);
     Vector2 center = getHandleObjectPosition(joint, HANDLE_ROTATE);
-    
+
     //
     // Draw textured joint
     //
-    
-    if (joint->getVisible()) {
-    
-        MaterialResource *material = _main_window->getSprite()->getMaterialProperty();
 
-        DrawBatcherQuads b;
-        b.batchBegin (material, Matrix4::identity(), DrawBatcherQuads::FMT_V | DrawBatcherQuads::FMT_T1);
+    if (joint->getVisible()) {
+
+        std::shared_ptr<MaterialResource> material = _main_window->getSprite()->getMaterialProperty();
+
+        DrawBatcher b;
+        b.batch_begin (material, Matrix4::identity(), DrawBatcherQuads::FMT_V | DrawBatcherQuads::FMT_T1);
 
         joint->draw(b);
-        
-        b.batchEnd();
-        b.flush();
-        
+
+        b.batch_end();
+        b.draw();
+
     }
 
-    
+
     //
     // Draw outlined joint
     //
-    
+
     if (!selected) {
-    
+
         DrawBatcher b;
-        b.batchBegin (&_outline_material, Matrix4::identity(), DrawBatcher::BATCH_LINE_LOOP, DrawBatcher::FMT_V);
+        b.batch_begin (&_outline_material, Matrix4::identity(), DT3GL_PRIM_LINE_LOOP, DrawBatcher::FMT_V);
         b.vertex(Vector3(p0.x,p0.y,0.0F));
         b.vertex(Vector3(p1.x,p1.y,0.0F));
         b.vertex(Vector3(p2.x,p2.y,0.0F));
         b.vertex(Vector3(p3.x,p3.y,0.0F));
-        b.batchEnd();
-        b.flush();
-    
-        b.batchBegin (&_outline_material, Matrix4::identity(), DrawBatcher::BATCH_LINES, DrawBatcher::FMT_V);
+        b.batch_end();
+        b.draw();
+
+        b.batch_begin (&_outline_material, Matrix4::identity(), DT3GL_PRIM_LINES, DrawBatcher::FMT_V);
         b.vertex(Vector3(center.x-0.01F,center.y-0.01F,0.0F));
         b.vertex(Vector3(center.x+0.01F,center.y+0.01F,0.0F));
         b.vertex(Vector3(center.x-0.01F,center.y+0.01F,0.0F));
         b.vertex(Vector3(center.x+0.01F,center.y-0.01F,0.0F));
-        b.batchEnd();
-        b.flush();
-    
-            
+        b.batch_end();
+        b.draw();
+
+
     } else {
-    
+
         DrawBatcher b;
         b.batchBegin (&_selected_material, Matrix4::identity(), DrawBatcher::BATCH_LINE_LOOP, DrawBatcher::FMT_V);
         b.vertex(Vector3(p0.x,p0.y,0.0F));
         b.vertex(Vector3(p1.x,p1.y,0.0F));
         b.vertex(Vector3(p2.x,p2.y,0.0F));
         b.vertex(Vector3(p3.x,p3.y,0.0F));
-        b.batchEnd();
-        b.flush();
+        b.batch_end();
+        b.draw();
 
         b.batchBegin (&_selected_material, Matrix4::identity(), DrawBatcher::BATCH_LINES, DrawBatcher::FMT_V);
         b.vertex(Vector3(center.x-0.01F,center.y-0.01F,0.0F));
         b.vertex(Vector3(center.x+0.01F,center.y+0.01F,0.0F));
         b.vertex(Vector3(center.x-0.01F,center.y+0.01F,0.0F));
         b.vertex(Vector3(center.x+0.01F,center.y-0.01F,0.0F));
-        b.batchEnd();
-        b.flush();
+        b.batch_end();
+        b.draw();
 
         // Draw pivot
         drawCube(Vector3(center.x, center.y, 0.0F));
@@ -349,9 +349,9 @@ void EdSpriteEditor::drawPart(const Matrix3 &object_to_viewport_transform, Keyed
         center = getHandleObjectPosition(joint, HANDLE_POSITION);
         drawCube(Vector3(center.x, center.y, 0.0F));
 
-        const Array<Vector2>& grid = joint->gridPoints();
+        const std::vector<Vector2>& grid = joint->gridPoints();
         for (DTint i = 0; i < grid.size(); ++i) {
-        
+
             center = getHandleObjectPosition(joint, HANDLE_GRID+i);
             drawCube(Vector3(center.x, center.y, 0.0F));
         }
@@ -362,8 +362,8 @@ void EdSpriteEditor::drawPart(const Matrix3 &object_to_viewport_transform, Keyed
 
 void EdSpriteEditor::initializeGL (void)
 {
-	System::getRenderer()->openDisplay(width(), height());
-    
+    System::renderer()->open_display(width(), height());
+
     //::glEnable(GL_MULTISAMPLE);
     GLint bufs;
     GLint samples;
@@ -375,25 +375,25 @@ void EdSpriteEditor::initializeGL (void)
 void EdSpriteEditor::paintGL (void)
 {
     updateTransforms();
-    
-	makeCurrent();
-	
-	System::getRenderer()->changeDisplay (width(), height());
+
+    makeCurrent();
+
+    System::renderer()->change_display(width(), height());
 
     ::glClearColor( 0.2F, 0.2F, 0.2F, 0.0F );
     ::glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT );
-    
+
     DTfloat aspect = System::getRenderer()->getScreenAspect();
-    
-    _camera.setOrtho(   -_zoom*aspect - _translate.x,   _zoom*aspect - _translate.x,
+
+    _camera.set_ortho(   -_zoom*aspect - _translate.x,   _zoom*aspect - _translate.x,
                         -_zoom - _translate.y,          _zoom - _translate.y,
                         -1.0F,1.0F);
     System::getRenderer()->activateCamera(&_camera);
-    
+
     //
     // Draw bounds
     //
-    
+
     DrawBatcher b;
     b.batchBegin (&_bounds_material, Matrix4::identity(), DrawBatcher::BATCH_LINE_LOOP, DrawBatcher::FMT_V);
     b.vertex ( Vector3(-0.5F,-0.5F,0.0F) );
@@ -401,7 +401,7 @@ void EdSpriteEditor::paintGL (void)
     b.vertex ( Vector3(0.5F,0.5F,0.0F) );
     b.vertex ( Vector3(-0.5F,0.5F,0.0F) );
     b.batchEnd();
-	b.flush();
+    b.flush();
 
     b.batchBegin (&_bounds_material, Matrix4::identity(), DrawBatcher::BATCH_LINES, DrawBatcher::FMT_V);
     b.vertex ( Vector3(0.0F,-100.0F,0.0F) );
@@ -409,12 +409,12 @@ void EdSpriteEditor::paintGL (void)
     b.vertex ( Vector3(-100.0F,0.0F,0.0F) );
     b.vertex ( Vector3(100.0F,0.0F,0.0F) );
     b.batchEnd();
-	b.flush();
-    
+    b.flush();
+
     //
     // Draw Sprite
     //
-    
+
     // Draw unselected parts
     Array<KeyedSpriteAnimationPoseJoint*> &joints = _main_window->getSprite()->getJoints();
 
@@ -428,12 +428,12 @@ void EdSpriteEditor::paintGL (void)
         if (parent) {
             Vector2 p0 = joints[i]->getJointToObjectTransform() * Vector2(0.0F, 0.0F);
             Vector2 p1 = parent->getJointToObjectTransform() * Vector2(0.0F, 0.0F);
-            
+
             b.batchBegin (&_bounds_material, Matrix4::identity(), DrawBatcher::BATCH_LINES, DrawBatcher::FMT_V);
             b.vertex ( Vector3(p0.x,p0.y,0.0F) );
             b.vertex ( Vector3(p1.x,p1.y,0.0F) );
             b.batchEnd();
-            b.flush();            
+            b.flush();
         }
     }
 
@@ -441,27 +441,27 @@ void EdSpriteEditor::paintGL (void)
     for (DTuint i = 0; i < joints.size(); ++i) {
         if (!_main_window->isPartSelected(joints[i]))
             continue;
-    
+
         drawPart(_object_to_viewport_transform, joints[i], true );
 
         KeyedSpriteAnimationPoseJoint *parent = _main_window->getSprite()->getParentOfJoint(joints[i]);
         if (parent) {
             Vector2 p0 = joints[i]->getJointToObjectTransform() * Vector2(0.0F, 0.0F);
             Vector2 p1 = parent->getJointToObjectTransform() * Vector2(0.0F, 0.0F);
-            
+
             b.batchBegin (&_bounds_material, Matrix4::identity(), DrawBatcher::BATCH_LINES, DrawBatcher::FMT_V);
             b.vertex ( Vector3(p0.x,p0.y,0.0F) );
             b.vertex ( Vector3(p1.x,p1.y,0.0F) );
             b.batchEnd();
-            b.flush();            
+            b.flush();
         }
     }
-    
-    
-    
-	swapBuffers();
-	
-	doneCurrent();
+
+
+
+    swapBuffers();
+
+    doneCurrent();
 }
 
 void EdSpriteEditor::resizeGL (int w, int h)
@@ -480,8 +480,8 @@ void EdSpriteEditor::mousePressEvent (QMouseEvent *event)
 
     _last_mouse_x = event->x();
     _last_mouse_y = event->y();
-    
-    
+
+
     Vector2 position = _object_to_viewport_transform.inversed() * Vector2(_last_mouse_x,_last_mouse_y);
     LOG_MESSAGE << position.x << "  " << position.y;
 
@@ -540,7 +540,7 @@ void EdSpriteEditor::mouseMoveEvent (QMouseEvent *event)
 
     if ( ((event->buttons() & Qt::MidButton) && (event->buttons() & Qt::LeftButton)) ||
          ((event->buttons() & Qt::LeftButton) && (event->modifiers() & Qt::ALT) && (event->modifiers() & Qt::SHIFT)) ) {
-       
+
         _zoom += (dx + dy) * 0.01F;
         if (_zoom < 0.1F)       _zoom = 0.1F;
         if (_zoom > 10.0F)      _zoom = 10.0F;
@@ -557,13 +557,13 @@ void EdSpriteEditor::mouseMoveEvent (QMouseEvent *event)
             Vector2 event_object = _current_handle_joint->getJointToObjectTransform().inversed() * _object_to_viewport_transform.inversed() * Vector2(event->x(),event->y());
             Vector2 last_object = _current_handle_joint->getJointToObjectTransform().inversed() * _object_to_viewport_transform.inversed() * Vector2(_last_mouse_x, _last_mouse_y);
             Vector2 diff = event_object - last_object;
-            
-            
+
+
             switch (_current_handle) {
                 case HANDLE_NONE: {
-                
+
                 } break;
-                
+
                 case HANDLE_PLUS_X: {
                     _current_handle_joint->setPlusX( _current_handle_joint->getPlusX() + diff.x);
                 } break;
@@ -596,7 +596,7 @@ void EdSpriteEditor::mouseMoveEvent (QMouseEvent *event)
 
                 default: {
                     DTint i = _current_handle - HANDLE_GRID;
-                    
+
                     Vector2 p0 = Vector2(-_current_handle_joint->getMinusX(), -_current_handle_joint->getMinusY());
                     Vector2 p1 = Vector2(_current_handle_joint->getPlusX(), -_current_handle_joint->getMinusY());
                     Vector2 p2 = Vector2(_current_handle_joint->getPlusX(), _current_handle_joint->getPlusY());
@@ -604,40 +604,40 @@ void EdSpriteEditor::mouseMoveEvent (QMouseEvent *event)
 
                     Vector2 p1p0 = p1-p0;
                     Vector2 p2p3 = p2-p3;
-                    
+
                     DTfloat p1p0l = p1p0.abs();
                     DTfloat p2p3l = p2p3.abs();
-                    
+
                     DTfloat t0 = Vector2::dot( event_object - p0, p1p0 ) / (p1p0l*p1p0l);
                     DTfloat t1 = Vector2::dot( event_object - p3, p2p3 ) / (p2p3l*p2p3l);
-                    
+
                     DTfloat tx = (t0+t1)*0.5F;
 
                     Vector2 pt0 = p1p0 * tx + p0;
                     Vector2 pt1 = p2p3 * tx + p3;
-                    
+
                     Vector2 pt1pt0 = pt1-pt0;
                     DTfloat pt1pt0l = pt1pt0.abs();
 
                     DTfloat ty = 1.0F - Vector2::dot( event_object - pt0, pt1pt0 ) / (pt1pt0l*pt1pt0l);
-                    
+
                     Array<Vector2>& grid = _current_handle_joint->gridPoints();
                     grid[i] = Vector2(tx,ty);
                 }
             };
-            
+
             // Add a keyframe
             _main_window->keyJoint(_current_handle_joint);
-            
+
             updateTransforms();
-            
+
         }
 
     }
 
     _last_mouse_x = event->x();
     _last_mouse_y = event->y();
-    
+
     _main_window->fireSpriteChanged();
 }
 
@@ -661,6 +661,3 @@ void EdSpriteEditor::onSpriteChanged (void)
 
 //==============================================================================
 //==============================================================================
-
-#include "moc_EdSpriteEditor.cpp"
-

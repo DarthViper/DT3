@@ -1,14 +1,14 @@
 #ifndef EDSPRITEANIMATIONPROPERTIES
 #define EDSPRITEANIMATIONPROPERTIES
 //==============================================================================
-///	
+///
 ///	File: EdSpriteAnimationProperties.hpp
-///	
+///
 /// Copyright (C) 2000-2013 by Smells Like Donkey, Inc. All rights reserved.
 ///
 /// This file is subject to the terms and conditions defined in
 /// file 'LICENSE.txt', which is part of this source code package.
-///	
+///
 //==============================================================================
 
 #include <QtWidgets/QWidget>
@@ -16,9 +16,9 @@
 #include <QtWidgets/QToolBar>
 
 #include "EdSpriteMainWindow.hpp"
-#include "ArchivePropertyReaderWriter.hpp"
+#include "DT3Core/Types/FileBuffer/ArchivePropertyReaderWriter.hpp"
 
-using namespace DT2;
+using namespace DT3;
 
 //==============================================================================
 /// Forward declarations
@@ -32,24 +32,24 @@ class EdSpriteAnimationProperties : public QListWidget
 {
     Q_OBJECT
 
-	public:
-										EdSpriteAnimationProperties		(EdSpriteMainWindow *main_window);
+    public:
+                                        EdSpriteAnimationProperties		(EdSpriteMainWindow *main_window);
 
-    public slots:   
+    public slots:
         void                            onSpriteChanged             (void);
         void                            onSelectionChanged          (void);
         void                            onAnimationsChanged         (void);
 
-	signals:
-		void                            doReadAllProperties         (void);
+    signals:
+        void                            doReadAllProperties         (void);
 
-	private:
+    private:
         EdSpriteMainWindow              *_main_window;
         ArchivePropertyReaderWriter     _properties;
 
         void                            buildProperties             (void);
         void                            clearProperties             (void);
-        
+
 };
 
 //==============================================================================

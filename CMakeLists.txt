@@ -20,4 +20,8 @@ find_package(Threads REQUIRED)
 set (ENGINE_ROOT "${PROJECT_SOURCE_DIR}/DT3Core")
 INCLUDE_DIRECTORIES(.)
 add_subdirectory(DT3Core)
+#add_subdirectory(DT3Sprites)
+#add_subdirectory(DT3SpriteEditor)
+
 add_subdirectory(DT3LevelEditor)
+

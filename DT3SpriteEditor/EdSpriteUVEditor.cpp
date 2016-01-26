@@ -1,29 +1,29 @@
 //==============================================================================
-///	
+///
 ///	File: EdSpriteUVEditor.cpp
-///	
+///
 /// Copyright (C) 2000-2013 by Smells Like Donkey, Inc. All rights reserved.
 ///
 /// This file is subject to the terms and conditions defined in
 /// file 'LICENSE.txt', which is part of this source code package.
-///	
+///
 //==============================================================================
 
 #include "EdSpriteUVEditor.hpp"
 #include <QtGui/QPainter>
 #include <QtGui/QMouseEvent>
 
-#include "System.hpp"
-#include "DeviceGraphics.hpp"
-#include "ConsoleStream.hpp"
-#include "DrawBatcher.hpp"
-#include "DrawBatcherQuads.hpp"
-#include "ShaderResource.hpp"
-#include "CameraObject.hpp"
+#include "DT3Core/System/System.hpp"
+#include "DT3Core/Devices/DeviceGraphics.hpp"
+#include "DT3Core/Types/Utility/ConsoleStream.hpp"
+#include "DT3Core/Types/Graphics/DrawBatcher.hpp"
+//#include "DrawBatcherQuads.hpp"
+#include "DT3Core/Resources/ResourceTypes/ShaderResource.hpp"
+#include "DT3Core/Objects/CameraObject.hpp"
 
 //#include <GL/glew.h>
 
-using namespace DT2;
+using namespace DT3;
 
 //==============================================================================
 //==============================================================================
@@ -41,35 +41,34 @@ EdSpriteUVEditor::EdSpriteUVEditor(EdSpriteMainWindow *main_window, QGLWidget *s
         _current_handle_part    (NULL)
 {
     _main_window = main_window;
-    
-    _bounds_material.setBlending(false);
-    _bounds_material.setDepthTest(false);
-    _bounds_material.setCulling(false);
-    _bounds_material.setColor(Color(0.3F,0.3F,0.3F,1.0F));
-	_bounds_material.setShader(ShaderResource::getShader(FilePath("{editorline.shdr}")));
-    _bounds_material.setRecacheParameters(true);
 
-    _outline_material.setBlending(false);
-    _outline_material.setDepthTest(false);
-    _outline_material.setCulling(false);
-    _outline_material.setColor(Color(1.0F,1.0F,1.0F,1.0F));
-	_outline_material.setShader(ShaderResource::getShader(FilePath("{editorline.shdr}")));
-    _outline_material.setRecacheParameters(true);
+    _bounds_material.set_blend_enable(false);
+    _bounds_material.set_depth_enable(false);
+    _bounds_material.set_cull_mode(DT3GL_CULL_NONE);
+    //_bounds_material.set_color(Color(0.3F,0.3F,0.3F,1.0F));
+//    _bounds_material.setShader(ShaderResource::getShader(FilePath("{editorline.shdr}")));
+//    _bounds_material.setRecacheParameters(true);
 
-    _selected_material.setBlending(false);
-    _selected_material.setDepthTest(false);
-    _selected_material.setCulling(false);
-    _selected_material.setColor(Color(0.0F,1.0F,0.0F,1.0F));
-	_selected_material.setShader(ShaderResource::getShader(FilePath("{editorline.shdr}")));
-    _selected_material.setRecacheParameters(true);
+    _outline_material.set_blend_enable(false);
+    _outline_material.set_depth_enable(false);
+    _outline_material.set_cull_mode(DT3GL_CULL_NONE);
+//    _outline_material.setColor(Color(1.0F,1.0F,1.0F,1.0F));
+//    _outline_material.setShader(ShaderResource::getShader(FilePath("{editorline.shdr}")));
+//    _outline_material.setRecacheParameters(true);
 
-    _handle_material.setBlending(false);
-    _handle_material.setDepthTest(false);
-    _handle_material.setCulling(false);
-    _handle_material.setColor(Color(1.0F,0.0F,0.0F,1.0F));
-	_handle_material.setShader(ShaderResource::getShader(FilePath("{editorline.shdr}")));
-    _handle_material.setRecacheParameters(true);
+    _selected_material.set_blend_enable(false);
+    _selected_material.set_depth_enable(false);
+    _selected_material.set_cull_mode(DT3GL_CULL_NONE);
+//    _selected_material.setColor(Color(0.0F,1.0F,0.0F,1.0F));
+//    _selected_material.setShader(ShaderResource::getShader(FilePath("{editorline.shdr}")));
+//    _selected_material.setRecacheParameters(true);
 
+    _handle_material.set_blend_enable(false);
+    _handle_material.set_depth_enable(false);
+    _handle_material.set_cull_mode(DT3GL_CULL_NONE);
+//    _handle_material.setColor(Color(1.0F,0.0F,0.0F,1.0F));
+//    _handle_material.setShader(ShaderResource::getShader(FilePath("{editorline.shdr}")));
+//    _handle_material.setRecacheParameters(true);
     setAutoBufferSwap(false);
 }
 
@@ -79,22 +78,22 @@ EdSpriteUVEditor::EdSpriteUVEditor(EdSpriteMainWindow *main_window, QGLWidget *s
 void EdSpriteUVEditor::updateTransforms (void)
 {
     // Update viewport transform
-    DTfloat width = System::getRenderer()->getScreenWidth();
-    DTfloat height = System::getRenderer()->getScreenHeight();
-                                    
-    Matrix4 obj_to_proj = _camera.getProjection() * _camera.getModelview();
+    DTfloat width = System::renderer()->viewport_width();
+    DTfloat height = System::renderer()->viewport_height();
+
+    Matrix4 obj_to_proj = _camera.projection() * _camera.modelview();
     Matrix4 proj_to_vp = Matrix4(   width/2.0F,     0.0F,           0.0F,       width/2.0F,
                                     0.0F,           -height/2.0F,   0.0F,       height/2.0F,
                                     0.0F,           0.0F,           0.0F,       0.0F,
                                     0.0F,           0.0F,           0.0F,       1.0F        );
     Matrix4 obj_to_viewport = proj_to_vp * obj_to_proj;
-                                                                               
+
     _object_to_viewport_transform = Matrix3(    obj_to_viewport._m11,   obj_to_viewport._m12,   obj_to_viewport._m14,
                                                 obj_to_viewport._m21,   obj_to_viewport._m22,   obj_to_viewport._m24,
                                                 0.0F,                   0.0F,                   1.0F                    );
 
     // Object transforms
-    _main_window->getSprite()->updateTransforms();
+    _main_window->getSprite()->update_transforms();
 }
 
 Vector2 EdSpriteUVEditor::getHandleObjectPosition (const KeyedSpriteAnimationPoseJoint *joint, HandleID handle)
@@ -148,7 +147,7 @@ bool EdSpriteUVEditor::isClickedPart (const Matrix3 &object_to_viewport_transfor
     float minusu = joint->getMinusU();
     float plusv = joint->getPlusV();
     float minusv = joint->getMinusV();
-    
+
     if (plusu < minusu) std::swap(plusu,minusu);
     if (plusv < minusv) std::swap(plusv,minusv);
 
@@ -179,7 +178,7 @@ void EdSpriteUVEditor::drawCube (const Vector3 &position)
 
     DrawBatcherQuads b;
     b.batchBegin(&_handle_material, Matrix4::identity(), DrawBatcher::FMT_V);
-    
+
     b.vertex( position + Vector3(-size,size,-size) );
     b.vertex( position + Vector3(size,size,-size) );
     b.vertex( position + Vector3(size,size,size) );
@@ -189,17 +188,17 @@ void EdSpriteUVEditor::drawCube (const Vector3 &position)
     b.vertex( position + Vector3(size,-size,-size) );
     b.vertex( position + Vector3(size,-size,size) );
     b.vertex( position + Vector3(-size,-size,size) );
-    
+
     b.vertex( position + Vector3(-size,size,-size) );
     b.vertex( position + Vector3(-size,-size,-size) );
     b.vertex( position + Vector3(-size,-size,size) );
     b.vertex( position + Vector3(-size,size,size) );
-    
+
     b.vertex( position + Vector3(size,size,-size) );
     b.vertex( position + Vector3(size,-size,-size) );
     b.vertex( position + Vector3(size,-size,size) );
     b.vertex( position + Vector3(size,size,size) );
-    
+
     b.vertex( position + Vector3(-size,size,size) );
     b.vertex( position + Vector3(-size,-size,size) );
     b.vertex( position + Vector3(size,-size,size) );
@@ -209,7 +208,7 @@ void EdSpriteUVEditor::drawCube (const Vector3 &position)
     b.vertex( position + Vector3(-size,-size,-size) );
     b.vertex( position + Vector3(size,-size,-size) );
     b.vertex( position + Vector3(size,size,-size) );
-    
+
     b.batchEnd();
 }
 
@@ -227,7 +226,7 @@ void EdSpriteUVEditor::drawPart(const Matrix3 &object_to_viewport_transform, Key
     Vector2 p3 = Vector2(plusu, plusv);
 
     if (!selected) {
-    
+
         DrawBatcher b;
         b.batchBegin (&_outline_material, Matrix4::identity(), DrawBatcher::BATCH_LINE_LOOP, DrawBatcher::FMT_V);
         b.vertex(Vector3(p0.x,p0.y,0.0F));
@@ -236,9 +235,9 @@ void EdSpriteUVEditor::drawPart(const Matrix3 &object_to_viewport_transform, Key
         b.vertex(Vector3(p3.x,p3.y,0.0F));
         b.batchEnd();
         b.flush();
-            
+
     } else {
-    
+
         DrawBatcher b;
         b.batchBegin (&_selected_material, Matrix4::identity(), DrawBatcher::BATCH_LINE_LOOP, DrawBatcher::FMT_V);
         b.vertex(Vector3(p0.x,p0.y,0.0F));
@@ -267,8 +266,8 @@ void EdSpriteUVEditor::drawPart(const Matrix3 &object_to_viewport_transform, Key
 
 void EdSpriteUVEditor::initializeGL (void)
 {
-	System::getRenderer()->openDisplay(width(), height());
-    
+    System::getRenderer()->openDisplay(width(), height());
+
     //::glEnable(GL_MULTISAMPLE);
     GLint bufs;
     GLint samples;
@@ -280,28 +279,28 @@ void EdSpriteUVEditor::initializeGL (void)
 void EdSpriteUVEditor::paintGL (void)
 {
     updateTransforms();
-    
-	makeCurrent();
-	
-	System::getRenderer()->changeDisplay (width(), height());
+
+    makeCurrent();
+
+    System::getRenderer()->changeDisplay (width(), height());
 
     ::glClearColor( 0.2F, 0.2F, 0.2F, 0.0F );
     ::glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT );
-    
+
     DTfloat aspect = System::getRenderer()->getScreenAspect();
-    
+
     _camera.setOrtho(   -_zoom*aspect - _translate.x,   _zoom*aspect - _translate.x,
                         -_zoom - _translate.y,          _zoom - _translate.y,
                         -1.0F,1.0F);
     System::getRenderer()->activateCamera(&_camera);
-    
+
     //
     // Draw textured part
     //
-    
+
     MaterialResource *material = _main_window->getSprite()->getMaterialProperty();
     if (material) {
-        
+
         DrawBatcherQuads b;
         b.batchBegin (material, Matrix4::identity(), DrawBatcherQuads::FMT_V | DrawBatcherQuads::FMT_T1);
         b.vertex(Vector3(0.0F,0.0F,0.0F), Texcoord2(0.0F, 0.0F));
@@ -310,13 +309,13 @@ void EdSpriteUVEditor::paintGL (void)
         b.vertex(Vector3(0.0F,1.0F,0.0F), Texcoord2(0.0F, 1.0F));
         b.batchEnd();
         b.flush();
-        
+
     }
-    
+
     //
     // Draw bounds
     //
-    
+
     DrawBatcher b;
     b.batchBegin (&_bounds_material, Matrix4::identity(), DrawBatcher::BATCH_LINE_LOOP, DrawBatcher::FMT_V);
     b.vertex ( Vector3(0.0F,0.0F,0.0F) );
@@ -324,22 +323,22 @@ void EdSpriteUVEditor::paintGL (void)
     b.vertex ( Vector3(1.0F,1.0F,0.0F) );
     b.vertex ( Vector3(0.0F,1.0F,0.0F) );
     b.batchEnd();
-	b.flush();
-    
+    b.flush();
+
     //
     // Draw Sprite
     //
-    
+
     // Draw Sprite
     Array<KeyedSpriteAnimationPoseJoint*> &joints = _main_window->getSprite()->getJoints();
 
     for (DTuint i = 0; i < joints.size(); ++i) {
         drawPart(_object_to_viewport_transform, joints[i], _main_window->isPartSelected(joints[i]) );
     }
-    
-	swapBuffers();
-	
-	doneCurrent();
+
+    swapBuffers();
+
+    doneCurrent();
 }
 
 void EdSpriteUVEditor::resizeGL (int w, int h)
@@ -358,8 +357,8 @@ void EdSpriteUVEditor::mousePressEvent (QMouseEvent *event)
 
     _last_mouse_x = event->x();
     _last_mouse_y = event->y();
-    
-    
+
+
     Vector2 position = _object_to_viewport_transform.inversed() * Vector2(_last_mouse_x,_last_mouse_y);
     LOG_MESSAGE << position.x << "  " << position.y;
 
@@ -393,10 +392,10 @@ void EdSpriteUVEditor::mousePressEvent (QMouseEvent *event)
                 _main_window->clearPartSelection();
                 _main_window->addPartSelection(joints[i]);
             }
-            
+
             // Add a keyframe
             _main_window->keyJoint(_current_handle_part);
-            
+
             _main_window->fireSpriteChanged();
             return;
         }
@@ -433,8 +432,8 @@ void EdSpriteUVEditor::mouseMoveEvent (QMouseEvent *event)
             Vector2 event_object = _object_to_viewport_transform.inversed() * Vector2(event->x(),event->y());
             Vector2 last_object = _object_to_viewport_transform.inversed() * Vector2(_last_mouse_x, _last_mouse_y);
             Vector2 diff = event_object - last_object;
-            
-            
+
+
             switch (_current_handle) {
                 case HANDLE_PLUS_U: {
                     _current_handle_part->setPlusU( _current_handle_part->getPlusU() + diff.x);
@@ -458,7 +457,7 @@ void EdSpriteUVEditor::mouseMoveEvent (QMouseEvent *event)
             _main_window->keyJoint(_current_handle_part);
 
             updateTransforms();
-            
+
         }
 
     }
@@ -489,6 +488,3 @@ void EdSpriteUVEditor::onSpriteChanged (void)
 
 //==============================================================================
 //==============================================================================
-
-#include "moc_EdSpriteUVEditor.cpp"
-

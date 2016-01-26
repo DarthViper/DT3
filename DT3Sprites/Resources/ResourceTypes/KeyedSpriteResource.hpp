@@ -11,9 +11,9 @@
 ///
 //==============================================================================
 
-#include "Resource.hpp"
-#include "MaterialResource.hpp"
-#include "Matrix3.hpp"
+#include "DT3Core/Resources/ResourceTypes/Resource.hpp"
+#include "DT3Core/Resources/ResourceTypes/MaterialResource.hpp"
+#include "DT3Core/Types/Math/Matrix3.hpp"
 #include "KeyedSpriteAnimationPoseJoint.hpp"
 #include <map>
 
@@ -32,15 +32,15 @@ class Stream;
 class KeyedSpriteResource: public Resource {
     public:
         DEFINE_TYPE(KeyedSpriteResource,Resource)
-                DEFINE_CREATE
-        DEFINE_STANDARD_RESOURCE_HANDLERS
+        DEFINE_CREATE
+        //DEFINE_STANDARD_RESOURCE_HANDLERS
 
                                                 KeyedSpriteResource	(void);
         private:
                                                 KeyedSpriteResource	(const KeyedSpriteResource &rhs);
         KeyedSpriteResource &                   operator =          (const KeyedSpriteResource &rhs);
         public:
-                virtual                                 ~KeyedSpriteResource(void);
+        virtual                                 ~KeyedSpriteResource(void);
 
         virtual void                            archive_read        (Archive *archive);
         virtual void                            archive_write		(Archive *archive);
@@ -50,7 +50,7 @@ class KeyedSpriteResource: public Resource {
                 /// import the resource with an importer into a platform independent format
                 /// \param param description
                 /// \return description
-                DTerr                                   import				(const FilePath &pathname, String args);
+                DTerr                                   import				(const FilePath &pathname, std::string args);
 
                 /// Description
                 /// \param param description
@@ -77,7 +77,7 @@ class KeyedSpriteResource: public Resource {
                 /// Description
                 /// \param param description
                 /// \return description
-                KeyedSpriteAnimationPoseJoint*			joint_by_name       (const String &joint_name);
+                KeyedSpriteAnimationPoseJoint*			joint_by_name       (const std::string &joint_name);
 
                 /// Description
                 /// \param param description
@@ -133,23 +133,23 @@ class KeyedSpriteResource: public Resource {
 
 
 
-                DEFINE_ACCESSORS_REF_COUNTED(material_property, set_material_property, MaterialResource*, _material);
+                DEFINE_ACCESSORS(material_property, set_material_property, std::shared_ptr<MaterialResource>, _material)
 
                 /// Description
                 /// \param param description
                 /// \return description
-                static std::shared_ptr<KeyedSpriteResource>    keyed_sprite (const FilePath &pathname, String args = "");
+                static std::shared_ptr<KeyedSpriteResource>    keyed_sprite (const FilePath &pathname, std::string args = "");
 
         private:
         void                                    recalculate_order   (void);
         static DTint                            comparison          (const KeyedSpriteAnimationPoseJoint *a, const KeyedSpriteAnimationPoseJoint *b);
 
-        static SpinLock                                                 _keyed_sprite_map_lock;
-                static std::map<String, std::shared_ptr<KeyedSpriteResource> >  _keyed_sprite_map;
+        static std::mutex                                                 _keyed_sprite_map_lock;
+                static std::map<std::string, std::shared_ptr<KeyedSpriteResource> >  _keyed_sprite_map;
 
                 void                                    update_transforms_recursive (const Matrix3 *parent_transform, KeyedSpriteAnimationPoseJoint *joint);
 
-                MaterialResource                        *_material;
+                std::shared_ptr<MaterialResource>           _material;
 
                 std::vector<KeyedSpriteAnimationPoseJoint*>	_children;
                 std::vector<KeyedSpriteAnimationPoseJoint*>	_joints;

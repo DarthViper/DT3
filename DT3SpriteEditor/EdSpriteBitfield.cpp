@@ -1,12 +1,12 @@
 //==============================================================================
-///	
+///
 ///	File: EdSpriteBitfield.cpp
-///	
+///
 /// Copyright (C) 2000-2013 by Smells Like Donkey, Inc. All rights reserved.
 ///
 /// This file is subject to the terms and conditions defined in
 /// file 'LICENSE.txt', which is part of this source code package.
-///	
+///
 //==============================================================================
 
 #include "EdSpriteBitfield.hpp"
@@ -31,7 +31,7 @@ EdSpriteBitfield::EdSpriteBitfield(QWidget *parent)
 
 void EdSpriteBitfield::paintEvent (QPaintEvent *event)
 {
-	QPainter painter(this);
+    QPainter painter(this);
     draw(&painter);
 }
 
@@ -39,11 +39,11 @@ void EdSpriteBitfield::draw(QPainter *painter)
 {
 
     QRect r = rect();
-    DTint w = r.width() / 16;
-    
-    for (DTint i = 0; i < 16; ++i) {
-        DTboolean bit = _bitfield & (1 << i);
-        
+    int w = r.width() / 16;
+
+    for (int i = 0; i < 16; ++i) {
+        bool bit = _bitfield & (1 << i);
+
         QRect bitrect(r.left() + i*w, r.top()+2, w, r.height()-1-4);
 
         // Rect
@@ -54,13 +54,13 @@ void EdSpriteBitfield::draw(QPainter *painter)
             painter->setPen(QPen(QColor(200,200,200,255),0));
             painter->setBrush(QBrush(QColor(50,50,50,255)));
         }
-        
+
         painter->drawRect(bitrect);
-        
+
         // Text
         QString n;
         n.setNum(i);
-    
+
         if (bit) {
             painter->setPen(QPen(QColor(50,50,50,255),0));
         } else {
@@ -88,16 +88,16 @@ void EdSpriteBitfield::mouseMoveEvent (QMouseEvent *event)
 void EdSpriteBitfield::mouseReleaseEvent (QMouseEvent *event)
 {
     QRect r = rect();
-    DTint w = r.width() / 16;
+    int w = r.width() / 16;
 
-    for (DTint i = 0; i < 16; ++i) {        
+    for (int i = 0; i < 16; ++i) {
         QRect bitrect(r.left() + i*w, r.top()+2, w, r.height()-1-4);
 
         if (bitrect.contains(event->pos())) {
-            
+
             // Flip the bit
             _bitfield ^= (1 << i);
-            
+
             emit stateChanged(_bitfield);
             update();
             return;
@@ -108,5 +108,5 @@ void EdSpriteBitfield::mouseReleaseEvent (QMouseEvent *event)
 //==============================================================================
 //==============================================================================
 
-#include "moc_EdSpriteBitfield.cpp"
+
 
