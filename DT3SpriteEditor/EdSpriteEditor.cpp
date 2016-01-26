@@ -388,7 +388,7 @@ void EdSpriteEditor::paintGL (void)
     _camera.set_ortho(   -_zoom*aspect - _translate.x,   _zoom*aspect - _translate.x,
                         -_zoom - _translate.y,          _zoom - _translate.y,
                         -1.0F,1.0F);
-    System::getRenderer()->activateCamera(&_camera);
+    System::renderer()->caset_activate_camera(&_camera);
 
     //
     // Draw bounds

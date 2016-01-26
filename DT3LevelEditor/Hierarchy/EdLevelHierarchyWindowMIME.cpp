@@ -1,12 +1,12 @@
 //==============================================================================
-///	
+///
 ///	File: EdLevelHierarchyWindowMIME.cpp
-///	
+///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
 /// This file is subject to the terms and conditions defined in
 /// file 'LICENSE.txt', which is part of this source code package.
-///	
+///
 //==============================================================================
 
 // Editor include
@@ -73,11 +73,9 @@ QVariant EdLevelHierarchyWindowMIME::retrieveData (const QString & mimeType, QVa
     } else {
         return QMimeData::retrieveData (mimeType, type);
     }
-        
+
 }
 
 //==============================================================================
 //==============================================================================
-
-#include "moc_EdLevelHierarchyWindowMIME.cpp"
 

@@ -1,12 +1,12 @@
 //==============================================================================
-///	
+///
 ///	File: EdLevelHierarchyWindow.cpp
-///	
+///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
 /// This file is subject to the terms and conditions defined in
 /// file 'LICENSE.txt', which is part of this source code package.
-///	
+///
 //==============================================================================
 
 // Editor include
@@ -39,13 +39,13 @@ EdLevelHierarchyWindow::EdLevelHierarchyWindow(QWidget *parent, QToolBar *toolba
     :   QTreeWidget         (parent),
         _visibility         (VIS_ALL)
 {
-	_document = document;
+    _document = document;
     _toolbar = toolbar;
-    
+
     //
     // Actions and toolbar
     //
-    
+
     _show_objects = new QAction(tr("Show Objects"), this);
     _show_objects->setIcon(QIcon(":/images/hierobj.png"));
     //_show_objects->setShortcut(QKeySequence::New);
@@ -63,7 +63,7 @@ EdLevelHierarchyWindow::EdLevelHierarchyWindow(QWidget *parent, QToolBar *toolba
     //_show_all->setShortcut(QKeySequence::New);
     _show_all->setStatusTip(tr("Show All Nodes"));
     connect(_show_all, SIGNAL(triggered()), this, SLOT(onShowAll()));
-    
+
 
     toolbar->addAction(_show_objects);
     toolbar->addAction(_show_scripting);
@@ -72,7 +72,7 @@ EdLevelHierarchyWindow::EdLevelHierarchyWindow(QWidget *parent, QToolBar *toolba
     _filter = new EdLevelLineEdit(toolbar);
     _filter->setMinimumWidth(50);
     toolbar->addWidget(_filter);
-    
+
     // For Typing
     connect(_filter,   SIGNAL(textChanged(const QString &)),
             this,       SLOT(onShowFilter(const QString &)));
@@ -80,22 +80,22 @@ EdLevelHierarchyWindow::EdLevelHierarchyWindow(QWidget *parent, QToolBar *toolba
 
     setSelectionMode(QAbstractItemView::ExtendedSelection);
     setSelectionBehavior(QAbstractItemView::SelectRows);
-    
+
     setDragEnabled(true);
     setAcceptDrops(true);
     setDropIndicatorShown(true);
-        
+
     setAutoScroll(false);            // Doesn't work!!!!
-    
+
     setVerticalScrollMode(QAbstractItemView::ScrollPerPixel);
-    
+
     setColumnCount(2);
-    
+
     //setAlternatingRowColors(true);
-    
+
     QTreeWidgetItem *header_item = new QTreeWidgetItem();
-	header_item->setText(0, "Name");
-	header_item->setText(1, "Kind");
+    header_item->setText(0, "Name");
+    header_item->setText(1, "Kind");
     header_item->setFlags (0);
 
     setHeaderItem (header_item);
@@ -104,23 +104,23 @@ EdLevelHierarchyWindow::EdLevelHierarchyWindow(QWidget *parent, QToolBar *toolba
     QTreeWidgetItem *root_item = invisibleRootItem();
     root_item->setFlags (0);
 
-	_top_level = new QTreeWidgetItem();
-	_top_level->setText(0, _document->world()->name().c_str());
-	_top_level->setText(1, _document->world()->class_id_child());
+    _top_level = new QTreeWidgetItem();
+    _top_level->setText(0, _document->world()->name().c_str());
+    _top_level->setText(1, _document->world()->class_id_child());
     _top_level->setFlags (Qt::ItemIsDropEnabled | Qt::ItemIsEnabled | Qt::ItemIsSelectable);
 
     addTopLevelItem(_top_level);
-    
+
     // For autoscroll
     connect(&_auto_scroll_timer,    SIGNAL(timeout()),
             this,                   SLOT(onAutoScroll()));
-    
+
     // For renaming
     connect(this,                   SIGNAL(itemChanged(QTreeWidgetItem*, int) ),
             this,                   SLOT(onItemChanged(QTreeWidgetItem*, int) ) );
-            
+
     _auto_scroll_timer.setSingleShot(false);
-    
+
     // Set case insensitive
     _reg_exp_filter.setCaseSensitivity(Qt::CaseInsensitive);
 }
@@ -185,17 +185,17 @@ void EdLevelHierarchyWindow::setVisibility   (NodeCache *c)
         c->_list_object->setHidden(false);
         return;
     }
-    
+
     if (_visibility == VIS_OBJECTS && c->_node->isa(ObjectBase::kind()) ) {
         c->_list_object->setHidden(false);
         return;
     }
-    
+
     if (_visibility == VIS_SCRIPTING && c->_node->isa(ScriptingBase::kind()) ) {
         c->_list_object->setHidden(false);
         return;
     }
-    
+
     c->_list_object->setHidden(true);
 }
 
@@ -208,17 +208,17 @@ QMimeData* EdLevelHierarchyWindow::mimeData (const QList<QTreeWidgetItem *> item
         return NULL;
 
     EdLevelHierarchyWindowMIME *mime = new EdLevelHierarchyWindowMIME();
-    
+
     FOR_EACH (i, items) {
-    
+
         std::shared_ptr<WorldNode> node = itemToNode(*i);
-        
+
         if (node)
             mime->addObject(node);
-        
+
     }
 
-    
+
     return mime;
 }
 
@@ -241,15 +241,15 @@ bool EdLevelHierarchyWindow::dropMimeData (QTreeWidgetItem *parent, int index, c
     const EdLevelHierarchyWindowMIME *mime = qobject_cast<const EdLevelHierarchyWindowMIME*>(data);
     if (!mime)
         return false;
-        
+
     // Get the new parent
     std::shared_ptr<PlugNode> new_parent_node = itemToNode(parent);
-      
+
     // Send command to reparent
     const std::list<std::shared_ptr<PlugNode>>& nodes = mime->getNodes ();
-    
+
     FOR_EACH (i, nodes) {
-    
+
         if (new_parent_node) {
             std::string cmd = "Parent \"" + (**i).name() + "\" \"" + new_parent_node->name() + "\"";
             emit doCommand(cmd.c_str());
@@ -257,9 +257,9 @@ bool EdLevelHierarchyWindow::dropMimeData (QTreeWidgetItem *parent, int index, c
             std::string cmd = "Unparent \"" + (**i).name() + "\"";
             emit doCommand(cmd.c_str());
         }
-        
+
     }
-    
+
     return true;
 }
 
@@ -272,22 +272,22 @@ void EdLevelHierarchyWindow::dropEvent (QDropEvent *event)
         event->setDropAction(Qt::IgnoreAction);
         QTreeWidget::dropEvent(event);
     }
-    
+
     // Only accepts our custom data
     const EdLevelHierarchyWindowMIME *mime = qobject_cast<const EdLevelHierarchyWindowMIME*>(event->mimeData());
     if (!mime) {
         event->setDropAction(Qt::IgnoreAction);
         QTreeWidget::dropEvent(event);
     }
-            
+
     // Get the new parent
     std::shared_ptr<PlugNode> new_parent_node = itemToNode(itemAt(event->pos()));
-      
+
     // Send command to reparent
     const std::list<std::shared_ptr<PlugNode>>& nodes = mime->getNodes ();
-    
+
     FOR_EACH (i, nodes) {
-    
+
         if (new_parent_node) {
             std::string cmd = "Parent \"" + (**i).name() + "\" \"" + new_parent_node->name() + "\"";
             emit doCommand(cmd.c_str());
@@ -295,11 +295,11 @@ void EdLevelHierarchyWindow::dropEvent (QDropEvent *event)
             std::string cmd = "Unparent \"" + (**i).name() + "\"";
             emit doCommand(cmd.c_str());
         }
-        
+
     }
-    
+
     //event->accept(); // uncommenting this will cause Qt bugs where it deletes items
-    
+
     //event->setDropAction(Qt::IgnoreAction);
     QTreeWidget::dropEvent(event);
 
@@ -316,14 +316,14 @@ void EdLevelHierarchyWindow::dragEnterEvent (QDragEnterEvent *event)
 void EdLevelHierarchyWindow::dragLeaveEvent (QDragLeaveEvent *event)
 {
     stopAutoScroll();
-    
+
     QTreeWidget::dragLeaveEvent(event);
 }
 
 void EdLevelHierarchyWindow::dragMoveEvent(QDragMoveEvent *event)
 {
-	QPoint end_point = event->pos();
-    
+    QPoint end_point = event->pos();
+
     // Autoscroll
     if(end_point.x() < AUTO_SCROLL_MARIGN) {
         _auto_scroll_x = AUTO_SCROLL_MARIGN - end_point.x();
@@ -332,7 +332,7 @@ void EdLevelHierarchyWindow::dragMoveEvent(QDragMoveEvent *event)
     } else {
         _auto_scroll_x = 0;
     }
-    
+
     if(end_point.y() < AUTO_SCROLL_MARIGN) {
         _auto_scroll_y = AUTO_SCROLL_MARIGN - end_point.y();
     } else if(height()-end_point.y() < AUTO_SCROLL_MARIGN) {
@@ -340,9 +340,9 @@ void EdLevelHierarchyWindow::dragMoveEvent(QDragMoveEvent *event)
     } else {
         _auto_scroll_y = 0;
     }
-    
+
     LOG_MESSAGE << _auto_scroll_x << " " << _auto_scroll_y;
-    
+
     QTreeWidget::dragMoveEvent(event);
 }
 
@@ -361,7 +361,7 @@ void EdLevelHierarchyWindow::startAutoScroll (void)
 void EdLevelHierarchyWindow::stopAutoScroll (void)
 {
     _auto_scroll_timer.stop();
-    
+
     LOG_MESSAGE << "Autoscroll Stopped";
 }
 
@@ -371,7 +371,7 @@ void EdLevelHierarchyWindow::onAutoScroll (void)
 
     if (_auto_scroll_x == 0 && _auto_scroll_y == 0)
         return;
-        
+
     //QScrollBar *hBar = horizontalScrollBar();
     QScrollBar *vBar = verticalScrollBar();
     //hBar->setValue(hBar->value() - _auto_scroll_x);
@@ -385,27 +385,27 @@ void EdLevelHierarchyWindow::onItemChanged (QTreeWidgetItem *item, int column)
 {
     std::shared_ptr<WorldNode> world_node = itemToNode(item);
     if (world_node) {
-    
+
         if (column == 0) {
             std::string old_name = world_node->name();
             std::string new_name = item->text(column).toUtf8().data();
-            
+
             if (new_name != old_name) {
-            
+
                 // Check if name is already taken
                 if (_document->world()->node_by_name(new_name) == NULL) {
 
                     std::string cmd = "SetName \"" + old_name + "\" \"" + new_name + "\"";
                     emit doCommand(cmd.c_str());
-                    
+
                 // Restore old name to the widget
                 } else {
-                
+
                     blockSignals(true);
                     item->setText(0, old_name.c_str());
                     blockSignals(false);
                 }
-                
+
             }
         }
 
@@ -413,7 +413,7 @@ void EdLevelHierarchyWindow::onItemChanged (QTreeWidgetItem *item, int column)
         item->setText(1, world_node->class_id_child());
         blockSignals(false);
     }
-    
+
 }
 
 //==============================================================================
@@ -450,12 +450,12 @@ QTreeWidgetItem* EdLevelHierarchyWindow::nodeToItem(const std::shared_ptr<WorldN
 void EdLevelHierarchyWindow::selectionChanged (const QItemSelection & selected, const QItemSelection & deselected)
 {
     QTreeWidget::selectionChanged(selected, deselected);
-    
+
     std::list<std::shared_ptr<PlugNode>> selection_list;
     QList<QTreeWidgetItem *> selected_items = selectedItems();
-    
+
     FOR_EACH (i,selected_items) {
-    
+
         if (*i == _top_level) {
             selection_list.push_back(_document->world());
         } else {
@@ -463,9 +463,9 @@ void EdLevelHierarchyWindow::selectionChanged (const QItemSelection & selected, 
             if (node)
                 selection_list.push_back(node);
         }
-        
+
     }
-    
+
     emit doSelectionChanged(selection_list);
 }
 
@@ -476,10 +476,10 @@ void EdLevelHierarchyWindow::onAddNode (WorldNode *node_raw)
 {
     std::shared_ptr<WorldNode> node = checked_cast<WorldNode>(node_raw->shared_from_this());
 
-	QTreeWidgetItem *item = new QTreeWidgetItem();
+    QTreeWidgetItem *item = new QTreeWidgetItem();
 
-	item->setText(0, node->name().c_str());
-	item->setText(1, node->class_id_child());
+    item->setText(0, node->name().c_str());
+    item->setText(1, node->class_id_child());
 
     if (node->isa(ObjectBase::kind())) {
         item->setFlags (Qt::ItemIsEditable | Qt::ItemIsDragEnabled | Qt::ItemIsDropEnabled | Qt::ItemIsEnabled | Qt::ItemIsSelectable);
@@ -488,31 +488,31 @@ void EdLevelHierarchyWindow::onAddNode (WorldNode *node_raw)
         item->setFlags (Qt::ItemIsEditable | Qt::ItemIsEnabled | Qt::ItemIsSelectable);
         item->setIcon(0,QIcon(":/images/hiercalc.png"));
     }
-            
+
     _top_level->addChild(item);
-            
+
     NodeCache c(node);
     c._list_object = item;
     _node_cache.push_back(c);
-    
+
     setVisibility(&c);
-    
+
     // Fix parenting
     if (node && node->isa(PlaceableObject::kind()) ) {
         std::shared_ptr<PlaceableObject> obj = checked_static_cast<PlaceableObject>(node);
-    
+
         if (obj->has_parent()) {
             onReparentNode (node.get(), NULL, obj->parent());
         }
-        
+
         std::list<PlaceableObject*> children = obj->children();
-        
+
         FOR_EACH (i,children) {
             onReparentNode ( *i, NULL, node.get());
         }
-        
+
     }
-    
+
 }
 
 void EdLevelHierarchyWindow::onRemoveNode (WorldNode *node_raw)
@@ -525,7 +525,7 @@ void EdLevelHierarchyWindow::onRemoveNode (WorldNode *node_raw)
     if (i != _node_cache.end()) {
         delete i->_list_object;
         i->_list_object = NULL;
-        
+
         _node_cache.erase(i);
     }
 
@@ -538,7 +538,7 @@ void EdLevelHierarchyWindow::onReparentNode (WorldNode *node, WorldNode *old_par
     QTreeWidgetItem* node_item = nodeToItem(node);
     QTreeWidgetItem* old_parent_item = nodeToItem(old_parent);
     QTreeWidgetItem* new_parent_item = nodeToItem(new_parent);
-    
+
     if (old_parent_item)
         old_parent_item->removeChild(node_item);
     else
@@ -548,9 +548,9 @@ void EdLevelHierarchyWindow::onReparentNode (WorldNode *node, WorldNode *old_par
         new_parent_item->addChild(node_item);
     else
         _top_level->addChild(node_item);
-    
+
     blockSignals(false);
-    
+
     update();
 }
 
@@ -573,18 +573,18 @@ void EdLevelHierarchyWindow::onSelectionChanged (const std::list<std::shared_ptr
     blockSignals(true);
 
     clearSelection();
-    
+
     FOR_EACH (i,selection_list) {
-    
+
         if (*i == _document->world()) {
             _top_level->setSelected(true);
         } else {
-            
+
             std::shared_ptr<WorldNode> node = checked_cast<WorldNode>(*i);
 
             if (node) {
                 QTreeWidgetItem *item = nodeToItem(node);
-                
+
                 if (item) {
                     item->setSelected(true);
                     scrollToItem (item);
@@ -603,15 +603,15 @@ void EdLevelHierarchyWindow::onSelectionChanged (const std::list<std::shared_ptr
 void EdLevelHierarchyWindow::keyPressEvent (QKeyEvent *event)
 {
     emit doUndoBlock();
-    
+
     int key = event->key();
 
     if (event->matches(QKeySequence::Delete) || key == 0x1000003) {
-    
+
         QList<QTreeWidgetItem *> selected_items = selectedItems();
-    
+
         FOR_EACH (i,selected_items) {
-        
+
             std::shared_ptr<WorldNode>node = itemToNode(*i);
             if (node) {
                 std::string nodename = node->name();
@@ -629,7 +629,7 @@ void EdLevelHierarchyWindow::keyPressEvent (QKeyEvent *event)
 
 void EdLevelHierarchyWindow::onConnectPlug (PlugBase *outgoing, PlugBase *incoming)
 {
-    
+
 }
 
 void EdLevelHierarchyWindow::onDisconnectPlug (PlugBase *outgoing, PlugBase *incoming)
@@ -649,6 +649,4 @@ void EdLevelHierarchyWindow::onDisconnectEvent (Event *outgoing, Event *incoming
 
 //==============================================================================
 //==============================================================================
-
-#include "moc_EdLevelHierarchyWindow.cpp"
 

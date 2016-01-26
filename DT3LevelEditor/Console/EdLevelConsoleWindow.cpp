@@ -1,12 +1,12 @@
 //==============================================================================
-///	
+///
 ///	File: EdLevelConsoleWindow.cpp
-///	
+///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
 /// This file is subject to the terms and conditions defined in
 /// file 'LICENSE.txt', which is part of this source code package.
-///	
+///
 //==============================================================================
 
 // Editor include
@@ -37,16 +37,16 @@ EdLevelConsoleWindow::EdLevelConsoleWindow(QWidget *parent, QToolBar *toolbar, E
 {
     _document = document;
     _toolbar = toolbar;
-    
+
     _console = new QPlainTextEdit(this);
     _console->setFrameStyle(QFrame::Panel | QFrame::Sunken);
     _console->setFont(QFont("Monaco", 10));
     _console->setTextInteractionFlags(Qt::TextSelectableByMouse | Qt::TextSelectableByKeyboard);
     _console->setReadOnly(true);
     _console->setWordWrapMode(QTextOption::NoWrap);
-    
+
     _command_widget = new EdLevelLineEdit(this);
-    
+
     // Connect "Enter" pressed
     connect(_command_widget, SIGNAL(returnPressed()), this, SLOT(onCommandEntered()));
     connect(this, SIGNAL(doWriteLog(QString)), this, SLOT(onWriteLog(QString)));
@@ -57,7 +57,7 @@ EdLevelConsoleWindow::EdLevelConsoleWindow(QWidget *parent, QToolBar *toolbar, E
     layout->setVerticalSpacing(1);
     layout->addWidget(_console);
     layout->addWidget(_command_widget);
-    
+
     setLayout(layout);
 
     SystemCallbacks::error_cb().add(make_callback(this, &EdLevelConsoleWindow::logError));
@@ -111,13 +111,11 @@ void EdLevelConsoleWindow::logDebug(const std::string &debug)
 //==============================================================================
 
 void EdLevelConsoleWindow::onWriteLog (QString msg)
-{    
+{
     _console->appendPlainText(msg);
     _console->verticalScrollBar()->setValue(_console->verticalScrollBar()->maximum());
 }
 
 //==============================================================================
 //==============================================================================
-
-#include "moc_EdLevelConsoleWindow.cpp"
 
