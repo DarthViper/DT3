@@ -1,12 +1,12 @@
 //==============================================================================
-///	
+///
 ///	File: EdLevelResourceImage.cpp
-///	
+///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
 /// This file is subject to the terms and conditions defined in
 /// file 'LICENSE.txt', which is part of this source code package.
-///	
+///
 //==============================================================================
 
 // Editor include
@@ -25,7 +25,7 @@
 
 EdLevelResourceImage::EdLevelResourceImage (const FilePath &path)
 {
-    
+
     EdLevelImageThumbnail *item = new EdLevelImageThumbnail(this);
     item->setImage(path);
     item->setMaximumWidth(128);
@@ -37,7 +37,7 @@ EdLevelResourceImage::EdLevelResourceImage (const FilePath &path)
     title->setMaximumWidth(200);
     title->setMinimumWidth(200);
     title->setText(path.file_name().c_str());
-    
+
     QGridLayout *layout = new QGridLayout;
     layout->setContentsMargins(2,2,2,2);
     layout->setHorizontalSpacing(0);
@@ -47,7 +47,7 @@ EdLevelResourceImage::EdLevelResourceImage (const FilePath &path)
     layout->addWidget(title,0,0);
 
     setLayout(layout);
-    
+
     setMinimumHeight(15+2+128);
     setMinimumWidth(200);
     setMaximumWidth(200);
@@ -60,6 +60,3 @@ EdLevelResourceImage::~EdLevelResourceImage	(void)
 
 //==============================================================================
 //==============================================================================
-
-#include "moc_EdLevelResourceImage.cpp"
-

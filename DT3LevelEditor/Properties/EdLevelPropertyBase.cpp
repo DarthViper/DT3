@@ -1,12 +1,12 @@
 //==============================================================================
-///	
+///
 ///	File: EdLevelPropertyBase.cpp
-///	
+///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
 /// This file is subject to the terms and conditions defined in
 /// file 'LICENSE.txt', which is part of this source code package.
-///	
+///
 //==============================================================================
 
 // Editor include
@@ -33,22 +33,22 @@ std::string  EdLevelPropertyBase::parseParam(const std::string &s)
 {
     if (s.size() == 0)
         return s;
-        
+
     if (s[0] != '=')
         return s;
-        
+
     ExpressionParser expr;
-    
+
     // Try to parse expression
     if (!expr.parse(s))
         return s;
-        
+
     DTfloat result;
-    
+
     // Try to evaluate expression
     if (!expr.eval(result))
         return s;
-        
+
     return MoreStrings::cast_to_string(result);
 }
 
@@ -75,6 +75,3 @@ void EdLevelPropertyBase::buildStatusButtons (void)
 
 //==============================================================================
 //==============================================================================
-
-#include "moc_EdLevelPropertyBase.cpp"
-

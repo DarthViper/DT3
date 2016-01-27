@@ -154,6 +154,3 @@ void EdLevelPropertyDefaultField::setValueOfField (const std::string &value)
 
 //==============================================================================
 //==============================================================================
-
-#include "moc_EdLevelPropertyDefaultField.cpp"
-

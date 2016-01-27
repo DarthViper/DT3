@@ -1177,6 +1177,3 @@ void EdLevelWorldWindow::onSelectionChanged (const std::list<std::shared_ptr<Plu
 
 //==============================================================================
 //==============================================================================
-
-#include "moc_EdLevelWorldWindow.cpp"
-

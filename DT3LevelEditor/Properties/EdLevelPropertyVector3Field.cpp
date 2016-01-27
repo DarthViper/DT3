@@ -1,12 +1,12 @@
 //==============================================================================
-///	
+///
 ///	File: EdLevelPropertyVector3Field.cpp
-///	
+///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
 /// This file is subject to the terms and conditions defined in
 /// file 'LICENSE.txt', which is part of this source code package.
-///	
+///
 //==============================================================================
 
 // Editor include
@@ -32,7 +32,7 @@ EdLevelPropertyVector3Field::EdLevelPropertyVector3Field (EdLevelPropertiesWindo
     //setFrameStyle(QFrame::StyledPanel | QFrame::Raised);
     _data = data;
     _node = node;
-    
+
     buildStatusButtons();
 
     QLabel *name = new QLabel(this);
@@ -43,20 +43,20 @@ EdLevelPropertyVector3Field::EdLevelPropertyVector3Field (EdLevelPropertiesWindo
     _value_x = new EdLevelLineEdit(this);
     _value_y = new EdLevelLineEdit(this);
     _value_z = new EdLevelLineEdit(this);
-    
+
     _value_x->setObjectName("prop");
     _value_y->setObjectName("prop");
     _value_z->setObjectName("prop");
 
-	connect(	_value_x,       SIGNAL(editingFinished()),
-				this,           SLOT(doWriteParams())	);
-	connect(	_value_y,       SIGNAL(editingFinished()),
-				this,           SLOT(doWriteParams())	);
-	connect(	_value_z,       SIGNAL(editingFinished()),
-				this,           SLOT(doWriteParams())	);
+    connect(	_value_x,       SIGNAL(editingFinished()),
+                this,           SLOT(doWriteParams())	);
+    connect(	_value_y,       SIGNAL(editingFinished()),
+                this,           SLOT(doWriteParams())	);
+    connect(	_value_z,       SIGNAL(editingFinished()),
+                this,           SLOT(doWriteParams())	);
 
-	connect(	this,           SIGNAL(doCommand(QString, bool)),
-				parent,         SLOT(onCommand(QString, bool))	);
+    connect(	this,           SIGNAL(doCommand(QString, bool)),
+                parent,         SLOT(onCommand(QString, bool))	);
 
     QGridLayout *layout = new QGridLayout;
     layout->setContentsMargins(0,0,0,0);
@@ -71,7 +71,7 @@ EdLevelPropertyVector3Field::EdLevelPropertyVector3Field (EdLevelPropertiesWindo
     layout->addWidget(_value_z,0,6);
 
     setLayout(layout);
-    
+
     setMinimumHeight(15+2);
 
     doReadParams();
@@ -94,10 +94,10 @@ void EdLevelPropertyVector3Field::doReadParams(void)
     // Has Key
     if (_data->plug()) {
         keyButton()->setIcon(QIcon(":/images/key.png"));
-                
+
         connect(    keyButton(),    SIGNAL(pressed()),
                     this,           SLOT(doKeyframePressed())    );
-                    
+
     } else {
         keyButton()->setIcon(QIcon(":/images/blank.png"));
     }
@@ -116,12 +116,12 @@ void EdLevelPropertyVector3Field::doReadParams(void)
         hasOutputButton()->setIcon(QIcon(":/images/blank.png"));
     }
 
-	TextBufferStream stream;
-	_data->value(stream);
-    
+    TextBufferStream stream;
+    _data->value(stream);
+
     Vector3 val;
     stream >> val;
-    
+
     _value_x->setText( MoreStrings::cast_to_string(val.x).c_str() );
     _value_y->setText( MoreStrings::cast_to_string(val.y).c_str() );
     _value_z->setText( MoreStrings::cast_to_string(val.z).c_str() );
@@ -135,12 +135,12 @@ void EdLevelPropertyVector3Field::doWriteParams(void)
     val.y = MoreStrings::cast_from_string<DTfloat>(parseParam(_value_y->text().toUtf8().data()));
     val.z = MoreStrings::cast_from_string<DTfloat>(parseParam(_value_z->text().toUtf8().data()));
 
-	TextBufferStream stream;
+    TextBufferStream stream;
     stream << val;
 
     TextBufferStream oldstream;
-	_data->value(oldstream);
-    
+    _data->value(oldstream);
+
     // Only if value changed
     if (stream.buffer() != oldstream.buffer()) {
         emit doCommand(QString("SetProp \"") + _node->full_name().c_str() + "." + _data->title().c_str() + "\" (" + stream.buffer().c_str() + ")", _data->flags() & DATA_FLUSH_UI);
@@ -160,21 +160,18 @@ void EdLevelPropertyVector3Field::doKeyframePressed (void)
 
 std::string EdLevelPropertyVector3Field::getValueOfField (void)
 {
-	TextBufferStream stream;
-	_data->value(stream);
+    TextBufferStream stream;
+    _data->value(stream);
     return stream.buffer();
 }
-    
+
 void EdLevelPropertyVector3Field::setValueOfField (const std::string &value)
 {
-	TextBufferStream stream(value);
-	_data->set_value(stream);
+    TextBufferStream stream(value);
+    _data->set_value(stream);
 
     emit doCommand(QString("SetProp \"") + _node->full_name().c_str() + "." + _data->title().c_str() + "\" (" + stream.buffer().c_str() + ")", _data->flags() & DATA_FLUSH_UI);
 }
 
 //==============================================================================
 //==============================================================================
-
-#include "moc_EdLevelPropertyVector3Field.cpp"
-

@@ -1,12 +1,12 @@
 //==============================================================================
-///	
+///
 ///	File: EdLevelPropertyBoolField.cpp
-///	
+///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
 /// This file is subject to the terms and conditions defined in
 /// file 'LICENSE.txt', which is part of this source code package.
-///	
+///
 //==============================================================================
 
 // Editor include
@@ -33,7 +33,7 @@ EdLevelPropertyBoolField::EdLevelPropertyBoolField (EdLevelPropertiesWindow *par
     //setFrameStyle(QFrame::StyledPanel | QFrame::Raised);
     _data = data;
     _node = node;
-        
+
     buildStatusButtons();
 
     QLabel *name = new QLabel(this);
@@ -43,14 +43,14 @@ EdLevelPropertyBoolField::EdLevelPropertyBoolField (EdLevelPropertiesWindow *par
 
     _value = new QCheckBox(this);
     _value->setObjectName("prop");
-    
-	connect(	_value,         SIGNAL(stateChanged(int)),
-				this,           SLOT(doWriteParams())	);
-    
-	connect(	this,           SIGNAL(doCommand(QString, bool)),
-				parent,         SLOT(onCommand(QString, bool))	);
-    
-    
+
+    connect(	_value,         SIGNAL(stateChanged(int)),
+                this,           SLOT(doWriteParams())	);
+
+    connect(	this,           SIGNAL(doCommand(QString, bool)),
+                parent,         SLOT(onCommand(QString, bool))	);
+
+
     QGridLayout *layout = new QGridLayout;
     layout->setContentsMargins(0,0,0,0);
     layout->setHorizontalSpacing(0);
@@ -62,9 +62,9 @@ EdLevelPropertyBoolField::EdLevelPropertyBoolField (EdLevelPropertiesWindow *par
     layout->addWidget(_value,0,4);
 
     setLayout(layout);
-    
+
     setMinimumHeight(15+2);
-    
+
     doReadParams();
 }
 
@@ -79,20 +79,20 @@ EdLevelPropertyBoolField::~EdLevelPropertyBoolField	(void)
 void EdLevelPropertyBoolField::doReadParams(void)
 {
     blockSignals(true);
-    
+
     keyButton()->disconnect();
-    
+
     // Has Key
     if (_data->plug()) {
         keyButton()->setIcon(QIcon(":/images/key.png"));
-                
+
         connect(    keyButton(),        SIGNAL(pressed()),
                     this,       SLOT(doKeyframePressed())    );
-                    
+
     } else {
         keyButton()->setIcon(QIcon(":/images/blank.png"));
     }
-    
+
     // Has Input
     if (_data->plug() && _data->plug()->has_incoming_connection()) {
         hasInputButton()->setIcon(QIcon(":/images/has_input.png"));
@@ -107,9 +107,9 @@ void EdLevelPropertyBoolField::doReadParams(void)
         hasOutputButton()->setIcon(QIcon(":/images/blank.png"));
     }
 
-    
-	TextBufferStream stream;
-	_data->value(stream);
+
+    TextBufferStream stream;
+    _data->value(stream);
     _value->setCheckState( MoreStrings::cast_from_string<DTboolean>(stream.buffer()) ? Qt::Checked : Qt::Unchecked );
     //_value->setText( stream.getBuffer().cStr() );
     blockSignals(false);
@@ -118,13 +118,13 @@ void EdLevelPropertyBoolField::doReadParams(void)
 void EdLevelPropertyBoolField::doWriteParams(void)
 {
     std::string value;
-    
+
     if (_value->checkState() == Qt::Checked)    value = "1";
     else                                        value = "0";
-    
+
     TextBufferStream oldstream;
-	_data->value(oldstream);
-    
+    _data->value(oldstream);
+
     // Only if value changed
     if (value != oldstream.buffer()) {
         emit doCommand(QString("SetProp \"") + _node->full_name().c_str() + "." + _data->title().c_str() + "\" " + value.c_str(), _data->flags() & DATA_FLUSH_UI);
@@ -144,21 +144,18 @@ void EdLevelPropertyBoolField::doKeyframePressed (void)
 
 std::string EdLevelPropertyBoolField::getValueOfField (void)
 {
-	TextBufferStream stream;
-	_data->value(stream);
+    TextBufferStream stream;
+    _data->value(stream);
     return stream.buffer();
 }
-    
+
 void EdLevelPropertyBoolField::setValueOfField (const std::string &value)
 {
-	TextBufferStream stream(value);
-	_data->set_value(stream);
-    
+    TextBufferStream stream(value);
+    _data->set_value(stream);
+
     emit doCommand(QString("SetProp \"") + _node->full_name().c_str() + "." + _data->title().c_str() + "\" " + value.c_str(), _data->flags() & DATA_FLUSH_UI);
 }
 
 //==============================================================================
 //==============================================================================
-
-#include "moc_EdLevelPropertyBoolField.cpp"
-

@@ -1,12 +1,12 @@
 //==============================================================================
-///	
+///
 ///	File: EdLevelPropertyEventField.cpp
-///	
+///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
 /// This file is subject to the terms and conditions defined in
 /// file 'LICENSE.txt', which is part of this source code package.
-///	
+///
 //==============================================================================
 
 // Editor include
@@ -32,21 +32,21 @@ EdLevelPropertyEventField::EdLevelPropertyEventField (EdLevelPropertiesWindow *p
     //setFrameStyle(QFrame::StyledPanel | QFrame::Raised);
     _data = data;
     _node = node;
-        
+
     buildStatusButtons();
-    
+
 
 
     _value = new QPushButton(MoreStrings::captialize_and_format(_data->title()).c_str(), this);
     _value->setEnabled(true);
-    
-	connect(	_value,         SIGNAL(clicked()),
-				this,           SLOT(doClicked())	);
-    
-	connect(	this,           SIGNAL(doCommand(QString, bool)),
-				parent,         SLOT(onCommand(QString, bool))	);
-    
-    
+
+    connect(	_value,         SIGNAL(clicked()),
+                this,           SLOT(doClicked())	);
+
+    connect(	this,           SIGNAL(doCommand(QString, bool)),
+                parent,         SLOT(onCommand(QString, bool))	);
+
+
     QGridLayout *layout = new QGridLayout;
     layout->setContentsMargins(0,0,0,0);
     layout->setHorizontalSpacing(0);
@@ -57,9 +57,9 @@ EdLevelPropertyEventField::EdLevelPropertyEventField (EdLevelPropertiesWindow *p
     layout->addWidget(_value,0,4);
 
     setLayout(layout);
-    
+
     setMinimumHeight(15+2);
-    
+
     doReadParams();
 }
 
@@ -74,20 +74,20 @@ EdLevelPropertyEventField::~EdLevelPropertyEventField	(void)
 void EdLevelPropertyEventField::doReadParams(void)
 {
     blockSignals(true);
-    
+
     keyButton()->disconnect();
-    
+
     // Has Key
     if (_data->event()) {
         keyButton()->setIcon(QIcon(":/images/key.png"));
-                
+
         connect(    keyButton(),        SIGNAL(pressed()),
                     this,       SLOT(doKeyframePressed())    );
-                    
+
     } else {
         keyButton()->setIcon(QIcon(":/images/blank.png"));
     }
-    
+
     // Has Input
     if (_data->event() && _data->event()->has_incoming_connection()) {
         hasInputButton()->setIcon(QIcon(":/images/has_input.png"));
@@ -125,7 +125,7 @@ std::string EdLevelPropertyEventField::getValueOfField (void)
 {
     return "";
 }
-    
+
 void EdLevelPropertyEventField::setValueOfField (const std::string &value)
 {
 
@@ -133,6 +133,3 @@ void EdLevelPropertyEventField::setValueOfField (const std::string &value)
 
 //==============================================================================
 //==============================================================================
-
-#include "moc_EdLevelPropertyEventField.cpp"
-

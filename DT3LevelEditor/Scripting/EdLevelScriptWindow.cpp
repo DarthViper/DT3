@@ -1231,6 +1231,3 @@ void EdLevelScriptWindow::onDisconnectEvent (Event *outgoing, Event *incoming)
 
 //==============================================================================
 //==============================================================================
-
-#include "moc_EdLevelScriptWindow.cpp"
-

@@ -1,12 +1,12 @@
 //==============================================================================
-///	
+///
 ///	File: EdLevelPropertiesWindow.cpp
-///	
+///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
 /// This file is subject to the terms and conditions defined in
 /// file 'LICENSE.txt', which is part of this source code package.
-///	
+///
 //==============================================================================
 
 // Editor include
@@ -55,7 +55,7 @@ EdLevelPropertiesWindow::EdLevelPropertiesWindow(QWidget *parent, QToolBar *tool
     :   QListWidget     (parent),
         _node           (NULL)
 {
-	_document = document;
+    _document = document;
     _toolbar = toolbar;
     _properties = ArchivePropertyReaderWriter::create();
 
@@ -73,24 +73,24 @@ void EdLevelPropertiesWindow::buildPropertiesForNode (std::shared_ptr<PlugNode> 
     //
 
     DTsize start_of_properties = _properties->properties().size();
-    
+
     node->archive(_properties);
-    
+
     // Get the properties
     std::vector<std::shared_ptr<ArchiveData>>& properties = _properties->properties();
 
     for (DTuint i = (DTuint)start_of_properties; i < properties.size(); ++i) {
         std::shared_ptr<ArchiveData> data = properties[i];
         const DTcharacter *type = data->data_kind();
-    
+
         QListWidgetItem *list_item = new QListWidgetItem();
         addItem(list_item);
-        
+
         if (data->title() == "_name") {
             EdLevelPropertyTitleField *itemWidget = new EdLevelPropertyTitleField(this, node, data);
             setItemWidget(list_item,itemWidget);
             list_item->setSizeHint(itemWidget->minimumSize());
-            
+
             connect (   this,       SIGNAL(doReadAllProperties()),
                         itemWidget, SLOT(doReadParams()));
 
@@ -98,7 +98,7 @@ void EdLevelPropertiesWindow::buildPropertiesForNode (std::shared_ptr<PlugNode> 
             EdLevelPropertyEnumField *itemWidget = new EdLevelPropertyEnumField(this, node, data);
             setItemWidget(list_item,itemWidget);
             list_item->setSizeHint(itemWidget->minimumSize());
-            
+
             connect (   this,       SIGNAL(doReadAllProperties()),
                         itemWidget, SLOT(doReadParams()));
 
@@ -109,13 +109,13 @@ void EdLevelPropertiesWindow::buildPropertiesForNode (std::shared_ptr<PlugNode> 
             EdLevelPropertyRangeField *itemWidget = new EdLevelPropertyRangeField(this, node, data);
             setItemWidget(list_item,itemWidget);
             list_item->setSizeHint(itemWidget->minimumSize());
-            
+
             connect (   this,       SIGNAL(doReadAllProperties()),
                         itemWidget, SLOT(doReadParams()));
 
             connect (   itemWidget, SIGNAL(doKeyMenu(QString, const QPointF &)),
                         this,       SLOT(onKeyMenu(QString, const QPointF &)) );
-            
+
         } else if ( data->is_bitfield() ) {
             ASSERT(0);
 
@@ -123,13 +123,13 @@ void EdLevelPropertiesWindow::buildPropertiesForNode (std::shared_ptr<PlugNode> 
             EdLevelPropertyColorField *itemWidget = new EdLevelPropertyColorField(this, node, data);
             setItemWidget(list_item,itemWidget);
             list_item->setSizeHint(itemWidget->minimumSize());
-            
+
             connect (   this,       SIGNAL(doReadAllProperties()),
                         itemWidget, SLOT(doReadParams()));
 
             connect (   itemWidget, SIGNAL(doKeyMenu(QString, const QPointF &)),
                         this,       SLOT(onKeyMenu(QString, const QPointF &)) );
-            
+
         } else if ( std::string(type) == std::string(Vector3::class_id_static())) {
             EdLevelPropertyVector3Field *itemWidget = new EdLevelPropertyVector3Field(this, node, data);
             setItemWidget(list_item,itemWidget);
@@ -137,7 +137,7 @@ void EdLevelPropertiesWindow::buildPropertiesForNode (std::shared_ptr<PlugNode> 
 
             connect (   this,       SIGNAL(doReadAllProperties()),
                         itemWidget, SLOT(doReadParams()));
-            
+
             connect (   itemWidget, SIGNAL(doKeyMenu(QString, const QPointF &)),
                         this,       SLOT(onKeyMenu(QString, const QPointF &)) );
 
@@ -148,7 +148,7 @@ void EdLevelPropertiesWindow::buildPropertiesForNode (std::shared_ptr<PlugNode> 
 
             connect (   this,       SIGNAL(doReadAllProperties()),
                         itemWidget, SLOT(doReadParams()));
-            
+
             connect (   itemWidget, SIGNAL(doKeyMenu(QString, const QPointF &)),
                         this,       SLOT(onKeyMenu(QString, const QPointF &)) );
 
@@ -159,7 +159,7 @@ void EdLevelPropertiesWindow::buildPropertiesForNode (std::shared_ptr<PlugNode> 
 
             connect (   this,       SIGNAL(doReadAllProperties()),
                         itemWidget, SLOT(doReadParams()));
-            
+
             connect (   itemWidget, SIGNAL(doKeyMenu(QString, const QPointF &)),
                         this,       SLOT(onKeyMenu(QString, const QPointF &)) );
 
@@ -170,7 +170,7 @@ void EdLevelPropertiesWindow::buildPropertiesForNode (std::shared_ptr<PlugNode> 
 
             connect (   this,       SIGNAL(doReadAllProperties()),
                         itemWidget, SLOT(doReadParams()));
-            
+
             connect (   itemWidget, SIGNAL(doKeyMenu(QString, const QPointF &)),
                         this,       SLOT(onKeyMenu(QString, const QPointF &)) );
 
@@ -181,7 +181,7 @@ void EdLevelPropertiesWindow::buildPropertiesForNode (std::shared_ptr<PlugNode> 
 
             connect (   this,       SIGNAL(doReadAllProperties()),
                         itemWidget, SLOT(doReadParams()));
-            
+
             connect (   itemWidget, SIGNAL(doKeyMenu(QString, const QPointF &)),
                         this,       SLOT(onKeyMenu(QString, const QPointF &)) );
 
@@ -192,12 +192,12 @@ void EdLevelPropertiesWindow::buildPropertiesForNode (std::shared_ptr<PlugNode> 
 
             connect (   this,       SIGNAL(doReadAllProperties()),
                         itemWidget, SLOT(doReadParams()));
-            
+
 
             connect (   itemWidget, SIGNAL(doKeyMenu(QString, const QPointF &)),
                         this,       SLOT(onKeyMenu(QString, const QPointF &)) );
         }
-        
+
     }
 
 }
@@ -206,17 +206,17 @@ void EdLevelPropertiesWindow::buildPropertiesForNode (std::shared_ptr<PlugNode> 
 //==============================================================================
 
 void EdLevelPropertiesWindow::buildProperties(std::shared_ptr<PlugNode> node)
-{    
+{
     LOG_MESSAGE << "EdLevelPropertiesWindow::buildProperties";
 
     // Get properties for selection
     buildPropertiesForNode(node);
-    
+
     // Do components if necessary
     std::shared_ptr<ObjectBase> base_object = checked_cast<ObjectBase>(node);
     if (base_object) {
         std::list<std::shared_ptr<ComponentBase>> c = base_object->all_components();
-        
+
         FOR_EACH (i,c) {
             buildPropertiesForNode(*i);
         }
@@ -231,16 +231,16 @@ void EdLevelPropertiesWindow::clearProperties (void)
     // Disconnect any slots from previous properties
     disconnect(this, SIGNAL(doReadAllProperties()), 0, 0);
     disconnect(this, SIGNAL(doKeyMenu(QString, const QPointF &)), 0, 0);
-        
+
     // Disconnect all children
     QList<QWidget*> widgetList = findChildren<QWidget *>("prop");
     for (auto i = widgetList.begin(); i != widgetList.end(); ++i) {
         (**i).blockSignals(true);
     }
-    
+
     clear();
     _properties->clear();
-    
+
 }
 
 //==============================================================================
@@ -249,10 +249,10 @@ void EdLevelPropertiesWindow::clearProperties (void)
 void EdLevelPropertiesWindow::onCommand (QString command, bool recache)
 {
     if (recache) clearProperties();
-    
+
     emit doUndoBlock();
     emit doCommand(command);
-    
+
     if (recache) buildProperties(_node);
 }
 
@@ -264,7 +264,7 @@ void EdLevelPropertiesWindow::onKeyMenu(QString property, const QPointF &global_
 
     // Context Menu
     QMenu *context_menu = new QMenu();
-    
+
     QAction *set_key_action = new QAction(this);
     set_key_action->setVisible(true);
     set_key_action->setText("Add Key");
@@ -273,7 +273,7 @@ void EdLevelPropertiesWindow::onKeyMenu(QString property, const QPointF &global_
 
     connect(set_key_action,     SIGNAL(triggered()),
             this,               SLOT(onSetKey()));
-                                
+
     context_menu->addAction(set_key_action);
 
     context_menu->addSeparator();
@@ -286,9 +286,9 @@ void EdLevelPropertiesWindow::onKeyMenu(QString property, const QPointF &global_
 
     connect(clear_keys_action,   SIGNAL(triggered()),
             this,               SLOT(onClearAllKeys()));
-                                
+
     context_menu->addAction(clear_keys_action);
-        
+
     context_menu->exec(global_pos.toPoint());
 }
 
@@ -299,7 +299,7 @@ void EdLevelPropertiesWindow::onSetKey (void)
 {
     QAction *action = qobject_cast<QAction*>(sender());
     QString object_type = action->data().toString();
-    
+
     emit doCommand("SetKeyframe \"" + object_type + "\"");
 }
 
@@ -317,12 +317,12 @@ void EdLevelPropertiesWindow::onClearAllKeys (void)
 void EdLevelPropertiesWindow::onSelectionChanged (const std::list<std::shared_ptr<PlugNode>> &s)
 {
     clearProperties();
-    
+
     if (s.size() != 1) {
         _node = NULL;
         return;
     }
-                
+
     _node = s.front();
     buildProperties(s.front());
 }
@@ -361,18 +361,18 @@ void EdLevelPropertiesWindow::cut (void)
     QListWidgetItem *item = currentItem();
     if (!item)
         return;
-    
+
     QWidget *widget = itemWidget(item);
     if (!widget)
         return;
-        
+
     EdLevelPropertyBase *property = qobject_cast<EdLevelPropertyBase*>(widget);
     if (!property)
         return;
-    
+
     std::string value = property->getValueOfField();
     QApplication::clipboard()->setText(value.c_str());
-    
+
     property->setValueOfField("");
 }
 
@@ -381,15 +381,15 @@ void EdLevelPropertiesWindow::copy (void)
     QListWidgetItem *item = currentItem();
     if (!item)
         return;
-    
+
     QWidget *widget = itemWidget(item);
     if (!widget)
         return;
-        
+
     EdLevelPropertyBase *property = qobject_cast<EdLevelPropertyBase*>(widget);
     if (!property)
         return;
-    
+
     std::string value = property->getValueOfField();
     QApplication::clipboard()->setText(value.c_str());
 }
@@ -399,22 +399,18 @@ void EdLevelPropertiesWindow::paste (void)
     QListWidgetItem *item = currentItem();
     if (!item)
         return;
-    
+
     QWidget *widget = itemWidget(item);
     if (!widget)
         return;
-        
+
     EdLevelPropertyBase *property = qobject_cast<EdLevelPropertyBase*>(widget);
     if (!property)
         return;
-    
+
     std::string value = QApplication::clipboard()->text().toUtf8().data();
     property->setValueOfField(value);
 }
 
 //==============================================================================
 //==============================================================================
-
-
-#include "moc_EdLevelPropertiesWindow.cpp"
-

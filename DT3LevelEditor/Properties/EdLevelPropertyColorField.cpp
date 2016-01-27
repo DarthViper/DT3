@@ -1,12 +1,12 @@
 //==============================================================================
-///	
+///
 ///	File: EdLevelPropertyColorField.cpp
-///	
+///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
 /// This file is subject to the terms and conditions defined in
 /// file 'LICENSE.txt', which is part of this source code package.
-///	
+///
 //==============================================================================
 
 // Editor include
@@ -35,15 +35,15 @@ EdLevelPropertyColorField::EdLevelPropertyColorField (EdLevelPropertiesWindow *p
     //setFrameStyle(QFrame::StyledPanel | QFrame::Raised);
     _data = data;
     _node = node;
-    
+
     buildStatusButtons();
 
     QLabel *name = new QLabel(this);
     name->setMaximumWidth(130);
     name->setMinimumWidth(130);
     name->setText(MoreStrings::captialize_and_format(_data->title()).c_str());
-    
-    
+
+
     QLabel *r = new QLabel(this);
     r->setText("R");
 
@@ -65,10 +65,10 @@ EdLevelPropertyColorField::EdLevelPropertyColorField (EdLevelPropertiesWindow *p
     _r2 = new EdLevelLineEdit(this);
     _r2->setMaximumWidth(60);
 
-    connect(    _r,         SIGNAL(valueChanged(int)), 
+    connect(    _r,         SIGNAL(valueChanged(int)),
                 this,       SLOT(doColorChange(int)));
     connect(	_r2,        SIGNAL(editingFinished()),
-				this,       SLOT(doWriteParams2())	);
+                this,       SLOT(doWriteParams2())	);
 
 
     _g = new QSlider(Qt::Horizontal, this);
@@ -78,11 +78,11 @@ EdLevelPropertyColorField::EdLevelPropertyColorField (EdLevelPropertiesWindow *p
 
     _g2 = new EdLevelLineEdit(this);
     _g2->setMaximumWidth(60);
-    
-    connect(    _g,         SIGNAL(valueChanged(int)), 
+
+    connect(    _g,         SIGNAL(valueChanged(int)),
                 this,       SLOT(doColorChange(int)));
     connect(	_g2,        SIGNAL(editingFinished()),
-				this,       SLOT(doWriteParams2())	);
+                this,       SLOT(doWriteParams2())	);
 
     _b = new QSlider(Qt::Horizontal, this);
     _b->setMinimum(0);
@@ -91,24 +91,24 @@ EdLevelPropertyColorField::EdLevelPropertyColorField (EdLevelPropertiesWindow *p
 
     _b2 = new EdLevelLineEdit(this);
     _b2->setMaximumWidth(60);
-    
-    connect(    _b,         SIGNAL(valueChanged(int)), 
+
+    connect(    _b,         SIGNAL(valueChanged(int)),
                 this,       SLOT(doColorChange(int)));
     connect(	_b2,        SIGNAL(editingFinished()),
-				this,       SLOT(doWriteParams2())	);
+                this,       SLOT(doWriteParams2())	);
 
-    _a = new QSlider(Qt::Horizontal, this); 
+    _a = new QSlider(Qt::Horizontal, this);
     _a->setMinimum(0);
     _a->setMaximum(255);
     _a->setObjectName("prop");
 
     _a2 = new EdLevelLineEdit(this);
     _a2->setMaximumWidth(60);
-    
-    connect(    _a,         SIGNAL(valueChanged(int)), 
+
+    connect(    _a,         SIGNAL(valueChanged(int)),
                 this,       SLOT(doColorChange(int)));
     connect(	_a2,        SIGNAL(editingFinished()),
-				this,       SLOT(doWriteParams2())	);
+                this,       SLOT(doWriteParams2())	);
 
     _fill = new EdLevelColorSwatch();
     _fill->setMaximumWidth(50);
@@ -116,8 +116,8 @@ EdLevelPropertyColorField::EdLevelPropertyColorField (EdLevelPropertiesWindow *p
     _fill->setMaximumHeight(40);
     _fill->setMinimumHeight(40);
 
-	connect(	this,           SIGNAL(doCommand(QString, bool)),
-				parent,         SLOT(onCommand(QString, bool))	);
+    connect(	this,           SIGNAL(doCommand(QString, bool)),
+                parent,         SLOT(onCommand(QString, bool))	);
 
     QGridLayout *layout = new QGridLayout;
     layout->setContentsMargins(0,0,0,0);
@@ -126,10 +126,10 @@ EdLevelPropertyColorField::EdLevelPropertyColorField (EdLevelPropertiesWindow *p
     layout->addWidget(keyButton(),0,0);
     layout->addWidget(hasInputButton(),0,1);
     layout->addWidget(hasOutputButton(),0,2);
-    
+
     layout->addWidget(name,0,3);
     layout->addWidget(_fill,1,3,2,1, Qt::AlignHCenter | Qt::AlignVCenter);
-    
+
     layout->addWidget(r,0,4);
     layout->addWidget(_r,0,5);
     layout->addWidget(_r2,0,6);
@@ -137,17 +137,17 @@ EdLevelPropertyColorField::EdLevelPropertyColorField (EdLevelPropertiesWindow *p
     layout->addWidget(g,1,4);
     layout->addWidget(_g,1,5);
     layout->addWidget(_g2,1,6);
-    
+
     layout->addWidget(b,2,4);
     layout->addWidget(_b,2,5);
     layout->addWidget(_b2,2,6);
-    
+
     layout->addWidget(a,3,4);
     layout->addWidget(_a,3,5);
     layout->addWidget(_a2,3,6);
 
     setLayout(layout);
-    
+
     setMinimumHeight( (15+2) *4);
 
     doReadParams();
@@ -165,7 +165,7 @@ void EdLevelPropertyColorField::doColorChange (int)
 {
     _fill->setBrush(QBrush(QColor(_r->value(), _g->value(), _b->value(), _a->value() )));
     _fill->update();
-    
+
     doWriteParams();
 }
 
@@ -181,10 +181,10 @@ void EdLevelPropertyColorField::doReadParams(void)
     // Has Key
     if (_data->plug()) {
         keyButton()->setIcon(QIcon(":/images/key.png"));
-                
+
         connect(    keyButton(),        SIGNAL(pressed()),
                     this,       SLOT(doKeyframePressed())    );
-                    
+
     } else {
         keyButton()->setIcon(QIcon(":/images/blank.png"));
     }
@@ -203,19 +203,19 @@ void EdLevelPropertyColorField::doReadParams(void)
         hasOutputButton()->setIcon(QIcon(":/images/blank.png"));
     }
 
-	TextBufferStream stream;
-	_data->value(stream);
-    
+    TextBufferStream stream;
+    _data->value(stream);
+
     Color4f val;
     stream >> val;
-    
+
     Color4b val_b(val);
-    
+
     _r->setValue(val_b.r_as_byte());
     _g->setValue(val_b.g_as_byte());
     _b->setValue(val_b.b_as_byte());
     _a->setValue(val_b.a_as_byte());
-    
+
     _r2->setText( MoreStrings::cast_to_string(val.r_as_float()).c_str() );
     _g2->setText( MoreStrings::cast_to_string(val.g_as_float()).c_str() );
     _b2->setText( MoreStrings::cast_to_string(val.b_as_float()).c_str() );
@@ -229,12 +229,12 @@ void EdLevelPropertyColorField::doWriteParams(void)
 {
     Color4f val(Color4b( (DTubyte) _r->value(), (DTubyte) _g->value(), (DTubyte) _b->value(), (DTubyte) _a->value()));
 
-	TextBufferStream stream;
+    TextBufferStream stream;
     stream << val;
 
     TextBufferStream oldstream;
-	_data->value(oldstream);
-    
+    _data->value(oldstream);
+
     // Only if value changed
     if (stream.buffer() != oldstream.buffer()) {
         emit doCommand(QString("SetProp \"") + _node->full_name().c_str() + "." + _data->title().c_str() + "\" (" + stream.buffer().c_str() + ")", _data->flags() & DATA_FLUSH_UI);
@@ -249,12 +249,12 @@ void EdLevelPropertyColorField::doWriteParams2(void)
     val.set_b( MoreStrings::cast_from_string<DTfloat>(_b2->text().toUtf8().data()) );
     val.set_a( MoreStrings::cast_from_string<DTfloat>(_a2->text().toUtf8().data()) );
 
-	TextBufferStream stream;
+    TextBufferStream stream;
     stream << val;
 
     TextBufferStream oldstream;
-	_data->value(oldstream);
-    
+    _data->value(oldstream);
+
     // Only if value changed
     if (stream.buffer() != oldstream.buffer()) {
         emit doCommand(QString("SetProp \"") + _node->full_name().c_str() + "." + _data->title().c_str() + "\" (" + stream.buffer().c_str() + ")", _data->flags() & DATA_FLUSH_UI);
@@ -274,21 +274,18 @@ void EdLevelPropertyColorField::doKeyframePressed (void)
 
 std::string EdLevelPropertyColorField::getValueOfField (void)
 {
-	TextBufferStream stream;
-	_data->value(stream);
+    TextBufferStream stream;
+    _data->value(stream);
     return stream.buffer();
 }
-    
+
 void EdLevelPropertyColorField::setValueOfField (const std::string &value)
 {
-	TextBufferStream stream(value);
-	_data->set_value(stream);
-    
+    TextBufferStream stream(value);
+    _data->set_value(stream);
+
     emit doCommand(QString("SetProp \"") + _node->full_name().c_str() + "." + _data->title().c_str() + "\" (" + stream.buffer().c_str() + ")", _data->flags() & DATA_FLUSH_UI);
 }
 
 //==============================================================================
 //==============================================================================
-
-#include "moc_EdLevelPropertyColorField.cpp"
-

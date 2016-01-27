@@ -1,12 +1,12 @@
 //==============================================================================
-///	
+///
 ///	File: EdLevelPropertyEnumField.cpp
-///	
+///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
 /// This file is subject to the terms and conditions defined in
 /// file 'LICENSE.txt', which is part of this source code package.
-///	
+///
 //==============================================================================
 
 // Editor include
@@ -32,7 +32,7 @@ EdLevelPropertyEnumField::EdLevelPropertyEnumField (EdLevelPropertiesWindow *par
     //setFrameStyle(QFrame::StyledPanel | QFrame::Raised);
     _data = data;
     _node = node;
-   
+
     buildStatusButtons();
 
     QLabel *name = new QLabel(this);
@@ -47,12 +47,12 @@ EdLevelPropertyEnumField::EdLevelPropertyEnumField (EdLevelPropertiesWindow *par
     for (DTuint i = 0; i < enums.size(); ++i) {
         _value->addItem(enums[i].c_str());
     }
-    
-	connect(	_value,         SIGNAL(activated(int)),
-				this,           SLOT(doWriteParams())	);
-    
-	connect(	this,           SIGNAL(doCommand(QString, bool)),
-				parent,         SLOT(onCommand(QString, bool))	);
+
+    connect(	_value,         SIGNAL(activated(int)),
+                this,           SLOT(doWriteParams())	);
+
+    connect(	this,           SIGNAL(doCommand(QString, bool)),
+                parent,         SLOT(onCommand(QString, bool))	);
 
     QGridLayout *layout = new QGridLayout;
     layout->setContentsMargins(0,0,0,0);
@@ -65,9 +65,9 @@ EdLevelPropertyEnumField::EdLevelPropertyEnumField (EdLevelPropertiesWindow *par
     layout->addWidget(_value,0,4);
 
     setLayout(layout);
-    
+
     setMinimumHeight(15+2);
-    
+
     doReadParams();
 }
 
@@ -88,10 +88,10 @@ void EdLevelPropertyEnumField::doReadParams(void)
     // Has Key
     if (_data->plug()) {
         keyButton()->setIcon(QIcon(":/images/key.png"));
-                
+
         connect(    keyButton(),    SIGNAL(pressed()),
                     this,           SLOT(doKeyframePressed())    );
-                    
+
     } else {
         keyButton()->setIcon(QIcon(":/images/blank.png"));
     }
@@ -110,8 +110,8 @@ void EdLevelPropertyEnumField::doReadParams(void)
         hasOutputButton()->setIcon(QIcon(":/images/blank.png"));
     }
 
-	TextBufferStream stream;
-	_data->value(stream);
+    TextBufferStream stream;
+    _data->value(stream);
     _value->setCurrentIndex( MoreStrings::cast_from_string<int>(stream.buffer()) );
     blockSignals(false);
 }
@@ -121,8 +121,8 @@ void EdLevelPropertyEnumField::doWriteParams(void)
     std::string index = MoreStrings::cast_to_string(_value->currentIndex());
 
     TextBufferStream oldstream;
-	_data->value(oldstream);
-    
+    _data->value(oldstream);
+
     // Only if value changed
     if (index != oldstream.buffer()) {
         emit doCommand(QString("SetProp \"") + _node->full_name().c_str() + "." + _data->title().c_str() + "\" \"" + index.c_str() + "\"", _data->flags() & DATA_FLUSH_UI);
@@ -142,15 +142,15 @@ void EdLevelPropertyEnumField::doKeyframePressed (void)
 
 std::string EdLevelPropertyEnumField::getValueOfField (void)
 {
-	TextBufferStream stream;
-	_data->value(stream);
+    TextBufferStream stream;
+    _data->value(stream);
     return stream.buffer();
 }
-    
+
 void EdLevelPropertyEnumField::setValueOfField (const std::string &value)
 {
-	TextBufferStream stream(value);
-	_data->set_value(stream);
+    TextBufferStream stream(value);
+    _data->set_value(stream);
     doReadParams();
 
     std::string index = MoreStrings::cast_to_string(_value->currentIndex());
@@ -159,6 +159,3 @@ void EdLevelPropertyEnumField::setValueOfField (const std::string &value)
 
 //==============================================================================
 //==============================================================================
-
-#include "moc_EdLevelPropertyEnumField.cpp"
-

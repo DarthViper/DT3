@@ -122,6 +122,3 @@ void EdLevelImageThumbnail::paintEvent (QPaintEvent *event)
 
 //==============================================================================
 //==============================================================================
-
-#include "moc_EdLevelImageThumbnail.cpp"
-

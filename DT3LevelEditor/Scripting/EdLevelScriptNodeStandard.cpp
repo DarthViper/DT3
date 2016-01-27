@@ -632,6 +632,3 @@ void EdLevelScriptNodeStandard::paint(QPainter *painter, const QStyleOptionGraph
 
 //==============================================================================
 //==============================================================================
-
-#include "moc_EdLevelScriptNodeStandard.cpp"
-
