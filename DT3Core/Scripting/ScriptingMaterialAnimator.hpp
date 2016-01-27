@@ -3,7 +3,7 @@
 #define DT3_SCRIPTINGMATERIALANIMATOR
 //==============================================================================
 ///
-///	File: ScriptingMaterialAnimator.hpp
+///    File: ScriptingMaterialAnimator.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -35,10 +35,10 @@ class ScriptingMaterialAnimator: public ScriptingBase {
         DEFINE_CREATE_AND_CLONE
         DEFINE_PLUG_NODE
 
-                                    ScriptingMaterialAnimator	(void);
-                                    ScriptingMaterialAnimator	(const ScriptingMaterialAnimator &rhs);
-        ScriptingMaterialAnimator &	operator =					(const ScriptingMaterialAnimator &rhs);
-        virtual                     ~ScriptingMaterialAnimator	(void);
+                                    ScriptingMaterialAnimator    (void);
+                                    ScriptingMaterialAnimator    (const ScriptingMaterialAnimator &rhs);
+        ScriptingMaterialAnimator &    operator =                    (const ScriptingMaterialAnimator &rhs);
+        virtual                     ~ScriptingMaterialAnimator    (void);
 
         virtual void                archive                     (const std::shared_ptr<Archive> &archive);
 
@@ -51,11 +51,11 @@ class ScriptingMaterialAnimator: public ScriptingBase {
 
     public:
         /// Called to initialize the object
-        virtual void				initialize                  (void);
+        virtual void                initialize                  (void);
 
         /// Computes the value of the node
         /// \param plug plug to compute
-        DTboolean					compute                     (const PlugBase *plug);
+        DTboolean                    compute                     (const PlugBase *plug);
 
         /// Sets the number of materials
         /// \param num_materials number of materials
@@ -76,7 +76,7 @@ class ScriptingMaterialAnimator: public ScriptingBase {
         Plug<DTfloat>                               _period;
 
         DTfloat                                     _out_time;
-        Plug<std::shared_ptr<MaterialResource>>    _out;
+        Plug<std::shared_ptr<MaterialResource>>     _out;
 };
 
 //==============================================================================

@@ -22,7 +22,7 @@
 //==============================================================================
 //==============================================================================
 
-namespace DT3 {
+using namespace DT3;
 
 //==============================================================================
 /// Register with object factory
@@ -71,9 +71,9 @@ SoundBusSourceObject::SoundBusSourceObject (void)
 SoundBusSourceObject::SoundBusSourceObject (const SoundBusSourceObject &rhs)
 	:	PlaceableObject	(rhs),
 		_sound_packet   (rhs._sound_packet),
+        _bus_name       (rhs._bus_name),
         _play           (rhs._play),
-        _stop           (rhs._stop),
-        _bus_name       (rhs._bus_name)
+        _stop           (rhs._stop)
 {   
 
 }
@@ -167,6 +167,3 @@ void SoundBusSourceObject::remove_from_world (void)
 
 //==============================================================================
 //==============================================================================
-
-} // DT3
-

@@ -61,10 +61,10 @@ ScriptingSoundHighPassFilter3db::ScriptingSoundHighPassFilter3db (void)
     :   _sound_packet_in    (PLUG_INFO_INDEX(_sound_packet_in)),
 		_sound_packet_out   (PLUG_INFO_INDEX(_sound_packet_out)),
 		_cutoff_frequency   (PLUG_INFO_INDEX(_cutoff_frequency), 8000.0F),
-        _last_in_sample_left    (0),
         _last_out_sample_left   (0),
-        _last_in_sample_right   (0),
-        _last_out_sample_right  (0)
+        _last_in_sample_left    (0),
+        _last_out_sample_right  (0),
+        _last_in_sample_right   (0)
 {  
 
 }
@@ -74,10 +74,10 @@ ScriptingSoundHighPassFilter3db::ScriptingSoundHighPassFilter3db (const Scriptin
 		_sound_packet_in	(rhs._sound_packet_in),
 		_sound_packet_out   (rhs._sound_packet_out),
         _cutoff_frequency   (rhs._cutoff_frequency),
-        _last_in_sample_left     (rhs._last_in_sample_left),
         _last_out_sample_left    (rhs._last_out_sample_left),
-        _last_in_sample_right    (rhs._last_in_sample_right),
-        _last_out_sample_right   (rhs._last_out_sample_right)
+        _last_in_sample_left     (rhs._last_in_sample_left),
+        _last_out_sample_right   (rhs._last_out_sample_right),
+        _last_in_sample_right    (rhs._last_in_sample_right)
 {   
 
 }	

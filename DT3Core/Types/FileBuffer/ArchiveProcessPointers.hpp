@@ -62,8 +62,8 @@ std::shared_ptr<ArchiveProcess> archive_process_pointers_creator (const std::sha
 
 template <class T>
 ArchiveProcessPointers<T>::ArchiveProcessPointers(const std::shared_ptr<Archive> &archive, std::shared_ptr<T> &ptr)
-    :   _ptr    (ptr),   // Remember reference
-        _ref    (0)
+    :   _ref    (0),
+        _ptr    (ptr)   // Remember reference
 {
     // Writing out pointer immediately
     if (archive->is_writing()) {

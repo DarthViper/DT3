@@ -1,12 +1,12 @@
 //==============================================================================
-///	
-///	File: ScriptingMaterialAnimator.cpp
-///	
+///
+///    File: ScriptingMaterialAnimator.cpp
+///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
 /// This file is subject to the terms and conditions defined in
 /// file 'LICENSE.txt', which is part of this source code package.
-///	
+///
 //==============================================================================
 
 #include "DT3Core/Scripting/ScriptingMaterialAnimator.hpp"
@@ -33,22 +33,22 @@ IMPLEMENT_PLUG_NODE(ScriptingMaterialAnimator)
 IMPLEMENT_PLUG_INFO_INDEX(_active)
 IMPLEMENT_PLUG_INFO_INDEX(_period)
 IMPLEMENT_PLUG_INFO_INDEX(_out)
-		
+
 //==============================================================================
 //==============================================================================
 
 BEGIN_IMPLEMENT_PLUGS(ScriptingMaterialAnimator)
 
-	PLUG_INIT(_active,"Active")
-		.set_input(true)
-		.affects(PLUG_INFO_INDEX(_out));
+    PLUG_INIT(_active,"Active")
+        .set_input(true)
+        .affects(PLUG_INFO_INDEX(_out));
 
-	PLUG_INIT(_period,"Period")
-		.set_input(true)
-		.affects(PLUG_INFO_INDEX(_out));
+    PLUG_INIT(_period,"Period")
+        .set_input(true)
+        .affects(PLUG_INFO_INDEX(_out));
 
-	PLUG_INIT(_out,"Out")
-		.set_output(true);
+    PLUG_INIT(_out,"Out")
+        .set_output(true);
         
 END_IMPLEMENT_PLUGS
 
@@ -57,21 +57,21 @@ END_IMPLEMENT_PLUGS
 //==============================================================================
 
 ScriptingMaterialAnimator::ScriptingMaterialAnimator (void)
-    :   _active			(PLUG_INFO_INDEX(_active), true),
-        _period			(PLUG_INFO_INDEX(_period), 0.01F),
+    :   _active            (PLUG_INFO_INDEX(_active), true),
+        _period            (PLUG_INFO_INDEX(_period), 0.01F),
         _out_time       (0.0F),
-		_out			(PLUG_INFO_INDEX(_out))
+        _out            (PLUG_INFO_INDEX(_out))
 {  
 
 }
-		
+
 ScriptingMaterialAnimator::ScriptingMaterialAnimator (const ScriptingMaterialAnimator &rhs)
-    :   ScriptingBase	(rhs),
-		_active			(rhs._active),
-		_period         (rhs._period),
+    :   ScriptingBase    (rhs),
+        _materials      (rhs._materials),
+        _active            (rhs._active),
+        _period         (rhs._period),
         _out_time       (rhs._out_time),
-		_out			(rhs._out),
-        _materials      (rhs._materials)
+        _out            (rhs._out)
 {   
 
 }
@@ -80,17 +80,17 @@ ScriptingMaterialAnimator & ScriptingMaterialAnimator::operator = (const Scripti
 {
     // Make sure we are not assigning the class to itself
     if (&rhs != this) {        
-		ScriptingBase::operator = (rhs);
+        ScriptingBase::operator = (rhs);
 
-		_active = rhs._active;
-		_period = rhs._period;
+        _active = rhs._active;
+        _period = rhs._period;
         _out_time = rhs._out_time;
-		_out = rhs._out;
+        _out = rhs._out;
         _materials = rhs._materials;
-	}
+    }
     return (*this);
 }
-			
+
 ScriptingMaterialAnimator::~ScriptingMaterialAnimator (void)
 {
 
@@ -101,7 +101,7 @@ ScriptingMaterialAnimator::~ScriptingMaterialAnimator (void)
 
 void ScriptingMaterialAnimator::initialize (void)
 {
-	ScriptingBase::initialize();
+    ScriptingBase::initialize();
 }
 
 //==============================================================================
@@ -111,7 +111,7 @@ void ScriptingMaterialAnimator::archive (const std::shared_ptr<Archive> &archive
 {
     ScriptingBase::archive(archive);
 
-	archive->push_domain (class_id ());
+    archive->push_domain (class_id ());
     
     *archive << ARCHIVE_PLUG(_active, DATA_PERSISTENT | DATA_SETTABLE);
     *archive << ARCHIVE_PLUG(_period, DATA_PERSISTENT | DATA_SETTABLE);
@@ -132,7 +132,7 @@ void ScriptingMaterialAnimator::archive (const std::shared_ptr<Archive> &archive
 
 void ScriptingMaterialAnimator::tick (const DTfloat dt)
 {
-	PROFILER(SCRIPTING);
+    PROFILER(SCRIPTING);
 
     _out_time += dt;
     _out.set_dirty();
@@ -143,23 +143,23 @@ void ScriptingMaterialAnimator::tick (const DTfloat dt)
 
 DTboolean ScriptingMaterialAnimator::compute (const PlugBase *plug)
 {
-	PROFILER(SCRIPTING);
+    PROFILER(SCRIPTING);
 
     if (super_type::compute(plug))  return true;
 
-	if (plug == &_out) {
+    if (plug == &_out) {
     
         if (_materials.size() > 0) {
             DTsize index = (DTsize)(_out_time / _period) % _materials.size();
             _out = _materials[index];
         }
         
-		_out.set_clean();
-		
-		return true;
-	}
-	
-	return false;
+        _out.set_clean();
+
+        return true;
+    }
+
+    return false;
 }
 
 //==============================================================================

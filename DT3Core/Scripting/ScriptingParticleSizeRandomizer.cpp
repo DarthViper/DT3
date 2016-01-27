@@ -51,22 +51,22 @@ END_IMPLEMENT_PLUGS
 //==============================================================================
 
 ScriptingParticleSizeRandomizer::ScriptingParticleSizeRandomizer (void)
-    :   _in			(PLUG_INFO_INDEX(_in)),
-		_out		(PLUG_INFO_INDEX(_out)),
+    :   _continuous (false),
         _min_size   (1.0F),
         _max_size   (2.0F),
-        _continuous (false)
+        _in			(PLUG_INFO_INDEX(_in)),
+        _out		(PLUG_INFO_INDEX(_out))
 {  
 
 }
 		
 ScriptingParticleSizeRandomizer::ScriptingParticleSizeRandomizer (const ScriptingParticleSizeRandomizer &rhs)
     :   ScriptingBase		(rhs),
-		_in					(rhs._in),
-		_out				(rhs._out),
+        _continuous         (rhs._continuous),
         _min_size           (rhs._min_size),
         _max_size           (rhs._max_size),
-        _continuous         (rhs._continuous)
+        _in					(rhs._in),
+        _out				(rhs._out)
 {   
 
 }

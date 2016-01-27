@@ -332,7 +332,7 @@ class GUIObject: public PlaceableObject {
         DTboolean                   _no_focus;
 
         std::list<GUIAnimKey>       _anim_keys;
-        DTfloat						_animation_time;
+        //DTfloat						_animation_time;
 
         //
         // Callbacks

@@ -3,7 +3,7 @@
 #define DT3_SCRIPTINGVECTOR3SWITCHER
 //==============================================================================
 ///
-///	File: ScriptingVector3Switcher.hpp
+///    File: ScriptingVector3Switcher.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -42,32 +42,32 @@ class ScriptingVector3Switcher: public ScriptingBase {
 
     public:
         /// Called to initialize the object
-        virtual void				initialize				(void);
+        virtual void                initialize                (void);
 
         /// Computes the value of the node
         /// \param plug plug to compute
-        DTboolean					compute					(const PlugBase *plug);
+        DTboolean                   compute                    (const PlugBase *plug);
 
     private:
-        Plug<DTboolean>				_in1;
-        Plug<DTboolean>				_in2;
-        Plug<DTboolean>				_in3;
-        Plug<DTboolean>				_in4;
-        Plug<DTboolean>				_in5;
-        Plug<DTboolean>				_in6;
-        Plug<DTboolean>				_in7;
-        Plug<DTboolean>				_in8;
+        Plug<DTboolean>             _in1;
+        Plug<DTboolean>             _in2;
+        Plug<DTboolean>             _in3;
+        Plug<DTboolean>             _in4;
+        Plug<DTboolean>             _in5;
+        Plug<DTboolean>             _in6;
+        Plug<DTboolean>             _in7;
+        Plug<DTboolean>             _in8;
 
-        Plug<Vector3>				_in_vector1;
-        Plug<Vector3>				_in_vector2;
-        Plug<Vector3>				_in_vector3;
-        Plug<Vector3>				_in_vector4;
-        Plug<Vector3>				_in_vector5;
-        Plug<Vector3>				_in_vector6;
-        Plug<Vector3>				_in_vector7;
-        Plug<Vector3>				_in_vector8;
+        Plug<Vector3>               _in_vector1;
+        Plug<Vector3>               _in_vector2;
+        Plug<Vector3>               _in_vector3;
+        Plug<Vector3>               _in_vector4;
+        Plug<Vector3>               _in_vector5;
+        Plug<Vector3>               _in_vector6;
+        Plug<Vector3>               _in_vector7;
+        Plug<Vector3>               _in_vector8;
 
-        Plug<Vector3>				_out;
+        Plug<Vector3>               _out;
         DTboolean                   _buffer_output;
 
 };

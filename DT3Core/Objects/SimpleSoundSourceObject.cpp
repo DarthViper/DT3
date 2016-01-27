@@ -74,26 +74,26 @@ END_IMPLEMENT_PLUGS
 //==============================================================================
 
 SimpleSoundSourceObject::SimpleSoundSourceObject (void)
-    :   _sound          (NULL),
-        _gain           (PLUG_INFO_INDEX(_gain),1.0F),
+    :   _gain           (PLUG_INFO_INDEX(_gain),1.0F),
         _pitch          (PLUG_INFO_INDEX(_pitch),1.0F),
         _rolloff        (PLUG_INFO_INDEX(_rolloff),0.0F),
         _play           (EVENT_INFO_INDEX(_play)),
         _stop           (EVENT_INFO_INDEX(_stop)),
-        _stopped        (EVENT_INFO_INDEX(_stopped))
+        _stopped        (EVENT_INFO_INDEX(_stopped)),
+        _sound          (NULL)
 {
 
 }
 		
 SimpleSoundSourceObject::SimpleSoundSourceObject (const SimpleSoundSourceObject &rhs)
 	:	PlaceableObject	(rhs),
-        _sound          (NULL),
         _gain           (rhs._gain),
         _pitch          (rhs._pitch),
         _rolloff        (rhs._rolloff),
         _play           (rhs._play),
         _stop           (rhs._stop),
         _stopped        (rhs._stopped),
+        _sound          (NULL),
         _sound_source   (NULL),
         _source         (NULL)
 {

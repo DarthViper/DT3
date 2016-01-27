@@ -71,12 +71,12 @@ END_IMPLEMENT_PLUGS
 GUIObject::GUIObject (void)
     :   _width          (PLUG_INFO_INDEX(_width), 0.1F),
         _height         (PLUG_INFO_INDEX(_height), 0.1F),
-        _size_mode      (SIZE_MODE_NO_CHANGE),
-        _pivot          (PIVOT_CENTER),
-        _no_focus       (false),
         _color          (PLUG_INFO_INDEX(_color), Color4f(1.0F,1.0F,1.0F,1.0F)),
         _label          (PLUG_INFO_INDEX(_label), ""),
-        _state          (STATE_NORMAL)
+        _state          (STATE_NORMAL),
+        _size_mode      (SIZE_MODE_NO_CHANGE),
+        _pivot          (PIVOT_CENTER),
+        _no_focus       (false)
 {
 
 }
@@ -85,12 +85,12 @@ GUIObject::GUIObject (const GUIObject &rhs)
     :	PlaceableObject      (rhs),
         _width          (rhs._width),
         _height         (rhs._height),
-        _size_mode      (rhs._size_mode),
-        _pivot          (rhs._pivot),
-        _no_focus       (rhs._no_focus),
         _color          (rhs._color),
         _label          (rhs._label),
-        _state          (rhs._state)
+        _state          (rhs._state),
+        _size_mode      (rhs._size_mode),
+        _pivot          (rhs._pivot),
+        _no_focus       (rhs._no_focus)
 {
 
 }

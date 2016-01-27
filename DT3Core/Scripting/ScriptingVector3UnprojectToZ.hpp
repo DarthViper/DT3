@@ -53,11 +53,10 @@ class ScriptingVector3UnprojectToZ: public ScriptingBase {
         DTboolean                           compute                         (const PlugBase *plug);
 
     private:
-        DTfloat                             _z;
-
-        Plug<std::shared_ptr<WorldNode>>   _camera;
         Plug<Vector3>                       _in;
+        Plug<std::shared_ptr<WorldNode>>    _camera;
         Plug<Vector3>                       _out;
+        DTfloat                             _z;
 };
 
 //==============================================================================

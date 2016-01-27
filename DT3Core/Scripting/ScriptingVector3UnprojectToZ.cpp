@@ -1,12 +1,12 @@
 //==============================================================================
-///	
-///	File: ScriptingVector3UnprojectToZ.cpp
-///	
+///
+///    File: ScriptingVector3UnprojectToZ.cpp
+///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
 /// This file is subject to the terms and conditions defined in
 /// file 'LICENSE.txt', which is part of this source code package.
-///	
+///
 //==============================================================================
 
 #include "DT3Core/Scripting/ScriptingVector3UnprojectToZ.hpp"
@@ -37,16 +37,16 @@ IMPLEMENT_PLUG_INFO_INDEX(_out)
 
 BEGIN_IMPLEMENT_PLUGS(ScriptingVector3UnprojectToZ)
 
-	PLUG_INIT(_in,"In")
-		.set_input(true)
-		.affects(PLUG_INFO_INDEX(_out));
-		
-	PLUG_INIT(_camera,"Camera")
-		.set_input(true)
-		.affects(PLUG_INFO_INDEX(_out));
+    PLUG_INIT(_in,"In")
+        .set_input(true)
+        .affects(PLUG_INFO_INDEX(_out));
 
-	PLUG_INIT(_out,"Out")
-		.set_output(true);
+    PLUG_INIT(_camera,"Camera")
+        .set_input(true)
+        .affects(PLUG_INFO_INDEX(_out));
+
+    PLUG_INIT(_out,"Out")
+        .set_output(true);
         
 END_IMPLEMENT_PLUGS
 
@@ -56,18 +56,18 @@ END_IMPLEMENT_PLUGS
 
 ScriptingVector3UnprojectToZ::ScriptingVector3UnprojectToZ (void)
     :   _in             (PLUG_INFO_INDEX(_in), Vector3(0.0F,0.0F,0.0F)),
-		_camera         (PLUG_INFO_INDEX(_camera)),
-		_out			(PLUG_INFO_INDEX(_out), Vector3(0.0F,0.0F,0.0F)),
+        _camera         (PLUG_INFO_INDEX(_camera)),
+        _out            (PLUG_INFO_INDEX(_out), Vector3(0.0F,0.0F,0.0F)),
         _z              (0.0F)
 {  
 
 }
-		
+
 ScriptingVector3UnprojectToZ::ScriptingVector3UnprojectToZ (const ScriptingVector3UnprojectToZ &rhs)
-    :   ScriptingBase	(rhs),
-		_in             (rhs._in),
-		_camera         (rhs._camera),
-		_out			(rhs._out),
+    :   ScriptingBase    (rhs),
+        _in             (rhs._in),
+        _camera         (rhs._camera),
+        _out            (rhs._out),
         _z              (rhs._z)
 {   
 
@@ -77,16 +77,16 @@ ScriptingVector3UnprojectToZ & ScriptingVector3UnprojectToZ::operator = (const S
 {
     // Make sure we are not assigning the class to itself
     if (&rhs != this) {        
-		ScriptingBase::operator = (rhs);
+        ScriptingBase::operator = (rhs);
 
-		_in = rhs._in;
-		_camera = rhs._camera;
-		_out = rhs._out;
+        _in = rhs._in;
+        _camera = rhs._camera;
+        _out = rhs._out;
         _z = rhs._z;
-	}
+    }
     return (*this);
 }
-			
+
 ScriptingVector3UnprojectToZ::~ScriptingVector3UnprojectToZ (void)
 {
 
@@ -97,7 +97,7 @@ ScriptingVector3UnprojectToZ::~ScriptingVector3UnprojectToZ (void)
 
 void ScriptingVector3UnprojectToZ::initialize (void)
 {
-	ScriptingBase::initialize();
+    ScriptingBase::initialize();
 }
 
 //==============================================================================
@@ -107,12 +107,12 @@ void ScriptingVector3UnprojectToZ::archive (const std::shared_ptr<Archive> &arch
 {
     ScriptingBase::archive(archive);
 
-	archive->push_domain (class_id ());
-	   
-	*archive << ARCHIVE_PLUG(_in, DATA_PERSISTENT | DATA_SETTABLE);
-	*archive << ARCHIVE_PLUG(_out, DATA_PERSISTENT);
-	*archive << ARCHIVE_DATA(_z, DATA_PERSISTENT | DATA_SETTABLE);
-														     					
+    archive->push_domain (class_id ());
+
+    *archive << ARCHIVE_PLUG(_in, DATA_PERSISTENT | DATA_SETTABLE);
+    *archive << ARCHIVE_PLUG(_out, DATA_PERSISTENT);
+    *archive << ARCHIVE_DATA(_z, DATA_PERSISTENT | DATA_SETTABLE);
+
     archive->pop_domain ();
 }
 
@@ -121,11 +121,11 @@ void ScriptingVector3UnprojectToZ::archive (const std::shared_ptr<Archive> &arch
 
 DTboolean ScriptingVector3UnprojectToZ::compute (const PlugBase *plug)
 {
-	PROFILER(SCRIPTING);
+    PROFILER(SCRIPTING);
 
     if (super_type::compute(plug))  return true;
 
-	if (plug == &_out) {
+    if (plug == &_out) {
         
         if ( *_camera && _camera.has_incoming_connection() && (**_camera).isa(CameraObject::kind()) ) {
             std::shared_ptr<CameraObject> camera = checked_static_cast<CameraObject>(*_camera);
@@ -141,11 +141,11 @@ DTboolean ScriptingVector3UnprojectToZ::compute (const PlugBase *plug)
             _out = Vector3(0.0F,0.0F,0.0F);
         }
 
-		_out.set_clean();
-		return true;
-	}
-	
-	return false;
+        _out.set_clean();
+        return true;
+    }
+
+    return false;
 }
 
 //==============================================================================

@@ -53,11 +53,13 @@ class ScriptingSoundBase: public ScriptingBase {
 //==============================================================================
 
 #define UNIT_TO_10BIT_INT(f)    ((DTint)(f * 1024))
-#define PAD_10BIT(i)            (((DTint) i) << 10)
-#define REM_10BIT(i)            (((DTint) i) >> 10)
+//#define PAD_10BIT(i)            (((DTint) i) << 10)
+//#define REM_10BIT(i)            (((DTint) i) >> 10)
+#define PAD_10BIT(i)            (((DTint) i) * (1 << 10))
+#define REM_10BIT(i)            (((DTint) i) / (1 << 10))
 
-#define CLAMP_PAD_10BIT(i)      ( MoreMath::max(PAD_10BIT(DTSHORT_MIN), MoreMath::min(PAD_10BIT(DTSHORT_MAX), i)) )
-#define CLAMP_16BIT(i)          ( MoreMath::max(DTSHORT_MIN, MoreMath::min(DTSHORT_MAX,i)) )
+#define CLAMP_PAD_10BIT(i)      ( std::max(PAD_10BIT(DTSHORT_MIN), std::min(PAD_10BIT(DTSHORT_MAX), i)) )
+#define CLAMP_16BIT(i)          ( std::max(DTSHORT_MIN, std::min(DTSHORT_MAX,i)) )
 
 //==============================================================================
 //==============================================================================

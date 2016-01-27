@@ -79,11 +79,11 @@ END_IMPLEMENT_PLUGS
 ScriptingFLIPFLOP::ScriptingFLIPFLOP (void)
     :   _set			(PLUG_INFO_INDEX(_set), false),
 		_reset			(PLUG_INFO_INDEX(_reset), false),
-		_out			(PLUG_INFO_INDEX(_out), false),
-		_out_inv		(PLUG_INFO_INDEX(_out_inv), false),
         _set_e          (EVENT_INFO_INDEX(_set_e)),
         _reset_e        (EVENT_INFO_INDEX(_reset_e)),
-        _toggle_e       (EVENT_INFO_INDEX(_toggle_e))
+        _toggle_e       (EVENT_INFO_INDEX(_toggle_e)),
+		_out			(PLUG_INFO_INDEX(_out), false),
+        _out_inv		(PLUG_INFO_INDEX(_out_inv), false)
 {  
 
 }
@@ -92,11 +92,11 @@ ScriptingFLIPFLOP::ScriptingFLIPFLOP (const ScriptingFLIPFLOP &rhs)
     :   ScriptingBase	(rhs),
 		_set			(rhs._set),
 		_reset			(rhs._reset),
-		_out			(rhs._out),
-		_out_inv		(rhs._out_inv),
         _set_e          (rhs._set_e),
         _reset_e        (rhs._reset_e),
-        _toggle_e       (rhs._toggle_e)
+        _toggle_e       (rhs._toggle_e),
+		_out			(rhs._out),
+        _out_inv		(rhs._out_inv)
 {   
 
 }

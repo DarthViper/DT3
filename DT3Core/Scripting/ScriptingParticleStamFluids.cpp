@@ -69,11 +69,11 @@ END_IMPLEMENT_PLUGS
 //==============================================================================
 
 ScriptingParticleStamFluids::ScriptingParticleStamFluids (void)
-    :   _rectangle      (0.0F,1024.0F,0.0F,768.0F),
-        _n              (20),
+    :   _n              (20),
         _diff           (1.0F),
         _visc           (1.0F),
         _particle_drag  (0.5F),
+        _rectangle      (0.0F,1024.0F,0.0F,768.0F),
 		_turbulence	(PLUG_INFO_INDEX(_turbulence), Vector2(0.0F,0.0F)),
         _turbulence_timer(0.0F),
 		_in				(PLUG_INFO_INDEX(_in)),
@@ -84,11 +84,11 @@ ScriptingParticleStamFluids::ScriptingParticleStamFluids (void)
 		
 ScriptingParticleStamFluids::ScriptingParticleStamFluids (const ScriptingParticleStamFluids &rhs)
     :   ScriptingBase	(rhs),
-        _rectangle      (rhs._rectangle),
-		_n              (rhs._n),
+        _n              (rhs._n),
 		_diff           (rhs._diff),
 		_visc           (rhs._visc),
         _particle_drag  (rhs._particle_drag),
+        _rectangle      (rhs._rectangle),
         _turbulence     (rhs._turbulence),
         _turbulence_timer(rhs._turbulence_timer),
 		_in				(rhs._in),

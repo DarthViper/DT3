@@ -109,17 +109,14 @@ END_IMPLEMENT_PLUGS
 
 ScriptingSlerp::ScriptingSlerp (void)
     :   _in_orientation_0	(PLUG_INFO_INDEX(_in_orientation_0),    Matrix3::identity()),
-		_in_translation_0	(PLUG_INFO_INDEX(_in_translation_0),    Vector3(0.0F,0.0F,0.0F)),
-		_in_scale_0			(PLUG_INFO_INDEX(_in_scale_0),          Vector3(1.0F,1.0F,1.0F)),
-        
         _in_orientation_1	(PLUG_INFO_INDEX(_in_orientation_1),    Matrix3::identity()),
-		_in_translation_1	(PLUG_INFO_INDEX(_in_translation_1),    Vector3(0.0F,0.0F,0.0F)),
-		_in_scale_1			(PLUG_INFO_INDEX(_in_scale_1),          Vector3(1.0F,1.0F,1.0F)),
-        
         _out_orientation	(PLUG_INFO_INDEX(_out_orientation),     Matrix3::identity()),
-		_out_translation	(PLUG_INFO_INDEX(_out_translation),     Vector3(0.0F,0.0F,0.0F)),
+		_in_translation_0	(PLUG_INFO_INDEX(_in_translation_0),    Vector3(0.0F,0.0F,0.0F)),
+        _in_translation_1	(PLUG_INFO_INDEX(_in_translation_1),    Vector3(0.0F,0.0F,0.0F)),
+        _out_translation	(PLUG_INFO_INDEX(_out_translation),     Vector3(0.0F,0.0F,0.0F)),
+		_in_scale_0			(PLUG_INFO_INDEX(_in_scale_0),          Vector3(1.0F,1.0F,1.0F)),
+		_in_scale_1			(PLUG_INFO_INDEX(_in_scale_1),          Vector3(1.0F,1.0F,1.0F)),
 		_out_scale			(PLUG_INFO_INDEX(_out_scale),           Vector3(1.0F,1.0F,1.0F)),
-        
 		_t                  (PLUG_INFO_INDEX(_t), 0.0F)
 {  
 
@@ -128,13 +125,13 @@ ScriptingSlerp::ScriptingSlerp (void)
 ScriptingSlerp::ScriptingSlerp (const ScriptingSlerp &rhs)
     :   ScriptingBase           (rhs),
 		_in_orientation_0		(rhs._in_orientation_0),
+        _in_orientation_1		(rhs._in_orientation_1),
+        _out_orientation		(rhs._out_orientation),
 		_in_translation_0		(rhs._in_translation_0),
+        _in_translation_1		(rhs._in_translation_1),
+        _out_translation		(rhs._out_translation),
 		_in_scale_0             (rhs._in_scale_0),
-		_in_orientation_1		(rhs._in_orientation_1),
-		_in_translation_1		(rhs._in_translation_1),
 		_in_scale_1             (rhs._in_scale_1),
-		_out_orientation		(rhs._out_orientation),
-		_out_translation		(rhs._out_translation),
 		_out_scale              (rhs._out_scale),
 		_t                      (rhs._t)
 {   

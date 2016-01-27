@@ -57,10 +57,10 @@ END_IMPLEMENT_PLUGS
 
 ScriptingParticleVelocityRing::ScriptingParticleVelocityRing (void)
     :   _normal			(PLUG_INFO_INDEX(_normal), Vector3(0.0F,1.0F,0.0F)),
-		_in				(PLUG_INFO_INDEX(_in)),
-		_out			(PLUG_INFO_INDEX(_out)),
 		_velocity		(1.0F),
-		_variation		(0.0F)
+        _variation		(0.0F),
+        _in				(PLUG_INFO_INDEX(_in)),
+        _out			(PLUG_INFO_INDEX(_out))
 {  
 
 }
@@ -68,10 +68,10 @@ ScriptingParticleVelocityRing::ScriptingParticleVelocityRing (void)
 ScriptingParticleVelocityRing::ScriptingParticleVelocityRing (const ScriptingParticleVelocityRing &rhs)
     :   ScriptingBase	(rhs),
 		_normal			(rhs._normal),
-		_in				(rhs._in),
-		_out			(rhs._out),
 		_velocity		(rhs._velocity),
-		_variation		(rhs._variation)
+        _variation		(rhs._variation),
+        _in				(rhs._in),
+        _out			(rhs._out)
 {   
 
 }

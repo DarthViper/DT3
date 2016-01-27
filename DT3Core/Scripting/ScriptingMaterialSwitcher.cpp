@@ -93,8 +93,8 @@ ScriptingMaterialSwitcher::ScriptingMaterialSwitcher (void)
 		_in_material3	(PLUG_INFO_INDEX(_in_material3)),
 		_in4			(PLUG_INFO_INDEX(_in4), false),
 		_in_material4	(PLUG_INFO_INDEX(_in_material4)),
-        _buffer_output  (false),
-		_out			(PLUG_INFO_INDEX(_out))
+        _out			(PLUG_INFO_INDEX(_out)),
+        _buffer_output  (false)
 {  
 
 }
@@ -109,8 +109,8 @@ ScriptingMaterialSwitcher::ScriptingMaterialSwitcher (const ScriptingMaterialSwi
 		_in_material3	(rhs._in_material3),
 		_in4			(rhs._in4),
 		_in_material4	(rhs._in_material4),
-        _buffer_output  (rhs._buffer_output),
-		_out			(rhs._out)
+        _out			(rhs._out),
+        _buffer_output  (rhs._buffer_output)
 {   
 
 }

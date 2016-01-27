@@ -20,7 +20,7 @@
 //==============================================================================
 //==============================================================================
 
-namespace DT3 {
+using namespace DT3;
 
 //==============================================================================
 /// Register with object factory
@@ -137,11 +137,6 @@ END_IMPLEMENT_PLUGS
 
 PlaceableObject::PlaceableObject (void)
     :  	_pickable				(true),
-		_world_translation		(PLUG_INFO_INDEX(_world_translation), Vector3(0.0F,0.0F,0.0F)),
-        _world_orientation		(PLUG_INFO_INDEX(_world_orientation), Matrix3::identity()),
-		_world_scale			(PLUG_INFO_INDEX(_world_scale), Vector3(1.0F,1.0F,1.0F)),
-		_world_transform		(PLUG_INFO_INDEX(_world_transform), Matrix4::identity()),
-		_world_transform_inversed(PLUG_INFO_INDEX(_world_transform_inversed), Matrix4::identity()),
 		_radius					(PLUG_INFO_INDEX(_radius), 1.0F),
         _velocity				(PLUG_INFO_INDEX(_velocity), Vector3(0.0F,0.0F,0.0F)),
         _angular_velocity		(PLUG_INFO_INDEX(_angular_velocity), Vector3(0.0F,0.0F,0.0F)),
@@ -150,6 +145,11 @@ PlaceableObject::PlaceableObject (void)
 		_scale                  (PLUG_INFO_INDEX(_scale), Vector3(1.0F,1.0F,1.0F)),
 		_transform              (PLUG_INFO_INDEX(_transform), Matrix4::identity()),
 		_transform_inversed     (PLUG_INFO_INDEX(_transform_inversed), Matrix4::identity()),
+        _world_translation		(PLUG_INFO_INDEX(_world_translation), Vector3(0.0F,0.0F,0.0F)),
+        _world_orientation		(PLUG_INFO_INDEX(_world_orientation), Matrix3::identity()),
+        _world_scale			(PLUG_INFO_INDEX(_world_scale), Vector3(1.0F,1.0F,1.0F)),
+        _world_transform		(PLUG_INFO_INDEX(_world_transform), Matrix4::identity()),
+        _world_transform_inversed(PLUG_INFO_INDEX(_world_transform_inversed), Matrix4::identity()),
         _parent_transform		(PLUG_INFO_INDEX(_parent_transform), Matrix4::identity())
 {  
 
@@ -158,11 +158,6 @@ PlaceableObject::PlaceableObject (void)
 PlaceableObject::PlaceableObject (const PlaceableObject &rhs)
     :   ObjectBase				(rhs),
 		_pickable				(rhs._pickable),
-		_world_translation		(PLUG_INFO_INDEX(_world_translation), Vector3(0.0F,0.0F,0.0F)),
-        _world_orientation		(PLUG_INFO_INDEX(_world_orientation), Matrix3::identity()),
-		_world_scale			(PLUG_INFO_INDEX(_world_scale), Vector3(1.0F,1.0F,1.0F)),
-        _world_transform		(rhs._world_transform),
-        _world_transform_inversed(rhs._world_transform_inversed),
 		_radius					(rhs._radius),
 		_velocity				(rhs._velocity),
 		_angular_velocity		(rhs._angular_velocity),
@@ -171,6 +166,11 @@ PlaceableObject::PlaceableObject (const PlaceableObject &rhs)
  		_scale                  (rhs._scale),
  		_transform              (rhs._transform),
  		_transform_inversed     (rhs._transform_inversed),
+        _world_translation		(PLUG_INFO_INDEX(_world_translation), Vector3(0.0F,0.0F,0.0F)),
+        _world_orientation		(PLUG_INFO_INDEX(_world_orientation), Matrix3::identity()),
+        _world_scale			(PLUG_INFO_INDEX(_world_scale), Vector3(1.0F,1.0F,1.0F)),
+        _world_transform		(rhs._world_transform),
+        _world_transform_inversed(rhs._world_transform_inversed),
         _parent_transform		(PLUG_INFO_INDEX(_parent_transform), Matrix4::identity())
 {   
 
@@ -665,6 +665,3 @@ DTboolean PlaceableObject::compute (const PlugBase *plug)
 
 //==============================================================================
 //==============================================================================
-
-} // DT3
-

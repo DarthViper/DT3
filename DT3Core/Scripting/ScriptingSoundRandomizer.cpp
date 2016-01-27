@@ -98,16 +98,16 @@ END_IMPLEMENT_PLUGS
 
 ScriptingSoundRandomizer::ScriptingSoundRandomizer (void)
     :   _sound_packet_in_1  (PLUG_INFO_INDEX(_sound_packet_in_1)),
-        _in_weight_1        (PLUG_INFO_INDEX(_in_weight_1), 1.0F),
         _sound_packet_in_2  (PLUG_INFO_INDEX(_sound_packet_in_2)),
-        _in_weight_2        (PLUG_INFO_INDEX(_in_weight_2), 0.0F),
         _sound_packet_in_3  (PLUG_INFO_INDEX(_sound_packet_in_3)),
-        _in_weight_3        (PLUG_INFO_INDEX(_in_weight_3), 0.0F),
         _sound_packet_in_4  (PLUG_INFO_INDEX(_sound_packet_in_4)),
+        _in_weight_1        (PLUG_INFO_INDEX(_in_weight_1), 1.0F),
+        _in_weight_2        (PLUG_INFO_INDEX(_in_weight_2), 0.0F),
+        _in_weight_3        (PLUG_INFO_INDEX(_in_weight_3), 0.0F),
         _in_weight_4        (PLUG_INFO_INDEX(_in_weight_4), 0.0F),
-		_sound_packet_out   (PLUG_INFO_INDEX(_sound_packet_out)),
         _randomize_inputs   (EVENT_INFO_INDEX(_randomize_inputs)),
-        _current_input      (0)
+        _current_input      (0),
+        _sound_packet_out   (PLUG_INFO_INDEX(_sound_packet_out))
 {  
 
 }
@@ -115,16 +115,16 @@ ScriptingSoundRandomizer::ScriptingSoundRandomizer (void)
 ScriptingSoundRandomizer::ScriptingSoundRandomizer (const ScriptingSoundRandomizer &rhs)
     :   ScriptingSoundBase  (rhs),
 		_sound_packet_in_1	(rhs._sound_packet_in_1),
-		_in_weight_1        (rhs._in_weight_1),
 		_sound_packet_in_2	(rhs._sound_packet_in_2),
-		_in_weight_2        (rhs._in_weight_2),
 		_sound_packet_in_3	(rhs._sound_packet_in_3),
-		_in_weight_3        (rhs._in_weight_3),
 		_sound_packet_in_4	(rhs._sound_packet_in_4),
+        _in_weight_1        (rhs._in_weight_1),
+        _in_weight_2        (rhs._in_weight_2),
+        _in_weight_3        (rhs._in_weight_3),
 		_in_weight_4        (rhs._in_weight_4),
-		_sound_packet_out   (PLUG_INFO_INDEX(_sound_packet_out)),
         _randomize_inputs   (EVENT_INFO_INDEX(_randomize_inputs)),
-        _current_input      (0)
+        _current_input      (0),
+        _sound_packet_out   (PLUG_INFO_INDEX(_sound_packet_out))
 {   
 
 }	
