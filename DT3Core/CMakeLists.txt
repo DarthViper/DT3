@@ -92,11 +92,7 @@ if (EXISTS "${PROJECT_MODULE}")
         #set(MODULE_LIBS_DIRS ${MODULE_LIBS_DIRS} "${ENGINE_ROOT}/3rdParty/libjpeg-turbo-1.3.0/libjpeg-turbo-android/lib/${ANDROID_NDK_ABI_NAME}" )
 
         # Library includes
-        include_directories("${ENGINE_ROOT}/3rdParty/zlib-1.2.5")
         include_directories("${ENGINE_ROOT}/3rdParty/")
-        include_directories("${ENGINE_ROOT}/3rdParty/freetype-2.4.7/include")
-        include_directories("${ENGINE_ROOT}/3rdParty/lpng151")
-        #include_directories("${ENGINE_ROOT}/3rdParty/md5-cc")
         #include_directories("${ENGINE_ROOT}/3rdParty/libjpeg-turbo-1.3.0/libjpeg-turbo-android/include")
 
         # Compile files

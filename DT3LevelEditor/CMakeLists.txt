@@ -8,10 +8,6 @@ set(CMAKE_INCLUDE_CURRENT_DIR ON)
 set(CMAKE_AUTORCC ON)
 set(CMAKE_AUTOUIC ON)
 include_directories(
-${CMAKE_CURRENT_SOURCE_DIR}/../DT3Core/3rdParty/zlib-1.2.5
-               ${CMAKE_CURRENT_SOURCE_DIR}/../DT3Core/3rdParty/lpng151
-               ${CMAKE_CURRENT_SOURCE_DIR}/../DT3Core/3rdParty/md5-cc
-               ${CMAKE_CURRENT_SOURCE_DIR}/../DT3Core/3rdParty/freetype-2.4.7/include
                ${CMAKE_CURRENT_SOURCE_DIR}/../DT3Core/3rdParty/libjpeg-turbo-1.3.0/libjpeg-turbo-android/include
 )
 include_directories(
@@ -119,7 +115,6 @@ set(SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/Scripting/EdLevelScriptSelectionRubberBand.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/Scripting/EdLevelScriptWindow.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/Console/EdLevelConsoleWindow.cpp
-    ##${CMAKE_CURRENT_SOURCE_DIR}/Console/ConsoleStream.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/Performance/EdLevelPerformanceWindow.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/Resources/EdLevelResourcesWindow.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/Library/EdLevelLibraryWindow.cpp
@@ -152,8 +147,8 @@ set(SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/LevelEditor.qrc
 )
 add_executable(LevelEditor ${SOURCES} ${HEADERS})
-target_link_libraries(LevelEditor DT3Core freetype png jpeg zlib jenkins md5 GLEW GL pthread dl)
-
+target_link_libraries(LevelEditor DT3Core freetype jpeg jenkins GLEW GL pthread dl)
+target_link_libraries(LevelEditor ${PNG_LIBRARIES} ${ZLIB_LIBRARIES} ${FREETYPE_LIBRARIES})
 qt5_use_modules(LevelEditor Core Gui Widgets OpenGL Multimedia)
 
 
