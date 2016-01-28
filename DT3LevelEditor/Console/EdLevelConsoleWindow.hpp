@@ -12,30 +12,22 @@
 ///
 //==============================================================================
 
-// Editor include
-#include "EdLevelLineEdit.hpp"
-
 // Qt include
 #include <QtWidgets/QWidget>
 #include <QtWidgets/QToolBar>
-
-// Engine includes
-#include <mutex>
 
 //==============================================================================
 /// Forward declarations
 //==============================================================================
 
-class QLabel;
-class QPlainTextEdit;
 class QScrollArea;
 class EdLevelDocument;
-
 //==============================================================================
 //==============================================================================
 
-//using namespace DT3;
-
+namespace Ui {
+class EdLevelConsoleWindow;
+}
 //==============================================================================
 /// Class
 //==============================================================================
@@ -72,11 +64,11 @@ class EdLevelConsoleWindow : public QWidget
     private:
         EdLevelDocument             *_document;
         QToolBar                    *_toolbar;
-        QPlainTextEdit              *_console;
-        EdLevelLineEdit             *_command_widget;
-
+        Ui::EdLevelConsoleWindow    *ui;
+    protected:
+        void changeEvent(QEvent *ev);
     //==========================================================================
-    /// Qt Signals and slots
+    // Qt Signals and slots
     //==========================================================================
     private slots:
         void                        onCommandEntered            ();

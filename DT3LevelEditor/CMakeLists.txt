@@ -89,53 +89,54 @@ set(HEADERS
 )
 set(SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/EdLevelAppMain.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/EdLevelMainWindow.cpp
+    EdLevelMainWindow.cpp
     EdLevelMainWindow.ui
-    ${CMAKE_CURRENT_SOURCE_DIR}/Properties/EdLevelPropertiesWindow.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/Properties/EdLevelPropertyBase.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/Properties/EdLevelPropertyDefaultField.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/Properties/EdLevelPropertyVector2Field.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/Properties/EdLevelPropertyVector3Field.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/Properties/EdLevelPropertyMatrix3Field.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/Properties/EdLevelPropertyColorField.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/Properties/EdLevelPropertyTitleField.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/Properties/EdLevelPropertyBoolField.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/Properties/EdLevelPropertyEventField.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/Properties/EdLevelPropertyEnumField.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/Properties/EdLevelPropertyRangeField.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/Properties/EdLevelColorSwatch.cpp
-    # ${CMAKE_CURRENT_SOURCE_DIR}/Game/EdLevelGame.cpp
-    #${CMAKE_CURRENT_SOURCE_DIR}/Game/EdLevelGameGL.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/Hierarchy/EdLevelHierarchyWindow.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/Hierarchy/EdLevelHierarchyWindowMIME.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/Scripting/EdLevelScriptConnectionRubberBand.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/Scripting/EdLevelScriptEventConnection.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/Scripting/EdLevelScriptNodeStandard.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/Scripting/EdLevelScriptPlugConnection.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/Scripting/EdLevelScriptSelectionRubberBand.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/Scripting/EdLevelScriptWindow.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/Console/EdLevelConsoleWindow.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/Performance/EdLevelPerformanceWindow.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/Resources/EdLevelResourcesWindow.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/Library/EdLevelLibraryWindow.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/Library/EdLevelLibraryDialog.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/World/EdLevelWorldWindow.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/Animation/EdLevelAnimationWindow.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/Sound/EdLevelSoundWindow.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/Sound/EdLevelSoundBus.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/Sound/EdLevelSoundVUMeter.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/EdLevelToolWindow.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/Resources/EdLevelImageThumbnail.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/Resources/EdLevelSoundThumbnail.cpp
-    #${CMAKE_CURRENT_SOURCE_DIR}/Resources/EdLevelMaterialThumbnail.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/Resources/EdLevelResourceImage.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/Resources/EdLevelResourceSound.cpp
-    #${CMAKE_CURRENT_SOURCE_DIR}/Resources/EdLevelResourceMaterial.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/EdLevelLineEdit.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/EdLevelLaunchDialog.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/MeshBuilder/EdLevelMeshBuilder.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/Scripting/EdLevelGroup.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/Scripting/EdLevelScriptConnection.cpp
+    Properties/EdLevelPropertiesWindow.cpp
+    Properties/EdLevelPropertyBase.cpp
+    Properties/EdLevelPropertyDefaultField.cpp
+    Properties/EdLevelPropertyVector2Field.cpp
+    Properties/EdLevelPropertyVector3Field.cpp
+    Properties/EdLevelPropertyMatrix3Field.cpp
+    Properties/EdLevelPropertyColorField.cpp
+    Properties/EdLevelPropertyTitleField.cpp
+    Properties/EdLevelPropertyBoolField.cpp
+    Properties/EdLevelPropertyEventField.cpp
+    Properties/EdLevelPropertyEnumField.cpp
+    Properties/EdLevelPropertyRangeField.cpp
+    Properties/EdLevelColorSwatch.cpp
+    # Game/EdLevelGame.cpp
+    #Game/EdLevelGameGL.cpp
+    Hierarchy/EdLevelHierarchyWindow.cpp
+    Hierarchy/EdLevelHierarchyWindowMIME.cpp
+    Scripting/EdLevelScriptConnectionRubberBand.cpp
+    Scripting/EdLevelScriptEventConnection.cpp
+    Scripting/EdLevelScriptNodeStandard.cpp
+    Scripting/EdLevelScriptPlugConnection.cpp
+    Scripting/EdLevelScriptSelectionRubberBand.cpp
+    Scripting/EdLevelScriptWindow.cpp
+    Console/EdLevelConsoleWindow.cpp
+    Console/EdLevelConsoleWindow.ui
+    Performance/EdLevelPerformanceWindow.cpp
+    Resources/EdLevelResourcesWindow.cpp
+    Library/EdLevelLibraryWindow.cpp
+    Library/EdLevelLibraryDialog.cpp
+    World/EdLevelWorldWindow.cpp
+    Animation/EdLevelAnimationWindow.cpp
+    Sound/EdLevelSoundWindow.cpp
+    Sound/EdLevelSoundBus.cpp
+    Sound/EdLevelSoundVUMeter.cpp
+    EdLevelToolWindow.cpp
+    Resources/EdLevelImageThumbnail.cpp
+    Resources/EdLevelSoundThumbnail.cpp
+    #Resources/EdLevelMaterialThumbnail.cpp
+    Resources/EdLevelResourceImage.cpp
+    Resources/EdLevelResourceSound.cpp
+    #Resources/EdLevelResourceMaterial.cpp
+    EdLevelLineEdit.cpp
+    EdLevelLaunchDialog.cpp
+    MeshBuilder/EdLevelMeshBuilder.cpp
+    Scripting/EdLevelGroup.cpp
+    Scripting/EdLevelScriptConnection.cpp
     EdLevelDocument.cpp
     EdLevelToolEvent.cpp
     EdLevelMainWindow_cmd.cpp
@@ -144,7 +145,7 @@ set(SOURCES
     EdLevelManipScale.cpp
     EdLevelTool.cpp
     World/EdLevelWorldLayout.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/LevelEditor.qrc
+    LevelEditor.qrc
 )
 add_executable(LevelEditor ${SOURCES} ${HEADERS})
 target_link_libraries(LevelEditor DT3Core freetype jpeg jenkins GLEW GL pthread dl)

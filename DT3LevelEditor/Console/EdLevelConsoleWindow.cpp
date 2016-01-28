@@ -12,6 +12,8 @@
 // Editor include
 #include "EdLevelConsoleWindow.hpp"
 #include "EdLevelDocument.hpp"
+#include "EdLevelLineEdit.hpp"
+#include "ui_EdLevelConsoleWindow.h"
 
 // Qt include
 #include <QtWidgets/QLabel>
@@ -33,32 +35,13 @@ using namespace DT3;
 //==============================================================================
 
 EdLevelConsoleWindow::EdLevelConsoleWindow(QWidget *parent, QToolBar *toolbar, EdLevelDocument *document)
-    :   QWidget                 (parent)
+    :   QWidget                 (parent), ui(new Ui::EdLevelConsoleWindow)
 {
     _document = document;
     _toolbar = toolbar;
+    ui->setupUi(this);
 
-    _console = new QPlainTextEdit(this);
-    _console->setFrameStyle(QFrame::Panel | QFrame::Sunken);
-    _console->setFont(QFont("Monaco", 10));
-    _console->setTextInteractionFlags(Qt::TextSelectableByMouse | Qt::TextSelectableByKeyboard);
-    _console->setReadOnly(true);
-    _console->setWordWrapMode(QTextOption::NoWrap);
-
-    _command_widget = new EdLevelLineEdit(this);
-
-    // Connect "Enter" pressed
-    connect(_command_widget, SIGNAL(returnPressed()), this, SLOT(onCommandEntered()));
     connect(this, SIGNAL(doWriteLog(QString)), this, SLOT(onWriteLog(QString)));
-
-    QGridLayout *layout = new QGridLayout;
-    layout->setContentsMargins(0,0,0,0);
-    layout->setHorizontalSpacing(1);
-    layout->setVerticalSpacing(1);
-    layout->addWidget(_console);
-    layout->addWidget(_command_widget);
-
-    setLayout(layout);
 
     SystemCallbacks::error_cb().add(make_callback(this, &EdLevelConsoleWindow::logError));
     SystemCallbacks::message_cb().add(make_callback(this, &EdLevelConsoleWindow::logMessage));
@@ -77,8 +60,8 @@ EdLevelConsoleWindow::~EdLevelConsoleWindow(void)
 
 void EdLevelConsoleWindow::onCommandEntered()
 {
-    emit doCommand(_command_widget->text());
-    _command_widget->setText("");
+    emit doCommand(ui->_command_widget->text());
+    ui->_command_widget->setText("");
 }
 
 //==============================================================================
@@ -112,10 +95,21 @@ void EdLevelConsoleWindow::logDebug(const std::string &debug)
 
 void EdLevelConsoleWindow::onWriteLog (QString msg)
 {
-    _console->appendPlainText(msg);
-    _console->verticalScrollBar()->setValue(_console->verticalScrollBar()->maximum());
+    ui->_console->appendPlainText(msg);
+    ui->_console->verticalScrollBar()->setValue(ui->_console->verticalScrollBar()->maximum());
 }
 
+void EdLevelConsoleWindow::changeEvent(QEvent *e)
+{
+    QWidget::changeEvent(e);
+    switch (e->type()) {
+    case QEvent::LanguageChange:
+        ui->retranslateUi(this);
+        break;
+    default:
+        break;
+    }
+}
 //==============================================================================
 //==============================================================================
 
