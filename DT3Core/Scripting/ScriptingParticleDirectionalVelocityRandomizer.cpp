@@ -104,14 +104,6 @@ ScriptingParticleDirectionalVelocityRandomizer::~ScriptingParticleDirectionalVel
 //==============================================================================
 //==============================================================================
 
-void ScriptingParticleDirectionalVelocityRandomizer::initialize (void)
-{
-	ScriptingBase::initialize();
-}
-
-//==============================================================================
-//==============================================================================
-
 void ScriptingParticleDirectionalVelocityRandomizer::archive (const std::shared_ptr<Archive> &archive)
 {
     ScriptingBase::archive(archive);

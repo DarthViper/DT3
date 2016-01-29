@@ -116,7 +116,6 @@ class PlugNode: public BaseClass {
         virtual void					archive_done                (const std::shared_ptr<Archive> &archive);
 
     public:
-
         DEFINE_ACCESSORS                (name, set_name, std::string, _name);
 
         /// Returns the full name of object that uniquely identifies it

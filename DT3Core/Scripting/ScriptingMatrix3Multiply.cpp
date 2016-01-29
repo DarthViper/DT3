@@ -91,14 +91,6 @@ ScriptingMatrix3Multiply::~ScriptingMatrix3Multiply (void)
 //==============================================================================
 //==============================================================================
 
-void ScriptingMatrix3Multiply::initialize (void)
-{
-	ScriptingBase::initialize();
-}
-
-//==============================================================================
-//==============================================================================
-
 void ScriptingMatrix3Multiply::archive (const std::shared_ptr<Archive> &archive)
 {
     ScriptingBase::archive(archive);

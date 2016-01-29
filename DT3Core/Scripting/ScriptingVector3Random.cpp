@@ -85,14 +85,6 @@ ScriptingVector3Random::~ScriptingVector3Random (void)
 //==============================================================================
 //==============================================================================
 
-void ScriptingVector3Random::initialize (void)
-{
-	ScriptingBase::initialize();
-}
-
-//==============================================================================
-//==============================================================================
-
 void ScriptingVector3Random::archive (const std::shared_ptr<Archive> &archive)
 {
     ScriptingBase::archive(archive);

@@ -43,9 +43,6 @@ class GUIController: public PlaceableObject {
         virtual void                    archive                     (const std::shared_ptr<Archive> &archive);
 
     public:
-        /// Called to initialize the object
-        void                            initialize                  (void);
-
         /// Callback called when the component is getting a touch event
         /// \param event Touch events
         /// \param camera The current camera

@@ -91,14 +91,6 @@ ScriptingVector3Normalize::~ScriptingVector3Normalize (void)
 //==============================================================================
 //==============================================================================
 
-void ScriptingVector3Normalize::initialize (void)
-{
-	ScriptingBase::initialize();
-}
-
-//==============================================================================
-//==============================================================================
-
 void ScriptingVector3Normalize::archive (const std::shared_ptr<Archive> &archive)
 {
     ScriptingBase::archive(archive);

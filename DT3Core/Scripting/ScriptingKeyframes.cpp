@@ -32,12 +32,14 @@ namespace DT3 {
 
 ScriptingKeyframes::ScriptingKeyframes (void)
 {  
+    set_node_color(Color4f(0.4F,0.4F,0.4F,1.0F));
 
 }
 		
 ScriptingKeyframes::ScriptingKeyframes (const ScriptingKeyframes &rhs)
     :   ScriptingBase			(rhs)
 {   
+    set_node_color(Color4f(0.4F,0.4F,0.4F,1.0F));
 
 }
 
@@ -64,15 +66,6 @@ void ScriptingKeyframes::archive (const std::shared_ptr<Archive> &archive)
 
 	archive->push_domain (class_id ());														     					
     archive->pop_domain ();
-}
-
-//==============================================================================
-//==============================================================================
-
-void ScriptingKeyframes::initialize (void)
-{
-	ScriptingBase::initialize();
-    set_node_color(Color4f(0.4F,0.4F,0.4F,1.0F));
 }
 
 //==============================================================================

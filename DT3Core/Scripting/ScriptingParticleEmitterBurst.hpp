@@ -55,9 +55,6 @@ class ScriptingParticleEmitterBurst: public ScriptingParticleEmitter {
         /// \param dt delta time
         virtual void                tick                    (const DTfloat dt);
 
-        /// Called to initialize the object
-        virtual void				initialize				(void);
-
         /// Emits a particle
         void						eventActive             (PlugNode *sender);
 

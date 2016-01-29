@@ -90,14 +90,6 @@ ScriptingKeyframesMaterialResource::~ScriptingKeyframesMaterialResource (void)
 //==============================================================================
 //==============================================================================
 
-void ScriptingKeyframesMaterialResource::initialize (void)
-{
-	ScriptingKeyframes::initialize();
-}
-
-//==============================================================================
-//==============================================================================
-
 void ScriptingKeyframesMaterialResource::archive (const std::shared_ptr<Archive> &archive)
 {
     ScriptingKeyframes::archive(archive);

@@ -19,7 +19,7 @@
 //==============================================================================
 //==============================================================================
 
-namespace DT3 {
+using namespace DT3;
 
 //==============================================================================
 /// Register with object factory
@@ -58,6 +58,12 @@ ScriptingVector3Filter2Pole::ScriptingVector3Filter2Pole (void)
 		_freq_sampling	(30.0F),
         _initialized    (false)
 {  
+    _passes.resize(_num_passes);
+    for (DTuint i = 0; i < _passes.size(); ++i) {
+        _passes[i]._fx.initialize(_type, _num_passes, _freq_3db, _freq_sampling, _in->x);
+        _passes[i]._fy.initialize(_type, _num_passes, _freq_3db, _freq_sampling, _in->y);
+        _passes[i]._fz.initialize(_type, _num_passes, _freq_3db, _freq_sampling, _in->z);
+    }
 
 }
 		
@@ -71,6 +77,12 @@ ScriptingVector3Filter2Pole::ScriptingVector3Filter2Pole (const ScriptingVector3
 		_freq_sampling	(rhs._freq_sampling),
         _initialized    (false)
 {   
+    _passes.resize(_num_passes);
+    for (DTuint i = 0; i < _passes.size(); ++i) {
+        _passes[i]._fx.initialize(_type, _num_passes, _freq_3db, _freq_sampling, _in->x);
+        _passes[i]._fy.initialize(_type, _num_passes, _freq_3db, _freq_sampling, _in->y);
+        _passes[i]._fz.initialize(_type, _num_passes, _freq_3db, _freq_sampling, _in->z);
+    }
 
 }
 
@@ -96,21 +108,6 @@ ScriptingVector3Filter2Pole & ScriptingVector3Filter2Pole::operator = (const Scr
 ScriptingVector3Filter2Pole::~ScriptingVector3Filter2Pole (void)
 {
 
-}
-
-//==============================================================================
-//==============================================================================
-
-void ScriptingVector3Filter2Pole::initialize (void)
-{
-	ScriptingBase::initialize();
-
-    _passes.resize(_num_passes);
-    for (DTuint i = 0; i < _passes.size(); ++i) {
-        _passes[i]._fx.initialize(_type, _num_passes, _freq_3db, _freq_sampling, _in->x);
-        _passes[i]._fy.initialize(_type, _num_passes, _freq_3db, _freq_sampling, _in->y);
-        _passes[i]._fz.initialize(_type, _num_passes, _freq_3db, _freq_sampling, _in->z);
-    }
 }
 
 //==============================================================================
@@ -192,6 +189,3 @@ void ScriptingVector3Filter2Pole::remove_from_world (void)
 
 //==============================================================================
 //==============================================================================
-
-} // DT3
-

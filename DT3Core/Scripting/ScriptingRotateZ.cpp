@@ -95,14 +95,6 @@ ScriptingRotateZ::~ScriptingRotateZ (void)
 //==============================================================================
 //==============================================================================
 
-void ScriptingRotateZ::initialize (void)
-{
-	ScriptingBase::initialize();
-}
-
-//==============================================================================
-//==============================================================================
-
 void ScriptingRotateZ::archive (const std::shared_ptr<Archive> &archive)
 {
     ScriptingBase::archive(archive);

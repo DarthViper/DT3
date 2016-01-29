@@ -66,9 +66,6 @@ class ScriptingTouch: public ScriptingBase {
         /// \param camera Camera used for drawing
         void                        draw                    (const std::shared_ptr<CameraObject> &camera, const DTfloat lag);
 
-        /// Called to initialize the object
-        virtual void				initialize				(void);
-
     private:
         Plug<Vector2>				_touch_pos_1;
         Plug<Vector2>				_touch_vel_1;

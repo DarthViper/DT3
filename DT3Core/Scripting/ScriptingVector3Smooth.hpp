@@ -52,9 +52,6 @@ class ScriptingVector3Smooth: public ScriptingBase {
         /// \param dt delta time
         void                        tick                    (const DTfloat dt);
 
-        /// Called to initialize the object
-        virtual void				initialize				(void);
-
         /// Sets the size of the history
         /// \param size history size
         void						setHistorySize          (DTsize size)		{	_history.resize(size);	_local_reset = true;	}

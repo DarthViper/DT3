@@ -76,11 +76,11 @@ class DrawBatcher {
 
     public:
         enum BatchFormat {
-            FMT_V = 1 << 0,
-            FMT_N = 1 << 1,
+            FMT_V  = 1 << 0,
+            FMT_N  = 1 << 1,
             FMT_T0 = 1 << 2,
             FMT_T1 = 1 << 3,
-            FMT_C = 1 << 4,
+            FMT_C  = 1 << 4,
             FMT_CF = 1 << 5,
 
             FMT_V_C = FMT_V | FMT_C,

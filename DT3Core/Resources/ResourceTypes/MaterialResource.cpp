@@ -51,6 +51,8 @@ std::map<std::string, std::shared_ptr<MaterialResource>>   MaterialResource::_ma
 MaterialResource::MaterialResource (void)
 {
     reset();
+    SystemCallbacks::screen_opened_cb().add(make_callback(this, &type::screen_opened));
+    SystemCallbacks::screen_closed_cb().add(make_callback(this, &type::screen_closed));
 }
 
 MaterialResource::~MaterialResource (void)
@@ -131,17 +133,6 @@ void MaterialResource::initialize_static (void)
 void MaterialResource::uninitialize_static (void)
 {
     SystemCallbacks::reload_resources_cb().remove(make_callback(&type::reload_if_changed));
-}
-
-//==============================================================================
-//==============================================================================
-
-void MaterialResource::initialize (void)
-{
-    Resource::initialize();
-
-    SystemCallbacks::screen_opened_cb().add(make_callback(this, &type::screen_opened));
-    SystemCallbacks::screen_closed_cb().add(make_callback(this, &type::screen_closed));
 }
 
 //==============================================================================

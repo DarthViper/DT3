@@ -123,14 +123,6 @@ ScriptingSoundBusOut::~ScriptingSoundBusOut (void)
 //==============================================================================
 //==============================================================================
 
-void ScriptingSoundBusOut::initialize (void)
-{
-	ScriptingSoundBase::initialize();
-}
-
-//==============================================================================
-//==============================================================================
-
 void ScriptingSoundBusOut::archive (const std::shared_ptr<Archive> &archive)
 {
     ScriptingSoundBase::archive(archive);

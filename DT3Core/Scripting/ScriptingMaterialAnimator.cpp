@@ -99,14 +99,6 @@ ScriptingMaterialAnimator::~ScriptingMaterialAnimator (void)
 //==============================================================================
 //==============================================================================
 
-void ScriptingMaterialAnimator::initialize (void)
-{
-    ScriptingBase::initialize();
-}
-
-//==============================================================================
-//==============================================================================
-
 void ScriptingMaterialAnimator::archive (const std::shared_ptr<Archive> &archive)
 {
     ScriptingBase::archive(archive);

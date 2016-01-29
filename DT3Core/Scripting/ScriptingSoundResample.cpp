@@ -96,14 +96,6 @@ ScriptingSoundResample::~ScriptingSoundResample (void)
 //==============================================================================
 //==============================================================================
 
-void ScriptingSoundResample::initialize (void)
-{
-	ScriptingSoundBase::initialize();
-}
-
-//==============================================================================
-//==============================================================================
-
 void ScriptingSoundResample::archive (const std::shared_ptr<Archive> &archive)
 {
     ScriptingSoundBase::archive(archive);

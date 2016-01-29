@@ -83,14 +83,6 @@ ScriptingMatrix3Inverse::~ScriptingMatrix3Inverse (void)
 //==============================================================================
 //==============================================================================
 
-void ScriptingMatrix3Inverse::initialize (void)
-{
-	ScriptingBase::initialize();
-}
-
-//==============================================================================
-//==============================================================================
-
 void ScriptingMatrix3Inverse::archive (const std::shared_ptr<Archive> &archive)
 {
     ScriptingBase::archive(archive);

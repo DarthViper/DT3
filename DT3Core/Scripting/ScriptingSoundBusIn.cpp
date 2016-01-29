@@ -79,14 +79,6 @@ ScriptingSoundBusIn::~ScriptingSoundBusIn (void)
 //==============================================================================
 //==============================================================================
 
-void ScriptingSoundBusIn::initialize (void)
-{
-	ScriptingSoundBase::initialize();
-}
-
-//==============================================================================
-//==============================================================================
-
 void ScriptingSoundBusIn::archive (const std::shared_ptr<Archive> &archive)
 {
     ScriptingSoundBase::archive(archive);

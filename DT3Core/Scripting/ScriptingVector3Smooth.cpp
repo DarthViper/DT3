@@ -103,14 +103,6 @@ ScriptingVector3Smooth::~ScriptingVector3Smooth (void)
 //==============================================================================
 //==============================================================================
 
-void ScriptingVector3Smooth::initialize (void)
-{
-	ScriptingBase::initialize();
-}
-
-//==============================================================================
-//==============================================================================
-
 void ScriptingVector3Smooth::archive (const std::shared_ptr<Archive> &archive)
 {
     ScriptingBase::archive(archive);

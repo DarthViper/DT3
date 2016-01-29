@@ -91,14 +91,6 @@ ScriptingBoolToEvent::~ScriptingBoolToEvent (void)
 //==============================================================================
 //==============================================================================
 
-void ScriptingBoolToEvent::initialize (void)
-{
-	ScriptingBase::initialize();
-}
-
-//==============================================================================
-//==============================================================================
-
 void ScriptingBoolToEvent::archive (const std::shared_ptr<Archive> &archive)
 {
     ScriptingBase::archive(archive);

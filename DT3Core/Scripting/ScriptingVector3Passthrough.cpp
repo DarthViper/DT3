@@ -91,14 +91,6 @@ ScriptingVector3Passthrough::~ScriptingVector3Passthrough (void)
 //==============================================================================
 //==============================================================================
 
-void ScriptingVector3Passthrough::initialize (void)
-{
-	ScriptingBase::initialize();
-}
-
-//==============================================================================
-//==============================================================================
-
 void ScriptingVector3Passthrough::archive (const std::shared_ptr<Archive> &archive)
 {
     ScriptingBase::archive(archive);

@@ -48,10 +48,6 @@ class WorldNode: public PlugNode {
         virtual void                archive             (const std::shared_ptr<Archive> &archive);
 
     public:
-        /// Called to initialize the object
-        virtual void				initialize			(void);
-
-
         // Setting the database
 
         /// Returns the database that the object belongs to.

@@ -112,14 +112,6 @@ ScriptingSpline::~ScriptingSpline (void)
 //==============================================================================
 //==============================================================================
 
-void ScriptingSpline::initialize (void)
-{
-	ScriptingBase::initialize();
-}
-
-//==============================================================================
-//==============================================================================
-
 void ScriptingSpline::archive (const std::shared_ptr<Archive> &archive)
 {
     ScriptingBase::archive(archive);

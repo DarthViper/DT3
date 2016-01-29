@@ -216,14 +216,6 @@ ScriptingTimerSuper::~ScriptingTimerSuper (void)
 //==============================================================================
 //==============================================================================
 
-void ScriptingTimerSuper::initialize (void)
-{
-	ScriptingBase::initialize();
-}
-
-//==============================================================================
-//==============================================================================
-
 void ScriptingTimerSuper::archive (const std::shared_ptr<Archive> &archive)
 {
     ScriptingBase::archive(archive);

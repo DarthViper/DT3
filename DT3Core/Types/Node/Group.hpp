@@ -45,9 +45,6 @@ class Group: public PlugNode {
         virtual void                            archive             (const std::shared_ptr<Archive> &archive);
 
     public:
-        /// Called to initialize the object
-        virtual void                            initialize			(void);
-
         /// Add node to group
         /// \param node node to add
         void                                    add_node            (const std::shared_ptr<WorldNode> &node);

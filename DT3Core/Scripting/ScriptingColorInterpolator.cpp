@@ -99,14 +99,6 @@ ScriptingColorInterpolator::~ScriptingColorInterpolator (void)
 //==============================================================================
 //==============================================================================
 
-void ScriptingColorInterpolator::initialize (void)
-{
-	ScriptingBase::initialize();
-}
-
-//==============================================================================
-//==============================================================================
-
 void ScriptingColorInterpolator::archive (const std::shared_ptr<Archive> &archive)
 {
     ScriptingBase::archive(archive);

@@ -44,9 +44,6 @@ class ParticleSystem: public PlaceableObject {
         virtual void                archive                         (const std::shared_ptr<Archive> &archive);
 
     public:
-        /// Called to initialize the object
-        virtual void				initialize						(void);
-
         DEFINE_ACCESSORS(material_property, set_material_property, std::shared_ptr<MaterialResource>, _material);
         DEFINE_ACCESSORS(particles_property, set_particles_property, std::shared_ptr<Particles>, _particles);
         DEFINE_ACCESSORS(run_up, set_run_up, DTfloat, _run_up);

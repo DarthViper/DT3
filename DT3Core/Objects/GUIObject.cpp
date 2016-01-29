@@ -39,7 +39,7 @@ IMPLEMENT_PLUG_INFO_INDEX(_width)
 IMPLEMENT_PLUG_INFO_INDEX(_height)
 IMPLEMENT_PLUG_INFO_INDEX(_color)
 IMPLEMENT_PLUG_INFO_INDEX(_label)
-IMPLEMENT_PLUG_INFO_INDEX(_skin)
+//TODO: IMPLEMENT_PLUG_INFO_INDEX(_skin)
 
 //==============================================================================
 //==============================================================================
@@ -61,7 +61,6 @@ BEGIN_IMPLEMENT_PLUGS(GUIObject)
     PLUG_INIT(_label, "Label")
         .set_input(true)
         .set_output(true);
-
 END_IMPLEMENT_PLUGS
 
 //==============================================================================
@@ -151,10 +150,8 @@ void GUIObject::archive (const std::shared_ptr<Archive> &archive)
 //==============================================================================
 //==============================================================================
 
-void GUIObject::initialize (void)
+void GUIObject::initialize (void) noexcept(true)
 {
-    PlaceableObject::initialize();
-
     _shader = ShaderResource::import_resource(FilePath("{SYS_MASK_SHADER}"));
 
     _mask_material = MaterialResource::create();

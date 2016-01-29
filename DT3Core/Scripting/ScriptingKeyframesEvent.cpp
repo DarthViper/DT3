@@ -92,14 +92,6 @@ ScriptingKeyframesEvent::~ScriptingKeyframesEvent (void)
 //==============================================================================
 //==============================================================================
 
-void ScriptingKeyframesEvent::initialize (void)
-{
-	ScriptingKeyframes::initialize();
-}
-
-//==============================================================================
-//==============================================================================
-
 void ScriptingKeyframesEvent::archive (const std::shared_ptr<Archive> &archive)
 {
     ScriptingKeyframes::archive(archive);

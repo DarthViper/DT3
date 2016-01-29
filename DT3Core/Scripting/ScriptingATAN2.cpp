@@ -92,14 +92,6 @@ ScriptingATAN2::~ScriptingATAN2 (void)
 //==============================================================================
 //==============================================================================
 
-void ScriptingATAN2::initialize (void)
-{
-	ScriptingBase::initialize();
-}
-
-//==============================================================================
-//==============================================================================
-
 void ScriptingATAN2::archive (const std::shared_ptr<Archive> &archive)
 {
     ScriptingBase::archive(archive);

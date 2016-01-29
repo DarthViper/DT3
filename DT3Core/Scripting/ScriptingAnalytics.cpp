@@ -98,14 +98,6 @@ ScriptingAnalytics::~ScriptingAnalytics (void)
 //==============================================================================
 //==============================================================================
 
-void ScriptingAnalytics::initialize (void)
-{
-	ScriptingBase::initialize();
-}
-
-//==============================================================================
-//==============================================================================
-
 void ScriptingAnalytics::archive (const std::shared_ptr<Archive> &archive)
 {
     ScriptingBase::archive(archive);

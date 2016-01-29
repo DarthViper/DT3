@@ -41,11 +41,6 @@ class ScriptingSoundBase: public ScriptingBase {
         virtual                     ~ScriptingSoundBase     (void);
 
         virtual void                archive                 (const std::shared_ptr<Archive> &archive);
-
-    public:
-        /// Called to initialize the object
-        virtual void				initialize				(void);
-
 };
 
 //==============================================================================

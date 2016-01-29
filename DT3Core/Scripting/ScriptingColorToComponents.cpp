@@ -107,14 +107,6 @@ ScriptingColorToComponents::~ScriptingColorToComponents (void)
 //==============================================================================
 //==============================================================================
 
-void ScriptingColorToComponents::initialize (void)
-{
-	ScriptingBase::initialize();
-}
-
-//==============================================================================
-//==============================================================================
-
 void ScriptingColorToComponents::archive (const std::shared_ptr<Archive> &archive)
 {
     ScriptingBase::archive(archive);

@@ -93,14 +93,6 @@ ScriptingIsTransitioning::~ScriptingIsTransitioning (void)
 //==============================================================================
 //==============================================================================
 
-void ScriptingIsTransitioning::initialize (void)
-{
-	ScriptingBase::initialize();
-}
-
-//==============================================================================
-//==============================================================================
-
 void ScriptingIsTransitioning::archive (const std::shared_ptr<Archive> &archive)
 {
     ScriptingBase::archive(archive);

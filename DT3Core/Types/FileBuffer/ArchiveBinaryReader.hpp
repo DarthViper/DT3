@@ -1,6 +1,4 @@
 #pragma once
-#ifndef DT3_ARCHIVEBINARYREADER
-#define DT3_ARCHIVEBINARYREADER
 //==============================================================================
 ///
 ///	File: ArchiveBinaryReader.hpp
@@ -96,5 +94,3 @@ class ArchiveBinaryReader: public Archive {
 //==============================================================================
 
 } // DT3
-
-#endif

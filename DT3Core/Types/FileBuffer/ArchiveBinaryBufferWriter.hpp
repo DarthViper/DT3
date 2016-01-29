@@ -1,6 +1,4 @@
 #pragma once
-#ifndef DT3_ARCHIVEBINARYBUFFERWRITER
-#define DT3_ARCHIVEBINARYBUFFERWRITER
 //==============================================================================
 ///
 ///	File: ArchiveBinaryBufferWriter.hpp
@@ -76,5 +74,3 @@ class ArchiveBinaryBufferWriter: public Archive {
 //==============================================================================
 
 } // DT3
-
-#endif

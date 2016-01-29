@@ -107,14 +107,6 @@ ScriptingParticleKillZone::~ScriptingParticleKillZone (void)
 //==============================================================================
 //==============================================================================
 
-void ScriptingParticleKillZone::initialize (void)
-{
-	ScriptingBase::initialize();
-}
-
-//==============================================================================
-//==============================================================================
-
 void ScriptingParticleKillZone::archive (const std::shared_ptr<Archive> &archive)
 {
     ScriptingBase::archive(archive);

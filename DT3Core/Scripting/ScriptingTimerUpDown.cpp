@@ -134,14 +134,6 @@ ScriptingTimerUpDown::~ScriptingTimerUpDown (void)
 //==============================================================================
 //==============================================================================
 
-void ScriptingTimerUpDown::initialize (void)
-{
-	ScriptingBase::initialize();
-}
-
-//==============================================================================
-//==============================================================================
-
 void ScriptingTimerUpDown::archive (const std::shared_ptr<Archive> &archive)
 {
     ScriptingBase::archive(archive);

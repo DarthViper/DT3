@@ -156,14 +156,6 @@ ScriptingKeyDown::~ScriptingKeyDown (void)
 //==============================================================================
 //==============================================================================
 
-void ScriptingKeyDown::initialize (void)
-{
-	ScriptingBase::initialize();
-}
-
-//==============================================================================
-//==============================================================================
-
 void ScriptingKeyDown::archive (const std::shared_ptr<Archive> &archive)
 {
     ScriptingBase::archive(archive);

@@ -80,14 +80,6 @@ ScriptingGeometry::~ScriptingGeometry (void)
 //==============================================================================
 //==============================================================================
 
-void ScriptingGeometry::initialize (void)
-{
-	ScriptingBase::initialize();
-}
-
-//==============================================================================
-//==============================================================================
-
 void ScriptingGeometry::archive (const std::shared_ptr<Archive> &archive)
 {
     ScriptingBase::archive(archive);

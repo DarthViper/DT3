@@ -83,14 +83,6 @@ ScriptingKeyframesRoot::~ScriptingKeyframesRoot (void)
 //==============================================================================
 //==============================================================================
 
-void ScriptingKeyframesRoot::initialize (void)
-{
-	ScriptingBase::initialize();
-}
-
-//==============================================================================
-//==============================================================================
-
 void ScriptingKeyframesRoot::archive (const std::shared_ptr<Archive> &archive)
 {
     ScriptingBase::archive(archive);

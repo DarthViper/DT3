@@ -14,7 +14,6 @@
 
 #include "DT3Core/Devices/DeviceBase.hpp"
 #include "DT3Core/Types/Math/Vector3.hpp"
-#include "DT3Core/Types/Sound/SoundSource.hpp"
 
 //==============================================================================
 //==============================================================================
@@ -30,6 +29,7 @@ class CameraObject;
 class FilePath;
 class ScriptingSound;
 class World;
+class SoundSource;
 
 //==============================================================================
 /// Class

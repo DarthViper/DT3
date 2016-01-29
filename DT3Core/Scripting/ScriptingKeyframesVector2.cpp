@@ -95,14 +95,6 @@ ScriptingKeyframesVector2::~ScriptingKeyframesVector2 (void)
 //==============================================================================
 //==============================================================================
 
-void ScriptingKeyframesVector2::initialize (void)
-{
-	ScriptingKeyframes::initialize();
-}
-
-//==============================================================================
-//==============================================================================
-
 void ScriptingKeyframesVector2::archive (const std::shared_ptr<Archive> &archive)
 {
     ScriptingKeyframes::archive(archive);

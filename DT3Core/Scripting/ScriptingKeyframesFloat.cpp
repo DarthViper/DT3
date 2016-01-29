@@ -92,14 +92,6 @@ ScriptingKeyframesFloat::~ScriptingKeyframesFloat (void)
 //==============================================================================
 //==============================================================================
 
-void ScriptingKeyframesFloat::initialize (void)
-{
-	ScriptingKeyframes::initialize();
-}
-
-//==============================================================================
-//==============================================================================
-
 void ScriptingKeyframesFloat::archive (const std::shared_ptr<Archive> &archive)
 {
     ScriptingKeyframes::archive(archive);

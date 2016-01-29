@@ -1,6 +1,4 @@
 #pragma once
-#ifndef DT3_SCRIPTINGABS
-#define DT3_SCRIPTINGABS
 //==============================================================================
 ///
 ///	File: ScriptingABS.hpp
@@ -41,9 +39,6 @@ class ScriptingABS: public ScriptingBase {
         virtual void                archive                 (const std::shared_ptr<Archive> &archive);
 
     public:
-        /// Called to initialize the object
-        virtual void				initialize				(void);
-
         /// Computes the value of the node
         /// \param plug plug to compute
         DTboolean					compute					(const PlugBase *plug);
@@ -58,5 +53,3 @@ class ScriptingABS: public ScriptingBase {
 //==============================================================================
 
 } // DT3
-
-#endif

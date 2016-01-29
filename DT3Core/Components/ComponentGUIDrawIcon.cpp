@@ -16,6 +16,8 @@
 #include "DT3Core/System/Factory.hpp"
 #include "DT3Core/System/System.hpp"
 #include "DT3Core/Objects/GUIObject.hpp"
+#include "DT3Core/Resources/ResourceTypes/MaterialResource.hpp"
+#include "DT3Core/Resources/ResourceTypes/ShaderResource.hpp"
 
 //==============================================================================
 //==============================================================================
@@ -96,14 +98,6 @@ ComponentGUIDrawIcon & ComponentGUIDrawIcon::operator = (const ComponentGUIDrawI
 ComponentGUIDrawIcon::~ComponentGUIDrawIcon (void)
 {
 
-}
-
-//==============================================================================
-//==============================================================================
-
-void ComponentGUIDrawIcon::initialize (void)
-{
-	ComponentBase::initialize();
 }
 
 //==============================================================================

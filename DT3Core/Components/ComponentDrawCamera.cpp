@@ -19,6 +19,8 @@
 #include "DT3Core/Objects/ObjectBase.hpp"
 #include "DT3Core/Objects/CameraObject.hpp"
 #include "DT3Core/World/World.hpp"
+#include "DT3Core/Resources/ResourceTypes/MaterialResource.hpp"
+#include "DT3Core/Resources/ResourceTypes/ShaderResource.hpp"
 
 //==============================================================================
 //==============================================================================
@@ -147,16 +149,6 @@ ComponentDrawCamera & ComponentDrawCamera::operator = (const ComponentDrawCamera
 
 ComponentDrawCamera::~ComponentDrawCamera (void)
 {
-
-}
-
-//==============================================================================
-//==============================================================================
-
-void ComponentDrawCamera::initialize (void)
-{
-    ComponentBase::initialize();
-
 
 }
 

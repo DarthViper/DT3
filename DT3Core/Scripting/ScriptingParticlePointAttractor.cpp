@@ -108,14 +108,6 @@ ScriptingParticlePointAttractor::~ScriptingParticlePointAttractor (void)
 //==============================================================================
 //==============================================================================
 
-void ScriptingParticlePointAttractor::initialize (void)
-{
-	ScriptingBase::initialize();
-}
-
-//==============================================================================
-//==============================================================================
-
 void ScriptingParticlePointAttractor::archive (const std::shared_ptr<Archive> &archive)
 {
     ScriptingBase::archive(archive);

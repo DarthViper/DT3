@@ -121,14 +121,6 @@ ScriptingSoundMixer::~ScriptingSoundMixer (void)
 //==============================================================================
 //==============================================================================
 
-void ScriptingSoundMixer::initialize (void)
-{
-	ScriptingSoundBase::initialize();
-}
-
-//==============================================================================
-//==============================================================================
-
 void ScriptingSoundMixer::archive (const std::shared_ptr<Archive> &archive)
 {
     ScriptingSoundBase::archive(archive);

@@ -91,14 +91,6 @@ ScriptingSubtract::~ScriptingSubtract (void)
 //==============================================================================
 //==============================================================================
 
-void ScriptingSubtract::initialize (void)
-{
-	ScriptingBase::initialize();
-}
-
-//==============================================================================
-//==============================================================================
-
 void ScriptingSubtract::archive (const std::shared_ptr<Archive> &archive)
 {
     ScriptingBase::archive(archive);

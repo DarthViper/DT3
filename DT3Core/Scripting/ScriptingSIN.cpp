@@ -83,14 +83,6 @@ ScriptingSIN::~ScriptingSIN (void)
 //==============================================================================
 //==============================================================================
 
-void ScriptingSIN::initialize (void)
-{
-	ScriptingBase::initialize();
-}
-
-//==============================================================================
-//==============================================================================
-
 void ScriptingSIN::archive (const std::shared_ptr<Archive> &archive)
 {
     ScriptingBase::archive(archive);

@@ -89,14 +89,6 @@ ScriptingDelayOn::~ScriptingDelayOn (void)
 //==============================================================================
 //==============================================================================
 
-void ScriptingDelayOn::initialize (void)
-{
-	ScriptingBase::initialize();
-}
-
-//==============================================================================
-//==============================================================================
-
 void ScriptingDelayOn::archive (const std::shared_ptr<Archive> &archive)
 {
     ScriptingBase::archive(archive);

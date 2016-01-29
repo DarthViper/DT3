@@ -99,14 +99,6 @@ ScriptingStringConcat::~ScriptingStringConcat (void)
 //==============================================================================
 //==============================================================================
 
-void ScriptingStringConcat::initialize (void)
-{
-	ScriptingBase::initialize();
-}
-
-//==============================================================================
-//==============================================================================
-
 void ScriptingStringConcat::archive (const std::shared_ptr<Archive> &archive)
 {
     ScriptingBase::archive(archive);

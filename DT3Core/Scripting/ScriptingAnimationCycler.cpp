@@ -99,14 +99,6 @@ ScriptingAnimationCycler::~ScriptingAnimationCycler (void)
 //==============================================================================
 //==============================================================================
 
-void ScriptingAnimationCycler::initialize (void)
-{
-	ScriptingBase::initialize();
-}
-
-//==============================================================================
-//==============================================================================
-
 void ScriptingAnimationCycler::archive (const std::shared_ptr<Archive> &archive)
 {
     ScriptingBase::archive(archive);

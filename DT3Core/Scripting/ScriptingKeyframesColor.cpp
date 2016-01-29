@@ -92,14 +92,6 @@ ScriptingKeyframesColor::~ScriptingKeyframesColor (void)
 //==============================================================================
 //==============================================================================
 
-void ScriptingKeyframesColor::initialize (void)
-{
-	ScriptingKeyframes::initialize();
-}
-
-//==============================================================================
-//==============================================================================
-
 void ScriptingKeyframesColor::archive (const std::shared_ptr<Archive> &archive)
 {
     ScriptingKeyframes::archive(archive);

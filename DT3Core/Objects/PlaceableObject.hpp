@@ -41,13 +41,6 @@ class PlaceableObject: public ObjectBase {
         virtual void                archive                 (const std::shared_ptr<Archive> &archive);
 
     public:
-        /// Called to initialize the object
-        virtual void				initialize				(void);
-
-        /// Called to initialize the object
-        virtual void				uninitialize            (void);
-
-
         /// Returns whether there is a parent
         /// \return has parent object
         inline DTboolean			has_parent				(void) const	{	return _parent_transform.has_incoming_connection();		}

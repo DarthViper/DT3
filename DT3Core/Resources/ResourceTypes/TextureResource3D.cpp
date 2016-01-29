@@ -52,6 +52,8 @@ TextureResource3D::TextureResource3D (void)
 		_mipmapped			(false),
         _flags              (0)
 {
+    SystemCallbacks::screen_opened_cb().add(make_callback(this, &type::screen_opened));
+    SystemCallbacks::screen_closed_cb().add(make_callback(this, &type::screen_closed));
 
 }
 			
@@ -133,17 +135,6 @@ void TextureResource3D::initialize_static (void)
 void TextureResource3D::uninitialize_static (void)
 {
     SystemCallbacks::reload_resources_cb().remove(make_callback(&type::reload_if_changed));
-}
-
-//==============================================================================
-//==============================================================================
-
-void TextureResource3D::initialize (void)
-{
-	Resource::initialize();
-    
-    SystemCallbacks::screen_opened_cb().add(make_callback(this, &type::screen_opened));
-    SystemCallbacks::screen_closed_cb().add(make_callback(this, &type::screen_closed));
 }
 
 //==============================================================================

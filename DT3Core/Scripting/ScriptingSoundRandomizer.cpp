@@ -157,14 +157,6 @@ ScriptingSoundRandomizer::~ScriptingSoundRandomizer (void)
 //==============================================================================
 //==============================================================================
 
-void ScriptingSoundRandomizer::initialize (void)
-{
-	ScriptingSoundBase::initialize();
-}
-
-//==============================================================================
-//==============================================================================
-
 void ScriptingSoundRandomizer::archive (const std::shared_ptr<Archive> &archive)
 {
     ScriptingSoundBase::archive(archive);

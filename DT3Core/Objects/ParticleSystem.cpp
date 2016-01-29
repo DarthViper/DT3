@@ -90,14 +90,6 @@ ParticleSystem::~ParticleSystem (void)
 //==============================================================================
 //==============================================================================
 
-void ParticleSystem::initialize (void)
-{
-	PlaceableObject::initialize();
-}
-
-//==============================================================================
-//==============================================================================
-
 void ParticleSystem::archive (const std::shared_ptr<Archive> &archive)
 {
     PlaceableObject::archive(archive);

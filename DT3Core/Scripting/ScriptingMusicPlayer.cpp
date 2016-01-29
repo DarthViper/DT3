@@ -120,14 +120,6 @@ ScriptingMusicPlayer::~ScriptingMusicPlayer (void)
 //==============================================================================
 //==============================================================================
 
-void ScriptingMusicPlayer::initialize (void)
-{
-	ScriptingBase::initialize();
-}
-
-//==============================================================================
-//==============================================================================
-
 void ScriptingMusicPlayer::archive (const std::shared_ptr<Archive> &archive)
 {
     ScriptingBase::archive(archive);

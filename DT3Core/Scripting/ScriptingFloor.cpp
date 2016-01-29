@@ -83,14 +83,6 @@ ScriptingFloor::~ScriptingFloor (void)
 //==============================================================================
 //==============================================================================
 
-void ScriptingFloor::initialize (void)
-{
-	ScriptingBase::initialize();
-}
-
-//==============================================================================
-//==============================================================================
-
 void ScriptingFloor::archive (const std::shared_ptr<Archive> &archive)
 {
     ScriptingBase::archive(archive);

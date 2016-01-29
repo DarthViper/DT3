@@ -47,9 +47,6 @@ class ComponentBase: public PlugNode {
         virtual void                archive             (const std::shared_ptr<Archive> &archive);
 
     public:
-        /// Called to initialize the object
-        virtual void				initialize			(void);
-
         /// Returns the full name of the component that uniquely identifies it
         /// \return full name of the component
         virtual std::string         full_name           (void) const;

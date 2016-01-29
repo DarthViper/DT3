@@ -12,6 +12,7 @@
 #include "DT3Core/Types/FileBuffer/ArchiveBinaryReader.hpp"
 #include "DT3Core/Types/FileBuffer/ArchiveData.hpp"
 #include "DT3Core/System/FileManager.hpp"
+#include "DT3Core/Types/Utility/Config.hpp"
 #include "DT3Core/Types/Utility/Error.hpp"
 
 //==============================================================================

@@ -79,14 +79,6 @@ ScriptingTexture2D::~ScriptingTexture2D (void)
 //==============================================================================
 //==============================================================================
 
-void ScriptingTexture2D::initialize (void)
-{
-	ScriptingBase::initialize();
-}
-
-//==============================================================================
-//==============================================================================
-
 void ScriptingTexture2D::archive (const std::shared_ptr<Archive> &archive)
 {
     ScriptingBase::archive(archive);

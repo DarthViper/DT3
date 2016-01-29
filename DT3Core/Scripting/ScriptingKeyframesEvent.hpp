@@ -48,9 +48,6 @@ class ScriptingKeyframesEvent: public ScriptingKeyframes {
         virtual void                remove_from_world       (void);
 
     public:
-        /// Called to initialize the object
-        virtual void				initialize				(void);
-
         /// Registered with world to tick this node
         /// \param dt delta time
         void                        tick                    (const DTfloat dt);

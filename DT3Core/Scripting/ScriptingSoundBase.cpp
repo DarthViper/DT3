@@ -18,7 +18,7 @@
 //==============================================================================
 //==============================================================================
 
-namespace DT3 {
+using namespace DT3;
 
 //==============================================================================
 /// Register with object factory
@@ -39,12 +39,14 @@ END_IMPLEMENT_PLUGS
 
 ScriptingSoundBase::ScriptingSoundBase (void)
 {  
+    set_node_color(Color4f(0.360784F,0.729412F,0.92549F,1.0F));
 
 }
 		
 ScriptingSoundBase::ScriptingSoundBase (const ScriptingSoundBase &rhs)
     :   ScriptingBase	(rhs)
 {   
+    set_node_color(Color4f(0.360784F,0.729412F,0.92549F,1.0F));
 
 }	
 
@@ -65,15 +67,6 @@ ScriptingSoundBase::~ScriptingSoundBase (void)
 //==============================================================================
 //==============================================================================
 
-void ScriptingSoundBase::initialize (void)
-{
-	ScriptingBase::initialize();
-    set_node_color(Color4f(0.360784F,0.729412F,0.92549F,1.0F));
-}
-
-//==============================================================================
-//==============================================================================
-
 void ScriptingSoundBase::archive (const std::shared_ptr<Archive> &archive)
 {
     ScriptingBase::archive(archive);
@@ -84,6 +77,3 @@ void ScriptingSoundBase::archive (const std::shared_ptr<Archive> &archive)
 
 //==============================================================================
 //==============================================================================
-
-} // DT3
-

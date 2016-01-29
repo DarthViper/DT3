@@ -91,14 +91,6 @@ ScriptingVector2ToComponents::~ScriptingVector2ToComponents (void)
 //==============================================================================
 //==============================================================================
 
-void ScriptingVector2ToComponents::initialize (void)
-{
-	ScriptingBase::initialize();
-}
-
-//==============================================================================
-//==============================================================================
-
 void ScriptingVector2ToComponents::archive (const std::shared_ptr<Archive> &archive)
 {
     ScriptingBase::archive(archive);

@@ -49,10 +49,6 @@ class ScriptingKeyDown: public ScriptingBase {
         virtual void                remove_from_world       (void);
 
     public:
-
-        /// Called to initialize the object
-        virtual void				initialize				(void);
-
         /// Called in accelerometer callback
         void                        key                     (DTuint modifiers, DTushort key);
 

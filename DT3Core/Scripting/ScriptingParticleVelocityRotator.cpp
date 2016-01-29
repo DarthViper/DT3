@@ -87,14 +87,6 @@ ScriptingParticleVelocityRotator::~ScriptingParticleVelocityRotator (void)
 //==============================================================================
 //==============================================================================
 
-void ScriptingParticleVelocityRotator::initialize (void)
-{
-	ScriptingBase::initialize();
-}
-
-//==============================================================================
-//==============================================================================
-
 void ScriptingParticleVelocityRotator::archive (const std::shared_ptr<Archive> &archive)
 {
     ScriptingBase::archive(archive);

@@ -110,14 +110,6 @@ ScriptingVector3Transform::~ScriptingVector3Transform (void)
 //==============================================================================
 //==============================================================================
 
-void ScriptingVector3Transform::initialize (void)
-{
-	ScriptingBase::initialize();
-}
-
-//==============================================================================
-//==============================================================================
-
 void ScriptingVector3Transform::archive (const std::shared_ptr<Archive> &archive)
 {
     ScriptingBase::archive(archive);

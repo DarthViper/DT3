@@ -127,14 +127,6 @@ ScriptingParticleEmitterPeriodic::~ScriptingParticleEmitterPeriodic (void)
 //==============================================================================
 //==============================================================================
 
-void ScriptingParticleEmitterPeriodic::initialize (void)
-{
-	ScriptingParticleEmitter::initialize();
-}
-
-//==============================================================================
-//==============================================================================
-
 void ScriptingParticleEmitterPeriodic::archive (const std::shared_ptr<Archive> &archive)
 {
     ScriptingParticleEmitter::archive(archive);

@@ -23,11 +23,14 @@
 #include "DT3Core/Objects/PlaceableObject.hpp"
 #include "DT3Core/World/World.hpp"
 #include "DT3Core/Types/Graphics/DrawUtils.hpp"
+#include "DT3Core/Resources/ResourceTypes/MaterialResource.hpp"
+#include "DT3Core/Resources/ResourceTypes/ShaderResource.hpp"
+#include "DT3Core/Resources/ResourceTypes/GeometryResource.hpp"
 
 //==============================================================================
 //==============================================================================
 
-namespace DT3 {
+using namespace DT3;
 
 //==============================================================================
 /// Register with object factory
@@ -65,7 +68,8 @@ ComponentDrawMesh::ComponentDrawMesh (void)
         _material           (PLUG_INFO_INDEX(_material)),
         _shader             (PLUG_INFO_INDEX(_shader))
 {
-
+    SystemCallbacks::screen_opened_cb().add(make_callback(this, &type::screen_opened));
+    SystemCallbacks::screen_closed_cb().add(make_callback(this, &type::screen_closed));
 }
 
 ComponentDrawMesh::ComponentDrawMesh (const ComponentDrawMesh &rhs)
@@ -74,6 +78,8 @@ ComponentDrawMesh::ComponentDrawMesh (const ComponentDrawMesh &rhs)
         _material           (rhs._material),
         _shader             (rhs._shader)
 {
+    SystemCallbacks::screen_opened_cb().add(make_callback(this, &type::screen_opened));
+    SystemCallbacks::screen_closed_cb().add(make_callback(this, &type::screen_closed));
 
 }
 
@@ -94,17 +100,6 @@ ComponentDrawMesh::~ComponentDrawMesh (void)
 {
     SystemCallbacks::screen_opened_cb().remove(make_callback(this, &type::screen_opened));
     SystemCallbacks::screen_closed_cb().remove(make_callback(this, &type::screen_closed));
-}
-
-//==============================================================================
-//==============================================================================
-
-void ComponentDrawMesh::initialize (void)
-{
-    ComponentBase::initialize();
-
-    SystemCallbacks::screen_opened_cb().add(make_callback(this, &type::screen_opened));
-    SystemCallbacks::screen_closed_cb().add(make_callback(this, &type::screen_closed));
 }
 
 //==============================================================================
@@ -307,6 +302,3 @@ void ComponentDrawMesh::remove_from_owner (void)
 
 //==============================================================================
 //==============================================================================
-
-} // DT3
-

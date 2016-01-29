@@ -141,14 +141,6 @@ ScriptingTimerRanged::~ScriptingTimerRanged (void)
 //==============================================================================
 //==============================================================================
 
-void ScriptingTimerRanged::initialize (void)
-{
-	ScriptingBase::initialize();
-}
-
-//==============================================================================
-//==============================================================================
-
 void ScriptingTimerRanged::archive (const std::shared_ptr<Archive> &archive)
 {
     ScriptingBase::archive(archive);

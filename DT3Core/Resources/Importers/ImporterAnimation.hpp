@@ -1,6 +1,4 @@
 #pragma once
-#ifndef DT3_IMPORTERANIMATION
-#define DT3_IMPORTERANIMATION
 //==============================================================================
 ///
 ///	File: ImporterAnimation.hpp
@@ -56,5 +54,3 @@ class ImporterAnimation: public BaseClass {
 //==============================================================================
 
 } // DT3
-
-#endif

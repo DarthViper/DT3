@@ -50,9 +50,6 @@ class BinaryFileStream: public BinaryStream {
         virtual                             ~BinaryFileStream	(void);
 
     public:
-        /// Called to initialize the object
-        virtual void                        initialize			(void);
-
         Stream&                             operator<<			(const Stream::FS)	{	return *this;	}
         Stream&                             operator<<			(const DTboolean n);
         Stream&                             operator<<			(const DTbyte n);

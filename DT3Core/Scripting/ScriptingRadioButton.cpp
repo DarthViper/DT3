@@ -451,14 +451,6 @@ ScriptingRadioButton::~ScriptingRadioButton (void)
 //==============================================================================
 //==============================================================================
 
-void ScriptingRadioButton::initialize (void)
-{
-	ScriptingBase::initialize();
-}
-
-//==============================================================================
-//==============================================================================
-
 void ScriptingRadioButton::archive (const std::shared_ptr<Archive> &archive)
 {
     ScriptingBase::archive(archive);

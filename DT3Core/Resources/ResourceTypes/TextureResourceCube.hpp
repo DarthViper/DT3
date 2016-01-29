@@ -1,6 +1,4 @@
 #pragma once
-#ifndef DT3_TEXTURERESOURCE
-#define DT3_TEXTURERESOURCE
 //==============================================================================
 ///
 ///	File: TextureResourceCube.hpp
@@ -53,10 +51,6 @@ class TextureResourceCube: public Resource {
 
         /// Called to uninitialize the class
         static void                 uninitialize_static (void);
-
-        /// Called to initialize the object
-        virtual void				initialize          (void);
-
 
         /// Import the resource with an importer into a platform independent format
         /// \param pathname path to resource
@@ -146,5 +140,3 @@ Stream& operator >>(Stream &s, std::shared_ptr<TextureResourceCube> &r);
 //==============================================================================
 
 } // DT3
-
-#endif

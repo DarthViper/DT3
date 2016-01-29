@@ -1,6 +1,4 @@
 #pragma once
-#ifndef DT3_ANIMATIONPOSE
-#define DT3_ANIMATIONPOSE
 //==============================================================================
 ///
 ///	File: AnimationPose.hpp
@@ -74,6 +72,3 @@ Stream& operator >>(Stream &s, std::shared_ptr<AnimationPose> &r);
 //==============================================================================
 
 } // DT3
-
-#endif
-

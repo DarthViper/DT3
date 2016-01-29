@@ -1,6 +1,4 @@
 #pragma once
-#ifndef DT3_IMPORTERANIMATIONTWA
-#define DT3_IMPORTERANIMATIONTWA
 //==============================================================================
 ///
 ///	File: ImporterAnimationTWA.hpp
@@ -60,9 +58,9 @@ class ImporterAnimationTWA: public ImporterAnimation {
             MAGIC = 0x5E11E70E,
 
             FILE = 0,
-                ANIMATION = 1,
-                    ANIMATION_TRACKS = 2,
-                        ANIMATION_TRACK = 3
+            ANIMATION = 1,
+            ANIMATION_TRACKS = 2,
+            ANIMATION_TRACK = 3
         };
 
 
@@ -101,5 +99,3 @@ class ImporterAnimationTWA: public ImporterAnimation {
 //==============================================================================
 
 } // DT3
-
-#endif

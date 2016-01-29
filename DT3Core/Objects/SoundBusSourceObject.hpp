@@ -40,9 +40,6 @@ class SoundBusSourceObject: public PlaceableObject {
 
         virtual void				archive                         (const std::shared_ptr<Archive> &archive);
 
-        /// Called to initialize the object
-        virtual void				initialize						(void);
-
         /// Play the bus
         /// \param sender node (if any) that caused this event
         void                        play                            (PlugNode *sender);

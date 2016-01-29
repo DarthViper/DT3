@@ -1,6 +1,4 @@
 #pragma once
-#ifndef DT3_BASECLASS
-#define DT3_BASECLASS
 //==============================================================================
 ///
 ///	File: BaseClass.hpp
@@ -37,24 +35,13 @@ class BaseClass: public std::enable_shared_from_this<BaseClass> {
 
                                     BaseClass                       (void);
                                     BaseClass                       (const BaseClass &rhs);
+                                    virtual ~BaseClass                      ()   {}
         BaseClass &					operator =                      (const BaseClass &rhs);
-        virtual                     ~BaseClass                      (void);
 
         virtual void                archive                         (const std::shared_ptr<Archive> &archive);
         virtual void                archive_done                    (const std::shared_ptr<Archive> &UNUSED(archive))  {}
 
     public:
-
-        //
-        // Exception safe initialization
-        //
-
-        /// Called to initialize the object
-        virtual void				initialize                      (void);
-
-        /// Called to uninitialize the object
-        virtual void				uninitialize                    (void);
-
 
         //
         // Archiving
@@ -87,5 +74,3 @@ class BaseClass: public std::enable_shared_from_this<BaseClass> {
 
 
 } // DT3
-
-#endif

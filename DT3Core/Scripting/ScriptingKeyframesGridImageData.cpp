@@ -92,14 +92,6 @@ ScriptingKeyframesGridImageData::~ScriptingKeyframesGridImageData (void)
 //==============================================================================
 //==============================================================================
 
-void ScriptingKeyframesGridImageData::initialize (void)
-{
-	ScriptingKeyframes::initialize();
-}
-
-//==============================================================================
-//==============================================================================
-
 void ScriptingKeyframesGridImageData::archive (const std::shared_ptr<Archive> &archive)
 {
     ScriptingKeyframes::archive(archive);

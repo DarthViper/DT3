@@ -27,14 +27,14 @@ namespace DT3 {
 ComponentBase::ComponentBase (void)
     :   _owner      (NULL)
 {
-
+    set_name(class_id_child());
 }
 		
 ComponentBase::ComponentBase (const ComponentBase &rhs)
     :   PlugNode	(rhs),
         _owner      (NULL)
 {
-
+    set_name(class_id_child());
 }
 
 ComponentBase & ComponentBase::operator = (const ComponentBase &rhs)
@@ -49,15 +49,6 @@ ComponentBase & ComponentBase::operator = (const ComponentBase &rhs)
 ComponentBase::~ComponentBase (void)
 {
     
-}
-
-//==============================================================================
-//==============================================================================
-
-void ComponentBase::initialize (void)
-{
-	PlugNode::initialize();
-    set_name(class_id_child());
 }
 
 //==============================================================================

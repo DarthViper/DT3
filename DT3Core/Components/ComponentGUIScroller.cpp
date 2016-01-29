@@ -180,14 +180,6 @@ ComponentGUIScroller::~ComponentGUIScroller (void)
 //==============================================================================
 //==============================================================================
 
-void ComponentGUIScroller::initialize (void)
-{
-    ComponentBase::initialize();
-}
-
-//==============================================================================
-//==============================================================================
-
 void ComponentGUIScroller::archive (const std::shared_ptr<Archive> &archive)
 {
     ComponentBase::archive(archive);

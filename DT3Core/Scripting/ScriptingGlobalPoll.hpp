@@ -49,10 +49,6 @@ class ScriptingGlobalPoll: public ScriptingBase {
         virtual void                remove_from_world       (void);
 
     public:
-
-        /// Called to initialize the object
-        virtual void				initialize				(void);
-
         /// Play Event
         void                        read                    (PlugNode *sender);
 

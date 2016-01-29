@@ -112,14 +112,6 @@ ScriptingParticleColorSequencer::~ScriptingParticleColorSequencer (void)
 //==============================================================================
 //==============================================================================
 
-void ScriptingParticleColorSequencer::initialize (void)
-{
-	ScriptingBase::initialize();
-}
-
-//==============================================================================
-//==============================================================================
-
 void ScriptingParticleColorSequencer::archive (const std::shared_ptr<Archive> &archive)
 {
     ScriptingBase::archive(archive);

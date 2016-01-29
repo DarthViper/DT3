@@ -135,14 +135,6 @@ ScriptingParticleEmitterBurst::~ScriptingParticleEmitterBurst (void)
 //==============================================================================
 //==============================================================================
 
-void ScriptingParticleEmitterBurst::initialize (void)
-{
-	ScriptingParticleEmitter::initialize();
-}
-
-//==============================================================================
-//==============================================================================
-
 void ScriptingParticleEmitterBurst::archive (const std::shared_ptr<Archive> &archive)
 {
     ScriptingParticleEmitter::archive(archive);

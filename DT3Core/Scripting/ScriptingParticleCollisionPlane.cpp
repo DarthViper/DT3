@@ -117,14 +117,6 @@ ScriptingParticleCollisionPlane::~ScriptingParticleCollisionPlane (void)
 //==============================================================================
 //==============================================================================
 
-void ScriptingParticleCollisionPlane::initialize (void)
-{
-	ScriptingBase::initialize();
-}
-
-//==============================================================================
-//==============================================================================
-
 void ScriptingParticleCollisionPlane::archive (const std::shared_ptr<Archive> &archive)
 {
     ScriptingBase::archive(archive);

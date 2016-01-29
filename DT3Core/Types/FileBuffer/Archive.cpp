@@ -10,6 +10,8 @@
 //==============================================================================
 
 #include "DT3Core/Types/FileBuffer/Archive.hpp"
+#include "DT3Core/System/AppConfig.hpp"
+#include "DT3Core/Types/Utility/Config.hpp"
 
 //==============================================================================
 //==============================================================================
@@ -45,9 +47,11 @@ Archive& Archive::add_post_process		(const std::shared_ptr<ArchiveProcess> &proc
 	return (*this);
 }
 
+DTuint Archive::version() const                {	return Config::engine_version();			}
+
 std::shared_ptr<ArchiveProcess> Archive::pop_post_process (void)
 {
-	if (_processes.size() <= 0) {
+    if (_processes.size() <= 0) {
 		return std::shared_ptr<ArchiveProcess>(NULL);
 	} else {
 		std::shared_ptr<ArchiveProcess> process(_processes.front());

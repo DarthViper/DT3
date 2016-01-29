@@ -108,14 +108,6 @@ ScriptingParticleTimeScaler::~ScriptingParticleTimeScaler (void)
 //==============================================================================
 //==============================================================================
 
-void ScriptingParticleTimeScaler::initialize (void)
-{
-	ScriptingBase::initialize();
-}
-
-//==============================================================================
-//==============================================================================
-
 void ScriptingParticleTimeScaler::archive (const std::shared_ptr<Archive> &archive)
 {
     ScriptingBase::archive(archive);

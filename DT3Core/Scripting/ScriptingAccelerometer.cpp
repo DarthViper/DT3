@@ -107,14 +107,6 @@ ScriptingAccelerometer::~ScriptingAccelerometer (void)
 //==============================================================================
 //==============================================================================
 
-void ScriptingAccelerometer::initialize (void)
-{
-	ScriptingBase::initialize();
-}
-
-//==============================================================================
-//==============================================================================
-
 void ScriptingAccelerometer::archive (const std::shared_ptr<Archive> &archive)
 {
     ScriptingBase::archive(archive);

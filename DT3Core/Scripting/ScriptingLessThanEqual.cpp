@@ -91,14 +91,6 @@ ScriptingLessThanEqual::~ScriptingLessThanEqual (void)
 //==============================================================================
 //==============================================================================
 
-void ScriptingLessThanEqual::initialize (void)
-{
-	ScriptingBase::initialize();
-}
-
-//==============================================================================
-//==============================================================================
-
 void ScriptingLessThanEqual::archive (const std::shared_ptr<Archive> &archive)
 {
     ScriptingBase::archive(archive);

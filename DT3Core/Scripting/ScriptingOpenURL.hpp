@@ -43,9 +43,6 @@ class ScriptingOpenURL: public ScriptingBase {
 
     public:
 
-        /// Called to initialize the object
-        virtual void				initialize				(void);
-
         /// Go Event
         void                        go                      (PlugNode *sender);
 

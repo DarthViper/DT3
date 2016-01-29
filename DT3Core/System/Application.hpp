@@ -45,9 +45,6 @@ class Application: public BaseClass {
 
 
     public:
-        /// Initialize the configuration system
-        void                            initialize                  (void);
-
         /// Sets the current world
         /// \param world new current world
         void                            set_world                   (const std::shared_ptr<World> &world);

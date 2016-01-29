@@ -99,14 +99,6 @@ ScriptingTimer::~ScriptingTimer (void)
 //==============================================================================
 //==============================================================================
 
-void ScriptingTimer::initialize (void)
-{
-    ScriptingBase::initialize();
-}
-
-//==============================================================================
-//==============================================================================
-
 void ScriptingTimer::archive (const std::shared_ptr<Archive> &archive)
 {
     ScriptingBase::archive(archive);

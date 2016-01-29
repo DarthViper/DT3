@@ -91,14 +91,6 @@ ScriptingDivide::~ScriptingDivide (void)
 //==============================================================================
 //==============================================================================
 
-void ScriptingDivide::initialize (void)
-{
-	ScriptingBase::initialize();
-}
-
-//==============================================================================
-//==============================================================================
-
 void ScriptingDivide::archive (const std::shared_ptr<Archive> &archive)
 {
     ScriptingBase::archive(archive);

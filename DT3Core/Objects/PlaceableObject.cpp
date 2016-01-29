@@ -210,22 +210,8 @@ PlaceableObject & PlaceableObject::operator = (const PlaceableObject &rhs)
 			
 PlaceableObject::~PlaceableObject (void)
 {
+    unparent_children();
 
-}
-
-//==============================================================================
-//==============================================================================
-
-void PlaceableObject::initialize (void)
-{
-	ObjectBase::initialize();
-}
-
-void PlaceableObject::uninitialize (void)
-{
-	ObjectBase::uninitialize();
-
-	unparent_children();
 }
 
 //==============================================================================

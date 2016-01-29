@@ -10,9 +10,7 @@
 ///
 //==============================================================================
 
-#include "DT3Core/System/AppConfig.hpp"
 #include "DT3Core/Types/Base/BaseClass.hpp"
-#include "DT3Core/Types/Utility/Config.hpp"
 #include <list>
 #include <memory>
 
@@ -67,7 +65,7 @@ class Archive: public BaseClass {
 
                 /// Returns the version of the archive
                 /// \return the version of the archive
-                virtual DTuint                  version                     (void) const                {	return Config::engine_version();			}
+                virtual DTuint                  version                     (void) const;
 
                 /// Returns the version of the archive
                 /// \return the version of the archive

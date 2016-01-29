@@ -83,14 +83,6 @@ ScriptingFrac::~ScriptingFrac (void)
 //==============================================================================
 //==============================================================================
 
-void ScriptingFrac::initialize (void)
-{
-	ScriptingBase::initialize();
-}
-
-//==============================================================================
-//==============================================================================
-
 void ScriptingFrac::archive (const std::shared_ptr<Archive> &archive)
 {
     ScriptingBase::archive(archive);

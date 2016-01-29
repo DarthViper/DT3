@@ -97,14 +97,6 @@ ScriptingPulse::~ScriptingPulse (void)
 //==============================================================================
 //==============================================================================
 
-void ScriptingPulse::initialize (void)
-{
-	ScriptingBase::initialize();
-}
-
-//==============================================================================
-//==============================================================================
-
 void ScriptingPulse::archive (const std::shared_ptr<Archive> &archive)
 {
     ScriptingBase::archive(archive);

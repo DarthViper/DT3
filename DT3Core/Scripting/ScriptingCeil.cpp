@@ -83,14 +83,6 @@ ScriptingCeil::~ScriptingCeil (void)
 //==============================================================================
 //==============================================================================
 
-void ScriptingCeil::initialize (void)
-{
-	ScriptingBase::initialize();
-}
-
-//==============================================================================
-//==============================================================================
-
 void ScriptingCeil::archive (const std::shared_ptr<Archive> &archive)
 {
     ScriptingBase::archive(archive);

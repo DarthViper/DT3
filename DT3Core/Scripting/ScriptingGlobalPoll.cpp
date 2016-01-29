@@ -94,14 +94,6 @@ ScriptingGlobalPoll::~ScriptingGlobalPoll (void)
 //==============================================================================
 //==============================================================================
 
-void ScriptingGlobalPoll::initialize (void)
-{
-	ScriptingBase::initialize();
-}
-
-//==============================================================================
-//==============================================================================
-
 void ScriptingGlobalPoll::archive (const std::shared_ptr<Archive> &archive)
 {
     ScriptingBase::archive(archive);

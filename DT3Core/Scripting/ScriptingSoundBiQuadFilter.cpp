@@ -130,14 +130,6 @@ ScriptingSoundBiquadFilter::~ScriptingSoundBiquadFilter (void)
 //==============================================================================
 //==============================================================================
 
-void ScriptingSoundBiquadFilter::initialize (void)
-{
-	ScriptingSoundBase::initialize();
-}
-
-//==============================================================================
-//==============================================================================
-
 void ScriptingSoundBiquadFilter::archive (const std::shared_ptr<Archive> &archive)
 {
     ScriptingSoundBase::archive(archive);

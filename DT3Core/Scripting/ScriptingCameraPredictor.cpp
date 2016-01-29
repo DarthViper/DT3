@@ -121,14 +121,6 @@ ScriptingCameraPredictor::~ScriptingCameraPredictor (void)
 //==============================================================================
 //==============================================================================
 
-void ScriptingCameraPredictor::initialize (void)
-{
-	ScriptingBase::initialize();
-}
-
-//==============================================================================
-//==============================================================================
-
 void ScriptingCameraPredictor::archive (const std::shared_ptr<Archive> &archive)
 {
     ScriptingBase::archive(archive);

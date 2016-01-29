@@ -1,6 +1,4 @@
 #pragma once
-#ifndef DT3_DEVICEMUSIC
-#define DT3_DEVICEMUSIC
 //==============================================================================
 ///
 ///	File: DeviceMusic.hpp
@@ -79,5 +77,3 @@ class DeviceMusic: public DeviceBase {
 //==============================================================================
 
 } // DT3
-
-#endif

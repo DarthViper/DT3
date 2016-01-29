@@ -91,14 +91,6 @@ ScriptingGreaterThan::~ScriptingGreaterThan (void)
 //==============================================================================
 //==============================================================================
 
-void ScriptingGreaterThan::initialize (void)
-{
-	ScriptingBase::initialize();
-}
-
-//==============================================================================
-//==============================================================================
-
 void ScriptingGreaterThan::archive (const std::shared_ptr<Archive> &archive)
 {
     ScriptingBase::archive(archive);

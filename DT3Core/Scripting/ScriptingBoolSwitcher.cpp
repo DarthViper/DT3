@@ -206,14 +206,6 @@ ScriptingBoolSwitcher::~ScriptingBoolSwitcher (void)
 //==============================================================================
 //==============================================================================
 
-void ScriptingBoolSwitcher::initialize (void)
-{
-	ScriptingBase::initialize();
-}
-
-//==============================================================================
-//==============================================================================
-
 void ScriptingBoolSwitcher::archive (const std::shared_ptr<Archive> &archive)
 {
     ScriptingBase::archive(archive);
