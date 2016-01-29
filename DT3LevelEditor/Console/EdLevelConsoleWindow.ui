@@ -57,7 +57,7 @@
   <customwidget>
    <class>EdLevelLineEdit</class>
    <extends>QLineEdit</extends>
-   <header>EdLevelLineEdit.h</header>
+   <header>EdLevelLineEdit.hpp</header>
   </customwidget>
  </customwidgets>
  <resources/>
