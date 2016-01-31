@@ -1530,7 +1530,7 @@ void EdLevelMainWindow::disconnectEventCB (Event *outgoing, Event *incoming)
 //==============================================================================
 //==============================================================================
 
-void EdLevelMainWindow::showAssert (const DTcharacter* file, const DTcharacter* func, const DTint line)
+void EdLevelMainWindow::showAssert (const char* file, const char* func, const int line)
 {
     static std::list<ErrorEntry> errors;
 
@@ -1552,7 +1552,7 @@ void EdLevelMainWindow::showAssert (const DTcharacter* file, const DTcharacter* 
     }
 }
 
-void EdLevelMainWindow::showError (const DTcharacter* file, const DTcharacter* func, const DTint line, const DTcharacter* msg)
+void EdLevelMainWindow::showError (const char* file, const char* func, const int line, const char* msg)
 {
     static std::list<ErrorEntry> errors;
 
@@ -1574,16 +1574,18 @@ void EdLevelMainWindow::showError (const DTcharacter* file, const DTcharacter* f
     }
 }
 
-void EdLevelMainWindow::showWarning (const DTcharacter* file, const DTcharacter* func, const DTint line, const DTcharacter* msg)
+void EdLevelMainWindow::showWarning(const char *file, const char *func, const int line,
+                                    const char *msg)
 {
     static std::list<ErrorEntry> errors;
 
-    ErrorEntry error_entry(file,func,line);
+    ErrorEntry error_entry(file, func, line);
     if (std::find(errors.begin(), errors.end(), error_entry) == errors.end()) {
 
-        int r = QMessageBox::warning(this, tr("Warning"),
-                    QString("Warning ") + msg + QString(" in file ") + file + QString(" in function ") + func + QString(" on line ") + QString::number(line),
-                    QMessageBox::Abort | QMessageBox::Ignore | QMessageBox::Ok);
+        int r = QMessageBox::warning(
+            this, tr("Warning"),
+            tr("Warning %1 in file %2 in function %3 on line %3").arg(msg).arg(file).arg(func).arg(line),
+            QMessageBox::Abort | QMessageBox::Ignore | QMessageBox::Ok);
 
         if (r == QMessageBox::Abort) {
             exit(1);

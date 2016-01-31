@@ -54,17 +54,17 @@ void EdLevelImageThumbnail::cache (void)
         return;
     }
 
-    DTint _width = 128, _height = 128;
+    int _width = 128, _height = 128;
 
-    DTint center_x = _width/2;
-    DTint center_y = _height/2;
+    int center_x = _width/2;
+    int center_y = _height/2;
 
     DTfloat x_scale = static_cast<DTfloat>(_width) / static_cast<DTfloat>(texture->width());
     DTfloat y_scale = static_cast<DTfloat>(_height) / static_cast<DTfloat>(texture->height());
     DTfloat scale = std::min(1.0F, std::min(x_scale, y_scale));
 
-    DTint thumb_width = static_cast<DTint>(texture->width() * scale);
-    DTint thumb_height = static_cast<DTint>(texture->height() * scale);
+    int thumb_width = static_cast<int>(texture->width() * scale);
+    int thumb_height = static_cast<int>(texture->height() * scale);
 
     delete[] _buffer;
     _buffer = new Buffer[_width*_height];
@@ -72,8 +72,8 @@ void EdLevelImageThumbnail::cache (void)
     ::memset(_buffer,0,sizeof(Buffer) * _width*_height);
 
     // Resample image for thumbnail
-    for (DTint y = center_y - thumb_height/2, yi = 0; y <= (center_y + thumb_height/2); ++y, yi += texture->height() / thumb_height) {
-        for (DTint x = center_x - thumb_width/2, xi = 0; x <= (center_x + thumb_width/2); ++x, xi += texture->width() / thumb_width) {
+    for (int y = center_y - thumb_height/2, yi = 0; y <= (center_y + thumb_height/2); ++y, yi += texture->height() / thumb_height) {
+        for (int x = center_x - thumb_width/2, xi = 0; x <= (center_x + thumb_width/2); ++x, xi += texture->width() / thumb_width) {
 
             if (x < 0 || x >= _width) continue;
             if (y < 0 || y >= _height) continue;
@@ -110,7 +110,7 @@ void EdLevelImageThumbnail::paintEvent (QPaintEvent *event)
     painter.drawRect(rect());
 
     // Draw Image
-    DTint x=0,y=0;
+    int x=0,y=0;
 
     if (_image.width() < 128)   x = (128-_image.width())/2;
     if (_image.height() < 128)   y = (128-_image.height())/2;

@@ -26,10 +26,10 @@ using namespace DT3;
 //==============================================================================
 //==============================================================================
 
-const DTint EdLevelToolEvent::MODIFIER_SHIFT = 1 << 0;
-const DTint EdLevelToolEvent::MODIFIER_CONTROL = 1 << 1;
-const DTint EdLevelToolEvent::MODIFIER_OPTION_ALT = 1 << 2;
-const DTint EdLevelToolEvent::MODIFIER_META = 1 << 3;
+const int EdLevelToolEvent::MODIFIER_SHIFT = 1 << 0;
+const int EdLevelToolEvent::MODIFIER_CONTROL = 1 << 1;
+const int EdLevelToolEvent::MODIFIER_OPTION_ALT = 1 << 2;
+const int EdLevelToolEvent::MODIFIER_META = 1 << 3;
 
 //==============================================================================
 //==============================================================================

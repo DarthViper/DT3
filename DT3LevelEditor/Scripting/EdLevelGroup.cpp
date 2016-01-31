@@ -67,7 +67,7 @@ void EdLevelGroup::paint (QPainter *painter, const QStyleOptionGraphicsItem *opt
 {
     painter->setRenderHint(QPainter::Antialiasing, true);
 
-    const DTint TITLE_HEIGHT = 20;
+    const int TITLE_HEIGHT = 20;
 
     Color4f c = _group->group_color();
 

@@ -75,10 +75,10 @@ void EdLevelSoundThumbnail::cache (void)
         if (min_sample < -1.0)  min_sample = -1.0F;
         if (max_sample > 1.0F)  max_sample = 1.0F;
 
-        DTint min_ypos = min_sample * half_y + half_y;
-        DTint max_ypos = max_sample * half_y + half_y;
+        int min_ypos = min_sample * half_y + half_y;
+        int max_ypos = max_sample * half_y + half_y;
 
-        for (DTint y = min_ypos; y <= max_ypos; ++y) {
+        for (int y = min_ypos; y <= max_ypos; ++y) {
             Buffer &b = _buffer[y*_width + x];
             b.r = b.g = b.b = 0;
         }
@@ -103,7 +103,7 @@ void EdLevelSoundThumbnail::paintEvent (QPaintEvent *event)
     painter.drawRect(rect());
 
     // Draw Image
-    DTint x=0,y=0;
+    int x=0,y=0;
 
     if (_image.width() < 128)   x = (128-_image.width())/2;
     if (_image.height() < 128)   y = (128-_image.height())/2;

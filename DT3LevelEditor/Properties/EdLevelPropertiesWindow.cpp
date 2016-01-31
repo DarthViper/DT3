@@ -81,7 +81,7 @@ void EdLevelPropertiesWindow::buildPropertiesForNode (std::shared_ptr<PlugNode> 
 
     for (DTuint i = (DTuint)start_of_properties; i < properties.size(); ++i) {
         std::shared_ptr<ArchiveData> data = properties[i];
-        const DTcharacter *type = data->data_kind();
+        const char *type = data->data_kind();
 
         QListWidgetItem *list_item = new QListWidgetItem();
         addItem(list_item);

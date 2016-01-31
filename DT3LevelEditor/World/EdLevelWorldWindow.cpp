@@ -397,7 +397,7 @@ void EdLevelWorldWindow::initializeGL(void)
 //==============================================================================
 //==============================================================================
 
-DTfloat EdLevelWorldWindow::calcScale(const std::shared_ptr<CameraObject> &camera)
+float EdLevelWorldWindow::calcScale(const std::shared_ptr<CameraObject> &camera)
 {
     DTfloat scale = 1.0F;
 
@@ -552,7 +552,7 @@ void EdLevelWorldWindow::pickGL(QPointF pos, EdLevelToolEvent &tool_event)
     _camera->set_aspect_ratio_mul( static_cast<DTfloat>(width()) / static_cast<DTfloat>(height()) / System::renderer()->screen_aspect() );
 
     // Activate the camera
-    DTint viewport[4] = { 0, 0, width(), height() };
+    int viewport[4] = { 0, 0, width(), height() };
     _camera->set_picking(pos.x(), height() - pos.y(), 5.0F, 5.0F, viewport);
 
     //
@@ -751,7 +751,7 @@ void EdLevelWorldWindow::toolContextMenu(QMouseEvent *event)
     context_menu->addSeparator();
 
     // Base Class
-    DTcharacter *class_id = front->class_id_child();
+    char *class_id = front->class_id_child();
     std::shared_ptr<EdLevelTool> tool = checked_cast<EdLevelTool>(Factory::create_tool(class_id));
 
     if (tool) {
@@ -773,7 +773,7 @@ void EdLevelWorldWindow::toolContextMenu(QMouseEvent *event)
         // Sub component menu items
         for(std::shared_ptr<ComponentBase> &n : base->all_components()) {
 
-            DTcharacter *class_id = n->class_id_child();
+            char *class_id = n->class_id_child();
             std::shared_ptr<EdLevelTool> tool = checked_cast<EdLevelTool>(Factory::create_tool(class_id));
 
             if (tool) {
@@ -797,12 +797,12 @@ void EdLevelWorldWindow::toolContextMenu(QMouseEvent *event)
 //==============================================================================
 //==============================================================================
 
-DTboolean EdLevelWorldWindow::getGridVisible (void)
+bool EdLevelWorldWindow::getGridVisible (void)
 {
     return (_grid_visible->checkState() == Qt::Checked);
 }
 
-DTfloat EdLevelWorldWindow::getGrid (void)
+float EdLevelWorldWindow::getGrid(void)
 {
     bool ok;
     float grid = _grid_selection->currentText().toFloat(&ok);
@@ -852,9 +852,9 @@ void EdLevelWorldWindow::mouseMoveEvent(QMouseEvent *event)
     QPointF delta = event->pos() - _last_position;
     _last_position = event->pos();
 
-    DTboolean pan = (event->buttons() == Qt::MidButton) || ( (event->buttons() == Qt::LeftButton) && (event->modifiers() & Qt::ALT) && (event->modifiers() & Qt::SHIFT) );
-    DTboolean rot = (event->buttons() == Qt::RightButton) && (event->modifiers() & Qt::ALT) && !_built_in_camera;
-    DTboolean zoom = (event->buttons() == Qt::LeftButton) && (event->modifiers() & Qt::ALT);
+    bool pan = (event->buttons() == Qt::MidButton) || ( (event->buttons() == Qt::LeftButton) && (event->modifiers() & Qt::ALT) && (event->modifiers() & Qt::SHIFT) );
+    bool rot = (event->buttons() == Qt::RightButton) && (event->modifiers() & Qt::ALT) && !_built_in_camera;
+    bool zoom = (event->buttons() == Qt::LeftButton) && (event->modifiers() & Qt::ALT);
 
     if (_camera && (pan || rot || zoom) ) {
         Vector3 position = _camera->translation();
@@ -965,7 +965,7 @@ void EdLevelWorldWindow::keyPressEvent (QKeyEvent *event)
 {
     int key = event->key();
 
-    DTboolean is_builtin_tool = _tool && (_tool->isa(EdLevelManipPan::kind()) || _tool->isa(EdLevelManipRotate::kind()) || _tool->isa(EdLevelManipScale::kind()));
+    bool is_builtin_tool = _tool && (_tool->isa(EdLevelManipPan::kind()) || _tool->isa(EdLevelManipRotate::kind()) || _tool->isa(EdLevelManipScale::kind()));
 
     if (key == Qt::Key_Q) {
         onArrowTool();
@@ -1041,12 +1041,12 @@ void EdLevelWorldWindow::drawGrid (const std::shared_ptr<CameraObject> &camera)
     if (grid <= 0.0F)
         grid = 1.0F;
 
-    const DTint SIZE = 100;
+    const int SIZE = 100;
     ASSERT(_shader!=nullptr);
     _b.batch_begin(camera, _grid_material, _shader, Matrix4::identity(), DT3GL_PRIM_LINES, DrawBatcher::FMT_V | DrawBatcher::FMT_C);
 
     // Minor lines
-    for (DTint p = -SIZE; p <= SIZE; ++p) {
+    for (int p = -SIZE; p <= SIZE; ++p) {
         if (p == 0) continue;
 
         if ( (p%10) != 0) {
@@ -1060,7 +1060,7 @@ void EdLevelWorldWindow::drawGrid (const std::shared_ptr<CameraObject> &camera)
     }
 
     // Major lines
-    for (DTint p = -SIZE; p <= SIZE; ++p) {
+    for (int p = -SIZE; p <= SIZE; ++p) {
         if (p == 0) continue;
 
         if ( (p%10) == 0) {
@@ -1101,7 +1101,7 @@ void EdLevelWorldWindow::onArrowTool(void)
     // Check that all objects are the same type
     if (!selection.empty()) {
 
-        DTcharacter *class_id = selection.front()->class_id_child();
+        char *class_id = selection.front()->class_id_child();
 
         for (const std::shared_ptr<PlugNode> &n : _document->selection()) {
 

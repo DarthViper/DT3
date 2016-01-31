@@ -27,7 +27,7 @@ using namespace DT3;
 //==============================================================================
 //==============================================================================
 
-const DTint EdLevelPerformanceWindow::NUM_SAMPLES = 150;
+const int EdLevelPerformanceWindow::NUM_SAMPLES = 150;
 const DTfloat EdLevelPerformanceWindow::ENTRY_HEIGHT = 100.0F;
 const DTfloat EdLevelPerformanceWindow::TITLE_WIDTH = 150.0F;
 const DTfloat EdLevelPerformanceWindow::TITLE_HEIGHT = 20.0F;
@@ -134,7 +134,7 @@ void EdLevelPerformanceWindow::draw(QPainter *painter)
         points.resize(i._values.size());
 
         std::list<DTfloat>::iterator j;
-        DTint jj;
+        int jj;
 
         // Find max
         for (DTfloat val : i._values) {
@@ -159,10 +159,10 @@ void EdLevelPerformanceWindow::draw(QPainter *painter)
 
         // Draw Graph
         painter->setPen(QPen(QColor(0,255,0,255),3));
-        painter->drawPoints(&points[0],(DTint) points.size());
+        painter->drawPoints(&points[0],(int) points.size());
 
         painter->setPen(QPen(QColor(0,255,0,255),0));
-        painter->drawPolyline(&points[0],(DTint) points.size());
+        painter->drawPolyline(&points[0],(int) points.size());
 
         // Draw max value
         painter->setFont(_font_small);

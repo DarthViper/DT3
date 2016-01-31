@@ -58,7 +58,7 @@ class EdLevelPerformanceWindow : public QWidget
         void                        wheelEvent              (QWheelEvent *event);
 
     private:
-        static const DTint NUM_SAMPLES;
+        static const int NUM_SAMPLES;
         static const DTfloat ENTRY_HEIGHT;
         static const DTfloat TITLE_WIDTH;
         static const DTfloat TITLE_HEIGHT;
@@ -75,7 +75,7 @@ class EdLevelPerformanceWindow : public QWidget
         std::list<Data>             _data;
 
         QScrollBar                  *_vert_scrollbar;
-        DTint                       _scroll_width;
+        int                       _scroll_width;
 
         QTimer                      _sample_timer;
 

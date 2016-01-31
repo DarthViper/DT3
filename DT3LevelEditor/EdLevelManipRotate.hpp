@@ -72,8 +72,8 @@ class EdLevelManipRotate: public EdLevelTool
         std::shared_ptr<ShaderResource>     _shader;
 
         DTuint                              _starting_axis;
-        DTint                               _mouse_x;
-        DTint                               _mouse_y;
+        int                               _mouse_x;
+        int                               _mouse_y;
 };
 
 //==============================================================================

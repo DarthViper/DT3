@@ -158,8 +158,8 @@ void EdLevelManipRotate::doEvent (EdLevelToolWindow *parent, const EdLevelToolEv
         _mouse_y = event.mouseY();
 
     } else {
-        DTint dx = event.mouseX() - _mouse_x;
-        DTint dy = event.mouseY() - _mouse_y;
+        int dx = event.mouseX() - _mouse_x;
+        int dy = event.mouseY() - _mouse_y;
         _mouse_x = event.mouseX();
         _mouse_y = event.mouseY();
 

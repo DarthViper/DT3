@@ -130,7 +130,7 @@ class EdLevelMainWindow : public QMainWindow
         QBasicTimer                             _timer;
         QBasicTimer                             _autosave_timer;
 
-        static const DTint MaxRecentFiles = 5;
+        static const int MaxRecentFiles = 5;
         QAction *								_recent_file_actions[MaxRecentFiles];
 
         QToolBar *								_world_toolbar;
@@ -154,7 +154,7 @@ class EdLevelMainWindow : public QMainWindow
 
         // Error handlers
         struct ErrorEntry {
-            ErrorEntry (const DTcharacter* file, const DTcharacter* func, const DTint line)
+            ErrorEntry (const char* file, const char* func, const int line)
                 :   _file(file),
                     _func(func),
                     _line(line)
@@ -164,14 +164,14 @@ class EdLevelMainWindow : public QMainWindow
                 return ( (_file == rhs._file) && (_func == rhs._func) && (_line == rhs._line) );
             }
 
-            const DTcharacter* _file;
-            const DTcharacter* _func;
-            const DTint _line;
+            const char* _file;
+            const char* _func;
+            const int _line;
         };
 
-        void                                    showAssert  (const DTcharacter* file, const DTcharacter* func, const DTint line);
-        void                                    showError   (const DTcharacter* file, const DTcharacter* func, const DTint line, const DTcharacter*);
-        void                                    showWarning (const DTcharacter* file, const DTcharacter* func, const DTint line, const DTcharacter*);
+        void                                    showAssert  (const char* file, const char* func, const int line);
+        void                                    showError   (const char* file, const char* func, const int line, const char*);
+        void                                    showWarning (const char* file, const char* func, const int line, const char *);
 
     //==========================================================================
     // Callbacks

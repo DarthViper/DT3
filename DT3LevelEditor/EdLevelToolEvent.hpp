@@ -61,10 +61,10 @@ class EdLevelToolEvent
         DTuint                                  modifiers               (void) const    {   return _modifiers;      }
 
     public:
-        static const DTint MODIFIER_SHIFT;
-        static const DTint MODIFIER_CONTROL;
-        static const DTint MODIFIER_OPTION_ALT;
-        static const DTint MODIFIER_META;
+        static const int MODIFIER_SHIFT;
+        static const int MODIFIER_CONTROL;
+        static const int MODIFIER_OPTION_ALT;
+        static const int MODIFIER_META;
 
         enum EventType {
             NONE,
