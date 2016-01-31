@@ -130,17 +130,17 @@ void EdLevelAnimationWindow::scanRoot (const std::shared_ptr<ScriptingKeyframesR
     std::list<PlugBase*> plugs;
     root->all_plugs(plugs);
 
-    FOR_EACH (j,plugs) {
+    for(PlugBase*j : plugs) {
         // We only care about outputs
-        if ( !(**j).is_output() )
+        if ( !j->is_output() )
             continue;
 
         // Make sure it's hooked up
-        if ( !(**j).has_outgoing_connection() )
+        if ( !j->has_outgoing_connection() )
             continue;
 
         // Check each outgoing connection
-        const std::vector<PlugBase*> connections = (**j).outgoing_connections();
+        const std::vector<PlugBase*> connections = j->outgoing_connections();
         for (PlugBase* conn : connections) {
 
             // Get connected keyframes
@@ -243,11 +243,11 @@ void EdLevelAnimationWindow::scanRelevantNodes (const std::list<std::shared_ptr<
     std::list<std::shared_ptr<PlugNode>> visited_nodes = selection_list;
     std::vector<PlugEventCache> plug_event_cache;
 
-    FOR_EACH (i,visited_nodes) {
+    for(const std::shared_ptr<PlugNode> &i : selection_list) {
 
         // Check if node is a root
-        if ((*i)->isa(ScriptingKeyframesRoot::kind())) {
-            std::shared_ptr<ScriptingKeyframesRoot> root = checked_static_cast<ScriptingKeyframesRoot>(*i);
+        if (i->isa(ScriptingKeyframesRoot::kind())) {
+            std::shared_ptr<ScriptingKeyframesRoot> root = checked_static_cast<ScriptingKeyframesRoot>(i);
             scanRoot (root, plug_event_cache);
             layoutItems (plug_event_cache);
 
@@ -259,11 +259,11 @@ void EdLevelAnimationWindow::scanRelevantNodes (const std::list<std::shared_ptr<
         }
 
         // Special case components too
-        if ((*i)->isa(ObjectBase::kind())) {
-            std::shared_ptr<ObjectBase> node_base = checked_static_cast<ObjectBase>(*i);
+        if (i->isa(ObjectBase::kind())) {
+            std::shared_ptr<ObjectBase> node_base = checked_static_cast<ObjectBase>(i);
 
-            for (int i = 0; i < ComponentBase::NUM_COMPONENT_TYPES; ++i) {
-                std::shared_ptr<ComponentBase> component_base = node_base->component_by_type ( (ComponentBase::ComponentType) i);
+            for (int type_idx = 0; type_idx < ComponentBase::NUM_COMPONENT_TYPES; ++type_idx) {
+                std::shared_ptr<ComponentBase> component_base = node_base->component_by_type ( (ComponentBase::ComponentType) type_idx);
 
                 if (component_base) {
                     // Check if we already visited the node
@@ -281,20 +281,20 @@ void EdLevelAnimationWindow::scanRelevantNodes (const std::list<std::shared_ptr<
 
         // Get all of the plugs for the current node
         std::list<PlugBase*> plugs;
-        (**i).all_plugs(plugs);
+        i->all_plugs(plugs);
 
-        FOR_EACH (j, plugs) {
+        for(PlugBase* j : plugs) {
 
             // We only care about inputs
-            if ( !(**j).is_input() )
+            if ( !j->is_input() )
                 continue;
 
             // Make sure it's hooked up
-            if ( !(**j).has_incoming_connection() )
+            if ( !j->has_incoming_connection() )
                 continue;
 
             // Get the node
-            std::shared_ptr<PlugNode> node = checked_static_cast<PlugNode>((**j).incoming_connection()->owner()->shared_from_this());
+            std::shared_ptr<PlugNode> node = checked_static_cast<PlugNode>(j->incoming_connection()->owner()->shared_from_this());
             if (!node)
                 continue;
 
@@ -306,23 +306,21 @@ void EdLevelAnimationWindow::scanRelevantNodes (const std::list<std::shared_ptr<
 
         // Get all of the events for the current node
         std::list<Event*> events;
-        (**i).all_events(events);
+        i->all_events(events);
 
-        FOR_EACH (k, events) {
+        for(Event* k : events) {
 
             // We only care about inputs
-            if ( !(**k).is_input() )
+            if ( !k->is_input() )
                 continue;
 
             // Make sure it's hooked up
-            if ( !(**k).has_incoming_connection() )
+            if ( !k->has_incoming_connection() )
                 continue;
 
             // Get the nodes
-            const std::vector<Event*> events = (*k)->incoming_connections();
-
-            FOR_EACH (i,  events) {
-                std::shared_ptr<PlugNode> node = checked_static_cast<PlugNode>((*i)->owner()->shared_from_this());
+            for(Event* ev :  k->incoming_connections()) {
+                std::shared_ptr<PlugNode> node = checked_static_cast<PlugNode>(ev->owner()->shared_from_this());
 
                 auto k = std::find(visited_nodes.begin(), visited_nodes.end(), node);
                 if (k == visited_nodes.end())
@@ -341,17 +339,19 @@ void EdLevelAnimationWindow::scanRelevantNodes (const std::list<std::shared_ptr<
 void EdLevelAnimationWindow::itemRect(PlugEventCache &n, QRect &tr, QRect &r) const
 {
 
-    if (n._node) {
+    if (n._node)
+    {
         const int INDENT = 15;
 
-        tr = QRect(INDENT, n._ypos, NODE_ITEM_WIDTH-INDENT, NODE_ITEM_HEIGHT);
-        r = QRect(0, n._ypos, NODE_ITEM_WIDTH, NODE_ITEM_HEIGHT);
-
-    } else {
+        tr = QRect(INDENT, n._ypos, NODE_ITEM_WIDTH - INDENT, NODE_ITEM_HEIGHT);
+        r  = QRect(0, n._ypos, NODE_ITEM_WIDTH, NODE_ITEM_HEIGHT);
+    }
+    else
+    {
         const int INDENT = 5;
 
-        tr = QRect(INDENT, n._ypos, NODE_ITEM_WIDTH-INDENT, NODE_ITEM_HEIGHT);
-        r = QRect(0, n._ypos, NODE_ITEM_WIDTH, NODE_ITEM_HEIGHT);
+        tr = QRect(INDENT, n._ypos, NODE_ITEM_WIDTH - INDENT, NODE_ITEM_HEIGHT);
+        r  = QRect(0, n._ypos, NODE_ITEM_WIDTH, NODE_ITEM_HEIGHT);
     }
 }
 
@@ -759,17 +759,14 @@ void EdLevelAnimationWindow::keyPressEvent (QKeyEvent *event)
 
     int key = event->key();
 
-    if (event->matches(QKeySequence::Delete) || key == 0x1000003) {
+    if (event->matches(QKeySequence::Delete) || key == Qt::Key_Backspace) {
 
-        for (size_t i = 0; i < _plug_event_cache.size(); ++i) {
-            if (!_plug_event_cache[i]._node || !_plug_event_cache[i]._keyframes)
+        for (const PlugEventCache & pec : _plug_event_cache) {
+            if (!pec._node || !pec._keyframes)
                 continue;
 
-            std::list<int> &selected = _plug_event_cache[i]._selected_ids;
-
-            FOR_EACH (j ,selected) {
-                std::string cmd = "ClearKeyframeByID " + _plug_event_cache[i]._keyframes->full_name() + " " + MoreStrings::cast_to_string(*j);
-                emit doCommand(cmd.c_str());
+            for (int j : pec._selected_ids) {
+                emit doCommand(QString("ClearKeyframeByID %1 %2").arg(pec._keyframes->full_name().c_str()).arg(j));
             }
 
         }

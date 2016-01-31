@@ -1022,16 +1022,14 @@ void EdLevelMainWindow::onNodeContextMenu(std::shared_ptr<WorldNode> node, const
 
     std::map<std::string,std::set<std::string>> &component_types = component_map();
 
-    FOR_EACH (i,component_types) {
-        QMenu *menu = components->addMenu(i->first.c_str());
+    for(const std::pair<const std::string,std::set<std::string>> &i : component_types) {
+        QMenu *menu = components->addMenu(i.first.c_str());
 
-        std::set<std::string> &components = i->second;
-
-        FOR_EACH (j, components) {
+        for(const std::string & j: i.second) {
             QAction *add_component_action = new QAction(this);
             add_component_action->setVisible(true);
-            add_component_action->setText(j->c_str());
-            add_component_action->setData(j->c_str());
+            add_component_action->setText(j.c_str());
+            add_component_action->setData(j.c_str());
             add_component_action->setVisible(true);
 
             connect(add_component_action,   SIGNAL(triggered()),
@@ -1146,14 +1144,12 @@ void EdLevelMainWindow::createMenus()
 
     //_file_menu->addAction(_new_action);
     QMenu *new_menu = ui->_new_menu;
-
-    std::map<std::string,std::shared_ptr<CreatorBase>> &world_types = world_map();
-
-    FOR_EACH (k,world_types) {
+    // TODO: not consistent with placeable_map/... processing flow
+    for(const std::pair<const std::string,std::shared_ptr<CreatorBase>> &i : world_map()) {
         QAction *add_world_action = new QAction(this);
         add_world_action->setVisible(true);
-        add_world_action->setText(k->first.c_str());
-        add_world_action->setData(k->first.c_str());
+        add_world_action->setText(i.first.c_str());
+        add_world_action->setData(i.first.c_str());
         add_world_action->setVisible(true);
 
         connect(add_world_action, SIGNAL(triggered()), this, SLOT(onCreateWorld()));
@@ -1165,21 +1161,18 @@ void EdLevelMainWindow::createMenus()
         ui->menuRecent_Files->addAction(_recent_file_actions[i]);
 
     // Object Menu
-    std::map<std::string,std::set<std::string>> &placeable_types = placeable_map();
+    for(const std::pair<const std::string,std::set<std::string>> &i : placeable_map()) {
+        QMenu *menu = ui->_object_menu->addMenu(i.first.c_str());
 
-    FOR_EACH (i,placeable_types) {
-        QMenu *menu = ui->_object_menu->addMenu(i->first.c_str());
-
-        std::set<std::string> &placeable = i->second;
-
-        FOR_EACH (j,placeable) {
+        for(const std::string &placeable : i.second) {
             QAction *add_object_action = new QAction(this);
             add_object_action->setVisible(true);
-            add_object_action->setText(j->c_str());
-            add_object_action->setData(j->c_str());
+            add_object_action->setText(placeable.c_str());
+            add_object_action->setData(placeable.c_str());
             add_object_action->setVisible(true);
 
             connect(add_object_action, SIGNAL(triggered()), this, SLOT(onCreateObject()));
+            connect(add_object_action, &QAction::triggered, this, &EdLevelMainWindow::onCreateObject);
 
             menu->addAction(add_object_action);
         }
@@ -1187,44 +1180,34 @@ void EdLevelMainWindow::createMenus()
     }
 
     // Component Menu
-    std::map<std::string,std::set<std::string>> &component_types = component_map();
+    for(const std::pair<const std::string,std::set<std::string>> &i : component_map()) {
+        QMenu *menu = ui->_component_menu->addMenu(i.first.c_str());
 
-    FOR_EACH (i,component_types) {
-        QMenu *menu = ui->_component_menu->addMenu(i->first.c_str());
-
-        std::set<std::string> &components = i->second;
-
-        FOR_EACH (j,components) {
+        for(const std::string &name : i.second) {
             QAction *add_component_action = new QAction(this);
             add_component_action->setVisible(true);
-            add_component_action->setText(j->c_str());
-            add_component_action->setData(j->c_str());
+            add_component_action->setText(name.c_str());
+            add_component_action->setData(name.c_str());
             add_component_action->setVisible(true);
 
-            connect(add_component_action,SIGNAL(triggered()),
-                    this,                   SLOT(onCreateComponent()));
-
+            connect(add_component_action, &QAction::triggered, this, &EdLevelMainWindow::onCreateComponent);
             menu->addAction(add_component_action);
         }
 
     }
 
     // Script Menu
-    std::map<std::string,std::set<std::string>> &script_types = script_map();
-
-    for( const std::pair<std::string,std::set<std::string>> &i : script_types) {
+    for( const std::pair<const std::string,std::set<std::string>> &i : script_map()) {
         QMenu *menu = ui->_script_menu->addMenu(i.first.c_str());
 
-        const std::set<std::string> &scripts = i.second;
-
-        FOR_EACH (j,scripts) {
+        for(const std::string &script_name : i.second) {
             QAction *add_script_action = new QAction(this);
             add_script_action->setVisible(true);
-            add_script_action->setText(j->c_str());
-            add_script_action->setData(j->c_str());
+            add_script_action->setText(script_name.c_str());
+            add_script_action->setData(script_name.c_str());
             add_script_action->setVisible(true);
 
-            connect(add_script_action,   SIGNAL(triggered()), this, SLOT(onCreateScripts()));
+            connect(add_script_action, &QAction::triggered, this, &EdLevelMainWindow::onCreateScripts);
 
             menu->addAction(add_script_action);
         }
@@ -1266,15 +1249,17 @@ void EdLevelMainWindow::writeSettings()
 
 bool EdLevelMainWindow::isOkToContinue()
 {
-    if (isWindowModified()) {
+    if (isWindowModified())
+    {
         int r = QMessageBox::warning(this, tr("Level Editor"),
-                        tr("The document has been modified.\n"
-                           "Do you want to On_Save_Level your changes?"),
-                        QMessageBox::Yes | QMessageBox::No
-                        | QMessageBox::Cancel);
-        if (r == QMessageBox::Yes) {
+                                     tr("The document has been modified.\nDo you want to On_Save_Level your changes?"),
+                                     QMessageBox::Yes | QMessageBox::No | QMessageBox::Cancel);
+        if (r == QMessageBox::Yes)
+        {
             return onSaveLevel();
-        } else if (r == QMessageBox::Cancel) {
+        }
+        else if (r == QMessageBox::Cancel)
+        {
             return false;
         }
     }

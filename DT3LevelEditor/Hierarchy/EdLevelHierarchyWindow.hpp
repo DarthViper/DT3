@@ -21,10 +21,7 @@
 #include <QtCore/QTimer>
 #include <QtCore/QRegExp>
 
-// Engine includes
-#include "DT3Core/Types/Base/BaseInclude.hpp"
-#include "DT3Core/Types/Node/Plug.hpp"
-#include "DT3Core/Types/Node/Event.hpp"
+#include <memory>
 
 //==============================================================================
 /// Forward declarations
@@ -33,6 +30,8 @@
 namespace DT3 {
     class WorldNode;
     class PlugNode;
+    class PlugBase;
+    class Event;
     class ComponentBase;
 }
 class EdLevelDocument;
@@ -40,13 +39,11 @@ class EdLevelDocument;
 //==============================================================================
 //==============================================================================
 
-using namespace DT3;
-
 //==============================================================================
 /// Class
 //==============================================================================
 
-class EdLevelHierarchyWindow: public QTreeWidget
+class EdLevelHierarchyWindow : public QTreeWidget
 {
     Q_OBJECT
 
@@ -71,8 +68,8 @@ class EdLevelHierarchyWindow: public QTreeWidget
         void                            keyPressEvent               (QKeyEvent *event);
 
     private:
-        static constexpr const DTint AUTO_SCROLL_TIMER = 30;
-        static constexpr const DTint AUTO_SCROLL_MARIGN = 30;
+        static constexpr const int AUTO_SCROLL_TIMER = 30;
+        static constexpr const int AUTO_SCROLL_MARIGN = 30;
 
         EdLevelDocument                 *_document;
         EdLevelLineEdit                 *_filter;
@@ -88,26 +85,25 @@ class EdLevelHierarchyWindow: public QTreeWidget
         void                            stopAutoScroll              (void);
 
         QTimer                          _auto_scroll_timer;
-        DTint                           _auto_scroll_x;
-        DTint                           _auto_scroll_y;
+        int                             _auto_scroll_x;
+        int                             _auto_scroll_y;
 
         // Internal representation of scene
         struct NodeCache {
-            NodeCache(void)                                         {   _list_object = NULL; }
-            NodeCache(const std::shared_ptr<WorldNode> &node)       {   _node = node; _list_object = NULL; }
+            NodeCache(const std::shared_ptr<DT3::WorldNode> &node)       {   _node = node; }
 
-            DTboolean   operator == (const NodeCache& rhs) const    {	return _node == rhs._node;		}
+            bool   operator == (const NodeCache& rhs) const    {	return _node == rhs._node;		}
 
-            std::shared_ptr<WorldNode>      _node;
-            QTreeWidgetItem                 *_list_object;
+            std::shared_ptr<DT3::WorldNode>      _node;
+            QTreeWidgetItem                 *_list_object=nullptr;
         };
 
         std::list<NodeCache>                _node_cache;
 
-        std::shared_ptr<WorldNode>      itemToNode                  (const QTreeWidgetItem *item) const;
+        std::shared_ptr<DT3::WorldNode> itemToNode                  (const QTreeWidgetItem *item) const;
 
-        QTreeWidgetItem*                nodeToItem                  (WorldNode *node) const;
-        QTreeWidgetItem*                nodeToItem                  (const std::shared_ptr<WorldNode> &node) const;
+        QTreeWidgetItem*                nodeToItem                  (DT3::WorldNode *node) const;
+        QTreeWidgetItem*                nodeToItem                  (const std::shared_ptr<DT3::WorldNode> &node) const;
 
 
         enum Visibility {
@@ -119,17 +115,17 @@ class EdLevelHierarchyWindow: public QTreeWidget
         void                            setVisibility               (NodeCache *c);
 
     public slots:
-        void                            onAddNode                   (WorldNode *node);
-        void                            onRemoveNode                (WorldNode *node);
-        void                            onReparentNode              (WorldNode *node, WorldNode *old_parent, WorldNode *new_parent);
+        void                            onAddNode                   (DT3::WorldNode *node);
+        void                            onRemoveNode                (DT3::WorldNode *node);
+        void                            onReparentNode              (DT3::WorldNode *node, DT3::WorldNode *old_parent, DT3::WorldNode *new_parent);
 
         void                            onRefreshHierarchy          (void);
-        void                            onSelectionChanged          (const std::list<std::shared_ptr<PlugNode>> &selection_list);
+        void                            onSelectionChanged          (const std::list<std::shared_ptr<DT3::PlugNode>> &selection_list);
 
-        void                            onConnectPlug               (PlugBase *outgoing, PlugBase *incoming);
-        void                            onDisconnectPlug            (PlugBase *outgoing, PlugBase *incoming);
-        void                            onConnectEvent              (Event *outgoing, Event *incoming);
-        void                            onDisconnectEvent           (Event *outgoing, Event *incoming);
+        void                            onConnectPlug               (DT3::PlugBase *outgoing, DT3::PlugBase *incoming);
+        void                            onDisconnectPlug            (DT3::PlugBase *outgoing, DT3::PlugBase *incoming);
+        void                            onConnectEvent              (DT3::Event *outgoing, DT3::Event *incoming);
+        void                            onDisconnectEvent           (DT3::Event *outgoing, DT3::Event *incoming);
 
         void                            onShowObjects               (void);
         void                            onShowCalc                  (void);
@@ -143,7 +139,7 @@ class EdLevelHierarchyWindow: public QTreeWidget
     signals:
         void                            doCommand                   (QString command);
         void                            doUndoBlock                 (void);
-        void                            doSelectionChanged          (const std::list<std::shared_ptr<PlugNode>> &selection_list);
+        void                            doSelectionChanged          (const std::list<std::shared_ptr<DT3::PlugNode>> &selection_list);
 };
 
 //==============================================================================

@@ -40,72 +40,68 @@ using namespace DT3;
 /// Class
 //==============================================================================
 
-class EdLevelTool: public BaseClass
+class EdLevelTool : public BaseClass
 {
-    public:
-        DEFINE_TYPE(EdLevelTool, BaseClass)
-        //DEFINE_CREATE_AND_CLONE
+public:
+    DEFINE_TYPE(EdLevelTool, BaseClass)
+    // DEFINE_CREATE_AND_CLONE
 
-                        EdLevelTool     (void);
-        virtual         ~EdLevelTool    (void)  {}
+    EdLevelTool(void) = default;
+    virtual ~EdLevelTool(void) {}
 
-    public:
-        /// Description
-        /// \param param description
-        /// \return description
-        virtual void                draw                    (EdLevelToolWindow *parent, const std::shared_ptr<CameraObject> &camera, DTfloat scale);
+public:
+    /// Description
+    /// \param param description
+    /// \return description
+    virtual void draw(EdLevelToolWindow *parent, const std::shared_ptr<CameraObject> &camera, DTfloat scale) {}
 
-        /// Description
-        /// \param param description
-        /// \return description
-        virtual void                doEvent                 (EdLevelToolWindow *parent, const EdLevelToolEvent &event);
+    /// Description
+    /// \param param description
+    /// \return description
+    virtual void doEvent(EdLevelToolWindow *parent, const EdLevelToolEvent &event) {}
 
+    /// Description
+    /// \param param description
+    /// \return description
+    Matrix4 getCombinedTransform(void) const;
 
-        /// Description
-        /// \param param description
-        /// \return description
-        Matrix4                     getCombinedTransform    (void) const;
+    /// Description
+    /// \param param description
+    /// \return description
+    void applyCombinedTransform(EdLevelToolWindow *parent, const Matrix4 &transform, DTfloat grid = 0.0F);
 
-        /// Description
-        /// \param param description
-        /// \return description
-        void                        applyCombinedTransform  (EdLevelToolWindow *parent, const Matrix4 &transform, DTfloat grid = 0.0F);
+    /// Description
+    /// \param param description
+    /// \return description
+    void applyCombinedScale(EdLevelToolWindow *parent, DTfloat scale);
 
-        /// Description
-        /// \param param description
-        /// \return description
-        void                        applyCombinedScale      (EdLevelToolWindow *parent, DTfloat scale);
+    /// Description
+    /// \param param description
+    /// \return description
+    virtual Matrix4 getManipulatorTransform(void) const = 0;
 
-        /// Description
-        /// \param param description
-        /// \return description
-        virtual Matrix4             getManipulatorTransform (void) const = 0;
+    /// Description
+    /// \param param description
+    /// \return description
+    void snapToGrid(Vector3 &translation, DTfloat grid);
 
+    /// Description
+    /// \param param description
+    /// \return description
+    void clearSelection(void);
 
-        /// Description
-        /// \param param description
-        /// \return description
-        void                        snapToGrid              (Vector3 &translation, DTfloat grid);
+    /// Description
+    /// \param param description
+    /// \return description
+    void setSelection(const std::list<std::shared_ptr<PlugNode>> &s);
 
+    /// Description
+    /// \param param description
+    /// \return description
+    const std::list<std::shared_ptr<PlugNode>> &getSelection(void) const { return _selection; }
 
-        /// Description
-        /// \param param description
-        /// \return description
-        void                        clearSelection          (void);
-
-        /// Description
-        /// \param param description
-        /// \return description
-        void                        setSelection            (const std::list<std::shared_ptr<PlugNode>> &s);
-
-        /// Description
-        /// \param param description
-        /// \return description
-        const std::list<std::shared_ptr<PlugNode>>&      getSelection            (void) const    {   return _selection;  }
-
-    private:
-        std::list<std::shared_ptr<PlugNode>>     _selection;
-
+private:
+    std::list<std::shared_ptr<PlugNode>> _selection;
 };
 
 //==============================================================================

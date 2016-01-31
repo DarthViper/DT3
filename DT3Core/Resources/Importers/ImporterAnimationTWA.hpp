@@ -34,67 +34,69 @@ class BinaryFileStream;
 /// Class
 //==============================================================================
 
-class ImporterAnimationTWA: public ImporterAnimation {
-    public:
-        DEFINE_TYPE(ImporterAnimationTWA,ImporterAnimation)
-        DEFINE_CREATE
+class ImporterAnimationTWA : public ImporterAnimation
+{
+public:
+    DEFINE_TYPE(ImporterAnimationTWA, ImporterAnimation)
+    DEFINE_CREATE
 
-                                        ImporterAnimationTWA	(void);
+    ImporterAnimationTWA(void) = default;
+private:
+    ImporterAnimationTWA(const ImporterAnimationTWA &rhs);
+    ImporterAnimationTWA &operator=(const ImporterAnimationTWA &rhs);
 
-    private:
-                                        ImporterAnimationTWA	(const ImporterAnimationTWA &rhs);
-        ImporterAnimationTWA &			operator =				(const ImporterAnimationTWA &rhs);
+public:
+    virtual ~ImporterAnimationTWA(void) = default;
 
-    public:
-        virtual							~ImporterAnimationTWA	(void);
+public:
+    /// Imports an animation into an AnimationResource
+    /// \param target object to import animation into
+    /// \param args arguments to importer
+    /// \return error code
+    virtual DTerr import(AnimationResource *target, std::string args);
 
-    public:
-        /// Imports an animation into an AnimationResource
-        /// \param target object to import animation into
-        /// \param args arguments to importer
-        /// \return error code
-        virtual DTerr					import					(AnimationResource *target, std::string args);
+private:
+    enum
+    {
+        MAGIC = 0x5E11E70E,
 
-    private:
-        enum {
-            MAGIC = 0x5E11E70E,
+        FILE             = 0,
+        ANIMATION        = 1,
+        ANIMATION_TRACKS = 2,
+        ANIMATION_TRACK  = 3
+    };
 
-            FILE = 0,
-                ANIMATION = 1,
-                    ANIMATION_TRACKS = 2,
-                        ANIMATION_TRACK = 3
-        };
+    //
+    // Animation
+    //
 
+    struct KeyFrame
+    {
+        DTfloat    _time;
+        Quaternion _rotation;
+        Vector3    _translation;
+    };
 
-        //
-        // Animation
-        //
+    struct Track
+    {
+        std::vector<KeyFrame> _keyframes;
+    };
 
-        struct KeyFrame {
-            DTfloat							_time;
-            Quaternion						_rotation;
-            Vector3                         _translation;
-        };
+    struct Animation
+    {
+        DTuint  _fps;
+        DTfloat _start;
+        DTfloat _end;
 
-        struct Track {
-            std::vector<KeyFrame>           _keyframes;
-        };
+        std::map<std::string, Track> _tracks;
+    };
 
-        struct Animation {
-            DTuint							_fps;
-            DTfloat							_start;
-            DTfloat							_end;
+    Animation _animation;
 
-            std::map<std::string,Track>     _tracks;
-        };
-
-        Animation							_animation;
-
-        void		read_animation_keyframes(BinaryFileStream &file, DTuint remaining_size, std::vector<KeyFrame> &keyframes);
-        void		read_animation_tracks   (BinaryFileStream &file, DTuint remaining_size, std::map<std::string,Track> &tracks);
-        void		read_animation			(BinaryFileStream &file, DTuint remaining_size, Animation &animation);
-        void		read_file				(BinaryFileStream &file, DTuint remaining_size);
-
+    void read_animation_keyframes(BinaryFileStream &file, DTuint remaining_size, std::vector<KeyFrame> &keyframes);
+    void read_animation_tracks(BinaryFileStream &file, DTuint remaining_size, std::map<std::string, Track> &tracks);
+    void read_animation(BinaryFileStream &file, DTuint remaining_size, Animation &animation);
+    void read_file(BinaryFileStream &file, DTuint remaining_size);
 };
 
 //==============================================================================
