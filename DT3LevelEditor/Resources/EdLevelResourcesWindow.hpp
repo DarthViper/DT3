@@ -15,8 +15,6 @@
 // Editor include
 // Qt include
 #include <QtWidgets/QTreeWidget>
-#include <QtCore/QMimeData>
-#include <QtWidgets/QToolBar>
 
 // Engine includes
 #include "DT3Core/Types/FileBuffer/FilePath.hpp"
@@ -27,11 +25,8 @@
 
 class EdLevelDocument;
 class QGLWidget;
-
-//==============================================================================
-//==============================================================================
-
-using namespace DT3;
+class QMimeData;
+class QToolBar;
 
 //==============================================================================
 /// Class
@@ -49,7 +44,7 @@ class EdLevelResourcesWindow: public QTreeWidget
         QMimeData*                      mimeData                    (const QList<QTreeWidgetItem *> items) const;
 
     private:
-        void                            buildTree                   (QTreeWidgetItem *parent, const FilePath &dir);
+        void                            buildTree                   (QTreeWidgetItem *parent, const DT3::FilePath &dir);
 
         EdLevelDocument                 *_document;
         QToolBar                        *_toolbar;
@@ -59,9 +54,9 @@ class EdLevelResourcesWindow: public QTreeWidget
 
         // Internal representation of scene
         struct ResourceCache {
-            DTboolean   operator == (const ResourceCache& rhs) const	{	return _path == rhs._path;		}
+            bool   operator == (const ResourceCache& rhs) const	{	return _path == rhs._path;		}
 
-            FilePath                    _path;
+            DT3::FilePath                    _path;
         };
 
         std::list<ResourceCache>             _resource_cache;

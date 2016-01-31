@@ -30,6 +30,7 @@
 #include <QtCore/QMimeData>
 
 // Engine includes
+#include "DT3Core/World/World.hpp"
 #include "DT3Core/System/Globals.hpp"
 #include "DT3Core/Objects/ObjectBase.hpp"
 #include "DT3Core/Components/ComponentBase.hpp"
@@ -148,7 +149,7 @@ void EdLevelScriptWindow::onScriptAlign (void)
 
 void EdLevelScriptWindow::onScriptToggleValues (void)
 {
-    if (MoreStrings::cast_from_string<DTboolean>(Globals::global("ED_SHOW_VALUES")))
+    if (Globals::global("ED_SHOW_VALUES")=="1")
         emit doCommand("SetGlobal ED_SHOW_VALUES 0 PERSISTENT");
     else
         emit doCommand("SetGlobal ED_SHOW_VALUES 1 PERSISTENT");

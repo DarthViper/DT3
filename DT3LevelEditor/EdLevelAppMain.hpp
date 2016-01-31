@@ -1,6 +1,4 @@
 #pragma once
-#ifndef EDLEVELAPPMAIN
-#define EDLEVELAPPMAIN
 //==============================================================================
 ///
 ///	File: EdLevelAppMain.hpp
@@ -11,6 +9,3 @@
 /// file 'LICENSE.txt', which is part of this source code package.
 ///
 //==============================================================================
-
-
-#endif

@@ -23,6 +23,7 @@
 
 // Engine includes
 #include "DT3Core/World/WorldNode.hpp"
+#include "DT3Core/World/World.hpp"
 #include "DT3Core/Objects/ObjectBase.hpp"
 #include "DT3Core/Objects/PlaceableObject.hpp"
 #include "DT3Core/Scripting/ScriptingBase.hpp"
@@ -174,7 +175,7 @@ void EdLevelHierarchyWindow::onShowFilter (const QString &text)
 
 void EdLevelHierarchyWindow::setVisibility   (NodeCache *c)
 {
-    DTboolean match = _reg_exp_filter.indexIn(  QString(c->_node->name().c_str()) + " " +
+    bool match = _reg_exp_filter.indexIn(  QString(c->_node->name().c_str()) + " " +
                                                 QString(c->_node->class_id_child()) ) >= 0;
 
     if (_reg_exp_filter.isValid() && !match) {

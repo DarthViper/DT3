@@ -110,7 +110,7 @@ void EdLevelPropertyBoolField::doReadParams(void)
 
     TextBufferStream stream;
     _data->value(stream);
-    _value->setCheckState( MoreStrings::cast_from_string<DTboolean>(stream.buffer()) ? Qt::Checked : Qt::Unchecked );
+    _value->setCheckState( (stream.buffer()=="1") ? Qt::Checked : Qt::Unchecked );
     //_value->setText( stream.getBuffer().cStr() );
     blockSignals(false);
 }

@@ -87,7 +87,7 @@ QRectF EdLevelScriptPlugConnection::getTextRect (void) const
 
 QRectF EdLevelScriptPlugConnection::boundingRect (void) const
 {
-    DTboolean show_values = MoreStrings::cast_from_string<DTboolean>( Globals::global("ED_SHOW_VALUES") );
+    bool show_values = Globals::global("ED_SHOW_VALUES")=="1";
     if (show_values) {
         QRectF old_bounds = EdLevelScriptConnection::boundingRect();
         QRectF text_bounds = getTextRect();
@@ -143,7 +143,7 @@ void EdLevelScriptPlugConnection::paint(QPainter *painter, const QStyleOptionGra
                     _p2_local.x() - OFFSET,                  _p2_local.y() );
     painter->drawPath(path1);
 
-    DTboolean show_values = MoreStrings::cast_from_string<DTboolean>( Globals::global("ED_SHOW_VALUES") );
+    bool show_values = Globals::global("ED_SHOW_VALUES")=="1";
     if (_node1 && _plug1 && show_values) {
         // Draw value
         std::string type = _plug1->plug_type();

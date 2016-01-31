@@ -33,42 +33,38 @@ class EdLevelDocument;
 class QGLWidget;
 
 //==============================================================================
-//==============================================================================
-
-using namespace DT3;
-
-//==============================================================================
 /// Class
 //==============================================================================
 
-class EdLevelLibraryWindow: public QTreeWidget
+class EdLevelLibraryWindow : public QTreeWidget
 {
     Q_OBJECT
 
-    public:
-                                        EdLevelLibraryWindow		(QWidget *parent, QToolBar *toolbar, EdLevelDocument *document);
+public:
+    EdLevelLibraryWindow(QWidget *parent, QToolBar *toolbar, EdLevelDocument *document);
 
-        QMimeData*                      mimeData                    (const QList<QTreeWidgetItem *> items) const;
+    QMimeData *mimeData(const QList<QTreeWidgetItem *> items) const;
 
-    private:
-        void                            buildTree                   (QTreeWidgetItem *parent, const FilePath &dir);
-        std::shared_ptr<Group>          importGroup                 (const FilePath &path);
+private:
+    void buildTree(QTreeWidgetItem *parent, const DT3::FilePath &dir);
+    std::shared_ptr<DT3::Group> importGroup(const DT3::FilePath &path);
 
-        EdLevelDocument                 *_document;
-        QToolBar                        *_toolbar;
-        QTreeWidgetItem                 *_top_level;
+    EdLevelDocument *_document;
+    QToolBar *       _toolbar;
+    QTreeWidgetItem *_top_level;
 
-        // Internal representation of scene
-        struct LibraryCache {
-            DTboolean   operator == (const LibraryCache& rhs) const	{	return _path == rhs._path;		}
+    // Internal representation of scene
+    struct LibraryCache
+    {
+        bool operator==(const LibraryCache &rhs) const { return _path == rhs._path; }
 
-            FilePath                    _path;
-        };
+        DT3::FilePath _path;
+    };
 
-        std::list<LibraryCache>              _resource_cache;
+    std::list<LibraryCache> _resource_cache;
 
-    public slots:
-        void                            onRefreshLibrary            (void);
+public slots:
+    void onRefreshLibrary(void);
 };
 
 //==============================================================================

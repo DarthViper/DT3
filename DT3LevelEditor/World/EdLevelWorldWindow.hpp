@@ -80,25 +80,25 @@ class EdLevelWorldWindow : public EdLevelToolWindow
         void                            drawScene           (const std::shared_ptr<CameraObject> &camera, DTfloat scale);
         void                            drawGrid            (const std::shared_ptr<CameraObject> &camera);
 
-        DTfloat                         calcScale           (const std::shared_ptr<CameraObject> &camera);
+        float                         calcScale           (const std::shared_ptr<CameraObject> &camera);
         void                            pickGL              (QPointF pos, EdLevelToolEvent &tool_event);
 
-        DTboolean                       getGridVisible      (void);
-        DTfloat                         getGrid             (void);
+        bool                            getGridVisible      (void);
+        float                         getGrid             (void);
 
-        DTint                           _desired_width;
-        DTint                           _desired_height;
+        int                           _desired_width;
+        int                           _desired_height;
 
         EdLevelDocument                 *_document;
         QToolBar                        *_toolbar;
         std::shared_ptr<CameraObject>   _camera;
 
-        DTint                           _builtin_camera_index;
-        DTint                           _custom_camera_index;
+        int                           _builtin_camera_index;
+        int                           _custom_camera_index;
 
         std::shared_ptr<CameraObject>   _built_in_cameras[6];
-        DTfloat                         _built_in_zoom;
-        DTboolean                       _built_in_camera;
+        float                           _built_in_zoom;
+        bool                            _built_in_camera;
 
         QAction                         *_arrow_action;
         QAction                         *_pan_action;

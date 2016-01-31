@@ -38,7 +38,7 @@ EdLevelLaunchDialog::EdLevelLaunchDialog(void)
     setWindowTitle("Launch Properties");
 
     std::string game_path = Globals::global("ED_GAME_PATH");
-    DTboolean resolution_enabled = MoreStrings::cast_from_string<DTboolean>(Globals::global("ED_RESOLUTION_ENABLED"));
+    bool resolution_enabled = Globals::global("ED_RESOLUTION_ENABLED")=="1";
     std::string resolution_width = Globals::global("ED_RESOLUTION_WIDTH");
     std::string resolution_height = Globals::global("ED_RESOLUTION_HEIGHT");
 

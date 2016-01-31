@@ -14,41 +14,19 @@
 #include "EdLevelMainWindow.hpp"
 
 // Qt include
-#include <QtWidgets/QApplication>
 #include <QtCore/QFile>
+#include <QtWidgets/QApplication>
 
 // Engine includes
 #include "DT3Core/Entry/GameMainThread.hpp"
-#include "DT3Core/System/StaticInitializer.hpp"
-#include "DT3Core/System/Globals.hpp"
-#include "DT3Core/System/Configure.hpp"
-#include "DT3Core/System/System.hpp"
-#include "DT3Core/System/Factory.hpp"
-#include "DT3Core/System/Application.hpp"
-#include "DT3Core/Types/Utility/ConsoleStream.hpp"
-#include "DT3Core/Types/FileBuffer/FilePath.hpp"
-#include "DT3Core/Devices/DeviceNetwork.hpp"
-#include "DT3Core/Devices/DeviceInput.hpp"
-#include "DT3Core/Devices/DeviceMusic.hpp"
-#include "DT3Core/Devices/DeviceAudio.hpp"
-
-#if DT3_OS == DT3_IOS || DT3_OS == DT3_ANDROID || DT3_OS == DT3_MACOSX ||  DT3_OS == DT3_LINUX
-    #include "DT3OpenGL/DT3OpenGL.hpp"
-#else
-    #include "DT3DX11/DT3GLDX11.hpp"
-#endif
 
 //==============================================================================
 //==============================================================================
 
-using namespace DT3;
-
-//==============================================================================
-//==============================================================================
-int main (int argc, char *argv[])
+int main(int argc, char *argv[])
 {
- //   scriptingTimerReferer();
-    GameMainThread::initialize_engine();
+    //   scriptingTimerReferer();
+    DT3::GameMainThread::initialize_engine();
 
     QCoreApplication::setAttribute(Qt::AA_DontCreateNativeWidgetSiblings);
     QApplication::setStyle("fusion");
@@ -65,15 +43,10 @@ int main (int argc, char *argv[])
     EdLevelMainWindow *window = new EdLevelMainWindow();
     window->show();
 
-    QObject::connect(	&app,       SIGNAL(focusChanged(QWidget*,QWidget*)),
-                        window,     SLOT(onAppFocusChanged(QWidget*,QWidget*))	);
-
-
     app.exec();
 
-    GameMainThread::destroy_engine();
+    DT3::GameMainThread::destroy_engine();
 }
 
 //==============================================================================
 //==============================================================================
-

@@ -17,8 +17,10 @@
 
 // Qt include
 #include <QtWidgets/QHeaderView>
+#include <QtWidgets/QToolBar>
 #include <QtCore/QFileInfo>
 #include <QtCore/QDateTime>
+#include <QtCore/QMimeData>
 
 // Engine includes
 #include "DT3Core/Types/Utility/DirectoryLister.hpp"

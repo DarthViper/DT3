@@ -1,6 +1,4 @@
 #pragma once
-#ifndef EDLEVELDOCUMENT
-#define EDLEVELDOCUMENT
 //==============================================================================
 ///
 ///	File: EdLevelDocument.hpp
@@ -16,20 +14,17 @@
 
 // Qt include
 #include <QtOpenGL/QGLWidget>
-
-// Engine includes
-#include "DT3Core/World/World.hpp"
-#include "DT3Core/Types/Node/PlugNode.hpp"
+#include <memory>
 #include <list>
 
 //==============================================================================
 /// Forward declarations
 //==============================================================================
-
-//==============================================================================
-//==============================================================================
-
-using namespace DT3;
+namespace DT3
+{
+class World;
+class PlugNode;
+}
 
 //==============================================================================
 /// Class
@@ -37,47 +32,44 @@ using namespace DT3;
 
 class EdLevelDocument
 {
-    public:
-                                        EdLevelDocument         (void);
-                                        ~EdLevelDocument        (void);
+public:
+    EdLevelDocument(void);
+    ~EdLevelDocument(void) = default;
 
-        /// Description
-        /// \param param description
-        /// \return description
-        void                                            setWorld        (const std::shared_ptr<World> &w);
+    /// Description
+    /// \param param description
+    /// \return description
+    void setWorld(const std::shared_ptr<DT3::World> &w);
 
-        /// Description
-        /// \param param description
-        /// \return description
-        const std::shared_ptr<World>&                   world           (void)          {   return _world;  }
+    /// Description
+    /// \param param description
+    /// \return description
+    const std::shared_ptr<DT3::World> &world(void) { return _world; }
 
-        /// Description
-        /// \param param description
-        /// \return description
-        void                                            clearSelection  (void);
+    /// Description
+    /// \param param description
+    /// \return description
+    void clearSelection(void);
 
-        /// Description
-        /// \param param description
-        /// \return description
-        void                                            setSelection    (const std::list<std::shared_ptr<PlugNode>> &s);
+    /// Description
+    /// \param param description
+    /// \return description
+    void setSelection(const std::list<std::shared_ptr<DT3::PlugNode>> &s);
 
-        /// Description
-        /// \param param description
-        /// \return description
-        const std::list<std::shared_ptr<PlugNode>>&     selection       (void) const    {   return _selection;  }
+    /// Description
+    /// \param param description
+    /// \return description
+    const std::list<std::shared_ptr<DT3::PlugNode>> &selection(void) const { return _selection; }
 
-        /// Description
-        /// \param param description
-        /// \return description
-        DTboolean                                       isSelected      (const std::shared_ptr<PlugNode> &node) const;
+    /// Description
+    /// \param param description
+    /// \return description
+    bool isSelected(const std::shared_ptr<DT3::PlugNode> &node) const;
 
-    public:
-        std::shared_ptr<World>                  _world;
-        std::list<std::shared_ptr<PlugNode>>    _selection;
-
+public:
+    std::shared_ptr<DT3::World>               _world;
+    std::list<std::shared_ptr<DT3::PlugNode>> _selection;
 };
 
 //==============================================================================
 //==============================================================================
-
-#endif

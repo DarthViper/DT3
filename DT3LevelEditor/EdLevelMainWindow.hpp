@@ -74,13 +74,13 @@ using namespace DT3;
 class EdLevelMainWindow : public QMainWindow
 {
     Q_OBJECT
-
+    friend class QApplication; // allow access to onAppFocusChanged slot
     public:
         EdLevelMainWindow(void);
         ~EdLevelMainWindow(void);
 
         void                                    timerEvent          (QTimerEvent *event);
-        void                                    setSaveIcon         (DTboolean icon_state);
+        void                                    setSaveIcon         (bool icon_state);
 
     protected:
         void									closeEvent(QCloseEvent *event);
@@ -160,7 +160,7 @@ class EdLevelMainWindow : public QMainWindow
                     _line(line)
             {}
 
-            DTboolean operator == (const ErrorEntry &rhs) {
+            bool operator == (const ErrorEntry &rhs) {
                 return ( (_file == rhs._file) && (_func == rhs._func) && (_line == rhs._line) );
             }
 
@@ -241,7 +241,6 @@ class EdLevelMainWindow : public QMainWindow
 
         void                                    onMeshBuilder               (void);
         void                                    onPackageBuilder            (void);
-
         void                                    onAppFocusChanged           (QWidget* old, QWidget* now);
 
     signals:

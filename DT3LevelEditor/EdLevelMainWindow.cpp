@@ -45,6 +45,7 @@
 
 // Engine includes
 #include "DT3Core/Entry/GameMainThread.hpp"
+#include "DT3Core/World/World.hpp"
 #include "DT3Core/System/Factory.hpp"
 #include "DT3Core/System/SystemCallbacks.hpp"
 #include "DT3Core/System/Console.hpp"
@@ -81,6 +82,8 @@ using namespace DT3;
 
 EdLevelMainWindow::EdLevelMainWindow(void) : QMainWindow(nullptr), ui(new Ui::EdLevelMainWindow)
 {
+    QObject::connect(qApp, &QApplication::focusChanged, this, &EdLevelMainWindow::onAppFocusChanged);
+
     // Turn on Anti aliasing
     QGLFormat glf = QGLFormat::defaultFormat();
     glf.setSampleBuffers(true);
@@ -511,7 +514,7 @@ EdLevelMainWindow::~EdLevelMainWindow(void)
 //==============================================================================
 //==============================================================================
 
-void EdLevelMainWindow::setSaveIcon (DTboolean icon_state)
+void EdLevelMainWindow::setSaveIcon (bool icon_state)
 {
     ui->_save_level_action->setEnabled(icon_state);
 }
@@ -1387,7 +1390,7 @@ void EdLevelMainWindow::onPlayLevel(void)
     std::string level_path = Globals::substitute_global("{APPDIR}/autosave.lvl");
 
     // Resolution info
-    DTboolean resolution_enabled = MoreStrings::cast_from_string<DTboolean>(Globals::global("ED_RESOLUTION_ENABLED"));
+    bool resolution_enabled = Globals::global("ED_RESOLUTION_ENABLED")=="1";
     std::string resolution_width = Globals::global("ED_RESOLUTION_WIDTH");
     std::string resolution_height = Globals::global("ED_RESOLUTION_HEIGHT");
 

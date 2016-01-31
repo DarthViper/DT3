@@ -29,6 +29,7 @@
 #include <QtCore/QDebug>
 
 // Engine includes
+#include "DT3Core/World/World.hpp"
 #include "DT3Core/Entry/GameMainThread.hpp"
 #include "DT3Core/Resources/ResourceTypes/MaterialResource.hpp"
 #include "DT3Core/Resources/ResourceTypes/ShaderResource.hpp"
@@ -601,14 +602,14 @@ void EdLevelWorldWindow::pickGL(QPointF pos, EdLevelToolEvent &tool_event)
 
     GLuint *ptr = buffer;
 
-    DTfloat selection_z = std::numeric_limits<DTfloat>::infinity();
+    float selection_z = std::numeric_limits<float>::infinity();
     std::shared_ptr<WorldNode> selection;
-    DTboolean using_tool = false;
+    bool using_tool = false;
 
     for (int i = 0; i < hits; ++i) {
         GLuint num_ids = *ptr;  ++ptr;
-        DTfloat zmin = (DTfloat) ((DTdouble) (*ptr) / 0x7FFFFFFF);	++ptr;
-        DTfloat zmax = (DTfloat) ((DTdouble) (*ptr) / 0x7FFFFFFF);	++ptr;
+        float zmin = (float) ((double) (*ptr) / 0x7FFFFFFF);	++ptr;
+        float zmax = (float) ((double) (*ptr) / 0x7FFFFFFF);	++ptr;
 
         LOG_MESSAGE << "zmin :" << zmin << "  " << "zmax: " << zmax;
 
@@ -624,7 +625,7 @@ void EdLevelWorldWindow::pickGL(QPointF pos, EdLevelToolEvent &tool_event)
         } else if (num_ids == 1) {
             GLuint id1 = *ptr; ++ptr;
 
-            if (tool_event._event_type == EdLevelToolEvent::MOUSE_DOWN && ((zmin + zmax) * 0.5F) < selection_z) {
+            if (tool_event._event_type == EdLevelToolEvent::MOUSE_DOWN && ((zmin + zmax) * 0.5f) < selection_z) {
                 // Change the selection
                 selection = _document->world()->node_by_id(id1);
             }
@@ -702,8 +703,8 @@ void EdLevelWorldWindow::toolContextMenu(QMouseEvent *event)
         return;
 
     std::shared_ptr<PlugNode> front = selection.front();
-    DTboolean is_object_base = front->isa(ObjectBase::kind());
-    DTboolean is_placeable = front->isa(PlaceableObject::kind());
+    bool is_object_base = front->isa(ObjectBase::kind());
+    bool is_placeable = front->isa(PlaceableObject::kind());
 
 
     // Context Menu
