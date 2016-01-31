@@ -86,30 +86,30 @@ EdLevelScriptNodeStandard::EdLevelScriptNodeStandard(std::shared_ptr<WorldNode> 
 EdLevelScriptNodeStandard::~EdLevelScriptNodeStandard  (void)
 {
     // Update connections
-    FOR_EACH (i,_connections) {
-        (**i).removeLink(this);
+    for(EdLevelScriptConnection* c : _connections) {
+        c->removeLink(this);
     }
 }
 
 //==============================================================================
 //==============================================================================
 
-bool EdLevelScriptNodeStandard::getPlugAtLocation (QPointF pos, QPoint &actual_pos, bool &is_input, PlugBase *&plug)
+bool EdLevelScriptNodeStandard::getPlugAtLocation(QPointF pos, QPoint &actual_pos, bool &is_input, PlugBase *&plug)
 {
     const int DIST = 8;
 
-    FOR_EACH (p_iter,_plugs) {
-        if ( (pos - p_iter->_input_location).manhattanLength() < DIST) {
-            actual_pos = p_iter->_input_location;
-            plug = p_iter->_plug;
-            is_input = true;
+    for (const QInputOutputPlug &p_iter : _plugs) {
+        if ((pos - p_iter._input_location).manhattanLength() < DIST) {
+            actual_pos = p_iter._input_location;
+            plug       = p_iter._plug;
+            is_input   = true;
             return true;
         }
 
-        if ( (pos - p_iter->_output_location).manhattanLength() < DIST) {
-            actual_pos = p_iter->_output_location;
-            plug = p_iter->_plug;
-            is_input = false;
+        if ((pos - p_iter._output_location).manhattanLength() < DIST) {
+            actual_pos = p_iter._output_location;
+            plug       = p_iter._plug;
+            is_input   = false;
             return true;
         }
     }
@@ -118,56 +118,59 @@ bool EdLevelScriptNodeStandard::getPlugAtLocation (QPointF pos, QPoint &actual_p
     return false;
 }
 
-bool EdLevelScriptNodeStandard::getEventAtLocation (QPointF pos, QPoint &actual_pos, bool &is_input, Event *&event)
+bool EdLevelScriptNodeStandard::getEventAtLocation(QPointF pos, QPoint &actual_pos, bool &is_input, Event *&event)
 {
     const int DIST = 8;
-
-    FOR_EACH (e_iter,_events) {
-        if ( (pos - e_iter->_input_location).manhattanLength() < DIST) {
-            actual_pos = e_iter->_input_location;
-            event = e_iter->_event;
-            is_input = true;
+    for (const QInputOutputEvent &e_iter : _events) {
+        if ((pos - e_iter._input_location).manhattanLength() < DIST) {
+            actual_pos = e_iter._input_location;
+            event      = e_iter._event;
+            is_input   = true;
             return true;
         }
 
-        if ( (pos - e_iter->_output_location).manhattanLength() < DIST) {
-            actual_pos = e_iter->_output_location;
-            event = e_iter->_event;
-            is_input = false;
+        if ((pos - e_iter._output_location).manhattanLength() < DIST) {
+            actual_pos = e_iter._output_location;
+            event      = e_iter._event;
+            is_input   = false;
             return true;
         }
     }
 
-    event = NULL;
+    event = nullptr;
     return false;
 }
 
 //==============================================================================
 //==============================================================================
 
-QPoint EdLevelScriptNodeStandard::getPlugLocation (PlugBase *plug, bool as_input)
+QPoint EdLevelScriptNodeStandard::getPlugLocation(PlugBase *plug, bool as_input)
 {
-    FOR_EACH (p_iter,_plugs) {
+    for (const QInputOutputPlug &p_iter : _plugs) {
 
-        if (p_iter->_plug == plug) {
-            if (as_input)   return p_iter->_input_location;
-            else            return p_iter->_output_location;
+        if (p_iter._plug == plug) {
+            if (as_input)
+                return p_iter._input_location;
+            else
+                return p_iter._output_location;
         }
     }
 
     if (as_input)
-        return QPoint(0.0F,TITLE_HEIGHT*0.5F);
+        return QPoint(0.0F, TITLE_HEIGHT * 0.5F);
     else
-        return QPoint(_width,TITLE_HEIGHT*0.5F);
+        return QPoint(_width, TITLE_HEIGHT * 0.5F);
 }
 
-QPoint EdLevelScriptNodeStandard::getEventLocation (Event *event, bool as_input)
+QPoint EdLevelScriptNodeStandard::getEventLocation(Event *event, bool as_input)
 {
-    FOR_EACH (e_iter,_events) {
+    for (const QInputOutputEvent &e_iter : _events) {
 
-        if (e_iter->_event == event) {
-            if (as_input)   return e_iter->_input_location;
-            else            return e_iter->_output_location;
+        if (e_iter._event == event) {
+            if (as_input)
+                return e_iter._input_location;
+            else
+                return e_iter._output_location;
         }
     }
 
@@ -317,22 +320,22 @@ void EdLevelScriptNodeStandard::addPlugsAndEvents(int &input_pos, int &output_po
     node->all_events (events);
 
     // Plugs first
-    FOR_EACH (p,plugs) {
-        if ( (*p)->is_no_draw())
+    for(PlugBase *p : plugs) {
+        if ( p->is_no_draw())
             continue;
 
         QInputOutputPlug plug;
 
-        float title_width = (float) fm.width( MoreStrings::captialize_and_format( (*p)->name() ).c_str());
+        float title_width = (float) fm.width( MoreStrings::captialize_and_format( p->name() ).c_str());
 
-        if ((*p)->is_input())	{
-            plug._plug = (*p);
+        if (p->is_input())	{
+            plug._plug = p;
             plug._input_position = input_pos++;
             _input_width = std::max(_input_width, title_width);
         }
 
-        if ((*p)->is_output())	{
-            plug._plug = (*p);
+        if (p->is_output())	{
+            plug._plug = p;
             plug._output_position = output_pos++;
             _output_width = std::max(_output_width, title_width);
         }
@@ -343,22 +346,22 @@ void EdLevelScriptNodeStandard::addPlugsAndEvents(int &input_pos, int &output_po
     input_pos = output_pos = std::max(input_pos,output_pos);
 
     // Events second
-    FOR_EACH (e,events) {
-        if ( (*e)->is_no_draw())
+    for(Event *e : events) {
+        if ( e->is_no_draw())
             continue;
 
         QInputOutputEvent event;
 
-        float title_width = (float) fm.width( MoreStrings::captialize_and_format( (*e)->name() ).c_str());
+        float title_width = (float) fm.width( MoreStrings::captialize_and_format( e->name() ).c_str());
 
-        if ( (*e)->is_input())	{
-            event._event = (*e);
+        if ( e->is_input())	{
+            event._event = e;
             event._input_position = input_pos++;
             _input_width = std::max(_input_width, title_width);
         }
 
-        if ( (*e)->is_output())	{
-            event._event = (*e);
+        if ( e->is_output())	{
+            event._event = e;
             event._output_position = output_pos++;
             _output_width = std::max(_output_width, title_width);
         }
@@ -407,11 +410,9 @@ void EdLevelScriptNodeStandard::layoutNode (void)
         // Do components if necessary
         std::shared_ptr<ObjectBase> base_object = checked_cast<ObjectBase>(_node);
         if (base_object) {
-            std::list<std::shared_ptr<ComponentBase>> c = base_object->all_components();
-
-            FOR_EACH (i,c) {
-                _title_width = std::max(_title_width, (float) fm.width( (**i).name().c_str() ) );
-                addPlugsAndEvents(input_pos, output_pos, *i);
+            for(const std::shared_ptr<ComponentBase> &i : base_object->all_components()) {
+                _title_width = std::max(_title_width, (float) fm.width( i->name().c_str() ) );
+                addPlugsAndEvents(input_pos, output_pos, i);
             }
         }
 
@@ -452,8 +453,8 @@ void EdLevelScriptNodeStandard::layoutNode (void)
 void EdLevelScriptNodeStandard::layoutConnections()
 {
     // Update connections
-    FOR_EACH (i,_connections) {
-        (**i).readjustBounds();
+    for (EdLevelScriptConnection *i : _connections) {
+        i->readjustBounds();
     }
 }
 

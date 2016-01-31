@@ -70,13 +70,13 @@ EdLevelLibraryWindow::EdLevelLibraryWindow(QWidget *parent, QToolBar *toolbar, E
 QMimeData* EdLevelLibraryWindow::mimeData (const QList<QTreeWidgetItem *> items) const
 {
     if (items.size() != 1)
-        return NULL;
+        return nullptr;
 
     QMimeData *mime = new QMimeData();
 
-    FOR_EACH (i,items) {
+    for(QTreeWidgetItem *i : items) {
 
-        QByteArray data = (**i).data(0,Qt::UserRole).toByteArray();
+        QByteArray data = i->data(0,Qt::UserRole).toByteArray();
         mime->setData("DT3/Group", data);
     }
 

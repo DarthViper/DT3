@@ -73,13 +73,13 @@ EdLevelResourcesWindow::EdLevelResourcesWindow(QWidget *parent, QToolBar *toolba
 
 QMimeData* EdLevelResourcesWindow::mimeData (const QList<QTreeWidgetItem *> items) const
 {
-    if (items.size() == 0)
-        return NULL;
+    if (items.empty())
+        return nullptr;
 
     QMimeData *mime = new QMimeData();
 
-    FOR_EACH (i,items) {
-        QString data = (**i).data(0,Qt::UserRole).toString();
+    for(QTreeWidgetItem *i : items) {
+        QString data = i->data(0,Qt::UserRole).toString();
         mime->setText(data);
     }
 
@@ -97,7 +97,7 @@ void EdLevelResourcesWindow::buildTree (QTreeWidgetItem *parent, const FilePath 
 
     for (DTuint i = 0; i < lister.num_files(); ++i) {
         QTreeWidgetItem *item = new QTreeWidgetItem();
-        item->setData(0, Qt::UserRole, QString("{") + QString(lister.file_name(i).c_str()) + QString("}") );
+        item->setData(0, Qt::UserRole, QString("{") + QString(lister.file_name(i).c_str()) + "}" );
         parent->addChild(item);
 
         // A little heavy - see if there's an importer by trying to create one

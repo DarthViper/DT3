@@ -341,9 +341,9 @@ void EdLevelWorldWindow::refreshCameras()
     _camera_selection->clear();
 
     // Add the new cameras to the list
-    FOR_EACH (i,objects) {
-        if ( (**i).isa(CameraObject::kind()) ) {
-            _camera_selection->addItem( (**i).name().c_str(), qVariantFromValue( (void*) i->get() ) );
+    for(const std::shared_ptr<WorldNode> &n : objects) {
+        if ( n->isa(CameraObject::kind()) ) {
+            _camera_selection->addItem( n->name().c_str(), qVariantFromValue( (void*) n.get() ) );
             ++count_cameras;
         }
     }
@@ -489,10 +489,8 @@ void EdLevelWorldWindow::paintGL(void)
     drawScene(_camera, calcScale(_camera));
 
     // Draw the selections
-    const std::list<std::shared_ptr<PlugNode>>& selection = _document->selection();
-
-    FOR_EACH (i,selection) {
-        std::shared_ptr<PlaceableObject> placeable = checked_cast<PlaceableObject>(*i);
+    for(const std::shared_ptr<PlugNode> &n : _document->selection()) {
+        const std::shared_ptr<PlaceableObject> placeable = checked_cast<PlaceableObject>(n);
         if (!placeable) {
             continue;
         }
@@ -771,24 +769,20 @@ void EdLevelWorldWindow::toolContextMenu(QMouseEvent *event)
     if (is_object_base) {
         std::shared_ptr<ObjectBase> base = checked_static_cast<ObjectBase>(front);
 
-        // Components
-        std::list<std::shared_ptr<ComponentBase>> components = base->all_components();
-
         // Sub component menu items
-        FOR_EACH (i,components) {
+        for(std::shared_ptr<ComponentBase> &n : base->all_components()) {
 
-            DTcharacter *class_id = (*i)->class_id_child();
+            DTcharacter *class_id = n->class_id_child();
             std::shared_ptr<EdLevelTool> tool = checked_cast<EdLevelTool>(Factory::create_tool(class_id));
 
             if (tool) {
                 QAction *component = new QAction(this);
                 component->setVisible(true);
-                component->setText((*i)->name().c_str());
+                component->setText(n->name().c_str());
                 component->setVisible(true);
                 component->setData(QString(tool->class_id_child()));
 
-                connect(component,  SIGNAL(triggered()),
-                        this,       SLOT(onSelectComponent()));
+                connect(component, &QAction::triggered, this, &EdLevelWorldWindow::onSelectComponent);
 
                 context_menu->addAction(component);
             }
@@ -986,15 +980,10 @@ void EdLevelWorldWindow::keyPressEvent (QKeyEvent *event)
         event->accept();
     } else if ( (event->matches(QKeySequence::Delete) || key == 0x1000003) && (!_tool || is_builtin_tool)) {
 
-        std::list<std::shared_ptr<PlugNode>> selection = _document->selection();
-        FOR_EACH (i,selection) {
-
-            std::shared_ptr<WorldNode> node = checked_cast<WorldNode>(*i);
+        for(const std::shared_ptr<PlugNode> &n : _document->selection()) {
+            std::shared_ptr<WorldNode> node = checked_cast<WorldNode>(n);
             if (node) {
-                std::string nodename = node->name();
-
-                std::string cmd = "Remove \"" + nodename + "\"";
-                emit doCommand(cmd.c_str());
+                emit doCommand(QString("Remove \"%1\"").arg(node->name().c_str()));
             }
         }
 
@@ -1102,20 +1091,20 @@ void EdLevelWorldWindow::drawGrid (const std::shared_ptr<CameraObject> &camera)
 //==============================================================================
 //==============================================================================
 
-void EdLevelWorldWindow::onArrowTool (void)
+void EdLevelWorldWindow::onArrowTool(void)
 {
     _tool.reset();
 
-    const std::list<std::shared_ptr<PlugNode>>& selection = _document->selection();
+    const std::list<std::shared_ptr<PlugNode>> &selection = _document->selection();
 
     // Check that all objects are the same type
-    if (selection.size() > 0) {
+    if (!selection.empty()) {
 
         DTcharacter *class_id = selection.front()->class_id_child();
 
-        FOR_EACH (i,selection) {
+        for (const std::shared_ptr<PlugNode> &n : _document->selection()) {
 
-            if ( (**i).class_id_child() != class_id )
+            if (n->class_id_child() != class_id)
                 return; // Different so no further action needed
         }
 

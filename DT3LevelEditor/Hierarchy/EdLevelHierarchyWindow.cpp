@@ -475,7 +475,7 @@ void EdLevelHierarchyWindow::selectionChanged (const QItemSelection & selected, 
 //==============================================================================
 //==============================================================================
 
-void EdLevelHierarchyWindow::onAddNode (WorldNode *node_raw)
+void EdLevelHierarchyWindow::onAddNode(WorldNode *node_raw)
 {
     std::shared_ptr<WorldNode> node = checked_cast<WorldNode>(node_raw->shared_from_this());
 
@@ -485,11 +485,12 @@ void EdLevelHierarchyWindow::onAddNode (WorldNode *node_raw)
     item->setText(1, node->class_id_child());
 
     if (node->isa(ObjectBase::kind())) {
-        item->setFlags (Qt::ItemIsEditable | Qt::ItemIsDragEnabled | Qt::ItemIsDropEnabled | Qt::ItemIsEnabled | Qt::ItemIsSelectable);
-        item->setIcon(0,QIcon(":/images/hierobj.png"));
+        item->setFlags(Qt::ItemIsEditable | Qt::ItemIsDragEnabled | Qt::ItemIsDropEnabled | Qt::ItemIsEnabled |
+                       Qt::ItemIsSelectable);
+        item->setIcon(0, QIcon(":/images/hierobj.png"));
     } else {
-        item->setFlags (Qt::ItemIsEditable | Qt::ItemIsEnabled | Qt::ItemIsSelectable);
-        item->setIcon(0,QIcon(":/images/hiercalc.png"));
+        item->setFlags(Qt::ItemIsEditable | Qt::ItemIsEnabled | Qt::ItemIsSelectable);
+        item->setIcon(0, QIcon(":/images/hiercalc.png"));
     }
 
     _top_level->addChild(item);
@@ -501,21 +502,17 @@ void EdLevelHierarchyWindow::onAddNode (WorldNode *node_raw)
     setVisibility(&c);
 
     // Fix parenting
-    if (node && node->isa(PlaceableObject::kind()) ) {
+    if (node && node->isa(PlaceableObject::kind())) {
         std::shared_ptr<PlaceableObject> obj = checked_static_cast<PlaceableObject>(node);
 
         if (obj->has_parent()) {
-            onReparentNode (node.get(), NULL, obj->parent());
+            onReparentNode(node.get(), NULL, obj->parent());
         }
 
-        std::list<PlaceableObject*> children = obj->children();
-
-        FOR_EACH (i,children) {
-            onReparentNode ( *i, NULL, node.get());
+        for (PlaceableObject *i : obj->children()) {
+            onReparentNode(i, NULL, node.get());
         }
-
     }
-
 }
 
 void EdLevelHierarchyWindow::onRemoveNode (WorldNode *node_raw)

@@ -55,9 +55,9 @@ const int EdLevelScriptWindow::AUTO_SCROLL_MARIGN = 30;
 
 EdLevelScriptWindow::EdLevelScriptWindow(QWidget *parent, QToolBar *toolbar, EdLevelDocument *document)
     :   QGraphicsView   (parent),
-        _mode           (MODE_NONE),
-        _scale          (1.0F),
-        _z              (0)
+      _mode           (MODE_NONE),
+      _scale          (1.0F),
+      _z              (0)
 {
     _document = document;
     _toolbar = toolbar;
@@ -187,8 +187,8 @@ void EdLevelScriptWindow::onScriptColor (void)
     QColor color = QColorDialog::getColor(QColor(150,150,150,255), this);
     if (color.isValid()) {
         emit doCommand( QString("ColorNodes ")  + MoreStrings::cast_to_string(color.redF()).c_str() + " "
-                                                + MoreStrings::cast_to_string(color.greenF()).c_str() + " "
-                                                + MoreStrings::cast_to_string(color.blueF()).c_str() );
+                        + MoreStrings::cast_to_string(color.greenF()).c_str() + " "
+                        + MoreStrings::cast_to_string(color.blueF()).c_str() );
     }
 }
 
@@ -226,8 +226,8 @@ void EdLevelScriptWindow::dropEvent (QDropEvent *event)
     const std::list<std::shared_ptr<WorldNode>> &items_world = group->nodes();
 
     // Add nodes to world with an offset
-    FOR_EACH (i,items_world) {
-        _document->world()->add_node_unique_name(*i);
+    for(const std::shared_ptr<WorldNode> &i : items_world) {
+        _document->world()->add_node_unique_name(i);
     }
 
     _document->world()->add_group(group);
@@ -281,21 +281,21 @@ EdLevelGroup* EdLevelScriptWindow::getSceneObjectForGroup (std::shared_ptr<Group
 void EdLevelScriptWindow::onRefreshScript()
 {
     // Sync node parameters
-    FOR_EACH (i2, _node_cache) {
+    for(NodeCache &i2 : _node_cache) {
 
         // Positions
-        Vector3 pos = i2->_node->node_position();
-        i2->_scene_object->setPos(QPoint(pos.x,pos.y));
+        Vector3 pos = i2._node->node_position();
+        i2._scene_object->setPos(QPoint(pos.x,pos.y));
     }
 
     // Sync plug value
-    FOR_EACH (i3, _plug_cache) {
-        i3->_scene_object->update();
+    for(ConnectionPlugCache &plug : _plug_cache) {
+        plug._scene_object->update();
     }
 
     // Sync groups
-    FOR_EACH (i4, _group_cache) {
-        adjustGroupBounds(i4->_group);
+    for(GroupCache &grp : _group_cache) {
+        adjustGroupBounds(grp._group);
     }
 
     readjustSceneRect();
@@ -315,26 +315,24 @@ void EdLevelScriptWindow::onSelectionChanged (const std::list<std::shared_ptr<Pl
     blockSignals(true);
     _scene.blockSignals(true);
 
-    QList<QGraphicsItem *> scene_items = _scene.items();
-
     // Reselect all items
     _scene.clearSelection();
 
-    FOR_EACH (i,scene_items) {
-        EdLevelScriptNodeStandard *n = qgraphicsitem_cast<EdLevelScriptNodeStandard*>(*i);
+    for(QGraphicsItem *i : _scene.items()) {
+        EdLevelScriptNodeStandard *n = qgraphicsitem_cast<EdLevelScriptNodeStandard*>(i);
         if (n && std::find(selection_list.begin(), selection_list.end(), n->getNode()) != selection_list.end()) {
-            (**i).setSelected(true);
+            i->setSelected(true);
 
             // Recenter
-            ensureVisible(*i, 0, 0);
+            ensureVisible(i, 0, 0);
         }
 
-        EdLevelGroup *g = qgraphicsitem_cast<EdLevelGroup*>(*i);
+        EdLevelGroup *g = qgraphicsitem_cast<EdLevelGroup*>(i);
         if (g && std::find(selection_list.begin(), selection_list.end(), g->getGroup()) != selection_list.end()) {
-            (**i).setSelected(true);
+            i->setSelected(true);
 
             // Recenter
-            ensureVisible(*i, 0, 0);
+            ensureVisible(i, 0, 0);
         }
 
     }
@@ -428,23 +426,23 @@ void EdLevelScriptWindow::readjustSceneRect	(void)
 void EdLevelScriptWindow::setMode (Mode mode)
 {
     switch (_mode) {
-        case MODE_NONE:													break;
-        case MODE_DRAG_SELECTING:	_selection_rubber_band->hide();		break;
-        case MODE_CLICKING:												break;
-        case MODE_DRAGGING:												break;
-        case MODE_CONNECTING:		_connection_rubber_band->hide();	break;
-        case MODE_PANNING:												break;
-        default:                                                        break;
+    case MODE_NONE:													break;
+    case MODE_DRAG_SELECTING:	_selection_rubber_band->hide();		break;
+    case MODE_CLICKING:												break;
+    case MODE_DRAGGING:												break;
+    case MODE_CONNECTING:		_connection_rubber_band->hide();	break;
+    case MODE_PANNING:												break;
+    default:                                                        break;
     };
 
     switch (mode) {
-        case MODE_NONE:													break;
-        case MODE_DRAG_SELECTING:	_selection_rubber_band->show();		break;
-        case MODE_CLICKING:												break;
-        case MODE_DRAGGING:												break;
-        case MODE_CONNECTING:		_connection_rubber_band->show();	break;
-        case MODE_PANNING:												break;
-        default:                                                        break;
+    case MODE_NONE:													break;
+    case MODE_DRAG_SELECTING:	_selection_rubber_band->show();		break;
+    case MODE_CLICKING:												break;
+    case MODE_DRAGGING:												break;
+    case MODE_CONNECTING:		_connection_rubber_band->show();	break;
+    case MODE_PANNING:												break;
+    default:                                                        break;
     };
 
     _mode = mode;
@@ -508,11 +506,11 @@ void EdLevelScriptWindow::mousePressEvent (QMouseEvent *event)
             setMode(MODE_CLICKING);
         }
 
-    // Middle click
+        // Middle click
     } else if (event->buttons() == Qt::MidButton) {
         setMode(MODE_PANNING);
 
-    // Left and Middle click
+        // Left and Middle click
     } else if ( (event->buttons() & Qt::LeftButton) && (event->modifiers() & Qt::ALT) ) {
         setMode(MODE_ZOOMING);
     } else if (event->buttons() == Qt::RightButton) {
@@ -550,112 +548,110 @@ void EdLevelScriptWindow::mouseMoveEvent (QMouseEvent *event)
 
     // Manipulators
     switch (getMode()) {
-        case MODE_NONE:
-            break;
+    case MODE_NONE:
+        break;
 
-        case MODE_CLICKING:
-            if (dist.manhattanLength() > 3) {
+    case MODE_CLICKING:
+        if (dist.manhattanLength() > 3) {
 
-                // Mode switch to dragging
-                QGraphicsItem *item = itemAt (_start_point);
-                if (item) {
-                    item->setZValue(++_z);
+            // Mode switch to dragging
+            QGraphicsItem *item = itemAt (_start_point);
+            if (item) {
+                item->setZValue(++_z);
+            }
+
+            // Check for connection click
+            _connection_start_node = qgraphicsitem_cast<EdLevelScriptNodeStandard*>(item);
+            if (_connection_start_node) {
+
+                QPoint click_location = _connection_start_node->mapFromScene(_start_point_scene).toPoint();
+
+                bool hit_plug = _connection_start_node->getPlugAtLocation (click_location, _connection_start_location, _connection_start_location_is_input, _connection_start_plug);
+                if (hit_plug && _connection_start_plug) {
+                    QPoint connection_start_location = mapFromScene(_connection_start_node->mapToScene(_connection_start_location));
+                    _connection_rubber_band->setEndpoints(connection_start_location, _end_point, _connection_start_location_is_input);
+
+                    _connection_rubber_band->show();
+                    setMode(MODE_CONNECTING);
                 }
 
-                // Check for connection click
-                _connection_start_node = qgraphicsitem_cast<EdLevelScriptNodeStandard*>(item);
-                if (_connection_start_node) {
+                bool hit_event = _connection_start_node->getEventAtLocation (click_location, _connection_start_location, _connection_start_location_is_input, _connection_start_event);
+                if (hit_event && _connection_start_event) {
+                    QPoint connection_start_location = mapFromScene(_connection_start_node->mapToScene(_connection_start_location));
+                    _connection_rubber_band->setEndpoints(connection_start_location, _end_point, _connection_start_location_is_input);
 
-                    QPoint click_location = _connection_start_node->mapFromScene(_start_point_scene).toPoint();
-
-                    bool hit_plug = _connection_start_node->getPlugAtLocation (click_location, _connection_start_location, _connection_start_location_is_input, _connection_start_plug);
-                    if (hit_plug && _connection_start_plug) {
-                        QPoint connection_start_location = mapFromScene(_connection_start_node->mapToScene(_connection_start_location));
-                        _connection_rubber_band->setEndpoints(connection_start_location, _end_point, _connection_start_location_is_input);
-
-                        _connection_rubber_band->show();
-                        setMode(MODE_CONNECTING);
-                   }
-
-                    bool hit_event = _connection_start_node->getEventAtLocation (click_location, _connection_start_location, _connection_start_location_is_input, _connection_start_event);
-                    if (hit_event && _connection_start_event) {
-                        QPoint connection_start_location = mapFromScene(_connection_start_node->mapToScene(_connection_start_location));
-                        _connection_rubber_band->setEndpoints(connection_start_location, _end_point, _connection_start_location_is_input);
-
-                        _connection_rubber_band->show();
-                        setMode(MODE_CONNECTING);
-                    }
-
-
+                    _connection_rubber_band->show();
+                    setMode(MODE_CONNECTING);
                 }
 
-                // Normal manipulation
-                if (getMode() != MODE_CONNECTING) {
-                    if (item) {
-                        if (!item->isSelected()) {
-                            if (!(event->modifiers() & Qt::CTRL) && !(event->modifiers() & Qt::SHIFT)) {
-                                _scene.clearSelection ();
-                            }
-                            item->setSelected(true);
-                        }
-
-                        setMode(MODE_DRAGGING);
-
-                    } else {
-                        setMode(MODE_DRAG_SELECTING);
-                        _selection_rubber_band->setEndpoints(mapFromScene(_start_point_scene), _end_point);
-                    }
-                }
 
             }
 
-            break;
-
-        case MODE_DRAG_SELECTING:
-            _selection_rubber_band->setEndpoints(mapFromScene(_start_point_scene), _end_point);
-            break;
-
-        case MODE_DRAGGING:	{
-                QPointF delta_scene = mapToScene(_end_point - _last_point) - mapToScene(QPoint(0, 0));
-
-                QList<QGraphicsItem*> selected_items = _scene.selectedItems();
-
-                FOR_EACH (i,selected_items) {
-                    EdLevelScriptNodeStandard *node = qgraphicsitem_cast<EdLevelScriptNodeStandard*>(*i);
-                    if (node) {
-                        // Build a command to move the node to this position
-                        Vector3 node_pos = node->getNode()->node_position();
-                        QPointF new_position = QPointF(node_pos.x, node_pos.y) + delta_scene;
-                        std::string cmd = "MoveNode \"" + node->getNode()->name() + "\" (" + MoreStrings::cast_to_string(new_position.x()) + " " + MoreStrings::cast_to_string(new_position.y()) + " 0.0)";
-
-                        emit doCommand(cmd.c_str());
+            // Normal manipulation
+            if (getMode() != MODE_CONNECTING) {
+                if (item) {
+                    if (!item->isSelected()) {
+                        if (!(event->modifiers() & Qt::CTRL) && !(event->modifiers() & Qt::SHIFT)) {
+                            _scene.clearSelection ();
+                        }
+                        item->setSelected(true);
                     }
+
+                    setMode(MODE_DRAGGING);
+
+                } else {
+                    setMode(MODE_DRAG_SELECTING);
+                    _selection_rubber_band->setEndpoints(mapFromScene(_start_point_scene), _end_point);
                 }
+            }
 
-                readjustSceneRect();
-            } break;
+        }
 
-        case MODE_CONNECTING: {
-                QPoint connection_start_location = mapFromScene(_connection_start_node->mapToScene(_connection_start_location));
-                _connection_rubber_band->setEndpoints(connection_start_location, _end_point, _connection_start_location_is_input);
+        break;
 
-            } break;
+    case MODE_DRAG_SELECTING:
+        _selection_rubber_band->setEndpoints(mapFromScene(_start_point_scene), _end_point);
+        break;
 
-        case MODE_PANNING: {
-                QScrollBar *hBar = horizontalScrollBar();
-                QScrollBar *vBar = verticalScrollBar();
-                hBar->setValue(hBar->value() - delta.x());
-                vBar->setValue(vBar->value() - delta.y());
-            } break;
+    case MODE_DRAGGING:	{
+        QPointF delta_scene = mapToScene(_end_point - _last_point) - mapToScene(QPoint(0, 0));
 
-        case MODE_ZOOMING: {
-                _scale *= 1.0F + (delta.x() + delta.y()) / -100.0F;
-                if (_scale < 0.2F)		_scale = 0.2F;
-                else if (_scale > 1.5F)	_scale = 1.5F;
+        for(QGraphicsItem *i : _scene.selectedItems()) {
+            EdLevelScriptNodeStandard *node = qgraphicsitem_cast<EdLevelScriptNodeStandard*>(i);
+            if (node) {
+                // Build a command to move the node to this position
+                Vector3 node_pos = node->getNode()->node_position();
+                QPointF new_position = QPointF(node_pos.x, node_pos.y) + delta_scene;
+                QString cmd = QString("MoveNode \"%1\" (%2 %3 0.0)").arg(node->getNode()->name().c_str()).arg(new_position.x()).arg(new_position.y());
 
-                resetMatrix();
-                scale(_scale,_scale);
-            } break;
+                emit doCommand(cmd);
+            }
+        }
+
+        readjustSceneRect();
+    } break;
+
+    case MODE_CONNECTING: {
+        QPoint connection_start_location = mapFromScene(_connection_start_node->mapToScene(_connection_start_location));
+        _connection_rubber_band->setEndpoints(connection_start_location, _end_point, _connection_start_location_is_input);
+
+    } break;
+
+    case MODE_PANNING: {
+        QScrollBar *hBar = horizontalScrollBar();
+        QScrollBar *vBar = verticalScrollBar();
+        hBar->setValue(hBar->value() - delta.x());
+        vBar->setValue(vBar->value() - delta.y());
+    } break;
+
+    case MODE_ZOOMING: {
+        _scale *= 1.0F + (delta.x() + delta.y()) / -100.0F;
+        if (_scale < 0.2F)		_scale = 0.2F;
+        else if (_scale > 1.5F)	_scale = 1.5F;
+
+        resetMatrix();
+        scale(_scale,_scale);
+    } break;
     };
 
     _last_point = _end_point;
@@ -672,102 +668,100 @@ void EdLevelScriptWindow::mouseReleaseEvent	(QMouseEvent *event)
     _auto_scroll_timer.stop();
 
     switch (getMode()) {
-        case MODE_NONE:
-            break;
+    case MODE_NONE:
+        break;
 
-        case MODE_CLICKING:	{
+    case MODE_CLICKING:	{
 
-                QGraphicsItem *item = itemAt (_start_point);
-                if (item) {
-                    item->setZValue(++_z);
+        QGraphicsItem *item = itemAt (_start_point);
+        if (item) {
+            item->setZValue(++_z);
 
-                    if ((event->modifiers() & Qt::CTRL) || (event->modifiers() & Qt::SHIFT)) {
-                        if (item->isSelected())	item->setSelected(false);
-                        else					item->setSelected(true);
-                    } else {
-                        _scene.clearSelection ();
-                        item->setSelected(true);
-                    }
-                } else {
-                    _scene.clearSelection ();
-                }
-            } break;
+            if ((event->modifiers() & Qt::CTRL) || (event->modifiers() & Qt::SHIFT)) {
+                if (item->isSelected())	item->setSelected(false);
+                else					item->setSelected(true);
+            } else {
+                _scene.clearSelection ();
+                item->setSelected(true);
+            }
+        } else {
+            _scene.clearSelection ();
+        }
+    } break;
 
-        case MODE_DRAG_SELECTING: {
-                // Build a selection rectangle
-                QRect selection_rect = QRect(   QPoint( (int) _start_point_scene.x(), (int) _start_point_scene.y()),
-                                                QPoint( (int) _end_point_scene.x(), (int) _end_point_scene.y())
-                                            ).normalized();
+    case MODE_DRAG_SELECTING: {
+        // Build a selection rectangle
+        QRect selection_rect = QRect(   QPoint( (int) _start_point_scene.x(), (int) _start_point_scene.y()),
+                                        QPoint( (int) _end_point_scene.x(), (int) _end_point_scene.y())
+                                        ).normalized();
 
-                QList<QGraphicsItem*> selected_items = _scene.selectedItems();
+        QPainterPath pp;
+        pp.addRect(selection_rect);
+        _scene.setSelectionArea(pp);
 
-                QPainterPath pp;
-                pp.addRect(selection_rect);
-                _scene.setSelectionArea(pp);
+        // Reselect all previous items if adding to the selection
+        if ((event->modifiers() & Qt::CTRL) || (event->modifiers() & Qt::SHIFT)) {
+            for(QGraphicsItem *i : _scene.selectedItems()) {
+                i->setSelected(true);
+            }
+        }
 
-                // Reselect all previous items if adding to the selection
-                if ((event->modifiers() & Qt::CTRL) || (event->modifiers() & Qt::SHIFT)) {
-                    FOR_EACH (i,selected_items) {
-                        (**i).setSelected(true);
-                    }
-                }
+    } break;
 
-            } break;
+    case MODE_DRAGGING: {
+        readjustSceneRect();
+    } break;
 
-        case MODE_DRAGGING: {
-                readjustSceneRect();
-            } break;
+    case MODE_CONNECTING: {
 
-        case MODE_CONNECTING: {
+        // Mode switch to connecting
+        QGraphicsItem *item = itemAt (_end_point);
 
-                // Mode switch to connecting
-                QGraphicsItem *item = itemAt (_end_point);
+        // Check for connection click
+        EdLevelScriptNodeStandard *connection_end_node = qgraphicsitem_cast<EdLevelScriptNodeStandard*>(item);
+        if (connection_end_node) {
 
-                // Check for connection click
-                EdLevelScriptNodeStandard *connection_end_node = qgraphicsitem_cast<EdLevelScriptNodeStandard*>(item);
-                if (connection_end_node) {
+            QPoint click_location = connection_end_node->mapFromScene(_end_point_scene).toPoint();
 
-                    QPoint click_location = connection_end_node->mapFromScene(_end_point_scene).toPoint();
+            QPoint      connection_end_location;
+            bool        connection_end_location_is_input;
+            PlugBase    *connection_end_plug;
+            Event   *connection_end_event;
 
-                    QPoint      connection_end_location;
-                    bool        connection_end_location_is_input;
-                    PlugBase    *connection_end_plug;
-                    Event   *connection_end_event;
+            bool hit_plug = connection_end_node->getPlugAtLocation (click_location, connection_end_location, connection_end_location_is_input, connection_end_plug);
+            if (hit_plug && _connection_start_plug) {
 
-                    bool hit_plug = connection_end_node->getPlugAtLocation (click_location, connection_end_location, connection_end_location_is_input, connection_end_plug);
-                    if (hit_plug && _connection_start_plug) {
+                std::string cmd;
+                if (!_connection_start_location_is_input && connection_end_location_is_input)
+                    cmd = "ConnectPlugs \"" + _connection_start_plug->full_name() + "\" \"" + connection_end_plug->full_name() + "\"";
+                else if (_connection_start_location_is_input && !connection_end_location_is_input)
+                    cmd = "ConnectPlugs \"" + connection_end_plug->full_name() + "\" \"" + _connection_start_plug->full_name() + "\"";
 
-                        std::string cmd;
-                        if (!_connection_start_location_is_input && connection_end_location_is_input)
-                            cmd = "ConnectPlugs \"" + _connection_start_plug->full_name() + "\" \"" + connection_end_plug->full_name() + "\"";
-                        else if (_connection_start_location_is_input && !connection_end_location_is_input)
-                            cmd = "ConnectPlugs \"" + connection_end_plug->full_name() + "\" \"" + _connection_start_plug->full_name() + "\"";
+                emit doCommand(cmd.c_str());
+            }
 
-                        emit doCommand(cmd.c_str());
-                   }
+            bool hit_event = connection_end_node->getEventAtLocation (click_location, connection_end_location, connection_end_location_is_input, connection_end_event);
+            if (hit_event && _connection_start_event) {
 
-                    bool hit_event = connection_end_node->getEventAtLocation (click_location, connection_end_location, connection_end_location_is_input, connection_end_event);
-                    if (hit_event && _connection_start_event) {
+                std::string cmd;
+                if (!_connection_start_location_is_input && connection_end_location_is_input)
+                    cmd = "ConnectEvents \"" + _connection_start_event->full_name() + "\" \"" + connection_end_event->full_name() + "\"";
+                else if (_connection_start_location_is_input && !connection_end_location_is_input)
+                    cmd = "ConnectEvents \"" + connection_end_event->full_name() + "\" \"" + _connection_start_event->full_name() + "\"";
 
-                        std::string cmd;
-                        if (!_connection_start_location_is_input && connection_end_location_is_input)
-                            cmd = "ConnectEvents \"" + _connection_start_event->full_name() + "\" \"" + connection_end_event->full_name() + "\"";
-                        else if (_connection_start_location_is_input && !connection_end_location_is_input)
-                            cmd = "ConnectEvents \"" + connection_end_event->full_name() + "\" \"" + _connection_start_event->full_name() + "\"";
-
-                        emit doCommand(cmd.c_str());
-                    }
+                emit doCommand(cmd.c_str());
+            }
 
 
-                }
+        }
 
-            } break;
+    } break;
 
-        case MODE_PANNING:
-            break;
+    case MODE_PANNING:
+        break;
 
-        default:
-            break;
+    default:
+        break;
     }
 
     setMode(MODE_NONE);
@@ -778,7 +772,7 @@ void EdLevelScriptWindow::mouseReleaseEvent	(QMouseEvent *event)
 //==============================================================================
 //==============================================================================
 
-void EdLevelScriptWindow::onAutoScroll (void)
+void EdLevelScriptWindow::onAutoScroll(void)
 {
     if (_auto_scroll_x == 0 && _auto_scroll_y == 0)
         return;
@@ -788,43 +782,39 @@ void EdLevelScriptWindow::onAutoScroll (void)
     hBar->setValue(hBar->value() - _auto_scroll_x);
     vBar->setValue(vBar->value() - _auto_scroll_y);
 
-
     switch (getMode()) {
-        case MODE_DRAG_SELECTING:
-            _selection_rubber_band->setEndpoints(mapFromScene(_start_point_scene), _end_point);
-            break;
+    case MODE_DRAG_SELECTING: _selection_rubber_band->setEndpoints(mapFromScene(_start_point_scene), _end_point); break;
 
-        case MODE_DRAGGING:	{
-                QPointF delta_scene = mapToScene(QPoint(-_auto_scroll_x, -_auto_scroll_y)) - mapToScene(QPoint(0, 0));
+    case MODE_DRAGGING: {
+        QPointF delta_scene = mapToScene(QPoint(-_auto_scroll_x, -_auto_scroll_y)) - mapToScene(QPoint(0, 0));
 
-                QList<QGraphicsItem*> selected_items = _scene.selectedItems();
+        QList<QGraphicsItem *> selected_items = _scene.selectedItems();
 
-                FOR_EACH (i,selected_items) {
-                    EdLevelScriptNodeStandard *node = qgraphicsitem_cast<EdLevelScriptNodeStandard*>(*i);
-                    if (node) {
-                        // Build a command to move the node to this position
-                        Vector3 node_pos = node->getNode()->node_position();
-                        QPointF new_position = QPointF(node_pos.x, node_pos.y) + delta_scene;
-                        std::string cmd = "MoveNode \"" + node->getNode()->name() + "\" (" + MoreStrings::cast_to_string(new_position.x()) + " " + MoreStrings::cast_to_string(new_position.y()) + " 0.0)";
+        for (QGraphicsItem *i : selected_items) {
+            EdLevelScriptNodeStandard *node = qgraphicsitem_cast<EdLevelScriptNodeStandard *>(i);
+            if (node) {
+                // Build a command to move the node to this position
+                Vector3 node_pos     = node->getNode()->node_position();
+                QPointF new_position = QPointF(node_pos.x, node_pos.y) + delta_scene;
+                emit    doCommand(QString("MoveNode \"%1\" (%2 %3 0.0)")
+                                   .arg(node->getNode()->name().c_str())
+                                   .arg(new_position.x())
+                                   .arg(new_position.y()));
+            }
+        }
 
-                        emit doCommand(cmd.c_str());
-                    }
-                }
+        readjustSceneRect();
+    } break;
 
-                readjustSceneRect();
-            } break;
+    case MODE_CONNECTING: {
+        QPoint connection_start_location = mapFromScene(_connection_start_node->mapToScene(_connection_start_location));
+        _connection_rubber_band->setEndpoints(connection_start_location, _end_point,
+                                              _connection_start_location_is_input);
 
-        case MODE_CONNECTING: {
-                QPoint connection_start_location = mapFromScene(_connection_start_node->mapToScene(_connection_start_location));
-                _connection_rubber_band->setEndpoints(connection_start_location, _end_point, _connection_start_location_is_input);
+    } break;
 
-            } break;
-
-        default:
-            break;
+    default: break;
     }
-
-
 }
 
 //==============================================================================
@@ -904,11 +894,10 @@ void EdLevelScriptWindow::keyPressEvent (QKeyEvent *event)
 void EdLevelScriptWindow::selectionChanged ()
 {
     std::list<std::shared_ptr<PlugNode>> selection_list;
-    QList<QGraphicsItem *> selected_items = _scene.selectedItems();
 
-    FOR_EACH (i,selected_items) {
-        EdLevelScriptNodeStandard *node = qgraphicsitem_cast<EdLevelScriptNodeStandard*>(*i);
-        EdLevelGroup *group = qgraphicsitem_cast<EdLevelGroup*>(*i);
+    for(QGraphicsItem *i : _scene.selectedItems()) {
+        EdLevelScriptNodeStandard *node = qgraphicsitem_cast<EdLevelScriptNodeStandard*>(i);
+        EdLevelGroup *group = qgraphicsitem_cast<EdLevelGroup*>(i);
 
         if (node) {
             std::shared_ptr<PlugNode> n = checked_static_cast<PlugNode>(node->getNode());
@@ -1019,10 +1008,10 @@ void EdLevelScriptWindow::onAddNode (WorldNode *node_raw)
     item->setPos(center);
 
     QObject::connect(    item,           SIGNAL(doNodeContextMenu(std::shared_ptr<WorldNode>, const QPointF &)),
-                this,           SLOT(onNodeContextMenu(std::shared_ptr<WorldNode>, const QPointF &))  );
+                         this,           SLOT(onNodeContextMenu(std::shared_ptr<WorldNode>, const QPointF &))  );
 
     QObject::connect(    item,           SIGNAL(doComponentContextMenu(std::shared_ptr<ComponentBase>, const QPointF &)),
-                this,           SLOT(onComponentContextMenu(std::shared_ptr<ComponentBase>, const QPointF &))  );
+                         this,           SLOT(onComponentContextMenu(std::shared_ptr<ComponentBase>, const QPointF &))  );
 
 
     item->layoutNode();
@@ -1034,8 +1023,8 @@ void EdLevelScriptWindow::onAddNode (WorldNode *node_raw)
     if (base_object) {
         std::list<std::shared_ptr<ComponentBase>> c = base_object->all_components();
 
-        FOR_EACH (i,c) {
-            syncConnections(i->get());
+        for(auto &i : c) {
+            syncConnections(i.get());
         }
     }
 
@@ -1139,7 +1128,7 @@ void EdLevelScriptWindow::onRemoveComponent (ComponentBase *component_raw)
 
 void EdLevelScriptWindow::onConnectPlug (PlugBase *outgoing, PlugBase *incoming)
 {
-    if (outgoing == NULL || incoming == NULL)
+    if (outgoing == nullptr || incoming == nullptr)
         return;
 
     if (outgoing->is_no_draw() || incoming->is_no_draw())

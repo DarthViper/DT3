@@ -217,8 +217,8 @@ void EdLevelPropertiesWindow::buildProperties(std::shared_ptr<PlugNode> node)
     if (base_object) {
         std::list<std::shared_ptr<ComponentBase>> c = base_object->all_components();
 
-        FOR_EACH (i,c) {
-            buildPropertiesForNode(*i);
+        for(std::shared_ptr<ComponentBase> &i : c) {
+            buildPropertiesForNode(i);
         }
     }
 }

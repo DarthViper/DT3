@@ -75,8 +75,8 @@ void EdLevelSoundWindow::timerEvent(QTimerEvent *event)
     if (event->timerId() == _timer.timerId()) {
 
         // Update Busses
-        FOR_EACH (i,_bus_cache) {
-            i->_widget->updateBus();
+        for(BusCache &bc : _bus_cache) {
+            bc._widget->updateBus();
         }
 
     } else {
@@ -143,8 +143,8 @@ void EdLevelSoundWindow::onCommand (QString command)
 void EdLevelSoundWindow::onRefreshSound (void)
 {
     // Update Busses
-    FOR_EACH (i,_bus_cache) {
-        i->_widget->updateList();
+    for(BusCache &bc : _bus_cache) {
+        bc._widget->updateList();
     }
 
     onRefreshProperties();
@@ -153,8 +153,8 @@ void EdLevelSoundWindow::onRefreshSound (void)
 void EdLevelSoundWindow::onRefreshProperties (void)
 {
     // Update Busses
-    FOR_EACH (i,_bus_cache) {
-        i->_widget->updateProperties();
+    for(BusCache &bc : _bus_cache) {
+        bc._widget->updateProperties();
     }
 }
 
