@@ -143,14 +143,6 @@ ScriptingMaterialSwitcher::~ScriptingMaterialSwitcher (void)
 //==============================================================================
 //==============================================================================
 
-void ScriptingMaterialSwitcher::initialize (void)
-{
-	ScriptingBase::initialize();
-}
-
-//==============================================================================
-//==============================================================================
-
 void ScriptingMaterialSwitcher::archive (const std::shared_ptr<Archive> &archive)
 {
     ScriptingBase::archive(archive);

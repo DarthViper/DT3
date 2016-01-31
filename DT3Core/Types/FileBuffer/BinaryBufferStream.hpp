@@ -1,6 +1,4 @@
 #pragma once
-#ifndef DT3_BINARYBUFFERSTREAM
-#define DT3_BINARYBUFFERSTREAM
 //==============================================================================
 ///
 ///	File: BinaryBufferStream.hpp
@@ -138,5 +136,3 @@ class BinaryBufferStream: public BinaryStream {
 
 
 } // DT3
-
-#endif

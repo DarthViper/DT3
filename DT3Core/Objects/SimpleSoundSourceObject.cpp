@@ -23,7 +23,7 @@
 //==============================================================================
 //==============================================================================
 
-namespace DT3 {
+using namespace DT3;
 
 //==============================================================================
 /// Register with object factory
@@ -82,6 +82,7 @@ SimpleSoundSourceObject::SimpleSoundSourceObject (void)
         _stopped        (EVENT_INFO_INDEX(_stopped)),
         _sound          (NULL)
 {
+    set_node_color(Color4f(0.360784F,0.729412F,0.92549F,1.0F));
 
 }
 		
@@ -97,6 +98,7 @@ SimpleSoundSourceObject::SimpleSoundSourceObject (const SimpleSoundSourceObject 
         _sound_source   (NULL),
         _source         (NULL)
 {
+    set_node_color(Color4f(0.360784F,0.729412F,0.92549F,1.0F));
 
 }
 
@@ -146,10 +148,8 @@ void SimpleSoundSourceObject::archive (const std::shared_ptr<Archive> &archive)
 //==============================================================================
 //==============================================================================
 
-void SimpleSoundSourceObject::initialize (void)
+void SimpleSoundSourceObject::initialize (void)  noexcept(true)
 {
-	PlaceableObject::initialize();
-    set_node_color(Color4f(0.360784F,0.729412F,0.92549F,1.0F));
 }
 
 //==============================================================================
@@ -247,6 +247,3 @@ void SimpleSoundSourceObject::remove_from_world (void)
 
 //==============================================================================
 //==============================================================================
-
-} // DT3
-

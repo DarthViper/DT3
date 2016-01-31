@@ -83,14 +83,6 @@ ScriptingMatrix3Transpose::~ScriptingMatrix3Transpose (void)
 //==============================================================================
 //==============================================================================
 
-void ScriptingMatrix3Transpose::initialize (void)
-{
-	ScriptingBase::initialize();
-}
-
-//==============================================================================
-//==============================================================================
-
 void ScriptingMatrix3Transpose::archive (const std::shared_ptr<Archive> &archive)
 {
     ScriptingBase::archive(archive);

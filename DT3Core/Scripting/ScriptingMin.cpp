@@ -91,14 +91,6 @@ ScriptingMin::~ScriptingMin (void)
 //==============================================================================
 //==============================================================================
 
-void ScriptingMin::initialize (void)
-{
-	ScriptingBase::initialize();
-}
-
-//==============================================================================
-//==============================================================================
-
 void ScriptingMin::archive (const std::shared_ptr<Archive> &archive)
 {
     ScriptingBase::archive(archive);

@@ -127,14 +127,6 @@ ScriptingParticleStamFluids::~ScriptingParticleStamFluids (void)
 //==============================================================================
 //==============================================================================
 
-void ScriptingParticleStamFluids::initialize (void)
-{
-	ScriptingBase::initialize();
-}
-
-//==============================================================================
-//==============================================================================
-
 void ScriptingParticleStamFluids::archive (const std::shared_ptr<Archive> &archive)
 {
     ScriptingBase::archive(archive);

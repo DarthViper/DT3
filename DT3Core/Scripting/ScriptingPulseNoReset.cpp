@@ -100,14 +100,6 @@ ScriptingPulseNoReset::~ScriptingPulseNoReset (void)
 //==============================================================================
 //==============================================================================
 
-void ScriptingPulseNoReset::initialize (void)
-{
-	ScriptingBase::initialize();
-}
-
-//==============================================================================
-//==============================================================================
-
 void ScriptingPulseNoReset::archive (const std::shared_ptr<Archive> &archive)
 {
     ScriptingBase::archive(archive);

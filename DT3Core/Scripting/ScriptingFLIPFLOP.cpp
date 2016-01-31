@@ -123,14 +123,6 @@ ScriptingFLIPFLOP::~ScriptingFLIPFLOP (void)
 //==============================================================================
 //==============================================================================
 
-void ScriptingFLIPFLOP::initialize (void)
-{
-	ScriptingBase::initialize();
-}
-
-//==============================================================================
-//==============================================================================
-
 void ScriptingFLIPFLOP::archive (const std::shared_ptr<Archive> &archive)
 {
     ScriptingBase::archive(archive);

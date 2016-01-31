@@ -49,21 +49,18 @@ World::World (void)
 
 World::~World (void)
 {    
+    remove_all_groups();
+    remove_all_nodes();
+
+    clean();
 
 }
 
 //==============================================================================
 //==============================================================================
-
-void World::initialize (void)	
-{
-	PlugNode::initialize();
-}
 
 void World::uninitialize (void)
 {
-	PlugNode::uninitialize();
-    
     remove_all_groups();
     remove_all_nodes();
     

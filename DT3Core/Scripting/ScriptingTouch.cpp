@@ -165,14 +165,6 @@ ScriptingTouch::~ScriptingTouch (void)
 //==============================================================================
 //==============================================================================
 
-void ScriptingTouch::initialize (void)
-{
-	ScriptingBase::initialize();
-}
-
-//==============================================================================
-//==============================================================================
-
 void ScriptingTouch::archive (const std::shared_ptr<Archive> &archive)
 {
     ScriptingBase::archive(archive);

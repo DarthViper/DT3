@@ -130,14 +130,6 @@ ScriptingARTracker::~ScriptingARTracker (void)
 //==============================================================================
 //==============================================================================
 
-void ScriptingARTracker::initialize (void)
-{
-    ScriptingBase::initialize();
-}
-
-//==============================================================================
-//==============================================================================
-
 void ScriptingARTracker::archive (const std::shared_ptr<Archive> &archive)
 {
     ScriptingBase::archive(archive);

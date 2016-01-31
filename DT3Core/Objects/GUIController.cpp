@@ -49,6 +49,8 @@ END_IMPLEMENT_PLUGS
 GUIController::GUIController (void)
     :   _use_stencil    (true)
 {
+    _gui_camera = CameraObject::create();
+    _gui_camera->set_ortho(0.0F,1.0F,0.0F,1.0F,1000.0F,-1000.0F);
 
 }
 		
@@ -56,6 +58,8 @@ GUIController::GUIController (const GUIController &rhs)
     :   PlaceableObject (rhs),
         _use_stencil    (rhs._use_stencil)
 {
+    _gui_camera = CameraObject::create();
+    _gui_camera->set_ortho(0.0F,1.0F,0.0F,1.0F,1000.0F,-1000.0F);
 
 }
 
@@ -86,18 +90,6 @@ void GUIController::archive (const std::shared_ptr<Archive> &archive)
 
 //==============================================================================
 //==============================================================================
-
-void GUIController::initialize (void)
-{
-	PlaceableObject::initialize();
-    
-    _gui_camera = CameraObject::create();
-    _gui_camera->set_ortho(0.0F,1.0F,0.0F,1.0F,1000.0F,-1000.0F);
-}
-
-//==============================================================================
-//==============================================================================
-
 namespace {
     
     struct CompareDraw {

@@ -91,14 +91,6 @@ ScriptingAdd::~ScriptingAdd (void)
 //==============================================================================
 //==============================================================================
 
-void ScriptingAdd::initialize (void)
-{
-	ScriptingBase::initialize();
-}
-
-//==============================================================================
-//==============================================================================
-
 void ScriptingAdd::archive (const std::shared_ptr<Archive> &archive)
 {
     ScriptingBase::archive(archive);

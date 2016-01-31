@@ -111,14 +111,6 @@ ScriptingTimerUpReset::~ScriptingTimerUpReset (void)
 //==============================================================================
 //==============================================================================
 
-void ScriptingTimerUpReset::initialize (void)
-{
-	ScriptingBase::initialize();
-}
-
-//==============================================================================
-//==============================================================================
-
 void ScriptingTimerUpReset::archive (const std::shared_ptr<Archive> &archive)
 {
     ScriptingBase::archive(archive);

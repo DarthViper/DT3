@@ -45,9 +45,6 @@ class DeviceNetwork: public DeviceBase {
         virtual                         ~DeviceNetwork  (void);
 
     public:
-        /// Called to initialize the object
-        void							initialize      (void);
-
         /// Converts a host and port to a NetworkAddress
         /// \param ip Returned Network Address
         /// \param host Host
@@ -61,7 +58,7 @@ class DeviceNetwork: public DeviceBase {
         /// \param mac Returned MAC address
         /// \param adapter Adapter to return
         /// \return Error Code
-        virtual DTerr                   mac_address     (   std::string UNUSED(&mac),
+        virtual DTerr                   mac_address     (   std::string &UNUSED(mac),
                                                             std::string UNUSED(adapter = "en0"))    {   return DT3_ERR_NONE;    }
 
         /// Opens udp socket

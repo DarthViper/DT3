@@ -18,6 +18,8 @@
 #include "DT3Core/Objects/GUIObject.hpp"
 #include "DT3Core/Devices/DeviceAudio.hpp"
 #include "DT3Core/Resources/ResourceTypes/SoundResource.hpp"
+#include "DT3Core/Resources/ResourceTypes/MaterialResource.hpp"
+#include "DT3Core/Resources/ResourceTypes/ShaderResource.hpp"
 
 //==============================================================================
 //==============================================================================
@@ -121,14 +123,6 @@ ComponentGUIToggleButton & ComponentGUIToggleButton::operator = (const Component
 ComponentGUIToggleButton::~ComponentGUIToggleButton (void)
 {
 
-}
-
-//==============================================================================
-//==============================================================================
-
-void ComponentGUIToggleButton::initialize (void)
-{
-	ComponentBase::initialize();
 }
 
 //==============================================================================

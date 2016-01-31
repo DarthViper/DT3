@@ -15,18 +15,17 @@
 #include "DT3Core/Components/ComponentBase.hpp"
 #include "DT3Core/Types/Node/Plug.hpp"
 #include "DT3Core/Types/Node/Event.hpp"
-#include "DT3Core/Resources/ResourceTypes/MaterialResource.hpp"
-#include "DT3Core/Resources/ResourceTypes/ShaderResource.hpp"
 
 namespace DT3 {
 
 //==============================================================================
 /// Forward declarations
 //==============================================================================
-
+class MaterialResource;
+class ShaderResource;
 class GUITouchEvent;
 class SoundResource;
-
+class LatentCall;
 //==============================================================================
 /// GUI behaviour for a toggle button.
 //==============================================================================
@@ -45,9 +44,6 @@ class ComponentGUIToggleButton: public ComponentBase {
         virtual void                archive                     (const std::shared_ptr<Archive> &archive);
 
     public:
-        /// Called to initialize the object
-        virtual void				initialize                  (void);
-
         /// Returns the component type. This defines which slot the component is
         /// put into on the object.
         /// \return Component type

@@ -42,7 +42,7 @@ class SimpleSoundSourceObject: public PlaceableObject {
         virtual void                            archive                 (const std::shared_ptr<Archive> &archive);
 
         /// Called to initialize the object
-        virtual void                            initialize              (void);
+        virtual void                            initialize              (void)  noexcept(true);
 
         /// Sets the souund associated with this source.
         /// \param attr sound

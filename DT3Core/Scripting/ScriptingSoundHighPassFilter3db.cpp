@@ -107,14 +107,6 @@ ScriptingSoundHighPassFilter3db::~ScriptingSoundHighPassFilter3db (void)
 //==============================================================================
 //==============================================================================
 
-void ScriptingSoundHighPassFilter3db::initialize (void)
-{
-	ScriptingSoundBase::initialize();
-}
-
-//==============================================================================
-//==============================================================================
-
 void ScriptingSoundHighPassFilter3db::archive (const std::shared_ptr<Archive> &archive)
 {
     ScriptingSoundBase::archive(archive);

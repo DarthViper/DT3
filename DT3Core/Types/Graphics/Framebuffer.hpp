@@ -1,6 +1,4 @@
 #pragma once
-#ifndef DT3_FRAMEBUFFER
-#define DT3_FRAMEBUFFER
 //==============================================================================
 ///
 ///	File: Framebuffer.hpp
@@ -104,5 +102,3 @@ class Framebuffer: public BaseClass {
 //==============================================================================
 
 } // DT3
-
-#endif

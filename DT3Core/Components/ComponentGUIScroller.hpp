@@ -47,9 +47,6 @@ class ComponentGUIScroller: public ComponentBase {
         virtual void                archive                 (const std::shared_ptr<Archive> &archive);
 
     public:
-        /// Called to initialize the object
-        virtual void				initialize              (void);
-
         /// Returns the component type. This defines which slot the component is
         /// put into on the object.
         /// \return Component type

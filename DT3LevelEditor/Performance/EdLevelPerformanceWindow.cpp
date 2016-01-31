@@ -18,7 +18,6 @@
 
 // Engine includes
 #include "DT3Core/System/Profiler.hpp"
-#include "DT3Core/Types/Utility/MoreStrings.hpp"
 
 //==============================================================================
 //==============================================================================
@@ -64,8 +63,8 @@ EdLevelPerformanceWindow::EdLevelPerformanceWindow(QWidget *parent, QToolBar *to
     }
 
     // For autoscroll
-    connect(&_sample_timer,     SIGNAL(timeout()),
-            this,               SLOT(onSample()));
+
+    connect(&_sample_timer,  &QTimer::timeout,  this, &EdLevelPerformanceWindow::onSample);
 
     _sample_timer.setSingleShot(false);
     _sample_timer.start(50);
@@ -89,7 +88,7 @@ void EdLevelPerformanceWindow::draw(QPainter *painter)
 
     DTfloat ypos = 0.0F;
 
-    for (auto &i : _data) {
+    for (Data &i : _data) {
         QRectF rect(0,ypos,width(),ENTRY_HEIGHT);
         QRectF graph = rect.adjusted(TITLE_WIDTH, 5, -5-_scroll_width, -5);
 
@@ -138,8 +137,7 @@ void EdLevelPerformanceWindow::draw(QPainter *painter)
         DTint jj;
 
         // Find max
-        for (j = i._values.begin(); j != i._values.end(); ++j) {
-            DTfloat val = *j;
+        for (DTfloat val : i._values) {
             average_value += val;
             if (val > max_value)    max_value = val;
         }
@@ -169,7 +167,7 @@ void EdLevelPerformanceWindow::draw(QPainter *painter)
         // Draw max value
         painter->setFont(_font_small);
         painter->drawText(  QRect(graph.x(), graph.y(), graph.width(), LABEL_HEIGHT),
-                            Qt::AlignLeft | Qt::AlignTop, std::string(MoreStrings::cast_to_string(max_value * 1000) + " ms").c_str() );
+                            Qt::AlignLeft | Qt::AlignTop, QString("%1 ms").arg(max_value * 1000) );
 
         // Draw average value
         ypos_graph = average_value / max_value * graph.height();
@@ -178,7 +176,7 @@ void EdLevelPerformanceWindow::draw(QPainter *painter)
         painter->setPen(QPen(QColor(0,255,0,255),0,Qt::DotLine));
         painter->drawLine(graph.x(), ypos_graph, graph.x() + graph.width(), ypos_graph);
         painter->drawText(  QRect(graph.x(), ypos_graph - LABEL_HEIGHT, graph.width(), LABEL_HEIGHT),
-                            Qt::AlignLeft | Qt::AlignBottom, std::string(MoreStrings::cast_to_string(average_value * 1000) + " ms").c_str() );
+                            Qt::AlignLeft | Qt::AlignBottom, QString("%1 ms").arg(average_value * 1000) );
 
         ypos += ENTRY_HEIGHT;
     }
@@ -203,7 +201,7 @@ void EdLevelPerformanceWindow::resizeEvent (QResizeEvent *event)
 void EdLevelPerformanceWindow::onSample (void)
 {
     // Display all categories
-    for (auto &i : _data) {
+    for (Data &i : _data) {
         ProfilerCategory *category = i._category;
 
         DTfloat accumulated_time = category->accumulated_time();
@@ -244,4 +242,3 @@ void EdLevelPerformanceWindow::wheelEvent (QWheelEvent *event)
 
 //==============================================================================
 //==============================================================================
-

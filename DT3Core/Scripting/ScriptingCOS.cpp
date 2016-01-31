@@ -84,14 +84,6 @@ ScriptingCOS::~ScriptingCOS (void)
 //==============================================================================
 //==============================================================================
 
-void ScriptingCOS::initialize (void)
-{
-	ScriptingBase::initialize();
-}
-
-//==============================================================================
-//==============================================================================
-
 void ScriptingCOS::archive (const std::shared_ptr<Archive> &archive)
 {
     ScriptingBase::archive(archive);

@@ -101,14 +101,6 @@ ScriptingCameraShake::~ScriptingCameraShake (void)
 //==============================================================================
 //==============================================================================
 
-void ScriptingCameraShake::initialize (void)
-{
-	ScriptingBase::initialize();
-}
-
-//==============================================================================
-//==============================================================================
-
 void ScriptingCameraShake::archive (const std::shared_ptr<Archive> &archive)
 {
     ScriptingBase::archive(archive);

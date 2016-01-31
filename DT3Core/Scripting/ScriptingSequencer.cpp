@@ -281,14 +281,6 @@ ScriptingSequencer::~ScriptingSequencer (void)
 //==============================================================================
 //==============================================================================
 
-void ScriptingSequencer::initialize (void)
-{
-	ScriptingBase::initialize();
-}
-
-//==============================================================================
-//==============================================================================
-
 void ScriptingSequencer::archive (const std::shared_ptr<Archive> &archive)
 {
     ScriptingBase::archive(archive);

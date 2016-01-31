@@ -44,9 +44,6 @@ class ScriptingVector3Project: public ScriptingBase {
         virtual void				archive                 (const std::shared_ptr<Archive> &archive);
 
     public:
-        /// Called to initialize the object
-        virtual void				initialize				(void);
-
         /// Registered with world to tick this node
         /// \param dt delta time
         void                        tick                    (const DTfloat dt);

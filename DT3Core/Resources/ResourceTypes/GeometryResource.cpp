@@ -46,6 +46,8 @@ std::map<std::string, std::shared_ptr<GeometryResource>>    GeometryResource::_g
 
 GeometryResource::GeometryResource (void)
 {    
+    SystemCallbacks::screen_opened_cb().add(make_callback(this, &type::screen_opened));
+    SystemCallbacks::screen_closed_cb().add(make_callback(this, &type::screen_closed));
 
 }
 				
@@ -127,17 +129,6 @@ void GeometryResource::initialize_static (void)
 void GeometryResource::uninitialize_static (void)
 {
     SystemCallbacks::reload_resources_cb().remove(make_callback(&type::reload_if_changed));
-}
-
-//==============================================================================
-//==============================================================================
-
-void GeometryResource::initialize (void)
-{
-	Resource::initialize();
-    
-    SystemCallbacks::screen_opened_cb().add(make_callback(this, &type::screen_opened));
-    SystemCallbacks::screen_closed_cb().add(make_callback(this, &type::screen_closed));
 }
 
 //==============================================================================

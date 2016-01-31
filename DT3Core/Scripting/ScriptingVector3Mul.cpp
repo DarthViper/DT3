@@ -91,14 +91,6 @@ ScriptingVector3Mul::~ScriptingVector3Mul (void)
 //==============================================================================
 //==============================================================================
 
-void ScriptingVector3Mul::initialize (void)
-{
-	ScriptingBase::initialize();
-}
-
-//==============================================================================
-//==============================================================================
-
 void ScriptingVector3Mul::archive (const std::shared_ptr<Archive> &archive)
 {
     ScriptingBase::archive(archive);

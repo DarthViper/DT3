@@ -90,14 +90,6 @@ ScriptingGyro::~ScriptingGyro (void)
 //==============================================================================
 //==============================================================================
 
-void ScriptingGyro::initialize (void)
-{
-	ScriptingBase::initialize();
-}
-
-//==============================================================================
-//==============================================================================
-
 void ScriptingGyro::archive (const std::shared_ptr<Archive> &archive)
 {
     ScriptingBase::archive(archive);

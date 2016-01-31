@@ -83,14 +83,6 @@ ScriptingVector3ToLengthSquared::~ScriptingVector3ToLengthSquared (void)
 //==============================================================================
 //==============================================================================
 
-void ScriptingVector3ToLengthSquared::initialize (void)
-{
-	ScriptingBase::initialize();
-}
-
-//==============================================================================
-//==============================================================================
-
 void ScriptingVector3ToLengthSquared::archive (const std::shared_ptr<Archive> &archive)
 {
     ScriptingBase::archive(archive);

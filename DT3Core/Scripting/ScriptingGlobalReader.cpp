@@ -91,14 +91,6 @@ ScriptingGlobalReader::~ScriptingGlobalReader (void)
 //==============================================================================
 //==============================================================================
 
-void ScriptingGlobalReader::initialize (void)
-{
-	ScriptingBase::initialize();
-}
-
-//==============================================================================
-//==============================================================================
-
 void ScriptingGlobalReader::archive (const std::shared_ptr<Archive> &archive)
 {
     ScriptingBase::archive(archive);

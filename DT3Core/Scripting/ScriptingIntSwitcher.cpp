@@ -142,14 +142,6 @@ ScriptingIntSwitcher::~ScriptingIntSwitcher (void)
 //==============================================================================
 //==============================================================================
 
-void ScriptingIntSwitcher::initialize (void)
-{
-    ScriptingBase::initialize();
-}
-
-//==============================================================================
-//==============================================================================
-
 void ScriptingIntSwitcher::archive (const std::shared_ptr<Archive> &archive)
 {
     ScriptingBase::archive(archive);

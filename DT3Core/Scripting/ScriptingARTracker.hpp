@@ -47,10 +47,6 @@ class ScriptingARTracker: public ScriptingBase {
         virtual void                remove_from_world       (void);
 
     public:
-
-        /// Called to initialize the object
-        virtual void				initialize				(void);
-
         /// Called in gyro callback
         void                        gyro                    (const Vector3 &w);
 

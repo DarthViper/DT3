@@ -24,6 +24,8 @@
 #include "DT3Core/Objects/GUIObject.hpp"
 #include "DT3Core/Resources/ResourceTypes/TextureResource2D.hpp"
 #include "DT3Core/Resources/ResourceTypes/FontResource.hpp"
+#include "DT3Core/Resources/ResourceTypes/MaterialResource.hpp"
+#include "DT3Core/Resources/ResourceTypes/ShaderResource.hpp"
 #include "DT3Core/World/World.hpp"
 
 //==============================================================================
@@ -41,9 +43,9 @@ IMPLEMENT_PLUG_NODE(ComponentGUIDrawButton)
 IMPLEMENT_PLUG_INFO_INDEX(_material)
 IMPLEMENT_PLUG_INFO_INDEX(_pressed_material)
 IMPLEMENT_PLUG_INFO_INDEX(_disabled_material)
-IMPLEMENT_PLUG_INFO_INDEX(_color)
+//TODO: IMPLEMENT_PLUG_INFO_INDEX(_color)
 IMPLEMENT_PLUG_INFO_INDEX(_font_material)
-IMPLEMENT_PLUG_INFO_INDEX(_font)
+//TODO: IMPLEMENT_PLUG_INFO_INDEX(_font)
 IMPLEMENT_PLUG_INFO_INDEX(_shader)
 
 //==============================================================================
@@ -87,6 +89,8 @@ ComponentGUIDrawButton::ComponentGUIDrawButton (void)
         _needs_render       (true),
         _can_render         (true)
 {
+    SystemCallbacks::screen_opened_cb().add(make_callback(this,&type::screen_opened));
+    SystemCallbacks::screen_closed_cb().add(make_callback(this,&type::screen_closed));
 
 }
 		
@@ -106,6 +110,8 @@ ComponentGUIDrawButton::ComponentGUIDrawButton (const ComponentGUIDrawButton &rh
         _can_render         (true),
         _text_image         (rhs._text_image)
 {
+    SystemCallbacks::screen_opened_cb().add(make_callback(this,&type::screen_opened));
+    SystemCallbacks::screen_closed_cb().add(make_callback(this,&type::screen_closed));
 
 }
 
@@ -142,17 +148,6 @@ ComponentGUIDrawButton::~ComponentGUIDrawButton (void)
 {
     SystemCallbacks::screen_opened_cb().remove(make_callback(this,&type::screen_opened));
     SystemCallbacks::screen_closed_cb().remove(make_callback(this,&type::screen_closed));
-}
-
-//==============================================================================
-//==============================================================================
-
-void ComponentGUIDrawButton::initialize (void)
-{
-	ComponentBase::initialize();
-    
-    SystemCallbacks::screen_opened_cb().add(make_callback(this,&type::screen_opened));
-    SystemCallbacks::screen_closed_cb().add(make_callback(this,&type::screen_closed));
 }
 
 //==============================================================================

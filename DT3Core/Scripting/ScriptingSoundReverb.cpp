@@ -111,14 +111,6 @@ ScriptingSoundReverb::~ScriptingSoundReverb (void)
 //==============================================================================
 //==============================================================================
 
-void ScriptingSoundReverb::initialize (void)
-{
-	ScriptingSoundBase::initialize();
-}
-
-//==============================================================================
-//==============================================================================
-
 void ScriptingSoundReverb::archive (const std::shared_ptr<Archive> &archive)
 {
     ScriptingSoundBase::archive(archive);

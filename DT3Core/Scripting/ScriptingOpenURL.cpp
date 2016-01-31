@@ -84,14 +84,6 @@ ScriptingOpenURL::~ScriptingOpenURL (void)
 //==============================================================================
 //==============================================================================
 
-void ScriptingOpenURL::initialize (void)
-{
-	ScriptingBase::initialize();
-}
-
-//==============================================================================
-//==============================================================================
-
 void ScriptingOpenURL::archive (const std::shared_ptr<Archive> &archive)
 {
     ScriptingBase::archive(archive);

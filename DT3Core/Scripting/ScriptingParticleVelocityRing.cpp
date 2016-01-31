@@ -97,14 +97,6 @@ ScriptingParticleVelocityRing::~ScriptingParticleVelocityRing (void)
 //==============================================================================
 //==============================================================================
 
-void ScriptingParticleVelocityRing::initialize (void)
-{
-	ScriptingBase::initialize();
-}
-
-//==============================================================================
-//==============================================================================
-
 void ScriptingParticleVelocityRing::archive (const std::shared_ptr<Archive> &archive)
 {
     ScriptingBase::archive(archive);

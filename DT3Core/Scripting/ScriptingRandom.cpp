@@ -91,14 +91,6 @@ ScriptingRandom::~ScriptingRandom (void)
 //==============================================================================
 //==============================================================================
 
-void ScriptingRandom::initialize (void)
-{
-	ScriptingBase::initialize();
-}
-
-//==============================================================================
-//==============================================================================
-
 void ScriptingRandom::archive (const std::shared_ptr<Archive> &archive)
 {
     ScriptingBase::archive(archive);

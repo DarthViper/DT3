@@ -91,14 +91,6 @@ ScriptingOrientTowards::~ScriptingOrientTowards (void)
 //==============================================================================
 //==============================================================================
 
-void ScriptingOrientTowards::initialize (void)
-{
-	ScriptingBase::initialize();
-}
-
-//==============================================================================
-//==============================================================================
-
 void ScriptingOrientTowards::archive (const std::shared_ptr<Archive> &archive)
 {
     ScriptingBase::archive(archive);

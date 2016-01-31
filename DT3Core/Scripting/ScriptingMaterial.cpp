@@ -79,14 +79,6 @@ ScriptingMaterial::~ScriptingMaterial (void)
 //==============================================================================
 //==============================================================================
 
-void ScriptingMaterial::initialize (void)
-{
-	ScriptingBase::initialize();
-}
-
-//==============================================================================
-//==============================================================================
-
 void ScriptingMaterial::archive (const std::shared_ptr<Archive> &archive)
 {
     ScriptingBase::archive(archive);

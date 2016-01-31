@@ -91,14 +91,6 @@ ScriptingMultiply::~ScriptingMultiply (void)
 //==============================================================================
 //==============================================================================
 
-void ScriptingMultiply::initialize (void)
-{
-	ScriptingBase::initialize();
-}
-
-//==============================================================================
-//==============================================================================
-
 void ScriptingMultiply::archive (const std::shared_ptr<Archive> &archive)
 {
     ScriptingBase::archive(archive);

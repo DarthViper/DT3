@@ -65,6 +65,7 @@ SoundBusSourceObject::SoundBusSourceObject (void)
         _play           (EVENT_INFO_INDEX(_play)),
         _stop           (EVENT_INFO_INDEX(_stop))
 {  
+    set_node_color(Color4f(0.360784F,0.729412F,0.92549F,1.0F));
 
 }
 		
@@ -75,6 +76,7 @@ SoundBusSourceObject::SoundBusSourceObject (const SoundBusSourceObject &rhs)
         _play           (rhs._play),
         _stop           (rhs._stop)
 {   
+    set_node_color(Color4f(0.360784F,0.729412F,0.92549F,1.0F));
 
 }
 
@@ -110,15 +112,6 @@ void SoundBusSourceObject::archive (const std::shared_ptr<Archive> &archive)
 	*archive << ARCHIVE_EVENT(_stop, DATA_SETTABLE);
 
 	archive->pop_domain ();
-}
-
-//==============================================================================
-//==============================================================================
-
-void SoundBusSourceObject::initialize (void)
-{
-	PlaceableObject::initialize();
-    set_node_color(Color4f(0.360784F,0.729412F,0.92549F,1.0F));
 }
 
 //==============================================================================

@@ -1,6 +1,4 @@
 #pragma once
-#ifndef DT3_COMPONENTGUISCROLLERLAYOUT
-#define DT3_COMPONENTGUISCROLLERLAYOUT
 //==============================================================================
 ///
 ///	File: ComponentGUIScrollerLayout.hpp
@@ -13,10 +11,9 @@
 //==============================================================================
 
 #include "DT3Core/Components/ComponentGUIScroller.hpp"
-#include "DT3Core/Types/GUI/GUILayout.hpp"
 
 namespace DT3 {
-
+class GUILayout;
 //==============================================================================
 /// GUI behaviour for a scroll zone. It scrolls its children objects.
 /// This component arranges its children into a grid
@@ -36,9 +33,6 @@ class ComponentGUIScrollerLayout: public ComponentGUIScroller {
         virtual void                archive                     (const std::shared_ptr<Archive> &archive);
 
     public:
-        /// Called to initialize the object
-        virtual void				initialize			(void);
-
         /// Set layout
         /// \param layout layout object
         void                        set_layout          (std::shared_ptr<GUILayout> layout);
@@ -75,5 +69,3 @@ class ComponentGUIScrollerLayout: public ComponentGUIScroller {
 //==============================================================================
 
 } // DT3
-
-#endif

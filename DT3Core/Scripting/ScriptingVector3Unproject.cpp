@@ -93,14 +93,6 @@ ScriptingVector3Unproject::~ScriptingVector3Unproject (void)
 //==============================================================================
 //==============================================================================
 
-void ScriptingVector3Unproject::initialize (void)
-{
-	ScriptingBase::initialize();
-}
-
-//==============================================================================
-//==============================================================================
-
 void ScriptingVector3Unproject::archive (const std::shared_ptr<Archive> &archive)
 {
     ScriptingBase::archive(archive);

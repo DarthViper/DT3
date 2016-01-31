@@ -15,6 +15,7 @@
 #include "DT3Core/Types/GUI/GUITouchEvent.hpp"
 #include "DT3Core/Objects/GUIObject.hpp"
 #include "DT3Core/System/Factory.hpp"
+#include "DT3Core/Types/GUI/GUILayout.hpp"
 
 //==============================================================================
 //==============================================================================
@@ -68,14 +69,6 @@ ComponentGUIScrollerLayout & ComponentGUIScrollerLayout::operator = (const Compo
 ComponentGUIScrollerLayout::~ComponentGUIScrollerLayout (void)
 {
 
-}
-
-//==============================================================================
-//==============================================================================
-
-void ComponentGUIScrollerLayout::initialize (void)
-{
-	ComponentGUIScroller::initialize();
 }
 
 //==============================================================================

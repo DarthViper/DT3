@@ -92,14 +92,6 @@ ScriptingLessThan::~ScriptingLessThan (void)
 //==============================================================================
 //==============================================================================
 
-void ScriptingLessThan::initialize (void)
-{
-	ScriptingBase::initialize();
-}
-
-//==============================================================================
-//==============================================================================
-
 void ScriptingLessThan::archive (const std::shared_ptr<Archive> &archive)
 {
     ScriptingBase::archive(archive);

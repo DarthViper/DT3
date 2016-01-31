@@ -59,6 +59,8 @@ ScriptingScreen::ScriptingScreen (void)
         _height         (PLUG_INFO_INDEX(_height), 1.0F),
         _aspect         (PLUG_INFO_INDEX(_aspect), 1.0F)
 {  
+    SystemCallbacks::screen_opened_cb().add(make_callback(this, &ScriptingScreen::screen_opened));
+    SystemCallbacks::screen_changed_cb().add(make_callback(this, &ScriptingScreen::screen_opened));
 
 }
 		
@@ -68,6 +70,8 @@ ScriptingScreen::ScriptingScreen (const ScriptingScreen &rhs)
         _height         (rhs._height),
         _aspect         (rhs._aspect)
 {   
+    SystemCallbacks::screen_opened_cb().add(make_callback(this, &ScriptingScreen::screen_opened));
+    SystemCallbacks::screen_changed_cb().add(make_callback(this, &ScriptingScreen::screen_opened));
 
 }
 
@@ -88,17 +92,6 @@ ScriptingScreen::~ScriptingScreen (void)
 {
     SystemCallbacks::screen_opened_cb().remove(make_callback(this, &ScriptingScreen::screen_opened));
     SystemCallbacks::screen_changed_cb().remove(make_callback(this, &ScriptingScreen::screen_opened));
-}
-
-//==============================================================================
-//==============================================================================
-
-void ScriptingScreen::initialize (void)
-{
-	ScriptingBase::initialize();
-    
-    SystemCallbacks::screen_opened_cb().add(make_callback(this, &ScriptingScreen::screen_opened));
-    SystemCallbacks::screen_changed_cb().add(make_callback(this, &ScriptingScreen::screen_opened));
 }
 
 //==============================================================================

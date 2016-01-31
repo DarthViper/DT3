@@ -83,14 +83,6 @@ ScriptingVector3ToLength::~ScriptingVector3ToLength (void)
 //==============================================================================
 //==============================================================================
 
-void ScriptingVector3ToLength::initialize (void)
-{
-	ScriptingBase::initialize();
-}
-
-//==============================================================================
-//==============================================================================
-
 void ScriptingVector3ToLength::archive (const std::shared_ptr<Archive> &archive)
 {
     ScriptingBase::archive(archive);

@@ -46,9 +46,6 @@ class ScriptingVector3Unproject: public ScriptingBase {
         virtual void				archive                 (const std::shared_ptr<Archive> &archive);
 
     public:
-        /// Called to initialize the object
-        virtual void				initialize				(void);
-
         /// Computes the value of the node
         /// \param plug plug to compute
         DTboolean					compute					(const PlugBase *plug);

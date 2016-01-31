@@ -93,14 +93,6 @@ ScriptingParticleAccelerator::~ScriptingParticleAccelerator (void)
 //==============================================================================
 //==============================================================================
 
-void ScriptingParticleAccelerator::initialize (void)
-{
-	ScriptingBase::initialize();
-}
-
-//==============================================================================
-//==============================================================================
-
 void ScriptingParticleAccelerator::archive (const std::shared_ptr<Archive> &archive)
 {
     ScriptingBase::archive(archive);

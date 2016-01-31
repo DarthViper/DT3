@@ -101,14 +101,6 @@ ScriptingMatrix3ToComponents::~ScriptingMatrix3ToComponents (void)
 //==============================================================================
 //==============================================================================
 
-void ScriptingMatrix3ToComponents::initialize (void)
-{
-	ScriptingBase::initialize();
-}
-
-//==============================================================================
-//==============================================================================
-
 void ScriptingMatrix3ToComponents::archive (const std::shared_ptr<Archive> &archive)
 {
     ScriptingBase::archive(archive);

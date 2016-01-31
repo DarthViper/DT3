@@ -60,19 +60,12 @@ Application::Application (void)
     TimerLores::update_program_running_time();
 
     SystemCallbacks::touch_event_cb().add(make_callback(this, &type::forward_touch_gui));
+    transition_to_world (FilePath("{APP_FIRST_LEVEL}"), "TransitionFadeOutIn", 1.0F, nullptr, nullptr);
 }
 
 Application::~Application (void)
 {
     SystemCallbacks::touch_event_cb().remove(make_callback(this, &type::forward_touch_gui));
-}
-
-//==============================================================================
-//==============================================================================
-
-void Application::initialize (void)
-{
-    transition_to_world (FilePath("{APP_FIRST_LEVEL}"), "TransitionFadeOutIn", 1.0F, nullptr, nullptr);
 }
 
 //==============================================================================

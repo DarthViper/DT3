@@ -118,14 +118,6 @@ ScriptingParticleRepel::~ScriptingParticleRepel (void)
 //==============================================================================
 //==============================================================================
 
-void ScriptingParticleRepel::initialize (void)
-{
-	ScriptingBase::initialize();
-}
-
-//==============================================================================
-//==============================================================================
-
 void ScriptingParticleRepel::archive (const std::shared_ptr<Archive> &archive)
 {
     ScriptingBase::archive(archive);

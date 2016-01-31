@@ -416,14 +416,6 @@ ScriptingCompute::~ScriptingCompute (void)
 //==============================================================================
 //==============================================================================
 
-void ScriptingCompute::initialize (void)
-{
-	ScriptingBase::initialize();
-}
-
-//==============================================================================
-//==============================================================================
-
 void ScriptingCompute::archive (const std::shared_ptr<Archive> &archive)
 {
     ScriptingBase::archive(archive);

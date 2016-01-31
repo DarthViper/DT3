@@ -19,7 +19,7 @@
 //==============================================================================
 //==============================================================================
 
-namespace DT3 {
+using namespace DT3;
 
 //==============================================================================
 /// Register with object factory
@@ -58,6 +58,10 @@ ScriptingFilter2Pole::ScriptingFilter2Pole (void)
 		_freq_sampling	(30.0F),
         _initialized    (false)
 {  
+    _passes.resize(_num_passes);
+    for (Filters & f : _passes) {
+        f.initialize(_type, _num_passes, _freq_3db, _freq_sampling, _in);
+    }
 
 }
 		
@@ -71,7 +75,10 @@ ScriptingFilter2Pole::ScriptingFilter2Pole (const ScriptingFilter2Pole &rhs)
 		_freq_sampling	(rhs._freq_sampling),
         _initialized    (false)
 {   
-
+    _passes.resize(_num_passes);
+    for (Filters & f : _passes) {
+        f.initialize(_type, _num_passes, _freq_3db, _freq_sampling, _in);
+    }
 }
 
 ScriptingFilter2Pole & ScriptingFilter2Pole::operator = (const ScriptingFilter2Pole &rhs)
@@ -96,19 +103,6 @@ ScriptingFilter2Pole & ScriptingFilter2Pole::operator = (const ScriptingFilter2P
 ScriptingFilter2Pole::~ScriptingFilter2Pole (void)
 {
 
-}
-
-//==============================================================================
-//==============================================================================
-
-void ScriptingFilter2Pole::initialize (void)
-{
-	ScriptingBase::initialize();
-
-    _passes.resize(_num_passes);
-    for (DTuint i = 0; i < _passes.size(); ++i) {
-        _passes[i].initialize(_type, _num_passes, _freq_3db, _freq_sampling, _in);
-    }
 }
 
 //==============================================================================
@@ -184,6 +178,3 @@ void ScriptingFilter2Pole::remove_from_world (void)
 
 //==============================================================================
 //==============================================================================
-
-} // DT3
-

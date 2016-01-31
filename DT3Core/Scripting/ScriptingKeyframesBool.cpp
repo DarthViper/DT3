@@ -92,14 +92,6 @@ ScriptingKeyframesBool::~ScriptingKeyframesBool (void)
 //==============================================================================
 //==============================================================================
 
-void ScriptingKeyframesBool::initialize (void)
-{
-	ScriptingKeyframes::initialize();
-}
-
-//==============================================================================
-//==============================================================================
-
 void ScriptingKeyframesBool::archive (const std::shared_ptr<Archive> &archive)
 {
     ScriptingKeyframes::archive(archive);

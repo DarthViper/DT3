@@ -1,6 +1,4 @@
 #pragma once
-#ifndef DT3_IMPORTERANIMATIONTWA
-#define DT3_IMPORTERANIMATIONTWA
 //==============================================================================
 ///
 ///	File: ImporterAnimationTWA.hpp
@@ -103,5 +101,3 @@ private:
 //==============================================================================
 
 } // DT3
-
-#endif

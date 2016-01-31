@@ -83,14 +83,6 @@ ScriptingStringToPath::~ScriptingStringToPath (void)
 //==============================================================================
 //==============================================================================
 
-void ScriptingStringToPath::initialize (void)
-{
-	ScriptingBase::initialize();
-}
-
-//==============================================================================
-//==============================================================================
-
 void ScriptingStringToPath::archive (const std::shared_ptr<Archive> &archive)
 {
     ScriptingBase::archive(archive);

@@ -1,6 +1,4 @@
 #pragma once
-#ifndef DT3_IMPORTERGEOMETRY3DS
-#define DT3_IMPORTERGEOMETRY3DS
 //==============================================================================
 ///
 ///	File: ImporterGeometry3DS.hpp
@@ -130,5 +128,3 @@ class ImporterGeometry3DS: public ImporterGeometry {
 //==============================================================================
 
 } // DT3
-
-#endif

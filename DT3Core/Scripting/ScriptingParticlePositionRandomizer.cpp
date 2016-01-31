@@ -136,14 +136,6 @@ ScriptingParticlePositionRandomizer::~ScriptingParticlePositionRandomizer (void)
 //==============================================================================
 //==============================================================================
 
-void ScriptingParticlePositionRandomizer::initialize (void)
-{
-	ScriptingBase::initialize();
-}
-
-//==============================================================================
-//==============================================================================
-
 void ScriptingParticlePositionRandomizer::archive (const std::shared_ptr<Archive> &archive)
 {
 	archive->push_domain (class_id ());

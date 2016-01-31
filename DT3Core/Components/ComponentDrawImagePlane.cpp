@@ -18,6 +18,8 @@
 #include "DT3Core/Objects/ObjectBase.hpp"
 #include "DT3Core/Objects/PlaceableObject.hpp"
 #include "DT3Core/World/World.hpp"
+#include "DT3Core/Resources/ResourceTypes/MaterialResource.hpp"
+#include "DT3Core/Resources/ResourceTypes/ShaderResource.hpp"
 
 //==============================================================================
 //==============================================================================
@@ -123,14 +125,6 @@ ComponentDrawImagePlane & ComponentDrawImagePlane::operator = (const ComponentDr
 ComponentDrawImagePlane::~ComponentDrawImagePlane (void)
 {
 
-}
-
-//==============================================================================
-//==============================================================================
-
-void ComponentDrawImagePlane::initialize (void)
-{
-    ComponentBase::initialize();
 }
 
 //==============================================================================

@@ -83,14 +83,6 @@ ScriptingEaseInEaseOut::~ScriptingEaseInEaseOut (void)
 //==============================================================================
 //==============================================================================
 
-void ScriptingEaseInEaseOut::initialize (void)
-{
-	ScriptingBase::initialize();
-}
-
-//==============================================================================
-//==============================================================================
-
 void ScriptingEaseInEaseOut::archive (const std::shared_ptr<Archive> &archive)
 {
     ScriptingBase::archive(archive);

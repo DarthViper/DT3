@@ -142,14 +142,6 @@ ScriptingFloatSwitcher::~ScriptingFloatSwitcher (void)
 //==============================================================================
 //==============================================================================
 
-void ScriptingFloatSwitcher::initialize (void)
-{
-	ScriptingBase::initialize();
-}
-
-//==============================================================================
-//==============================================================================
-
 void ScriptingFloatSwitcher::archive (const std::shared_ptr<Archive> &archive)
 {
     ScriptingBase::archive(archive);

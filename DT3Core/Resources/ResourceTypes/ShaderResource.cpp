@@ -56,6 +56,8 @@ ShaderResource::ShaderResource (void)
     for (DTuint i = 0; i < ARRAY_SIZE(_standard_attribs); ++i) {
         _standard_attribs[i] = -1;
     }
+    SystemCallbacks::screen_opened_cb().add(make_callback(this, &type::screen_opened));
+    SystemCallbacks::screen_closed_cb().add(make_callback(this, &type::screen_closed));
 
 }
 
@@ -137,17 +139,6 @@ void ShaderResource::initialize_static (void)
 void ShaderResource::uninitialize_static (void)
 {
     SystemCallbacks::reload_resources_cb().remove(make_callback(&type::reload_if_changed));
-}
-
-//==============================================================================
-//==============================================================================
-
-void ShaderResource::initialize (void)
-{
-    Resource::initialize();
-
-    SystemCallbacks::screen_opened_cb().add(make_callback(this, &type::screen_opened));
-    SystemCallbacks::screen_closed_cb().add(make_callback(this, &type::screen_closed));
 }
 
 //==============================================================================

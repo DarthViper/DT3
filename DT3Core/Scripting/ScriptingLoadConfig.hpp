@@ -44,11 +44,6 @@ class ScriptingLoadConfig: public ScriptingBase {
         virtual void                archive                     (const std::shared_ptr<Archive> &archive);
 
     public:
-
-        /// Called to initialize the object
-        virtual void				initialize                  (void);
-
-
         /// Load Event
         void                        event_load                  (PlugNode *sender);
 

@@ -115,14 +115,6 @@ ScriptingChangeRange::~ScriptingChangeRange (void)
 //==============================================================================
 //==============================================================================
 
-void ScriptingChangeRange::initialize (void)
-{
-	ScriptingBase::initialize();
-}
-
-//==============================================================================
-//==============================================================================
-
 void ScriptingChangeRange::archive (const std::shared_ptr<Archive> &archive)
 {
     ScriptingBase::archive(archive);

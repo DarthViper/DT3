@@ -43,9 +43,6 @@ class ScriptingEventGate: public ScriptingBase {
         virtual void                archive                 (const std::shared_ptr<Archive> &archive);
 
     public:
-        /// Called to initialize the object
-        virtual void				initialize				(void);
-
         /// Toggle Event
         void                        event_in                (PlugNode *sender);
 

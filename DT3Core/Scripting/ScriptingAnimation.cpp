@@ -88,14 +88,6 @@ ScriptingAnimation::~ScriptingAnimation (void)
 //==============================================================================
 //==============================================================================
 
-void ScriptingAnimation::initialize (void)
-{
-	ScriptingBase::initialize();
-}
-
-//==============================================================================
-//==============================================================================
-
 void ScriptingAnimation::archive (const std::shared_ptr<Archive> &archive)
 {
     ScriptingBase::archive(archive);

@@ -40,9 +40,6 @@ class ScriptingKeyframes: public ScriptingBase {
         virtual void				archive                 (const std::shared_ptr<Archive> &archive);
 
     public:
-        /// Called to initialize the object
-        virtual void				initialize				(void);
-
         /// Set a key at the current time
         virtual void				set_key					(void) = 0;
 

@@ -1,6 +1,4 @@
 #pragma once
-#ifndef DT3_ARCHIVEDATA
-#define DT3_ARCHIVEDATA
 //==============================================================================
 ///
 ///	File: ArchiveData.hpp
@@ -517,5 +515,3 @@ ArchiveDataVariable<T> makeArchiveDataVariable (std::string title, T &data, DTui
 //==============================================================================
 
 } // DT3
-
-#endif

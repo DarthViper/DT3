@@ -123,14 +123,6 @@ ScriptingSinSuperposition::~ScriptingSinSuperposition (void)
 //==============================================================================
 //==============================================================================
 
-void ScriptingSinSuperposition::initialize (void)
-{
-	ScriptingBase::initialize();
-}
-
-//==============================================================================
-//==============================================================================
-
 void ScriptingSinSuperposition::archive (const std::shared_ptr<Archive> &archive)
 {
     ScriptingBase::archive(archive);

@@ -24,6 +24,8 @@
 #include "DT3Core/Devices/DeviceAudio.hpp"
 #include "DT3Core/Resources/ResourceTypes/SoundResource.hpp"
 #include "DT3Core/Resources/ResourceTypes/TextureResource2D.hpp"
+#include "DT3Core/Resources/ResourceTypes/MaterialResource.hpp"
+#include "DT3Core/Resources/ResourceTypes/ShaderResource.hpp"
 
 //==============================================================================
 //==============================================================================
@@ -67,6 +69,8 @@ ComponentGUIDrawText::ComponentGUIDrawText (void)
         _normal_color       (1.0F,1.0F,1.0F,1.0F),
         _pressed_color      (1.0F,1.0F,1.0F,1.0F)
 {
+    SystemCallbacks::screen_opened_cb().add(make_callback(this,&type::screen_opened));
+    SystemCallbacks::screen_closed_cb().add(make_callback(this,&type::screen_closed));
 
 }
 		
@@ -81,6 +85,8 @@ ComponentGUIDrawText::ComponentGUIDrawText (const ComponentGUIDrawText &rhs)
         _normal_color       (rhs._normal_color),
         _pressed_color      (rhs._pressed_color)
 {
+    SystemCallbacks::screen_opened_cb().add(make_callback(this,&type::screen_opened));
+    SystemCallbacks::screen_closed_cb().add(make_callback(this,&type::screen_closed));
 
 }
 
@@ -107,17 +113,6 @@ ComponentGUIDrawText::~ComponentGUIDrawText (void)
 {
     SystemCallbacks::screen_opened_cb().remove(make_callback(this,&type::screen_opened));
     SystemCallbacks::screen_closed_cb().remove(make_callback(this,&type::screen_closed));
-}
-
-//==============================================================================
-//==============================================================================
-
-void ComponentGUIDrawText::initialize (void)
-{
-	ComponentBase::initialize();
-    
-    SystemCallbacks::screen_opened_cb().add(make_callback(this,&type::screen_opened));
-    SystemCallbacks::screen_closed_cb().add(make_callback(this,&type::screen_closed));
 }
 
 //==============================================================================

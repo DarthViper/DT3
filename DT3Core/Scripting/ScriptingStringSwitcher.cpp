@@ -334,14 +334,6 @@ ScriptingStringSwitcher::~ScriptingStringSwitcher (void)
 //==============================================================================
 //==============================================================================
 
-void ScriptingStringSwitcher::initialize (void)
-{
-	ScriptingBase::initialize();
-}
-
-//==============================================================================
-//==============================================================================
-
 void ScriptingStringSwitcher::archive (const std::shared_ptr<Archive> &archive)
 {
     ScriptingBase::archive(archive);

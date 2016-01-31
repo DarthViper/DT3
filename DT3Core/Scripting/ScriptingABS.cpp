@@ -84,14 +84,6 @@ ScriptingABS::~ScriptingABS (void)
 //==============================================================================
 //==============================================================================
 
-void ScriptingABS::initialize (void)
-{
-	ScriptingBase::initialize();
-}
-
-//==============================================================================
-//==============================================================================
-
 void ScriptingABS::archive (const std::shared_ptr<Archive> &archive)
 {
     ScriptingBase::archive(archive);

@@ -95,14 +95,6 @@ ScriptingParticleVelocityAdder::~ScriptingParticleVelocityAdder (void)
 //==============================================================================
 //==============================================================================
 
-void ScriptingParticleVelocityAdder::initialize (void)
-{
-	ScriptingBase::initialize();
-}
-
-//==============================================================================
-//==============================================================================
-
 void ScriptingParticleVelocityAdder::archive (const std::shared_ptr<Archive> &archive)
 {
     ScriptingBase::archive(archive);

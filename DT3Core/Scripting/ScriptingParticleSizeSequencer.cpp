@@ -98,14 +98,6 @@ ScriptingParticleSizeSequencer::~ScriptingParticleSizeSequencer (void)
 //==============================================================================
 //==============================================================================
 
-void ScriptingParticleSizeSequencer::initialize (void)
-{
-	ScriptingBase::initialize();
-}
-
-//==============================================================================
-//==============================================================================
-
 void ScriptingParticleSizeSequencer::archive (const std::shared_ptr<Archive> &archive)
 {
     ScriptingBase::archive(archive);

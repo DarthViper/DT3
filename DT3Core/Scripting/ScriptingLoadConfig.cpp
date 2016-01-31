@@ -83,14 +83,6 @@ ScriptingLoadConfig::~ScriptingLoadConfig (void)
 //==============================================================================
 //==============================================================================
 
-void ScriptingLoadConfig::initialize (void)
-{
-	ScriptingBase::initialize();
-}
-
-//==============================================================================
-//==============================================================================
-
 void ScriptingLoadConfig::archive (const std::shared_ptr<Archive> &archive)
 {
     ScriptingBase::archive(archive);

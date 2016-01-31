@@ -122,14 +122,6 @@ ScriptingCounter::~ScriptingCounter (void)
 //==============================================================================
 //==============================================================================
 
-void ScriptingCounter::initialize (void)
-{
-	ScriptingBase::initialize();
-}
-
-//==============================================================================
-//==============================================================================
-
 void ScriptingCounter::archive (const std::shared_ptr<Archive> &archive)
 {
     ScriptingBase::archive(archive);

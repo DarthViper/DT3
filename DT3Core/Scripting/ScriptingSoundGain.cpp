@@ -94,14 +94,6 @@ ScriptingSoundGain::~ScriptingSoundGain (void)
 //==============================================================================
 //==============================================================================
 
-void ScriptingSoundGain::initialize (void)
-{
-	ScriptingSoundBase::initialize();
-}
-
-//==============================================================================
-//==============================================================================
-
 void ScriptingSoundGain::archive (const std::shared_ptr<Archive> &archive)
 {
     ScriptingSoundBase::archive(archive);

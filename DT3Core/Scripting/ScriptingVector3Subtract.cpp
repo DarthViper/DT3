@@ -91,14 +91,6 @@ ScriptingVector3Subtract::~ScriptingVector3Subtract (void)
 //==============================================================================
 //==============================================================================
 
-void ScriptingVector3Subtract::initialize (void)
-{
-	ScriptingBase::initialize();
-}
-
-//==============================================================================
-//==============================================================================
-
 void ScriptingVector3Subtract::archive (const std::shared_ptr<Archive> &archive)
 {
     ScriptingBase::archive(archive);

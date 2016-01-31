@@ -41,9 +41,6 @@ class ObjectBase: public WorldNode {
         virtual void                                remove_from_world       (void);
 
     public:
-        /// Called to initialize the object
-        virtual void                                initialize              (void);
-
         /// Adds a component to the object
         /// \param component component
         void                                        add_component           (const std::shared_ptr<ComponentBase> &component);

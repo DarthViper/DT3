@@ -91,14 +91,6 @@ ScriptingVector3Clip::~ScriptingVector3Clip (void)
 //==============================================================================
 //==============================================================================
 
-void ScriptingVector3Clip::initialize (void)
-{
-	ScriptingBase::initialize();
-}
-
-//==============================================================================
-//==============================================================================
-
 void ScriptingVector3Clip::archive (const std::shared_ptr<Archive> &archive)
 {
     ScriptingBase::archive(archive);

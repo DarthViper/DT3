@@ -50,10 +50,6 @@ class TextFileStream: public TextStream {
         virtual                             ~TextFileStream         (void);
 
         public:
-                /// Called to initialize the object
-                virtual void                        initialize              (void);
-
-
                 Stream&                             operator<<              (const Stream::FS)	{	*this << " ";	return *this;	}
                 Stream&                             operator<<              (const DTboolean n);
                 Stream&                             operator<<              (const DTbyte n);

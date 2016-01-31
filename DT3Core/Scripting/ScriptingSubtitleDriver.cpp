@@ -93,14 +93,6 @@ ScriptingSubtitleDriver::~ScriptingSubtitleDriver (void)
 //==============================================================================
 //==============================================================================
 
-void ScriptingSubtitleDriver::initialize (void)
-{
-	ScriptingBase::initialize();
-}
-
-//==============================================================================
-//==============================================================================
-
 void ScriptingSubtitleDriver::archive (const std::shared_ptr<Archive> &archive)
 {
     ScriptingBase::archive(archive);

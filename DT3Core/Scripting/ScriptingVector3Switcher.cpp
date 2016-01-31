@@ -207,14 +207,6 @@ ScriptingVector3Switcher::~ScriptingVector3Switcher (void)
 //==============================================================================
 //==============================================================================
 
-void ScriptingVector3Switcher::initialize (void)
-{
-    ScriptingBase::initialize();
-}
-
-//==============================================================================
-//==============================================================================
-
 void ScriptingVector3Switcher::archive (const std::shared_ptr<Archive> &archive)
 {
     ScriptingBase::archive(archive);

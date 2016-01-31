@@ -112,14 +112,6 @@ ScriptingParticleVelocityRandomizer::~ScriptingParticleVelocityRandomizer (void)
 //==============================================================================
 //==============================================================================
 
-void ScriptingParticleVelocityRandomizer::initialize (void)
-{
-	ScriptingBase::initialize();
-}
-
-//==============================================================================
-//==============================================================================
-
 void ScriptingParticleVelocityRandomizer::archive (const std::shared_ptr<Archive> &archive)
 {
     ScriptingBase::archive(archive);

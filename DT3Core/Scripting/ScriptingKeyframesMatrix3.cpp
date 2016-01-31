@@ -94,14 +94,6 @@ ScriptingKeyframesMatrix3::~ScriptingKeyframesMatrix3 (void)
 //==============================================================================
 //==============================================================================
 
-void ScriptingKeyframesMatrix3::initialize (void)
-{
-	ScriptingKeyframes::initialize();
-}
-
-//==============================================================================
-//==============================================================================
-
 void ScriptingKeyframesMatrix3::archive (const std::shared_ptr<Archive> &archive)
 {
     ScriptingKeyframes::archive(archive);

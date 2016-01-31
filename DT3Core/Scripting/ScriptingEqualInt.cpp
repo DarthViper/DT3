@@ -91,14 +91,6 @@ ScriptingEqualInt::~ScriptingEqualInt (void)
 //==============================================================================
 //==============================================================================
 
-void ScriptingEqualInt::initialize (void)
-{
-	ScriptingBase::initialize();
-}
-
-//==============================================================================
-//==============================================================================
-
 void ScriptingEqualInt::archive (const std::shared_ptr<Archive> &archive)
 {
     ScriptingBase::archive(archive);

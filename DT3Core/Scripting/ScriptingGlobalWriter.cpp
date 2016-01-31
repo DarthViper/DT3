@@ -99,14 +99,6 @@ ScriptingGlobalWriter::~ScriptingGlobalWriter (void)
 //==============================================================================
 //==============================================================================
 
-void ScriptingGlobalWriter::initialize (void)
-{
-	ScriptingBase::initialize();
-}
-
-//==============================================================================
-//==============================================================================
-
 void ScriptingGlobalWriter::archive (const std::shared_ptr<Archive> &archive)
 {
     ScriptingBase::archive(archive);

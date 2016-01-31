@@ -91,14 +91,6 @@ ScriptingMax::~ScriptingMax (void)
 //==============================================================================
 //==============================================================================
 
-void ScriptingMax::initialize (void)
-{
-	ScriptingBase::initialize();
-}
-
-//==============================================================================
-//==============================================================================
-
 void ScriptingMax::archive (const std::shared_ptr<Archive> &archive)
 {
     ScriptingBase::archive(archive);

@@ -25,7 +25,7 @@
 //==============================================================================
 //==============================================================================
 
-namespace DT3 {
+using namespace DT3;
 
 //==============================================================================
 // HRTF filter coefficients
@@ -87,6 +87,11 @@ ScriptingSoundHRTF::ScriptingSoundHRTF (void)
         _listener_transform (PLUG_INFO_INDEX(_listener_transform), Matrix4::identity()),
         _rolloff            (0.0)
 {
+    for (DTshort &i : _buffer) {
+        i = 0;
+    }
+
+    _buffer_index = 0;
 
 }
 
@@ -98,6 +103,11 @@ ScriptingSoundHRTF::ScriptingSoundHRTF (const ScriptingSoundHRTF &rhs)
         _listener_transform	(rhs._listener_transform),
         _rolloff            (0.0F)
 {
+    for (DTshort &i : _buffer) {
+        i = 0;
+    }
+
+    _buffer_index = 0;
 
 }
 
@@ -119,21 +129,6 @@ ScriptingSoundHRTF & ScriptingSoundHRTF::operator = (const ScriptingSoundHRTF &r
 
 ScriptingSoundHRTF::~ScriptingSoundHRTF (void)
 {
-
-}
-
-//==============================================================================
-//==============================================================================
-
-void ScriptingSoundHRTF::initialize (void)
-{
-    ScriptingSoundBase::initialize();
-
-    for (DTuint i = 0; i < ARRAY_SIZE(_buffer); ++i) {
-        _buffer[i] = 0;
-    }
-
-    _buffer_index = 0;
 
 }
 
@@ -370,6 +365,3 @@ DTboolean ScriptingSoundHRTF::compute (const PlugBase *plug)
 
 //==============================================================================
 //==============================================================================
-
-} // DT3
-

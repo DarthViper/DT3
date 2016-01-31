@@ -14,7 +14,6 @@
 
 #include "DT3Core/Components/ComponentBase.hpp"
 #include "DT3Core/Types/Node/Event.hpp"
-#include "DT3Core/Types/Utility/LatentCall.hpp"
 #include "DT3Core/Types/Node/Plug.hpp"
 
 namespace DT3 {
@@ -24,7 +23,7 @@ namespace DT3 {
 //==============================================================================
 class GUITouchEvent;
 class SoundResource;
-
+class LatentCall;
 //==============================================================================
 /// GUI behaviour for a button.
 //==============================================================================
@@ -43,8 +42,6 @@ class ComponentGUIButton: public ComponentBase {
         virtual void                archive                 (const std::shared_ptr<Archive> &archive);
 
     public:
-        /// Called to initialize the object
-        virtual void				initialize              (void);
 
         /// Returns the component type. This defines which slot the component is
         /// put into on the object.

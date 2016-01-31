@@ -95,14 +95,6 @@ ScriptingParticleSizeRandomizer::~ScriptingParticleSizeRandomizer (void)
 //==============================================================================
 //==============================================================================
 
-void ScriptingParticleSizeRandomizer::initialize (void)
-{
-	ScriptingBase::initialize();
-}
-
-//==============================================================================
-//==============================================================================
-
 void ScriptingParticleSizeRandomizer::archive (const std::shared_ptr<Archive> &archive)
 {
     ScriptingBase::archive(archive);

@@ -166,14 +166,6 @@ ScriptingSlerp::~ScriptingSlerp (void)
 //==============================================================================
 //==============================================================================
 
-void ScriptingSlerp::initialize (void)
-{
-	ScriptingBase::initialize();
-}
-
-//==============================================================================
-//==============================================================================
-
 void ScriptingSlerp::archive (const std::shared_ptr<Archive> &archive)
 {
     ScriptingBase::archive(archive);

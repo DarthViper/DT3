@@ -92,14 +92,6 @@ ScriptingParticleFriction::~ScriptingParticleFriction (void)
 //==============================================================================
 //==============================================================================
 
-void ScriptingParticleFriction::initialize (void)
-{
-	ScriptingBase::initialize();
-}
-
-//==============================================================================
-//==============================================================================
-
 void ScriptingParticleFriction::archive (const std::shared_ptr<Archive> &archive)
 {
     ScriptingBase::archive(archive);

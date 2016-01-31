@@ -243,6 +243,7 @@ ScriptingMaterialBuilder::ScriptingMaterialBuilder (void)
         _rect_14        (PLUG_INFO_INDEX(_rect_14), Rectangle(0.0F,1.0F,0.0F,1.0F)),
         _rect_15        (PLUG_INFO_INDEX(_rect_15), Rectangle(0.0F,1.0F,0.0F,1.0F))
 {
+    _out_material = MaterialResource::create();
 
 }
 		
@@ -282,6 +283,7 @@ ScriptingMaterialBuilder::ScriptingMaterialBuilder (const ScriptingMaterialBuild
         _rect_14        (rhs._rect_14),
         _rect_15        (rhs._rect_15)
 {
+    _out_material = MaterialResource::create();
 
 }	
 
@@ -331,16 +333,6 @@ ScriptingMaterialBuilder & ScriptingMaterialBuilder::operator = (const Scripting
 ScriptingMaterialBuilder::~ScriptingMaterialBuilder (void)
 {
 
-}
-
-//==============================================================================
-//==============================================================================
-
-void ScriptingMaterialBuilder::initialize (void)
-{
-	ScriptingBase::initialize();
-    
-    _out_material = MaterialResource::create();
 }
 
 //==============================================================================

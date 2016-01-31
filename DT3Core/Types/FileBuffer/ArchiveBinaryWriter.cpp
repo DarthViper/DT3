@@ -9,6 +9,7 @@
 ///	
 //==============================================================================
 
+#include "DT3Core/Types/Utility/Config.hpp"
 #include "DT3Core/Types/FileBuffer/ArchiveBinaryWriter.hpp"
 #include "DT3Core/Types/FileBuffer/ArchiveData.hpp"
 #include "DT3Core/System/FileManager.hpp"

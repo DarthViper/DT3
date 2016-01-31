@@ -48,10 +48,6 @@ class ScriptingRadioButton: public ScriptingBase {
         virtual void                remove_from_world       (void);
 
     public:
-
-        /// Called to initialize the object
-        virtual void				initialize				(void);
-
         // Event handlers for each input
         void                        in1                     (PlugNode *sender)  {   flip(sender,&_in1);    }
         void                        in2                     (PlugNode *sender)  {   flip(sender,&_in2);    }

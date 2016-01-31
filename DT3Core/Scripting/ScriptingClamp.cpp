@@ -99,14 +99,6 @@ ScriptingClamp::~ScriptingClamp (void)
 //==============================================================================
 //==============================================================================
 
-void ScriptingClamp::initialize (void)
-{
-	ScriptingBase::initialize();
-}
-
-//==============================================================================
-//==============================================================================
-
 void ScriptingClamp::archive (const std::shared_ptr<Archive> &archive)
 {
     ScriptingBase::archive(archive);

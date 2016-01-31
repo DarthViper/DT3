@@ -101,14 +101,6 @@ ScriptingParticleTimeFader::~ScriptingParticleTimeFader (void)
 //==============================================================================
 //==============================================================================
 
-void ScriptingParticleTimeFader::initialize (void)
-{
-	ScriptingBase::initialize();
-}
-
-//==============================================================================
-//==============================================================================
-
 void ScriptingParticleTimeFader::archive (const std::shared_ptr<Archive> &archive)
 {
     ScriptingBase::archive(archive);

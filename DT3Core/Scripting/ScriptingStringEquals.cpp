@@ -91,14 +91,6 @@ ScriptingStringEquals::~ScriptingStringEquals (void)
 //==============================================================================
 //==============================================================================
 
-void ScriptingStringEquals::initialize (void)
-{
-	ScriptingBase::initialize();
-}
-
-//==============================================================================
-//==============================================================================
-
 void ScriptingStringEquals::archive (const std::shared_ptr<Archive> &archive)
 {
     ScriptingBase::archive(archive);

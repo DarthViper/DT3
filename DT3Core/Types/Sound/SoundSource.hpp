@@ -45,10 +45,6 @@ class SoundSource: public PlugNode {
         virtual                     ~SoundSource            (void);
 
     public:
-        /// Called to initialize the object
-        virtual void				initialize              (void);
-
-    public:
         /// Returns the velocity of the source.
         /// \return velocity
         const Vector3 &				velocity                (void) const                {   return _velocity.as_ref();		}

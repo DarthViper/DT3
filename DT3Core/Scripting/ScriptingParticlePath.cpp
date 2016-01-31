@@ -102,14 +102,6 @@ ScriptingParticlePath::~ScriptingParticlePath (void)
 //==============================================================================
 //==============================================================================
 
-void ScriptingParticlePath::initialize (void)
-{
-	ScriptingBase::initialize();
-}
-
-//==============================================================================
-//==============================================================================
-
 void ScriptingParticlePath::archive (const std::shared_ptr<Archive> &archive)
 {
     ScriptingBase::archive(archive);

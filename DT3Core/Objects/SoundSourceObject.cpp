@@ -87,6 +87,7 @@ SoundSourceObject::SoundSourceObject (void)
         _stopped        (EVENT_INFO_INDEX(_stopped)),
         _source         (NULL)
 {
+    set_node_color(Color4f(0.360784F,0.729412F,0.92549F,1.0F));
 
 }
 		
@@ -101,6 +102,7 @@ SoundSourceObject::SoundSourceObject (const SoundSourceObject &rhs)
         _stopped        (rhs._stopped),
         _source         (NULL)
 {
+    set_node_color(Color4f(0.360784F,0.729412F,0.92549F,1.0F));
 
 }
 
@@ -140,15 +142,6 @@ void SoundSourceObject::archive (const std::shared_ptr<Archive> &archive)
 	*archive << ARCHIVE_EVENT(_stop, DATA_SETTABLE);
 
 	archive->pop_domain ();
-}
-
-//==============================================================================
-//==============================================================================
-
-void SoundSourceObject::initialize (void)
-{
-	PlaceableObject::initialize();
-    set_node_color(Color4f(0.360784F,0.729412F,0.92549F,1.0F));
 }
 
 //==============================================================================

@@ -91,14 +91,6 @@ ScriptingParticleTimeRotator::~ScriptingParticleTimeRotator (void)
 //==============================================================================
 //==============================================================================
 
-void ScriptingParticleTimeRotator::initialize (void)
-{
-	ScriptingBase::initialize();
-}
-
-//==============================================================================
-//==============================================================================
-
 void ScriptingParticleTimeRotator::archive (const std::shared_ptr<Archive> &archive)
 {
     ScriptingBase::archive(archive);

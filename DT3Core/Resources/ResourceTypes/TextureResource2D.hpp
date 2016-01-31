@@ -54,10 +54,6 @@ class TextureResource2D: public Resource {
         /// Called to uninitialize the class
         static void                 uninitialize_static     (void);
 
-        /// Called to initialize the object
-        virtual void				initialize              (void);
-
-
         /// Import the resource with an importer into a platform independent format
         /// \param pathname path to resource
         /// \param args importer args

@@ -42,10 +42,6 @@ class ScriptingGlobalWriter: public ScriptingBase {
         virtual void                archive                 (const std::shared_ptr<Archive> &archive);
 
     public:
-
-        /// Called to initialize the object
-        virtual void				initialize				(void);
-
         /// Write Event
         void                        write                   (PlugNode *sender);
 

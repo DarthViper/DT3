@@ -115,14 +115,6 @@ ScriptingTransitionLevel::~ScriptingTransitionLevel (void)
 //==============================================================================
 //==============================================================================
 
-void ScriptingTransitionLevel::initialize (void)
-{
-	ScriptingBase::initialize();
-}
-
-//==============================================================================
-//==============================================================================
-
 void ScriptingTransitionLevel::archive (const std::shared_ptr<Archive> &archive)
 {
     ScriptingBase::archive(archive);

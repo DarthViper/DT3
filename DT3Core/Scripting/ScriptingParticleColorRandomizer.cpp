@@ -98,14 +98,6 @@ ScriptingParticleColorRandomizer::~ScriptingParticleColorRandomizer (void)
 //==============================================================================
 //==============================================================================
 
-void ScriptingParticleColorRandomizer::initialize (void)
-{
-	ScriptingBase::initialize();
-}
-
-//==============================================================================
-//==============================================================================
-
 void ScriptingParticleColorRandomizer::archive (const std::shared_ptr<Archive> &archive)
 {
     ScriptingBase::archive(archive);

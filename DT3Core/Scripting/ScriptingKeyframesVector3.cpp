@@ -98,14 +98,6 @@ ScriptingKeyframesVector3::~ScriptingKeyframesVector3 (void)
 //==============================================================================
 //==============================================================================
 
-void ScriptingKeyframesVector3::initialize (void)
-{
-	ScriptingKeyframes::initialize();
-}
-
-//==============================================================================
-//==============================================================================
-
 void ScriptingKeyframesVector3::archive (const std::shared_ptr<Archive> &archive)
 {
     ScriptingKeyframes::archive(archive);

@@ -89,14 +89,6 @@ ScriptingEventGate::~ScriptingEventGate (void)
 //==============================================================================
 //==============================================================================
 
-void ScriptingEventGate::initialize (void)
-{
-	ScriptingBase::initialize();
-}
-
-//==============================================================================
-//==============================================================================
-
 void ScriptingEventGate::archive (const std::shared_ptr<Archive> &archive)
 {
     ScriptingBase::archive(archive);

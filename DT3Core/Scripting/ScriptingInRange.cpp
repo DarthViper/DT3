@@ -99,14 +99,6 @@ ScriptingInRange::~ScriptingInRange (void)
 //==============================================================================
 //==============================================================================
 
-void ScriptingInRange::initialize (void)
-{
-	ScriptingBase::initialize();
-}
-
-//==============================================================================
-//==============================================================================
-
 void ScriptingInRange::archive (const std::shared_ptr<Archive> &archive)
 {
     ScriptingBase::archive(archive);

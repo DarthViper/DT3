@@ -52,9 +52,6 @@ class ScriptingCameraPredictor: public ScriptingBase {
         /// \param dt delta time
         void                        tick                        (const DTfloat dt);
 
-        /// Called to initialize the object
-        virtual void				initialize					(void);
-
     private:
         Plug<Vector3>				_object_translation;
         Plug<Vector3>				_object_velocity;

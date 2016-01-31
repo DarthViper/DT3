@@ -83,14 +83,6 @@ ScriptingNOT::~ScriptingNOT (void)
 //==============================================================================
 //==============================================================================
 
-void ScriptingNOT::initialize (void)
-{
-	ScriptingBase::initialize();
-}
-
-//==============================================================================
-//==============================================================================
-
 void ScriptingNOT::archive (const std::shared_ptr<Archive> &archive)
 {
     ScriptingBase::archive(archive);

@@ -95,14 +95,6 @@ ScriptingParticleVelocityUniformRing::~ScriptingParticleVelocityUniformRing (voi
 //==============================================================================
 //==============================================================================
 
-void ScriptingParticleVelocityUniformRing::initialize (void)
-{
-	ScriptingBase::initialize();
-}
-
-//==============================================================================
-//==============================================================================
-
 void ScriptingParticleVelocityUniformRing::archive (const std::shared_ptr<Archive> &archive)
 {
     ScriptingBase::archive(archive);

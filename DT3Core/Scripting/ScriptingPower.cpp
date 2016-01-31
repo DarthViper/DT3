@@ -91,14 +91,6 @@ ScriptingPower::~ScriptingPower (void)
 //==============================================================================
 //==============================================================================
 
-void ScriptingPower::initialize (void)
-{
-	ScriptingBase::initialize();
-}
-
-//==============================================================================
-//==============================================================================
-
 void ScriptingPower::archive (const std::shared_ptr<Archive> &archive)
 {
     ScriptingBase::archive(archive);

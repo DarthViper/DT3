@@ -1,6 +1,4 @@
 #pragma once
-#ifndef DT3_WORLD
-#define DT3_WORLD
 //==============================================================================
 ///
 ///	File: World.hpp
@@ -52,9 +50,6 @@ class World: public PlugNode {
         virtual void				archive_done            (const std::shared_ptr<Archive> &archive);
 
     public:
-        /// Called to initialize the object
-        virtual void				initialize              (void);
-
         /// Called to uninitialize the object
         virtual void				uninitialize            (void);
 
@@ -297,5 +292,3 @@ class World: public PlugNode {
 //==============================================================================
 
 } // DT3
-
-#endif
