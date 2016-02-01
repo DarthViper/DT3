@@ -1,6 +1,4 @@
 #pragma once
-#ifndef EDLEVELLAUNCHDIALOG
-#define EDLEVELLAUNCHDIALOG
 //==============================================================================
 ///
 ///	File: EdLevelLaunchDialog.hpp
@@ -53,5 +51,3 @@ class EdLevelLaunchDialog: public QDialog
 
 //==============================================================================
 //==============================================================================
-
-#endif

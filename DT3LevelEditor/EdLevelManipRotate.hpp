@@ -1,6 +1,4 @@
 #pragma once
-#ifndef EDLEVELMANIPROTATE
-#define EDLEVELMANIPROTATE
 //==============================================================================
 ///
 ///	File: EdLevelManipRotate.hpp
@@ -18,8 +16,6 @@
 // Qt include
 
 // Engine includes
-#include "DT3Core/Resources/ResourceTypes/MaterialResource.hpp"
-#include "DT3Core/Resources/ResourceTypes/ShaderResource.hpp"
 
 //==============================================================================
 /// Forward declarations
@@ -29,6 +25,8 @@ namespace DT3 {
     class PlaceableObject;
     class CameraObject;
     class Matrix4;
+    class MaterialResource;
+    class ShaderResource;
 }
 
 class EdLevelToolWindow;
@@ -78,5 +76,3 @@ class EdLevelManipRotate: public EdLevelTool
 
 //==============================================================================
 //==============================================================================
-
-#endif

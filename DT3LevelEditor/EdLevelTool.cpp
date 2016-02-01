@@ -14,6 +14,8 @@
 // Editor include
 #include "EdLevelTool.hpp"
 #include "EdLevelToolWindow.hpp"
+#include "DT3Core/Resources/ResourceTypes/MaterialResource.hpp"
+#include "DT3Core/Resources/ResourceTypes/ShaderResource.hpp"
 
 // Qt include
 
