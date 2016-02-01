@@ -1174,7 +1174,6 @@ void EdLevelMainWindow::createMenus()
             add_object_action->setData(placeable.c_str());
             add_object_action->setVisible(true);
 
-            connect(add_object_action, SIGNAL(triggered()), this, SLOT(onCreateObject()));
             connect(add_object_action, &QAction::triggered, this, &EdLevelMainWindow::onCreateObject);
 
             menu->addAction(add_object_action);
