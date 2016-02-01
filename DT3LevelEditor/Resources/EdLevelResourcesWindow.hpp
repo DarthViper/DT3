@@ -24,7 +24,7 @@
 //==============================================================================
 
 class EdLevelDocument;
-class QGLWidget;
+class QOpenGLWidget;
 class QMimeData;
 class QToolBar;
 
@@ -37,7 +37,7 @@ class EdLevelResourcesWindow: public QTreeWidget
     Q_OBJECT
 
     public:
-                                        EdLevelResourcesWindow		(QWidget *parent, QToolBar *toolbar, EdLevelDocument *document, QGLWidget *gl);
+                                        EdLevelResourcesWindow		(QWidget *parent, QToolBar *toolbar, EdLevelDocument *document, QOpenGLWidget *gl);
 
         Qt::DropActions                 supportedDropActions        (void) const    {   return Qt::CopyAction;  }
 
@@ -49,7 +49,7 @@ class EdLevelResourcesWindow: public QTreeWidget
         EdLevelDocument                 *_document;
         QToolBar                        *_toolbar;
 
-        QGLWidget                       *_gl;
+        QOpenGLWidget                   *_gl;
         QTreeWidgetItem                 *_top_level;
 
         // Internal representation of scene

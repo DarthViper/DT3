@@ -16,7 +16,7 @@
 // Qt include
 #include <QtWidgets/QToolBar>
 #include <QtWidgets/QComboBox>
-
+#include <QtWidgets/QOpenGLWidget>
 #include <memory>
 
 //==============================================================================
@@ -46,7 +46,7 @@ class QCheckBox;
 /// Class
 //==============================================================================
 
-class WorldWindow : public QGLWidget
+class WorldWindow : public QOpenGLWidget
 {
     Q_OBJECT
 

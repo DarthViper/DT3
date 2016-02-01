@@ -98,7 +98,7 @@ static QStringList resolutionList = {
     "1920x1080 (HD1080p)"
 };
 WorldWindow::WorldWindow(QWidget *parent, QToolBar *toolbar, EdLevelDocument *document)
-    :   QGLWidget       (parent),
+    :   QOpenGLWidget       (parent),
         _camera                 (NULL),
         _tool                   (NULL),
         _built_in_zoom          (100.0F),
@@ -244,7 +244,6 @@ WorldWindow::WorldWindow(QWidget *parent, QToolBar *toolbar, EdLevelDocument *do
                                                     0.0F,   1.0F,   0.0F,
                                                     -1.0F,   0.0F,  0.0F    )   );
 
-    setAutoBufferSwap(false);
 }
 
 //==============================================================================
@@ -358,7 +357,7 @@ void WorldWindow::refreshCameras()
 
 void WorldWindow::initializeGL(void)
 {
-    makeCurrent();
+//    makeCurrent();
     auto v =this->context();
     qDebug() << (v!=nullptr);
     GameMainThread::show_engine(width(), height());
@@ -435,8 +434,7 @@ void WorldWindow::updateBuiltInCameras(void)
 
 void WorldWindow::paintGL(void)
 {
-    makeCurrent();
-
+    //makeCurrent();
     {
         DT3::DrawBatcher                _draw_batcher;
         updateBuiltInCameras();
@@ -450,7 +448,7 @@ void WorldWindow::paintGL(void)
         ::glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT );
 
         if (!_camera) {
-            swapBuffers();
+            //swapBuffers();
             //doneCurrent();
             return;
         }
@@ -490,7 +488,7 @@ void WorldWindow::paintGL(void)
         // drawbatcher destructor calls draw here.
     }
 
-    swapBuffers();
+    //swapBuffers();
     //doneCurrent();
 }
 

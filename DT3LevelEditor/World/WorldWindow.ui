@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
  <class>WorldWindow</class>
- <widget class="QGLWidget" name="WorldWindow">
+ <widget class="QOpenGLWidget" name="WorldWindow">
   <property name="geometry">
    <rect>
     <x>0</x>

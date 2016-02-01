@@ -21,6 +21,7 @@
 #include <QtCore/QFileInfo>
 #include <QtCore/QDateTime>
 #include <QtCore/QMimeData>
+#include <QOpenGLWidget>
 
 // Engine includes
 #include "DT3Core/Types/Utility/DirectoryLister.hpp"
@@ -38,7 +39,7 @@ using namespace DT3;
 //==============================================================================
 //==============================================================================
 
-EdLevelResourcesWindow::EdLevelResourcesWindow(QWidget *parent, QToolBar *toolbar, EdLevelDocument *document, QGLWidget *gl)
+EdLevelResourcesWindow::EdLevelResourcesWindow(QWidget *parent, QToolBar *toolbar, EdLevelDocument *document, QOpenGLWidget *gl)
     :   QTreeWidget   (parent)
 {
     _document = document;
