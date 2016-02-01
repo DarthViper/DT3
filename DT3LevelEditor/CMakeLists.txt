@@ -62,7 +62,7 @@ set(HEADERS
      ${CMAKE_CURRENT_SOURCE_DIR}/Resources/EdLevelResourcesWindow.hpp
      ${CMAKE_CURRENT_SOURCE_DIR}/Library/EdLevelLibraryWindow.hpp
      ${CMAKE_CURRENT_SOURCE_DIR}/Library/EdLevelLibraryDialog.hpp
-     ${CMAKE_CURRENT_SOURCE_DIR}/World/EdLevelWorldWindow.hpp
+     World/WorldWindow.h
      ${CMAKE_CURRENT_SOURCE_DIR}/Animation/EdLevelAnimationWindow.hpp
      ${CMAKE_CURRENT_SOURCE_DIR}/Sound/EdLevelSoundWindow.hpp
      ${CMAKE_CURRENT_SOURCE_DIR}/Sound/EdLevelSoundBus.hpp
@@ -122,7 +122,8 @@ set(SOURCES
     Resources/EdLevelResourcesWindow.cpp
     Library/EdLevelLibraryWindow.cpp
     Library/EdLevelLibraryDialog.cpp
-    World/EdLevelWorldWindow.cpp
+    World/WorldWindow.cpp
+    World/WorldWindow.ui
     Animation/EdLevelAnimationWindow.cpp
     Sound/EdLevelSoundWindow.cpp
     Sound/EdLevelSoundBus.cpp

@@ -23,12 +23,17 @@
 /// Forward declarations
 //==============================================================================
 
-namespace DT3 {
-    class PlugNode;
-    class CameraObject;
-    class MaterialResource;
-    class ShaderResource;
-    class DrawBatcher;
+namespace DT3
+{
+class PlugNode;
+class CameraObject;
+class MaterialResource;
+class ShaderResource;
+class DrawBatcher;
+}
+namespace Ui
+{
+class WorldWindow;
 }
 
 class EdLevelDocument;
@@ -41,12 +46,12 @@ class QCheckBox;
 /// Class
 //==============================================================================
 
-class EdLevelWorldWindow : public QGLWidget
+class WorldWindow : public QGLWidget
 {
     Q_OBJECT
 
     public:
-                                        EdLevelWorldWindow	(QWidget *parent, QToolBar *toolbar, EdLevelDocument *document);
+                                        WorldWindow	(QWidget *parent, QToolBar *toolbar, EdLevelDocument *document);
 
     protected:
         void							draw				(QPainter *painter);
@@ -60,6 +65,7 @@ class EdLevelWorldWindow : public QGLWidget
         void							mouseReleaseEvent	(QMouseEvent *event);
 
         void                            keyPressEvent       (QKeyEvent *event);
+        void                            changeEvent(QEvent *e);
 
         //void							resizeEvent			(QResizeEvent *event);
         QSize							sizeHint			(void) const;
@@ -83,6 +89,7 @@ class EdLevelWorldWindow : public QGLWidget
         int                           _desired_width;
         int                           _desired_height;
 
+        Ui::WorldWindow *                ui;
         EdLevelDocument                 *_document;
         QToolBar                        *_toolbar;
         std::shared_ptr<DT3::CameraObject>   _camera;
@@ -94,10 +101,6 @@ class EdLevelWorldWindow : public QGLWidget
         float                           _built_in_zoom;
         bool                            _built_in_camera;
 
-        QAction                         *_arrow_action;
-        QAction                         *_pan_action;
-        QAction                         *_rotate_action;
-        QAction                         *_scale_action;
         QComboBox                       *_camera_selection;
         QComboBox                       *_resolution_selection;
 
@@ -135,7 +138,6 @@ class EdLevelWorldWindow : public QGLWidget
         void                            onSelectComponent           (void);
 
         void                            onChangeGrid                (int state);
-
     signals:
         void                            doCommand                   (QString command);
         void                            doSelectionChanged          (const std::list<std::shared_ptr<DT3::PlugNode>> &selection_list);

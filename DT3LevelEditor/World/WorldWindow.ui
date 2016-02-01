@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>WorldWindow</class>
+ <widget class="QGLWidget" name="WorldWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>400</width>
+    <height>300</height>
+   </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>100</width>
+    <height>100</height>
+   </size>
+  </property>
+  <property name="focusPolicy">
+   <enum>Qt::StrongFocus</enum>
+  </property>
+  <property name="contextMenuPolicy">
+   <enum>Qt::PreventContextMenu</enum>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <action name="_arrow_action">
+   <property name="icon">
+    <iconset>
+     <normalon>:/images/arrow.png</normalon>
+    </iconset>
+   </property>
+   <property name="text">
+    <string>Arrow</string>
+   </property>
+   <property name="statusTip">
+    <string>Manipulate Objects</string>
+   </property>
+  </action>
+  <action name="_pan_action">
+   <property name="icon">
+    <iconset>
+     <normalon>:/images/pan.png</normalon>
+    </iconset>
+   </property>
+   <property name="text">
+    <string>Pan</string>
+   </property>
+   <property name="statusTip">
+    <string>Pan Objects</string>
+   </property>
+  </action>
+  <action name="_rotate_action">
+   <property name="icon">
+    <iconset>
+     <normalon>:/images/rotate.png</normalon>
+    </iconset>
+   </property>
+   <property name="text">
+    <string>Rotate</string>
+   </property>
+   <property name="statusTip">
+    <string>Rotate Objects</string>
+   </property>
+  </action>
+  <action name="_scale_action">
+   <property name="icon">
+    <iconset>
+     <normalon>:/images/scale.png</normalon>
+    </iconset>
+   </property>
+   <property name="text">
+    <string>Scale</string>
+   </property>
+   <property name="statusTip">
+    <string>Scale Objects</string>
+   </property>
+  </action>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>QGLWidget</class>
+   <extends>QWidget</extends>
+   <header>qglwidget.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
+ <resources/>
+ <connections/>
+</ui>

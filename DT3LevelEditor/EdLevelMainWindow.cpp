@@ -14,7 +14,7 @@
 #include "ui_EdLevelMainWindow.h"
 
 #include "EdLevelDocument.hpp"
-#include "EdLevelWorldWindow.hpp"
+#include "WorldWindow.h"
 #include "EdLevelScriptWindow.hpp"
 #include "EdLevelAnimationWindow.hpp"
 #include "EdLevelSoundWindow.hpp"
@@ -138,7 +138,7 @@ EdLevelMainWindow::EdLevelMainWindow(void) : QMainWindow(nullptr), ui(new Ui::Ed
     _world_toolbar = new QToolBar(world_section);
     _world_toolbar->setIconSize(QSize(16,16));
 
-    _world_widget = new EdLevelWorldWindow(world_section, _world_toolbar, _document);
+    _world_widget = new WorldWindow(world_section, _world_toolbar, _document);
     //_world_widget->setSizePolicy(QSizePolicy(QSizePolicy::Ignored, QSizePolicy::Ignored));
 
     EdLevelWorldLayout *layout1 = new EdLevelWorldLayout();
@@ -377,8 +377,8 @@ EdLevelMainWindow::EdLevelMainWindow(void) : QMainWindow(nullptr), ui(new Ui::Ed
     connect(this,&EdLevelMainWindow::doSelectionChanged,_hierarchy_widget,&EdLevelHierarchyWindow::onSelectionChanged);
     connect(this,&EdLevelMainWindow::doRefreshHierarchy,_hierarchy_widget,&EdLevelHierarchyWindow::onRefreshHierarchy);
 
-    connect(this,&EdLevelMainWindow::doSelectionChanged,_world_widget,&EdLevelWorldWindow::onSelectionChanged);
-    connect(this,&EdLevelMainWindow::doRefreshWorld,_world_widget,&EdLevelWorldWindow::onRefreshWorld);
+    connect(this,&EdLevelMainWindow::doSelectionChanged,_world_widget,&WorldWindow::onSelectionChanged);
+    connect(this,&EdLevelMainWindow::doRefreshWorld,_world_widget,&WorldWindow::onRefreshWorld);
 
     connect(this,&EdLevelMainWindow::doSelectionChanged,_script_widget,&EdLevelScriptWindow::onSelectionChanged);
     connect(this,&EdLevelMainWindow::doRefreshScript,_script_widget,&EdLevelScriptWindow::onRefreshScript);
@@ -401,23 +401,23 @@ EdLevelMainWindow::EdLevelMainWindow(void) : QMainWindow(nullptr), ui(new Ui::Ed
 
     connect(_hierarchy_widget,&EdLevelHierarchyWindow::doSelectionChanged,this,&EdLevelMainWindow::onSelectionChanged);
     connect(_hierarchy_widget,&EdLevelHierarchyWindow::doSelectionChanged,_hierarchy_widget,&EdLevelHierarchyWindow::onSelectionChanged);
-    connect(_hierarchy_widget,&EdLevelHierarchyWindow::doSelectionChanged,_world_widget,&EdLevelWorldWindow::onSelectionChanged);
+    connect(_hierarchy_widget,&EdLevelHierarchyWindow::doSelectionChanged,_world_widget,&WorldWindow::onSelectionChanged);
     connect(_hierarchy_widget,&EdLevelHierarchyWindow::doSelectionChanged,_script_widget,&EdLevelScriptWindow::onSelectionChanged);
     connect(_hierarchy_widget,&EdLevelHierarchyWindow::doSelectionChanged,_animation_widget,&EdLevelAnimationWindow::onSelectionChanged);
     connect(_hierarchy_widget,&EdLevelHierarchyWindow::doSelectionChanged,_sound_widget,&EdLevelSoundWindow::onSelectionChanged);
     connect(_hierarchy_widget,&EdLevelHierarchyWindow::doSelectionChanged,_properties_widget,&EdLevelPropertiesWindow::onSelectionChanged);
 
-    connect(_world_widget,&EdLevelWorldWindow::doSelectionChanged,this,&EdLevelMainWindow::onSelectionChanged);
-    connect(_world_widget,&EdLevelWorldWindow::doSelectionChanged,_hierarchy_widget,&EdLevelHierarchyWindow::onSelectionChanged);
-    connect(_world_widget,&EdLevelWorldWindow::doSelectionChanged,_world_widget,&EdLevelWorldWindow::onSelectionChanged);
-    connect(_world_widget,&EdLevelWorldWindow::doSelectionChanged,_script_widget,&EdLevelScriptWindow::onSelectionChanged);
-    connect(_world_widget,&EdLevelWorldWindow::doSelectionChanged,_animation_widget,&EdLevelAnimationWindow::onSelectionChanged);
-    connect(_world_widget,&EdLevelWorldWindow::doSelectionChanged,_sound_widget,&EdLevelSoundWindow::onSelectionChanged);
-    connect(_world_widget,&EdLevelWorldWindow::doSelectionChanged,_properties_widget,&EdLevelPropertiesWindow::onSelectionChanged);
+    connect(_world_widget,&WorldWindow::doSelectionChanged,this,&EdLevelMainWindow::onSelectionChanged);
+    connect(_world_widget,&WorldWindow::doSelectionChanged,_hierarchy_widget,&EdLevelHierarchyWindow::onSelectionChanged);
+    connect(_world_widget,&WorldWindow::doSelectionChanged,_world_widget,&WorldWindow::onSelectionChanged);
+    connect(_world_widget,&WorldWindow::doSelectionChanged,_script_widget,&EdLevelScriptWindow::onSelectionChanged);
+    connect(_world_widget,&WorldWindow::doSelectionChanged,_animation_widget,&EdLevelAnimationWindow::onSelectionChanged);
+    connect(_world_widget,&WorldWindow::doSelectionChanged,_sound_widget,&EdLevelSoundWindow::onSelectionChanged);
+    connect(_world_widget,&WorldWindow::doSelectionChanged,_properties_widget,&EdLevelPropertiesWindow::onSelectionChanged);
 
     connect(_script_widget,&EdLevelScriptWindow::doSelectionChanged,this,&EdLevelMainWindow::onSelectionChanged);
     connect(_script_widget,&EdLevelScriptWindow::doSelectionChanged,_hierarchy_widget,&EdLevelHierarchyWindow::onSelectionChanged);
-    connect(_script_widget,&EdLevelScriptWindow::doSelectionChanged,_world_widget,&EdLevelWorldWindow::onSelectionChanged);
+    connect(_script_widget,&EdLevelScriptWindow::doSelectionChanged,_world_widget,&WorldWindow::onSelectionChanged);
     connect(_script_widget,&EdLevelScriptWindow::doSelectionChanged,_script_widget,&EdLevelScriptWindow::onSelectionChanged);
     connect(_script_widget,&EdLevelScriptWindow::doSelectionChanged,_animation_widget,&EdLevelAnimationWindow::onSelectionChanged);
     connect(_script_widget,&EdLevelScriptWindow::doSelectionChanged,_sound_widget,&EdLevelSoundWindow::onSelectionChanged);
@@ -427,7 +427,7 @@ EdLevelMainWindow::EdLevelMainWindow(void) : QMainWindow(nullptr), ui(new Ui::Ed
 
     connect(_animation_widget,&EdLevelAnimationWindow::doSelectionChanged,this,&EdLevelMainWindow::onSelectionChanged);
     connect(_animation_widget,&EdLevelAnimationWindow::doSelectionChanged,_hierarchy_widget,&EdLevelHierarchyWindow::onSelectionChanged);
-    connect(_animation_widget,&EdLevelAnimationWindow::doSelectionChanged,_world_widget,&EdLevelWorldWindow::onSelectionChanged);
+    connect(_animation_widget,&EdLevelAnimationWindow::doSelectionChanged,_world_widget,&WorldWindow::onSelectionChanged);
     connect(_animation_widget,&EdLevelAnimationWindow::doSelectionChanged,_script_widget,&EdLevelScriptWindow::onSelectionChanged);
     connect(_animation_widget,&EdLevelAnimationWindow::doSelectionChanged,_animation_widget,&EdLevelAnimationWindow::onSelectionChanged);
     connect(_animation_widget,&EdLevelAnimationWindow::doSelectionChanged,_sound_widget,&EdLevelSoundWindow::onSelectionChanged);
@@ -445,8 +445,8 @@ EdLevelMainWindow::EdLevelMainWindow(void) : QMainWindow(nullptr), ui(new Ui::Ed
     connect(this,&EdLevelMainWindow::doConnectEvent,_hierarchy_widget,&EdLevelHierarchyWindow::onConnectEvent);
     connect(this,&EdLevelMainWindow::doDisconnectEvent,_hierarchy_widget,&EdLevelHierarchyWindow::onDisconnectEvent);
 
-    connect(_world_widget,&EdLevelWorldWindow::doCommand,this,&EdLevelMainWindow::onCommand);
-    connect(_world_widget,&EdLevelWorldWindow::doUndoBlock,this,&EdLevelMainWindow::onUndoBlock);
+    connect(_world_widget,&WorldWindow::doCommand,this,&EdLevelMainWindow::onCommand);
+    connect(_world_widget,&WorldWindow::doUndoBlock,this,&EdLevelMainWindow::onUndoBlock);
 
     connect(_script_widget,&EdLevelScriptWindow::doCommand,this,&EdLevelMainWindow::onCommand);
     connect(_script_widget,&EdLevelScriptWindow::doUndoBlock,this,&EdLevelMainWindow::onUndoBlock);

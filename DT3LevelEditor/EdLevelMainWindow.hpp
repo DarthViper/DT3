@@ -49,7 +49,7 @@ class QLabel;
 class QGLWidget;
 class QListView;
 class QComboBox;
-class EdLevelWorldWindow;
+class WorldWindow;
 class EdLevelScriptWindow;
 class EdLevelAnimationWindow;
 class EdLevelSoundWindow;
@@ -113,7 +113,7 @@ class EdLevelMainWindow : public QMainWindow
         void                                    updateWidgets (unsigned int h);
 
         // GUI Widgets
-        EdLevelWorldWindow						*_world_widget;
+        WorldWindow						*_world_widget;
         EdLevelScriptWindow						*_script_widget;
         EdLevelAnimationWindow                  *_animation_widget;
         EdLevelSoundWindow                      *_sound_widget;
