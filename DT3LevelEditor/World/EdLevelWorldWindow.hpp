@@ -17,8 +17,7 @@
 #include <QtWidgets/QToolBar>
 #include <QtWidgets/QComboBox>
 
-// Engine includes
-#include "DT3Core/Types/Graphics/DrawBatcher.hpp"
+#include <memory>
 
 //==============================================================================
 /// Forward declarations
@@ -29,6 +28,7 @@ namespace DT3 {
     class CameraObject;
     class MaterialResource;
     class ShaderResource;
+    class DrawBatcher;
 }
 
 class EdLevelDocument;
@@ -36,11 +36,6 @@ class EdLevelTool;
 class EdLevelToolEvent;
 class QGridLayout;
 class QCheckBox;
-
-//==============================================================================
-//==============================================================================
-
-using namespace DT3;
 
 //==============================================================================
 /// Class
@@ -75,14 +70,15 @@ class EdLevelWorldWindow : public QGLWidget
 
         void                            toolContextMenu     (QMouseEvent *event);
 
-        void                            drawScene           (const std::shared_ptr<CameraObject> &camera, float scale);
-        void                            drawGrid            (const std::shared_ptr<CameraObject> &camera);
+        void                            drawScene           (const std::shared_ptr<DT3::CameraObject> &camera, float scale);
+        void                            drawGrid            (DT3::DrawBatcher &draw_batch, const std::shared_ptr<DT3::CameraObject> &camera);
 
-        float                         calcScale           (const std::shared_ptr<CameraObject> &camera);
+        float                         calcScale           (const std::shared_ptr<DT3::CameraObject> &camera);
         void                            pickGL              (QPointF pos, EdLevelToolEvent &tool_event);
 
         bool                            getGridVisible      (void);
-        float                         getGrid             (void);
+        float                           getGrid             (void);
+        QAction *                       addContextMenuFromMetaObject(class QMenu *context_menu, const QMetaObject *toolclassprops);
 
         int                           _desired_width;
         int                           _desired_height;
@@ -116,9 +112,6 @@ class EdLevelWorldWindow : public QGLWidget
 
         std::shared_ptr<EdLevelTool>    _tool;
 
-        DT3::DrawBatcher                _draw_batcher;
-
-
         enum {
             MODE_NONE,
             MODE_ARROW,
@@ -132,7 +125,7 @@ class EdLevelWorldWindow : public QGLWidget
         void                            onChangeResolution          (int index);
 
         void                            onRefreshWorld              (void);
-        void                            onSelectionChanged          (const std::list<std::shared_ptr<PlugNode>> &selection_list);
+        void                            onSelectionChanged          (const std::list<std::shared_ptr<DT3::PlugNode>> &selection_list);
 
         void                            onArrowTool                 (void);
         void                            onPanTool                   (void);
@@ -145,7 +138,7 @@ class EdLevelWorldWindow : public QGLWidget
 
     signals:
         void                            doCommand                   (QString command);
-        void                            doSelectionChanged          (const std::list<std::shared_ptr<PlugNode>> &selection_list);
+        void                            doSelectionChanged          (const std::list<std::shared_ptr<DT3::PlugNode>> &selection_list);
         void                            doUndoBlock                 (void);
 };
 

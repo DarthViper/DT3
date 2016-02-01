@@ -1,6 +1,4 @@
 #pragma once
-#ifndef EDLEVELMANIPSCALE
-#define EDLEVELMANIPSCALE
 //==============================================================================
 ///
 ///	File: EdLevelManipScale.hpp
@@ -15,11 +13,6 @@
 // Editor include
 #include "EdLevelTool.hpp"
 
-// Qt include
-
-// Engine includes
-#include "DT3Core/Resources/ResourceTypes/MaterialResource.hpp"
-
 //==============================================================================
 /// Forward declarations
 //==============================================================================
@@ -28,6 +21,8 @@ namespace DT3 {
     class PlaceableObject;
     class CameraObject;
     class Matrix4;
+    class MaterialResource;
+    class ShaderResource;
 }
 
 class EdLevelToolWindow;
@@ -44,11 +39,12 @@ using namespace DT3;
 
 class EdLevelManipScale: public EdLevelTool
 {
-    public:
-        DEFINE_TYPE(EdLevelManipScale, EdLevelTool)
-        DEFINE_CREATE
+    Q_OBJECT
+    Q_CLASSINFO("tool_name","Scale")
 
-                        EdLevelManipScale       (void);
+    public:
+
+                        EdLevelManipScale       (QObject *parent=nullptr);
         virtual         ~EdLevelManipScale      (void)  {}
 
     public:
@@ -66,8 +62,8 @@ class EdLevelManipScale: public EdLevelTool
             CENTER = 4
         };
 
-        std::shared_ptr<MaterialResource>   _tool_material;
-        std::shared_ptr<ShaderResource>     _shader;
+        std::shared_ptr<DT3::MaterialResource>   _tool_material;
+        std::shared_ptr<DT3::ShaderResource>     _shader;
 
         unsigned int                              _starting_axis;
         int                               _mouse_x;
@@ -77,4 +73,3 @@ class EdLevelManipScale: public EdLevelTool
 //==============================================================================
 //==============================================================================
 
-#endif

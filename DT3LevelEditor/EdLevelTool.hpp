@@ -40,13 +40,14 @@ using namespace DT3;
 /// Class
 //==============================================================================
 
-class EdLevelTool : public QObject,public BaseClass
+class EdLevelTool : public QObject/*,public BaseClass*/
 {
     Q_OBJECT
 public:
-    DEFINE_TYPE(EdLevelTool, BaseClass)
+    //DEFINE_TYPE(EdLevelTool, BaseClass)
 
     EdLevelTool(void) = default;
+    EdLevelTool(QObject *p) : QObject(p) {}
     virtual ~EdLevelTool(void) = default;
 
 public:

@@ -36,7 +36,7 @@ using namespace DT3;
 //==============================================================================
 //==============================================================================
 
-EdLevelManipRotate::EdLevelManipRotate (void)
+EdLevelManipRotate::EdLevelManipRotate (QObject *p) : EdLevelTool(p)
 {
     _shader = ShaderResource::import_resource(FilePath("{ED_TOOL_SHADER}"));
     _tool_material = MaterialResource::import_resource(FilePath("{ED_TOOL_MATERIAL}"));

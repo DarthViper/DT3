@@ -86,6 +86,8 @@ set(HEADERS
     Scripting/EdLevelGroup.hpp
     Scripting/EdLevelScriptConnection.hpp
     World/EdLevelWorldLayout.hpp
+    EditorObjectFactory.h
+    EngineObjectTools.h
 )
 set(SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/EdLevelAppMain.cpp
@@ -146,6 +148,9 @@ set(SOURCES
     EdLevelTool.cpp
     World/EdLevelWorldLayout.cpp
     LevelEditor.qrc
+
+    EditorObjectFactory.cpp
+    EngineObjectTools.cpp
 )
 add_executable(LevelEditor ${SOURCES} ${HEADERS})
 target_link_libraries(LevelEditor DT3Core freetype jpeg jenkins GLEW GL pthread dl)

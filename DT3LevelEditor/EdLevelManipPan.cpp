@@ -35,7 +35,7 @@ using namespace DT3;
 //==============================================================================
 //==============================================================================
 
-EdLevelManipPan::EdLevelManipPan(void) : _starting_location_t1(0.0F), _starting_location_t2(0.0F)
+EdLevelManipPan::EdLevelManipPan(QObject *p) : EdLevelTool(p),_starting_location_t1(0.0F), _starting_location_t2(0.0F)
 {
     _shader        = ShaderResource::import_resource(FilePath("{ED_TOOL_SHADER}"));
     _tool_material = MaterialResource::import_resource(FilePath("{ED_TOOL_MATERIAL}"));

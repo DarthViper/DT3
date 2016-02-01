@@ -13,10 +13,6 @@
 // Editor include
 #include "EdLevelTool.hpp"
 
-// Qt include
-
-// Engine includes
-
 //==============================================================================
 /// Forward declarations
 //==============================================================================
@@ -33,45 +29,40 @@ class EdLevelToolWindow;
 class EdLevelToolEvent;
 
 //==============================================================================
-//==============================================================================
-
-using namespace DT3;
-
-//==============================================================================
 /// Class
 //==============================================================================
 
-class EdLevelManipRotate: public EdLevelTool
+class EdLevelManipRotate : public EdLevelTool
 {
-    public:
-        DEFINE_TYPE(EdLevelManipRotate, EdLevelTool)
-        DEFINE_CREATE
+    Q_OBJECT
+    Q_CLASSINFO("tool_name", "Rotate")
+public:
+    EdLevelManipRotate(QObject *p=nullptr);
+    virtual ~EdLevelManipRotate(void) = default;
 
-                        EdLevelManipRotate      (void);
-        virtual         ~EdLevelManipRotate     (void)  {}
+public:
+    virtual void draw(const std::shared_ptr<DT3::CameraObject> &camera, float scale);
 
-    public:
-        virtual void    draw                    (const std::shared_ptr<CameraObject> &camera, float scale);
+    virtual void doEvent(const EdLevelToolEvent &event);
 
-        virtual void    doEvent                 (const EdLevelToolEvent &event);
+    virtual DT3::Matrix4 getManipulatorTransform(void) const;
 
-        virtual Matrix4 getManipulatorTransform (void) const;
+private:
+    enum
+    {
+        ROTATE_X      = 1,
+        ROTATE_Y      = 2,
+        ROTATE_Z      = 3,
+        ROTATE_SCREEN = 4,
+        ROTATE        = 5
+    };
 
-    private:
-        enum {
-            ROTATE_X = 1,
-            ROTATE_Y = 2,
-            ROTATE_Z = 3,
-            ROTATE_SCREEN = 4,
-            ROTATE = 5
-        };
+    std::shared_ptr<DT3::MaterialResource> _tool_material;
+    std::shared_ptr<DT3::ShaderResource>   _shader;
 
-        std::shared_ptr<MaterialResource>   _tool_material;
-        std::shared_ptr<ShaderResource>     _shader;
-
-        unsigned int                        _starting_axis;
-        int                               _mouse_x;
-        int                               _mouse_y;
+    unsigned int _starting_axis;
+    int          _mouse_x;
+    int          _mouse_y;
 };
 
 //==============================================================================

@@ -77,12 +77,6 @@ class Factory {
         /// Description
         /// \param param description
         /// \return description
-        static std::shared_ptr<BaseClass>		create_tool                 (const std::string cid);
-
-
-        /// Description
-        /// \param param description
-        /// \return description
         static void                             set_creation_callback       (std::shared_ptr<Callback<std::shared_ptr<BaseClass>>> cb)    {   _factory_created_callback = cb; }
 
     private:
@@ -206,16 +200,6 @@ extern std::map<std::string, std::set<std::string>>&           script_map       
                 DT3::adapter_map()[Class::class_id_static()] = #Adapter; \
             } \
         } registration_obj##Class; \
-
-#define IMPLEMENT_FACTORY_TOOL(Class)	\
-    namespace { \
-        struct registration_class##Class: public StaticInitializerCallback { \
-            void initialize() { \
-                DT3::tool_map()[Class::class_id_static()] = std::shared_ptr<CreatorBase>(new ("FactoryToolCreator") Creator<Class>); \
-                DT3::factory_map()[Class::class_id_static()] = std::shared_ptr<CreatorBase>(new ("FactoryObjectCreator") Creator<Class>); \
-            } \
-        } registration_obj##Class; \
-    }
 
 //==============================================================================
 //==============================================================================

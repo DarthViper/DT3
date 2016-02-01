@@ -18,6 +18,7 @@
 // Qt include
 
 // Engine includes
+#include "DT3Core/Resources/ResourceTypes/MaterialResource.hpp"
 #include "DT3Core/Resources/ResourceTypes/ShaderResource.hpp"
 #include "DT3Core/Objects/CameraObject.hpp"
 #include "DT3Core/Types/Graphics/DrawBatcher.hpp"
@@ -35,7 +36,7 @@ using namespace DT3;
 //==============================================================================
 //==============================================================================
 
-EdLevelManipScale::EdLevelManipScale (void)
+EdLevelManipScale::EdLevelManipScale (QObject *p) : EdLevelTool(p)
 {
     _shader = ShaderResource::import_resource(FilePath("{ED_TOOL_SHADER}"));
     _tool_material = MaterialResource::import_resource(FilePath("{ED_TOOL_MATERIAL}"));

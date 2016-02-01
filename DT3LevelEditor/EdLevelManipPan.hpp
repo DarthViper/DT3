@@ -45,12 +45,13 @@ using namespace DT3;
 
 class EdLevelManipPan: public EdLevelTool
 {
-    public:
-        DEFINE_TYPE(EdLevelManipPan, EdLevelTool)
-        DEFINE_CREATE
+    Q_OBJECT
+    Q_CLASSINFO("tool_name","Pan")
 
-                        EdLevelManipPan	(void);
-        virtual         ~EdLevelManipPan(void)  {}
+    public:
+
+                        EdLevelManipPan	(QObject *p=nullptr);
+        virtual         ~EdLevelManipPan(void) = default;
 
     public:
         virtual void    draw                    (const std::shared_ptr<CameraObject> &camera, float scale);
@@ -76,7 +77,7 @@ class EdLevelManipPan: public EdLevelTool
         // Tracking information
         float                           _starting_location_t1;
         float                           _starting_location_t2;
-        unsigned int                              _starting_axis;
+        unsigned int                    _starting_axis;
 
 };
 
