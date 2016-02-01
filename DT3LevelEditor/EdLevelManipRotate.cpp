@@ -19,6 +19,7 @@
 
 // Engine includes
 #include "DT3Core/Resources/ResourceTypes/ShaderResource.hpp"
+#include "DT3Core/Resources/ResourceTypes/MaterialResource.hpp"
 #include "DT3Core/Objects/CameraObject.hpp"
 #include "DT3Core/Types/Graphics/DrawBatcher.hpp"
 #include "DT3Core/Types/Graphics/DrawUtils.hpp"
@@ -44,7 +45,7 @@ EdLevelManipRotate::EdLevelManipRotate (void)
 //==============================================================================
 //==============================================================================
 
-void EdLevelManipRotate::draw (EdLevelToolWindow *parent, const std::shared_ptr<CameraObject> &camera, float scale)
+void EdLevelManipRotate::draw (const std::shared_ptr<CameraObject> &camera, float scale)
 {
     DrawBatcher b;
 
@@ -135,7 +136,7 @@ void EdLevelManipRotate::draw (EdLevelToolWindow *parent, const std::shared_ptr<
 //==============================================================================
 //==============================================================================
 
-void EdLevelManipRotate::doEvent (EdLevelToolWindow *parent, const EdLevelToolEvent &event)
+void EdLevelManipRotate::doEvent (const EdLevelToolEvent &event)
 {
     // Mouse down
     if (event._event_type == EdLevelToolEvent::MOUSE_DOWN) {
@@ -190,7 +191,7 @@ void EdLevelManipRotate::doEvent (EdLevelToolWindow *parent, const EdLevelToolEv
         // Rotate the object
         Matrix3 rotation = Matrix3::set_rotation_around (axis.normalized(), (dy+dx) * 0.05F);
 
-        applyCombinedTransform (parent, Matrix4(rotation, Vector3(0.0F,0.0F,0.0F)));
+        applyCombinedTransform (Matrix4(rotation, Vector3(0.0F,0.0F,0.0F)));
     }
 }
 

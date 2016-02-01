@@ -18,10 +18,12 @@
 #include "DT3Core/Resources/ResourceTypes/ShaderResource.hpp"
 
 // Qt include
+#include <QtWidgets/QWidget>
 
 // Engine includes
 #include "DT3Core/Objects/PlaceableObject.hpp"
 #include "DT3Core/Types/FileBuffer/TextBufferStream.hpp"
+#include "DT3Core/Resources/ResourceTypes/MaterialResource.hpp"
 
 //==============================================================================
 //==============================================================================
@@ -79,7 +81,7 @@ Matrix4 EdLevelTool::getCombinedTransform (void) const
     }
 }
 
-void EdLevelTool::applyCombinedTransform  (EdLevelToolWindow *parent, const Matrix4 &transform, float grid)
+void EdLevelTool::applyCombinedTransform  (const Matrix4 &transform, float grid)
 {
     // Do everything relative to the manipulator
     Matrix4 manipulator_transform = getManipulatorTransform();
@@ -116,17 +118,17 @@ void EdLevelTool::applyCombinedTransform  (EdLevelToolWindow *parent, const Matr
             stream << placeable_transform;
 
             // Set the new transform
-            parent->onCommand(QString("SetTransform \"") + placeable->full_name().c_str() + "\" (" + stream.buffer().c_str() + ")");
+            emit doCommand(QString("SetTransform \"") + placeable->full_name().c_str() + "\" (" + stream.buffer().c_str() + ")");
         }
 
     }
 }
 
-void EdLevelTool::applyCombinedScale (EdLevelToolWindow *parent, float scale)
+void EdLevelTool::applyCombinedScale(float scale)
 {
-        for(std::shared_ptr<PlugNode> &i : _selection) {
+    for (std::shared_ptr<PlugNode> &i : _selection) {
 
-        if ( i && i->isa(PlaceableObject::kind())) {
+        if (i && i->isa(PlaceableObject::kind())) {
             std::shared_ptr<PlaceableObject> placeable = checked_static_cast<PlaceableObject>(i);
 
             // Get the original transform
@@ -136,11 +138,10 @@ void EdLevelTool::applyCombinedScale (EdLevelToolWindow *parent, float scale)
             stream << (placeable_scale * scale);
 
             // Set the new transform
-            parent->onCommand(QString("SetScale \"") + placeable->full_name().c_str() + "\" (" + stream.buffer().c_str() + ")");
+            emit doCommand(
+                QString("SetScale \"%1\" (%2)").arg(placeable->full_name().c_str()).arg(stream.buffer().c_str()));
         }
-
     }
-
 }
 
 //==============================================================================

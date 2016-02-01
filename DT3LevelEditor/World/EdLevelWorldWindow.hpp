@@ -1,6 +1,4 @@
 #pragma once
-#ifndef EDLEVELWORLDWINDOW
-#define EDLEVELWORLDWINDOW
 //==============================================================================
 ///
 ///	File: EdLevelWorldWindow.hpp
@@ -48,7 +46,7 @@ using namespace DT3;
 /// Class
 //==============================================================================
 
-class EdLevelWorldWindow : public EdLevelToolWindow
+class EdLevelWorldWindow : public QGLWidget
 {
     Q_OBJECT
 
@@ -91,12 +89,12 @@ class EdLevelWorldWindow : public EdLevelToolWindow
 
         EdLevelDocument                 *_document;
         QToolBar                        *_toolbar;
-        std::shared_ptr<CameraObject>   _camera;
+        std::shared_ptr<DT3::CameraObject>   _camera;
 
         int                           _builtin_camera_index;
         int                           _custom_camera_index;
 
-        std::shared_ptr<CameraObject>   _built_in_cameras[6];
+        std::shared_ptr<DT3::CameraObject>   _built_in_cameras[6];
         float                           _built_in_zoom;
         bool                            _built_in_camera;
 
@@ -110,15 +108,15 @@ class EdLevelWorldWindow : public EdLevelToolWindow
         QComboBox                       *_grid_selection;
         QCheckBox                       *_grid_visible;
 
-        std::shared_ptr<MaterialResource>   _grid_material;
+        std::shared_ptr<DT3::MaterialResource>   _grid_material;
 
-        std::shared_ptr<ShaderResource>     _shader;
+        std::shared_ptr<DT3::ShaderResource>     _shader;
 
         QPointF                         _last_position;
 
         std::shared_ptr<EdLevelTool>    _tool;
 
-        DrawBatcher                     _b;
+        DT3::DrawBatcher                _draw_batcher;
 
 
         enum {
@@ -146,11 +144,10 @@ class EdLevelWorldWindow : public EdLevelToolWindow
         void                            onChangeGrid                (int state);
 
     signals:
+        void                            doCommand                   (QString command);
         void                            doSelectionChanged          (const std::list<std::shared_ptr<PlugNode>> &selection_list);
         void                            doUndoBlock                 (void);
 };
 
 //==============================================================================
 //==============================================================================
-
-#endif

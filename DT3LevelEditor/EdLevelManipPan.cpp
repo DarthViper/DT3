@@ -44,7 +44,7 @@ EdLevelManipPan::EdLevelManipPan(void) : _starting_location_t1(0.0F), _starting_
 //==============================================================================
 //==============================================================================
 
-void EdLevelManipPan::draw (EdLevelToolWindow *parent, const std::shared_ptr<CameraObject> &camera, float scale)
+void EdLevelManipPan::draw (const std::shared_ptr<CameraObject> &camera, float scale)
 {
     DrawBatcher b;
 
@@ -168,7 +168,7 @@ void EdLevelManipPan::draw (EdLevelToolWindow *parent, const std::shared_ptr<Cam
 //==============================================================================
 //==============================================================================
 
-void EdLevelManipPan::doEvent (EdLevelToolWindow *parent, const EdLevelToolEvent &event)
+void EdLevelManipPan::doEvent (const EdLevelToolEvent &event)
 {
     // Mouse down
     if (event._event_type == EdLevelToolEvent::MOUSE_DOWN) {
@@ -233,7 +233,7 @@ void EdLevelManipPan::doEvent (EdLevelToolWindow *parent, const EdLevelToolEvent
             transform = Matrix4(rotate,translate);
         }
 
-        applyCombinedTransform(parent, transform, event.getGrid());
+        applyCombinedTransform(transform, event.getGrid());
     } else {
         _starting_location_t1 = t1;
         _starting_location_t2 = t2;

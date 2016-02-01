@@ -9,17 +9,12 @@
 ///
 //==============================================================================
 
-// Editor include
-// Qt include
-// Engine includes
-
 #include "EdLevelWorldLayout.hpp"
+
 #include <QtWidgets/QWidget>
 
 //==============================================================================
 //==============================================================================
-
-//using namespace DT3;
 
 //==============================================================================
 //==============================================================================
@@ -47,11 +42,18 @@ EdLevelWorldLayout::~EdLevelWorldLayout (void)
 //==============================================================================
 //==============================================================================
 
+///
+/// \brief EdLevelWorldLayout::addItem
+/// \param item
+///
 void EdLevelWorldLayout::addItem (QLayoutItem *item)
 {
      _list.append(item);
 }
-
+///
+/// \brief EdLevelWorldLayout::sizeHint
+/// \return
+///
 QSize EdLevelWorldLayout::sizeHint (void) const
 {
      QSize s(0,0);
@@ -65,7 +67,10 @@ QSize EdLevelWorldLayout::sizeHint (void) const
      }
      return s + n*QSize(spacing(), spacing());
 }
-
+///
+/// \brief EdLevelWorldLayout::minimumSize
+/// \return
+///
 QSize EdLevelWorldLayout::minimumSize (void) const
 {
      QSize s(0,0);
@@ -78,17 +83,28 @@ QSize EdLevelWorldLayout::minimumSize (void) const
      }
      return s + n*QSize(spacing(), spacing());
 }
-
+///
+/// \brief EdLevelWorldLayout::itemAt
+/// \param i
+/// \return
+///
 QLayoutItem* EdLevelWorldLayout::itemAt (int i) const
 {
      return _list.value(i);
 }
-
+///
+/// \brief EdLevelWorldLayout::takeAt
+/// \param i
+/// \return
+///
 QLayoutItem* EdLevelWorldLayout::takeAt (int i)
 {
      return i >= 0 && i < _list.size() ? _list.takeAt(i) : 0;
 }
-
+///
+/// \brief EdLevelWorldLayout::setGeometry
+/// \param rect
+///
 void EdLevelWorldLayout::setGeometry (const QRect &rect)
 {
     if (_list.count() != 2)

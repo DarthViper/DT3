@@ -1,6 +1,4 @@
 #pragma once
-#ifndef EDLEVELTOOL
-#define EDLEVELTOOL
 //==============================================================================
 ///
 ///	File: EdLevelTool.hpp
@@ -14,11 +12,10 @@
 
 // Editor include
 // Qt include
-#include <QtWidgets/QWidget>
+#include <QtCore/QObject>
 
-// Engine includes
-#include "DT3Core/Resources/ResourceTypes/MaterialResource.hpp"
 #include <list>
+#include "DT3Core/Types/Base/BaseClass.hpp"
 
 //==============================================================================
 /// Forward declarations
@@ -26,7 +23,10 @@
 
 namespace DT3 {
     class PlugNode;
-};
+    class Vector3;
+    class Matrix4;
+    class CameraObject;
+}
 
 class EdLevelToolEvent;
 class EdLevelToolWindow;
@@ -40,25 +40,25 @@ using namespace DT3;
 /// Class
 //==============================================================================
 
-class EdLevelTool : public BaseClass
+class EdLevelTool : public QObject,public BaseClass
 {
+    Q_OBJECT
 public:
     DEFINE_TYPE(EdLevelTool, BaseClass)
-    // DEFINE_CREATE_AND_CLONE
 
     EdLevelTool(void) = default;
-    virtual ~EdLevelTool(void) {}
+    virtual ~EdLevelTool(void) = default;
 
 public:
     /// Description
     /// \param param description
     /// \return description
-    virtual void draw(EdLevelToolWindow *parent, const std::shared_ptr<CameraObject> &camera, float scale) {}
+    virtual void draw(const std::shared_ptr<CameraObject> &camera, float scale) {}
 
     /// Description
     /// \param param description
     /// \return description
-    virtual void doEvent(EdLevelToolWindow *parent, const EdLevelToolEvent &event) {}
+    virtual void doEvent(const EdLevelToolEvent &event) {}
 
     /// Description
     /// \param param description
@@ -68,12 +68,12 @@ public:
     /// Description
     /// \param param description
     /// \return description
-    void applyCombinedTransform(EdLevelToolWindow *parent, const Matrix4 &transform, float grid = 0.0F);
+    void applyCombinedTransform(const Matrix4 &transform, float grid = 0.0F);
 
     /// Description
     /// \param param description
     /// \return description
-    void applyCombinedScale(EdLevelToolWindow *parent, float scale);
+    void applyCombinedScale(float scale);
 
     /// Description
     /// \param param description
@@ -99,12 +99,11 @@ public:
     /// \param param description
     /// \return description
     const std::list<std::shared_ptr<PlugNode>> &getSelection(void) const { return _selection; }
-
+Q_SIGNALS:
+    void doCommand(const QString &cmd);
 private:
     std::list<std::shared_ptr<PlugNode>> _selection;
 };
 
 //==============================================================================
 //==============================================================================
-
-#endif

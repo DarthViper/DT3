@@ -51,7 +51,7 @@ using namespace DT3;
 //==============================================================================
 
 EdLevelWorldWindow::EdLevelWorldWindow(QWidget *parent, QToolBar *toolbar, EdLevelDocument *document)
-    :   EdLevelToolWindow       (parent,document),
+    :   QGLWidget       (parent),
         _camera                 (NULL),
         _tool                   (NULL),
         _built_in_zoom          (100.0F),
@@ -206,21 +206,11 @@ EdLevelWorldWindow::EdLevelWorldWindow(QWidget *parent, QToolBar *toolbar, EdLev
 
     _grid_selection->setEditable(true);
 
-    _grid_selection->addItem("None");
-    _grid_selection->addItem("0.1");
-    _grid_selection->addItem("0.2");
-    _grid_selection->addItem("0.5");
-    _grid_selection->addItem("1.0");
-    _grid_selection->addItem("1.2");
-    _grid_selection->addItem("1.5");
-    _grid_selection->addItem("2.0");
-    _grid_selection->addItem("5.0");
-    _grid_selection->addItem("10.0");
-    _grid_selection->addItem("20.0");
-    _grid_selection->addItem("100.0");
-
-    connect(	_grid_selection,  SIGNAL(activated(int)),
-                this,               SLOT(onChangeGrid(int))	);
+    _grid_selection->addItems({
+        "None", "0.1", "0.2", "0.5", "1.0", "1.2", "1.5", "2.0", "5.0", "10.0", "20.0", "100.0",
+    });
+    void (QComboBox:: *int_activated)(int) = &QComboBox::activated;
+    connect(_grid_selection,  int_activated, this, &EdLevelWorldWindow::onChangeGrid);
 
     toolbar->addWidget(_grid_selection);
 
@@ -405,12 +395,13 @@ float EdLevelWorldWindow::calcScale(const std::shared_ptr<CameraObject> &camera)
     if (_tool) {
 
         if (camera->is_perspective()) {
-            float dist = Vector3::dot(-camera->orientation().z_axis(), (_tool->getManipulatorTransform().translation() - camera->translation()));
+            float dist = Vector3::dot(-camera->orientation().z_axis(),
+                                      (_tool->getManipulatorTransform().translation() - camera->translation()));
 
-            float one_unit_angle = std::atan(1.0F/dist);
-            float camera_angle = camera->angle() * PI / 180.0F;
+            float one_unit_angle = std::atan(1.0F / dist);
+            float camera_angle   = camera->angle() * PI / 180.0F;
 
-            scale = camera_angle/2.0F * 0.3F / one_unit_angle; // Approx %15 angular view
+            scale = camera_angle / 2.0F * 0.3F / one_unit_angle; // Approx %15 angular view
         } else {
             scale = 0.25F * _built_in_zoom;
         }
@@ -430,7 +421,7 @@ void EdLevelWorldWindow::drawScene(const std::shared_ptr<CameraObject> &camera, 
 
     if (_tool) {
         ::glPushName(0);
-        _tool->draw(this, _camera, scale);
+        _tool->draw(_camera, scale);
         ::glPopName();
     }
 }
@@ -496,7 +487,7 @@ void EdLevelWorldWindow::paintGL(void)
             continue;
         }
 
-        DrawUtils::draw_selection (_b, _camera, _grid_material, _shader, placeable->transform(), Color4b::green, placeable->radius());
+        DrawUtils::draw_selection (_draw_batcher, _camera, _grid_material, _shader, placeable->transform(), Color4b::green, placeable->radius());
     }
 
     if (getGridVisible()) {
@@ -641,7 +632,7 @@ void EdLevelWorldWindow::pickGL(QPointF pos, EdLevelToolEvent &tool_event)
     if (tool_event._event_type == EdLevelToolEvent::MOUSE_DOWN) {
 
         if ( (using_tool && _tool) ) {
-            _tool->doEvent(this, tool_event);
+            _tool->doEvent(tool_event);
         } else if (selection) {
             std::list<std::shared_ptr<PlugNode>> selection_list;
             selection_list.push_back(selection);
@@ -651,7 +642,7 @@ void EdLevelWorldWindow::pickGL(QPointF pos, EdLevelToolEvent &tool_event)
     } else {
 
         if (_tool) {
-            _tool->doEvent(this, tool_event);
+            _tool->doEvent(tool_event);
         }
 
     }
@@ -684,10 +675,15 @@ void EdLevelWorldWindow::onSelectComponent (void)
 
     std::shared_ptr<EdLevelTool> tool = checked_static_cast<EdLevelTool>(Factory::create_object(action->data().toString().toUtf8().data()));
 
+    if(_tool)
+        disconnect(_tool.get(),&EdLevelTool::doCommand,this,&EdLevelWorldWindow::doCommand);
+
     _tool = tool;
 
-    if (_tool)
+    if (_tool) {
         _tool->setSelection(_document->selection());
+        connect(_tool.get(),&EdLevelTool::doCommand,this,&EdLevelWorldWindow::doCommand);
+    }
 
     update();
 }
@@ -916,7 +912,7 @@ void EdLevelWorldWindow::mouseMoveEvent(QMouseEvent *event)
 
             TextBufferStream stream;
             stream << transform;
-            onCommand(QString("SetTransform ") + _camera->full_name().c_str() + " (" + stream.buffer().c_str() + ")");
+            emit doCommand(QString("SetTransform ") + _camera->full_name().c_str() + " (" + stream.buffer().c_str() + ")");
         }
 
     } else {
@@ -961,11 +957,12 @@ void EdLevelWorldWindow::mouseReleaseEvent	(QMouseEvent *event)
 //==============================================================================
 //==============================================================================
 
-void EdLevelWorldWindow::keyPressEvent (QKeyEvent *event)
+void EdLevelWorldWindow::keyPressEvent(QKeyEvent *event)
 {
     int key = event->key();
 
-    bool is_builtin_tool = _tool && (_tool->isa(EdLevelManipPan::kind()) || _tool->isa(EdLevelManipRotate::kind()) || _tool->isa(EdLevelManipScale::kind()));
+    bool is_builtin_tool = _tool && (_tool->isa(EdLevelManipPan::kind()) || _tool->isa(EdLevelManipRotate::kind()) ||
+                                     _tool->isa(EdLevelManipScale::kind()));
 
     if (key == Qt::Key_Q) {
         onArrowTool();
@@ -979,9 +976,9 @@ void EdLevelWorldWindow::keyPressEvent (QKeyEvent *event)
     } else if (key == Qt::Key_R) {
         onScaleTool();
         event->accept();
-    } else if ( (event->matches(QKeySequence::Delete) || key == 0x1000003) && (!_tool || is_builtin_tool)) {
+    } else if ((event->matches(QKeySequence::Delete) || key == 0x1000003) && (!_tool || is_builtin_tool)) {
 
-        for(const std::shared_ptr<PlugNode> &n : _document->selection()) {
+        for (const std::shared_ptr<PlugNode> &n : _document->selection()) {
             std::shared_ptr<WorldNode> node = checked_cast<WorldNode>(n);
             if (node) {
                 emit doCommand(QString("Remove \"%1\"").arg(node->name().c_str()));
@@ -993,43 +990,38 @@ void EdLevelWorldWindow::keyPressEvent (QKeyEvent *event)
         // Swap cameras
         if (_camera_selection->currentIndex() == _builtin_camera_index) {
 
-            if (    _custom_camera_index >= 0 &&
-                    _custom_camera_index < _camera_selection->count() &&
-                    _camera_selection->itemData(_custom_camera_index).value<void*>()) {
+            if (_custom_camera_index >= 0 && _custom_camera_index < _camera_selection->count() &&
+                _camera_selection->itemData(_custom_camera_index).value<void *>()) {
                 _camera_selection->setCurrentIndex(_custom_camera_index);
                 onChangeCamera(_custom_camera_index);
             }
 
         } else {
 
-            if (    _builtin_camera_index >= 0 &&
-                    _builtin_camera_index < _camera_selection->count() &&
-                    _camera_selection->itemData(_builtin_camera_index).value<void*>()) {
+            if (_builtin_camera_index >= 0 && _builtin_camera_index < _camera_selection->count() &&
+                _camera_selection->itemData(_builtin_camera_index).value<void *>()) {
                 _camera_selection->setCurrentIndex(_builtin_camera_index);
                 onChangeCamera(_builtin_camera_index);
             }
-
         }
 
         event->accept();
     } else {
         EdLevelToolEvent tool_event;
         tool_event._event_type = EdLevelToolEvent::KEY_DOWN;
-        tool_event._key_code = key;
-        tool_event._grid = getGrid();
-        tool_event._camera = _camera;
-        tool_event._modifiers = (event->modifiers() & Qt::ALT ? EdLevelToolEvent::MODIFIER_OPTION_ALT : 0) |
+        tool_event._key_code   = key;
+        tool_event._grid       = getGrid();
+        tool_event._camera     = _camera;
+        tool_event._modifiers  = (event->modifiers() & Qt::ALT ? EdLevelToolEvent::MODIFIER_OPTION_ALT : 0) |
                                 (event->modifiers() & Qt::CTRL ? EdLevelToolEvent::MODIFIER_CONTROL : 0) |
                                 (event->modifiers() & Qt::SHIFT ? EdLevelToolEvent::MODIFIER_SHIFT : 0) |
                                 (event->modifiers() & Qt::META ? EdLevelToolEvent::MODIFIER_META : 0);
 
         if (_tool) {
-            _tool->doEvent(this, tool_event);
+            _tool->doEvent(tool_event);
         }
         update();
-
     }
-
 }
 
 //==============================================================================
@@ -1043,20 +1035,20 @@ void EdLevelWorldWindow::drawGrid (const std::shared_ptr<CameraObject> &camera)
 
     const int SIZE = 100;
     ASSERT(_shader!=nullptr);
-    _b.batch_begin(camera, _grid_material, _shader, Matrix4::identity(), DT3GL_PRIM_LINES, DrawBatcher::FMT_V | DrawBatcher::FMT_C);
+    _draw_batcher.batch_begin(camera, _grid_material, _shader, Matrix4::identity(), DT3GL_PRIM_LINES, DrawBatcher::FMT_V | DrawBatcher::FMT_C);
 
     // Minor lines
     for (int p = -SIZE; p <= SIZE; ++p) {
         if (p == 0) continue;
 
         if ( (p%10) != 0) {
-            _b.add().v(p * grid, 0.0F, -SIZE * grid).c(Color4b::grey25);
-            _b.add().v(p * grid, 0.0F, +SIZE * grid).c(Color4b::grey25);
-            _b.add().v(-SIZE * grid, 0.0F, p * grid).c(Color4b::grey25);
-            _b.add().v(+SIZE * grid, 0.0F, p * grid).c(Color4b::grey25);
+            _draw_batcher.add().v(p * grid, 0.0F, -SIZE * grid).c(Color4b::grey25);
+            _draw_batcher.add().v(p * grid, 0.0F, +SIZE * grid).c(Color4b::grey25);
+            _draw_batcher.add().v(-SIZE * grid, 0.0F, p * grid).c(Color4b::grey25);
+            _draw_batcher.add().v(+SIZE * grid, 0.0F, p * grid).c(Color4b::grey25);
         }
 
-        _b.batch_split();
+        _draw_batcher.batch_split();
     }
 
     // Major lines
@@ -1064,29 +1056,29 @@ void EdLevelWorldWindow::drawGrid (const std::shared_ptr<CameraObject> &camera)
         if (p == 0) continue;
 
         if ( (p%10) == 0) {
-            _b.add().v(p * grid, 0.0F, -SIZE * grid).c(Color4b::grey50);
-            _b.add().v(p * grid, 0.0F, +SIZE * grid).c(Color4b::grey50);
-            _b.add().v(-SIZE * grid, 0.0F, p * grid).c(Color4b::grey50);
-            _b.add().v(+SIZE * grid, 0.0F, p * grid).c(Color4b::grey50);
+            _draw_batcher.add().v(p * grid, 0.0F, -SIZE * grid).c(Color4b::grey50);
+            _draw_batcher.add().v(p * grid, 0.0F, +SIZE * grid).c(Color4b::grey50);
+            _draw_batcher.add().v(-SIZE * grid, 0.0F, p * grid).c(Color4b::grey50);
+            _draw_batcher.add().v(+SIZE * grid, 0.0F, p * grid).c(Color4b::grey50);
         }
 
-        _b.batch_split();
+        _draw_batcher.batch_split();
     }
 
 
 
-    _b.add().v(-SIZE * grid, 0.0F, 0.0F).c(Color4b::red);
-    _b.add().v(SIZE * grid, 0.0F, 0.0F).c(Color4b::red);
+    _draw_batcher.add().v(-SIZE * grid, 0.0F, 0.0F).c(Color4b::red);
+    _draw_batcher.add().v(SIZE * grid, 0.0F, 0.0F).c(Color4b::red);
 
-    _b.batch_split();
+    _draw_batcher.batch_split();
 
-    _b.add().v(0.0F, 0.0F, -SIZE * grid).c(Color4b::blue);
-    _b.add().v(0.0F, 0.0F, SIZE * grid).c(Color4b::blue);
+    _draw_batcher.add().v(0.0F, 0.0F, -SIZE * grid).c(Color4b::blue);
+    _draw_batcher.add().v(0.0F, 0.0F, SIZE * grid).c(Color4b::blue);
 
-    _b.batch_split();
+    _draw_batcher.batch_split();
 
-    _b.batch_end();
-    _b.draw();
+    _draw_batcher.batch_end();
+    _draw_batcher.draw();
 }
 
 //==============================================================================
@@ -1109,9 +1101,13 @@ void EdLevelWorldWindow::onArrowTool(void)
                 return; // Different so no further action needed
         }
 
+        if(_tool)
+            disconnect(_tool.get(),&EdLevelTool::doCommand,this,&EdLevelWorldWindow::doCommand);
         _tool = checked_cast<EdLevelTool>(Factory::create_tool(class_id));
-        if (_tool)
+        if (_tool) {
             _tool->setSelection(selection);
+            connect(_tool.get(),&EdLevelTool::doCommand,this,&EdLevelWorldWindow::doCommand);
+        }
     }
 
     update();
@@ -1119,20 +1115,26 @@ void EdLevelWorldWindow::onArrowTool(void)
 
 void EdLevelWorldWindow::onPanTool (void)
 {
+    if(_tool)
+        disconnect(_tool.get(),&EdLevelTool::doCommand,this,&EdLevelWorldWindow::doCommand);
     _tool = EdLevelManipPan::create();
 
     const std::list<std::shared_ptr<PlugNode>>& selection = _document->selection();
     _tool->setSelection(selection);
+    connect(_tool.get(),&EdLevelTool::doCommand,this,&EdLevelWorldWindow::doCommand);
 
     update();
 }
 
 void EdLevelWorldWindow::onRotateTool (void)
 {
+    if(_tool)
+        disconnect(_tool.get(),&EdLevelTool::doCommand,this,&EdLevelWorldWindow::doCommand);
     _tool = EdLevelManipRotate::create();
 
     const std::list<std::shared_ptr<PlugNode>>& selection = _document->selection();
     _tool->setSelection(selection);
+    connect(_tool.get(),&EdLevelTool::doCommand,this,&EdLevelWorldWindow::doCommand);
 
     update();
 }

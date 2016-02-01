@@ -51,9 +51,9 @@ class EdLevelManipRotate: public EdLevelTool
         virtual         ~EdLevelManipRotate     (void)  {}
 
     public:
-        virtual void    draw                    (EdLevelToolWindow *parent, const std::shared_ptr<CameraObject> &camera, float scale);
+        virtual void    draw                    (const std::shared_ptr<CameraObject> &camera, float scale);
 
-        virtual void    doEvent                 (EdLevelToolWindow *parent, const EdLevelToolEvent &event);
+        virtual void    doEvent                 (const EdLevelToolEvent &event);
 
         virtual Matrix4 getManipulatorTransform (void) const;
 

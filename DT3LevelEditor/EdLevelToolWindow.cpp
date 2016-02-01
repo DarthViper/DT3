@@ -11,6 +11,7 @@
 
 // Editor include
 #include "EdLevelToolWindow.hpp"
+#include "EdLevelDocument.hpp"
 
 // Qt include
 #include <QtWidgets/QPushButton>

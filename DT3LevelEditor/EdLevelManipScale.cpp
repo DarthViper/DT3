@@ -44,7 +44,7 @@ EdLevelManipScale::EdLevelManipScale (void)
 //==============================================================================
 //==============================================================================
 
-void EdLevelManipScale::draw (EdLevelToolWindow *parent, const std::shared_ptr<CameraObject> &camera, float scale)
+void EdLevelManipScale::draw (const std::shared_ptr<CameraObject> &camera, float scale)
 {
     DrawBatcher b;
 
@@ -145,7 +145,7 @@ void EdLevelManipScale::draw (EdLevelToolWindow *parent, const std::shared_ptr<C
 //==============================================================================
 //==============================================================================
 
-void EdLevelManipScale::doEvent (EdLevelToolWindow *parent, const EdLevelToolEvent &event)
+void EdLevelManipScale::doEvent (const EdLevelToolEvent &event)
 {
     // Mouse down
     if (event._event_type == EdLevelToolEvent::MOUSE_DOWN) {
@@ -184,7 +184,7 @@ void EdLevelManipScale::doEvent (EdLevelToolWindow *parent, const EdLevelToolEve
         };
         axis.normalize();
 
-        applyCombinedScale (parent, 1.0F + (dy+dx) * 0.05F);
+        applyCombinedScale (1.0F + (dy+dx) * 0.05F);
     }
 }
 
