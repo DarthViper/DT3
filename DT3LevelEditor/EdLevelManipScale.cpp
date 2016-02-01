@@ -1,12 +1,12 @@
 //==============================================================================
-///	
+///
 ///	File: EdLevelManipScale.cpp
-///	
+///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
 /// This file is subject to the terms and conditions defined in
 /// file 'LICENSE.txt', which is part of this source code package.
-///	
+///
 //==============================================================================
 
 #include <GL/glew.h>
@@ -44,28 +44,28 @@ EdLevelManipScale::EdLevelManipScale (void)
 //==============================================================================
 //==============================================================================
 
-void EdLevelManipScale::draw (EdLevelToolWindow *parent, const std::shared_ptr<CameraObject> &camera, DTfloat scale)
+void EdLevelManipScale::draw (EdLevelToolWindow *parent, const std::shared_ptr<CameraObject> &camera, float scale)
 {
     DrawBatcher b;
-    
+
     Matrix4 axis;
 
     Matrix4 transform = getManipulatorTransform();
-	Matrix3 orientation = transform.orientation();
-	Vector3 translation = transform.translation();
-    
+    Matrix3 orientation = transform.orientation();
+    Vector3 translation = transform.translation();
+
     transform = Matrix4(orientation, translation, scale);
-   
+
     ::glPushName(0);
 
     // Center
     ::glLoadName(CENTER);
     axis = Matrix4(     Matrix3(    1.0F, 0.0F, 0.0F,
                                     0.0F, 1.0F, 0.0F,
-                                    0.0F, 0.0F, 1.0F), 
-                        Vector3(0.0F,0.0F,0.0F), 
+                                    0.0F, 0.0F, 1.0F),
+                        Vector3(0.0F,0.0F,0.0F),
                         1.0F);
-    
+
     DrawUtils::draw_cube (  b,
                             camera,
                             _tool_material,
@@ -80,8 +80,8 @@ void EdLevelManipScale::draw (EdLevelToolWindow *parent, const std::shared_ptr<C
     ::glLoadName(PLUS_X);
     axis = Matrix4(     Matrix3(    0.0F, 1.0F, 0.0F,
                                     1.0F, 0.0F, 0.0F,
-                                    0.0F, 0.0F, -1.0F), 
-                        Vector3(1.0F,0.0F,0.0F), 
+                                    0.0F, 0.0F, -1.0F),
+                        Vector3(1.0F,0.0F,0.0F),
                         1.0F);
 
     DrawUtils::draw_cube (  b,
@@ -97,8 +97,8 @@ void EdLevelManipScale::draw (EdLevelToolWindow *parent, const std::shared_ptr<C
     ::glLoadName(PLUS_Y);
     axis = Matrix4(     Matrix3(    1.0F, 0.0F, 0.0F,
                                     0.0F, 1.0F, 0.0F,
-                                    0.0F, 0.0F, 1.0F), 
-                        Vector3(0.0F,1.0F,0.0F), 
+                                    0.0F, 0.0F, 1.0F),
+                        Vector3(0.0F,1.0F,0.0F),
                         1.0F);
 
     DrawUtils::draw_cube (  b,
@@ -114,8 +114,8 @@ void EdLevelManipScale::draw (EdLevelToolWindow *parent, const std::shared_ptr<C
     ::glLoadName(PLUS_Z);
     axis = Matrix4(     Matrix3(    1.0F, 0.0F, 0.0F,
                                     0.0F, 0.0F, -1.0F,
-                                    0.0F, 1.0F, 0.0F), 
-                        Vector3(0.0F,0.0F,1.0F), 
+                                    0.0F, 1.0F, 0.0F),
+                        Vector3(0.0F,0.0F,1.0F),
                         1.0F);
 
     DrawUtils::draw_cube (  b,
@@ -126,9 +126,9 @@ void EdLevelManipScale::draw (EdLevelToolWindow *parent, const std::shared_ptr<C
                             Color4b::blue,
                             0.05F);
     b.draw();
-    
+
     ::glPopName();
-    
+
     // Draw Lines
     b.batch_begin(camera, _tool_material, _shader, transform, DT3GL_PRIM_LINES, DrawBatcher::FMT_V);
 
@@ -154,7 +154,7 @@ void EdLevelManipScale::doEvent (EdLevelToolWindow *parent, const EdLevelToolEve
     } else if (event._event_type == EdLevelToolEvent::MOUSE_UP) {
         _starting_axis = 0;
     }
-    
+
     // Ignore if no axis is dragged
     if (_starting_axis != PLUS_X &&
         _starting_axis != PLUS_Y &&
@@ -194,8 +194,8 @@ void EdLevelManipScale::doEvent (EdLevelToolWindow *parent, const EdLevelToolEve
 Matrix4 EdLevelManipScale::getManipulatorTransform  (void) const
 {
     Matrix4 transform = getCombinedTransform();
-	Matrix3 orientation = transform.orientation();
-	Vector3 translation = transform.translation();
+    Matrix3 orientation = transform.orientation();
+    Vector3 translation = transform.translation();
 
     return Matrix4(orientation, translation);
 }

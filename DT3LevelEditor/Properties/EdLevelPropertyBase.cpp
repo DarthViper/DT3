@@ -43,7 +43,7 @@ std::string  EdLevelPropertyBase::parseParam(const std::string &s)
     if (!expr.parse(s))
         return s;
 
-    DTfloat result;
+    float result;
 
     // Try to evaluate expression
     if (!expr.eval(result))

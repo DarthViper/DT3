@@ -77,7 +77,7 @@ class EdLevelWorldWindow : public EdLevelToolWindow
 
         void                            toolContextMenu     (QMouseEvent *event);
 
-        void                            drawScene           (const std::shared_ptr<CameraObject> &camera, DTfloat scale);
+        void                            drawScene           (const std::shared_ptr<CameraObject> &camera, float scale);
         void                            drawGrid            (const std::shared_ptr<CameraObject> &camera);
 
         float                         calcScale           (const std::shared_ptr<CameraObject> &camera);

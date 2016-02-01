@@ -53,7 +53,7 @@ public:
     /// Description
     /// \param param description
     /// \return description
-    virtual void draw(EdLevelToolWindow *parent, const std::shared_ptr<CameraObject> &camera, DTfloat scale) {}
+    virtual void draw(EdLevelToolWindow *parent, const std::shared_ptr<CameraObject> &camera, float scale) {}
 
     /// Description
     /// \param param description
@@ -68,12 +68,12 @@ public:
     /// Description
     /// \param param description
     /// \return description
-    void applyCombinedTransform(EdLevelToolWindow *parent, const Matrix4 &transform, DTfloat grid = 0.0F);
+    void applyCombinedTransform(EdLevelToolWindow *parent, const Matrix4 &transform, float grid = 0.0F);
 
     /// Description
     /// \param param description
     /// \return description
-    void applyCombinedScale(EdLevelToolWindow *parent, DTfloat scale);
+    void applyCombinedScale(EdLevelToolWindow *parent, float scale);
 
     /// Description
     /// \param param description
@@ -83,7 +83,7 @@ public:
     /// Description
     /// \param param description
     /// \return description
-    void snapToGrid(Vector3 &translation, DTfloat grid);
+    void snapToGrid(Vector3 &translation, float grid);
 
     /// Description
     /// \param param description

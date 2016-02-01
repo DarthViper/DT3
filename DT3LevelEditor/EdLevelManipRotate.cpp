@@ -1,12 +1,12 @@
 //==============================================================================
-///	
+///
 ///	File: EdLevelManipRotate.cpp
-///	
+///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
 /// This file is subject to the terms and conditions defined in
 /// file 'LICENSE.txt', which is part of this source code package.
-///	
+///
 //==============================================================================
 
 #include <GL/glew.h>
@@ -44,28 +44,28 @@ EdLevelManipRotate::EdLevelManipRotate (void)
 //==============================================================================
 //==============================================================================
 
-void EdLevelManipRotate::draw (EdLevelToolWindow *parent, const std::shared_ptr<CameraObject> &camera, DTfloat scale)
+void EdLevelManipRotate::draw (EdLevelToolWindow *parent, const std::shared_ptr<CameraObject> &camera, float scale)
 {
     DrawBatcher b;
-    
+
     Matrix4 axis;
 
     Matrix4 transform = getManipulatorTransform();
-	Matrix3 orientation = transform.orientation();
-	Vector3 translation = transform.translation();
-    
+    Matrix3 orientation = transform.orientation();
+    Vector3 translation = transform.translation();
+
     transform = Matrix4(orientation, translation, scale);
 
     ::glPushName(0);
-    
+
     // X Axis
     ::glLoadName(ROTATE_X);
     axis = Matrix4(     Matrix3(    0.0F, 1.0F, 0.0F,
                                     1.0F, 0.0F, 0.0F,
-                                    0.0F, 0.0F, -1.0F), 
-                        Vector3(0.0F,0.0F,0.0F), 
+                                    0.0F, 0.0F, -1.0F),
+                        Vector3(0.0F,0.0F,0.0F),
                         1.0F);
-    
+
     DrawUtils::draw_ring (  b,
                             camera,
                             _tool_material,
@@ -74,13 +74,13 @@ void EdLevelManipRotate::draw (EdLevelToolWindow *parent, const std::shared_ptr<
                             Color4b::red,
                             1.0F);
     b.draw();
-    
+
     // Y Axis
     ::glLoadName(ROTATE_Y);
     axis = Matrix4(     Matrix3(    1.0F, 0.0F, 0.0F,
                                     0.0F, 1.0F, 0.0F,
-                                    0.0F, 0.0F, 1.0F), 
-                        Vector3(0.0F,0.0F,0.0F), 
+                                    0.0F, 0.0F, 1.0F),
+                        Vector3(0.0F,0.0F,0.0F),
                         1.0F);
 
     DrawUtils::draw_ring (  b,
@@ -96,8 +96,8 @@ void EdLevelManipRotate::draw (EdLevelToolWindow *parent, const std::shared_ptr<
     ::glLoadName(ROTATE_Z);
     axis = Matrix4(     Matrix3(    1.0F, 0.0F, 0.0F,
                                     0.0F, 0.0F, -1.0F,
-                                    0.0F, 1.0F, 0.0F), 
-                        Vector3(0.0F,0.0F,0.0F), 
+                                    0.0F, 1.0F, 0.0F),
+                        Vector3(0.0F,0.0F,0.0F),
                         1.0F);
 
     DrawUtils::draw_ring (  b,
@@ -108,15 +108,15 @@ void EdLevelManipRotate::draw (EdLevelToolWindow *parent, const std::shared_ptr<
                             Color4b::blue,
                             1.0F);
     b.draw();
-    
+
     // Rotate
     ::glLoadName(ROTATE_SCREEN);
-    axis = Matrix4(     Matrix3(transform).inversed() * 
+    axis = Matrix4(     Matrix3(transform).inversed() *
                         camera->orientation() *
                         Matrix3(    1.0F, 0.0F, 0.0F,
                                     0.0F, 0.0F, -1.0F,
-                                    0.0F, 1.0F, 0.0F), 
-                        Vector3(0.0F,0.0F,0.0F), 
+                                    0.0F, 1.0F, 0.0F),
+                        Vector3(0.0F,0.0F,0.0F),
                         1.2F * scale);
 
     DrawUtils::draw_ring (  b,
@@ -127,7 +127,7 @@ void EdLevelManipRotate::draw (EdLevelToolWindow *parent, const std::shared_ptr<
                             Color4b::white,
                             1.0F);
     b.draw();
-    
+
     ::glPopName();
 
 }
@@ -146,13 +146,13 @@ void EdLevelManipRotate::doEvent (EdLevelToolWindow *parent, const EdLevelToolEv
     }
 
     // Ignore if no axis is dragged
-    if (_starting_axis != ROTATE_X && 
-        _starting_axis != ROTATE_Y && 
-        _starting_axis != ROTATE_Z && 
+    if (_starting_axis != ROTATE_X &&
+        _starting_axis != ROTATE_Y &&
+        _starting_axis != ROTATE_Z &&
         _starting_axis != ROTATE_SCREEN &&
         _starting_axis != ROTATE)
         return;
-        
+
     if (event._event_type == EdLevelToolEvent::MOUSE_DOWN) {
         _mouse_x = event.mouseX();
         _mouse_y = event.mouseY();
@@ -174,15 +174,15 @@ void EdLevelManipRotate::doEvent (EdLevelToolWindow *parent, const EdLevelToolEv
             case ROTATE_Z:      axis = Vector3(0.0F,0.0F,1.0F);         break;
             case ROTATE_SCREEN: axis = orientation.inversed() * (transform.translation() - event.getCamera()->translation());   break;
         };
-        
+
         // Fix axis if needed
         if (axis.abs2() < 0.0001F) {
             axis = orientation.inversed() * event.getCamera()->orientation().z_axis();
-        } 
-        
+        }
+
         axis.normalize();
-        
-        
+
+
         /*// Camera Space Axis
         Vector3 camera_space_axis = event.getCamera()->getOrientation().inversed() * orientation * axis;
         camera_space_axis.normalize();*/
@@ -200,8 +200,8 @@ void EdLevelManipRotate::doEvent (EdLevelToolWindow *parent, const EdLevelToolEv
 Matrix4 EdLevelManipRotate::getManipulatorTransform  (void) const
 {
     Matrix4 transform = getCombinedTransform();
-	Matrix3 orientation = transform.orientation();
-	Vector3 translation = transform.translation();
+    Matrix3 orientation = transform.orientation();
+    Vector3 translation = transform.translation();
 
     return Matrix4(orientation,translation);
 }

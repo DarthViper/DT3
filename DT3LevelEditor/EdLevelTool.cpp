@@ -77,7 +77,7 @@ Matrix4 EdLevelTool::getCombinedTransform (void) const
     }
 }
 
-void EdLevelTool::applyCombinedTransform  (EdLevelToolWindow *parent, const Matrix4 &transform, DTfloat grid)
+void EdLevelTool::applyCombinedTransform  (EdLevelToolWindow *parent, const Matrix4 &transform, float grid)
 {
     // Do everything relative to the manipulator
     Matrix4 manipulator_transform = getManipulatorTransform();
@@ -120,7 +120,7 @@ void EdLevelTool::applyCombinedTransform  (EdLevelToolWindow *parent, const Matr
     }
 }
 
-void EdLevelTool::applyCombinedScale (EdLevelToolWindow *parent, DTfloat scale)
+void EdLevelTool::applyCombinedScale (EdLevelToolWindow *parent, float scale)
 {
         for(std::shared_ptr<PlugNode> &i : _selection) {
 
@@ -144,7 +144,7 @@ void EdLevelTool::applyCombinedScale (EdLevelToolWindow *parent, DTfloat scale)
 //==============================================================================
 //==============================================================================
 
-void EdLevelTool::snapToGrid(Vector3 &translation, DTfloat grid)
+void EdLevelTool::snapToGrid(Vector3 &translation, float grid)
 {
     if (grid <= 0.0f)
         return;

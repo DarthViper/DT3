@@ -361,7 +361,7 @@ void EdLevelAnimationWindow::itemRect(PlugEventCache &n, QRect &tr, QRect &r) co
 void EdLevelAnimationWindow::thumbRect (QRect &r) const
 {
     if (_root) {
-        DTfloat t = _root->time();
+        DTfloat t= _root->time();
         int xpos = timeToPosition(t);
 
         r = QRect(xpos - _thumb_image.width()/2,0, _thumb_image.width(),_thumb_image.height());
@@ -378,12 +378,12 @@ void EdLevelAnimationWindow::selectionRect (QRect &r) const
     QPoint selection_start = _start_point + QPoint(timeToPosition(_time) - NODE_ITEM_WIDTH, -TITLE_HEIGHT + _scroll);
     QPoint selection_end = _end_point + QPoint(timeToPosition(_time) - NODE_ITEM_WIDTH, -TITLE_HEIGHT + _scroll);
 
-    DTfloat xmin = selection_start.x();
-    DTfloat xmax = selection_end.x();
+    float xmin = selection_start.x();
+    float xmax = selection_end.x();
     if (xmin > xmax)    std::swap(xmin,xmax);
 
-    DTfloat ymin = selection_start.y();
-    DTfloat ymax = selection_end.y();
+    float ymin = selection_start.y();
+    float ymax = selection_end.y();
     if (ymin > ymax)    std::swap(ymin,ymax);
 
     r = QRect(  xmin,
@@ -514,7 +514,7 @@ void EdLevelAnimationWindow::mousePressEvent(QMouseEvent *event)
         setMode(MODE_DRAGGING_THUMB);
 
         if (_root) {
-            DTfloat t = positionToTime(local_pos.x());
+            DTfloat t= positionToTime(local_pos.x());
 
             emit doCommand(QString("SetProp \"") + _root->full_name().c_str() + ".Time_Out\" " + MoreStrings::cast_to_string(t).c_str());
         }
@@ -664,7 +664,7 @@ void EdLevelAnimationWindow::mouseReleaseEvent(QMouseEvent *event)
     switch (getMode()) {
         case MODE_DRAGGING_THUMB:
             if (_root) {
-                DTfloat t = positionToTime(local_pos.x());
+                DTfloat t= positionToTime(local_pos.x());
 
                 emit doCommand(QString("SetProp \"") + _root->full_name().c_str() + ".Time_Out\" " + MoreStrings::cast_to_string(t).c_str());
             }

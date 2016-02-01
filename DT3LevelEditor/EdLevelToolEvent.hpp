@@ -55,7 +55,7 @@ class EdLevelToolEvent
 
         const std::shared_ptr<CameraObject>&    getCamera               (void) const    {   return _camera;         }
 
-        DTfloat                                 getGrid                 (void) const    {   return _grid;           }
+        float                                   getGrid                 (void) const    {   return _grid;           }
 
         DTuint                                  keyCode                 (void) const    {   return _key_code;       }
         DTuint                                  modifiers               (void) const    {   return _modifiers;      }
@@ -90,7 +90,7 @@ class EdLevelToolEvent
         DTuint                          _window_width;
         DTuint                          _window_height;
 
-        DTfloat                         _grid;
+        float                         _grid;
 };
 
 //==============================================================================

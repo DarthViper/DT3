@@ -177,17 +177,17 @@ void EdLevelPropertyMatrix3Field::doReadParams(void)
 void EdLevelPropertyMatrix3Field::doWriteParams(void)
 {
     Matrix3 val;
-    val._m11 = MoreStrings::cast_from_string<DTfloat>(parseParam(_value_11->text().toUtf8().data()));
-    val._m12 = MoreStrings::cast_from_string<DTfloat>(parseParam(_value_12->text().toUtf8().data()));
-    val._m13 = MoreStrings::cast_from_string<DTfloat>(parseParam(_value_13->text().toUtf8().data()));
+    val._m11 = MoreStrings::cast_from_string<float>(parseParam(_value_11->text().toUtf8().data()));
+    val._m12 = MoreStrings::cast_from_string<float>(parseParam(_value_12->text().toUtf8().data()));
+    val._m13 = MoreStrings::cast_from_string<float>(parseParam(_value_13->text().toUtf8().data()));
 
-    val._m21 = MoreStrings::cast_from_string<DTfloat>(parseParam(_value_21->text().toUtf8().data()));
-    val._m22 = MoreStrings::cast_from_string<DTfloat>(parseParam(_value_22->text().toUtf8().data()));
-    val._m23 = MoreStrings::cast_from_string<DTfloat>(parseParam(_value_23->text().toUtf8().data()));
+    val._m21 = MoreStrings::cast_from_string<float>(parseParam(_value_21->text().toUtf8().data()));
+    val._m22 = MoreStrings::cast_from_string<float>(parseParam(_value_22->text().toUtf8().data()));
+    val._m23 = MoreStrings::cast_from_string<float>(parseParam(_value_23->text().toUtf8().data()));
 
-    val._m31 = MoreStrings::cast_from_string<DTfloat>(parseParam(_value_31->text().toUtf8().data()));
-    val._m32 = MoreStrings::cast_from_string<DTfloat>(parseParam(_value_32->text().toUtf8().data()));
-    val._m33 = MoreStrings::cast_from_string<DTfloat>(parseParam(_value_33->text().toUtf8().data()));
+    val._m31 = MoreStrings::cast_from_string<float>(parseParam(_value_31->text().toUtf8().data()));
+    val._m32 = MoreStrings::cast_from_string<float>(parseParam(_value_32->text().toUtf8().data()));
+    val._m33 = MoreStrings::cast_from_string<float>(parseParam(_value_33->text().toUtf8().data()));
 
     TextBufferStream stream;
     stream << val;

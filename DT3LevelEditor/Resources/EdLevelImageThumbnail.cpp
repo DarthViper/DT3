@@ -59,9 +59,9 @@ void EdLevelImageThumbnail::cache (void)
     int center_x = _width/2;
     int center_y = _height/2;
 
-    DTfloat x_scale = static_cast<DTfloat>(_width) / static_cast<DTfloat>(texture->width());
-    DTfloat y_scale = static_cast<DTfloat>(_height) / static_cast<DTfloat>(texture->height());
-    DTfloat scale = std::min(1.0F, std::min(x_scale, y_scale));
+    float x_scale = static_cast<float>(_width) / static_cast<float>(texture->width());
+    float y_scale = static_cast<float>(_height) / static_cast<float>(texture->height());
+    float scale = std::min(1.0F, std::min(x_scale, y_scale));
 
     int thumb_width = static_cast<int>(texture->width() * scale);
     int thumb_height = static_cast<int>(texture->height() * scale);

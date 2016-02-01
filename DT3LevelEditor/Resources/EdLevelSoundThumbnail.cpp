@@ -64,11 +64,11 @@ void EdLevelSoundThumbnail::cache (void)
     DTsize num_samples = sound->num_samples();
     for (DTuint x = 0; x < _width; ++x) {
 
-        DTuint s = static_cast<DTfloat>(x) / static_cast<DTfloat>(_width);
+        DTuint s = static_cast<float>(x) / static_cast<float>(_width);
         DTsize num = num_samples / _width;
 
-        DTfloat min_sample = 0.0F;
-        DTfloat max_sample = 0.0F;
+        float min_sample = 0.0F;
+        float max_sample = 0.0F;
 
         sound->sample_window(s, num, min_sample, max_sample);
 

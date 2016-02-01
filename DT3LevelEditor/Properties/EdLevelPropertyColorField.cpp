@@ -244,10 +244,10 @@ void EdLevelPropertyColorField::doWriteParams(void)
 void EdLevelPropertyColorField::doWriteParams2(void)
 {
     Color4f val;
-    val.set_r( MoreStrings::cast_from_string<DTfloat>(_r2->text().toUtf8().data()) );
-    val.set_g( MoreStrings::cast_from_string<DTfloat>(_g2->text().toUtf8().data()) );
-    val.set_b( MoreStrings::cast_from_string<DTfloat>(_b2->text().toUtf8().data()) );
-    val.set_a( MoreStrings::cast_from_string<DTfloat>(_a2->text().toUtf8().data()) );
+    val.set_r( MoreStrings::cast_from_string<float>(_r2->text().toUtf8().data()) );
+    val.set_g( MoreStrings::cast_from_string<float>(_g2->text().toUtf8().data()) );
+    val.set_b( MoreStrings::cast_from_string<float>(_b2->text().toUtf8().data()) );
+    val.set_a( MoreStrings::cast_from_string<float>(_a2->text().toUtf8().data()) );
 
     TextBufferStream stream;
     stream << val;

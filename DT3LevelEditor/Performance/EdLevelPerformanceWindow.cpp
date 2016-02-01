@@ -28,10 +28,10 @@ using namespace DT3;
 //==============================================================================
 
 const int EdLevelPerformanceWindow::NUM_SAMPLES = 150;
-const DTfloat EdLevelPerformanceWindow::ENTRY_HEIGHT = 100.0F;
-const DTfloat EdLevelPerformanceWindow::TITLE_WIDTH = 150.0F;
-const DTfloat EdLevelPerformanceWindow::TITLE_HEIGHT = 20.0F;
-const DTfloat EdLevelPerformanceWindow::LABEL_HEIGHT = 20.0F;
+const float EdLevelPerformanceWindow::ENTRY_HEIGHT = 100.0F;
+const float EdLevelPerformanceWindow::TITLE_WIDTH = 150.0F;
+const float EdLevelPerformanceWindow::TITLE_HEIGHT = 20.0F;
+const float EdLevelPerformanceWindow::LABEL_HEIGHT = 20.0F;
 
 //==============================================================================
 //==============================================================================
@@ -86,7 +86,7 @@ void EdLevelPerformanceWindow::draw(QPainter *painter)
 
     painter->setRenderHint(QPainter::Antialiasing, true);
 
-    DTfloat ypos = 0.0F;
+    float ypos = 0.0F;
 
     for (Data &i : _data) {
         QRectF rect(0,ypos,width(),ENTRY_HEIGHT);
@@ -111,11 +111,11 @@ void EdLevelPerformanceWindow::draw(QPainter *painter)
         painter->setBrush(QBrush(QColor(70,70,70,255)));
         painter->drawRect(graph);
 
-        DTfloat step = graph.width() / NUM_SAMPLES;
+        float step = graph.width() / NUM_SAMPLES;
 
         if (step > 4) {
             // Draw Grid
-            for (DTfloat x = 0.0F; x < rect.width(); x += step) {
+            for (float x = 0.0F; x < rect.width(); x += step) {
                 painter->drawLine ( x + graph.x(), graph.y() + graph.height(),
                                     x + graph.x(), graph.y() );
 
@@ -123,21 +123,21 @@ void EdLevelPerformanceWindow::draw(QPainter *painter)
         }
 
 
-        DTfloat xpos_graph = 0.0F;
-        DTfloat ypos_graph = 0.0F;
+        float xpos_graph = 0.0F;
+        float ypos_graph = 0.0F;
 
         // Find peak and move points to array
-        DTfloat max_value = -std::numeric_limits<DTfloat>::infinity();
-        DTfloat average_value = 0.0F;
+        float max_value = -std::numeric_limits<float>::infinity();
+        float average_value = 0.0F;
 
         std::vector<QPoint> points;
         points.resize(i._values.size());
 
-        std::list<DTfloat>::iterator j;
+        std::list<float>::iterator j;
         int jj;
 
         // Find max
-        for (DTfloat val : i._values) {
+        for (float val : i._values) {
             average_value += val;
             if (val > max_value)    max_value = val;
         }
@@ -147,7 +147,7 @@ void EdLevelPerformanceWindow::draw(QPainter *painter)
 
         // Calculate points
         for (j = i._values.begin(), jj = 0; j != i._values.end(); ++j, ++jj) {
-            DTfloat val = *j;
+            float val = *j;
 
             // Position in graph
             ypos_graph = val / max_value * graph.height();
@@ -204,7 +204,7 @@ void EdLevelPerformanceWindow::onSample (void)
     for (Data &i : _data) {
         ProfilerCategory *category = i._category;
 
-        DTfloat accumulated_time = category->accumulated_time();
+        float accumulated_time = category->accumulated_time();
 
         // Add sample
         i._values.push_back(accumulated_time);

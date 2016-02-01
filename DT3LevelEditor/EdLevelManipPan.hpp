@@ -74,8 +74,8 @@ class EdLevelManipPan: public EdLevelTool
 
 
         // Tracking information
-        DTfloat                             _starting_location_t1;
-        DTfloat                             _starting_location_t2;
+        DTfloat                           _starting_location_t1;
+        DTfloat                           _starting_location_t2;
         DTuint                              _starting_axis;
 
 };

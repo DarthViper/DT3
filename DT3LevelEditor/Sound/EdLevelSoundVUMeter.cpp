@@ -74,7 +74,7 @@ void EdLevelSoundVUMeter::draw(QPainter *painter)
     for (DTuint i = 0; i < NUM_SEPARATORS; ++i) {
         int ypos = 200 - i * (SPACING + HEIGHT);
 
-        if (_left > (i/static_cast<DTfloat>(NUM_SEPARATORS-1)) ) {
+        if (_left > (i/static_cast<float>(NUM_SEPARATORS-1)) ) {
             if (i < 15)         painter->setBrush(QBrush(QColor(0,230,0,255)));
             else if (i < 18)    painter->setBrush(QBrush(QColor(230,230,0,255)));
             else                painter->setBrush(QBrush(QColor(240,0,0,255)));
@@ -85,7 +85,7 @@ void EdLevelSoundVUMeter::draw(QPainter *painter)
         painter->drawRect(QRect(10,ypos, WIDTH, HEIGHT));
 
 
-        if (_right > (i/static_cast<DTfloat>(NUM_SEPARATORS-1)) ) {
+        if (_right > (i/static_cast<float>(NUM_SEPARATORS-1)) ) {
             if (i < 15)         painter->setBrush(QBrush(QColor(0,230,0,255)));
             else if (i < 18)    painter->setBrush(QBrush(QColor(230,230,0,255)));
             else                painter->setBrush(QBrush(QColor(240,0,0,255)));

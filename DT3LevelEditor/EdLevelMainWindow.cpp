@@ -526,7 +526,7 @@ void EdLevelMainWindow::timerEvent(QTimerEvent *event)
 {
     if (event->timerId() == _timer.timerId()) {
 
-//        DTfloat STEP_SIZE = 200.0F / 1000.0F; // 200 msec
+//        DTfloatTEP_SIZE = 200.0F / 1000.0F; // 200 msec
 
 //        if (System::input_manager())          System::input_manager()->tick(STEP_SIZE);
 //		if (System::network_manager())		System::network_manager()->tick(STEP_SIZE);

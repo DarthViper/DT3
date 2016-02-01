@@ -399,16 +399,16 @@ void EdLevelWorldWindow::initializeGL(void)
 
 float EdLevelWorldWindow::calcScale(const std::shared_ptr<CameraObject> &camera)
 {
-    DTfloat scale = 1.0F;
+    float scale = 1.0F;
 
     // Calculate a manipulator scale
     if (_tool) {
 
         if (camera->is_perspective()) {
-            DTfloat dist = Vector3::dot(-camera->orientation().z_axis(), (_tool->getManipulatorTransform().translation() - camera->translation()));
+            float dist = Vector3::dot(-camera->orientation().z_axis(), (_tool->getManipulatorTransform().translation() - camera->translation()));
 
-            DTfloat one_unit_angle = std::atan(1.0F/dist);
-            DTfloat camera_angle = camera->angle() * PI / 180.0F;
+            float one_unit_angle = std::atan(1.0F/dist);
+            float camera_angle = camera->angle() * PI / 180.0F;
 
             scale = camera_angle/2.0F * 0.3F / one_unit_angle; // Approx %15 angular view
         } else {
@@ -422,7 +422,7 @@ float EdLevelWorldWindow::calcScale(const std::shared_ptr<CameraObject> &camera)
 //==============================================================================
 //==============================================================================
 
-void EdLevelWorldWindow::drawScene(const std::shared_ptr<CameraObject> &camera, DTfloat scale)
+void EdLevelWorldWindow::drawScene(const std::shared_ptr<CameraObject> &camera, float scale)
 {
     ::glPushName(0);
     _document->world()->draw(0.0F);
@@ -442,7 +442,7 @@ void EdLevelWorldWindow::updateBuiltInCameras(void)
 {
 
     if (_built_in_camera) {
-        DTfloat aspect = static_cast<DTfloat>(width()) / static_cast<DTfloat>(height());
+        float aspect = static_cast<float>(width()) / static_cast<float>(height());
 
         // Change positions of builtin cameras
         for (DTuint i = 0; i < ARRAY_SIZE(_built_in_cameras); ++i) {
@@ -476,8 +476,8 @@ void EdLevelWorldWindow::paintGL(void)
     }
 
     // Save aspect ratio
-    DTfloat save_aspect = _camera->aspect_ratio_mul();
-    _camera->set_aspect_ratio_mul( static_cast<DTfloat>(width()) / static_cast<DTfloat>(height()) / System::renderer()->screen_aspect() );
+    float save_aspect = _camera->aspect_ratio_mul();
+    _camera->set_aspect_ratio_mul( static_cast<float>(width()) / static_cast<float>(height()) / System::renderer()->screen_aspect() );
 
     // Activate the camera
     //DrawUtils::activate_camera(_camera);
@@ -548,8 +548,8 @@ void EdLevelWorldWindow::pickGL(QPointF pos, EdLevelToolEvent &tool_event)
     //
 
     // Save aspect ratio
-    DTfloat save_aspect = _camera->aspect_ratio_mul();
-    _camera->set_aspect_ratio_mul( static_cast<DTfloat>(width()) / static_cast<DTfloat>(height()) / System::renderer()->screen_aspect() );
+    float save_aspect = _camera->aspect_ratio_mul();
+    _camera->set_aspect_ratio_mul( static_cast<float>(width()) / static_cast<float>(height()) / System::renderer()->screen_aspect() );
 
     // Activate the camera
     int viewport[4] = { 0, 0, width(), height() };
@@ -563,7 +563,7 @@ void EdLevelWorldWindow::pickGL(QPointF pos, EdLevelToolEvent &tool_event)
     std::shared_ptr<CameraObject> save_camera = _document->world()->camera();
     _document->world()->set_camera(_camera);
 
-    DTfloat scale = calcScale(_camera);
+    float scale = calcScale(_camera);
     drawScene(_camera, scale);
 
     _document->world()->set_camera(save_camera);
@@ -584,8 +584,8 @@ void EdLevelWorldWindow::pickGL(QPointF pos, EdLevelToolEvent &tool_event)
     //
 
     // Build a ray used for mouse interactions
-    DTfloat x = static_cast<DTfloat>(pos.x()) / static_cast<DTfloat>(width()) * 2.0F - 1.0F;                  // -1.0 to 1.0
-    DTfloat y = static_cast<DTfloat>(height() - pos.y()) / static_cast<DTfloat>(height()) * 2.0F - 1.0F;  // -1.0 to 1.0
+    float x = static_cast<float>(pos.x()) / static_cast<float>(width()) * 2.0F - 1.0F;                  // -1.0 to 1.0
+    float y = static_cast<float>(height() - pos.y()) / static_cast<float>(height()) * 2.0F - 1.0F;  // -1.0 to 1.0
 
     tool_event._camera = _camera;
     tool_event._ray_src = _camera->unproject_point( Vector3(x,y,-1.0F) );
@@ -1037,7 +1037,7 @@ void EdLevelWorldWindow::keyPressEvent (QKeyEvent *event)
 
 void EdLevelWorldWindow::drawGrid (const std::shared_ptr<CameraObject> &camera)
 {
-    DTfloat grid = getGrid();
+    float grid = getGrid();
     if (grid <= 0.0F)
         grid = 1.0F;
 

@@ -125,8 +125,8 @@ void EdLevelPropertyVector2Field::doReadParams(void)
 void EdLevelPropertyVector2Field::doWriteParams(void)
 {
     Vector2 val;
-    val.x = MoreStrings::cast_from_string<DTfloat>(parseParam(_value_x->text().toUtf8().data()));
-    val.y = MoreStrings::cast_from_string<DTfloat>(parseParam(_value_y->text().toUtf8().data()));
+    val.x = MoreStrings::cast_from_string<float>(parseParam(_value_x->text().toUtf8().data()));
+    val.y = MoreStrings::cast_from_string<float>(parseParam(_value_y->text().toUtf8().data()));
 
     TextBufferStream stream;
     stream << val;

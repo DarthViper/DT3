@@ -123,7 +123,7 @@ void EdLevelPropertyRangeField::doReadParams(void)
     TextBufferStream stream;
     _data->value(stream);
 
-    DTfloat v = MoreStrings::cast_from_string<DTfloat>(stream.buffer());
+    float v = MoreStrings::cast_from_string<float>(stream.buffer());
     _value->setValue( RANGE * (v-_data->range_min()) / (_data->range_max()-_data->range_min()) );
     _value2->setText( stream.buffer().c_str() );
 
@@ -132,7 +132,7 @@ void EdLevelPropertyRangeField::doReadParams(void)
 
 void EdLevelPropertyRangeField::doWriteParams(void)
 {
-    DTfloat value = (_value->value() / RANGE) * (_data->range_max()-_data->range_min()) + _data->range_min();
+    float value = (_value->value() / RANGE) * (_data->range_max()-_data->range_min()) + _data->range_min();
 
     std::string value_string = MoreStrings::cast_to_string(value);
 

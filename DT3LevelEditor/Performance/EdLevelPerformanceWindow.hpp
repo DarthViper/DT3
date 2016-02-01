@@ -59,17 +59,17 @@ class EdLevelPerformanceWindow : public QWidget
 
     private:
         static const int NUM_SAMPLES;
-        static const DTfloat ENTRY_HEIGHT;
-        static const DTfloat TITLE_WIDTH;
-        static const DTfloat TITLE_HEIGHT;
-        static const DTfloat LABEL_HEIGHT;
+        static const float ENTRY_HEIGHT;
+        static const float TITLE_WIDTH;
+        static const float TITLE_HEIGHT;
+        static const float LABEL_HEIGHT;
 
         QFont                       _font;
         QFont                       _font_small;
 
         struct Data {
             ProfilerCategory        *_category;
-            std::list<DTfloat>      _values;
+            std::list<float>      _values;
         };
 
         std::list<Data>             _data;
