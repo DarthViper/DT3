@@ -110,7 +110,7 @@ void EdLevelLibraryWindow::buildTree (QTreeWidgetItem *parent, const FilePath &d
     DirectoryLister lister;
     lister.scan_path(dir, false);    // Include dirs, not recursive
 
-    for (DTuint i = 0; i < lister.num_files(); ++i) {
+    for (unsigned int i = 0; i < lister.num_files(); ++i) {
         LOG_MESSAGE << lister.file_name(i);
 
         // Recurse
@@ -133,7 +133,7 @@ void EdLevelLibraryWindow::buildTree (QTreeWidgetItem *parent, const FilePath &d
                 ArchiveObjectQueue::queue_out_tree(writer, group );
 
                 QTreeWidgetItem *item = new QTreeWidgetItem();
-                item->setData(0, Qt::UserRole, QByteArray( (const char *) writer->stream().buffer(), (DTuint) writer->stream().size()) );
+                item->setData(0, Qt::UserRole, QByteArray( (const char *) writer->stream().buffer(), (unsigned int) writer->stream().size()) );
                 item->setText(0, QString(group->name().c_str()) );
                 item->setText(1, QString(group->description().c_str()) );
                 parent->addChild(item);

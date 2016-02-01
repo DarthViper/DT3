@@ -190,7 +190,7 @@ void EdLevelPerformanceWindow::resizeEvent (QResizeEvent *event)
 {
     // Setup scroll bar
     _vert_scrollbar->setPageStep(rect().height());
-    _vert_scrollbar->setRange(0, (DTuint) _data.size() * ENTRY_HEIGHT - rect().height());
+    _vert_scrollbar->setRange(0, (unsigned int) _data.size() * ENTRY_HEIGHT - rect().height());
 
     _vert_scrollbar->setGeometry(rect().width() - _scroll_width, 0, _scroll_width, rect().height());
 }

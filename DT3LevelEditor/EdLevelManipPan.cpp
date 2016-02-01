@@ -46,7 +46,7 @@ EdLevelManipPan::EdLevelManipPan (void)
 //==============================================================================
 //==============================================================================
 
-void EdLevelManipPan::draw (EdLevelToolWindow *parent, const std::shared_ptr<CameraObject> &camera, DTfloat scale)
+void EdLevelManipPan::draw (EdLevelToolWindow *parent, const std::shared_ptr<CameraObject> &camera, float scale)
 {
     DrawBatcher b;
 
@@ -200,8 +200,8 @@ void EdLevelManipPan::doEvent (EdLevelToolWindow *parent, const EdLevelToolEvent
     };
 
     // Raytrace the position on the axis closest to the clicked point
-    DTfloat t1;
-    DTfloat t2 = 0.0F;
+    float t1;
+    float t2 = 0.0F;
 
     if (_starting_axis != CENTER) {
         PrimitiveCollisions::dist_ray_ray(  event.getRaySource(), event.getRayDestination() - event.getRaySource(),

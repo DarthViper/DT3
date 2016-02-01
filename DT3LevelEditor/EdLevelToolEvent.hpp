@@ -50,15 +50,15 @@ class EdLevelToolEvent
         Vector3                                 getRaySource            (void) const    {   return _ray_src;        }
         Vector3                                 getRayDestination       (void) const    {   return _ray_dest;       }
 
-        DTuint                                  mouseX                  (void) const    {   return _mouse_x;        }
-        DTuint                                  mouseY                  (void) const    {   return _mouse_y;        }
+        unsigned int                                  mouseX                  (void) const    {   return _mouse_x;        }
+        unsigned int                                  mouseY                  (void) const    {   return _mouse_y;        }
 
         const std::shared_ptr<CameraObject>&    getCamera               (void) const    {   return _camera;         }
 
         float                                   getGrid                 (void) const    {   return _grid;           }
 
-        DTuint                                  keyCode                 (void) const    {   return _key_code;       }
-        DTuint                                  modifiers               (void) const    {   return _modifiers;      }
+        unsigned int                                  keyCode                 (void) const    {   return _key_code;       }
+        unsigned int                                  modifiers               (void) const    {   return _modifiers;      }
 
     public:
         static const int MODIFIER_SHIFT;
@@ -79,16 +79,16 @@ class EdLevelToolEvent
         Vector3                         _ray_src;
         Vector3                         _ray_dest;
 
-        DTuint                          _control_id;
+        unsigned int                          _control_id;
 
-        DTuint                          _mouse_x;
-        DTuint                          _mouse_y;
+        unsigned int                          _mouse_x;
+        unsigned int                          _mouse_y;
 
-        DTuint                          _key_code;
-        DTuint                          _modifiers;
+        unsigned int                          _key_code;
+        unsigned int                          _modifiers;
 
-        DTuint                          _window_width;
-        DTuint                          _window_height;
+        unsigned int                          _window_width;
+        unsigned int                          _window_height;
 
         float                         _grid;
 };

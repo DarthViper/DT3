@@ -961,7 +961,7 @@ void EdLevelScriptWindow::syncConnections (PlugNode *node)
         onConnectPlug (plug->incoming_connection(), plug);
 
         const std::vector<PlugBase*> connections = plug->outgoing_connections();
-        for (DTuint k = 0; k < connections.size(); ++k) {
+        for (unsigned int k = 0; k < connections.size(); ++k) {
             onConnectPlug (plug, connections[k]);
         }
     }
@@ -971,12 +971,12 @@ void EdLevelScriptWindow::syncConnections (PlugNode *node)
         Event* event = e_iter();
 
         const std::vector<Event*> connections_in = event->incoming_connections();
-        for (DTuint k = 0; k < connections_in.size(); ++k) {
+        for (unsigned int k = 0; k < connections_in.size(); ++k) {
             onConnectEvent (connections_in[k], event);
         }
 
         const std::vector<Event*> connections_out = event->outgoing_connections();
-        for (DTuint k = 0; k < connections_out.size(); ++k) {
+        for (unsigned int k = 0; k < connections_out.size(); ++k) {
             onConnectEvent (event, connections_out[k]);
         }
     }

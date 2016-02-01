@@ -79,7 +79,7 @@ void EdLevelPropertiesWindow::buildPropertiesForNode (std::shared_ptr<PlugNode> 
     // Get the properties
     std::vector<std::shared_ptr<ArchiveData>>& properties = _properties->properties();
 
-    for (DTuint i = (DTuint)start_of_properties; i < properties.size(); ++i) {
+    for (unsigned int i = (unsigned int)start_of_properties; i < properties.size(); ++i) {
         std::shared_ptr<ArchiveData> data = properties[i];
         const char *type = data->data_kind();
 

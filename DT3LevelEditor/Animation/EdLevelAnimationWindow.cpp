@@ -361,7 +361,7 @@ void EdLevelAnimationWindow::itemRect(PlugEventCache &n, QRect &tr, QRect &r) co
 void EdLevelAnimationWindow::thumbRect (QRect &r) const
 {
     if (_root) {
-        DTfloat t= _root->time();
+        float t= _root->time();
         int xpos = timeToPosition(t);
 
         r = QRect(xpos - _thumb_image.width()/2,0, _thumb_image.width(),_thumb_image.height());
@@ -398,7 +398,7 @@ void EdLevelAnimationWindow::keyRect (PlugEventCache &p, int k, QRect &rk) const
     QRect tr, r;
     itemRect(p, tr, r);
 
-    DTfloat kf_time = p._keyframes->key_time(k);
+    float kf_time = p._keyframes->key_time(k);
     int xpos = timeToPosition(kf_time);
 
     rk = QRect( xpos - _keyframe_image.width()/2,
@@ -410,14 +410,14 @@ void EdLevelAnimationWindow::keyRect (PlugEventCache &p, int k, QRect &rk) const
 //==============================================================================
 //==============================================================================
 
-int EdLevelAnimationWindow::timeToPosition (DTfloat seconds) const
+int EdLevelAnimationWindow::timeToPosition (float seconds) const
 {
     return _pixels_per_second * seconds;
 }
 
-DTfloat EdLevelAnimationWindow::positionToTime (int position) const
+float EdLevelAnimationWindow::positionToTime (int position) const
 {
-    return static_cast<DTfloat>(position) / static_cast<DTfloat>(_pixels_per_second);
+    return static_cast<float>(position) / static_cast<float>(_pixels_per_second);
 }
 
 //==============================================================================
@@ -514,7 +514,7 @@ void EdLevelAnimationWindow::mousePressEvent(QMouseEvent *event)
         setMode(MODE_DRAGGING_THUMB);
 
         if (_root) {
-            DTfloat t= positionToTime(local_pos.x());
+            float t= positionToTime(local_pos.x());
 
             emit doCommand(QString("SetProp \"") + _root->full_name().c_str() + ".Time_Out\" " + MoreStrings::cast_to_string(t).c_str());
         }
@@ -574,7 +574,7 @@ void EdLevelAnimationWindow::mouseMoveEvent(QMouseEvent *event)
     switch (getMode()) {
         case MODE_DRAGGING_THUMB:
             if (_root) {
-                DTfloat t = positionToTime(local_pos.x());
+                float t = positionToTime(local_pos.x());
 
                 emit doCommand(QString("SetProp \"") + _root->full_name().c_str() + ".Time_Out\" " + MoreStrings::cast_to_string(t).c_str());
             }
@@ -592,7 +592,7 @@ void EdLevelAnimationWindow::mouseMoveEvent(QMouseEvent *event)
                 if (!_plug_event_cache[i]._node || !_plug_event_cache[i]._keyframes)
                     continue;
 
-                DTfloat dt = positionToTime(delta.x());
+                float dt = positionToTime(delta.x());
                 int num_keys = getNumKeys(_plug_event_cache[i]);
 
                 // Since order can flip when keys are set, we start with the farther ahead points first
@@ -604,7 +604,7 @@ void EdLevelAnimationWindow::mouseMoveEvent(QMouseEvent *event)
 
                         if (isSelected(_plug_event_cache[i], id)) {
 
-                            DTfloat current_time = _plug_event_cache[i]._keyframes->key_time(k);
+                            float current_time = _plug_event_cache[i]._keyframes->key_time(k);
 
                             std::string cmd = "SetKeyframeTimeByID " + _plug_event_cache[i]._keyframes->full_name() + " " + MoreStrings::cast_to_string(id) + " " + MoreStrings::cast_to_string(current_time + dt);
                             emit doCommand(cmd.c_str());
@@ -617,7 +617,7 @@ void EdLevelAnimationWindow::mouseMoveEvent(QMouseEvent *event)
 
                         if (isSelected(_plug_event_cache[i], id)) {
 
-                            DTfloat current_time = _plug_event_cache[i]._keyframes->key_time(k);
+                            float current_time = _plug_event_cache[i]._keyframes->key_time(k);
 
                             std::string cmd = "SetKeyframeTimeByID " + _plug_event_cache[i]._keyframes->full_name() + " " + MoreStrings::cast_to_string(id) + " " + MoreStrings::cast_to_string(current_time + dt);
                             emit doCommand(cmd.c_str());
@@ -631,15 +631,15 @@ void EdLevelAnimationWindow::mouseMoveEvent(QMouseEvent *event)
             break;
 
         case MODE_ZOOMING: {
-                DTfloat center_time_before = (_horz_scrollbar->value() + _controls.width() / 2) / static_cast<DTfloat>(_pixels_per_second);
+                float center_time_before = (_horz_scrollbar->value() + _controls.width() / 2) / static_cast<float>(_pixels_per_second);
 
-                DTfloat zoom = -delta.y();
+                float zoom = -delta.y();
                 _pixels_per_second += zoom;
 
                 if (_pixels_per_second < 5)         _pixels_per_second = 5;
                 else if (_pixels_per_second > 500)  _pixels_per_second = 500;
 
-                DTfloat center_time_after= (_horz_scrollbar->value() + _controls.width() / 2) / static_cast<DTfloat>(_pixels_per_second);
+                float center_time_after= (_horz_scrollbar->value() + _controls.width() / 2) / static_cast<float>(_pixels_per_second);
 
                 _horz_scrollbar->setValue(_horz_scrollbar->value() - (center_time_after - center_time_before) * _pixels_per_second);
 
@@ -664,7 +664,7 @@ void EdLevelAnimationWindow::mouseReleaseEvent(QMouseEvent *event)
     switch (getMode()) {
         case MODE_DRAGGING_THUMB:
             if (_root) {
-                DTfloat t= positionToTime(local_pos.x());
+                float t= positionToTime(local_pos.x());
 
                 emit doCommand(QString("SetProp \"") + _root->full_name().c_str() + ".Time_Out\" " + MoreStrings::cast_to_string(t).c_str());
             }
@@ -997,7 +997,7 @@ void EdLevelAnimationWindow::draw(QPainter *painter)
         painter->setClipRect ( _timeline.united(_controls) );
         painter->translate (NODE_ITEM_WIDTH - timeToPosition(_time), 0);
 
-        DTfloat t = _root->time();
+        float t = _root->time();
         int xpos = timeToPosition(t);
 
         QRect thr;

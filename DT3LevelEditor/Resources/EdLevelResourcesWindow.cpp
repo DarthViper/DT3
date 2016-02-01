@@ -97,7 +97,7 @@ void EdLevelResourcesWindow::buildTree (QTreeWidgetItem *parent, const FilePath 
     DirectoryLister lister;
     lister.scan_path(dir, false);    // Include dirs, not recursive
 
-    for (DTuint i = 0; i < lister.num_files(); ++i) {
+    for (unsigned int i = 0; i < lister.num_files(); ++i) {
         QTreeWidgetItem *item = new QTreeWidgetItem();
         item->setData(0, Qt::UserRole, QString("{") + QString(lister.file_name(i).c_str()) + "}" );
         parent->addChild(item);

@@ -71,7 +71,7 @@ void EdLevelSoundVUMeter::draw(QPainter *painter)
     const int WIDTH = 20;
     const int HEIGHT = 8;
 
-    for (DTuint i = 0; i < NUM_SEPARATORS; ++i) {
+    for (unsigned int i = 0; i < NUM_SEPARATORS; ++i) {
         int ypos = 200 - i * (SPACING + HEIGHT);
 
         if (_left > (i/static_cast<float>(NUM_SEPARATORS-1)) ) {

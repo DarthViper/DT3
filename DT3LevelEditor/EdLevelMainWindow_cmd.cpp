@@ -116,7 +116,7 @@ CommandResult EdLevelMainWindow_cmd::do_copy (CommandContext &ctx, const Command
     ArchiveObjectQueue::queue_out_tree(writer, group);
 
     QMimeData *data = new QMimeData();
-    data->setData("application/Group", QByteArray( (const char *) writer->stream().buffer(), (DTuint) writer->stream().size()) );
+    data->setData("application/Group", QByteArray( (const char *) writer->stream().buffer(), (unsigned int) writer->stream().size()) );
 
     LOG_MESSAGE << "Copied " << writer->stream().size() << " bytes to clipboard";
 
@@ -232,11 +232,11 @@ CommandResult EdLevelMainWindow_cmd::do_clear (CommandContext &ctx, const Comman
 
 CommandResult EdLevelMainWindow_cmd::do_test_assert (CommandContext &ctx, const CommandParams &p)
 {
-    for (DTuint i = 0; i < 10; ++i) {
+    for (unsigned int i = 0; i < 10; ++i) {
         ASSERT(false);
     }
 
-    for (DTuint i = 0; i < 10; ++i) {
+    for (unsigned int i = 0; i < 10; ++i) {
         ASSERT(false);
     }
 

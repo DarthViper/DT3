@@ -53,8 +53,8 @@ void EdLevelSoundThumbnail::cache (void)
 {
     std::shared_ptr<SoundResource> sound = SoundResource::import_resource(_path);
 
-    DTuint _width = 128, _height = 128;
-    DTuint half_y = _height/2;
+    unsigned int _width = 128, _height = 128;
+    unsigned int half_y = _height/2;
 
     delete[] _buffer;
     _buffer = new Buffer[_width*_height];
@@ -62,9 +62,9 @@ void EdLevelSoundThumbnail::cache (void)
     ::memset(_buffer,128,sizeof(Buffer) * _width*_height);
 
     DTsize num_samples = sound->num_samples();
-    for (DTuint x = 0; x < _width; ++x) {
+    for (unsigned int x = 0; x < _width; ++x) {
 
-        DTuint s = static_cast<float>(x) / static_cast<float>(_width);
+        unsigned int s = static_cast<float>(x) / static_cast<float>(_width);
         DTsize num = num_samples / _width;
 
         float min_sample = 0.0F;

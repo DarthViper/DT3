@@ -779,7 +779,7 @@ void EdLevelMainWindow::onCreateWorld()
 //==============================================================================
 //==============================================================================
 
-void EdLevelMainWindow::updateWidgets (DTuint h)
+void EdLevelMainWindow::updateWidgets (unsigned int h)
 {
     if (h & CommandResult::UPDATE_SCRIPT)       emit doRefreshScript();
     if (h & CommandResult::UPDATE_WORLD)        emit doRefreshWorld();
@@ -840,7 +840,7 @@ bool EdLevelMainWindow::onCommand(QString command)
         _document->setWorld(ctx.world());
 
     // Refresh Everything
-    DTuint h = result.update_hint();
+    unsigned int h = result.update_hint();
     updateWidgets(h);
 
     // Reenable save
@@ -870,7 +870,7 @@ void EdLevelMainWindow::onUndo()
     ctx.set_world(_document->world());
     ctx.set_selection(_document->selection());
 
-    DTuint h = 0;
+    unsigned int h = 0;
 
     // Eat blocks
     while (_undo_queue.size() > 0 && _undo_queue.front().count() == 0) {

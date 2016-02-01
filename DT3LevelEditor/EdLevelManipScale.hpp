@@ -69,7 +69,7 @@ class EdLevelManipScale: public EdLevelTool
         std::shared_ptr<MaterialResource>   _tool_material;
         std::shared_ptr<ShaderResource>     _shader;
 
-        DTuint                              _starting_axis;
+        unsigned int                              _starting_axis;
         int                               _mouse_x;
         int                               _mouse_y;
 };

@@ -236,7 +236,7 @@ EdLevelWorldWindow::EdLevelWorldWindow(QWidget *parent, QToolBar *toolbar, EdLev
 
 
     // Initialize builtin cameras
-    for (DTuint i = 0; i < ARRAY_SIZE(_built_in_cameras); ++i) {
+    for (unsigned int i = 0; i < ARRAY_SIZE(_built_in_cameras); ++i) {
         _built_in_cameras[i] = CameraObject::create();
     }
 
@@ -445,7 +445,7 @@ void EdLevelWorldWindow::updateBuiltInCameras(void)
         float aspect = static_cast<float>(width()) / static_cast<float>(height());
 
         // Change positions of builtin cameras
-        for (DTuint i = 0; i < ARRAY_SIZE(_built_in_cameras); ++i) {
+        for (unsigned int i = 0; i < ARRAY_SIZE(_built_in_cameras); ++i) {
             _built_in_cameras[i]->set_ortho(-_built_in_zoom*aspect, _built_in_zoom*aspect, -_built_in_zoom, _built_in_zoom, -10000.0F, 10000.0F);
         }
     }
@@ -897,7 +897,7 @@ void EdLevelWorldWindow::mouseMoveEvent(QMouseEvent *event)
         if (_built_in_camera) {
 
             // Change positions of builtin cameras
-            for (DTuint i = 0; i < ARRAY_SIZE(_built_in_cameras); ++i) {
+            for (unsigned int i = 0; i < ARRAY_SIZE(_built_in_cameras); ++i) {
 
                 // Set the transform of the camera
                 Matrix4 transform = _built_in_cameras[i]->transform();

@@ -44,7 +44,7 @@ EdLevelPropertyEnumField::EdLevelPropertyEnumField (EdLevelPropertiesWindow *par
     _value->setObjectName("prop");
 
     const std::vector<std::string> &enums = data->enums();
-    for (DTuint i = 0; i < enums.size(); ++i) {
+    for (unsigned int i = 0; i < enums.size(); ++i) {
         _value->addItem(enums[i].c_str());
     }
 

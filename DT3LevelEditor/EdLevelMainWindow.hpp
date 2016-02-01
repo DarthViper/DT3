@@ -110,7 +110,7 @@ class EdLevelMainWindow : public QMainWindow
         QString 								strippedName(const QString &fullFileName);
         QString 								strippedDir(const QString &fullFileName);
 
-        void                                    updateWidgets (DTuint h);
+        void                                    updateWidgets (unsigned int h);
 
         // GUI Widgets
         EdLevelWorldWindow						*_world_widget;

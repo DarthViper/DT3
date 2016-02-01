@@ -53,7 +53,7 @@ class EdLevelManipPan: public EdLevelTool
         virtual         ~EdLevelManipPan(void)  {}
 
     public:
-        virtual void    draw                    (EdLevelToolWindow *parent, const std::shared_ptr<CameraObject> &camera, DTfloat scale);
+        virtual void    draw                    (EdLevelToolWindow *parent, const std::shared_ptr<CameraObject> &camera, float scale);
 
         virtual void    doEvent                 (EdLevelToolWindow *parent, const EdLevelToolEvent &event);
 
@@ -74,9 +74,9 @@ class EdLevelManipPan: public EdLevelTool
 
 
         // Tracking information
-        DTfloat                           _starting_location_t1;
-        DTfloat                           _starting_location_t2;
-        DTuint                              _starting_axis;
+        float                           _starting_location_t1;
+        float                           _starting_location_t2;
+        unsigned int                              _starting_axis;
 
 };
 
