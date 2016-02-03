@@ -1,6 +1,4 @@
 #pragma once
-#ifndef DT3_UNITTEST
-#define DT3_UNITTEST
 //==============================================================================
 ///
 ///	File: UnitTest.hpp
@@ -63,5 +61,3 @@ class UnitTest: public BaseClass {
     }
 
 } // DT3
-
-#endif

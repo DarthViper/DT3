@@ -9,6 +9,7 @@
 ///	
 //==============================================================================
 
+#include "DT3Core/Types/Node/EventInfo.hpp"
 #include "DT3Core/Types/Node/Event.hpp"
 #include "DT3Core/Types/Node/PlugNode.hpp"
 #include "DT3Core/System/StaticInitializer.hpp"

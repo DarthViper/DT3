@@ -15,6 +15,7 @@
 #include "DT3Core/System/Configure.hpp"
 #include "DT3Core/Types/FileBuffer/ArchiveData.hpp"
 #include "DT3Core/Types/FileBuffer/Archive.hpp"
+#include "DT3Core/Types/Node/EventInfo.hpp"
 
 //==============================================================================
 //==============================================================================

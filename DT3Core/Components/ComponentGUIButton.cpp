@@ -9,6 +9,7 @@
 ///
 //==============================================================================
 #include "DT3Core/Components/ComponentGUIButton.hpp"
+#include "DT3Core/Types/Node/EventInfo.hpp"
 #include "DT3Core/Types/FileBuffer/ArchiveObjectQueue.hpp"
 #include "DT3Core/Types/FileBuffer/ArchiveData.hpp"
 #include "DT3Core/Types/GUI/GUITouchEvent.hpp"

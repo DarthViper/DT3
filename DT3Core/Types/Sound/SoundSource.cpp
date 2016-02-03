@@ -11,6 +11,7 @@
 
 #include "DT3Core/Types/Sound/SoundSource.hpp"
 #include "DT3Core/System/Factory.hpp"
+#include "DT3Core/Types/Node/EventInfo.hpp"
 
 //==============================================================================
 //==============================================================================

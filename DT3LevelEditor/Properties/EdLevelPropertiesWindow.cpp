@@ -37,6 +37,7 @@
 #include "DT3Core/Types/FileBuffer/ArchiveData.hpp"
 #include "DT3Core/Types/FileBuffer/ArchivePropertyReaderWriter.hpp"
 #include "DT3Core/Types/Utility/ConsoleStream.hpp"
+#include "DT3Core/Types/Utility/CheckedCast.hpp"
 #include "DT3Core/Objects/ObjectBase.hpp"
 #include "DT3Core/Types/Math/Color4f.hpp"
 #include "DT3Core/Types/Math/Vector3.hpp"

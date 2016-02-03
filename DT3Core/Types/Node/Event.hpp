@@ -11,8 +11,8 @@
 //==============================================================================
 
 #include "DT3Core/Types/Base/BaseInclude.hpp"
-#include "DT3Core/Types/Node/EventInfo.hpp"
-
+#include <vector>
+#include <mutex>
 //==============================================================================
 //==============================================================================
 
@@ -24,7 +24,7 @@ namespace DT3 {
 
 class PlugNode;
 class PlugNodeInfo;
-
+class EventInfo;
 //==============================================================================
 /// Class
 //==============================================================================
@@ -47,11 +47,11 @@ class Event {
 
         /// Return a pointer to the owning node of the Event
         /// \return Owner node
-        PlugNode*                           owner                       (void) const    {	return info().event_to_node(this);  }
+        PlugNode*                           owner                       (void) const;
 
         /// Returns the name of the event
         /// \return Name of the event
-        const std::string&                  name                        (void) const    {	return info().name();           }
+        const std::string&                  name                        (void) const;
 
         /// Returns the full name of object that uniquely identifies it
         /// \return full name of object
@@ -61,15 +61,15 @@ class Event {
 
         /// Returns no draw flag
         /// \return No draw flag
-        bool                           is_no_draw                  (void) const    {	return info().is_no_draw();		}
+        bool                           is_no_draw                  (void) const;
 
         /// Returns is input flag
         /// \return is input
-        bool                           is_input                    (void) const    {	return info().is_input();		}
+        bool                           is_input                    (void) const;
 
         /// Returns is output flag
         /// \return is output
-        bool                           is_output                   (void) const    {	return info().is_output();		}
+        bool                           is_output                   (void) const;
 
 
 
@@ -121,7 +121,7 @@ class Event {
     private:
         /// Return a pointer to the owning node of the Plug
         /// \return Owner node
-        EventInfo&                          info                        (void) const    {	return EventInfo::get_info(_info_index); }
+        EventInfo&                          info                        (void) const;
 
         // Trigger this event
         void                                trigger                     (PlugNode *sender);

@@ -13,6 +13,7 @@
 #include "DT3Core/System/Factory.hpp"
 #include "DT3Core/System/Profiler.hpp"
 #include "DT3Core/System/Globals.hpp"
+#include "DT3Core/Types/Node/EventInfo.hpp"
 #include "DT3Core/Types/FileBuffer/ArchiveData.hpp"
 #include "DT3Core/Types/FileBuffer/Archive.hpp"
 #include "DT3Core/Types/Utility/ConsoleStream.hpp"

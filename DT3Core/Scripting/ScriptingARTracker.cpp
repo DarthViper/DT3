@@ -16,6 +16,7 @@
 #include "DT3Core/Types/FileBuffer/ArchiveData.hpp"
 #include "DT3Core/Types/FileBuffer/Archive.hpp"
 #include "DT3Core/Types/Math/Vector4.hpp"
+#include "DT3Core/Types/Node/EventInfo.hpp"
 #include "DT3Core/Types/Utility/ConsoleStream.hpp"
 #include "DT3Core/World/World.hpp"
 

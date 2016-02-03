@@ -12,6 +12,7 @@
 #include "DT3Core/Components/ComponentGUIToggleButton.hpp"
 #include "DT3Core/Types/FileBuffer/ArchiveObjectQueue.hpp"
 #include "DT3Core/Types/FileBuffer/ArchiveData.hpp"
+#include "DT3Core/Types/Node/EventInfo.hpp"
 #include "DT3Core/Types/GUI/GUITouchEvent.hpp"
 #include "DT3Core/System/Factory.hpp"
 #include "DT3Core/System/System.hpp"

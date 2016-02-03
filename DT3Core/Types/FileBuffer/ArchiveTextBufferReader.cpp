@@ -13,6 +13,7 @@
 #include "DT3Core/Types/FileBuffer/ArchiveData.hpp"
 #include "DT3Core/Types/Utility/ConsoleStream.hpp"
 #include "DT3Core/Types/Utility/MoreStrings.hpp"
+#include "DT3Core/Types/Utility/Error.hpp"
 #include <cctype>
 
 //==============================================================================

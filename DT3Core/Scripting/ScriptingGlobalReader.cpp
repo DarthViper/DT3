@@ -15,6 +15,7 @@
 #include "DT3Core/System/Globals.hpp"
 #include "DT3Core/Types/FileBuffer/ArchiveData.hpp"
 #include "DT3Core/Types/FileBuffer/Archive.hpp"
+#include "DT3Core/Types/Node/EventInfo.hpp"
 
 //==============================================================================
 //==============================================================================
@@ -49,7 +50,8 @@ BEGIN_IMPLEMENT_PLUGS(ScriptingGlobalReader)
         .set_event(&ScriptingGlobalReader::read);
 
 END_IMPLEMENT_PLUGS
-
+}
+using namespace DT3;
 //==============================================================================
 /// Standard class constructors/destructors
 //==============================================================================
@@ -115,6 +117,3 @@ void ScriptingGlobalReader::read (PlugNode *sender)
 
 //==============================================================================
 //==============================================================================
-
-} // DT3
-

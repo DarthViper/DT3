@@ -17,6 +17,7 @@
 #include "DT3Core/Types/Node/PlugNode.hpp"
 #include "DT3Core/Types/Node/Plug.hpp"
 #include "DT3Core/Types/Node/Event.hpp"
+#include "DT3Core/Types/Node/EventInfo.hpp"
 #include "DT3Core/Types/Utility/ConsoleStream.hpp"
 #include "DT3Core/Types/Math/MoreMath.hpp"
 #include <thread>

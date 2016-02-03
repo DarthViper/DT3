@@ -15,6 +15,7 @@
 #include "DT3Core/System/System.hpp"
 #include "DT3Core/Types/FileBuffer/ArchiveData.hpp"
 #include "DT3Core/Types/FileBuffer/Archive.hpp"
+#include "DT3Core/Types/Node/EventInfo.hpp"
 #include "DT3Core/Devices/DeviceMusic.hpp"
 #include "DT3Core/World/World.hpp"
 

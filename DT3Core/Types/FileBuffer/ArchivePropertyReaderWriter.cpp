@@ -12,7 +12,7 @@
 #include "DT3Core/Types/FileBuffer/ArchivePropertyReaderWriter.hpp"
 #include "DT3Core/Types/FileBuffer/ArchiveData.hpp"
 #include "DT3Core/Types/FileBuffer/TextBufferStream.hpp"
-
+#include "DT3Core/Types/Utility/CheckedCast.hpp"
 //==============================================================================
 //==============================================================================
 

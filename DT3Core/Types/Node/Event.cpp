@@ -10,6 +10,7 @@
 //==============================================================================
 
 #include "DT3Core/Types/Node/Event.hpp"
+#include "DT3Core/Types/Node/EventInfo.hpp"
 #include "DT3Core/Types/Node/PlugNode.hpp"
 #include "DT3Core/System/Profiler.hpp"
 #include <algorithm>
@@ -74,6 +75,12 @@ std::string Event::full_name (void) const
 {
     return owner()->full_name() + "." + name();
 }
+
+bool Event::is_no_draw() const    {	return info().is_no_draw();		}
+
+bool Event::is_input() const    {	return info().is_input();		}
+
+bool Event::is_output() const    {	return info().is_output();		}
 
 //==============================================================================
 //==============================================================================
@@ -219,6 +226,11 @@ void Event::send (PlugNode *sender)
     }
 }
 
+EventInfo &Event::info() const
+{
+    return EventInfo::get_info(_info_index);
+}
+
 void Event::trigger (PlugNode *sender)
 {
     if (!_is_computing) {
@@ -246,6 +258,10 @@ void Event::initialize_static (void)
 
     _pool[DT3_EVENT_CONNECTION_POOL_SIZE-1]._next_free = NULL;
 }
+
+PlugNode *Event::owner() const    {	return info().event_to_node(this);  }
+
+const std::__cxx11::string &Event::name() const    {	return info().name();           }
 
 Event::EventConnections& Event::connections (void)
 {

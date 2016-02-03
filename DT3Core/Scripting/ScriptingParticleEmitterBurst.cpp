@@ -15,6 +15,7 @@
 #include "DT3Core/Types/FileBuffer/ArchiveData.hpp"
 #include "DT3Core/Types/FileBuffer/Archive.hpp"
 #include "DT3Core/Types/Graphics/Particles.hpp"
+#include "DT3Core/Types/Node/EventInfo.hpp"
 #include "DT3Core/Types/Utility/Assert.hpp"
 #include "DT3Core/Types/Math/MoreMath.hpp"
 #include "DT3Core/World/World.hpp"
