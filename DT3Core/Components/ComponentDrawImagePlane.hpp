@@ -81,12 +81,6 @@ class ComponentDrawImagePlane: public ComponentBase {
         /// \param material Pointer to new material
         void                                        set_material        (const std::shared_ptr<MaterialResource> &material);
 
-        /// Sets the material for the image. This is only called from the editor when
-        /// a material is changed in the property list.
-        /// \param material Material for the image
-        void                                        set_material_prop   (const std::shared_ptr<MaterialResource> &material);
-
-
         /// Returns the material for the Image Plane
         /// \return The material for the image plane
         const std::shared_ptr<ShaderResource>&      shader              (void) const;

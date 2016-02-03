@@ -389,6 +389,9 @@ struct DTclasskind {
 #define DEFINE_CREATE\
         inline static std::shared_ptr<type>         create(void)            {	return std::make_shared<type>(); }
 
+#define DEFINE_CREATE_T(type)\
+        inline static std::shared_ptr<type>         create(void)            {	return std::make_shared<type>(); }
+
 #define DEFINE_CREATE_AND_CLONE\
         DEFINE_CLONE\
         DEFINE_CREATE

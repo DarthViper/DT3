@@ -69,7 +69,8 @@ BEGIN_IMPLEMENT_PLUGS(ComponentDrawImagePlane)
         .set_input(true);
 
 END_IMPLEMENT_PLUGS
-
+}
+using namespace DT3;
 //==============================================================================
 /// Standard class constructors/destructors
 //==============================================================================
@@ -136,10 +137,7 @@ void ComponentDrawImagePlane::archive (const std::shared_ptr<Archive> &archive)
 
     archive->push_domain (class_id ());
 
-    if (archive->isa(ArchivePropertyReaderWriter::kind()))
-        *archive << ARCHIVE_DATA_ACCESSORS("Material", ComponentDrawImagePlane::material, ComponentDrawImagePlane::set_material_prop, DATA_PERSISTENT | DATA_SETTABLE);
-    else
-        *archive << ARCHIVE_DATA_ACCESSORS("Material", ComponentDrawImagePlane::material, ComponentDrawImagePlane::set_material, DATA_PERSISTENT | DATA_SETTABLE);
+    *archive << ARCHIVE_DATA_ACCESSORS("Material", ComponentDrawImagePlane::material, ComponentDrawImagePlane::set_material, DATA_PERSISTENT | DATA_SETTABLE);
 
     *archive << ARCHIVE_DATA_ACCESSORS("Shader", ComponentDrawImagePlane::shader, ComponentDrawImagePlane::set_shader, DATA_PERSISTENT | DATA_SETTABLE);
 
@@ -166,28 +164,6 @@ const std::shared_ptr<MaterialResource>& ComponentDrawImagePlane::material (void
 void ComponentDrawImagePlane::set_material (const std::shared_ptr<MaterialResource> &material)
 {
     _material = material;
-}
-
-void ComponentDrawImagePlane::set_material_prop (const std::shared_ptr<MaterialResource> &material)
-{
-    _material = material;
-
-//#ifdef DT3_EDITOR
-//
-//    //
-//    // Try to automatically set the aspect ratio
-//    //
-//
-//    if (_material->isValid()) {
-//
-//        // Take a stab at the aspect ratio
-//        (*_material)->setCurrentUnit(0);
-//
-//        Vector3 scale = (*_material)->getScale();
-//        if (scale.y > 0.0F)
-//            setAspect(scale.x/scale.y);
-//    }
-//#endif
 }
 
 //==============================================================================
@@ -283,6 +259,3 @@ void ComponentDrawImagePlane::remove_from_owner (void)
 
 //==============================================================================
 //==============================================================================
-
-} // DT3
-

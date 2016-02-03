@@ -30,8 +30,8 @@ namespace DT3 {
 
 class ArchiveTextBufferWriter: public Archive {
     public:
-        DEFINE_TYPE(ArchiveTextBufferWriter,Archive)
-        DEFINE_CREATE
+        //DEFINE_TYPE(ArchiveTextBufferWriter,Archive)
+        DEFINE_CREATE_T(ArchiveTextBufferWriter)
 
                                     ArchiveTextBufferWriter		(void);
 

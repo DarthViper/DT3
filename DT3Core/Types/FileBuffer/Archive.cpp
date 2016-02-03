@@ -49,6 +49,8 @@ Archive& Archive::add_post_process		(const std::shared_ptr<ArchiveProcess> &proc
 
 uint32_t Archive::version() const                {	return Config::engine_version();			}
 
+uint32_t Archive::app_version() const                {	return AppConfig::app_version();	}
+
 std::shared_ptr<ArchiveProcess> Archive::pop_post_process (void)
 {
     if (_processes.size() <= 0) {

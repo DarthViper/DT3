@@ -31,8 +31,8 @@ namespace DT3 {
 
 class ArchiveBinaryBufferReader: public Archive {
     public:
-        DEFINE_TYPE(ArchiveBinaryBufferReader,Archive)
-        DEFINE_CREATE
+        //DEFINE_TYPE(ArchiveBinaryBufferReader,Archive)
+        DEFINE_CREATE_T(ArchiveBinaryBufferReader)
 
                                     ArchiveBinaryBufferReader   (void);
 

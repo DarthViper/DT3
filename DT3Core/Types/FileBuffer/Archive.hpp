@@ -10,7 +10,6 @@
 ///
 //==============================================================================
 
-#include "DT3Core/Types/Base/BaseClass.hpp"
 #include <list>
 #include <memory>
 
@@ -31,9 +30,9 @@ class AppConfig;
 /// Class
 //==============================================================================
 
-class Archive: public BaseClass {
+class Archive /*: public BaseClass*/ {
     public:
-        DEFINE_TYPE(Archive,BaseClass)
+        //DEFINE_TYPE(Archive,BaseClass)
 
                                         Archive                     (void);
 
@@ -69,7 +68,7 @@ class Archive: public BaseClass {
 
                 /// Returns the version of the archive
                 /// \return the version of the archive
-                virtual uint32_t                  app_version                 (void) const                {	return AppConfig::app_version();	}
+                virtual uint32_t                  app_version                 (void) const;
 
                 /// Returns wether the archive is reading or not
                 /// \return archive is loading

@@ -29,8 +29,8 @@ namespace DT3 {
 
 class ArchiveBinaryWriter: public Archive {
     public:
-        DEFINE_TYPE(ArchiveBinaryWriter,Archive)
-        DEFINE_CREATE
+        //DEFINE_TYPE(ArchiveBinaryWriter,Archive)
+        DEFINE_CREATE_T(ArchiveBinaryWriter)
 
                                 ArchiveBinaryWriter		(void);
 

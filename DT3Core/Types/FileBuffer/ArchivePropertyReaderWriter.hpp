@@ -33,8 +33,8 @@ class ArchiveData;
 
 class ArchivePropertyReaderWriter: public Archive {
     public:
-        DEFINE_TYPE(ArchivePropertyReaderWriter,Archive)
-        DEFINE_CREATE
+        //DEFINE_TYPE(ArchivePropertyReaderWriter,Archive)
+        DEFINE_CREATE_T(ArchivePropertyReaderWriter)
 
                                                     ArchivePropertyReaderWriter		(void);
 

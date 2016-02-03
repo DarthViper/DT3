@@ -31,8 +31,8 @@ namespace DT3 {
 
 class ArchiveTextReader: public Archive {
     public:
-        DEFINE_TYPE(ArchiveTextReader,Archive)
-        DEFINE_CREATE
+        //DEFINE_TYPE(ArchiveTextReader,Archive)
+        DEFINE_CREATE_T(ArchiveTextReader)
 
                                 ArchiveTextReader		(void);
 

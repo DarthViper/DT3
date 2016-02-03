@@ -1,6 +1,4 @@
 #pragma once
-#ifndef DT3_ARCHIVETEXTBUFFERREADER
-#define DT3_ARCHIVETEXTBUFFERREADER
 //==============================================================================
 ///
 ///	File: ArchiveTextBufferReader.hpp
@@ -30,8 +28,8 @@ namespace DT3 {
 
 class ArchiveTextBufferReader: public Archive {
     public:
-        DEFINE_TYPE(ArchiveTextBufferReader,Archive)
-        DEFINE_CREATE
+        //DEFINE_TYPE(ArchiveTextBufferReader,Archive)
+        DEFINE_CREATE_T(ArchiveTextBufferReader)
 
                                     ArchiveTextBufferReader		(void);
 
@@ -78,5 +76,3 @@ class ArchiveTextBufferReader: public Archive {
 //==============================================================================
 
 } // DT3
-
-#endif
