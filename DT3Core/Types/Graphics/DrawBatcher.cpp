@@ -141,7 +141,7 @@ void	 DrawBatcher::batch_split (void)
 //==============================================================================
 //==============================================================================
 
-void DrawBatcher::draw (DTboolean clear_when_done)
+void DrawBatcher::draw (bool clear_when_done)
 {
 	if (System::renderer() && _cur_index > 0) {
     

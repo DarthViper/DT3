@@ -56,8 +56,8 @@ class ScriptingDelayOff: public ScriptingBase {
         DTfloat						_time;
         DTfloat						_delay;
 
-        Plug<DTboolean>				_in;
-        Plug<DTboolean>				_out;
+        Plug<bool>				_in;
+        Plug<bool>				_out;
 };
 
 //==============================================================================

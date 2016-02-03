@@ -150,10 +150,10 @@ void ScriptingKeyframesBool::set_key (void)
 	const std::vector<PlugBase*> outgoing = _out.outgoing_connections();
 	if (outgoing.size() > 0) {
 		// get first connected plug
-		Plug<DTboolean> *outplug = static_cast<Plug<DTboolean>*>(*(outgoing.begin()));
+		Plug<bool> *outplug = static_cast<Plug<bool>*>(*(outgoing.begin()));
 		
 		// get the value of the first connected plug
-		DTboolean val = outplug->value_without_compute();
+		bool val = outplug->value_without_compute();
 				
 		// clear any existing key
 		clear_key();
@@ -184,7 +184,7 @@ void ScriptingKeyframesBool::clear_key (void)
 //==============================================================================
 //==============================================================================
 
-DTboolean ScriptingKeyframesBool::compute (const PlugBase *plug)
+bool ScriptingKeyframesBool::compute (const PlugBase *plug)
 {
 	PROFILER(SCRIPTING);
 

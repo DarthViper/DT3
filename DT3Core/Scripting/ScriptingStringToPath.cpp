@@ -98,7 +98,7 @@ void ScriptingStringToPath::archive (const std::shared_ptr<Archive> &archive)
 //==============================================================================
 //==============================================================================
 
-DTboolean ScriptingStringToPath::compute (const PlugBase *plug)
+bool ScriptingStringToPath::compute (const PlugBase *plug)
 {
 	PROFILER(SCRIPTING);
 

@@ -132,7 +132,7 @@ class PropertyAnimatorHandleBase: public BaseClass {
 
         /// Tick animator
         /// \param dt timestep for this animation
-        virtual DTboolean       tick                        (const DTfloat dt) = 0;
+        virtual bool       tick                        (const DTfloat dt) = 0;
 };
 
 template<typename CLASS, typename U, typename V>
@@ -195,7 +195,7 @@ class PropertyAnimatorHandle: public PropertyAnimatorHandleBase {
 
         /// Tick animator
         /// \param dt timestep for this animation
-        virtual DTboolean       tick (const DTfloat dt)
+        virtual bool       tick (const DTfloat dt)
         {
             if (_object.expired()) {
                 return false;
@@ -325,7 +325,7 @@ class PropertyAnimator {
 
         /// Tick animator
         /// \param dt timestep for this animation
-        static DTboolean        is_animating    (void)  {   return _properties.size() > 0;  }
+        static bool        is_animating    (void)  {   return _properties.size() > 0;  }
 
     private:
         static std::list<std::shared_ptr<PropertyAnimatorHandleBase>>  _properties;

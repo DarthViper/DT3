@@ -99,7 +99,7 @@ void ScriptingCOS::archive (const std::shared_ptr<Archive> &archive)
 //==============================================================================
 //==============================================================================
 
-DTboolean ScriptingCOS::compute (const PlugBase *plug)
+bool ScriptingCOS::compute (const PlugBase *plug)
 {
 	PROFILER(SCRIPTING);
 

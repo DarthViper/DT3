@@ -61,17 +61,17 @@ void ImporterMaterialMAT::parse_depth_stencil_block (MaterialResource *target)
 		if (token == "}")	break;
         
         if (MoreStrings::iequals(token,"DepthEnable"))                {     _tokenizer.assume_next_token("=");
-                                                                            target->set_depth_enable(static_cast<DTboolean>(_tokenizer.next_token_number()));
+                                                                            target->set_depth_enable(static_cast<bool>(_tokenizer.next_token_number()));
                                                                             continue;   }
         if (MoreStrings::iequals(token,"DepthWriteMask"))             {     _tokenizer.assume_next_token("=");
-                                                                            target->set_depth_write_mask(static_cast<DTboolean>(_tokenizer.next_token_number()));
+                                                                            target->set_depth_write_mask(static_cast<bool>(_tokenizer.next_token_number()));
                                                                             continue;   }
         if (MoreStrings::iequals(token,"DepthFunc"))                  {     _tokenizer.assume_next_token("=");
                                                                             target->set_depth_func((DT3GLComparison) _tokenizer.next_token_number());
                                                                             continue;   }
 
         if (MoreStrings::iequals(token,"StencilEnable"))              {     _tokenizer.assume_next_token("=");
-                                                                            target->set_stencil_enable(static_cast<DTboolean>(_tokenizer.next_token_number()));
+                                                                            target->set_stencil_enable(static_cast<bool>(_tokenizer.next_token_number()));
                                                                             continue;   }
         if (MoreStrings::iequals(token,"StencilReadMask"))            {     _tokenizer.assume_next_token("=");
                                                                             target->set_stencil_read_mask(_tokenizer.next_token_hex());
@@ -125,7 +125,7 @@ void ImporterMaterialMAT::parse_blend_block (MaterialResource *target)
 		if (token == "}")	break;
         
         if (MoreStrings::iequals(token,"BlendEnable"))                {     _tokenizer.assume_next_token("=");
-                                                                            target->set_blend_enable(static_cast<DTboolean>(_tokenizer.next_token_number()));
+                                                                            target->set_blend_enable(static_cast<bool>(_tokenizer.next_token_number()));
                                                                             continue;   }
         if (MoreStrings::iequals(token,"BlendFunc"))                  {     _tokenizer.assume_next_token("=");
                                                                             target->set_src_blend((DT3GLBlend) _tokenizer.next_token_number());
@@ -136,10 +136,10 @@ void ImporterMaterialMAT::parse_blend_block (MaterialResource *target)
                                                                             target->set_dest_blend_alpha((DT3GLBlend) _tokenizer.next_token_number());
                                                                             continue;   }
         if (MoreStrings::iequals(token,"ColorMask"))                  {     _tokenizer.assume_next_token("=");
-                                                                            target->set_render_target_write_mask_r(static_cast<DTboolean>(_tokenizer.next_token_number()));
-                                                                            target->set_render_target_write_mask_g(static_cast<DTboolean>(_tokenizer.next_token_number()));
-                                                                            target->set_render_target_write_mask_b(static_cast<DTboolean>(_tokenizer.next_token_number()));
-                                                                            target->set_render_target_write_mask_a(static_cast<DTboolean>(_tokenizer.next_token_number()));
+                                                                            target->set_render_target_write_mask_r(static_cast<bool>(_tokenizer.next_token_number()));
+                                                                            target->set_render_target_write_mask_g(static_cast<bool>(_tokenizer.next_token_number()));
+                                                                            target->set_render_target_write_mask_b(static_cast<bool>(_tokenizer.next_token_number()));
+                                                                            target->set_render_target_write_mask_a(static_cast<bool>(_tokenizer.next_token_number()));
                                                                             continue;   }
     
 		_tokenizer.syntax_error("Unknown Token " + token);
@@ -173,7 +173,7 @@ void ImporterMaterialMAT::parse_rasterizer_block (MaterialResource *target)
                                                                             target->set_depth_bias_clamp(_tokenizer.next_token_number());
                                                                             continue;   }
         if (MoreStrings::iequals(token,"ScissorEnable"))              {     _tokenizer.assume_next_token("=");
-                                                                            target->set_scissor_enable(static_cast<DTboolean>(_tokenizer.next_token_number()));
+                                                                            target->set_scissor_enable(static_cast<bool>(_tokenizer.next_token_number()));
                                                                             continue;   }
         
 		_tokenizer.syntax_error("Unknown Token " + token);

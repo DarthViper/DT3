@@ -53,17 +53,17 @@ class ScriptingSequencer: public ScriptingBase {
         void                        tick                    (const DTfloat dt);
 
     private:
-        Plug<DTboolean>				_go;
-        Plug<DTboolean>				_repeat;
+        Plug<bool>				_go;
+        Plug<bool>				_repeat;
 
-        Plug<DTboolean>				_out1;
-        Plug<DTboolean>				_out2;
-        Plug<DTboolean>				_out3;
-        Plug<DTboolean>				_out4;
-        Plug<DTboolean>				_out5;
-        Plug<DTboolean>				_out6;
-        Plug<DTboolean>				_out7;
-        Plug<DTboolean>				_out8;
+        Plug<bool>				_out1;
+        Plug<bool>				_out2;
+        Plug<bool>				_out3;
+        Plug<bool>				_out4;
+        Plug<bool>				_out5;
+        Plug<bool>				_out6;
+        Plug<bool>				_out7;
+        Plug<bool>				_out8;
 
         Plug<DTfloat>				_out_time1;
         Plug<DTfloat>				_out_time2;

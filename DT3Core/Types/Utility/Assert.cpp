@@ -38,14 +38,14 @@ void AssertImpl::call_assert_msg (const DTcharacter* file, const DTcharacter* fu
         (*_callback_assert_msg)(file, func, line);  
     else {
         LOG_MESSAGE << "ASSERT: In file " << file << " in function " << func << " on line " << line;
-        DT3_DEBUG_BREAK
+        dt3_debug_break();
         exit(1);
     }
 }
 
 void AssertImpl::call_assert_break (const DTcharacter* file, const DTcharacter* func, const DTint line)
 {
-    DT3_DEBUG_BREAK
+    dt3_debug_break();
     exit(1);
 }
 

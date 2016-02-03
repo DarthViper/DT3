@@ -91,32 +91,32 @@ class EventInfo {
 
         /// Returns no draw flag
         /// \return No draw flag
-        inline DTboolean                is_no_draw		(void) const				{	return _is_no_draw;							}
+        inline bool                is_no_draw		(void) const				{	return _is_no_draw;							}
 
         /// Sets the no draw flag
         /// \param flag no draw flag
         /// \return This event info
-        inline EventInfo&               set_no_draw		(const DTboolean flag)		{	_is_no_draw = flag;	return *this;			}
+        inline EventInfo&               set_no_draw		(const bool flag)		{	_is_no_draw = flag;	return *this;			}
 
 
         /// Returns is input flag
         /// \return is input
-        inline DTboolean                is_input        (void) const				{	return _is_input;							}
+        inline bool                is_input        (void) const				{	return _is_input;							}
 
         /// Sets the is input flag
         /// \param flag is input flag
         /// \return This event info
-        inline EventInfo&               set_input		(const DTboolean flag)		{	_is_input = flag;	return *this;			}
+        inline EventInfo&               set_input		(const bool flag)		{	_is_input = flag;	return *this;			}
 
 
         /// Returns is output flag
         /// \return is output
-        inline DTboolean                is_output		(void) const				{	return _is_output;							}
+        inline bool                is_output		(void) const				{	return _is_output;							}
 
         /// Sets the is output flag
         /// \param flag is output flag
         /// \return This event info
-        inline EventInfo&               set_output		(const DTboolean flag)		{	_is_output = flag;	return *this;			}
+        inline EventInfo&               set_output		(const bool flag)		{	_is_output = flag;	return *this;			}
 
 
         /// Returns the next info object in the list

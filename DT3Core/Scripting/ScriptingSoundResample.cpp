@@ -110,7 +110,7 @@ void ScriptingSoundResample::archive (const std::shared_ptr<Archive> &archive)
 //==============================================================================
 //==============================================================================
 
-DTboolean ScriptingSoundResample::compute (const PlugBase *plug)
+bool ScriptingSoundResample::compute (const PlugBase *plug)
 {
 	PROFILER(SOUND);
 

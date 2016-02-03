@@ -95,7 +95,7 @@ class ScriptingVector3Filter2Pole: public ScriptingBase {
         DTfloat                         _freq_3db;
         DTfloat                         _freq_sampling;
 
-        DTboolean                       _initialized;
+        bool                       _initialized;
 
         struct FilterBank {
             Filters _fx,_fy,_fz;

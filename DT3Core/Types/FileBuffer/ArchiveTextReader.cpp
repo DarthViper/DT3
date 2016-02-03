@@ -179,12 +179,12 @@ DTuint ArchiveTextReader::app_version (void) const
 //==============================================================================
 //==============================================================================
 
-DTboolean ArchiveTextReader::is_reading (void) const
+bool ArchiveTextReader::is_reading (void) const
 {
 	return true;
 }
 
-DTboolean ArchiveTextReader::is_writing (void) const
+bool ArchiveTextReader::is_writing (void) const
 {
 	return false;
 }

@@ -1,6 +1,4 @@
 #pragma once
-#ifndef DT3_SCRIPTINGSOUNDRANDOMIZER
-#define DT3_SCRIPTINGSOUNDRANDOMIZER
 //==============================================================================
 ///
 ///	File: ScriptingSoundRandomizer.hpp
@@ -14,6 +12,7 @@
 
 #include "DT3Core/Scripting/ScriptingSoundBase.hpp"
 #include "DT3Core/Types/Sound/SoundPacket.hpp"
+#include "DT3Core/Types/Node/Event.hpp"
 
 //==============================================================================
 //==============================================================================
@@ -46,7 +45,7 @@ class ScriptingSoundRandomizer: public ScriptingSoundBase {
     public:
         /// Computes the value of the node
         /// \param plug plug to compute
-        DTboolean					compute                     (const PlugBase *plug);
+        bool					compute                     (const PlugBase *plug);
 
         /// Toggle Event
         void                        randomizeInputs             (PlugNode *sender);
@@ -73,5 +72,3 @@ class ScriptingSoundRandomizer: public ScriptingSoundBase {
 //==============================================================================
 
 } // DT3
-
-#endif

@@ -90,7 +90,7 @@ class URL {
 
         /// Checks to see if it is a valid URL
         /// \return valid URL
-        static DTboolean        is_URL              (const std::string &s);
+        static bool        is_URL              (const std::string &s);
 
     private:
         std::string             _url;

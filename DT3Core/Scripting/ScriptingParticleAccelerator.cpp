@@ -137,7 +137,7 @@ void ScriptingParticleAccelerator::tick (const DTfloat dt)
 //==============================================================================
 //==============================================================================
 
-DTboolean ScriptingParticleAccelerator::compute (const PlugBase *plug)
+bool ScriptingParticleAccelerator::compute (const PlugBase *plug)
 {
 	PROFILER(PARTICLES);
 

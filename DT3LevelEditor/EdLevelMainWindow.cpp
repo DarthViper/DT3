@@ -53,6 +53,7 @@
 #include "DT3Core/Types/Utility/CommandContext.hpp"
 #include "DT3Core/Types/Utility/MoreStrings.hpp"
 #include "DT3Core/Types/Node/Group.hpp"
+#include "DT3Core/Types/Node/Event.hpp"
 #include "DT3Core/Types/FileBuffer/ArchiveTextWriter.hpp"
 #include "DT3Core/Types/FileBuffer/ArchiveObjectQueue.hpp"
 #include "DT3Core/Components/ComponentBase.hpp"

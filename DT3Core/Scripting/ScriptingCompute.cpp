@@ -672,7 +672,7 @@ void ScriptingCompute::set_variables(ExpressionParser &p)
 //==============================================================================
 //==============================================================================
 
-DTboolean ScriptingCompute::compute (const PlugBase *plug)
+bool ScriptingCompute::compute (const PlugBase *plug)
 {
 	PROFILER(SCRIPTING);
 

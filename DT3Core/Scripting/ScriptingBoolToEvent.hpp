@@ -1,6 +1,4 @@
 #pragma once
-#ifndef DT3_ScriptingBoolToEvent
-#define DT3_ScriptingBoolToEvent
 //==============================================================================
 ///
 ///	File: ScriptingBoolToEvent.hpp
@@ -13,6 +11,7 @@
 //==============================================================================
 
 #include "DT3Core/Scripting/ScriptingBase.hpp"
+#include "DT3Core/Types/Node/Event.hpp"
 
 //==============================================================================
 //==============================================================================
@@ -53,8 +52,8 @@ class ScriptingBoolToEvent: public ScriptingBase {
         void                        tick                        (const DTfloat dt);
 
     private:
-        Plug<DTboolean>				_in;
-        DTboolean                   _last_in;
+        Plug<bool>				_in;
+        bool                   _last_in;
         Event                       _out_positive;
         Event                       _out_negative;
 };
@@ -63,5 +62,3 @@ class ScriptingBoolToEvent: public ScriptingBase {
 //==============================================================================
 
 } // DT3
-
-#endif

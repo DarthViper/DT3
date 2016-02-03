@@ -1,6 +1,4 @@
 #pragma once
-#ifndef DT3__DEBUG
-#define DT3__DEBUG
 //==============================================================================
 ///
 ///	File: Debug.hpp
@@ -21,34 +19,20 @@ namespace DT3 {
 
 //==============================================================================
 //==============================================================================
-
+inline void dt3_debug_break() {
 #ifdef DT3_DEBUG
-
-    #if DT3_COMPILER == DT3_GCC
-
-        #if DT3_CPU == DT3_INTEL
-            #define DT3_DEBUG_BREAK {__asm__("int $3\n" : : );}
+    #if DT3_CPU == DT3_INTEL
+        #if DT3_COMPILER == DT3_GCC
+            asm volatile ("int3;");
+        #elif DT3_COMPILER == DT3_VISUALC
+            asm { int 3 };
         #else
-            #define DT3_DEBUG_BREAK
-        #endif
-
-    #elif DT3_COMPILER == DT3_VISUALC
-        #define DT3_DEBUG_BREAK     {	asm { int 3 };	}
-    #else
-        #define DT3_DEBUG_BREAK
-    #endif	// DT3_COMPILER
-
-#else
-    #define DT3_DEBUG_BREAK
-
+        #endif	// DT3_COMPILER
+    #endif
 #endif	// DT3_DEBUG
-
+}
 
 //==============================================================================
 //==============================================================================
 
 } // DT3
-
-#endif
-
-

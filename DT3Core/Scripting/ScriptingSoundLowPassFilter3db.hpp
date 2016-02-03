@@ -47,7 +47,7 @@ class ScriptingSoundLowPassFilter3db: public ScriptingSoundBase {
 
         /// Computes the value of the node
         /// \param plug plug to compute
-        DTboolean					compute					(const PlugBase *plug);
+        bool					compute					(const PlugBase *plug);
 
     private:
         Plug<SoundPacket>         _sound_packet_in;

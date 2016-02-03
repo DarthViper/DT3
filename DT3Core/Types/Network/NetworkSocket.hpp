@@ -61,7 +61,7 @@ class NetworkSocket: public BaseClass {
 
         /// Checks if the socket structure address is empty or not
         /// \return Socket is empty
-        DTboolean				is_empty                    (void) const				{	return _data.size() == 0;			}
+        bool				is_empty                    (void) const				{	return _data.size() == 0;			}
 
     private:
         friend int operator == (const NetworkSocket& a, const NetworkSocket& b);

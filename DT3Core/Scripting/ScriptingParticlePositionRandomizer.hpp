@@ -45,9 +45,9 @@ class ScriptingParticlePositionRandomizer: public ScriptingBase {
     public:
         /// Computes the value of the node
         /// \param plug plug to compute
-        DTboolean					compute					(const PlugBase *plug);
+        bool					compute					(const PlugBase *plug);
 
-        DEFINE_ACCESSORS(continuous, set_continuous, DTboolean, _continuous);
+        DEFINE_ACCESSORS(continuous, set_continuous, bool, _continuous);
         DEFINE_ACCESSORS(min_x, set_min_x, DTfloat, _min_x);
         DEFINE_ACCESSORS(max_x, set_max_x, DTfloat, _max_x);
         DEFINE_ACCESSORS(min_y, set_min_y, DTfloat, _min_y);
@@ -56,7 +56,7 @@ class ScriptingParticlePositionRandomizer: public ScriptingBase {
         DEFINE_ACCESSORS(max_z, set_max_z, DTfloat, _max_z);
 
     private:
-        DTboolean									_continuous;
+        bool									_continuous;
 
         Plug<DTfloat>								_min_x;
         Plug<DTfloat>								_max_x;

@@ -124,7 +124,7 @@ void ScriptingVector3Mul3::archive (const std::shared_ptr<Archive> &archive)
 //==============================================================================
 //==============================================================================
 
-DTboolean ScriptingVector3Mul3::compute (const PlugBase *plug)
+bool ScriptingVector3Mul3::compute (const PlugBase *plug)
 {
 	PROFILER(SCRIPTING);
 

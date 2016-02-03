@@ -42,7 +42,7 @@ class BinaryBufferStream: public BinaryStream {
         public:
 
                 Stream&                     operator<<              (const Stream::FS)	{	return *this;	}
-                Stream&                     operator<<              (const DTboolean n);
+                Stream&                     operator<<              (const bool n);
                 Stream&                     operator<<              (const DTbyte n);
                 Stream&                     operator<<              (const DTshort n);
                 Stream&                     operator<<              (const DTint n);
@@ -63,7 +63,7 @@ class BinaryBufferStream: public BinaryStream {
                 Stream&                     operator<<              (const BinaryBufferStream& n);
 
 
-                Stream&                     operator>>              (DTboolean &n);
+                Stream&                     operator>>              (bool &n);
                 Stream&                     operator>>              (DTbyte &n);
                 Stream&                     operator>>              (DTshort &n);
                 Stream&                     operator>>              (DTint &n);

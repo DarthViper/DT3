@@ -73,7 +73,7 @@ CommandResult ParticleSystem_cmd::do_particles_to_code (CommandContext &ctx, con
     // Dump all particle system nodes
     //
     
-    DTboolean           burst = false;
+    bool           burst = false;
     DTfloat             burst_time = 0.0F;
     
     std::list<std::shared_ptr<WorldNode>>    nodes;

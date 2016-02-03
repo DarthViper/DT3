@@ -32,7 +32,7 @@ void PropertyAnimator::tick (const DTfloat dt)
     for (auto i = _properties.begin(); i != _properties.end();) {
     
         // Clean out the list as we go
-        DTboolean success = (**i).tick(dt);
+        bool success = (**i).tick(dt);
         if (success) {
             ++i;
         } else {

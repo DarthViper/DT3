@@ -55,7 +55,7 @@ class UnitTest: public BaseClass {
 
 #define TEST_ASSERTION(cond) \
     { \
-        DTboolean correct = false; \
+        bool correct = false; \
         correct = (cond); \
         if (!correct) { \
             LOG_MESSAGE << "*** Failed assertion: " << __FILE__ << " " << __LINE__; \

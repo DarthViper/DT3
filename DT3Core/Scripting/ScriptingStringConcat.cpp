@@ -116,7 +116,7 @@ void ScriptingStringConcat::archive (const std::shared_ptr<Archive> &archive)
 //==============================================================================
 //==============================================================================
 
-DTboolean ScriptingStringConcat::compute (const PlugBase *plug)
+bool ScriptingStringConcat::compute (const PlugBase *plug)
 {
 	PROFILER(SCRIPTING);
 

@@ -124,7 +124,7 @@ void ScriptingParticleTimeScaler::archive (const std::shared_ptr<Archive> &archi
 //==============================================================================
 //==============================================================================
 
-DTboolean ScriptingParticleTimeScaler::compute (const PlugBase *plug)
+bool ScriptingParticleTimeScaler::compute (const PlugBase *plug)
 {
 	PROFILER(PARTICLES);
 

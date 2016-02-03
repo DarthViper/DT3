@@ -116,7 +116,7 @@ void ScriptingColorInterpolator::archive (const std::shared_ptr<Archive> &archiv
 //==============================================================================
 //==============================================================================
 
-DTboolean ScriptingColorInterpolator::compute (const PlugBase *plug)
+bool ScriptingColorInterpolator::compute (const PlugBase *plug)
 {
 	PROFILER(SCRIPTING);
 

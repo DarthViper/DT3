@@ -53,7 +53,7 @@ class Resource: public BaseClass {
 
         /// Checks if a reload is needed
         /// \return reload needed
-        virtual DTboolean           is_changed        (void) const;
+        virtual bool           is_changed        (void) const;
 
         //
         // Queries for the paths

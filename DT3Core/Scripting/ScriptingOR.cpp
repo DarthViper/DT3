@@ -177,7 +177,7 @@ void ScriptingOR::archive (const std::shared_ptr<Archive> &archive)
 //==============================================================================
 //==============================================================================
 
-DTboolean ScriptingOR::compute (const PlugBase *plug)
+bool ScriptingOR::compute (const PlugBase *plug)
 {
 	PROFILER(SCRIPTING);
 

@@ -155,7 +155,7 @@ class GameMainThread {
         };
 
         static State                                    _state;
-        static DTboolean                                _stop;
+        static bool                                _stop;
 
         static std::thread                              _event_queue_thread;
         static std::mutex                               _event_queue_mutex;

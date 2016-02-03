@@ -140,7 +140,7 @@ class MoreMath {
         /// \param thresh threshold
         /// \return is approximately equal
         template<typename T>
-        static inline DTboolean approximately_equal (T a, T b, T thresh)
+        static inline bool approximately_equal (T a, T b, T thresh)
         {
             T delta = a - b;
             return ((delta * delta) <= (thresh * thresh));
@@ -303,7 +303,7 @@ class MoreMath {
         /// Checks is a value is a power of 2
         /// \param v value
         /// \return return wether is power of 2 or not
-        static inline DTboolean	is_power_2      (DTuint v)
+        static inline bool	is_power_2      (DTuint v)
         {
             return (!(v & (v-1)));
         }

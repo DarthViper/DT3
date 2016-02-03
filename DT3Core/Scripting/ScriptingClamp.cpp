@@ -116,7 +116,7 @@ void ScriptingClamp::archive (const std::shared_ptr<Archive> &archive)
 //==============================================================================
 //==============================================================================
 
-DTboolean ScriptingClamp::compute (const PlugBase *plug)
+bool ScriptingClamp::compute (const PlugBase *plug)
 {
 	PROFILER(SCRIPTING);
 

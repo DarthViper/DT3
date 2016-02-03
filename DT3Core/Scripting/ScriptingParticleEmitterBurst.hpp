@@ -1,6 +1,4 @@
 #pragma once
-#ifndef DT3_SCRIPTINGPARTICLEEMITTERBURST
-#define DT3_SCRIPTINGPARTICLEEMITTERBURST
 //==============================================================================
 ///
 ///	File: ScriptingParticleEmitterBurst.hpp
@@ -13,7 +11,7 @@
 //==============================================================================
 
 #include "DT3Core/Scripting/ScriptingParticleEmitter.hpp"
-
+#include "DT3Core/Types/Node/Event.hpp"
 //==============================================================================
 //==============================================================================
 
@@ -64,7 +62,7 @@ class ScriptingParticleEmitterBurst: public ScriptingParticleEmitter {
         DEFINE_ACCESSORS(num_variation, set_num_variation, DTint, _num_variation);
         DEFINE_ACCESSORS(spawn_translation, set_spawn_translation, Vector3, _spawn_translation);
         DEFINE_ACCESSORS(max_lifetime, set_max_lifetime, DTfloat, _max_lifetime);
-        DEFINE_ACCESSORS(active, set_active, DTboolean, _active);
+        DEFINE_ACCESSORS(active, set_active, bool, _active);
 
 #ifdef DT3_EDITOR
         /// Dumps the C++ code that can be used to initialize an object of this type.
@@ -81,10 +79,10 @@ class ScriptingParticleEmitterBurst: public ScriptingParticleEmitter {
         Plug<Vector3>								_spawn_translation;
         Plug<DTfloat>								_max_lifetime;
 
-        Plug<DTboolean>								_active;
+        Plug<bool>								_active;
         Event                                       _active_e;
 
-        DTboolean									_last_active;
+        bool									_last_active;
 
         DTint										_max_num;
 
@@ -95,5 +93,3 @@ class ScriptingParticleEmitterBurst: public ScriptingParticleEmitter {
 //==============================================================================
 
 } // DT3
-
-#endif

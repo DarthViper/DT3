@@ -490,7 +490,7 @@ void GUIObject::scroll_contents (DTfloat dx, DTfloat dy)
         i->set_translation( i->translation() + Vector3(dx, dy, 0.0F) );
 }
 
-DTboolean GUIObject::is_contents_animating (void) const
+bool GUIObject::is_contents_animating (void) const
 {
     if (has_anim_key())
         return true;

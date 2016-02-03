@@ -130,7 +130,7 @@ void ScriptingCameraShake::tick (const DTfloat dt)
 //==============================================================================
 //==============================================================================
 
-DTboolean ScriptingCameraShake::compute (const PlugBase *plug)
+bool ScriptingCameraShake::compute (const PlugBase *plug)
 {
 	PROFILER(SCRIPTING);
 

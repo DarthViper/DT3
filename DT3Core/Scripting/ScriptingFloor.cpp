@@ -98,7 +98,7 @@ void ScriptingFloor::archive (const std::shared_ptr<Archive> &archive)
 //==============================================================================
 //==============================================================================
 
-DTboolean ScriptingFloor::compute (const PlugBase *plug)
+bool ScriptingFloor::compute (const PlugBase *plug)
 {
 	PROFILER(SCRIPTING);
 

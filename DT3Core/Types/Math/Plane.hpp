@@ -52,8 +52,8 @@ class Plane {
 
     public:
 
-        inline DTboolean			operator ==                     (const Plane& rhs) const				{	return	n == rhs.n && d == rhs.d;   }
-        inline DTboolean			operator !=                     (const Plane& rhs) const				{	return	n != rhs.n || d != rhs.d;   }
+        inline bool			operator ==                     (const Plane& rhs) const				{	return	n == rhs.n && d == rhs.d;   }
+        inline bool			operator !=                     (const Plane& rhs) const				{	return	n != rhs.n || d != rhs.d;   }
 
 
         DEFINE_ACCESSORS(D, set_d, DTfloat, d)
@@ -72,12 +72,12 @@ class Plane {
         /// Check if a sphere is completely in front of the plane
         /// \param s sphere
         /// \return is in front
-        DTboolean                   is_sphere_completely_in_front   (const Vector3 &translation, const Sphere &s) const;
+        bool                   is_sphere_completely_in_front   (const Vector3 &translation, const Sphere &s) const;
 
         /// Check if a sphere is completely behind the plane
         /// \param s sphere
         /// \return is behind
-        DTboolean                   is_sphere_completely_in_back    (const Vector3 &translation, const Sphere &s) const;
+        bool                   is_sphere_completely_in_back    (const Vector3 &translation, const Sphere &s) const;
 
         /// Distance from plane to a box
         /// \param box Box

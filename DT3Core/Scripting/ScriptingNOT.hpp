@@ -43,11 +43,11 @@ class ScriptingNOT: public ScriptingBase {
     public:
         /// Computes the value of the node
         /// \param plug plug to compute
-        DTboolean					compute					(const PlugBase *plug);
+        bool					compute					(const PlugBase *plug);
 
     private:
-        Plug<DTboolean>				_in;
-        Plug<DTboolean>				_out;
+        Plug<bool>				_in;
+        Plug<bool>				_out;
 
 };
 

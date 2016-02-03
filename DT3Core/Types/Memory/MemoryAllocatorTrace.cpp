@@ -26,8 +26,8 @@ namespace DT3 {
 //==============================================================================
 
 std::mutex  MemoryAllocatorTrace::_alloc_mutex;
-DTboolean   MemoryAllocatorTrace::_alloc_recording = false;
-DTboolean   MemoryAllocatorTrace::_alloc_checking = false;
+bool   MemoryAllocatorTrace::_alloc_recording = false;
+bool   MemoryAllocatorTrace::_alloc_checking = false;
 
 MemoryAllocatorTrace::allocations_map_type& MemoryAllocatorTrace::allocations(void)
 {
@@ -101,7 +101,7 @@ void MemoryAllocatorTrace::check_allocations (void)
 #endif
 }
 
-void MemoryAllocatorTrace::enable_check_allocations(DTboolean check)
+void MemoryAllocatorTrace::enable_check_allocations(bool check)
 {
     _alloc_checking = check;
 }

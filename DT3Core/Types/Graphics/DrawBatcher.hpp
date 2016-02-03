@@ -118,10 +118,10 @@ class DrawBatcher {
         DrawBatcher&    n   (const Vector3 &n)                              {   ASSERT(_format & FMT_N);  ASSERT(_cur_index < _size_hint); BATCH_N[_cur_index] = n;                return *this;    }
         DrawBatcher&    n   (DTfloat x, DTfloat y, DTfloat z)               {   ASSERT(_format & FMT_N);  ASSERT(_cur_index < _size_hint); BATCH_N[_cur_index] = Vector3(x,y,z);   return *this;    }
 
-        DrawBatcher&    t0  (const Vector2 &t0)                             {   ASSERT(_format & FMT_T0); ASSERT(_cur_index < _size_hint); BATCH_T0[_cur_index] = t0;              return *this;    }
+        DrawBatcher&    t0  (Vector2 t0)                                    {   ASSERT(_format & FMT_T0); ASSERT(_cur_index < _size_hint); BATCH_T0[_cur_index] = t0;              return *this;    }
         DrawBatcher&    t0  (DTfloat s, DTfloat t)                          {   ASSERT(_format & FMT_T0); ASSERT(_cur_index < _size_hint); BATCH_T0[_cur_index] = {s,t};    return *this;    }
 
-        DrawBatcher&    t1  (const Vector2 &t1)                             {   ASSERT(_format & FMT_T1); ASSERT(_cur_index < _size_hint); BATCH_T1[_cur_index] = t1;              return *this;    }
+        DrawBatcher&    t1  (Vector2 t1)                                    {   ASSERT(_format & FMT_T1); ASSERT(_cur_index < _size_hint); BATCH_T1[_cur_index] = t1;              return *this;    }
         DrawBatcher&    t1  (DTfloat s, DTfloat t)                          {   ASSERT(_format & FMT_T1); ASSERT(_cur_index < _size_hint); BATCH_T1[_cur_index] = {s,t};    return *this;    }
 
         DrawBatcher&    c   (const Color4f &c)                              {   ASSERT(_format & FMT_C);  ASSERT(_cur_index < _size_hint); BATCH_C[_cur_index] = Color4b(c);       return *this;    }
@@ -133,7 +133,7 @@ class DrawBatcher {
         DrawBatcher&    cf  (DTfloat r, DTfloat g, DTfloat b, DTfloat a)    {   ASSERT(_format & FMT_CF); ASSERT(_cur_index < _size_hint); BATCH_CF[_cur_index] = Color4f(r,g,b,a);return *this;    }
 
         /// Perform the drawing of the batch
-        void			draw				(DTboolean clear_when_done = true);
+        void			draw				(bool clear_when_done = true);
 
     private:
         void            screen_opened       (DTuint width, DTuint height);

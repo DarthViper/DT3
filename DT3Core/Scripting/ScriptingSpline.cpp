@@ -429,7 +429,7 @@ void ScriptingSpline::interpolate (DTfloat d, Matrix4 &transform)
 //==============================================================================
 //==============================================================================
 
-DTboolean ScriptingSpline::compute (const PlugBase *plug)
+bool ScriptingSpline::compute (const PlugBase *plug)
 {
 	PROFILER(SCRIPTING);
     

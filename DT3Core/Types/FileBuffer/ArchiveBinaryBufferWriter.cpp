@@ -62,12 +62,12 @@ void ArchiveBinaryBufferWriter::pop_domain (void)
 //==============================================================================
 //==============================================================================
 
-DTboolean ArchiveBinaryBufferWriter::is_reading (void) const
+bool ArchiveBinaryBufferWriter::is_reading (void) const
 {
 	return false;
 }
 
-DTboolean ArchiveBinaryBufferWriter::is_writing (void) const
+bool ArchiveBinaryBufferWriter::is_writing (void) const
 {
 	return true;
 }

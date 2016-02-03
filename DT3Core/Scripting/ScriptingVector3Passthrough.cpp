@@ -107,7 +107,7 @@ void ScriptingVector3Passthrough::archive (const std::shared_ptr<Archive> &archi
 //==============================================================================
 //==============================================================================
 
-DTboolean ScriptingVector3Passthrough::compute (const PlugBase *plug)
+bool ScriptingVector3Passthrough::compute (const PlugBase *plug)
 {
 	PROFILER(SCRIPTING);
 

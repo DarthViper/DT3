@@ -256,7 +256,7 @@ void ScriptingKeyframesVector2::interpolate (DTfloat t, Vector2 &translation) co
 //==============================================================================
 //==============================================================================
 
-DTboolean ScriptingKeyframesVector2::compute (const PlugBase *plug)
+bool ScriptingKeyframesVector2::compute (const PlugBase *plug)
 {
 	PROFILER(SCRIPTING);
 

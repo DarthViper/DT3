@@ -156,7 +156,7 @@ void ScriptingSoundBiquadFilter::archive (const std::shared_ptr<Archive> &archiv
 //==============================================================================
 //==============================================================================
 
-DTboolean ScriptingSoundBiquadFilter::compute (const PlugBase *plug)
+bool ScriptingSoundBiquadFilter::compute (const PlugBase *plug)
 {
 	PROFILER(SOUND);
 

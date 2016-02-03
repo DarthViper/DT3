@@ -57,13 +57,13 @@ class ScriptingParticleRepel: public ScriptingBase {
         DEFINE_ACCESSORS(force, set_force, DTfloat, _force);
         DEFINE_ACCESSORS(distance, set_distance, DTfloat, _distance);
         DEFINE_ACCESSORS(translation, set_translation, Vector3, _translation);
-        DEFINE_ACCESSORS(active, set_active, DTboolean, _active);
+        DEFINE_ACCESSORS(active, set_active, bool, _active);
 
     private:
         Plug<DTfloat>								_force;
         Plug<Vector3>								_translation;
         Plug<DTfloat>								_distance;
-        Plug<DTboolean>								_active;
+        Plug<bool>								_active;
 
         Plug<std::shared_ptr<Particles>>		_in;
         Plug<std::shared_ptr<Particles>>		_out;

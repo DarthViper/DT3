@@ -1,6 +1,4 @@
 #pragma once
-#ifndef DT3_SCRIPTINGLOADCONFIG
-#define DT3_SCRIPTINGLOADCONFIG
 //==============================================================================
 ///
 ///	File: ScriptingLoadConfig.hpp
@@ -14,6 +12,7 @@
 
 #include "DT3Core/Scripting/ScriptingBase.hpp"
 #include "DT3Core/Types/FileBuffer/FilePath.hpp"
+#include "DT3Core/Types/Node/Event.hpp"
 
 //==============================================================================
 //==============================================================================
@@ -56,5 +55,3 @@ class ScriptingLoadConfig: public ScriptingBase {
 //==============================================================================
 
 } // DT3
-
-#endif

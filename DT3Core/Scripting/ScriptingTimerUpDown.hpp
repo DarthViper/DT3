@@ -57,14 +57,14 @@ class ScriptingTimerUpDown: public ScriptingBase {
         DTfloat						_upper_range;
 
         Plug<DTfloat>				_speed;
-        Plug<DTboolean>				_active;
+        Plug<bool>				_active;
 
         Plug<DTfloat>				_time;
         Plug<DTfloat>				_t;
-        Plug<DTboolean>				_counting_up;
-        Plug<DTboolean>				_counting_down;
+        Plug<bool>				_counting_up;
+        Plug<bool>				_counting_down;
 
-        DTboolean                   _is_counting_up;
+        bool                   _is_counting_up;
 
 };
 

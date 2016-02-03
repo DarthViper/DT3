@@ -123,7 +123,7 @@ void ScriptingParticleKillZone::archive (const std::shared_ptr<Archive> &archive
 //==============================================================================
 //==============================================================================
 
-DTboolean ScriptingParticleKillZone::compute (const PlugBase *plug)
+bool ScriptingParticleKillZone::compute (const PlugBase *plug)
 {
 	PROFILER(PARTICLES);
 

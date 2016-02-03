@@ -192,7 +192,7 @@ void ScriptingSlerp::archive (const std::shared_ptr<Archive> &archive)
 //==============================================================================
 //==============================================================================
 
-DTboolean ScriptingSlerp::compute (const PlugBase *plug)
+bool ScriptingSlerp::compute (const PlugBase *plug)
 {
 	PROFILER(SCRIPTING);
 

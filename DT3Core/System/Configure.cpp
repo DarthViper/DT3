@@ -219,7 +219,7 @@ void Configure::import_config(const FilePath &pathname)
 //==============================================================================
 //==============================================================================
 
-DTboolean Configure::setup_system_globals    (void)
+bool Configure::setup_system_globals    (void)
 {
     LOG_MESSAGE << "setup_system_globals entered";
 

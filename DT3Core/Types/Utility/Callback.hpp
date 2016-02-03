@@ -30,7 +30,7 @@ class Callback {
         DEFINE_TYPE_BASE(Callback)
         virtual ~Callback(void)    {}
         virtual void operator ()(T... t) = 0;
-        virtual DTboolean	operator ==	(const Callback& rhs) const = 0;
+        virtual bool	operator ==	(const Callback& rhs) const = 0;
 };
 
 template <typename CLASS,typename... T>
@@ -52,7 +52,7 @@ class CallbackImpl: public Callback<T...> {
             (_obj->*_fn)(t...);
         }
 
-        virtual DTboolean operator == (const CBT& rhs) const
+        virtual bool operator == (const CBT& rhs) const
         {
             const CallbackImpl<CLASS,T...> *rhs_type = checked_cast<const CallbackImpl<CLASS,T...> *>(&rhs);
             return rhs_type && (_obj == rhs_type->_obj) && (_fn == rhs_type->_fn);
@@ -80,7 +80,7 @@ class CallbackStaticImpl: public Callback<T...> {
                 (*_fn)(t...);
         }
 
-        virtual DTboolean operator == (const CBT& rhs) const
+        virtual bool operator == (const CBT& rhs) const
         {
             const CallbackStaticImpl<T...> *rhs_type = checked_cast<const CallbackStaticImpl<T...> *>(&rhs);
             return rhs_type && (_fn == rhs_type->_fn);

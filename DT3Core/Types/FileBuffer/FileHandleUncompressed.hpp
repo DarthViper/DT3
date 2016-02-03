@@ -53,7 +53,7 @@ class FileHandleUncompressed: public FileHandle {
         /// \param pathname path to file
         /// \param read read or write
         /// \return Error
-        virtual DTerr           open_file			(const FilePath &pathname, DTboolean read = true);
+        virtual DTerr           open_file			(const FilePath &pathname, bool read = true);
 
         /// Close the file handle
         virtual void            close				(void);
@@ -92,7 +92,7 @@ class FileHandleUncompressed: public FileHandle {
 
         /// Checks for end of file
         /// \return End of file
-        virtual DTboolean       is_eof				(void)	{	return _file.eof();		}
+        virtual bool       is_eof				(void)	{	return _file.eof();		}
 
 
         /// Reads a chunk of raw binary data

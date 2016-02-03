@@ -51,7 +51,7 @@ class GUILayout: public BaseClass {
         /// \param size_target Rectangle to fit widgets into
         /// \param time Animation time
         /// \param spline Use spline interpolation
-        virtual void                                    animate             (const Rectangle &size_target, DTfloat time, DTboolean spline = false) = 0;
+        virtual void                                    animate             (const Rectangle &size_target, DTfloat time, bool spline = false) = 0;
 
         /// Add an animation key
         /// \param key animation key to add

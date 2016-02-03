@@ -108,7 +108,7 @@ void ScriptingLessThan::archive (const std::shared_ptr<Archive> &archive)
 //==============================================================================
 //==============================================================================
 
-DTboolean ScriptingLessThan::compute (const PlugBase *plug)
+bool ScriptingLessThan::compute (const PlugBase *plug)
 {
 	PROFILER(SCRIPTING);
 

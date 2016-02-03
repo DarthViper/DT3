@@ -98,7 +98,7 @@ class FileHandleCompressedFD: public FileHandle {
 
         /// Checks for end of file
         /// \return End of file
-        virtual DTboolean       is_eof                  (void)	{	return _eof;		}
+        virtual bool       is_eof                  (void)	{	return _eof;		}
 
 
         /// Reads a chunk of raw binary data
@@ -115,7 +115,7 @@ class FileHandleCompressedFD: public FileHandle {
 
     private:
         std::vector<DTubyte>    _data;
-        DTboolean               _eof;
+        bool               _eof;
         DTsize                  _file_g;
 };
 

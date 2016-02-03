@@ -106,7 +106,7 @@ void ScriptingParticleFriction::archive (const std::shared_ptr<Archive> &archive
 //==============================================================================
 //==============================================================================
 
-DTboolean ScriptingParticleFriction::compute (const PlugBase *plug)
+bool ScriptingParticleFriction::compute (const PlugBase *plug)
 {
 	PROFILER(PARTICLES);
 

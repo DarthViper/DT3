@@ -51,13 +51,13 @@ class Tokenizer: public BaseClass {
         /// \param pathname Path to file
         /// \param append Append to end of token stream, otherwise insert at current location
         /// \return Error
-        DTerr							load_token_stream               (const FilePath &pathname, DTboolean append = true);
+        DTerr							load_token_stream               (const FilePath &pathname, bool append = true);
 
         /// Loads a token stream from a string
         /// \param s String to parse
         /// \param append Append to end of token stream, otherwise insert at current location
         /// \return Error
-        DTerr							set_token_stream                (const std::string &s, DTboolean append = true);
+        DTerr							set_token_stream                (const std::string &s, bool append = true);
 
         /// Called when the tokenizer gets a syntax error  TODO: Make Callback
         /// \param err Error Message
@@ -86,25 +86,25 @@ class Tokenizer: public BaseClass {
         /// If the token is a preprocessor macro, then process it
         /// \param token token to process
         /// \return was processed
-        DTboolean						parse_preprocessor_macros       (std::string token);
+        bool						parse_preprocessor_macros       (std::string token);
 
         /// Returns wether the token stream is empty or not
         /// \return returns true token stream is empty
-        DTboolean						is_done                         (void)              {	return _pending_tokens.size() == 0;	}
+        bool						is_done                         (void)              {	return _pending_tokens.size() == 0;	}
 
         /// Returns a list of all of the files that were loaded during processing of this stream
         /// \return Files processed
         const std::vector<FilePath>&    dependencies                    (void) const        {   return _dependencies;               }
 
     private:
-        DTerr							parse_token_stream              (const std::string &contents, DTboolean append = true);
+        DTerr							parse_token_stream              (const std::string &contents, bool append = true);
 
-        DTboolean						parse_whitespace                (const std::string &buffer, DTint &pos, std::list<std::string> &tokens);
-        DTboolean						parse_symbol                    (const std::string &buffer, DTint &pos, std::list<std::string> &tokens);
-        DTboolean						parse_equals                    (const std::string &buffer, DTint &pos, std::list<std::string> &tokens);
-        DTboolean						parse_braces                    (const std::string &buffer, DTint &pos, std::list<std::string> &tokens);
-        DTboolean						parse_string                    (const std::string &buffer, DTint &pos, std::list<std::string> &tokens);
-        DTboolean						parse_multi_param               (const std::string &buffer, DTint &pos, std::list<std::string> &tokens);
+        bool						parse_whitespace                (const std::string &buffer, DTint &pos, std::list<std::string> &tokens);
+        bool						parse_symbol                    (const std::string &buffer, DTint &pos, std::list<std::string> &tokens);
+        bool						parse_equals                    (const std::string &buffer, DTint &pos, std::list<std::string> &tokens);
+        bool						parse_braces                    (const std::string &buffer, DTint &pos, std::list<std::string> &tokens);
+        bool						parse_string                    (const std::string &buffer, DTint &pos, std::list<std::string> &tokens);
+        bool						parse_multi_param               (const std::string &buffer, DTint &pos, std::list<std::string> &tokens);
 
         void							preprocessor_include            (void);
         void							preprocessor_if                 (void);

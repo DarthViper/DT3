@@ -107,7 +107,7 @@ void ScriptingSubtract::archive (const std::shared_ptr<Archive> &archive)
 //==============================================================================
 //==============================================================================
 
-DTboolean ScriptingSubtract::compute (const PlugBase *plug)
+bool ScriptingSubtract::compute (const PlugBase *plug)
 {
 	PROFILER(SCRIPTING);
 

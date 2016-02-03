@@ -100,14 +100,14 @@ class MemoryAllocatorTrace {
         static void                 check_allocations       (void);
 
         /// check allocations
-        static void                 enable_check_allocations(DTboolean check);
+        static void                 enable_check_allocations(bool check);
 
     private:
 
 
         static std::mutex           _alloc_mutex;
-        static DTboolean            _alloc_recording;
-        static DTboolean            _alloc_checking;
+        static bool            _alloc_recording;
+        static bool            _alloc_checking;
 
         static const DTuint MAGIC = 0xDEADBEEF;
 

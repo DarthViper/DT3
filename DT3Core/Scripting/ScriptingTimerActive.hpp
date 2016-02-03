@@ -54,7 +54,7 @@ class ScriptingTimerActive: public ScriptingBase {
 
     private:
         Plug<DTfloat>                   _speed;
-        Plug<DTboolean>                 _count;
+        Plug<bool>                 _count;
         Plug<DTfloat>                   _time;
 };
 

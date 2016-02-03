@@ -76,8 +76,8 @@ class Mesh: public BaseClass {
         DEFINE_ACCESSORS(material, set_material, std::string, _material)
 
     private:
-        DTuint                          hash_vertex         (DTuint i, DTboolean vertex_only = false);
-        DTboolean                       equal_vertex        (DTuint v1, DTuint v2, DTboolean vertex_only = false);
+        DTuint                          hash_vertex         (DTuint i, bool vertex_only = false);
+        bool                       equal_vertex        (DTuint v1, DTuint v2, bool vertex_only = false);
 
         std::string                     _name;
         std::string                     _material;  // Name of imported material

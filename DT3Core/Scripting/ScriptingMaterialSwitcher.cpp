@@ -166,7 +166,7 @@ void ScriptingMaterialSwitcher::archive (const std::shared_ptr<Archive> &archive
 //==============================================================================
 //==============================================================================
 
-DTboolean ScriptingMaterialSwitcher::compute (const PlugBase *plug)
+bool ScriptingMaterialSwitcher::compute (const PlugBase *plug)
 {
 	PROFILER(SCRIPTING);
 

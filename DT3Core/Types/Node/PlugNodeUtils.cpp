@@ -11,6 +11,7 @@
 
 #include "DT3Core/Types/Node/PlugNodeUtils.hpp"
 #include "DT3Core/Types/Node/Group.hpp"
+#include "DT3Core/Types/Node/Event.hpp"
 #include "DT3Core/Objects/ObjectBase.hpp"
 #include <algorithm>
 

@@ -187,7 +187,7 @@ DTerr TextureResource3D::import (const FilePath &pathname, std::string args)
 //==============================================================================
 //==============================================================================
 
-void TextureResource3D::set_textels (const DTint width, const DTint height, const DTint depth, std::shared_ptr<DTubyte> &textels, DT3GLTextelFormat format, DTboolean mipmapped, DTuint flags)
+void TextureResource3D::set_textels (const DTint width, const DTint height, const DTint depth, std::shared_ptr<DTubyte> &textels, DT3GLTextelFormat format, bool mipmapped, DTuint flags)
 {
     _textels = textels;
 

@@ -46,13 +46,13 @@ class ScriptingParticleColorSequencer: public ScriptingBase {
     public:
         /// Computes the value of the node
         /// \param plug plug to compute
-        DTboolean					compute					(const PlugBase *plug);
+        bool					compute					(const PlugBase *plug);
 
 
-        DEFINE_ACCESSORS(r_mask, set_r_mask, DTboolean, _r_mask);
-        DEFINE_ACCESSORS(g_mask, set_g_mask, DTboolean, _g_mask);
-        DEFINE_ACCESSORS(b_mask, set_b_mask, DTboolean, _b_mask);
-        DEFINE_ACCESSORS(a_mask, set_a_mask, DTboolean, _a_mask);
+        DEFINE_ACCESSORS(r_mask, set_r_mask, bool, _r_mask);
+        DEFINE_ACCESSORS(g_mask, set_g_mask, bool, _g_mask);
+        DEFINE_ACCESSORS(b_mask, set_b_mask, bool, _b_mask);
+        DEFINE_ACCESSORS(a_mask, set_a_mask, bool, _a_mask);
 
         DEFINE_ACCESSORS(time_0, set_time_0, DTfloat, _t[0]);
         DEFINE_ACCESSORS(color_0, set_color_0, Color4b, _c[0]);
@@ -80,10 +80,10 @@ class ScriptingParticleColorSequencer: public ScriptingBase {
     private:
         static const DTint NUM_ENTRIES = 8;
 
-        DTboolean		_r_mask;
-        DTboolean		_g_mask;
-        DTboolean		_b_mask;
-        DTboolean		_a_mask;
+        bool		_r_mask;
+        bool		_g_mask;
+        bool		_b_mask;
+        bool		_a_mask;
 
         DTfloat			_t[NUM_ENTRIES];
         Color4b			_c[NUM_ENTRIES];

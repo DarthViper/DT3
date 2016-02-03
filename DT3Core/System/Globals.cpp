@@ -49,7 +49,7 @@ void Globals::destroy (void)
 //==============================================================================
 //==============================================================================
 
-DTboolean Globals::has_global (const std::string &name_with_case)
+bool Globals::has_global (const std::string &name_with_case)
 {
     std::string name = MoreStrings::lowercase(name_with_case);
 
@@ -79,7 +79,7 @@ std::string Globals::global (const std::string &name_with_case)
         return "";
 }
 
-DTboolean Globals::global (const std::string &name_with_case, std::string &value)
+bool Globals::global (const std::string &name_with_case, std::string &value)
 {
     // Convert name to lowercase
     std::string name = MoreStrings::lowercase(name_with_case);
@@ -151,13 +151,13 @@ void Globals::set_global_default (const std::string &name_with_case, const std::
 std::string Globals::substitute_global	(const std::string &s)
 {
     std::string value;
-    DTboolean success = substitute_global (s, value);
+    bool success = substitute_global (s, value);
 
     if (success)	return value;
     else			return s;
 }
 
-DTboolean Globals::substitute_global (const std::string &s, std::string &value)
+bool Globals::substitute_global (const std::string &s, std::string &value)
 {
     value = s;
 

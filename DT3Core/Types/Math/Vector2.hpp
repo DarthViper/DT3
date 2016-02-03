@@ -55,12 +55,12 @@ class Vector2 {
         /// Description
         /// \param param description
         /// \return description
-        inline DTboolean	operator ==				(const Vector2& rhs) const  {   return x == rhs.x && y == rhs.y;		}
+        inline bool	operator ==				(Vector2 rhs) const  {   return x == rhs.x && y == rhs.y;		}
 
         /// Description
         /// \param param description
         /// \return description
-        inline DTboolean	operator !=				(const Vector2& rhs) const  {	return x != rhs.x || y != rhs.y;		}
+        inline bool	operator !=				(Vector2 rhs) const  {	return x != rhs.x || y != rhs.y;		}
 
 
         /// Description
@@ -76,12 +76,12 @@ class Vector2 {
         /// Description
         /// \param param description
         /// \return description
-        inline Vector2 &    operator +=				(const Vector2& rhs)		{	x+=rhs.x;	y+=rhs.y;   return *this;	}
+        inline Vector2 &    operator +=				(Vector2 rhs)		{	x+=rhs.x;	y+=rhs.y;   return *this;	}
 
         /// Description
         /// \param param description
         /// \return description
-        inline Vector2 &    operator -=				(const Vector2& rhs)		{	x-=rhs.x;	y-=rhs.y;   return *this;	}
+        inline Vector2 &    operator -=				(Vector2 rhs)		{	x-=rhs.x;	y-=rhs.y;   return *this;	}
 
         /// Set each of the components to zero
         void				clear					(void)						{	x = y = 0.0F;							}
@@ -113,13 +113,13 @@ class Vector2 {
         /// \param a Vector 1
         /// \param b Vector 2
         /// \return Dot product
-        static DTfloat		dot						(const Vector2& a, const Vector2& b)	{	return a.x*b.x + a.y*b.y;		}
+        static DTfloat		dot						(Vector2 a, Vector2 b)	{	return a.x*b.x + a.y*b.y;		}
 
         /// perp dot (like 2D cross product) of two vectors
         /// \param a Vector 1
         /// \param b Vector 2
         /// \return Perp Dot product
-        static DTfloat		perp_dot                (const Vector2& a, const Vector2& b)    {	return a.x * b.y - a.y * b.x;	}
+        static DTfloat		perp_dot                (Vector2 a, Vector2 b)    {	return a.x * b.y - a.y * b.x;	}
 
     public:
             DTfloat x;
@@ -136,37 +136,37 @@ Stream& operator >>(Stream &s, Vector2&v);
 //==============================================================================
 //==============================================================================
 
-inline Vector2 operator + (const Vector2 &a, const Vector2 &b)
+inline Vector2 operator + (Vector2 a, Vector2 b)
 {
     return {a.x + b.x, a.y + b.y};
 }
 
-inline Vector2 operator - (const Vector2 &a, const Vector2 &b)
+inline Vector2 operator - (Vector2 a, Vector2 b)
 {
     return {a.x - b.x, a.y - b.y};
 }
 
-inline Vector2 operator - (const Vector2 &a)
+inline Vector2 operator - (Vector2 a)
 {
     return {-a.x, -a.y};
 }
 
-inline Vector2 operator * (const DTfloat a, const Vector2 &b)
+inline Vector2 operator * (const DTfloat a, Vector2 b)
 {
     return {b.x * a, b.y * a};
 }
 
-inline Vector2 operator * (const Vector2 &a, const DTfloat b)
+inline Vector2 operator * (Vector2 a, const DTfloat b)
 {
     return {a.x * b, a.y * b};
 }
 
-inline Vector2 operator * (const Vector2 &a, const Vector2 &b)
+inline Vector2 operator * (Vector2 a, Vector2 b)
 {
     return {a.x * b.x, a.y * b.y};
 }
 
-inline Vector2 operator / (const Vector2 &a, const DTfloat b)
+inline Vector2 operator / (Vector2 a, const DTfloat b)
 {
     return {a.x / b, a.y / b};
 }

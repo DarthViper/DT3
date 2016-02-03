@@ -40,7 +40,7 @@ class ScriptingKeyframesVector2: public ScriptingKeyframes {
     public:
         /// Computes the value of the node
         /// \param plug plug to compute
-        DTboolean					compute					(const PlugBase *plug);
+        bool					compute					(const PlugBase *plug);
 
         /// Set a key at the current time
         virtual void				set_key					(void);
@@ -100,10 +100,10 @@ class ScriptingKeyframesVector2: public ScriptingKeyframes {
 
         /// Is interpolated flag
         /// \return is interpolated
-        DTboolean					is_interpolated			(void)						{	return _interpolated;	}
+        bool					is_interpolated			(void)						{	return _interpolated;	}
 
     private:
-        DTboolean					_interpolated;
+        bool					_interpolated;
         Plug<DTfloat>				_t;
         Plug<Vector2>				_out;
         DTint						_id;

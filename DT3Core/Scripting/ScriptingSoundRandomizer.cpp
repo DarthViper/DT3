@@ -221,7 +221,7 @@ void ScriptingSoundRandomizer::randomizeInputs (PlugNode *sender)
 //==============================================================================
 //==============================================================================
 
-DTboolean ScriptingSoundRandomizer::compute (const PlugBase *plug)
+bool ScriptingSoundRandomizer::compute (const PlugBase *plug)
 {
 	PROFILER(SOUND);
 

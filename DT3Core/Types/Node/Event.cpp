@@ -86,7 +86,7 @@ std::vector<Event*> Event::incoming_connections (void) const
     return connections()._incoming;
 }
 
-DTboolean Event::has_incoming_connection (void) const
+bool Event::has_incoming_connection (void) const
 {
     if (_connection_index == 0)
         return false;
@@ -150,7 +150,7 @@ std::vector<Event*> Event::outgoing_connections (void) const
     return connections()._outgoing;
 }
 
-DTboolean Event::has_outgoing_connection (void) const
+bool Event::has_outgoing_connection (void) const
 {
     if (_connection_index == 0)
         return false;

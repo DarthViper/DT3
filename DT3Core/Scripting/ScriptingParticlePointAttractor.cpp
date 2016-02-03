@@ -124,7 +124,7 @@ void ScriptingParticlePointAttractor::archive (const std::shared_ptr<Archive> &a
 //==============================================================================
 //==============================================================================
 
-DTboolean ScriptingParticlePointAttractor::compute (const PlugBase *plug)
+bool ScriptingParticlePointAttractor::compute (const PlugBase *plug)
 {
 	PROFILER(PARTICLES);
 

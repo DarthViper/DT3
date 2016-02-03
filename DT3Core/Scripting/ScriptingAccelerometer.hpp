@@ -61,7 +61,7 @@ class ScriptingAccelerometer: public ScriptingBase {
 #endif
 
     private:
-        Plug<DTboolean>             _enable;
+        Plug<bool>             _enable;
 
         Plug<Vector3>               _out;
         Plug<Vector3>               _out_low_freq;

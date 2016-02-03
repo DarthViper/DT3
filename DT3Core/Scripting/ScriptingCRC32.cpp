@@ -100,7 +100,7 @@ void ScriptingCRC32::archive (const std::shared_ptr<Archive> &archive)
 //==============================================================================
 //==============================================================================
 
-DTboolean ScriptingCRC32::compute (const PlugBase *plug)
+bool ScriptingCRC32::compute (const PlugBase *plug)
 {
 	PROFILER(SCRIPTING);
 

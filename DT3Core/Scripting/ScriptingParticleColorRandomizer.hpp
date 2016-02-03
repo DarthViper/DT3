@@ -45,7 +45,7 @@ class ScriptingParticleColorRandomizer: public ScriptingBase {
     public:
         /// Computes the value of the node
         /// \param plug plug to compute
-        DTboolean					compute					(const PlugBase *plug);
+        bool					compute					(const PlugBase *plug);
 
 
         DEFINE_ACCESSORS(r_mag, set_r_mag, DTfloat, _r_mag);

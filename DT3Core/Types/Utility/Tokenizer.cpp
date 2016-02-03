@@ -88,9 +88,9 @@ void Tokenizer::syntax_error(std::string err)
 //==============================================================================
 //==============================================================================
 
-DTboolean Tokenizer::parse_whitespace(const std::string &buffer, DTint &pos, std::list<std::string> &tokens)
+bool Tokenizer::parse_whitespace(const std::string &buffer, DTint &pos, std::list<std::string> &tokens)
 {
-    DTboolean had_space = false;
+    bool had_space = false;
 
     while ( (pos < (DTint) buffer.size()) && (::isspace(buffer[pos]) || buffer[pos] == ';') ) {
         ++pos;
@@ -103,7 +103,7 @@ DTboolean Tokenizer::parse_whitespace(const std::string &buffer, DTint &pos, std
 //==============================================================================
 //==============================================================================
 
-DTboolean Tokenizer::parse_symbol(const std::string &buffer, DTint &pos, std::list<std::string> &tokens)
+bool Tokenizer::parse_symbol(const std::string &buffer, DTint &pos, std::list<std::string> &tokens)
 {
     std::string token;
     token.reserve(128);
@@ -124,7 +124,7 @@ DTboolean Tokenizer::parse_symbol(const std::string &buffer, DTint &pos, std::li
 //==============================================================================
 //==============================================================================
 
-DTboolean Tokenizer::parse_equals(const std::string &buffer, DTint &pos, std::list<std::string> &tokens)
+bool Tokenizer::parse_equals(const std::string &buffer, DTint &pos, std::list<std::string> &tokens)
 {
     std::string token;
     token.reserve(128);
@@ -145,7 +145,7 @@ DTboolean Tokenizer::parse_equals(const std::string &buffer, DTint &pos, std::li
 //==============================================================================
 //==============================================================================
 
-DTboolean Tokenizer::parse_braces(const std::string &buffer, DTint &pos, std::list<std::string> &tokens)
+bool Tokenizer::parse_braces(const std::string &buffer, DTint &pos, std::list<std::string> &tokens)
 {
     std::string token;
     token.reserve(128);
@@ -166,12 +166,12 @@ DTboolean Tokenizer::parse_braces(const std::string &buffer, DTint &pos, std::li
 //==============================================================================
 //==============================================================================
 
-DTboolean Tokenizer::parse_string(const std::string &buffer, DTint &pos, std::list<std::string> &tokens)
+bool Tokenizer::parse_string(const std::string &buffer, DTint &pos, std::list<std::string> &tokens)
 {
     if (buffer[pos] != '\"')	return false;
     ++pos;
 
-    DTboolean escaped = false;
+    bool escaped = false;
     std::string token;
     token.reserve(128);
 
@@ -197,7 +197,7 @@ DTboolean Tokenizer::parse_string(const std::string &buffer, DTint &pos, std::li
 //==============================================================================
 //==============================================================================
 
-DTboolean Tokenizer::parse_multi_param(const std::string &buffer, DTint &pos, std::list<std::string> &tokens)
+bool Tokenizer::parse_multi_param(const std::string &buffer, DTint &pos, std::list<std::string> &tokens)
 {
     if (buffer[pos] != '(')	return false;
     ++pos;
@@ -220,7 +220,7 @@ DTboolean Tokenizer::parse_multi_param(const std::string &buffer, DTint &pos, st
 //==============================================================================
 //==============================================================================
 
-DTerr Tokenizer::load_token_stream (const FilePath &pathname, DTboolean append)
+DTerr Tokenizer::load_token_stream (const FilePath &pathname, bool append)
 {
     TextFileStream infile;
     DTerr err;
@@ -261,7 +261,7 @@ DTerr Tokenizer::load_token_stream (const FilePath &pathname, DTboolean append)
     return parse_token_stream(contents, append);
 }
 
-DTerr Tokenizer::set_token_stream (const std::string &s, DTboolean append)
+DTerr Tokenizer::set_token_stream (const std::string &s, bool append)
 {
     std::stringstream ss(s.c_str());
 
@@ -290,7 +290,7 @@ DTerr Tokenizer::set_token_stream (const std::string &s, DTboolean append)
     return parse_token_stream(contents, append);
 }
 
-DTerr Tokenizer::parse_token_stream (const std::string &contents, DTboolean append)
+DTerr Tokenizer::parse_token_stream (const std::string &contents, bool append)
 {
     // Parse out tokens
     std::list<std::string>	tokens;
@@ -471,7 +471,7 @@ void Tokenizer::preprocessor_print          (void)
 //==============================================================================
 //==============================================================================
 
-DTboolean Tokenizer::parse_preprocessor_macros (std::string token)
+bool Tokenizer::parse_preprocessor_macros (std::string token)
 {
     if (MoreStrings::iequals(token,"#include"))		{	preprocessor_include();		return true;	}
     if (MoreStrings::iequals(token,"#if"))			{	preprocessor_if();			return true;	}

@@ -61,7 +61,7 @@ class Globals {
         /// Checks to see if a global exists
         /// \param name name of global
         /// \return true or false if exists or not
-        static DTboolean                                    has_global				(const std::string &name_with_case);
+        static bool                                    has_global				(const std::string &name_with_case);
 
         /// Gets value of global
         /// \param name name of global
@@ -76,7 +76,7 @@ class Globals {
         /// Gets value of global
         /// \param name name of global
         /// \return value of global
-        static DTboolean                                    global                  (const std::string &name_with_case, std::string &value);
+        static bool                                    global                  (const std::string &name_with_case, std::string &value);
 
         /// Sets the value of a global
         /// \param name name of global
@@ -101,7 +101,7 @@ class Globals {
         /// \param s string to substitute
         /// \param value result string
         /// \return success
-        static DTboolean                                    substitute_global		(const std::string &s, std::string &value);
+        static bool                                    substitute_global		(const std::string &s, std::string &value);
 
         /// Loads all of the globals
         static void                                         load                    (void);

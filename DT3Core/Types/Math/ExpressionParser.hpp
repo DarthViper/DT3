@@ -46,12 +46,12 @@ class ExpressionParser:public BaseClass {
         /// Compile the expression
         /// \param s Expression string
         /// \return Success
-        DTboolean                   parse                   (const std::string &s);
+        bool                   parse                   (const std::string &s);
 
         /// Evaluate the expression
         /// \param result Where the result is stored
         /// \return Success
-        DTboolean                   eval                    (DTfloat &result);
+        bool                   eval                    (DTfloat &result);
 
         /// Set an external variable for the expression
         /// \param var variable name
@@ -61,17 +61,17 @@ class ExpressionParser:public BaseClass {
     private:
         struct Token {
             std::string             _token;
-            DTboolean               _unary;
+            bool               _unary;
             DTuint                  _type;
         };
 
-        DTboolean                   parse_whitespace        (const std::string &string, DTuint &pos, std::list<Token> &tokens);
-        DTboolean                   parse_comma             (const std::string &string, DTuint &pos, std::list<Token> &tokens);
-        DTboolean                   parse_operator          (const std::string &string, DTuint &pos, std::list<Token> &tokens);
-        DTboolean                   parse_function          (const std::string &string, DTuint &pos, std::list<Token> &tokens);
-        DTboolean                   parse_number            (const std::string &string, DTuint &pos, std::list<Token> &tokens);
-        DTboolean                   parse_variable          (const std::string &string, DTuint &pos, std::list<Token> &tokens);
-        DTboolean                   parse_bracket           (const std::string &string, DTuint &pos, std::list<Token> &tokens);
+        bool                   parse_whitespace        (const std::string &string, DTuint &pos, std::list<Token> &tokens);
+        bool                   parse_comma             (const std::string &string, DTuint &pos, std::list<Token> &tokens);
+        bool                   parse_operator          (const std::string &string, DTuint &pos, std::list<Token> &tokens);
+        bool                   parse_function          (const std::string &string, DTuint &pos, std::list<Token> &tokens);
+        bool                   parse_number            (const std::string &string, DTuint &pos, std::list<Token> &tokens);
+        bool                   parse_variable          (const std::string &string, DTuint &pos, std::list<Token> &tokens);
+        bool                   parse_bracket           (const std::string &string, DTuint &pos, std::list<Token> &tokens);
 
         enum {
             TYPE_OPERATOR,
@@ -83,7 +83,7 @@ class ExpressionParser:public BaseClass {
         };
 
         DTuint                      precedence              (Token *t);
-        DTboolean                   left_associative        (Token *t);
+        bool                   left_associative        (Token *t);
 
         std::list<Token>            _tokens;
         std::list<Token*>           _output_queue;

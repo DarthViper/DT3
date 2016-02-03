@@ -88,7 +88,7 @@ class FileHandle: public BaseClass {
 
         /// Checks for end of file
         /// \return End of file
-        virtual DTboolean       is_eof				(void) = 0;
+        virtual bool       is_eof				(void) = 0;
 
 
         /// Reads a chunk of raw binary data

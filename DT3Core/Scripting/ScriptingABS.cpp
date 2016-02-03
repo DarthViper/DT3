@@ -99,7 +99,7 @@ void ScriptingABS::archive (const std::shared_ptr<Archive> &archive)
 //==============================================================================
 //==============================================================================
 
-DTboolean ScriptingABS::compute (const PlugBase *plug)
+bool ScriptingABS::compute (const PlugBase *plug)
 {
 	PROFILER(SCRIPTING);
 

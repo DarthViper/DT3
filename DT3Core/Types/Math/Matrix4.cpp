@@ -192,7 +192,7 @@ Stream& operator >> (Stream &s, Matrix4 &m)
 /// operators
 //==============================================================================
 
-DTboolean Matrix4::operator == (const Matrix4 &rhs) const
+bool Matrix4::operator == (const Matrix4 &rhs) const
 {
 	return (    _m11 == rhs._m11	&& _m21 == rhs._m21     && _m31 == rhs._m31     && _m41 == rhs._m41	&&
                 _m12 == rhs._m12	&& _m22 == rhs._m22     && _m32 == rhs._m32     && _m42 == rhs._m42	&&
@@ -204,7 +204,7 @@ DTboolean Matrix4::operator == (const Matrix4 &rhs) const
 //==============================================================================
 //==============================================================================
 
-DTboolean Matrix4::operator != (const Matrix4 &rhs) const
+bool Matrix4::operator != (const Matrix4 &rhs) const
 {
 	return (    _m11 != rhs._m11	|| _m21 != rhs._m21     || _m31 != rhs._m31     || _m41 != rhs._m41	||
                 _m12 != rhs._m12	|| _m22 != rhs._m22     || _m32 != rhs._m32     || _m42 != rhs._m42	||

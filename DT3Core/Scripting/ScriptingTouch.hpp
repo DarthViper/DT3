@@ -70,21 +70,21 @@ class ScriptingTouch: public ScriptingBase {
         Plug<Vector2>				_touch_pos_1;
         Plug<Vector2>				_touch_vel_1;
         Plug<Vector2>				_touch_initial_1;
-        Plug<DTboolean>				_touch_active_1;
+        Plug<bool>				_touch_active_1;
 
         Plug<Vector2>				_touch_pos_2;
         Plug<Vector2>				_touch_vel_2;
         Plug<Vector2>				_touch_initial_2;
-        Plug<DTboolean>				_touch_active_2;
+        Plug<bool>				_touch_active_2;
 
         Plug<Vector2>				_touch_pos_3;
         Plug<Vector2>				_touch_vel_3;
         Plug<Vector2>				_touch_initial_3;
-        Plug<DTboolean>				_touch_active_3;
+        Plug<bool>				_touch_active_3;
 
-        DTboolean                   _clear_vel_1;
-        DTboolean                   _clear_vel_2;
-        DTboolean                   _clear_vel_3;
+        bool                   _clear_vel_1;
+        bool                   _clear_vel_2;
+        bool                   _clear_vel_3;
 };
 
 //==============================================================================

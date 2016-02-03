@@ -186,7 +186,7 @@ void ScriptingKeyframesGridImageData::clear_key (void)
 //==============================================================================
 //==============================================================================
 
-DTboolean ScriptingKeyframesGridImageData::compute (const PlugBase *plug)
+bool ScriptingKeyframesGridImageData::compute (const PlugBase *plug)
 {
 	PROFILER(SCRIPTING);
 

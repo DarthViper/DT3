@@ -66,8 +66,8 @@ class Vector3 {
 
     public:
 
-        inline DTboolean	operator ==				(const Vector3& rhs) const	{	return x == rhs.x && y == rhs.y && z == rhs.z;		}
-        inline DTboolean	operator !=				(const Vector3& rhs) const	{	return x != rhs.x || y != rhs.y || z != rhs.z;		}
+        inline bool	operator ==				(const Vector3& rhs) const	{	return x == rhs.x && y == rhs.y && z == rhs.z;		}
+        inline bool	operator !=				(const Vector3& rhs) const	{	return x != rhs.x || y != rhs.y || z != rhs.z;		}
 
         Vector3 &			operator *=				(const DTfloat rhs)			{	x*=rhs;		y*=rhs;		z*=rhs;		return *this;	}
         Vector3 &			operator /=				(const DTfloat rhs)			{	ASSERT(rhs != 0.0F);    x/=rhs;		y/=rhs;		z/=rhs;		return *this;	}

@@ -52,7 +52,7 @@ void ExpressionParser::set_variable (const std::string &var, const DTfloat &valu
 //==============================================================================
 //==============================================================================
 
-DTboolean ExpressionParser::parse_whitespace (const std::string &string, DTuint &pos, std::list<Token> &tokens)
+bool ExpressionParser::parse_whitespace (const std::string &string, DTuint &pos, std::list<Token> &tokens)
 {
     DTcharacter c = string[pos];
     if (::isspace(c)) {
@@ -63,7 +63,7 @@ DTboolean ExpressionParser::parse_whitespace (const std::string &string, DTuint 
     }
 }
 
-DTboolean ExpressionParser::parse_comma (const std::string &string, DTuint &pos, std::list<Token> &tokens)
+bool ExpressionParser::parse_comma (const std::string &string, DTuint &pos, std::list<Token> &tokens)
 {
     std::string token;
     DTcharacter c = string[pos];
@@ -84,7 +84,7 @@ DTboolean ExpressionParser::parse_comma (const std::string &string, DTuint &pos,
     }
 }
 
-DTboolean ExpressionParser::parse_operator (const std::string &string, DTuint &pos, std::list<Token> &tokens)
+bool ExpressionParser::parse_operator (const std::string &string, DTuint &pos, std::list<Token> &tokens)
 {
     std::string token;
     DTcharacter c = string[pos];
@@ -124,7 +124,7 @@ DTboolean ExpressionParser::parse_operator (const std::string &string, DTuint &p
     
 }
 
-DTboolean ExpressionParser::parse_function (const std::string &string, DTuint &pos, std::list<Token> &tokens)
+bool ExpressionParser::parse_function (const std::string &string, DTuint &pos, std::list<Token> &tokens)
 {
     std::string token;
     DTcharacter c = string[pos];
@@ -146,7 +146,7 @@ DTboolean ExpressionParser::parse_function (const std::string &string, DTuint &p
     return true;
 }
 
-DTboolean ExpressionParser::parse_number (const std::string &string, DTuint &pos, std::list<Token> &tokens)
+bool ExpressionParser::parse_number (const std::string &string, DTuint &pos, std::list<Token> &tokens)
 {
     std::string token;
     DTcharacter c = string[pos];
@@ -168,7 +168,7 @@ DTboolean ExpressionParser::parse_number (const std::string &string, DTuint &pos
     return true;
 }
 
-DTboolean ExpressionParser::parse_variable (const std::string &string, DTuint &pos, std::list<Token> &tokens)
+bool ExpressionParser::parse_variable (const std::string &string, DTuint &pos, std::list<Token> &tokens)
 {
     std::string token;
     DTcharacter c = string[pos];
@@ -194,7 +194,7 @@ DTboolean ExpressionParser::parse_variable (const std::string &string, DTuint &p
     return true;
 }
 
-DTboolean ExpressionParser::parse_bracket (const std::string &string, DTuint &pos, std::list<Token> &tokens)
+bool ExpressionParser::parse_bracket (const std::string &string, DTuint &pos, std::list<Token> &tokens)
 {
     std::string token;
     DTcharacter c = string[pos];
@@ -238,7 +238,7 @@ DTuint ExpressionParser::precedence(Token *t)
     return 0;
 }
 
-DTboolean ExpressionParser::left_associative(Token *t)
+bool ExpressionParser::left_associative(Token *t)
 {
     if (t->_token == "^")   return false;
     if (t->_token == ">")   return false;
@@ -254,7 +254,7 @@ DTboolean ExpressionParser::left_associative(Token *t)
 //==============================================================================
 //==============================================================================
 
-DTboolean ExpressionParser::parse (const std::string &contents)
+bool ExpressionParser::parse (const std::string &contents)
 {
     _tokens.clear();
     _output_queue.clear();
@@ -410,7 +410,7 @@ DTboolean ExpressionParser::parse (const std::string &contents)
 
 #define POP(a) { if (stack.size() == 0) return false; a = stack.back();   stack.pop_back();    }
 
-DTboolean ExpressionParser::eval (DTfloat &result)
+bool ExpressionParser::eval (DTfloat &result)
 {
     result = 0.0F;
     
@@ -440,7 +440,7 @@ DTboolean ExpressionParser::eval (DTfloat &result)
             continue;
         }
      
-        DTboolean unary = (**i)._unary;
+        bool unary = (**i)._unary;
         DTuint type = (**i)._type;
         
         // Functions
@@ -562,7 +562,7 @@ DTboolean ExpressionParser::eval (DTfloat &result)
                 DTfloat a,b;
                 POP(a);
                 POP(b);
-                stack.push_back( (static_cast<DTboolean>(a) || static_cast<DTboolean>(b)) ? 1.0F : 0.0F );
+                stack.push_back( (static_cast<bool>(a) || static_cast<bool>(b)) ? 1.0F : 0.0F );
                 continue;
             }
 
@@ -570,14 +570,14 @@ DTboolean ExpressionParser::eval (DTfloat &result)
                 DTfloat a,b;
                 POP(a);
                 POP(b);
-                stack.push_back( (static_cast<DTboolean>(a) && static_cast<DTboolean>(b)) ? 1.0F : 0.0F );
+                stack.push_back( (static_cast<bool>(a) && static_cast<bool>(b)) ? 1.0F : 0.0F );
                 continue;
             }
 
             if (op == "!" && unary) {
                 DTfloat a;
                 POP(a);
-                stack.push_back( (!static_cast<DTboolean>(a)) ? 1.0F : 0.0F );
+                stack.push_back( (!static_cast<bool>(a)) ? 1.0F : 0.0F );
                 continue;
             }
 

@@ -185,7 +185,7 @@ void ScriptingKeyframesMaterialResource::clear_key (void)
 //==============================================================================
 //==============================================================================
 
-DTboolean ScriptingKeyframesMaterialResource::compute (const PlugBase *plug)
+bool ScriptingKeyframesMaterialResource::compute (const PlugBase *plug)
 {
 	PROFILER(SCRIPTING);
 

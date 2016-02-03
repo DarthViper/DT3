@@ -28,7 +28,7 @@ DirectoryLister::DirectoryLister (void)
 
 }
 
-DirectoryLister::DirectoryLister (const FilePath &pathname, DTboolean recursive)
+DirectoryLister::DirectoryLister (const FilePath &pathname, bool recursive)
 {
 	scan_path (pathname, recursive);
 }
@@ -72,7 +72,7 @@ DirectoryLister::~DirectoryLister (void)
 //==============================================================================
 //==============================================================================
 
-void DirectoryLister::scan_path (const FilePath &pathname, DTboolean recursive)
+void DirectoryLister::scan_path (const FilePath &pathname, bool recursive)
 {
     HAL::list_directory(pathname, recursive, _paths);
 }
@@ -102,7 +102,7 @@ FilePath DirectoryLister::file_path (DTuint index)
 	return _paths[index];
 }
 
-DTboolean DirectoryLister::is_directory(DTuint index) const
+bool DirectoryLister::is_directory(DTuint index) const
 {
 	ASSERT(index >= 0 && index < _paths.size());
 	return HAL::is_dir(_paths[index]);

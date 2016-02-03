@@ -86,8 +86,8 @@ void Globals_test::run_test (void)
 	std::string substitution = Globals::substitute_global("Blah{TEST_A}Blah{TEST_B}");
 	TEST_ASSERTION(substitution == "BlahFooBarBlahBar");
 	
-	TEST_ASSERTION(MoreStrings::cast_from_string<DTboolean>(Globals::global("TEST_C")) == true);
-	TEST_ASSERTION(MoreStrings::cast_from_string<DTboolean>(Globals::global("TEST_D")) != true);
+	TEST_ASSERTION(MoreStrings::cast_from_string<bool>(Globals::global("TEST_C")) == true);
+	TEST_ASSERTION(MoreStrings::cast_from_string<bool>(Globals::global("TEST_D")) != true);
 	
 	TEST_ASSERTION(MoreStrings::cast_from_string<DTfloat>(Globals::global("TEST_E")) == 123.456F);
     

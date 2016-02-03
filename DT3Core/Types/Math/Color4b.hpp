@@ -47,8 +47,8 @@ class Color4b {
 
     public:
 
-        DTboolean								operator ==				(const Color4b& rhs) const	{	return r == rhs.r && g == rhs.g && b == rhs.b && a == rhs.a;	}
-        DTboolean								operator !=				(const Color4b& rhs) const	{	return r != rhs.r || g != rhs.g || b != rhs.b || a != rhs.a;	}
+        bool								operator ==				(const Color4b& rhs) const	{	return r == rhs.r && g == rhs.g && b == rhs.b && a == rhs.a;	}
+        bool								operator !=				(const Color4b& rhs) const	{	return r != rhs.r || g != rhs.g || b != rhs.b || a != rhs.a;	}
 
         //
         // Color4b setting routines
@@ -113,11 +113,11 @@ class Color4b {
 
         /// Returns wether the color is black
         /// \return is black
-        DTboolean								is_black                (void) const				{	return r == 0 && g == 0 && b == 0;		}
+        bool								is_black                (void) const				{	return r == 0 && g == 0 && b == 0;		}
 
         /// Returns wether the color is white
         /// \return is white
-        DTboolean								is_white                (void) const				{	return r == 255 && g == 255 && b == 255;	}
+        bool								is_white                (void) const				{	return r == 255 && g == 255 && b == 255;	}
 
 
         /// Some standard colors

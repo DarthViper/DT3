@@ -85,7 +85,7 @@ GlyphCacheEntry::~GlyphCacheEntry (void)
 //==============================================================================
 //==============================================================================
 
-DTboolean GlyphCacheEntry::operator == (const GlyphCacheEntry& rhs) const
+bool GlyphCacheEntry::operator == (const GlyphCacheEntry& rhs) const
 {
     return  (_font == rhs._font) &&
             (_c == rhs._c) &&
@@ -95,7 +95,7 @@ DTboolean GlyphCacheEntry::operator == (const GlyphCacheEntry& rhs) const
             (_scale == rhs._scale);
 }
 
-DTboolean GlyphCacheEntry::operator != (const GlyphCacheEntry& rhs) const
+bool GlyphCacheEntry::operator != (const GlyphCacheEntry& rhs) const
 {
     return  (_font != rhs._font) ||
             (_c != rhs._c) ||
@@ -108,7 +108,7 @@ DTboolean GlyphCacheEntry::operator != (const GlyphCacheEntry& rhs) const
 //==============================================================================
 //==============================================================================
 
-DTboolean GlyphCacheEntry::is_same_family (const std::shared_ptr<GlyphCacheEntry> &rhs)
+bool GlyphCacheEntry::is_same_family (const std::shared_ptr<GlyphCacheEntry> &rhs)
 {
     return  (_font == rhs->_font) &&
             (_size == rhs->_size) &&

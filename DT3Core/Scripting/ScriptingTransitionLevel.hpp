@@ -1,6 +1,4 @@
 #pragma once
-#ifndef DT3_SCRIPTINGTRANSITIONLEVEL
-#define DT3_SCRIPTINGTRANSITIONLEVEL
 //==============================================================================
 ///
 ///	File: ScriptingTransitionLevel.hpp
@@ -14,6 +12,7 @@
 
 #include "DT3Core/Scripting/ScriptingBase.hpp"
 #include "DT3Core/Types/FileBuffer/FilePath.hpp"
+#include "DT3Core/Types/Node/Event.hpp"
 #include <string>
 
 //==============================================================================
@@ -54,7 +53,7 @@ class ScriptingTransitionLevel: public ScriptingBase {
         Plug<std::string>			_progress;
         Plug<DTfloat>				_duration;
 
-        Plug<DTboolean>				_same_session;
+        Plug<bool>				_same_session;
 
         Event                       _transition_e;
 };
@@ -63,5 +62,3 @@ class ScriptingTransitionLevel: public ScriptingBase {
 //==============================================================================
 
 } // DT3
-
-#endif

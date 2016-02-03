@@ -167,7 +167,7 @@ void ScriptingParticlePath::interpolate (DTfloat t, Vector3 &translation) const
 //==============================================================================
 //==============================================================================
 
-DTboolean ScriptingParticlePath::compute (const PlugBase *plug)
+bool ScriptingParticlePath::compute (const PlugBase *plug)
 {
 	PROFILER(PARTICLES);
 

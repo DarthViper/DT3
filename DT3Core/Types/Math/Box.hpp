@@ -47,8 +47,8 @@ class Box: public Rectangle {
 
     public:
 
-        DTboolean               operator ==			(const Box& rhs) const;
-        DTboolean               operator !=			(const Box& rhs) const;
+        bool               operator ==			(const Box& rhs) const;
+        bool               operator !=			(const Box& rhs) const;
 
         /// Sets the size of the box given the extents along all 3 axes.
         /// \param minus_x Minimum Coordinate along the X axis
@@ -74,7 +74,7 @@ class Box: public Rectangle {
 
         /// Returns wether the box is still clear
         /// \return is box
-        DTboolean               is_clear            (void)          {   return _minus_x >= _plus_x || _minus_y >= _plus_y || _minus_z >= _plus_z;  }
+        bool               is_clear            (void)          {   return _minus_x >= _plus_x || _minus_y >= _plus_y || _minus_z >= _plus_z;  }
 
         /// Offset the rectangle
         /// \param offset offset for the rectangle
@@ -129,25 +129,25 @@ class Box: public Rectangle {
         /// Check for overlap beteen two rectangles
         /// \param other Other rectangle
         /// \return is touching
-        DTboolean               is_touching         (const Box &other);
+        bool               is_touching         (const Box &other);
 
         /// Check for overlap beteen two rectangles
         /// \param pt point
         /// \return is touching
-        DTboolean               is_touching			(const Vector3 &pt) const;
+        bool               is_touching			(const Vector3 &pt) const;
 
         /// Is this box touching an extruded sphere?
         /// \param start point
         /// \param end point
         /// \param radius radius
         /// \return is touching ray
-        DTboolean               is_touching         (const Vector3 &from, const Vector3 &to, const DTfloat r);
+        bool               is_touching         (const Vector3 &from, const Vector3 &to, const DTfloat r);
 
         /// Is this box touching a ray?
         /// \param start point
         /// \param end point
         /// \return is touching ray
-        DTboolean               is_touching         (const Vector3 &from, const Vector3 &to);
+        bool               is_touching         (const Vector3 &from, const Vector3 &to);
 
         /// Returns the distance from the rectangle to the point
         /// \param pt point

@@ -127,7 +127,7 @@ void ScriptingSoundReverb::archive (const std::shared_ptr<Archive> &archive)
 //==============================================================================
 //==============================================================================
 
-DTboolean ScriptingSoundReverb::compute (const PlugBase *plug)
+bool ScriptingSoundReverb::compute (const PlugBase *plug)
 {
 	PROFILER(SOUND);
 

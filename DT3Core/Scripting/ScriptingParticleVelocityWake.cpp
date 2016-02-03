@@ -124,7 +124,7 @@ void ScriptingParticleVelocityWake::archive (const std::shared_ptr<Archive> &arc
 //==============================================================================
 //==============================================================================
 
-DTboolean ScriptingParticleVelocityWake::compute (const PlugBase *plug)
+bool ScriptingParticleVelocityWake::compute (const PlugBase *plug)
 {
 	PROFILER(PARTICLES);
 

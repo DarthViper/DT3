@@ -98,7 +98,7 @@ void ScriptingSIN::archive (const std::shared_ptr<Archive> &archive)
 //==============================================================================
 //==============================================================================
 
-DTboolean ScriptingSIN::compute (const PlugBase *plug)
+bool ScriptingSIN::compute (const PlugBase *plug)
 {
 	PROFILER(SCRIPTING);
 

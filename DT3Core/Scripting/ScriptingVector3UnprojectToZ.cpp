@@ -111,7 +111,7 @@ void ScriptingVector3UnprojectToZ::archive (const std::shared_ptr<Archive> &arch
 //==============================================================================
 //==============================================================================
 
-DTboolean ScriptingVector3UnprojectToZ::compute (const PlugBase *plug)
+bool ScriptingVector3UnprojectToZ::compute (const PlugBase *plug)
 {
     PROFILER(SCRIPTING);
 

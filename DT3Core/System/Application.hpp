@@ -99,7 +99,7 @@ class Application: public BaseClass {
         /// Description
         /// \param param description
         /// \return description
-        DTboolean                       is_transitioning            (void) const	{	return _transition != NULL;	}
+        bool                       is_transitioning            (void) const	{	return _transition != NULL;	}
 
         /// Description
         /// \param param description
@@ -142,12 +142,12 @@ class Application: public BaseClass {
         // Virtual function forwarding so the callbacks follow virtual inheritance rules
         void                            forward_touch_gui           (const TouchEvent *event)   {   touch_gui(event);    }
 
-        DTboolean						_done;
+        bool						_done;
 
         TimerHires						_game_time;
 
-        DTboolean						_show_console;
-        DTboolean						_show_profiler;
+        bool						_show_console;
+        bool						_show_profiler;
 
         std::shared_ptr<World>          _obj_world;
         std::shared_ptr<World>          _obj_pending_world;

@@ -117,7 +117,7 @@ void	ImporterSoundWAV::read(BinaryFileStream &infile, ChunkHeader &v)
 //==============================================================================
 //==============================================================================
 
-DTboolean ImporterSoundWAV::is_type (DTcharacter id[4], const DTcharacter *id_str)
+bool ImporterSoundWAV::is_type (DTcharacter id[4], const DTcharacter *id_str)
 {
     return	id[0] == id_str[0] &&
             id[1] == id_str[1] &&

@@ -44,8 +44,8 @@ class Rectangle {
 
     public:
 
-        DTboolean               operator ==			(const Rectangle& rhs) const;
-        DTboolean               operator !=			(const Rectangle& rhs) const;
+        bool               operator ==			(const Rectangle& rhs) const;
+        bool               operator !=			(const Rectangle& rhs) const;
 
         /// Sets the extents of the rectangle
         /// \param minus_x Minimum Coordinate along the X axis
@@ -78,7 +78,7 @@ class Rectangle {
 
         /// Returns wether the rectangle is still clear
         /// \return is clear
-        DTboolean               is_clear            (void)          {   return _minus_x >= _plus_x || _minus_y >= _plus_y;  }
+        bool               is_clear            (void)          {   return _minus_x >= _plus_x || _minus_y >= _plus_y;  }
 
         /// Offset the rectangle
         /// \param offset offset for the rectangle
@@ -137,12 +137,12 @@ class Rectangle {
         /// Check for overlap beteen two rectangles
         /// \param other Other rectangle
         /// \return is touching
-        DTboolean               is_touching         (const Rectangle &other);
+        bool               is_touching         (const Rectangle &other);
 
         /// Check for overlap beteen two rectangles
         /// \param pt point
         /// \return is touching
-        DTboolean               is_touching			(const Vector2 &pt) const;
+        bool               is_touching			(const Vector2 &pt) const;
 
         /// Returns the distance from the rectangle to the point
         /// \param pt point

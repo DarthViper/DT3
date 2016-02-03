@@ -107,7 +107,7 @@ void ScriptingDivide::archive (const std::shared_ptr<Archive> &archive)
 //==============================================================================
 //==============================================================================
 
-DTboolean ScriptingDivide::compute (const PlugBase *plug)
+bool ScriptingDivide::compute (const PlugBase *plug)
 {
 	PROFILER(SCRIPTING);
 

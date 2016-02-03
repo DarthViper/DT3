@@ -52,7 +52,7 @@ class ScriptingMaterialAnimator: public ScriptingBase {
     public:
         /// Computes the value of the node
         /// \param plug plug to compute
-        DTboolean                    compute                     (const PlugBase *plug);
+        bool                    compute                     (const PlugBase *plug);
 
         /// Sets the number of materials
         /// \param num_materials number of materials
@@ -69,7 +69,7 @@ class ScriptingMaterialAnimator: public ScriptingBase {
     private:
         std::vector<std::shared_ptr<MaterialResource>>      _materials;
 
-        Plug<DTboolean>                             _active;
+        Plug<bool>                             _active;
         Plug<DTfloat>                               _period;
 
         DTfloat                                     _out_time;

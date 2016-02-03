@@ -116,7 +116,7 @@ void ScriptingParticleTimeFader::archive (const std::shared_ptr<Archive> &archiv
 //==============================================================================
 //==============================================================================
 
-DTboolean ScriptingParticleTimeFader::compute (const PlugBase *plug)
+bool ScriptingParticleTimeFader::compute (const PlugBase *plug)
 {
 	PROFILER(PARTICLES);
 

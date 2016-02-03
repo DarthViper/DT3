@@ -40,7 +40,7 @@ class ScriptingKeyframesMaterialResource: public ScriptingKeyframes {
     public:
         /// Computes the value of the node
         /// \param plug plug to compute
-        DTboolean					compute					(const PlugBase *plug);
+        bool					compute					(const PlugBase *plug);
 
         /// Set a key at the current time
         virtual void				set_key					(void);

@@ -1,6 +1,4 @@
 #pragma once
-#ifndef DT3_SCRIPTINGGLOBALREADER
-#define DT3_SCRIPTINGGLOBALREADER
 //==============================================================================
 ///
 ///	File: ScriptingGlobalReader.hpp
@@ -13,6 +11,7 @@
 //==============================================================================
 
 #include "DT3Core/Scripting/ScriptingBase.hpp"
+#include "DT3Core/Types/Node/Event.hpp"
 
 //==============================================================================
 //==============================================================================
@@ -55,5 +54,3 @@ class ScriptingGlobalReader: public ScriptingBase {
 //==============================================================================
 
 } // DT3
-
-#endif

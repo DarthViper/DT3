@@ -116,7 +116,7 @@ void ScriptingVector3ToComponents::archive (const std::shared_ptr<Archive> &arch
 //==============================================================================
 //==============================================================================
 
-DTboolean ScriptingVector3ToComponents::compute (const PlugBase *plug)
+bool ScriptingVector3ToComponents::compute (const PlugBase *plug)
 {
 	PROFILER(SCRIPTING);
 

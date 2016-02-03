@@ -66,12 +66,12 @@ void ArchiveBinaryBufferReader::pop_domain (void)
 //==============================================================================
 //==============================================================================
 
-DTboolean ArchiveBinaryBufferReader::is_reading (void) const
+bool ArchiveBinaryBufferReader::is_reading (void) const
 {
 	return true;
 }
 
-DTboolean ArchiveBinaryBufferReader::is_writing (void) const
+bool ArchiveBinaryBufferReader::is_writing (void) const
 {
 	return false;
 }

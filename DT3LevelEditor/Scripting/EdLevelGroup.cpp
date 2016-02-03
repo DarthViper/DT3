@@ -32,7 +32,7 @@ const float EdLevelGroup::SHADOW_OFFSET_Y = 5.0F;
 //==============================================================================
 
 EdLevelGroup::EdLevelGroup(std::shared_ptr<Group> group)
-    :   _title_font		("Arial", 15)
+    :   _title_font		(QLatin1String("Arial"), 15)
 {
     setFlag(QGraphicsItem::ItemIsSelectable);
     //setFlag(QGraphicsItem::ItemIsMovable);

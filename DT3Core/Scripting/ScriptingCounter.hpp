@@ -1,6 +1,4 @@
 #pragma once
-#ifndef DT3_SCRIPTINGCOUNTER
-#define DT3_SCRIPTINGCOUNTER
 //==============================================================================
 ///
 ///	File: ScriptingCounter.hpp
@@ -13,6 +11,7 @@
 //==============================================================================
 
 #include "DT3Core/Scripting/ScriptingBase.hpp"
+#include "DT3Core/Types/Node/Event.hpp"
 
 //==============================================================================
 //==============================================================================
@@ -43,7 +42,7 @@ class ScriptingCounter: public ScriptingBase {
     public:
         /// Computes the value of the node
         /// \param plug plug to compute
-        DTboolean					compute					(const PlugBase *plug);
+        bool					compute					(const PlugBase *plug);
 
         /// Set Event
         void                        event_incr              (PlugNode *sender);
@@ -57,7 +56,7 @@ class ScriptingCounter: public ScriptingBase {
     private:
         Plug<DTint>                 _min;
         Plug<DTint>                 _max;
-        Plug<DTboolean>				_wrap;
+        Plug<bool>				_wrap;
 
         Event                       _incr_e;
         Event                       _decr_e;
@@ -70,5 +69,3 @@ class ScriptingCounter: public ScriptingBase {
 //==============================================================================
 
 } // DT3
-
-#endif

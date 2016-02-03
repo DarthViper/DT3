@@ -239,7 +239,7 @@ void ScriptingVector3Switcher::archive (const std::shared_ptr<Archive> &archive)
 //==============================================================================
 //==============================================================================
 
-DTboolean ScriptingVector3Switcher::compute (const PlugBase *plug)
+bool ScriptingVector3Switcher::compute (const PlugBase *plug)
 {
     PROFILER(SCRIPTING);
 

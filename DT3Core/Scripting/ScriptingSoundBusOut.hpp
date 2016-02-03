@@ -53,7 +53,7 @@ class ScriptingSoundBusOut: public ScriptingSoundBase {
     public:
         /// Computes the value of the node
         /// \param plug plug to compute
-        DTboolean					compute					(const PlugBase *plug);
+        bool					compute					(const PlugBase *plug);
 
         DEFINE_ACCESSORS(gain_left, set_gain_left, DTfloat, _gain_left)
         DEFINE_ACCESSORS(gain_right, set_gain_right, DTfloat, _gain_right)

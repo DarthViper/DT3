@@ -82,11 +82,11 @@ class DeviceAudio: public DeviceBase {
         /// Plays the sound source
         /// \param source sound source to play
         /// \param sound_loader optional sound loader if you want it deleted
-        virtual DTboolean                       play                    (const std::shared_ptr<SoundSource> &source, World *world, const std::shared_ptr<ScriptingSound> &sound_loader) {   return false;   }
+        virtual bool                       play                    (const std::shared_ptr<SoundSource> &source, World *world, const std::shared_ptr<ScriptingSound> &sound_loader) {   return false;   }
 
         /// Returns wether the sound source is playing or not
         /// \return playing or not
-        virtual DTboolean                       is_playing              (const std::shared_ptr<SoundSource> &source)    {   return false;   }
+        virtual bool                       is_playing              (const std::shared_ptr<SoundSource> &source)    {   return false;   }
 
         /// Returns which channel a source is playing on
         /// \return channel index

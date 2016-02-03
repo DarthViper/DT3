@@ -99,12 +99,12 @@ Stream& operator >>(Stream &s, Plane&p)
 //==============================================================================
 //==============================================================================
 
-DTboolean Plane::is_sphere_completely_in_front (const Vector3 &translation, const Sphere &s) const
+bool Plane::is_sphere_completely_in_front (const Vector3 &translation, const Sphere &s) const
 {
     return distance_to_point(translation) > s.radius();
 }
 
-DTboolean Plane::is_sphere_completely_in_back (const Vector3 &translation, const Sphere &s) const
+bool Plane::is_sphere_completely_in_back (const Vector3 &translation, const Sphere &s) const
 {
     return distance_to_point(translation) < -s.radius();
 }

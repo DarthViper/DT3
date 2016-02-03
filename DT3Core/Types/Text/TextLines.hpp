@@ -55,13 +55,13 @@ class TextLine {
         /// Description
         /// \param param description
         /// \return description
-        DTboolean                           is_blank        (void) const;
+        bool                           is_blank        (void) const;
 
         /// Extents of line
         DEFINE_ACCESSORS (extents_offset, set_extents_offset, DTfloat, _extents_offset);
         DEFINE_ACCESSORS (extents_perp_offset, set_extents_perp_offset, DTfloat, _extents_perp_offset);
 
-        DEFINE_ACCESSORS (auto_split, set_auto_split, DTboolean, _auto_split);
+        DEFINE_ACCESSORS (auto_split, set_auto_split, bool, _auto_split);
 
     private:
         friend class TextLines;
@@ -69,7 +69,7 @@ class TextLine {
         std::list<TextCharacter>    _glyphs;
         DTfloat                     _extents_offset;
         DTfloat                     _extents_perp_offset;
-        DTboolean                   _auto_split;
+        bool                   _auto_split;
 };
 
 //==============================================================================

@@ -131,7 +131,7 @@ Event* Command::event (CommandContext &ctx, const std::string &node, const std::
 //==============================================================================
 //==============================================================================
 
-DTboolean Command::node_name (const std::string &s, std::string &node)
+bool Command::node_name (const std::string &s, std::string &node)
 {
     node.clear();
 
@@ -146,7 +146,7 @@ DTboolean Command::node_name (const std::string &s, std::string &node)
     else                    return false;
 }
 
-DTboolean Command::component_name        (const std::string &s, std::string &component)
+bool Command::component_name        (const std::string &s, std::string &component)
 {
     component.clear();
 
@@ -162,7 +162,7 @@ DTboolean Command::component_name        (const std::string &s, std::string &com
     else                        return false;
 }
 
-DTboolean Command::param_name      (const std::string &s, std::string &param)
+bool Command::param_name      (const std::string &s, std::string &param)
 {
     param.clear();
 

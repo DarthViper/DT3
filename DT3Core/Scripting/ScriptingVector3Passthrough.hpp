@@ -43,11 +43,11 @@ class ScriptingVector3Passthrough: public ScriptingBase {
     public:
         /// Computes the value of the node
         /// \param plug plug to compute
-        DTboolean					compute					(const PlugBase *plug);
+        bool					compute					(const PlugBase *plug);
 
     private:
         Plug<Vector3>				_in;
-        Plug<DTboolean>				_enable;
+        Plug<bool>				_enable;
         Plug<Vector3>				_out;
 };
 

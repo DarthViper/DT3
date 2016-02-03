@@ -115,12 +115,12 @@ class HAL {
         // File System
         //
 
-        static DTboolean            move_file               (const FilePath &from, const FilePath &to);
-        static DTboolean            delete_file             (const FilePath &file);
+        static bool            move_file               (const FilePath &from, const FilePath &to);
+        static bool            delete_file             (const FilePath &file);
         static DTuint64             modification_date       (const FilePath &file);
-        static DTboolean            is_dir                  (const FilePath &file);
+        static bool            is_dir                  (const FilePath &file);
         static std::string          path_separator          (void);
-        static void                 list_directory          (const FilePath &pathname, DTboolean recursive, std::vector<FilePath> &paths);
+        static void                 list_directory          (const FilePath &pathname, bool recursive, std::vector<FilePath> &paths);
 
         static FilePath             app_dir                 (void);
         static FilePath             save_dir                (void);

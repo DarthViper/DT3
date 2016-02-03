@@ -138,7 +138,7 @@ DTerr FileManager::start_and_length  (const FilePath &pathname, FilePath &packag
 //==============================================================================
 //==============================================================================
 
-DTerr FileManager::open_from_fragment (TextFileStream &file, const FilePath &pathname, DTsize start, DTsize length, DTsize uncompressed_length, DTboolean read, std::shared_ptr<Progress> progress)
+DTerr FileManager::open_from_fragment (TextFileStream &file, const FilePath &pathname, DTsize start, DTsize length, DTsize uncompressed_length, bool read, std::shared_ptr<Progress> progress)
 {
 
     // Open uncompressed file
@@ -173,7 +173,7 @@ DTerr FileManager::open_from_fragment (TextFileStream &file, const FilePath &pat
     }
 }
 
-DTerr FileManager::open_from_fragment (BinaryFileStream &file, const FilePath &pathname, DTsize start, DTsize length, DTsize uncompressed_length, DTboolean read, std::shared_ptr<Progress> progress)
+DTerr FileManager::open_from_fragment (BinaryFileStream &file, const FilePath &pathname, DTsize start, DTsize length, DTsize uncompressed_length, bool read, std::shared_ptr<Progress> progress)
 {
 
     // Open uncompressed file
@@ -212,7 +212,7 @@ DTerr FileManager::open_from_fragment (BinaryFileStream &file, const FilePath &p
 //==============================================================================
 //==============================================================================
 
-DTerr FileManager::open (TextFileStream &file, const FilePath &pathname, DTboolean read, std::shared_ptr<Progress> progress)
+DTerr FileManager::open (TextFileStream &file, const FilePath &pathname, bool read, std::shared_ptr<Progress> progress)
 {
 
     // Call the callback if it exists
@@ -256,7 +256,7 @@ DTerr FileManager::open (TextFileStream &file, const FilePath &pathname, DTboole
 //==============================================================================
 //==============================================================================
 
-DTerr FileManager::open (BinaryFileStream &file, const FilePath &pathname, DTboolean read, std::shared_ptr<Progress> progress)
+DTerr FileManager::open (BinaryFileStream &file, const FilePath &pathname, bool read, std::shared_ptr<Progress> progress)
 {
     // Call the callback if it exists
     if (_cb) {

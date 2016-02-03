@@ -99,7 +99,7 @@ class ComponentGUIToggleButton: public ComponentBase {
         Plug<std::shared_ptr<SoundResource> >   _sound_on;
         Plug<std::shared_ptr<SoundResource> >   _sound_off;
 
-        Plug<DTboolean>                         _is_on;
+        Plug<bool>                         _is_on;
 
         Event                                   _clicked_on;
         Event                                   _clicked_off;

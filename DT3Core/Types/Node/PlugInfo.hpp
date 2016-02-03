@@ -77,61 +77,61 @@ class PlugInfo {
 
         /// Returns no draw flag
         /// \return No draw flag
-        inline DTboolean                is_no_draw          (void) const				{	return _is_no_draw;							}
+        inline bool                is_no_draw          (void) const				{	return _is_no_draw;							}
 
         /// Sets the no draw flag
         /// \param flag no draw flag
         /// \return This event info
-        inline PlugInfo&                set_no_draw         (const DTboolean flag)		{	_is_no_draw = flag;	return *this;			}
+        inline PlugInfo&                set_no_draw         (const bool flag)		{	_is_no_draw = flag;	return *this;			}
 
 
         /// Returns is single output flag (i.e. can only connect to one other plug)
         /// \return is single output
-        inline DTboolean                is_single_output    (void) const				{	return _is_single_output;                   }
+        inline bool                is_single_output    (void) const				{	return _is_single_output;                   }
 
         /// Sets is single output flag (i.e. can only connect to one other plug)
         /// \param flag single output flag
         /// \return This event info
-        inline PlugInfo&                set_single_output   (const DTboolean flag)		{	_is_single_output = flag;	return *this;   }
+        inline PlugInfo&                set_single_output   (const bool flag)		{	_is_single_output = flag;	return *this;   }
 
 
         /// Returns is input flag
         /// \return is input
-        inline DTboolean                is_input            (void) const				{	return _is_input;							}
+        inline bool                is_input            (void) const				{	return _is_input;							}
 
         /// Sets the is input flag
         /// \param flag is input flag
         /// \return This event info
-        inline PlugInfo&                set_input           (const DTboolean flag)		{	_is_input = flag;	return *this;			}
+        inline PlugInfo&                set_input           (const bool flag)		{	_is_input = flag;	return *this;			}
 
 
         /// Returns is output flag
         /// \return is output
-        inline DTboolean                is_output           (void) const				{	return _is_output;							}
+        inline bool                is_output           (void) const				{	return _is_output;							}
 
         /// Sets the is output flag
         /// \param flag is output flag
         /// \return This event info
-        inline PlugInfo&                set_output          (const DTboolean flag)		{	_is_output = flag;	return *this;			}
+        inline PlugInfo&                set_output          (const bool flag)		{	_is_output = flag;	return *this;			}
 
 
 
         /// Returns wether the plug requires computing
         /// \return requires compute
-        inline DTboolean                requires_compute        (void) const            {	return _is_compute;							}
+        inline bool                requires_compute        (void) const            {	return _is_compute;							}
 
         /// Sets wether the plug requires computing or not
         /// \param flag requires compute
-        inline void                     set_requires_compute    (const DTboolean flag)  {	_is_compute = flag;                         }
+        inline void                     set_requires_compute    (const bool flag)  {	_is_compute = flag;                         }
 
 
         /// Returns wether the plug is always dirty
         /// \return is always dirty
-        inline DTboolean                is_always_dirty     (void) const				{	return _is_always_dirty;                    }
+        inline bool                is_always_dirty     (void) const				{	return _is_always_dirty;                    }
 
         /// Sets wether the plug is always dirty
         /// \param flag always dirty
-        inline void                     set_always_dirty    (const DTboolean flag)      {	_is_always_dirty = flag;                    }
+        inline void                     set_always_dirty    (const bool flag)      {	_is_always_dirty = flag;                    }
 
 
         /// Sets which plugs are affected by this plug

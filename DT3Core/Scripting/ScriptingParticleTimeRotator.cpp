@@ -106,7 +106,7 @@ void ScriptingParticleTimeRotator::archive (const std::shared_ptr<Archive> &arch
 //==============================================================================
 //==============================================================================
 
-DTboolean ScriptingParticleTimeRotator::compute (const PlugBase *plug)
+bool ScriptingParticleTimeRotator::compute (const PlugBase *plug)
 {
 	PROFILER(PARTICLES);
 

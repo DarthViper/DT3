@@ -186,7 +186,7 @@ void ScriptingKeyframesFloat::clear_key (void)
 //==============================================================================
 //==============================================================================
 
-DTboolean ScriptingKeyframesFloat::compute (const PlugBase *plug)
+bool ScriptingKeyframesFloat::compute (const PlugBase *plug)
 {
 	PROFILER(SCRIPTING);
 

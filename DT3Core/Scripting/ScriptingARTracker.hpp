@@ -1,6 +1,4 @@
 #pragma once
-#ifndef DT3_SCRIPTINGARTRACKER
-#define DT3_SCRIPTINGARTRACKER
 //==============================================================================
 ///
 ///	File: ScriptingARTracker.hpp
@@ -16,6 +14,7 @@
 #include "DT3Core/Types/Utility/TimerHires.hpp"
 #include "DT3Core/Types/Math/Matrix4.hpp"
 #include "DT3Core/Types/Math/Vector3.hpp"
+#include "DT3Core/Types/Node/Event.hpp"
 
 //==============================================================================
 //==============================================================================
@@ -85,8 +84,8 @@ class ScriptingARTracker: public ScriptingBase {
         DTint                       _correction_mode;
 
         // Calibration state
-        Plug<DTboolean>             _is_calibrating;
-        Plug<DTboolean>             _is_calibrated;
+        Plug<bool>             _is_calibrating;
+        Plug<bool>             _is_calibrated;
 
         // For tracking when calibration is complete
         DTuint                      _calibration_directions;
@@ -99,13 +98,11 @@ class ScriptingARTracker: public ScriptingBase {
         Vector3                     _calibration;
 
 
-        DTboolean                   append_calibration_sample   (const Vector3 &m);
-        DTboolean                   process_calibration_samples (void);
+        bool                   append_calibration_sample   (const Vector3 &m);
+        bool                   process_calibration_samples (void);
 };
 
 //==============================================================================
 //==============================================================================
 
 } // DT3
-
-#endif

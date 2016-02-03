@@ -114,7 +114,7 @@ void ScriptingAnimation::set_animation_property (const std::shared_ptr<Animation
 //==============================================================================
 //==============================================================================
 
-DTboolean ScriptingAnimation::compute (const PlugBase *plug)
+bool ScriptingAnimation::compute (const PlugBase *plug)
 {
 	PROFILER(SCRIPTING);
 

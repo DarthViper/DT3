@@ -45,7 +45,7 @@ TransitionFadeOutIn::~TransitionFadeOutIn (void)
 //==============================================================================
 
 
-DTboolean TransitionFadeOutIn::begin_new_world (void)
+bool TransitionFadeOutIn::begin_new_world (void)
 {
 	if (!_material) {
 		_material = MaterialResource::import_resource(FilePath("{SYS_TRANSITION_MATERIAL}"));
@@ -75,7 +75,7 @@ void TransitionFadeOutIn::end_new_world (void)
     _b.draw();
 }
 
-DTboolean TransitionFadeOutIn::begin_old_world (void)
+bool TransitionFadeOutIn::begin_old_world (void)
 {
 	if (!_material) {
 		_material = MaterialResource::import_resource(FilePath("{SYS_TRANSITION_MATERIAL}"));

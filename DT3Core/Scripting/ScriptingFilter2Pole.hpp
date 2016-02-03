@@ -96,7 +96,7 @@ class ScriptingFilter2Pole: public ScriptingBase {
         DTfloat						_freq_3db;
         DTfloat						_freq_sampling;
 
-        DTboolean                   _initialized;
+        bool                   _initialized;
 
         std::vector<Filters>        _passes;
 };

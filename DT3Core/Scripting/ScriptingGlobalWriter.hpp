@@ -1,6 +1,4 @@
 #pragma once
-#ifndef DT3_SCRIPTINGGLOBALWRITER
-#define DT3_SCRIPTINGGLOBALWRITER
 //==============================================================================
 ///
 ///	File: ScriptingGlobalWriter.hpp
@@ -13,6 +11,7 @@
 //==============================================================================
 
 #include "DT3Core/Scripting/ScriptingBase.hpp"
+#include "DT3Core/Types/Node/Event.hpp"
 #include <string>
 
 //==============================================================================
@@ -49,7 +48,7 @@ class ScriptingGlobalWriter: public ScriptingBase {
         Plug<std::string>			_global;
         Plug<std::string>			_value;
 
-        Plug<DTboolean>				_persistent;
+        Plug<bool>				_persistent;
 
         Event                       _write_e;
 };
@@ -58,5 +57,3 @@ class ScriptingGlobalWriter: public ScriptingBase {
 //==============================================================================
 
 } // DT3
-
-#endif

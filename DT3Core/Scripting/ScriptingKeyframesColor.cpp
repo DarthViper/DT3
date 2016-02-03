@@ -186,7 +186,7 @@ void ScriptingKeyframesColor::clear_key (void)
 //==============================================================================
 //==============================================================================
 
-DTboolean ScriptingKeyframesColor::compute (const PlugBase *plug)
+bool ScriptingKeyframesColor::compute (const PlugBase *plug)
 {
 	PROFILER(SCRIPTING);
 

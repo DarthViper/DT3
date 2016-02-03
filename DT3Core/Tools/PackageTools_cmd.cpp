@@ -105,7 +105,7 @@ CommandResult PackageTools_cmd::do_make_package (CommandContext &ctx, const Comm
     
     std::list<FileProcess> files;
     
-    DTboolean needs_rebuild = false;
+    bool needs_rebuild = false;
     
     FilePath package_pathname(p[1]);
     DTuint64 package_modification_date = package_pathname.modification_date();

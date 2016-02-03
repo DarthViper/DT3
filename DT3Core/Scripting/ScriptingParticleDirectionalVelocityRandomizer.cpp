@@ -120,7 +120,7 @@ void ScriptingParticleDirectionalVelocityRandomizer::archive (const std::shared_
 //==============================================================================
 //==============================================================================
 
-DTboolean ScriptingParticleDirectionalVelocityRandomizer::compute (const PlugBase *plug)
+bool ScriptingParticleDirectionalVelocityRandomizer::compute (const PlugBase *plug)
 {
 	PROFILER(PARTICLES);
 

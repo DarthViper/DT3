@@ -343,7 +343,7 @@ void ScriptingParticleStamFluids::vel_step (DTfloat *u, DTfloat *v, DTfloat *u0,
 //==============================================================================
 //==============================================================================
 
-DTboolean ScriptingParticleStamFluids::compute (const PlugBase *plug)
+bool ScriptingParticleStamFluids::compute (const PlugBase *plug)
 {
 	PROFILER(PARTICLES);
 

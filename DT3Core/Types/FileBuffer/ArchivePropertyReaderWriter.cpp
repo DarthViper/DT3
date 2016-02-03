@@ -83,12 +83,12 @@ void ArchivePropertyReaderWriter::pop_domain (void)
 //==============================================================================
 //==============================================================================
 
-DTboolean ArchivePropertyReaderWriter::is_reading (void) const
+bool ArchivePropertyReaderWriter::is_reading (void) const
 {
 	return _loading;
 }
 
-DTboolean ArchivePropertyReaderWriter::is_writing (void) const
+bool ArchivePropertyReaderWriter::is_writing (void) const
 {
 	return !_loading;
 }

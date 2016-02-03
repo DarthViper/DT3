@@ -294,7 +294,7 @@ void PlugNode::incoming_event_was_attached (Event *outgoing, Event *incoming)
 //==============================================================================
 //==============================================================================
 
-DTboolean PlugNode::compute (const PlugBase *plug)
+bool PlugNode::compute (const PlugBase *plug)
 {
     if (plug == test_compute_chain_plug())
         return true;

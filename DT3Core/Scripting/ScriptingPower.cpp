@@ -107,7 +107,7 @@ void ScriptingPower::archive (const std::shared_ptr<Archive> &archive)
 //==============================================================================
 //==============================================================================
 
-DTboolean ScriptingPower::compute (const PlugBase *plug)
+bool ScriptingPower::compute (const PlugBase *plug)
 {
 	PROFILER(SCRIPTING);
 

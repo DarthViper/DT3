@@ -45,20 +45,20 @@ class ScriptingMaterialSwitcher: public ScriptingBase {
     public:
         /// Computes the value of the node
         /// \param plug plug to compute
-        DTboolean					compute					(const PlugBase *plug);
+        bool					compute					(const PlugBase *plug);
 
     private:
-        Plug<DTboolean>                             _in1;
+        Plug<bool>                             _in1;
         Plug<std::shared_ptr<MaterialResource>>    _in_material1;
-        Plug<DTboolean>                             _in2;
+        Plug<bool>                             _in2;
         Plug<std::shared_ptr<MaterialResource>>    _in_material2;
-        Plug<DTboolean>                             _in3;
+        Plug<bool>                             _in3;
         Plug<std::shared_ptr<MaterialResource>>    _in_material3;
-        Plug<DTboolean>                             _in4;
+        Plug<bool>                             _in4;
         Plug<std::shared_ptr<MaterialResource>>    _in_material4;
 
         Plug<std::shared_ptr<MaterialResource>>    _out;
-        DTboolean                                   _buffer_output;
+        bool                                   _buffer_output;
 
 };
 

@@ -109,7 +109,7 @@ CommandResult WorldNode_cmd::do_move_node (CommandContext &ctx, const CommandPar
 namespace {
     
     struct AlignComparison {
-        AlignComparison (DTboolean sort_horz)
+        AlignComparison (bool sort_horz)
             :   _sort_horz(sort_horz)
         {}
     
@@ -129,7 +129,7 @@ namespace {
             }
         }
         
-        DTboolean _sort_horz;
+        bool _sort_horz;
     };
 
 };
@@ -184,7 +184,7 @@ CommandResult WorldNode_cmd::do_align_nodes (CommandContext &ctx, const CommandP
     }
     
     
-    DTboolean sort_horz = horz_count > vert_count;
+    bool sort_horz = horz_count > vert_count;
     AlignComparison comp(sort_horz);
     
     std::sort(nodes.begin(), nodes.end(), comp);

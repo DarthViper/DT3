@@ -45,7 +45,7 @@ class ScriptingParticleTimeRotator: public ScriptingBase {
     public:
         /// Computes the value of the node
         /// \param plug plug to compute
-        DTboolean					compute					(const PlugBase *plug);
+        bool					compute					(const PlugBase *plug);
 
         DEFINE_ACCESSORS(rotation_speed_mul, set_rotation_speed_mul, DTfloat, _rotation_speed_mul);
         DEFINE_ACCESSORS(rotation_phase_mul, set_rotation_phase_mul, DTfloat, _rotation_phase_mul);

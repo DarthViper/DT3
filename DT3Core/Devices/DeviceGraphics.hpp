@@ -178,11 +178,11 @@ enum DT3GLPrimitiveType {
 //
 
 struct DT3GLDepthStencilState {
-    DTboolean           depth_enable;
-    DTboolean           depth_write_mask;
+    bool           depth_enable;
+    bool           depth_write_mask;
     DT3GLComparison     depth_func;
 
-    DTboolean           stencil_enable;
+    bool           stencil_enable;
     DTuint              stencil_read_mask;
     DTuint              stencil_write_mask;
 
@@ -202,15 +202,15 @@ struct DT3GLDepthStencilState {
 //
 
 struct DT3GLBlendState {
-    DTboolean           blend_enable;
+    bool           blend_enable;
     DT3GLBlend          src_blend;
     DT3GLBlend          dest_blend;
     DT3GLBlend          src_blend_alpha;
     DT3GLBlend          dest_blend_alpha;
-    DTboolean           render_target_write_mask_r;
-    DTboolean           render_target_write_mask_g;
-    DTboolean           render_target_write_mask_b;
-    DTboolean           render_target_write_mask_a;
+    bool           render_target_write_mask_r;
+    bool           render_target_write_mask_g;
+    bool           render_target_write_mask_b;
+    bool           render_target_write_mask_a;
 };
 
 //
@@ -222,7 +222,7 @@ struct DT3GLRasterizerState {
     DTfloat             depth_bias;
     DTfloat             slope_scaled_depth_bias;
     DTfloat             depth_bias_clamp;
-    DTboolean           scissor_enable;
+    bool           scissor_enable;
 };
 
 //
@@ -478,7 +478,7 @@ class DeviceGraphics: public DeviceBase {
 
 
         /// Clears the viewport
-        virtual void                                        clear_viewport                  (DTboolean depth, DTboolean color, DTboolean stencil) = 0;
+        virtual void                                        clear_viewport                  (bool depth, bool color, bool stencil) = 0;
 
 
         /// Viewport clear values
@@ -515,10 +515,10 @@ class DeviceGraphics: public DeviceBase {
         // Textures
         //
 
-        virtual std::shared_ptr<DT3GLTexture2DResource>     create_texture_2D               (DTint width, DTint height, DTubyte *textels, DT3GLTextelFormat format, DTboolean mipmapped, DTuint flags = DT3GL_ACCESS_CPU_NONE | DT3GL_ACCESS_GPU_READ) = 0;
+        virtual std::shared_ptr<DT3GLTexture2DResource>     create_texture_2D               (DTint width, DTint height, DTubyte *textels, DT3GLTextelFormat format, bool mipmapped, DTuint flags = DT3GL_ACCESS_CPU_NONE | DT3GL_ACCESS_GPU_READ) = 0;
         virtual void                                        update_texture_2D               (const std::shared_ptr<DT3GLTexture2DResource> &res, DTint x, DTint y, DTint width, DTint height, DTubyte *textels) = 0;
 
-        virtual std::shared_ptr<DT3GLTexture3DResource>     create_texture_3D               (DTint width, DTint height, DTint depth, DTubyte *textels, DT3GLTextelFormat format, DTboolean mipmapped, DTuint flags = DT3GL_ACCESS_CPU_NONE | DT3GL_ACCESS_GPU_READ) = 0;
+        virtual std::shared_ptr<DT3GLTexture3DResource>     create_texture_3D               (DTint width, DTint height, DTint depth, DTubyte *textels, DT3GLTextelFormat format, bool mipmapped, DTuint flags = DT3GL_ACCESS_CPU_NONE | DT3GL_ACCESS_GPU_READ) = 0;
         virtual void                                        update_texture_3D               (const std::shared_ptr<DT3GLTexture3DResource> &res, DTint x, DTint y, DTint z, DTint width, DTint height, DTint depth, DTubyte *textels) = 0;
 
         virtual std::shared_ptr<DT3GLTextureCubeResource>   create_texture_cube             (   DTint width, DTint height,
@@ -529,7 +529,7 @@ class DeviceGraphics: public DeviceBase {
                                                                                                 DTubyte *textels_top,
                                                                                                 DTubyte *textels_bottom,
                                                                                                 DT3GLTextelFormat format,
-                                                                                                DTboolean mipmapped,
+                                                                                                bool mipmapped,
                                                                                                 DTuint flags = DT3GL_ACCESS_CPU_NONE | DT3GL_ACCESS_GPU_READ) = 0;
         virtual void                                        update_texture_cube             (   const std::shared_ptr<DT3GLTextureCubeResource> &res, DTint x, DTint y, DTint width, DTint height,
                                                                                                 DTubyte *textels_front,

@@ -45,7 +45,7 @@ class ScriptingParticlePointAttractor: public ScriptingBase {
     public:
         /// Computes the value of the node
         /// \param plug plug to compute
-        DTboolean					compute					(const PlugBase *plug);
+        bool					compute					(const PlugBase *plug);
 
         DEFINE_ACCESSORS(target, set_target, Vector3, _target);
         DEFINE_ACCESSORS(strength, set_strength, DTfloat, _strength);

@@ -174,7 +174,7 @@ void CameraObject::archive (const std::shared_ptr<Archive> &archive)
 /// Checks to see if the point is in the camera frustum.
 //==============================================================================
 
-DTboolean CameraObject::point_in_frustum(const Vector3  &point) const
+bool CameraObject::point_in_frustum(const Vector3  &point) const
 {
     for (DTint plane = 0; plane < 6; ++plane)
         if (_frustum[plane].distance_to_point(point) < 0.0F)
@@ -199,7 +199,7 @@ DTfloat CameraObject::distance_to_frustum (const Vector3 &point) const
 /// Checks to see if the sphere is in the camera frustum.
 //==============================================================================
 
-DTboolean CameraObject::sphere_in_frustum(const Vector3 &translation, const Sphere &sphere) const
+bool CameraObject::sphere_in_frustum(const Vector3 &translation, const Sphere &sphere) const
 {
 
     for (DTint plane = 0; plane < 6; ++plane) {            
@@ -210,7 +210,7 @@ DTboolean CameraObject::sphere_in_frustum(const Vector3 &translation, const Sphe
     return true;
 }
 
-DTboolean CameraObject::sphere_in_frustum_no_front_back	(const Vector3 &translation, const Sphere &sphere) const
+bool CameraObject::sphere_in_frustum_no_front_back	(const Vector3 &translation, const Sphere &sphere) const
 {
     for (DTint plane = 2; plane < 6; ++plane) {            
         if (_frustum[plane].is_sphere_completely_in_back(translation, sphere))
@@ -224,7 +224,7 @@ DTboolean CameraObject::sphere_in_frustum_no_front_back	(const Vector3 &translat
 /// Checks to see if the box is in the frustum.
 //==============================================================================
 
-DTboolean CameraObject::box_in_frustum(const Box &box) const {
+bool CameraObject::box_in_frustum(const Box &box) const {
     for (DTint plane = 0; plane < 6; ++plane) {
 		DTfloat dist = _frustum[plane].distance_to_box(box);
         if (dist < 0.0F)	return false;

@@ -42,7 +42,7 @@ class ScriptingSpline: public ScriptingBase {
     public:
         /// Computes the value of the node
         /// \param plug plug to compute
-        DTboolean					compute					(const PlugBase *plug);
+        bool					compute					(const PlugBase *plug);
 
         /// Sets number of points along the path
         /// \param s number of points
@@ -86,7 +86,7 @@ class ScriptingSpline: public ScriptingBase {
         void                        interpolate             (DTint i0, DTint i1, DTfloat d, Matrix4 &transform);
         void                        process_distances       (void);
 
-        DTboolean                   _constant_speed;
+        bool                   _constant_speed;
         Plug<DTfloat>				_d;
 
         Plug<Matrix4>               _transform;
@@ -120,7 +120,7 @@ class ScriptingSpline: public ScriptingBase {
 
         mutable DTint				_keyframe_cache;
 
-        DTboolean                   _dirty;
+        bool                   _dirty;
 
 };
 

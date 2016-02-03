@@ -841,7 +841,7 @@ void ScriptingMaterialBuilder::archive (const std::shared_ptr<Archive> &archive)
 //==============================================================================
 //==============================================================================
 
-DTboolean ScriptingMaterialBuilder::compute (const PlugBase *plug)
+bool ScriptingMaterialBuilder::compute (const PlugBase *plug)
 {
 	PROFILER(SCRIPTING);
 

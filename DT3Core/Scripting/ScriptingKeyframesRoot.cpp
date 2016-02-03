@@ -98,7 +98,7 @@ void ScriptingKeyframesRoot::archive (const std::shared_ptr<Archive> &archive)
 //==============================================================================
 //==============================================================================
 
-DTboolean ScriptingKeyframesRoot::compute (const PlugBase *plug)
+bool ScriptingKeyframesRoot::compute (const PlugBase *plug)
 {
 	PROFILER(SCRIPTING);
 

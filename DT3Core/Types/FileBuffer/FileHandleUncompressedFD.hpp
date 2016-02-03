@@ -52,7 +52,7 @@ class FileHandleUncompressedFD: public FileHandle {
         /// \param pathname path to file
         /// \param read read or write
         /// \return Error
-        virtual DTerr           open_file			(const FilePath &pathname, DTboolean read = true);
+        virtual DTerr           open_file			(const FilePath &pathname, bool read = true);
 
         /// Sets an existing file descriptor for file
         /// \param fd file descriptor
@@ -96,7 +96,7 @@ class FileHandleUncompressedFD: public FileHandle {
 
         /// Checks for end of file
         /// \return End of file
-        virtual DTboolean       is_eof				(void);
+        virtual bool       is_eof				(void);
 
 
         /// Reads a chunk of raw binary data
@@ -113,7 +113,7 @@ class FileHandleUncompressedFD: public FileHandle {
     private:
         DTsize				_length;
         DTint               _file;
-        DTboolean           _eof;
+        bool           _eof;
 };
 
 //==============================================================================

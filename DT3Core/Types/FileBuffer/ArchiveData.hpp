@@ -93,7 +93,7 @@ class ArchiveData: public BaseClass {
 
         /// Returns if this item is an enum
         /// \return is title
-        virtual DTboolean               is_enum                 (void) const			{	return _enums.size() > 0;	}
+        virtual bool               is_enum                 (void) const			{	return _enums.size() > 0;	}
 
         /// Returns enums
         const std::vector<std::string>& enums                   (void)                  {   return _enums;  }
@@ -107,7 +107,7 @@ class ArchiveData: public BaseClass {
 
         /// Returns if this item is an enum
         /// \return is title
-        virtual DTboolean               is_range                (void) const			{	return (_range_max > _range_min);	}
+        virtual bool               is_range                (void) const			{	return (_range_max > _range_min);	}
 
         /// Returns minimum range
         DTfloat                         range_min               (void) const            {   return _range_min;  }
@@ -119,11 +119,11 @@ class ArchiveData: public BaseClass {
         /// Add an enumeration for pulldown menus
         /// \param s enumeration
         /// \return this
-        ArchiveData&                    set_bitfield            (DTboolean bitfield);
+        ArchiveData&                    set_bitfield            (bool bitfield);
 
         /// Returns if this item is an enum
         /// \return is title
-        virtual DTboolean               is_bitfield             (void) const			{	return _bitfield;	}
+        virtual bool               is_bitfield             (void) const			{	return _bitfield;	}
 
 
         /// Add a flag
@@ -155,7 +155,7 @@ class ArchiveData: public BaseClass {
         DTfloat                         _range_min;
         DTfloat                         _range_max;
 
-        DTboolean                       _bitfield;
+        bool                       _bitfield;
 };
 
 //==============================================================================
@@ -179,7 +179,7 @@ class ArchiveDataVariable: public ArchiveData {
         /// \param title name of data
         /// \param data reference to data
         /// \param flags flags for data
-        ArchiveDataVariable (std::string title, T &data, DTuint flags)
+        ArchiveDataVariable (const std::string &title, T &data, DTuint flags)
             :	_data(&data)
         {
             set_title(title);
@@ -372,7 +372,7 @@ class ArchiveDataVariableAccessors: public ArchiveData {
         /// \param get accessor function for retrieving data
         /// \param set accessor function for setting data
         /// \param flags flags for data
-        ArchiveDataVariableAccessors (std::string title, T* object, GetFN get = NULL, SetFN set = NULL, DTuint flags = 0) {
+        ArchiveDataVariableAccessors (const std::string &title, T* object, GetFN get = NULL, SetFN set = NULL, DTuint flags = 0) {
             _object = object;
             set_title(title);
             add_flags(flags);
@@ -431,7 +431,7 @@ class ArchiveDataIgnore: public ArchiveData {
         /// \param title name of data
         /// \param data reference to data
         /// \param flags flags for data
-        ArchiveDataIgnore (std::string title)
+        ArchiveDataIgnore (const std::string &title)
         {
             set_title(title);
             add_flags(DATA_PERSISTENT);
@@ -485,7 +485,7 @@ inline ArchiveDataEvent makeArchiveDataEvent (Event &event, DTuint flags)
 //
 
 template<typename T, typename U, typename V>
-ArchiveDataVariableAccessors<T,U,V> makeArchiveDataVariableAccessors (      std::string title,
+ArchiveDataVariableAccessors<T,U,V> makeArchiveDataVariableAccessors (      const std::string &title,
                                                                             T* object,
                                                                             U (T::*get)(void) const,
                                                                             void (T::*set)(V),

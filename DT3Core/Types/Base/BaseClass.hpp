@@ -57,16 +57,16 @@ class BaseClass: public std::enable_shared_from_this<BaseClass> {
 
         /// Sets whether the object will be streamed or not
         /// \param streamable object is streamable
-        void						set_streamable                  (DTboolean streamable)	{	_streamable = streamable;			}
+        void						set_streamable                  (bool streamable)	{	_streamable = streamable;			}
 
         /// Returns whether the object will be streamed or not
         /// \return streamable
-        DTboolean					streamable                      (void) const			{	return _streamable;					}
+        bool					streamable                      (void) const			{	return _streamable;					}
 
     private:
         static std::atomic<DTuint>  _unique_id_counter;
         DTuint						_unique_id;
-        DTboolean					_streamable;
+        bool					_streamable;
 };
 
 //==============================================================================

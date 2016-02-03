@@ -57,7 +57,7 @@ DTerr Resource::reload (void)
 //==============================================================================
 //==============================================================================
 
-DTboolean Resource::is_changed (void) const
+bool Resource::is_changed (void) const
 {	
     if (_time_loaded < _file_path.modification_date()) {
         return true;

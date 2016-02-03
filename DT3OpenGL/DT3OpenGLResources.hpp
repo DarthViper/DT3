@@ -218,7 +218,7 @@ struct DT3OpenGLTexture2DResource: public DT3GLTexture2DResource {
         DTuint                          flags;
         GLuint                          name;
         DT3GLTextelFormat               format;
-        DTboolean                       mipmapped;
+        bool                       mipmapped;
     
         // For Streaming textures (i.e. created with DT3GL_ACCESS_CPU_WRITE)
         GLuint                          pbo;
@@ -239,7 +239,7 @@ struct DT3OpenGLTexture3DResource: public DT3GLTexture3DResource {
         DTuint                          flags;
         GLuint                          name;
         DT3GLTextelFormat               format;
-        DTboolean                       mipmapped;
+        bool                       mipmapped;
 
         std::shared_ptr<DT3OpenGLSamplerResource>   sampler;
 };
@@ -256,7 +256,7 @@ struct DT3OpenGLTextureCubeResource: public DT3GLTextureCubeResource {
         DTuint                          flags;
         GLuint                          name;
         DT3GLTextelFormat               format;
-        DTboolean                       mipmapped;
+        bool                       mipmapped;
 
         std::shared_ptr<DT3OpenGLSamplerResource>   sampler;
 };

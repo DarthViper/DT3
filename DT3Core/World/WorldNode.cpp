@@ -16,6 +16,7 @@
 #include "DT3Core/Types/FileBuffer/Archive.hpp"
 #include "DT3Core/Types/FileBuffer/ArchiveProcessPointers.hpp"
 #include "DT3Core/Types/Utility/ConsoleStream.hpp"
+#include "DT3Core/Types/Node/Event.hpp"
 #include "DT3Core/Types/Node/Group.hpp"
 
 //==============================================================================
@@ -41,7 +42,8 @@ BEGIN_IMPLEMENT_PLUGS(WorldNode)
       
 END_IMPLEMENT_PLUGS
 
-
+}
+using namespace DT3;
 //==============================================================================
 /// Standard class constructors/destructors
 //==============================================================================
@@ -82,10 +84,7 @@ WorldNode & WorldNode::operator = (const WorldNode &rhs)
     return (*this);
 }
 			
-WorldNode::~WorldNode (void)
-{
 
-}
 
 //==============================================================================
 //==============================================================================
@@ -145,5 +144,3 @@ void WorldNode::dump_code (const std::string &object_name, Stream &s)
 
 //==============================================================================
 //==============================================================================
-} // DT3
-

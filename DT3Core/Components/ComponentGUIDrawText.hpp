@@ -100,7 +100,7 @@ class ComponentGUIDrawText: public ComponentBase {
         DEFINE_ACCESSORS (shader, set_shader, std::shared_ptr<ShaderResource>, _shader);
 
         /// Defines standard accessors for the vertical centering flag
-        DEFINE_ACCESSORS (center_vertically, set_center_vertically, DTboolean, _center_vertically);
+        DEFINE_ACCESSORS (center_vertically, set_center_vertically, bool, _center_vertically);
 
         /// Defines standard accessors for state colors
         DEFINE_ACCESSORS (normal_color, set_normal_color, Color4f, _normal_color);
@@ -114,9 +114,9 @@ class ComponentGUIDrawText: public ComponentBase {
 
         Rectangle                                   _bounds;
         std::string                                 _label;
-        DTboolean                                   _needs_render;
-        DTboolean                                   _can_render;
-        DTboolean                                   _center_vertically;
+        bool                                   _needs_render;
+        bool                                   _can_render;
+        bool                                   _center_vertically;
 
         Color4f                                     _normal_color;
         Color4f                                     _pressed_color;

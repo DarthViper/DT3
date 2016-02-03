@@ -75,17 +75,17 @@ class Command: public BaseClass {
         /// Description
         /// \param param description
         /// \return description
-        static DTboolean                        node_name           (const std::string &s, std::string &node);
+        static bool                        node_name           (const std::string &s, std::string &node);
 
         /// Description
         /// \param param description
         /// \return description
-        static DTboolean                        component_name      (const std::string &s, std::string &component);
+        static bool                        component_name      (const std::string &s, std::string &component);
 
         /// Description
         /// \param param description
         /// \return description
-       static  DTboolean                        param_name          (const std::string &s, std::string &param);
+       static  bool                        param_name          (const std::string &s, std::string &param);
 
 
 };

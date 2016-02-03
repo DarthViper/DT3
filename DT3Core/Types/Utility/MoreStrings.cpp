@@ -277,7 +277,7 @@ std::string MoreStrings::escaped (const std::string &s)
 std::string MoreStrings::unescaped (const std::string &s)
 {
     std::string ss;
-    DTboolean escaped = false;
+    bool escaped = false;
 
     for (auto &c : s) {
 
@@ -462,7 +462,7 @@ std::string MoreStrings::camel_caps (const std::string &s)
 //==============================================================================
 //==============================================================================
 
-DTboolean MoreStrings::iequals (const std::string &a, const std::string &b)
+bool MoreStrings::iequals (const std::string &a, const std::string &b)
 {
 #ifdef _WIN32
     return stricmp (a.c_str(), b.c_str()) == 0;
@@ -471,7 +471,7 @@ DTboolean MoreStrings::iequals (const std::string &a, const std::string &b)
 #endif
 }
 
-DTboolean MoreStrings::iequals (const std::string &a, const char *b)
+bool MoreStrings::iequals (const std::string &a, const char *b)
 {
 #ifdef _WIN32
     return stricmp (a.c_str(), b) == 0;
@@ -480,7 +480,7 @@ DTboolean MoreStrings::iequals (const std::string &a, const char *b)
 #endif
 }
 
-DTboolean MoreStrings::iequals (const char *a, const std::string &b)
+bool MoreStrings::iequals (const char *a, const std::string &b)
 {
 #ifdef _WIN32
     return stricmp (a, b.c_str()) == 0;

@@ -89,12 +89,12 @@ class AssetDownloader:public BaseClass {
         /// Description
         /// \param param description
         /// \return description
-        DTboolean                   is_done                 (void) const;
+        bool                   is_done                 (void) const;
 
         /// Description
         /// \param param description
         /// \return description
-        DTboolean                   is_idle                 (void) const;
+        bool                   is_idle                 (void) const;
 
     private:
         void                        update_status           (Status status, DTsize size, DTsize total_size);
@@ -109,7 +109,7 @@ class AssetDownloader:public BaseClass {
         std::shared_ptr<Callback<Status, DTsize, DTsize> >  _status_cb;     // Status, size, total size
 
         // Control flags
-        DTboolean                                       _cancelled;
+        bool                                       _cancelled;
 
         // Current state of downloading
         Status                                          _status;

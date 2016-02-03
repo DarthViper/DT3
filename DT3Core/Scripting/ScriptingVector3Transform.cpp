@@ -128,7 +128,7 @@ void ScriptingVector3Transform::archive (const std::shared_ptr<Archive> &archive
 //==============================================================================
 //==============================================================================
 
-DTboolean ScriptingVector3Transform::compute (const PlugBase *plug)
+bool ScriptingVector3Transform::compute (const PlugBase *plug)
 {
 	PROFILER(SCRIPTING);
 

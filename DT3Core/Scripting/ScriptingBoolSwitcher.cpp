@@ -239,7 +239,7 @@ void ScriptingBoolSwitcher::archive (const std::shared_ptr<Archive> &archive)
 //==============================================================================
 //==============================================================================
 
-DTboolean ScriptingBoolSwitcher::compute (const PlugBase *plug)
+bool ScriptingBoolSwitcher::compute (const PlugBase *plug)
 {
 	PROFILER(SCRIPTING);
 

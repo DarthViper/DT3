@@ -35,11 +35,11 @@ class DisplayMode: public BaseClass {
 
     public:
 
-        DTboolean				operator ==			(const DisplayMode& rhs) const	{	return (_width == rhs._width) && (_height == rhs._height);  }
+        bool				operator ==			(const DisplayMode& rhs) const	{	return (_width == rhs._width) && (_height == rhs._height);  }
 
         /// Comparison operators for properly sorting resolutions
-        DTboolean               operator <			(const DisplayMode& rhs) const	{	return _width * _height * _refresh_rate < rhs._width * rhs._height * rhs._refresh_rate; }
-        DTboolean               operator >          (const DisplayMode& rhs) const	{	return !operator < (rhs);   }
+        bool               operator <			(const DisplayMode& rhs) const	{	return _width * _height * _refresh_rate < rhs._width * rhs._height * rhs._refresh_rate; }
+        bool               operator >          (const DisplayMode& rhs) const	{	return !operator < (rhs);   }
 
         DEFINE_ACCESSORS(width, set_width, DTint, _width)
         DEFINE_ACCESSORS(height, set_height, DTint, _height)

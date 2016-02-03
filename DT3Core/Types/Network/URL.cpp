@@ -260,7 +260,7 @@ std::string URL::decode_URL (const std::string &s)
 //==============================================================================
 //==============================================================================
 
-DTboolean URL::is_URL (const std::string &s)
+bool URL::is_URL (const std::string &s)
 {
 	// Check for protocol and delete it
     std::string::size_type colon_slash_slash = s.find("://");

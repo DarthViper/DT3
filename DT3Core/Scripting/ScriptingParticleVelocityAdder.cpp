@@ -110,7 +110,7 @@ void ScriptingParticleVelocityAdder::archive (const std::shared_ptr<Archive> &ar
 //==============================================================================
 //==============================================================================
 
-DTboolean ScriptingParticleVelocityAdder::compute (const PlugBase *plug)
+bool ScriptingParticleVelocityAdder::compute (const PlugBase *plug)
 {
 	PROFILER(PARTICLES);
 

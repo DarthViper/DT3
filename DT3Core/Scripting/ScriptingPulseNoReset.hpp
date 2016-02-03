@@ -1,6 +1,4 @@
 #pragma once
-#ifndef DT3_SCRIPTINGPULSENORESET
-#define DT3_SCRIPTINGPULSENORESET
 //==============================================================================
 ///
 ///	File: ScriptingPulseNoReset.hpp
@@ -13,6 +11,7 @@
 //==============================================================================
 
 #include "DT3Core/Scripting/ScriptingBase.hpp"
+#include "DT3Core/Types/Node/Event.hpp"
 
 //==============================================================================
 //==============================================================================
@@ -59,10 +58,10 @@ class ScriptingPulseNoReset: public ScriptingBase {
         DTfloat						_time;
         DTfloat						_pulse_time;
 
-        DTboolean                   _event_in;
+        bool                   _event_in;
 
-        Plug<DTboolean>				_in;
-        Plug<DTboolean>				_out;
+        Plug<bool>				_in;
+        Plug<bool>				_out;
 
         Event                       _in_e;
 };
@@ -71,5 +70,3 @@ class ScriptingPulseNoReset: public ScriptingBase {
 //==============================================================================
 
 } // DT3
-
-#endif

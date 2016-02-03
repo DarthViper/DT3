@@ -98,7 +98,7 @@ void ScriptingVector3ToLengthSquared::archive (const std::shared_ptr<Archive> &a
 //==============================================================================
 //==============================================================================
 
-DTboolean ScriptingVector3ToLengthSquared::compute (const PlugBase *plug)
+bool ScriptingVector3ToLengthSquared::compute (const PlugBase *plug)
 {
 	PROFILER(SCRIPTING);
 

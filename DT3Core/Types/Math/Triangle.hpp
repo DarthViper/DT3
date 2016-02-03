@@ -41,8 +41,8 @@ class Triangle {
 
     public:
 
-        DTboolean               operator ==			(const Triangle& rhs) const   {	return v[0] == rhs.v[0] && v[1] == rhs.v[1] && v[2] == rhs.v[2];    }
-        DTboolean               operator !=			(const Triangle& rhs) const   {	return v[0] != rhs.v[0] || v[1] != rhs.v[1] || v[2] != rhs.v[2];	}
+        bool               operator ==			(const Triangle& rhs) const   {	return v[0] == rhs.v[0] && v[1] == rhs.v[1] && v[2] == rhs.v[2];    }
+        bool               operator !=			(const Triangle& rhs) const   {	return v[0] != rhs.v[0] || v[1] != rhs.v[1] || v[2] != rhs.v[2];	}
 
     public:
         DTuint                  v[3];

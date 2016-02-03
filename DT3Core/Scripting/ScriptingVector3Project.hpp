@@ -50,7 +50,7 @@ class ScriptingVector3Project: public ScriptingBase {
 
         /// Computes the value of the node
         /// \param plug plug to compute
-        DTboolean					compute					(const PlugBase *plug);
+        bool					compute					(const PlugBase *plug);
 
         /// Object was added to a world
         /// world world that object was added to

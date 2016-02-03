@@ -258,7 +258,7 @@ DTfloat DT3OpenGL::viewport_aspect (void)
 //==============================================================================
 //==============================================================================
 
-void DT3OpenGL::clear_viewport (DTboolean depth, DTboolean color, DTboolean stencil)
+void DT3OpenGL::clear_viewport (bool depth, bool color, bool stencil)
 {
     ASSERT(::glGetError() == GL_NO_ERROR);
 
@@ -497,7 +497,7 @@ DTuint DT3OpenGL::textel_byte_size (DT3GLTextelFormat format)
     return 0;
 }
 
-std::shared_ptr<DT3GLTexture2DResource> DT3OpenGL::create_texture_2D (DTint width, DTint height, DTubyte *textels, DT3GLTextelFormat format, DTboolean mipmapped, DTuint flags)
+std::shared_ptr<DT3GLTexture2DResource> DT3OpenGL::create_texture_2D (DTint width, DTint height, DTubyte *textels, DT3GLTextelFormat format, bool mipmapped, DTuint flags)
 {
     GLint save_tex;
     ::glGetIntegerv(GL_TEXTURE_BINDING_2D, &save_tex);
@@ -815,7 +815,7 @@ void DT3OpenGL::update_texture_2D (const std::shared_ptr<DT3GLTexture2DResource>
 //==============================================================================
 #pragma mark Texture3D
 
-std::shared_ptr<DT3GLTexture3DResource> DT3OpenGL::create_texture_3D (DTint width, DTint height, DTint depth, DTubyte *textels, DT3GLTextelFormat format, DTboolean mipmapped, DTuint flags)
+std::shared_ptr<DT3GLTexture3DResource> DT3OpenGL::create_texture_3D (DTint width, DTint height, DTint depth, DTubyte *textels, DT3GLTextelFormat format, bool mipmapped, DTuint flags)
 {
 #if DT3_OS != DT3_IOS && DT3_OS != DT3_ANDROID
 
@@ -1001,7 +1001,7 @@ std::shared_ptr<DT3GLTextureCubeResource> DT3OpenGL::create_texture_cube (  DTin
                                                                             DTubyte *textels_top,
                                                                             DTubyte *textels_bottom,
                                                                             DT3GLTextelFormat format,
-                                                                            DTboolean mipmapped,
+                                                                            bool mipmapped,
                                                                             DTuint flags)
 {
     GLint save_tex;

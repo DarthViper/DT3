@@ -44,7 +44,7 @@ class ScriptingComponentsToVector2: public ScriptingBase {
     public:
         /// Computes the value of the node
         /// \param plug plug to compute
-        DTboolean						compute                         (const PlugBase *plug);
+        bool						compute                         (const PlugBase *plug);
 
     private:
         Plug<DTfloat>                   _in_x;

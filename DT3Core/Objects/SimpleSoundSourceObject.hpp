@@ -1,6 +1,4 @@
 #pragma once
-#ifndef DT3_SIMPLESIMPLESOUNDSOURCEOBJECT
-#define DT3_SIMPLESIMPLESOUNDSOURCEOBJECT
 //==============================================================================
 ///
 ///	File: SimpleSoundSourceObject.hpp
@@ -14,7 +12,7 @@
 
 #include "DT3Core/Objects/PlaceableObject.hpp"
 #include "DT3Core/Types/Sound/SoundPacket.hpp"
-
+#include "DT3Core/Types/Node/Event.hpp"
 namespace DT3 {
 
 //==============================================================================
@@ -96,5 +94,3 @@ class SimpleSoundSourceObject: public PlaceableObject {
 //==============================================================================
 
 } // DT3
-
-#endif

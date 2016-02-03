@@ -51,7 +51,7 @@ class DeviceNetwork: public DeviceBase {
         /// \param port Port
         /// \return Error Code
         virtual DTerr                   resolve_host    (   NetworkAddress &ip,
-                                                            const std::string UNUSED(&host),
+                                                            const std::string &UNUSED(host),
                                                             DTushort UNUSED(port))                  {   UNUSED(ip)return DT3_ERR_NONE;    }
 
         /// Attempts to determine the MAC address of an adapter
@@ -97,7 +97,7 @@ class DeviceNetwork: public DeviceBase {
         /// \return Error Code
         virtual DTerr                   tcp_open        (   NetworkSocket &socket,
                                                             const NetworkAddress &ip,
-                                                            DTboolean is_server = false)    {   return DT3_ERR_NONE;    }
+                                                            bool is_server = false)    {   return DT3_ERR_NONE;    }
 
         /// Closes tcp socket
         /// \param socket Socket

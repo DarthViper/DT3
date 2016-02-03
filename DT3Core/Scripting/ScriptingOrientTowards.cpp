@@ -107,7 +107,7 @@ void ScriptingOrientTowards::archive (const std::shared_ptr<Archive> &archive)
 //==============================================================================
 //==============================================================================
 
-DTboolean ScriptingOrientTowards::compute (const PlugBase *plug)
+bool ScriptingOrientTowards::compute (const PlugBase *plug)
 {
 	PROFILER(SCRIPTING);
 

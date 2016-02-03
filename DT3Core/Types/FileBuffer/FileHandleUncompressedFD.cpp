@@ -93,7 +93,7 @@ void FileHandleUncompressedFD::ignore (void)
     read(&b, 1);
 }
 
-DTboolean FileHandleUncompressedFD::is_eof (void)
+bool FileHandleUncompressedFD::is_eof (void)
 {
     return _eof;
 }
@@ -101,7 +101,7 @@ DTboolean FileHandleUncompressedFD::is_eof (void)
 //==============================================================================
 //==============================================================================
 
-DTerr FileHandleUncompressedFD::open_file (const FilePath &pathname, DTboolean read)
+DTerr FileHandleUncompressedFD::open_file (const FilePath &pathname, bool read)
 {
     close();
     

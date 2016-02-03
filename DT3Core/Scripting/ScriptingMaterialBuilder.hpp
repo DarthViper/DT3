@@ -96,16 +96,16 @@ class ScriptingMaterialBuilder: public ScriptingBase {
     public:
         /// Computes the value of the node
         /// \param plug plug to compute
-        DTboolean					compute					(const PlugBase *plug);
+        bool					compute					(const PlugBase *plug);
 
         //
         // Depth Stencil State
         //
 
-        FORWARD_FUNCTION(set_depth_enable,depth_enable,DTboolean)
-        FORWARD_FUNCTION(set_depth_write_mask,depth_write_mask,DTboolean)
+        FORWARD_FUNCTION(set_depth_enable,depth_enable,bool)
+        FORWARD_FUNCTION(set_depth_write_mask,depth_write_mask,bool)
         FORWARD_FUNCTION(set_depth_func,depth_func,DT3GLComparison)
-        FORWARD_FUNCTION(set_stencil_enable,stencil_enable,DTboolean)
+        FORWARD_FUNCTION(set_stencil_enable,stencil_enable,bool)
         FORWARD_FUNCTION(set_stencil_read_mask,stencil_read_mask,DTuint)
         FORWARD_FUNCTION(set_stencil_write_mask,stencil_write_mask,DTuint)
         FORWARD_FUNCTION(set_front_face_stencil_fail_op,front_face_stencil_fail_op,DT3GLStencilOp)
@@ -121,15 +121,15 @@ class ScriptingMaterialBuilder: public ScriptingBase {
         // Blend State
         //
 
-        FORWARD_FUNCTION(set_blend_enable,blend_enable,DTboolean)
+        FORWARD_FUNCTION(set_blend_enable,blend_enable,bool)
         FORWARD_FUNCTION(set_src_blend,src_blend,DT3GLBlend)
         FORWARD_FUNCTION(set_dest_blend,dest_blend,DT3GLBlend)
         FORWARD_FUNCTION(set_src_blend_alpha,src_blend_alpha,DT3GLBlend)
         FORWARD_FUNCTION(set_dest_blend_alpha,dest_blend_alpha,DT3GLBlend)
-        FORWARD_FUNCTION(set_render_target_write_mask_r,render_target_write_mask_r,DTboolean)
-        FORWARD_FUNCTION(set_render_target_write_mask_g,render_target_write_mask_g,DTboolean)
-        FORWARD_FUNCTION(set_render_target_write_mask_b,render_target_write_mask_b,DTboolean)
-        FORWARD_FUNCTION(set_render_target_write_mask_a,render_target_write_mask_a,DTboolean)
+        FORWARD_FUNCTION(set_render_target_write_mask_r,render_target_write_mask_r,bool)
+        FORWARD_FUNCTION(set_render_target_write_mask_g,render_target_write_mask_g,bool)
+        FORWARD_FUNCTION(set_render_target_write_mask_b,render_target_write_mask_b,bool)
+        FORWARD_FUNCTION(set_render_target_write_mask_a,render_target_write_mask_a,bool)
 
         //
         // Rasterizer State
@@ -139,7 +139,7 @@ class ScriptingMaterialBuilder: public ScriptingBase {
         FORWARD_FUNCTION(set_depth_bias,depth_bias,DTfloat)
         FORWARD_FUNCTION(set_slope_scaled_depth_bias,slope_scaled_depth_bias,DTfloat)
         FORWARD_FUNCTION(set_depth_bias_clamp,depth_bias_clamp,DTfloat)
-        FORWARD_FUNCTION(set_scissor_enable,scissor_enable,DTboolean)
+        FORWARD_FUNCTION(set_scissor_enable,scissor_enable,bool)
 
         //
         // Texture State

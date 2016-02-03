@@ -181,7 +181,7 @@ void ScriptingSubtitleDriver::set_subtitles (const FilePath& subtitles)
 //==============================================================================
 //==============================================================================
 
-DTboolean ScriptingSubtitleDriver::compute (const PlugBase *plug)
+bool ScriptingSubtitleDriver::compute (const PlugBase *plug)
 {
 	PROFILER(SCRIPTING);
 

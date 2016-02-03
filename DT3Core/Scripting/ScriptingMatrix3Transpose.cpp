@@ -98,7 +98,7 @@ void ScriptingMatrix3Transpose::archive (const std::shared_ptr<Archive> &archive
 //==============================================================================
 //==============================================================================
 
-DTboolean ScriptingMatrix3Transpose::compute (const PlugBase *plug)
+bool ScriptingMatrix3Transpose::compute (const PlugBase *plug)
 {
 	PROFILER(SCRIPTING);
 

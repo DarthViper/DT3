@@ -102,7 +102,7 @@ void ScriptingTexture2D::set_texture_property (const std::shared_ptr<TextureReso
 //==============================================================================
 //==============================================================================
 
-DTboolean ScriptingTexture2D::compute (const PlugBase *plug)
+bool ScriptingTexture2D::compute (const PlugBase *plug)
 {
 	PROFILER(SCRIPTING);
 

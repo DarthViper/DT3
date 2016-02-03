@@ -187,7 +187,7 @@ void GUIController::draw_gui_recursive (PlaceableObject *root, const std::shared
 {
     GUIObject *gui = checked_cast<GUIObject*>(root);
     Rectangle gui_rect(0.0F,1.0F,0.0F,1.0F);
-    DTboolean use_stencil = false;
+    bool use_stencil = false;
 
     std::list<PlaceableObject*> c = root->children();
 

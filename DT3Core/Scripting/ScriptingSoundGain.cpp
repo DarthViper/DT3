@@ -108,7 +108,7 @@ void ScriptingSoundGain::archive (const std::shared_ptr<Archive> &archive)
 //==============================================================================
 //==============================================================================
 
-DTboolean ScriptingSoundGain::compute (const PlugBase *plug)
+bool ScriptingSoundGain::compute (const PlugBase *plug)
 {
 	PROFILER(SOUND);
 

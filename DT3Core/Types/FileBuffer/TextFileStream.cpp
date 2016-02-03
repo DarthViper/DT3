@@ -99,7 +99,7 @@ void TextFileStream::read_float_string (DTcharacter buffer[TEMP_BUFFER_SIZE])
 //==============================================================================
 //==============================================================================
 
-Stream& TextFileStream::operator<< (const DTboolean n)
+Stream& TextFileStream::operator<< (const bool n)
 {
         std::stringstream ss;
         ss << n;
@@ -236,11 +236,11 @@ Stream& TextFileStream::operator<< (const std::string &n)
 //==============================================================================
 //==============================================================================
 
-Stream& TextFileStream::operator>> (DTboolean &n)
+Stream& TextFileStream::operator>> (bool &n)
 {
         DTcharacter buffer[TEMP_BUFFER_SIZE];
         read_float_string (buffer);
-        n = MoreStrings::cast_from_string<DTboolean>(buffer);
+        n = MoreStrings::cast_from_string<bool>(buffer);
         return *this;
 }
 
@@ -454,7 +454,7 @@ void TextFileStream::ignore (void)
         _file->ignore();
 }
 
-DTboolean TextFileStream::is_eof (void)
+bool TextFileStream::is_eof (void)
 {
         return _eof;
 }

@@ -79,7 +79,7 @@ class ThreadTaskQueue {
 
 
         struct Helper {
-            DTboolean                               _helper_done;
+            bool                               _helper_done;
             std::thread                             _helper_thread;
             std::mutex                              _helper_lock;
             std::condition_variable                 _helper_cond;

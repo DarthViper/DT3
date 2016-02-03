@@ -121,7 +121,7 @@ void ScriptingSoundHighPassFilter3db::archive (const std::shared_ptr<Archive> &a
 //==============================================================================
 //==============================================================================
 
-DTboolean ScriptingSoundHighPassFilter3db::compute (const PlugBase *plug)
+bool ScriptingSoundHighPassFilter3db::compute (const PlugBase *plug)
 {
 	PROFILER(SOUND);
 

@@ -126,12 +126,12 @@ void ArchiveTextBufferReader::pop_domain (void)
 //==============================================================================
 //==============================================================================
 
-DTboolean ArchiveTextBufferReader::is_reading (void) const
+bool ArchiveTextBufferReader::is_reading (void) const
 {
 	return true;
 }
 
-DTboolean ArchiveTextBufferReader::is_writing (void) const
+bool ArchiveTextBufferReader::is_writing (void) const
 {
 	return false;
 }

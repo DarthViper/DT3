@@ -94,7 +94,7 @@ PlugBase* PlugBase::incoming_connection (void) const
 //==============================================================================
 //==============================================================================
 
-DTboolean PlugBase::has_incoming_connection (void) const
+bool PlugBase::has_incoming_connection (void) const
 {
     if (_connection_index == 0)
         return false;
@@ -105,7 +105,7 @@ DTboolean PlugBase::has_incoming_connection (void) const
 //==============================================================================
 //==============================================================================
 
-DTboolean PlugBase::set_incoming_connection		(PlugBase* incoming)
+bool PlugBase::set_incoming_connection		(PlugBase* incoming)
 {
 	PROFILER(SCRIPTING);
     
@@ -116,8 +116,8 @@ DTboolean PlugBase::set_incoming_connection		(PlugBase* incoming)
     std::unique_lock<std::recursive_mutex> lock_this(owner()->lock(),std::try_to_lock);
     std::unique_lock<std::recursive_mutex> lock_incoming(incoming->owner()->lock(),std::try_to_lock);
     
-    DTboolean lock_this_status = lock_this.owns_lock();
-    DTboolean lock_incoming_status = lock_incoming.owns_lock();
+    bool lock_this_status = lock_this.owns_lock();
+    bool lock_incoming_status = lock_incoming.owns_lock();
     
     while (!lock_this_status || !lock_incoming_status) {
         if (lock_this_status)       lock_this.unlock();
@@ -181,8 +181,8 @@ void PlugBase::remove_incoming_connection	(void)
         std::unique_lock<std::recursive_mutex> lock_this(owner()->lock(),std::try_to_lock);
         std::unique_lock<std::recursive_mutex> lock_incoming(incoming_ref->owner()->lock(),std::try_to_lock);
         
-        DTboolean lock_this_status = lock_this.owns_lock();
-        DTboolean lock_incoming_status = lock_incoming.owns_lock();
+        bool lock_this_status = lock_this.owns_lock();
+        bool lock_incoming_status = lock_incoming.owns_lock();
         
         while (!lock_this_status || !lock_incoming_status) {
             if (lock_this_status)       lock_this.unlock();
@@ -219,7 +219,7 @@ std::vector<PlugBase*> PlugBase::outgoing_connections (void) const
 //==============================================================================
 //==============================================================================
 
-DTboolean PlugBase::has_outgoing_connection (void) const
+bool PlugBase::has_outgoing_connection (void) const
 {
     if (_connection_index == 0)
         return false;
@@ -230,7 +230,7 @@ DTboolean PlugBase::has_outgoing_connection (void) const
 //==============================================================================
 //==============================================================================
 
-DTboolean PlugBase::add_outgoing_connection (PlugBase* outgoing)
+bool PlugBase::add_outgoing_connection (PlugBase* outgoing)
 {
 	PROFILER(SCRIPTING);
 
@@ -242,8 +242,8 @@ DTboolean PlugBase::add_outgoing_connection (PlugBase* outgoing)
     std::unique_lock<std::recursive_mutex> lock_this(owner()->lock(),std::try_to_lock);
     std::unique_lock<std::recursive_mutex> lock_outgoing(outgoing->owner()->lock(),std::try_to_lock);
 
-    DTboolean lock_this_status = lock_this.owns_lock();
-    DTboolean lock_outgoing_status = lock_outgoing.owns_lock();
+    bool lock_this_status = lock_this.owns_lock();
+    bool lock_outgoing_status = lock_outgoing.owns_lock();
     
     while (!lock_this_status || !lock_outgoing_status) {
         if (lock_this_status)       lock_this.unlock();
@@ -304,8 +304,8 @@ void PlugBase::remove_outgoing_connection	(PlugBase* outgoing)
         std::unique_lock<std::recursive_mutex> lock_this(owner()->lock(),std::try_to_lock);
         std::unique_lock<std::recursive_mutex> lock_outgoing(outgoing->owner()->lock(),std::try_to_lock);
 
-        DTboolean lock_this_status = lock_this.owns_lock();
-        DTboolean lock_outgoing_status = lock_outgoing.owns_lock();
+        bool lock_this_status = lock_this.owns_lock();
+        bool lock_outgoing_status = lock_outgoing.owns_lock();
         
         while (!lock_this_status || !lock_outgoing_status) {
             if (lock_this_status)       lock_this.unlock();
@@ -349,7 +349,7 @@ void PlugBase::remove_outgoing_connections	(void)
 //==============================================================================
 //==============================================================================
 
-DTboolean PlugBase::try_set_dirty(void)
+bool PlugBase::try_set_dirty(void)
 {
     std::list<PlugBase*> visited_plugs;
     
@@ -429,7 +429,7 @@ void PlugBase::set_dirty (void)
 //==============================================================================
 //==============================================================================
 
-DTboolean PlugBase::try_compute(PlugBase *p)
+bool PlugBase::try_compute(PlugBase *p)
 {
     std::list<PlugBase*> visited_plugs;
     std::stack<PlugBase*> stack;

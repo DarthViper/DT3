@@ -51,7 +51,7 @@ class TextFileStream: public TextStream {
 
         public:
                 Stream&                             operator<<              (const Stream::FS)	{	*this << " ";	return *this;	}
-                Stream&                             operator<<              (const DTboolean n);
+                Stream&                             operator<<              (const bool n);
                 Stream&                             operator<<              (const DTbyte n);
                 Stream&                             operator<<              (const DTshort n);
                 Stream&                             operator<<              (const DTint n);
@@ -72,7 +72,7 @@ class TextFileStream: public TextStream {
                 Stream&                             operator<<              (const Stream& n);
 
 
-                Stream&                             operator>>              (DTboolean &n);
+                Stream&                             operator>>              (bool &n);
                 Stream&                             operator>>              (DTbyte &n);
                 Stream&                             operator>>              (DTshort &n);
                 Stream&                             operator>>              (DTint &n);
@@ -120,7 +120,7 @@ class TextFileStream: public TextStream {
 
                 /// Checks for end of file
                 /// \return End of file
-                DTboolean                           is_eof                  (void);
+                bool                           is_eof                  (void);
 
                 /// Clears end of file flag
                 void                                clear_EOF               (void)  {   _eof = false;   }
@@ -158,13 +158,13 @@ class TextFileStream: public TextStream {
 
                 /// Sets the ignore whitespace flag. This ignores spaces when reading strings
                 /// \param ignore_whitepace ignore whitepace flag
-        void                                set_ignore_whitespace   (DTboolean ignore_whitepace)    {   _ignore_whitespace = ignore_whitepace;  }
+        void                                set_ignore_whitespace   (bool ignore_whitepace)    {   _ignore_whitespace = ignore_whitepace;  }
 
         private:
         void                                update_progress         (void);
 
                 std::shared_ptr<FileHandle>         _file;
-        DTboolean                           _ignore_whitespace;
+        bool                           _ignore_whitespace;
 
                 DTsize                              _start;
                 DTsize                              _length;
@@ -172,7 +172,7 @@ class TextFileStream: public TextStream {
 
                 std::shared_ptr<Progress>           _progress;
 
-        DTboolean                           _eof;
+        bool                           _eof;
 
         static const DTsize TEMP_BUFFER_SIZE = 1024;
 

@@ -52,7 +52,7 @@ namespace DT3 {
 //==============================================================================
 
 GameMainThread::State                   GameMainThread::_state = STATE_IDLE;
-DTboolean                               GameMainThread::_stop = true;
+bool                               GameMainThread::_stop = true;
 
 std::thread                             GameMainThread::_event_queue_thread;
 std::mutex                              GameMainThread::_event_queue_mutex;
@@ -104,7 +104,7 @@ void GameMainThread::initialize_engine_impl (void)
 #endif
 
     // Warning if next run after crash
-    DTboolean crashed = MoreStrings::cast_from_string<DTboolean>(Globals::global("SYS_CRASHED"));
+    bool crashed = MoreStrings::cast_from_string<bool>(Globals::global("SYS_CRASHED"));
     if (crashed) {
         LOG_MESSAGE << "WARNING: Game crashed on last run.";
         Globals::set_global("SYS_WAS_CRASHED","1",Globals::VOLATILE);

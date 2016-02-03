@@ -46,7 +46,7 @@ class ScriptingParticleSizeSequencer: public ScriptingBase {
 
         /// Computes the value of the node
         /// \param plug plug to compute
-        DTboolean					compute					(const PlugBase *plug);
+        bool					compute					(const PlugBase *plug);
 
 
         DEFINE_ACCESSORS(time_0, set_time_0, DTfloat, _t[0]);

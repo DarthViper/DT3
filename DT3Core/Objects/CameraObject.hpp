@@ -58,7 +58,7 @@ class CameraObject: public PlaceableObject {
         DEFINE_ACCESSORS		(aspect_ratio_mul, set_aspect_ratio_mul, DTfloat, _aspect_ratio_mul);
 
         /// Accessors for the auxilary aspect ratio multiplier (Perspective Camera)
-        DEFINE_ACCESSORS		(perspective_fill_width, set_perspective_fill_width, DTboolean, _perspective_fill_width);
+        DEFINE_ACCESSORS		(perspective_fill_width, set_perspective_fill_width, bool, _perspective_fill_width);
 
         /// Sets the perspective camera frustum
         /// \param near_plane Near plane of the camera
@@ -106,7 +106,7 @@ class CameraObject: public PlaceableObject {
 
         /// Is the camera a perspective camera (as opposed to ortho)
         /// \return is perspective
-        DTboolean                   is_perspective              (void)  {   return _perspective;    }
+        bool                   is_perspective              (void)  {   return _perspective;    }
 
 
         /// Set a picking camera (used in the editor for picking)
@@ -122,13 +122,13 @@ class CameraObject: public PlaceableObject {
 
         /// Is the camera a picking camera
         /// \return is picking
-        DTboolean                   is_picking                  (void) const                    {   return _picking;        }
+        bool                   is_picking                  (void) const                    {   return _picking;        }
 
 
         /// Checks if a point is in the frustum
         /// \param point point to check
         /// \return is in frustum
-        DTboolean					point_in_frustum            (const Vector3 &point) const;
+        bool					point_in_frustum            (const Vector3 &point) const;
 
         /// Checks the distance of a point to the frustum
         /// \param point point to check
@@ -140,18 +140,18 @@ class CameraObject: public PlaceableObject {
         /// \param translation translation of sphere
         /// \param sphere sphere
         /// \return is in frustum
-        DTboolean					sphere_in_frustum           (const Vector3 &translation, const Sphere &sphere) const;
+        bool					sphere_in_frustum           (const Vector3 &translation, const Sphere &sphere) const;
 
         /// Checks if a sphere is in the frustum, but doesn't check front and back planes
         /// \param translation translation of sphere
         /// \param sphere sphere
         /// \return is in frustum
-        DTboolean					sphere_in_frustum_no_front_back (const Vector3 &translation, const Sphere &sphere) const;
+        bool					sphere_in_frustum_no_front_back (const Vector3 &translation, const Sphere &sphere) const;
 
         /// Checks if a box is in the frustum
         /// \param box box
         /// \return is in frustum
-        DTboolean					box_in_frustum              (const Box &box) const;
+        bool					box_in_frustum              (const Box &box) const;
 
 
         /// Orients the camera to look at a point in space
@@ -243,9 +243,9 @@ class CameraObject: public PlaceableObject {
     private:
         Plane				_frustum[6];
 
-        DTboolean			_picking;
-        DTboolean			_perspective;
-        DTboolean           _perspective_fill_width;
+        bool			_picking;
+        bool			_perspective;
+        bool           _perspective_fill_width;
 
         // Perspective
         DTfloat				_near_plane;

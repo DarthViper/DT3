@@ -434,7 +434,7 @@ Quaternion Quaternion::convert_axis	    (const Vector3 &a)
 //==============================================================================
 //==============================================================================
 
-DTboolean Quaternion::is_zero (const Quaternion &a)
+bool Quaternion::is_zero (const Quaternion &a)
 {
     return (a.w == 0.0 && a.x == 0.0 && a.y == 0.0 && a.z == 0.0);
 }

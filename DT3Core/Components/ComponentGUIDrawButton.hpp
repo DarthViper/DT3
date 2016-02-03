@@ -128,8 +128,8 @@ class ComponentGUIDrawButton: public ComponentBase {
         Rectangle                                           _bounds;
         std::string                                         _label;
 
-        DTboolean                                           _needs_render;
-        DTboolean                                           _can_render;
+        bool                                           _needs_render;
+        bool                                           _can_render;
 
         std::shared_ptr<TextureResource2D>                  _text_image;
 };

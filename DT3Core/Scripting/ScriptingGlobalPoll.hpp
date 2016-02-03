@@ -60,8 +60,8 @@ class ScriptingGlobalPoll: public ScriptingBase {
         Plug<std::string>           _global;
         Plug<std::string>			_value;
 
-        Plug<DTboolean>             _read;
-        DTboolean                   _substitute;
+        Plug<bool>             _read;
+        bool                   _substitute;
 };
 
 //==============================================================================

@@ -1,6 +1,4 @@
 #pragma once
-#ifndef DT3_SCRIPTINGPAGEFLIPPER
-#define DT3_SCRIPTINGPAGEFLIPPER
 //==============================================================================
 ///
 ///	File: ScriptingRadioButton.hpp
@@ -13,6 +11,7 @@
 //==============================================================================
 
 #include "DT3Core/Scripting/ScriptingBase.hpp"
+#include "DT3Core/Types/Node/Event.hpp"
 
 //==============================================================================
 //==============================================================================
@@ -140,5 +139,3 @@ class ScriptingRadioButton: public ScriptingBase {
 //==============================================================================
 
 } // DT3
-
-#endif

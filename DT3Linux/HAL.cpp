@@ -314,7 +314,7 @@ DTuint HAL::num_CPU_cores (void)
 //==============================================================================
 //==============================================================================
 
-DTboolean HAL::move_file (const FilePath &from, const FilePath &to)
+bool HAL::move_file (const FilePath &from, const FilePath &to)
 {
     if (link(from.full_path().c_str(), to.full_path().c_str()) == -1)
         return false;
@@ -325,7 +325,7 @@ DTboolean HAL::move_file (const FilePath &from, const FilePath &to)
     return true;
 }
 
-DTboolean HAL::delete_file (const FilePath &file)
+bool HAL::delete_file (const FilePath &file)
 {
 
     if (unlink(file.full_path().c_str()) == -1)
@@ -343,13 +343,13 @@ DTuint64 HAL::modification_date (const FilePath &file)
     return static_cast<DTuint>(buffer.st_mtime);
 }
 
-DTboolean HAL::is_dir (const FilePath &file)
+bool HAL::is_dir (const FilePath &file)
 {
     struct stat buffer;
     if (stat(file.full_path().c_str(), &buffer))
         return 0;
 
-    return (DTboolean) S_ISDIR(buffer.st_mode);
+    return (bool) S_ISDIR(buffer.st_mode);
 }
 
 std::string HAL::path_separator (void)
@@ -357,7 +357,7 @@ std::string HAL::path_separator (void)
     return "/";
 }
 
-void HAL::list_directory (const FilePath &pathname, DTboolean recursive, std::vector<FilePath> &paths)
+void HAL::list_directory (const FilePath &pathname, bool recursive, std::vector<FilePath> &paths)
 {
     // set up and run platform specific iteration routines
 
@@ -370,7 +370,7 @@ void HAL::list_directory (const FilePath &pathname, DTboolean recursive, std::ve
         dir_queue.pop_back();
 
         // Build the name list
-        QDir curdir(dir.c_str());
+        const QDir curdir(dir.c_str());
         for(const QFileInfo &fi : curdir.entryInfoList()) {
             // Skip invisible files
             if(fi.fileName().startsWith('.'))

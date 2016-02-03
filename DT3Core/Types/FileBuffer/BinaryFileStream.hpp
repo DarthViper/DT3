@@ -51,7 +51,7 @@ class BinaryFileStream: public BinaryStream {
 
     public:
         Stream&                             operator<<			(const Stream::FS)	{	return *this;	}
-        Stream&                             operator<<			(const DTboolean n);
+        Stream&                             operator<<			(const bool n);
         Stream&                             operator<<			(const DTbyte n);
         Stream&                             operator<<			(const DTshort n);
         Stream&                             operator<<			(const DTint n);
@@ -72,7 +72,7 @@ class BinaryFileStream: public BinaryStream {
         Stream&                             operator<<			(const Stream& n);
 
 
-        Stream&                             operator>>			(DTboolean &n);
+        Stream&                             operator>>			(bool &n);
         Stream&                             operator>>			(DTbyte &n);
         Stream&                             operator>>			(DTshort &n);
         Stream&                             operator>>			(DTint &n);
@@ -123,7 +123,7 @@ class BinaryFileStream: public BinaryStream {
 
         /// Checks for end of file
         /// \return End of file
-        DTboolean                           is_eof				(void);
+        bool                           is_eof				(void);
 
         /// Clears end of file flag
         void                                clear_EOF			(void)                  {   _eof = false;   }
@@ -163,7 +163,7 @@ class BinaryFileStream: public BinaryStream {
 
         std::shared_ptr<Progress>           _progress;
 
-        DTboolean                           _eof;
+        bool                           _eof;
 };
 
 //==============================================================================

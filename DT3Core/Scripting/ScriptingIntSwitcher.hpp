@@ -43,20 +43,20 @@ class ScriptingIntSwitcher: public ScriptingBase {
     public:
         /// Computes the value of the node
         /// \param plug plug to compute
-        DTboolean                    compute                    (const PlugBase *plug);
+        bool                    compute                    (const PlugBase *plug);
 
     private:
-        Plug<DTboolean>                _in1;
+        Plug<bool>                _in1;
         Plug<DTint>                    _in_int1;
-        Plug<DTboolean>                _in2;
+        Plug<bool>                _in2;
         Plug<DTint>                    _in_int2;
-        Plug<DTboolean>                _in3;
+        Plug<bool>                _in3;
         Plug<DTint>                    _in_int3;
-        Plug<DTboolean>                _in4;
+        Plug<bool>                _in4;
         Plug<DTint>                    _in_int4;
 
         Plug<DTint>                    _out;
-        DTboolean                   _buffer_output;
+        bool                   _buffer_output;
 };
 
 //==============================================================================

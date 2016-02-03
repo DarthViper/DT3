@@ -185,7 +185,7 @@ class ShaderResource: public Resource {
         std::map<std::string,std::vector<std::string>>  _geometry_shaders;
         std::map<std::string,std::vector<std::string>>  _vertex_shaders;
 
-        DTboolean                                       _needs_recompile;
+        bool                                       _needs_recompile;
 
         std::shared_ptr<DT3GLShaderResource>            _shader;
 };

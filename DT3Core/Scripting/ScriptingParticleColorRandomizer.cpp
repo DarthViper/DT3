@@ -115,7 +115,7 @@ void ScriptingParticleColorRandomizer::archive (const std::shared_ptr<Archive> &
 //==============================================================================
 //==============================================================================
 
-DTboolean ScriptingParticleColorRandomizer::compute (const PlugBase *plug)
+bool ScriptingParticleColorRandomizer::compute (const PlugBase *plug)
 {
 	PROFILER(PARTICLES);
 

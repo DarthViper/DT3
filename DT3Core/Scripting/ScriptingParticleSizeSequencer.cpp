@@ -115,7 +115,7 @@ void ScriptingParticleSizeSequencer::archive (const std::shared_ptr<Archive> &ar
 //==============================================================================
 //==============================================================================
 
-DTboolean ScriptingParticleSizeSequencer::compute (const PlugBase *plug)
+bool ScriptingParticleSizeSequencer::compute (const PlugBase *plug)
 {
 	PROFILER(PARTICLES);
 

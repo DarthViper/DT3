@@ -176,7 +176,7 @@ CommandResult PlugNode_cmd::do_connect_plugs (CommandContext &ctx, const Command
     // Do Command
     //
         
-    DTboolean r = plug2->set_incoming_connection(plug1);
+    bool r = plug2->set_incoming_connection(plug1);
     if (!r) {
         
         // Try to build conversion plug

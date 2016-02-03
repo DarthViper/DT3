@@ -208,7 +208,7 @@ void TextureResource2D::set_resource_textels (std::shared_ptr<DT3GLTexture2DReso
 //==============================================================================
 //==============================================================================
 
-void TextureResource2D::allocate_rgba_textels (const DTint width, const DTint height, DTboolean mipmapped)
+void TextureResource2D::allocate_rgba_textels (const DTint width, const DTint height, bool mipmapped)
 {
     _format = DT3GL_FORMAT_RGBA;
 
@@ -226,7 +226,7 @@ void TextureResource2D::allocate_rgba_textels (const DTint width, const DTint he
     _dirty_rectangle.clear();
 }
 
-void TextureResource2D::set_textels (const DTint width, const DTint height, std::shared_ptr<DTubyte> &textels, DT3GLTextelFormat format, DTboolean mipmapped, DTuint flags)
+void TextureResource2D::set_textels (const DTint width, const DTint height, std::shared_ptr<DTubyte> &textels, DT3GLTextelFormat format, bool mipmapped, DTuint flags)
 {
     _textels = textels;
 
@@ -247,7 +247,7 @@ void TextureResource2D::set_textels (const DTint width, const DTint height, std:
 //==============================================================================
 //==============================================================================
 
-void TextureResource2D::set_textels_compressed (const DTint width, const DTint height, std::shared_ptr<DTubyte> &textels, DT3GLTextelFormat format, DTboolean mipmapped, DTuint flags)
+void TextureResource2D::set_textels_compressed (const DTint width, const DTint height, std::shared_ptr<DTubyte> &textels, DT3GLTextelFormat format, bool mipmapped, DTuint flags)
 {
     ASSERT ( (_flags & (DT3GL_ACCESS_CPU_WRITE | DT3GL_ACCESS_CPU_READ)) == 0);
 

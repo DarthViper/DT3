@@ -55,17 +55,17 @@ class ScriptingKeyDown: public ScriptingBase {
     private:
         Plug<std::string>           _keys;
 
-        Plug<DTboolean>				_left_shift;
-        Plug<DTboolean>				_right_shift;
-        Plug<DTboolean>				_left_ctrl;
-        Plug<DTboolean>				_right_ctrl;
-        Plug<DTboolean>				_left_alt;
-        Plug<DTboolean>				_right_alt;
-        Plug<DTboolean>				_left_meta;
-        Plug<DTboolean>				_right_meta;
-        Plug<DTboolean>				_caps_meta;
+        Plug<bool>				_left_shift;
+        Plug<bool>				_right_shift;
+        Plug<bool>				_left_ctrl;
+        Plug<bool>				_right_ctrl;
+        Plug<bool>				_left_alt;
+        Plug<bool>				_right_alt;
+        Plug<bool>				_left_meta;
+        Plug<bool>				_right_meta;
+        Plug<bool>				_caps_meta;
 
-        Plug<DTboolean>				_out;
+        Plug<bool>				_out;
 };
 
 //==============================================================================

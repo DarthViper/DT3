@@ -512,7 +512,7 @@ void World::clean (void)
 //==============================================================================
 //==============================================================================
 
-DTboolean World::touch_gui (const TouchEvent *event)
+bool World::touch_gui (const TouchEvent *event)
 {
     WorldNode *handled = NULL;
 

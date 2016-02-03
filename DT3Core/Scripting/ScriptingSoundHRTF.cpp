@@ -233,7 +233,7 @@ void ScriptingSoundHRTF::calc_azimuth (DTfloat azimuth, const HRTFFilterCoeffs *
 
 #define INTERP(a,b,m) ( (a * m) + (b * (1.0F-m)) )
 
-DTboolean ScriptingSoundHRTF::compute (const PlugBase *plug)
+bool ScriptingSoundHRTF::compute (const PlugBase *plug)
 {
     PROFILER(SOUND);
 

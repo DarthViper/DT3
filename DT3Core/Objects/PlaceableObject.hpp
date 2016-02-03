@@ -43,7 +43,7 @@ class PlaceableObject: public ObjectBase {
     public:
         /// Returns whether there is a parent
         /// \return has parent object
-        inline DTboolean			has_parent				(void) const	{	return _parent_transform.has_incoming_connection();		}
+        inline bool			has_parent				(void) const	{	return _parent_transform.has_incoming_connection();		}
 
         /// Returns the parent object to this object
         /// \return parent object
@@ -280,18 +280,18 @@ class PlaceableObject: public ObjectBase {
 
         // Enable and disable picking in the editor for this object
         /// \param pickable can pick
-        void						set_pickable            (DTboolean pickable)		{   _pickable = pickable;					}
+        void						set_pickable            (bool pickable)		{   _pickable = pickable;					}
 
         /// Is the object pickable in the editor
         /// \return pickable
-        DTboolean					is_pickable             (void) const				{   return _pickable;						}
+        bool					is_pickable             (void) const				{   return _pickable;						}
 
         /// Computes the value of the node
         /// \param plug plug to compute
-        DTboolean					compute                 (const PlugBase *plug);
+        bool					compute                 (const PlugBase *plug);
 
     private:
-        DTboolean					_pickable;
+        bool					_pickable;
 
         Plug<DTfloat>				_radius;
         Plug<Vector3>				_velocity;

@@ -45,10 +45,10 @@ class ScriptingParticleSizeRandomizer: public ScriptingBase {
     public:
         /// Computes the value of the node
         /// \param plug plug to compute
-        DTboolean					compute					(const PlugBase *plug);
+        bool					compute					(const PlugBase *plug);
 
     private:
-        DTboolean                                           _continuous;
+        bool                                           _continuous;
 
         DTfloat                                             _min_size;
         DTfloat                                             _max_size;

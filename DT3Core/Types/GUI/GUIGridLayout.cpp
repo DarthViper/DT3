@@ -174,7 +174,7 @@ void GUIGridLayout::layout (const Rectangle &size_target)
 //==============================================================================
 //==============================================================================
 
-void GUIGridLayout::animate (const Rectangle &size_target, DTfloat time, DTboolean spline)
+void GUIGridLayout::animate (const Rectangle &size_target, DTfloat time, bool spline)
 {
     // Total size
     DTfloat total_width = size_target.plus_x() - size_target.minus_x();

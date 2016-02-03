@@ -60,7 +60,7 @@ void FileHandleUncompressed::write (const DTubyte *buffer, DTsize size)
 //==============================================================================
 //==============================================================================
 
-DTerr FileHandleUncompressed::open_file (const FilePath &pathname, DTboolean read)
+DTerr FileHandleUncompressed::open_file (const FilePath &pathname, bool read)
 {
 	if (read) {
         _file.open(pathname.full_path().c_str(), std::ios::in | std::ios::binary);

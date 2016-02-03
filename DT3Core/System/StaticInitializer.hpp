@@ -57,9 +57,9 @@ class StaticInitializer {
 class StaticInitializerCallback {
     public:
                                     StaticInitializerCallback			(void)				{	_priority = 0;	StaticInitializer::register_initializer(this);	}
-    private:
-                                    StaticInitializerCallback			(const StaticInitializerCallback &rhs);
-        StaticInitializerCallback&	operator =							(const StaticInitializerCallback &rhs);
+                                    StaticInitializerCallback			(const StaticInitializerCallback &rhs) = delete;
+                                    StaticInitializerCallback			(StaticInitializerCallback &&rhs) = delete;
+        StaticInitializerCallback&	operator =							(const StaticInitializerCallback &rhs) = delete;
     public:
         virtual 					~StaticInitializerCallback			(void)				{}
 

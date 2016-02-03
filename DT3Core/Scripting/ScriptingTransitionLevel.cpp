@@ -64,7 +64,8 @@ BEGIN_IMPLEMENT_PLUGS(ScriptingTransitionLevel)
         .set_event(&ScriptingTransitionLevel::transition);
 
 END_IMPLEMENT_PLUGS
-
+}
+using namespace DT3;
 //==============================================================================
 /// Standard class constructors/destructors
 //==============================================================================
@@ -150,6 +151,3 @@ void ScriptingTransitionLevel::transition (PlugNode *sender)
 
 //==============================================================================
 //==============================================================================
-
-} // DT3
-

@@ -37,13 +37,13 @@ class GlyphCacheEntry: public BaseClass {
 
     public:
 
-        DTboolean                               operator ==             (const GlyphCacheEntry& rhs) const;
-        DTboolean                               operator !=             (const GlyphCacheEntry& rhs) const;
+        bool                               operator ==             (const GlyphCacheEntry& rhs) const;
+        bool                               operator !=             (const GlyphCacheEntry& rhs) const;
 
         /// Check to see if the Glyph is part of the same family
         /// \param rhs other glyph
         /// \return Is the same
-        DTboolean                               is_same_family          (const std::shared_ptr<GlyphCacheEntry> &rhs);
+        bool                               is_same_family          (const std::shared_ptr<GlyphCacheEntry> &rhs);
 
         /// Returns a hash of the glyph entry for faster searching and comparison
         /// \return Hash

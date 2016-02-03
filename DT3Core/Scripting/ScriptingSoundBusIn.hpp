@@ -47,7 +47,7 @@ class ScriptingSoundBusIn: public ScriptingSoundBase {
     public:
         /// Computes the value of the node
         /// \param plug plug to compute
-        DTboolean					compute					(const PlugBase *plug);
+        bool					compute					(const PlugBase *plug);
 
         /// Adds a bus sound source
         /// \param source bus sound source

@@ -158,7 +158,7 @@ class GUIObject: public PlaceableObject {
 
         /// Checks to see if there are animations queued on this object or its children
         /// \return is animating
-        DTboolean                   is_contents_animating       (void) const;
+        bool                   is_contents_animating       (void) const;
 
         /// Returns the color of the object.
         /// \return color
@@ -177,7 +177,7 @@ class GUIObject: public PlaceableObject {
         void                        set_label                   (const std::string &l)          {   _label = l;     }
 
         /// Accessor for the no focus flag. No focus means that clicks will pass right through it.
-        DEFINE_ACCESSORS(no_focus, set_no_focus, DTboolean, _no_focus)
+        DEFINE_ACCESSORS(no_focus, set_no_focus, bool, _no_focus)
 
 
         // Animation
@@ -192,7 +192,7 @@ class GUIObject: public PlaceableObject {
 
         /// Checks if there are animations queued on this object
         /// \return has animations
-        DTboolean					has_anim_key                (void) const        {	return _anim_keys.size() > 0;	}
+        bool					has_anim_key                (void) const        {	return _anim_keys.size() > 0;	}
 
         /// Removes all of the animations from this object
         void						clear_anims                 (void);
@@ -329,7 +329,7 @@ class GUIObject: public PlaceableObject {
         DTint                       _size_mode;
         DTint                       _pivot;
 
-        DTboolean                   _no_focus;
+        bool                   _no_focus;
 
         std::list<GUIAnimKey>       _anim_keys;
         //DTfloat						_animation_time;

@@ -186,7 +186,7 @@ void ScriptingKeyframesMatrix3::clear_key (void)
 //==============================================================================
 //==============================================================================
 
-DTboolean ScriptingKeyframesMatrix3::compute (const PlugBase *plug)
+bool ScriptingKeyframesMatrix3::compute (const PlugBase *plug)
 {
 	PROFILER(SCRIPTING);
 

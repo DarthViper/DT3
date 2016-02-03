@@ -44,7 +44,7 @@ class TransitionBase: public BaseClass {
         /// Description
         /// \param param description
         /// \return description
-        virtual DTboolean	begin_new_world         (void)	{	return false;	};
+        virtual bool	begin_new_world         (void)	{	return false;	};
 
         /// Description
         /// \param param description
@@ -54,7 +54,7 @@ class TransitionBase: public BaseClass {
         /// Description
         /// \param param description
         /// \return description
-        virtual DTboolean	begin_old_world         (void)	{	return false;	};
+        virtual bool	begin_old_world         (void)	{	return false;	};
 
         /// Description
         /// \param param description

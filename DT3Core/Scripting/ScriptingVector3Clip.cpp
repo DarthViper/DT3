@@ -107,7 +107,7 @@ void ScriptingVector3Clip::archive (const std::shared_ptr<Archive> &archive)
 //==============================================================================
 //==============================================================================
 
-DTboolean ScriptingVector3Clip::compute (const PlugBase *plug)
+bool ScriptingVector3Clip::compute (const PlugBase *plug)
 {
 	PROFILER(SCRIPTING);
 

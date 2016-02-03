@@ -69,8 +69,8 @@ template <> struct Info<void> {
     enum { isFundamental = 1 };
 };
 
-template <> struct Info<DTboolean> {
-    static DTboolean			default_value(void)	{	return false;	}
+template <> struct Info<bool> {
+    static bool			default_value(void)	{	return false;	}
     static const DTcharacter*	name(void)          {	return "bool";	}
     static const DTcharacter*	name_caps(void)     {	return "Bool";	}
     enum { isFundamental = 1 };

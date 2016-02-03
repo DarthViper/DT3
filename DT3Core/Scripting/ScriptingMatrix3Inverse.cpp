@@ -98,7 +98,7 @@ void ScriptingMatrix3Inverse::archive (const std::shared_ptr<Archive> &archive)
 //==============================================================================
 //==============================================================================
 
-DTboolean ScriptingMatrix3Inverse::compute (const PlugBase *plug)
+bool ScriptingMatrix3Inverse::compute (const PlugBase *plug)
 {
 	PROFILER(SCRIPTING);
 

@@ -196,19 +196,19 @@ class MoreStrings {
         // \param a first string
         // \param b second string
         /// \return is equal
-        static DTboolean        iequals (const std::string &a, const std::string &b);
+        static bool        iequals (const std::string &a, const std::string &b);
 
         // Case insensitive string compare
         // \param a first string
         // \param b second string
         /// \return is equal
-        static DTboolean        iequals (const std::string &a, const char *b);
+        static bool        iequals (const std::string &a, const char *b);
 
         // Case insensitive string compare
         // \param a first string
         // \param b second string
         /// \return is equal
-        static DTboolean        iequals (const char *a, const std::string &b);
+        static bool        iequals (const char *a, const std::string &b);
 
 
 };
@@ -252,7 +252,7 @@ class StringCopier {
         {}
 
 
-        DTboolean operator < (const StringCopier &s) const {
+        bool operator < (const StringCopier &s) const {
             return _s < s._s;
         }
 

@@ -50,7 +50,7 @@ class Factory {
         /// Description
         /// \param param description
         /// \return description
-        static std::shared_ptr<BaseClass>		create_object               (const std::string cid, DTboolean net_create = false);
+        static std::shared_ptr<BaseClass>		create_object               (const std::string cid, bool net_create = false);
 
         /// Description
         /// \param param description

@@ -52,7 +52,7 @@ class AnimationPose: public BaseClass {
         /// \param joint_name_hash hash of the name of the joint
         /// \param transform returned transform
         /// \return success
-        DTboolean				joint_transform     (DTuint joint_name_hash, Matrix4 &transform) const;
+        bool				joint_transform     (DTuint joint_name_hash, Matrix4 &transform) const;
 
     private:
         std::map<DTuint, AnimationPoseJoint>	_joints;

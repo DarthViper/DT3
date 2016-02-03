@@ -174,7 +174,7 @@ void ScriptingCounter::event_reset (PlugNode *sender)
 //==============================================================================
 //==============================================================================
 
-DTboolean ScriptingCounter::compute (const PlugBase *plug)
+bool ScriptingCounter::compute (const PlugBase *plug)
 {
 	PROFILER(SCRIPTING);
 

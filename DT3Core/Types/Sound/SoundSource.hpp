@@ -92,11 +92,11 @@ class SoundSource: public PlugNode {
 
         /// Returns wether the sound source is empty when the buffer is empty.
         /// \return ends on empty
-        DTboolean					ends_on_empty           (void) const                    {   return _ends_on_empty;          }
+        bool					ends_on_empty           (void) const                    {   return _ends_on_empty;          }
 
         /// Returns wether the sound source is empty when the buffer is empty.
         /// \param ends_on_empty flag
-        void						set_ends_on_empty       (const DTboolean ends_on_empty) {	_ends_on_empty = ends_on_empty; }
+        void						set_ends_on_empty       (const bool ends_on_empty) {	_ends_on_empty = ends_on_empty; }
 
 
         /// Sends the event that the sound has started
@@ -118,7 +118,7 @@ class SoundSource: public PlugNode {
         Plug<DTfloat>		_gain;
         Plug<DTfloat>		_rolloff;
 
-        DTboolean           _ends_on_empty;
+        bool           _ends_on_empty;
 
         Event               _started;
         Event               _stopped;

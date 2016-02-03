@@ -137,7 +137,7 @@ void ScriptingSoundMixer::archive (const std::shared_ptr<Archive> &archive)
 //==============================================================================
 //==============================================================================
 
-DTboolean ScriptingSoundMixer::compute (const PlugBase *plug)
+bool ScriptingSoundMixer::compute (const PlugBase *plug)
 {
 	PROFILER(SOUND);
 

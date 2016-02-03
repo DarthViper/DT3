@@ -109,7 +109,7 @@ class DT3OpenGL: public DeviceGraphics {
 
 
         /// Clears the viewport
-        virtual void                                        clear_viewport                  (DTboolean depth, DTboolean color, DTboolean stencil);
+        virtual void                                        clear_viewport                  (bool depth, bool color, bool stencil);
 
 
         /// Viewport clear values
@@ -147,10 +147,10 @@ class DT3OpenGL: public DeviceGraphics {
         // Textures
         //
 
-        virtual std::shared_ptr<DT3GLTexture2DResource>     create_texture_2D               (DTint width, DTint height, DTubyte *textels, DT3GLTextelFormat format, DTboolean mipmapped, DTuint flags = DT3GL_ACCESS_CPU_NONE | DT3GL_ACCESS_GPU_READ);
+        virtual std::shared_ptr<DT3GLTexture2DResource>     create_texture_2D               (DTint width, DTint height, DTubyte *textels, DT3GLTextelFormat format, bool mipmapped, DTuint flags = DT3GL_ACCESS_CPU_NONE | DT3GL_ACCESS_GPU_READ);
         virtual void                                        update_texture_2D               (const std::shared_ptr<DT3GLTexture2DResource> &res, DTint x, DTint y, DTint width, DTint height, DTubyte *textels);
 
-        virtual std::shared_ptr<DT3GLTexture3DResource>     create_texture_3D               (DTint width, DTint height, DTint depth, DTubyte *textels, DT3GLTextelFormat format, DTboolean mipmapped, DTuint flags = DT3GL_ACCESS_CPU_NONE | DT3GL_ACCESS_GPU_READ);
+        virtual std::shared_ptr<DT3GLTexture3DResource>     create_texture_3D               (DTint width, DTint height, DTint depth, DTubyte *textels, DT3GLTextelFormat format, bool mipmapped, DTuint flags = DT3GL_ACCESS_CPU_NONE | DT3GL_ACCESS_GPU_READ);
         virtual void                                        update_texture_3D               (const std::shared_ptr<DT3GLTexture3DResource> &res, DTint x, DTint y, DTint z, DTint width, DTint height, DTint depth, DTubyte *textels);
 
         virtual std::shared_ptr<DT3GLTextureCubeResource>   create_texture_cube             (   DTint width, DTint height,
@@ -161,7 +161,7 @@ class DT3OpenGL: public DeviceGraphics {
                                                                                                 DTubyte *textels_top,
                                                                                                 DTubyte *textels_bottom,
                                                                                                 DT3GLTextelFormat format,
-                                                                                                DTboolean mipmapped,
+                                                                                                bool mipmapped,
                                                                                                 DTuint flags = DT3GL_ACCESS_CPU_NONE | DT3GL_ACCESS_GPU_READ);
         virtual void                                        update_texture_cube             (   const std::shared_ptr<DT3GLTextureCubeResource> &res, DTint x, DTint y, DTint width, DTint height,
                                                                                                 DTubyte *textels_front,
@@ -330,7 +330,7 @@ class DT3OpenGL: public DeviceGraphics {
 
 //        // Performance query for frame lag
 //        GLuint                                              _frame_lag_query;
-//        DTboolean                                           _frame_query_in_progress;
+//        bool                                           _frame_query_in_progress;
 //        DTint64                                             _frame_lag_now;
 //        DTint64                                             _frame_lag_last_calculated;
 };

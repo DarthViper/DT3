@@ -103,7 +103,7 @@ void ScriptingGeometry::set_geometry_property (const std::shared_ptr<GeometryRes
 //==============================================================================
 //==============================================================================
 
-DTboolean ScriptingGeometry::compute (const PlugBase *plug)
+bool ScriptingGeometry::compute (const PlugBase *plug)
 {
 	PROFILER(SCRIPTING);
 

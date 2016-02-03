@@ -66,7 +66,7 @@ class TextureResource2D: public Resource {
         /// \param width width of texture
         /// \param height height of texture
         /// \param mipmapped mipmapped
-        void                        allocate_rgba_textels   (const DTint width, const DTint height, DTboolean mipmapped);
+        void                        allocate_rgba_textels   (const DTint width, const DTint height, bool mipmapped);
 
         /// Sets a 2D texture from a renderer resource bypassing any resource management
         void                        set_resource_textels     (std::shared_ptr<DT3GLTexture2DResource> tex);
@@ -77,7 +77,7 @@ class TextureResource2D: public Resource {
         /// \param textels textel data (can be NULL)
         /// \param format format
         /// \param mipmapped mipmapped
-        void                        set_textels             (const DTint width, const DTint height, std::shared_ptr<DTubyte> &textels, DT3GLTextelFormat format, DTboolean mipmapped, DTuint flags = DT3GL_ACCESS_CPU_NONE | DT3GL_ACCESS_GPU_READ);
+        void                        set_textels             (const DTint width, const DTint height, std::shared_ptr<DTubyte> &textels, DT3GLTextelFormat format, bool mipmapped, DTuint flags = DT3GL_ACCESS_CPU_NONE | DT3GL_ACCESS_GPU_READ);
 
         /// Allocate a compressed 2D texture
         /// \param width width of texture
@@ -85,7 +85,7 @@ class TextureResource2D: public Resource {
         /// \param textels textel data
         /// \param format format
         /// \param mipmapped mipmapped
-        void                        set_textels_compressed  (const DTint width, const DTint height, std::shared_ptr<DTubyte> &textels, DT3GLTextelFormat format, DTboolean mipmapped, DTuint flags = DT3GL_ACCESS_CPU_NONE | DT3GL_ACCESS_GPU_READ);
+        void                        set_textels_compressed  (const DTint width, const DTint height, std::shared_ptr<DTubyte> &textels, DT3GLTextelFormat format, bool mipmapped, DTuint flags = DT3GL_ACCESS_CPU_NONE | DT3GL_ACCESS_GPU_READ);
 
         /// Width of the buffer
         /// \return buffer width
@@ -106,7 +106,7 @@ class TextureResource2D: public Resource {
 
         /// Get the mipmapped flag
         /// \return mipmapped
-        DTboolean					is_mipmapped            (void) const    {	return _mipmapped;  }
+        bool					is_mipmapped            (void) const    {	return _mipmapped;  }
 
 
         /// Gets a pixel from the buffer
@@ -163,7 +163,7 @@ class TextureResource2D: public Resource {
         DTint                                   _width;
         DTint                                   _height;
 
-        DTboolean                               _mipmapped;
+        bool                               _mipmapped;
         DTuint                                  _flags;
 
         std::shared_ptr<DT3GLTexture2DResource> _resource_2D;

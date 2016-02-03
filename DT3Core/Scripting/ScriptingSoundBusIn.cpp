@@ -123,7 +123,7 @@ void ScriptingSoundBusIn::remove_source (const std::shared_ptr<SoundBusSourceObj
 //==============================================================================
 //==============================================================================
 
-DTboolean ScriptingSoundBusIn::compute (const PlugBase *plug)
+bool ScriptingSoundBusIn::compute (const PlugBase *plug)
 {
 	PROFILER(SOUND);
 

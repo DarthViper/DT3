@@ -1,6 +1,4 @@
 #pragma once
-#ifndef DT3_SCRIPTINGKEYFRAMESEVENT
-#define DT3_SCRIPTINGKEYFRAMESEVENT
 //==============================================================================
 ///
 ///	File: ScriptingKeyframesEvent.hpp
@@ -13,6 +11,7 @@
 //==============================================================================
 
 #include "DT3Core/Scripting/ScriptingKeyframes.hpp"
+#include "DT3Core/Types/Node/Event.hpp"
 
 //==============================================================================
 //==============================================================================
@@ -102,5 +101,3 @@ class ScriptingKeyframesEvent: public ScriptingKeyframes {
 //==============================================================================
 
 } // DT3
-
-#endif

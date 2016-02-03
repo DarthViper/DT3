@@ -107,7 +107,7 @@ void ScriptingEqual::archive (const std::shared_ptr<Archive> &archive)
 //==============================================================================
 //==============================================================================
 
-DTboolean ScriptingEqual::compute (const PlugBase *plug)
+bool ScriptingEqual::compute (const PlugBase *plug)
 {
 	PROFILER(SCRIPTING);
 

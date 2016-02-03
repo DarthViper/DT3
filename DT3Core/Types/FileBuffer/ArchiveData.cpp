@@ -97,7 +97,7 @@ ArchiveData& ArchiveData::add_range (DTfloat range_min, DTfloat range_max)
     return (*this);
 }
 
-ArchiveData& ArchiveData::set_bitfield (DTboolean bitfield)
+ArchiveData& ArchiveData::set_bitfield (bool bitfield)
 {
     _bitfield = bitfield;
     return (*this);

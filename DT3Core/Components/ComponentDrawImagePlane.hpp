@@ -70,8 +70,8 @@ class ComponentDrawImagePlane: public ComponentBase {
         DEFINE_ACCESSORS (aspect, set_aspect, DTfloat, _aspect);
 
         /// Defines standard accessors for flip flags
-        DEFINE_ACCESSORS (flip_horz, set_flip_horz, DTboolean, _flip_horz);
-        DEFINE_ACCESSORS (flip_vert, set_flip_vert, DTboolean, _flip_vert);
+        DEFINE_ACCESSORS (flip_horz, set_flip_horz, bool, _flip_horz);
+        DEFINE_ACCESSORS (flip_vert, set_flip_vert, bool, _flip_vert);
 
         /// Returns the material for the Image Plane
         /// \return The material for the image plane
@@ -104,8 +104,8 @@ class ComponentDrawImagePlane: public ComponentBase {
         Plug<Color4f>                               _color;
         DTfloat                                     _aspect;
 
-        Plug<DTboolean>                             _flip_horz;
-        Plug<DTboolean>                             _flip_vert;
+        Plug<bool>                             _flip_horz;
+        Plug<bool>                             _flip_vert;
 
         Plug<DTfloat>                               _tex_mul_s;
         Plug<DTfloat>                               _tex_mul_t;

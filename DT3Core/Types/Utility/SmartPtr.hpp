@@ -55,12 +55,12 @@ class SmartPtrControl {
         /// Description
         /// \param param description
         /// \return description
-        DTboolean    decr_shared_ref (void)
+        bool    decr_shared_ref (void)
         {
             ASSERT(_shared_count > 0);
             _shared_count.fetch_sub(1, std::memory_order_relaxed);
 
-            DTboolean del = (_shared_count == 0);
+            bool del = (_shared_count == 0);
 
             if (del && _weak_count == 0) {
                 delete this;
@@ -238,7 +238,7 @@ class WeakPtr {
         /// Description
         /// \param param description
         /// \return description
-        DTboolean   expired     (void)
+        bool   expired     (void)
         {
             ASSERT(_control->use_count() >= 0);
             return _control->use_count() == 0;

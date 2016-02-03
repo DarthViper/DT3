@@ -52,8 +52,8 @@ class Quaternion {
 
     public:
 
-        DTboolean               operator ==				(const Quaternion& rhs) const   {	return w == rhs.w && x == rhs.x && y == rhs.y && z == rhs.z;	}
-        DTboolean               operator !=				(const Quaternion& rhs) const   {	return w != rhs.w || x != rhs.x || y != rhs.y || z != rhs.z;	}
+        bool               operator ==				(const Quaternion& rhs) const   {	return w == rhs.w && x == rhs.x && y == rhs.y && z == rhs.z;	}
+        bool               operator !=				(const Quaternion& rhs) const   {	return w != rhs.w || x != rhs.x || y != rhs.y || z != rhs.z;	}
 
 
         /// Set each of the components to zero
@@ -175,7 +175,7 @@ class Quaternion {
 
         /// Checks for a zero quaternion
         /// \return is zero
-        static DTboolean        is_zero                 (const Quaternion &a);
+        static bool        is_zero                 (const Quaternion &a);
 
     public:
         DTfloat       w,x,y,z;

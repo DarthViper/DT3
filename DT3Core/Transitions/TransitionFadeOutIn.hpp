@@ -48,7 +48,7 @@ class TransitionFadeOutIn: public TransitionBase {
         /// Description
         /// \param param description
         /// \return description
-        virtual DTboolean		begin_new_world             (void);
+        virtual bool		begin_new_world             (void);
 
         /// Description
         /// \param param description
@@ -58,7 +58,7 @@ class TransitionFadeOutIn: public TransitionBase {
         /// Description
         /// \param param description
         /// \return description
-        virtual DTboolean		begin_old_world             (void);
+        virtual bool		begin_old_world             (void);
 
         /// Description
         /// \param param description

@@ -65,8 +65,8 @@ class Vector4 {
 
 
     public:
-        inline DTboolean	operator ==				(const Vector4& rhs) const	{	return x == rhs.x && y == rhs.y && z == rhs.z && w == rhs.w;		}
-        inline DTboolean	operator !=				(const Vector4& rhs) const	{	return x != rhs.x || y != rhs.y || z != rhs.z || w != rhs.w;		}
+        inline bool	operator ==				(const Vector4& rhs) const	{	return x == rhs.x && y == rhs.y && z == rhs.z && w == rhs.w;		}
+        inline bool	operator !=				(const Vector4& rhs) const	{	return x != rhs.x || y != rhs.y || z != rhs.z || w != rhs.w;		}
 
         Vector4 &			operator *=				(const DTfloat rhs)			{	x*=rhs;		y*=rhs;		z*=rhs;		w*=rhs;		return *this;	}
         Vector4 &			operator /=				(const DTfloat rhs)			{	x/=rhs;		y/=rhs;		z/=rhs;		w/=rhs;		return *this;	}

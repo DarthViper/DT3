@@ -1,6 +1,4 @@
 #pragma once
-#ifndef DT3_SCRIPTINGTIMERSUPER
-#define DT3_SCRIPTINGTIMERSUPER
 //==============================================================================
 ///
 ///	File: ScriptingTimerSuper.hpp
@@ -13,6 +11,7 @@
 //==============================================================================
 
 #include "DT3Core/Scripting/ScriptingBase.hpp"
+#include "DT3Core/Types/Node/Event.hpp"
 
 //==============================================================================
 //==============================================================================
@@ -83,8 +82,8 @@ class ScriptingTimerSuper: public ScriptingBase {
         Plug<DTfloat>                   _counting_down_speed;
         Plug<DTfloat>                   _current_speed;
 
-        Plug<DTboolean>                 _last_active;
-        Plug<DTboolean>                 _active;
+        Plug<bool>                 _last_active;
+        Plug<bool>                 _active;
 
         // State
         Plug<DTfloat>                   _time;
@@ -92,8 +91,8 @@ class ScriptingTimerSuper: public ScriptingBase {
 
         Event                           _upper_reached;
         Event                           _lower_reached;
-        Plug<DTboolean>                 _counting_down;
-        Plug<DTboolean>                 _counting_up;
+        Plug<bool>                 _counting_down;
+        Plug<bool>                 _counting_up;
 
 
 };
@@ -102,5 +101,3 @@ class ScriptingTimerSuper: public ScriptingBase {
 //==============================================================================
 
 } // DT3
-
-#endif

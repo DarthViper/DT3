@@ -133,7 +133,7 @@ void ScriptingMaterialAnimator::tick (const DTfloat dt)
 //==============================================================================
 //==============================================================================
 
-DTboolean ScriptingMaterialAnimator::compute (const PlugBase *plug)
+bool ScriptingMaterialAnimator::compute (const PlugBase *plug)
 {
     PROFILER(SCRIPTING);
 

@@ -207,7 +207,7 @@ void TextureResourceCube::set_textels_cube (const DTint width, const DTint heigh
                                             const std::shared_ptr<DTubyte> &textels_top,
                                             const std::shared_ptr<DTubyte> &textels_bottom,
                                             DT3GLTextelFormat format,
-                                            DTboolean mipmapped,
+                                            bool mipmapped,
                                             DTuint flags)
 {
     _textels_front = textels_front;

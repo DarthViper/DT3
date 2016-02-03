@@ -116,7 +116,7 @@ void ScriptingInRange::archive (const std::shared_ptr<Archive> &archive)
 //==============================================================================
 //==============================================================================
 
-DTboolean ScriptingInRange::compute (const PlugBase *plug)
+bool ScriptingInRange::compute (const PlugBase *plug)
 {
 	PROFILER(SCRIPTING);
 

@@ -45,9 +45,9 @@ class ScriptingParticleVelocityRandomizer: public ScriptingBase {
     public:
         /// Computes the value of the node
         /// \param plug plug to compute
-        DTboolean					compute					(const PlugBase *plug);
+        bool					compute					(const PlugBase *plug);
 
-        DEFINE_ACCESSORS(continuous, set_continuous, DTboolean, _continuous);
+        DEFINE_ACCESSORS(continuous, set_continuous, bool, _continuous);
         DEFINE_ACCESSORS(rand_scale_x, set_rand_scale_x, DTfloat, _rand_scale_x);
         DEFINE_ACCESSORS(rand_scale_y, set_rand_scale_y, DTfloat, _rand_scale_y);
         DEFINE_ACCESSORS(rand_scale_z, set_rand_scale_z, DTfloat, _rand_scale_z);
@@ -59,7 +59,7 @@ class ScriptingParticleVelocityRandomizer: public ScriptingBase {
 #endif
 
     private:
-        DTboolean								_continuous;
+        bool								_continuous;
 
         Plug<DTfloat>							_rand_scale_x;
         Plug<DTfloat>							_rand_scale_y;

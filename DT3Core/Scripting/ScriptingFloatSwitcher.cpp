@@ -166,7 +166,7 @@ void ScriptingFloatSwitcher::archive (const std::shared_ptr<Archive> &archive)
 //==============================================================================
 //==============================================================================
 
-DTboolean ScriptingFloatSwitcher::compute (const PlugBase *plug)
+bool ScriptingFloatSwitcher::compute (const PlugBase *plug)
 {
 	PROFILER(SCRIPTING);
 

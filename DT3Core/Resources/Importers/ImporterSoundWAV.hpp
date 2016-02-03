@@ -68,7 +68,7 @@ class ImporterSoundWAV: public ImporterSound {
             DTuint		length;
         };
 
-        DTboolean						is_type					(DTcharacter id[4], const DTcharacter *id_str);
+        bool						is_type					(DTcharacter id[4], const DTcharacter *id_str);
 
         void							read					(BinaryFileStream &infile, DTubyte &v);
         void							read					(BinaryFileStream &infile, DTushort &v);

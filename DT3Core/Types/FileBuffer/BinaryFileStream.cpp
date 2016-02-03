@@ -54,7 +54,7 @@ void BinaryFileStream::set_file_handle (const std::shared_ptr<FileHandle> &file_
 //==============================================================================
 //==============================================================================
 
-Stream& BinaryFileStream::operator<< (const DTboolean nc)
+Stream& BinaryFileStream::operator<< (const bool nc)
 {
     DTubyte n = nc;
     Endian::to_little_endian(n);
@@ -185,7 +185,7 @@ Stream& BinaryFileStream::operator<< (const std::string &n)
 //==============================================================================
 //==============================================================================
 
-Stream& BinaryFileStream::operator>> (DTboolean &n)
+Stream& BinaryFileStream::operator>> (bool &n)
 {
     DTubyte nc;
     read_raw((DTubyte*) &nc, sizeof(nc));
@@ -358,7 +358,7 @@ void BinaryFileStream::seek_g (DToffset g, Relative r)
     };
 }
 
-DTboolean BinaryFileStream::is_eof (void)
+bool BinaryFileStream::is_eof (void)
 {
     return _eof;
 }

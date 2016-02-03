@@ -272,8 +272,8 @@ void WorldWindow::onChangeResolution(int index)
 {
 
     QString item_text = _resolution_selection->itemText(index);
-    QStringList res = item_text.split(" ");
-    QStringList res_elems = res.front().split("x");
+    QStringList res = item_text.split(' ');
+    QStringList res_elems = res.front().split('x');
 
     if (res_elems.size() != 2) {
         _desired_width = 0;

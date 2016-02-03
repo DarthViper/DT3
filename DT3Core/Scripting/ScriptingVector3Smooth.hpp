@@ -63,9 +63,9 @@ class ScriptingVector3Smooth: public ScriptingBase {
     private:
         Plug<Vector3>				_in;
         Plug<Vector3>				_out;
-        Plug<DTboolean>				_reset;
+        Plug<bool>				_reset;
 
-        DTboolean					_local_reset;
+        bool					_local_reset;
 
         std::vector<Vector3>		_history;
         DTint						_history_index;

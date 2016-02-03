@@ -1,6 +1,4 @@
 #pragma once
-#ifndef DT3_SCRIPTINGEVENTGATE
-#define DT3_SCRIPTINGEVENTGATE
 //==============================================================================
 ///
 ///	File: ScriptingEventGate.hpp
@@ -13,7 +11,7 @@
 //==============================================================================
 
 #include "DT3Core/Scripting/ScriptingBase.hpp"
-
+#include "DT3Core/Types/Node/Event.hpp"
 //==============================================================================
 //==============================================================================
 
@@ -47,7 +45,7 @@ class ScriptingEventGate: public ScriptingBase {
         void                        event_in                (PlugNode *sender);
 
     private:
-        Plug<DTboolean>				_enable;
+        Plug<bool>				_enable;
 
         Event                       _event_in;
         Event                       _event_out;
@@ -57,5 +55,3 @@ class ScriptingEventGate: public ScriptingBase {
 //==============================================================================
 
 } // DT3
-
-#endif

@@ -54,12 +54,12 @@ class ScriptingCameraShake: public ScriptingBase {
 
         /// Computes the value of the node
         /// \param plug plug to compute
-        DTboolean					compute					(const PlugBase *plug);
+        bool					compute					(const PlugBase *plug);
 
     private:
         Plug<Vector3>				_in;
         Plug<DTfloat>				_magnitude;
-        Plug<DTboolean>				_on;
+        Plug<bool>				_on;
         Plug<Vector3>				_out;
 };
 

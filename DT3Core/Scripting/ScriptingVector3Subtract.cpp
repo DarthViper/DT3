@@ -107,7 +107,7 @@ void ScriptingVector3Subtract::archive (const std::shared_ptr<Archive> &archive)
 //==============================================================================
 //==============================================================================
 
-DTboolean ScriptingVector3Subtract::compute (const PlugBase *plug)
+bool ScriptingVector3Subtract::compute (const PlugBase *plug)
 {
 	PROFILER(SCRIPTING);
 

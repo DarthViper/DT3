@@ -28,7 +28,7 @@ namespace DT3 {
 //==============================================================================
 //==============================================================================
 
-DTboolean PrimitiveCollisions::line_intersect_line (    const Vector2 &from1, const Vector2 &to1,
+bool PrimitiveCollisions::line_intersect_line (    const Vector2 &from1, const Vector2 &to1,
                                                         const Vector2 &from2, const Vector2 &to2,
                                                         DTfloat &t1, DTfloat &t2)
 {
@@ -55,7 +55,7 @@ DTboolean PrimitiveCollisions::line_intersect_line (    const Vector2 &from1, co
 //==============================================================================
 //==============================================================================
 
-DTboolean PrimitiveCollisions::ray_intersect_triangle   (   const Vector3 &from, const Vector3 &to,
+bool PrimitiveCollisions::ray_intersect_triangle   (   const Vector3 &from, const Vector3 &to,
                                                             const Vector3 &vert0, const Vector3 &vert1, const Vector3 &vert2,
                                                             DTfloat &t, Vector3 &n, Vector3 &p)
 {
@@ -122,7 +122,7 @@ DTboolean PrimitiveCollisions::ray_intersect_triangle   (   const Vector3 &from,
 //==============================================================================
 //==============================================================================
 
-DTboolean     PrimitiveCollisions::ray_intersect_plane	(   const Vector3 &from, const Vector3 &direction,
+bool     PrimitiveCollisions::ray_intersect_plane	(   const Vector3 &from, const Vector3 &direction,
 															const Plane &p, DTfloat &t)
 {
 	DTfloat dir_dot_n = Vector3::dot(p.normal(), direction);
@@ -138,7 +138,7 @@ DTboolean     PrimitiveCollisions::ray_intersect_plane	(   const Vector3 &from, 
 //==============================================================================
 //==============================================================================
 
-DTboolean     PrimitiveCollisions::ray_intersect_box (  const Vector3 &from, const Vector3 &direction,
+bool     PrimitiveCollisions::ray_intersect_box (  const Vector3 &from, const Vector3 &direction,
                                                         const Box &b, DTfloat &t)
 {
     DTfloat tmin = -std::numeric_limits<DTfloat>::infinity();
@@ -202,7 +202,7 @@ DTboolean     PrimitiveCollisions::ray_intersect_box (  const Vector3 &from, con
 //==============================================================================
 //==============================================================================
 
-DTboolean     PrimitiveCollisions::ray_intersect_sphere(    const Vector3 &from, const Vector3 &direction,
+bool     PrimitiveCollisions::ray_intersect_sphere(    const Vector3 &from, const Vector3 &direction,
                                                             const Vector3 &translation, const Sphere &s,
                                                             DTfloat &t0, DTfloat &t1)
 {
@@ -223,7 +223,7 @@ DTboolean     PrimitiveCollisions::ray_intersect_sphere(    const Vector3 &from,
 //==============================================================================
 //==============================================================================
 
-DTboolean     PrimitiveCollisions::extruded_sphere_intersect_triangle   (	const Vector3 &from, const Vector3 &to, const Sphere &s,
+bool     PrimitiveCollisions::extruded_sphere_intersect_triangle   (	const Vector3 &from, const Vector3 &to, const Sphere &s,
                                                                             const Vector3 &vert0, const Vector3 &vert1, const Vector3 &vert2,
                                                                             DTfloat &t, Vector3 &n, Vector3 &p)
 {
@@ -270,7 +270,7 @@ DTboolean     PrimitiveCollisions::extruded_sphere_intersect_triangle   (	const 
     kss = Vector3::dot(ks,ks);
     
     // Mark that we haven't found a collision yet
-    DTboolean found_collision = false;
+    bool found_collision = false;
     
     for (DTint i = 0; i < 3; ++i) {
 		DTint j = (i+1) % 3;  // next index
@@ -376,7 +376,7 @@ DTboolean     PrimitiveCollisions::extruded_sphere_intersect_triangle   (	const 
 //==============================================================================
 //==============================================================================
 
-DTboolean PrimitiveCollisions::sphere_intersect_sphere (    const Vector3 &from1, const Vector3 &dir1, const Sphere &s1,
+bool PrimitiveCollisions::sphere_intersect_sphere (    const Vector3 &from1, const Vector3 &dir1, const Sphere &s1,
                                                             const Vector3 &from2, const Vector3 &dir2, const Sphere &s2,
                                                             DTfloat &t1, DTfloat &t2)
 {
@@ -413,7 +413,7 @@ void		PrimitiveCollisions::distance_point_to_triangle (	const Vector3 &p,
     Vector3 edge_ab, edge_bc, edge_ca;
     Vector3 n,diff, diff_a, diff_b, diff_c,norm;
     DTfloat dot;
-    DTboolean outside_ab, outside_bc, outside_ca;
+    bool outside_ab, outside_bc, outside_ca;
     
     edge_ab = vert1 - vert0;
     edge_bc = vert2 - vert1;
@@ -564,7 +564,7 @@ void PrimitiveCollisions::bressenham_line (DTint x0, DTint y0, DTint x1, DTint y
 {
     // Algorithm presented at http://en.wikipedia.org/wiki/Bresenham's_line_algorithm
 
-    DTboolean steep = std::abs(y1 - y0) > std::abs(x1 - x0);
+    bool steep = std::abs(y1 - y0) > std::abs(x1 - x0);
     if (steep) {
         std::swap(x0, y0);
         std::swap(x1, y1);

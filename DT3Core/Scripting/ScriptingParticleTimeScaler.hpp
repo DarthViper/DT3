@@ -45,7 +45,7 @@ class ScriptingParticleTimeScaler: public ScriptingBase {
     public:
         /// Computes the value of the node
         /// \param plug plug to compute
-        DTboolean					compute					(const PlugBase *plug);
+        bool					compute					(const PlugBase *plug);
 
 
         DEFINE_ACCESSORS(constant_scale, set_constant_scale, DTfloat, _constant_scale);

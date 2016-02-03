@@ -116,7 +116,7 @@ void ScriptingAnimationCycler::archive (const std::shared_ptr<Archive> &archive)
 //==============================================================================
 //==============================================================================
 
-DTboolean ScriptingAnimationCycler::compute (const PlugBase *plug)
+bool ScriptingAnimationCycler::compute (const PlugBase *plug)
 {
 	PROFILER(SCRIPTING);
     

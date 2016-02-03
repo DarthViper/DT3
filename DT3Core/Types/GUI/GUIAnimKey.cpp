@@ -149,13 +149,13 @@ GUIAnimKey& GUIAnimKey::set_duration (DTfloat duration)
 	return *this;	
 }
 
-GUIAnimKey& GUIAnimKey::set_repeat (DTboolean s)
+GUIAnimKey& GUIAnimKey::set_repeat (bool s)
 {
 	_repeat_flag = s;
 	return *this;	
 }
 
-GUIAnimKey& GUIAnimKey::set_spline (DTboolean s)
+GUIAnimKey& GUIAnimKey::set_spline (bool s)
 {
 	_spline_flag = s;
 	return *this;
@@ -238,7 +238,7 @@ Vector3 GUIAnimKey::interp(Vector3 v0, Vector3 v1, DTfloat t)
 	return v0 + (v1 - v0) * t;
 }
 		
-DTboolean GUIAnimKey::animate (DTfloat dt, GUIObject *frame)
+bool GUIAnimKey::animate (DTfloat dt, GUIObject *frame)
 {
     _busy = true;
     

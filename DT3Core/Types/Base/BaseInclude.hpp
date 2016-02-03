@@ -1,6 +1,4 @@
 #pragma once
-#ifndef DT3_BASEINCLUDE
-#define DT3_BASEINCLUDE
 //==============================================================================
 ///
 ///	File: BaseInclude.hpp
@@ -60,9 +58,6 @@ namespace DT3 {
 /// Endian checks
 //==============================================================================
 
-#define DT3_LIL_ENDIAN	1234
-#define DT3_BIG_ENDIAN	4321
-
 #if (defined(__i386__) || defined(__i386)) || \
      defined(__ia64__) || defined(WIN32) || \
     (defined(__alpha__) || defined(__alpha)) || \
@@ -72,9 +67,8 @@ namespace DT3 {
      defined(__x86_64__) || \
      defined(__LITTLE_ENDIAN__) || \
      defined(DT3_FORCE_LITTLE_ENDIAN)
-        #define DT3_BYTEORDER	DT3_LIL_ENDIAN
 #else
-        #define DT3_BYTEORDER	DT3_BIG_ENDIAN
+    static_assert(false,"Big endian machines not supported anymore");
 #endif
 
 //==============================================================================
@@ -298,7 +292,6 @@ namespace DT3 {
 //==============================================================================
 //==============================================================================
 
-typedef bool            DTboolean;
 typedef int8_t          DTbyte;
 typedef int16_t         DTshort;
 typedef int32_t         DTint;
@@ -336,12 +329,6 @@ typedef unsigned long   DTulong;
 #define DTUINT_MAX		(4294967295U)
 #define DTUINT_MIN		(0U)
 
-
-// Make sure NULL exists
-#ifndef NULL
-#define NULL (0)
-#endif
-
 //==============================================================================
 /// For class creation
 //==============================================================================
@@ -364,7 +351,7 @@ struct DTclasskind {
         inline DTcharacter*                 class_id (void) const         	{   return class_id_static();                                       }   \
         inline static DTclasskind*          kind (void)						{	static DTclasskind kind(NULL, class_id_static());                   \
                                                                             return &kind;                                                   }	\
-        inline virtual DTboolean            isa (DTclasskind* k) const		{	return k == kind();                                             }   \
+        inline virtual bool            isa (DTclasskind* k) const		{	return k == kind();                                             }   \
     inline virtual const DTcharacter*   file (void)                     {   return __FILE__;                                                }   \
     inline virtual DTsize               class_size (void) const         {   return static_cast<DTsize>(sizeof(type));                       }
 
@@ -376,7 +363,7 @@ struct DTclasskind {
         inline DTcharacter*                 class_id (void) const         	{   return class_id_static();                                       }   \
         inline static DTclasskind*          kind (void)						{	static DTclasskind kind(super_type::kind(), class_id_static());     \
                                                                             return &kind;                                                   }	\
-        inline virtual DTboolean            isa (DTclasskind* k) const		{	DTclasskind *cur = kind();                                          \
+        inline virtual bool            isa (DTclasskind* k) const		{	DTclasskind *cur = kind();                                          \
                                                                             while (cur) {                                                       \
                                                                                 if (cur == k)	return true;                                    \
                                                                                 cur = cur->super;                                               \
@@ -421,6 +408,10 @@ struct DTclasskind {
 #define DEFINE_ACCESSORS(G,S,T,V)                               \
 inline T G(void) const			{	return V;				}	\
 inline void S(T var_)			{	V = var_;				}
+
+#define DEFINE_ACCESSORS_REF(G,S,T,V)                               \
+inline T G(void) const			{	return V;				}	\
+inline void S(const T &var_)			{	V = var_;				}
 
 #define DEFINE_ACCESSORS_STATIC(G,S,T,V)                        \
 inline static T G(void)			{	return V;				}	\
@@ -550,7 +541,3 @@ extern const DTerr DT3_ERR_NAT_FAIL;
 //==============================================================================
 
 } //DT3
-
-#endif
-
-

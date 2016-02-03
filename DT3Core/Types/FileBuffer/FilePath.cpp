@@ -248,7 +248,7 @@ std::string FilePath::package_path (void) const
 //==============================================================================
 //==============================================================================
 
-DTboolean FilePath::in_package (void) const
+bool FilePath::in_package (void) const
 {
     std::string path = MoreStrings::filter_out(_path,"{}");
 
@@ -280,7 +280,7 @@ DTuint64 FilePath::modification_date	(void) const
     return HAL::modification_date(*this);
 }
 
-DTboolean FilePath::is_dir (void) const
+bool FilePath::is_dir (void) const
 {
     return HAL::is_dir(*this);
 }
@@ -288,7 +288,7 @@ DTboolean FilePath::is_dir (void) const
 //==============================================================================
 //==============================================================================
 
-DTboolean FilePath::exists (void) const
+bool FilePath::exists (void) const
 {
     // ASSUMPTION: If it's in a package then it exists.
     if (in_package()) {
@@ -306,12 +306,12 @@ DTboolean FilePath::exists (void) const
 //==============================================================================
 //==============================================================================
 
-DTboolean FilePath::move (const FilePath &new_path) const
+bool FilePath::move (const FilePath &new_path) const
 {
     return HAL::move_file(*this, new_path);
 }
 
-DTboolean FilePath::del (void) const
+bool FilePath::del (void) const
 {
     return HAL::delete_file(*this);
 }

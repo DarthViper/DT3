@@ -49,7 +49,7 @@ class DeviceMusic: public DeviceBase {
 
         /// Plays the music file at the specified path
         /// \param pathname path to music file
-        virtual void					play_music				(const FilePath &pathname, DTfloat transition = 1.0F, DTboolean loop = true)    {};
+        virtual void					play_music				(const FilePath &pathname, DTfloat transition = 1.0F, bool loop = true)    {};
 
         /// Stops the music
         /// \param pathname path to music file
@@ -66,7 +66,7 @@ class DeviceMusic: public DeviceBase {
 
         /// Returns whether a song is playing or not
         /// \return progress
-        virtual DTboolean               playing                 (void)                  {   return false;       }
+        virtual bool               playing                 (void)                  {   return false;       }
 
         /// Returns the currently playing song
         /// \return Song

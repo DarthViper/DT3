@@ -41,8 +41,8 @@ class WeightsIndex {
 
     public:
 
-        DTboolean               operator ==			(const WeightsIndex& rhs) const   {	return w[0] == rhs.w[0] && w[1] == rhs.w[1] && w[2] == rhs.w[2] && w[3] == rhs.w[3];	}
-        DTboolean               operator !=			(const WeightsIndex& rhs) const   {	return w[0] != rhs.w[0] || w[1] != rhs.w[1] || w[2] != rhs.w[2] || w[3] != rhs.w[3];	}
+        bool               operator ==			(const WeightsIndex& rhs) const   {	return w[0] == rhs.w[0] && w[1] == rhs.w[1] && w[2] == rhs.w[2] && w[3] == rhs.w[3];	}
+        bool               operator !=			(const WeightsIndex& rhs) const   {	return w[0] != rhs.w[0] || w[1] != rhs.w[1] || w[2] != rhs.w[2] || w[3] != rhs.w[3];	}
 
     public:
         DTuint                 w[4];

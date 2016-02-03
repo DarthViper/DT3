@@ -1,6 +1,4 @@
 #pragma once
-#ifndef DT3_SCRIPTINGMUSICPLAYER
-#define DT3_SCRIPTINGMUSICPLAYER
 //==============================================================================
 ///
 ///	File: ScriptingMusicPlayer.hpp
@@ -14,6 +12,7 @@
 
 #include "DT3Core/Scripting/ScriptingBase.hpp"
 #include "DT3Core/Types/FileBuffer/FilePath.hpp"
+#include "DT3Core/Types/Node/Event.hpp"
 
 //==============================================================================
 //==============================================================================
@@ -67,15 +66,13 @@ class ScriptingMusicPlayer: public ScriptingBase {
         Plug<FilePath>				_path;
         Plug<DTfloat>				_gain;
 
-        Plug<DTboolean>				_is_playing;
-        Plug<DTboolean>				_stop_on_destroy;
+        Plug<bool>				_is_playing;
+        Plug<bool>				_stop_on_destroy;
 
-        Plug<DTboolean>				_loop;
+        Plug<bool>				_loop;
 };
 
 //==============================================================================
 //==============================================================================
 
 } // DT3
-
-#endif

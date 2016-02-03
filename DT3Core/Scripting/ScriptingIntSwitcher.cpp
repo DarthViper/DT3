@@ -165,7 +165,7 @@ void ScriptingIntSwitcher::archive (const std::shared_ptr<Archive> &archive)
 //==============================================================================
 //==============================================================================
 
-DTboolean ScriptingIntSwitcher::compute (const PlugBase *plug)
+bool ScriptingIntSwitcher::compute (const PlugBase *plug)
 {
     PROFILER(SCRIPTING);
 

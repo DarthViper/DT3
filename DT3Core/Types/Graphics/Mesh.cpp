@@ -260,7 +260,7 @@ void Mesh::generate_tangents	(void)
 //==============================================================================
 //==============================================================================	
 
-DTuint Mesh::hash_vertex (DTuint i, DTboolean vertex_only)
+DTuint Mesh::hash_vertex (DTuint i, bool vertex_only)
 {
     DTuint h = 0;
     
@@ -296,7 +296,7 @@ DTuint Mesh::hash_vertex (DTuint i, DTboolean vertex_only)
     return h;
 }
 
-DTboolean Mesh::equal_vertex(DTuint v1, DTuint v2, DTboolean vertex_only)
+bool Mesh::equal_vertex(DTuint v1, DTuint v2, bool vertex_only)
 {
     if (v1 == v2)
         return true;

@@ -72,7 +72,7 @@ class TextRenderer {
             TextureResource2D   *_destination;
             FT_Vector           _offset;
             Color4f             _color;
-            DTboolean           _alpha_blend;
+            bool           _alpha_blend;
         };
 
         static void             raster_callback             (   const int               y,

@@ -170,7 +170,7 @@ void ScriptingFLIPFLOP::event_toggle (PlugNode *sender)
 //==============================================================================
 //==============================================================================
 
-DTboolean ScriptingFLIPFLOP::compute (const PlugBase *plug)
+bool ScriptingFLIPFLOP::compute (const PlugBase *plug)
 {
 	PROFILER(SCRIPTING);
 

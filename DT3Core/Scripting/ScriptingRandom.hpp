@@ -1,6 +1,4 @@
 #pragma once
-#ifndef DT3_SCRIPTINGRANDOM
-#define DT3_SCRIPTINGRANDOM
 //==============================================================================
 ///
 ///	File: ScriptingRandom.hpp
@@ -13,6 +11,7 @@
 //==============================================================================
 
 #include "DT3Core/Scripting/ScriptingBase.hpp"
+#include "DT3Core/Types/Node/Event.hpp"
 
 //==============================================================================
 //==============================================================================
@@ -54,7 +53,7 @@ class ScriptingRandom: public ScriptingBase {
     private:
         Plug<DTfloat>					_out;
 
-        Plug<DTboolean>					_continuous;
+        Plug<bool>					_continuous;
         Event                           _generate_e;
 };
 
@@ -62,5 +61,3 @@ class ScriptingRandom: public ScriptingBase {
 //==============================================================================
 
 } // DT3
-
-#endif

@@ -37,7 +37,7 @@ class DirectoryLister: public BaseClass {
         DEFINE_CREATE_AND_CLONE
 
                                     DirectoryLister			(void);
-        explicit					DirectoryLister			(const FilePath &pathname, DTboolean recursive = true);
+        explicit					DirectoryLister			(const FilePath &pathname, bool recursive = true);
                                     DirectoryLister			(const DirectoryLister &rhs);
                                     DirectoryLister			(DirectoryLister &&rhs);
         DirectoryLister &			operator =				(const DirectoryLister &rhs);
@@ -48,7 +48,7 @@ class DirectoryLister: public BaseClass {
         /// Scan a directory at a path
         /// \param pathname path to directory
         /// \param recursive scan recursively
-        void						scan_path				(const FilePath &pathname, DTboolean recursive = true);
+        void						scan_path				(const FilePath &pathname, bool recursive = true);
 
         /// Clear all of the files that have been found
         void						clear_files             (void)					{	_paths.clear();		}
@@ -75,7 +75,7 @@ class DirectoryLister: public BaseClass {
         /// Returns wehter index is a directory
         /// \param index Index to entry
         /// \return is a directory
-        DTboolean					is_directory            (DTuint index) const;
+        bool					is_directory            (DTuint index) const;
 
     private:
         std::vector<FilePath>       _paths;

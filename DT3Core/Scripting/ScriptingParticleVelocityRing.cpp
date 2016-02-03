@@ -113,7 +113,7 @@ void ScriptingParticleVelocityRing::archive (const std::shared_ptr<Archive> &arc
 //==============================================================================
 //==============================================================================
 
-DTboolean ScriptingParticleVelocityRing::compute (const PlugBase *plug)
+bool ScriptingParticleVelocityRing::compute (const PlugBase *plug)
 {
 	PROFILER(PARTICLES);
 

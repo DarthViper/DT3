@@ -593,7 +593,7 @@ Sphere PlaceableObject::bounding_sphere (void) const
 //==============================================================================
 //==============================================================================
 
-DTboolean PlaceableObject::compute (const PlugBase *plug)
+bool PlaceableObject::compute (const PlugBase *plug)
 {
     if (super_type::compute(plug))  return true;
 

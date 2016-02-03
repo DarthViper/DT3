@@ -43,20 +43,20 @@ class ScriptingOR: public ScriptingBase {
     public:
         /// Computes the value of the node
         /// \param plug plug to compute
-        DTboolean					compute					(const PlugBase *plug);
+        bool					compute					(const PlugBase *plug);
 
     private:
-        Plug<DTboolean>				_in1;
-        Plug<DTboolean>				_in2;
-        Plug<DTboolean>				_in3;
-        Plug<DTboolean>				_in4;
-        Plug<DTboolean>				_in5;
-        Plug<DTboolean>				_in6;
-        Plug<DTboolean>				_in7;
-        Plug<DTboolean>				_in8;
+        Plug<bool>				_in1;
+        Plug<bool>				_in2;
+        Plug<bool>				_in3;
+        Plug<bool>				_in4;
+        Plug<bool>				_in5;
+        Plug<bool>				_in6;
+        Plug<bool>				_in7;
+        Plug<bool>				_in8;
 
-        Plug<DTboolean>				_out;
-        Plug<DTboolean>				_out_inv;
+        Plug<bool>				_out;
+        Plug<bool>				_out_inv;
 };
 
 //==============================================================================

@@ -48,7 +48,7 @@ class Configure {
 
         /// Setup system globals such as platform globals, language, region, etc.
         /// \return success
-        static DTboolean            setup_system_globals        (void);
+        static bool            setup_system_globals        (void);
 
     private:
         static void                 parse_package_block         (Tokenizer &tokenizer);

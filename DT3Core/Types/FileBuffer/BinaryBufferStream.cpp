@@ -39,7 +39,7 @@ BinaryBufferStream::~BinaryBufferStream (void)
 //==============================================================================
 //==============================================================================
 
-Stream& BinaryBufferStream::operator<< (const DTboolean n)
+Stream& BinaryBufferStream::operator<< (const bool n)
 {
         return operator << ((DTbyte) n);
 }
@@ -220,7 +220,7 @@ Stream& BinaryBufferStream::operator<< (const BinaryBufferStream& n)
 //==============================================================================
 //==============================================================================
 
-Stream& BinaryBufferStream::operator>> (DTboolean &n)
+Stream& BinaryBufferStream::operator>> (bool &n)
 {
         n = *(reinterpret_cast<DTbyte*>(&_stream[_pos_g])) != (DTbyte)0;
         Endian::from_little_endian(n);

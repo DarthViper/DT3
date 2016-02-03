@@ -65,11 +65,11 @@ class ArchiveTextWriter: public Archive {
 
         /// Returns wether the archive is reading or not
         /// \return archive is loading
-        DTboolean				is_reading				(void) const;
+        bool				is_reading				(void) const;
 
         /// Returns wether the archive is writing or not
         /// \return archive is saving
-        DTboolean				is_writing				(void) const;
+        bool				is_writing				(void) const;
 
     private:
         std::string             indent					(void) const;

@@ -32,6 +32,7 @@
 #include "DT3Core/Types/FileBuffer/FilePath.hpp"
 #include "DT3Core/Types/Node/PlugNodeUtils.hpp"
 #include "DT3Core/Types/Node/Group.hpp"
+#include "DT3Core/Types/Node/Event.hpp"
 #include "DT3Core/Objects/PlaceableObject.hpp"
 #include "DT3Core/World/World.hpp"
 #include "DT3Core/World/WorldNode.hpp"

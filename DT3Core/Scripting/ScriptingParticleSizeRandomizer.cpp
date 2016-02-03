@@ -111,7 +111,7 @@ void ScriptingParticleSizeRandomizer::archive (const std::shared_ptr<Archive> &a
 //==============================================================================
 //==============================================================================
 
-DTboolean ScriptingParticleSizeRandomizer::compute (const PlugBase *plug)
+bool ScriptingParticleSizeRandomizer::compute (const PlugBase *plug)
 {
 	PROFILER(PARTICLES);
 

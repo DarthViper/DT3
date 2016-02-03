@@ -75,8 +75,8 @@ class Matrix4 {
 
     public:
 
-        DTboolean               operator ==				(const Matrix4& rhs) const;
-        DTboolean               operator !=				(const Matrix4& rhs) const;
+        bool               operator ==				(const Matrix4& rhs) const;
+        bool               operator !=				(const Matrix4& rhs) const;
 
         Matrix4 &               operator *=				(const DTfloat rhs);
         Matrix4 &               operator /=				(const DTfloat rhs);

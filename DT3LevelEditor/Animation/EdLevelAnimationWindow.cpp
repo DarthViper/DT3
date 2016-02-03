@@ -23,6 +23,7 @@
 
 // Engine includes
 #include "DT3Core/Types/Utility/MoreStrings.hpp"
+#include "DT3Core/Types/Node/Event.hpp"
 #include "DT3Core/Objects/ObjectBase.hpp"
 #include "DT3Core/Scripting/ScriptingKeyframesRoot.hpp"
 

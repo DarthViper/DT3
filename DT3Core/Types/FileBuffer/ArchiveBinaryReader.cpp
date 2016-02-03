@@ -123,12 +123,12 @@ DTuint ArchiveBinaryReader::get_app_version (void) const
 //==============================================================================
 //==============================================================================
 
-DTboolean ArchiveBinaryReader::is_reading (void) const
+bool ArchiveBinaryReader::is_reading (void) const
 {
 	return true;
 }
 
-DTboolean ArchiveBinaryReader::is_writing (void) const
+bool ArchiveBinaryReader::is_writing (void) const
 {
 	return false;
 }

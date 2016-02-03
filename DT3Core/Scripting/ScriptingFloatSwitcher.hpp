@@ -44,7 +44,7 @@ class ScriptingFloatSwitcher: public ScriptingBase {
 
         /// Computes the value of the node
         /// \param plug plug to compute
-        DTboolean					compute					(const PlugBase *plug);
+        bool					compute					(const PlugBase *plug);
 
         DEFINE_ACCESSORS(float1, set_float1, DTfloat, _in_float1);
         DEFINE_ACCESSORS(float2, set_float2, DTfloat, _in_float2);
@@ -52,17 +52,17 @@ class ScriptingFloatSwitcher: public ScriptingBase {
         DEFINE_ACCESSORS(float4, set_float4, DTfloat, _in_float4);
 
     private:
-        Plug<DTboolean>				_in1;
+        Plug<bool>				_in1;
         Plug<DTfloat>				_in_float1;
-        Plug<DTboolean>				_in2;
+        Plug<bool>				_in2;
         Plug<DTfloat>				_in_float2;
-        Plug<DTboolean>				_in3;
+        Plug<bool>				_in3;
         Plug<DTfloat>				_in_float3;
-        Plug<DTboolean>				_in4;
+        Plug<bool>				_in4;
         Plug<DTfloat>				_in_float4;
 
         Plug<DTfloat>				_out;
-        DTboolean                   _buffer_output;
+        bool                   _buffer_output;
 };
 
 //==============================================================================

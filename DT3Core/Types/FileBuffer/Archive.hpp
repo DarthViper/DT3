@@ -73,27 +73,27 @@ class Archive: public BaseClass {
 
                 /// Returns wether the archive is reading or not
                 /// \return archive is loading
-                virtual DTboolean               is_reading                  (void) const = 0;
+                virtual bool               is_reading                  (void) const = 0;
 
                 /// Returns wether the arcive is writing or not
                 /// \return archive is saving
-                virtual DTboolean               is_writing                  (void) const = 0;
+                virtual bool               is_writing                  (void) const = 0;
 
                 /// set this flag to ignore the streaming flag while archiving objects
                 /// \param ignore flag to ignore streamable objects or not
-        void                            set_ignore_streamable_flag  (const DTboolean ignore)    {   _ignore_streamable_flag = ignore;	}
+        void                            set_ignore_streamable_flag  (const bool ignore)    {   _ignore_streamable_flag = ignore;	}
 
                 /// Returns wether streamable objects are ignored or not
                 /// \return if streamable flag is ignored
-        DTboolean                       ignore_streamable_flag      (void) const                {   return _ignore_streamable_flag;		}
+        bool                       ignore_streamable_flag      (void) const                {   return _ignore_streamable_flag;		}
 
                 /// set this flag to ignore the streaming and pointers to other objects
                 /// \param ignore flag to ignore pointers to other objects
-        void                            set_recursive				(const DTboolean recursive) {   _recursive = recursive;				}
+        void                            set_recursive				(const bool recursive) {   _recursive = recursive;				}
 
                 /// Returns wether pointers to other objects are ignored or not
                 /// \return if pointers to other objects are ignored or not
-        DTboolean                       recursive                   (void) const                {   return _recursive;					}
+        bool                       recursive                   (void) const                {   return _recursive;					}
 
                 /// Returns and removes next post process
                 /// \return post process
@@ -104,8 +104,8 @@ class Archive: public BaseClass {
 
                 std::list<std::shared_ptr<ArchiveProcess>>		_processes;
 
-        DTboolean                       _ignore_streamable_flag;
-        DTboolean                       _recursive;
+        bool                       _ignore_streamable_flag;
+        bool                       _recursive;
 };
 
 //==============================================================================

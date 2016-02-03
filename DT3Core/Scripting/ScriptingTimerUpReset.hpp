@@ -52,12 +52,12 @@ class ScriptingTimerUpReset: public ScriptingBase {
         DTfloat						_upper_range;
 
         Plug<DTfloat>				_speed;
-        Plug<DTboolean>				_active;
+        Plug<bool>				_active;
 
         Plug<DTfloat>				_time;
         Plug<DTfloat>				_t;
 
-        DTboolean                   _reset_when_inactive;
+        bool                   _reset_when_inactive;
 };
 
 //==============================================================================

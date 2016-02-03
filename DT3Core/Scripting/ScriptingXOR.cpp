@@ -117,7 +117,7 @@ void ScriptingXOR::archive (const std::shared_ptr<Archive> &archive)
 //==============================================================================
 //==============================================================================
 
-DTboolean ScriptingXOR::compute (const PlugBase *plug)
+bool ScriptingXOR::compute (const PlugBase *plug)
 {
 	PROFILER(SCRIPTING);
 

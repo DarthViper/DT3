@@ -104,7 +104,7 @@ void ScriptingMaterial::set_material_property (const std::shared_ptr<MaterialRes
 //==============================================================================
 //==============================================================================
 
-DTboolean ScriptingMaterial::compute (const PlugBase *plug)
+bool ScriptingMaterial::compute (const PlugBase *plug)
 {
 	PROFILER(SCRIPTING);
 

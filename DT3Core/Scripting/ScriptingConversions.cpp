@@ -48,7 +48,7 @@ class Scripting##FROMTYPE##To##TOTYPE: public ScriptingBase {                   
         virtual void                archive             (const std::shared_ptr<Archive> &archive); \
                                                                                     \
 	public:                                                                         \
- 		DTboolean					compute					(const PlugBase *plug); \
+        bool					compute					(const PlugBase *plug); \
 	private:                                                                        \
 		Plug<FT>                    _in;                                            \
 		Plug<TT>                    _out;                                           \
@@ -102,7 +102,7 @@ void Scripting##FROMTYPE##To##TOTYPE::archive (const std::shared_ptr<Archive> &a
     archive->pop_domain ();                                                         \
 }                                                                                   \
                                                                                     \
-DTboolean Scripting##FROMTYPE##To##TOTYPE::compute (const PlugBase *plug)           \
+bool Scripting##FROMTYPE##To##TOTYPE::compute (const PlugBase *plug)           \
 {                                                                                   \
 	PROFILER(SCRIPTING);                                                            \
     if (super_type::compute(plug))  return true;                                    \
@@ -143,49 +143,49 @@ DTboolean Scripting##FROMTYPE##To##TOTYPE::compute (const PlugBase *plug)       
 //==============================================================================
 //==============================================================================
 
-BUILD_CONVERSION_NUMBER (Bool,DTboolean,Short,DTshort,false,0)
-BUILD_CONVERSION_NUMBER (Bool,DTboolean,UShort,DTushort,false,0)
-BUILD_CONVERSION_NUMBER (Bool,DTboolean,Int,DTint,false,0L)
-BUILD_CONVERSION_NUMBER (Bool,DTboolean,UInt,DTuint,false,0UL)
-BUILD_CONVERSION_NUMBER (Bool,DTboolean,Float,DTfloat,false,0.0F)
-BUILD_CONVERSION_NUMBER (Bool,DTboolean,Double,DTdouble,false,0.0)
+BUILD_CONVERSION_NUMBER (Bool,bool,Short,DTshort,false,0)
+BUILD_CONVERSION_NUMBER (Bool,bool,UShort,DTushort,false,0)
+BUILD_CONVERSION_NUMBER (Bool,bool,Int,DTint,false,0L)
+BUILD_CONVERSION_NUMBER (Bool,bool,UInt,DTuint,false,0UL)
+BUILD_CONVERSION_NUMBER (Bool,bool,Float,DTfloat,false,0.0F)
+BUILD_CONVERSION_NUMBER (Bool,bool,Double,DTdouble,false,0.0)
 
 BUILD_CONVERSION_NUMBER (Short,DTshort,UShort,DTushort,0,0)
-BUILD_CONVERSION_NUMBER (Short,DTshort,Bool,DTboolean,0,false)
+BUILD_CONVERSION_NUMBER (Short,DTshort,Bool,bool,0,false)
 BUILD_CONVERSION_NUMBER (Short,DTshort,Int,DTint,0,0L)
 BUILD_CONVERSION_NUMBER (Short,DTshort,UInt,DTuint,0,0UL)
 BUILD_CONVERSION_NUMBER (Short,DTshort,Float,DTfloat,0,0.0F)
 BUILD_CONVERSION_NUMBER (Short,DTshort,Double,DTdouble,0,0.0)
 
-BUILD_CONVERSION_NUMBER (UShort,DTushort,Bool,DTboolean,0U,false)
+BUILD_CONVERSION_NUMBER (UShort,DTushort,Bool,bool,0U,false)
 BUILD_CONVERSION_NUMBER (UShort,DTushort,Short,DTshort,0U,0)
 BUILD_CONVERSION_NUMBER (UShort,DTushort,Int,DTint,0U,0L)
 BUILD_CONVERSION_NUMBER (UShort,DTushort,UInt,DTuint,0U,0UL)
 BUILD_CONVERSION_NUMBER (UShort,DTushort,Float,DTfloat,0U,0.0F)
 BUILD_CONVERSION_NUMBER (UShort,DTushort,Double,DTdouble,0U,0.0)
 
-BUILD_CONVERSION_NUMBER (Int,DTint,Bool,DTboolean,0L,false)
+BUILD_CONVERSION_NUMBER (Int,DTint,Bool,bool,0L,false)
 BUILD_CONVERSION_NUMBER (Int,DTint,Short,DTshort,0L,0)
 BUILD_CONVERSION_NUMBER (Int,DTint,UShort,DTushort,0L,0)
 BUILD_CONVERSION_NUMBER (Int,DTint,UInt,DTuint,0L,0UL)
 BUILD_CONVERSION_NUMBER (Int,DTint,Float,DTfloat,0L,0.0F)
 BUILD_CONVERSION_NUMBER (Int,DTint,Double,DTdouble,0L,0.0)
 
-BUILD_CONVERSION_NUMBER (UInt,DTuint,Bool,DTboolean,0UL,false)
+BUILD_CONVERSION_NUMBER (UInt,DTuint,Bool,bool,0UL,false)
 BUILD_CONVERSION_NUMBER (UInt,DTuint,Short,DTshort,0UL,0)
 BUILD_CONVERSION_NUMBER (UInt,DTuint,UShort,DTushort,0UL,0)
 BUILD_CONVERSION_NUMBER (UInt,DTuint,Int,DTint,0UL,0L)
 BUILD_CONVERSION_NUMBER (UInt,DTuint,Float,DTfloat,0UL,0.0F)
 BUILD_CONVERSION_NUMBER (UInt,DTuint,Double,DTdouble,0UL,0.0)
 
-BUILD_CONVERSION_NUMBER (Float,DTfloat,Bool,DTboolean,0.0F,false)
+BUILD_CONVERSION_NUMBER (Float,DTfloat,Bool,bool,0.0F,false)
 BUILD_CONVERSION_NUMBER (Float,DTfloat,Short,DTshort,0.0F,0)
 BUILD_CONVERSION_NUMBER (Float,DTfloat,UShort,DTushort,0.0F,0)
 BUILD_CONVERSION_NUMBER (Float,DTfloat,Int,DTint,0.0F,0L)
 BUILD_CONVERSION_NUMBER (Float,DTfloat,UInt,DTuint,0.0F,0UL)
 BUILD_CONVERSION_NUMBER (Float,DTfloat,Double,DTdouble,0.0F,0.0)
 
-BUILD_CONVERSION_NUMBER (Double,DTdouble,Bool,DTboolean,0.0,false)
+BUILD_CONVERSION_NUMBER (Double,DTdouble,Bool,bool,0.0,false)
 BUILD_CONVERSION_NUMBER (Double,DTdouble,Short,DTshort,0.0,0)
 BUILD_CONVERSION_NUMBER (Double,DTdouble,UShort,DTushort,0.0,0)
 BUILD_CONVERSION_NUMBER (Double,DTdouble,Int,DTint,0.0,0L)

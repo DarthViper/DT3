@@ -1,6 +1,4 @@
 #pragma once
-#ifndef DT3_SCRIPTINGPULSE
-#define DT3_SCRIPTINGPULSE
 //==============================================================================
 ///
 ///	File: ScriptingPulse.hpp
@@ -13,6 +11,7 @@
 //==============================================================================
 
 #include "DT3Core/Scripting/ScriptingBase.hpp"
+#include "DT3Core/Types/Node/Event.hpp"
 
 //==============================================================================
 //==============================================================================
@@ -59,8 +58,8 @@ class ScriptingPulse: public ScriptingBase {
         DTfloat						_time;
         DTfloat						_pulse_time;
 
-        Plug<DTboolean>				_in;
-        Plug<DTboolean>				_out;
+        Plug<bool>				_in;
+        Plug<bool>				_out;
 
         Event                       _in_e;
 };
@@ -69,5 +68,3 @@ class ScriptingPulse: public ScriptingBase {
 //==============================================================================
 
 } // DT3
-
-#endif

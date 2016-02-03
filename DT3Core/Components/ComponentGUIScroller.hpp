@@ -116,10 +116,10 @@ class ComponentGUIScroller: public ComponentBase {
         DEFINE_ACCESSORS (shader, set_shader, std::shared_ptr<ShaderResource>, _shader);
 
         /// Defines standard accessors for the scroll horizontal flag
-        DEFINE_ACCESSORS (scroll_horz, set_scroll_horz, DTboolean, _scroll_horz);
+        DEFINE_ACCESSORS (scroll_horz, set_scroll_horz, bool, _scroll_horz);
 
         /// Defines standard accessors for the scroll vertical flag
-        DEFINE_ACCESSORS (scroll_vert, set_scroll_vert, DTboolean, _scroll_vert);
+        DEFINE_ACCESSORS (scroll_vert, set_scroll_vert, bool, _scroll_vert);
 
         /// Defines standard accessors for the scroll horizontal pad
         DEFINE_ACCESSORS (pad_horz, set_pad_horz, DTfloat, _pad_horz);
@@ -128,10 +128,10 @@ class ComponentGUIScroller: public ComponentBase {
         DEFINE_ACCESSORS (pad_vert, set_pad_vert, DTfloat, _pad_vert);
 
         /// Defines standard accessors for auto centering
-        DEFINE_ACCESSORS (auto_center_horz, set_auto_center_horz, DTboolean, _auto_center_horz);
+        DEFINE_ACCESSORS (auto_center_horz, set_auto_center_horz, bool, _auto_center_horz);
 
         /// Defines standard accessors for auto centering
-        DEFINE_ACCESSORS (auto_center_vert, set_auto_center_vert, DTboolean, _auto_center_vert);
+        DEFINE_ACCESSORS (auto_center_vert, set_auto_center_vert, bool, _auto_center_vert);
 
      private:
         static const DTfloat VELOCITY_DECAY;
@@ -147,16 +147,16 @@ class ComponentGUIScroller: public ComponentBase {
 
         Rectangle                   _contents;
 
-        DTboolean                   _scroll_horz;
-        DTboolean                   _scroll_vert;
+        bool                   _scroll_horz;
+        bool                   _scroll_vert;
 
-        DTboolean                   _auto_center_horz;
-        DTboolean                   _auto_center_vert;
+        bool                   _auto_center_horz;
+        bool                   _auto_center_vert;
 
-        DTboolean                   _scroll_to_top;
-        DTboolean                   _scroll_to_bottom;
-        DTboolean                   _scroll_to_left;
-        DTboolean                   _scroll_to_right;
+        bool                   _scroll_to_top;
+        bool                   _scroll_to_bottom;
+        bool                   _scroll_to_left;
+        bool                   _scroll_to_right;
 
         DTfloat                     _vel_x;
         DTfloat                     _vel_y;

@@ -43,14 +43,14 @@ class ScriptingXOR: public ScriptingBase {
     public:
         /// Computes the value of the node
         /// \param plug plug to compute
-        DTboolean					compute					(const PlugBase *plug);
+        bool					compute					(const PlugBase *plug);
 
     private:
-        Plug<DTboolean>				_in1;
-        Plug<DTboolean>				_in2;
+        Plug<bool>				_in1;
+        Plug<bool>				_in2;
 
-        Plug<DTboolean>				_out;
-        Plug<DTboolean>				_out_inv;
+        Plug<bool>				_out;
+        Plug<bool>				_out_inv;
 
 };
 

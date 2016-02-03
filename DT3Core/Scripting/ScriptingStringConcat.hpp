@@ -44,12 +44,12 @@ class ScriptingStringConcat: public ScriptingBase {
     public:
         /// Computes the value of the node
         /// \param plug plug to compute
-        DTboolean					compute					(const PlugBase *plug);
+        bool					compute					(const PlugBase *plug);
 
     private:
         Plug<std::string>           _in1;
         Plug<std::string>			_in2;
-        Plug<DTboolean>             _insert_space;
+        Plug<bool>             _insert_space;
         Plug<std::string>			_out;
 };
 

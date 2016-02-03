@@ -98,7 +98,7 @@ void ScriptingNOT::archive (const std::shared_ptr<Archive> &archive)
 //==============================================================================
 //==============================================================================
 
-DTboolean ScriptingNOT::compute (const PlugBase *plug)
+bool ScriptingNOT::compute (const PlugBase *plug)
 {
 	PROFILER(SCRIPTING);
 

@@ -1,6 +1,4 @@
 #pragma once
-#ifndef DT3_WORLDNODE
-#define DT3_WORLDNODE
 //==============================================================================
 ///
 ///	File: WorldNode.hpp
@@ -14,7 +12,7 @@
 
 #include "DT3Core/Types/Node/PlugNode.hpp"
 #include "DT3Core/Types/Node/Plug.hpp"
-#include "DT3Core/Types/Node/Event.hpp"
+
 #include "DT3Core/Types/Math/Vector3.hpp"
 #include "DT3Core/Types/Math/Color4f.hpp"
 
@@ -43,7 +41,7 @@ class WorldNode: public PlugNode {
                                     WorldNode			(void);
                                     WorldNode			(const WorldNode &rhs);
         WorldNode &                 operator =			(const WorldNode &rhs);
-        virtual                     ~WorldNode			(void);
+        virtual                     ~WorldNode			(void) = default;
 
         virtual void                archive             (const std::shared_ptr<Archive> &archive);
 
@@ -82,7 +80,7 @@ class WorldNode: public PlugNode {
 
 
         DEFINE_ACCESSORS(node_position, set_node_position, Vector3, _node_position)
-        DEFINE_ACCESSORS(node_collapsed, set_node_collapsed, DTboolean, _node_collapsed)
+        DEFINE_ACCESSORS(node_collapsed, set_node_collapsed, bool, _node_collapsed)
         DEFINE_ACCESSORS(node_color, set_node_color, Color4f, _node_color)
 
 
@@ -94,7 +92,7 @@ class WorldNode: public PlugNode {
 
     private:
 
-        DTboolean					_node_collapsed;	// Editor node collapsed
+        bool					_node_collapsed;	// Editor node collapsed
         Vector3						_node_position;		// Editor node position
         Color4f						_node_color;		// Editor node color
 
@@ -107,5 +105,3 @@ class WorldNode: public PlugNode {
 //==============================================================================
 
 } // DT3
-
-#endif

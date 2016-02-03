@@ -89,14 +89,14 @@ Stream& operator >>(Stream &s, Box&v)
 //==============================================================================
 //==============================================================================
 
-DTboolean Box::operator == (const Box& rhs) const
+bool Box::operator == (const Box& rhs) const
 {
     return  Rectangle::operator==(rhs) &&
             (_minus_z == rhs._minus_z) &&
             (_plus_z == rhs._plus_z);
 }
 		
-DTboolean Box::operator != (const Box& rhs) const
+bool Box::operator != (const Box& rhs) const
 {
     return  Rectangle::operator!=(rhs) ||
             (_minus_z != rhs._minus_z) ||
@@ -192,7 +192,7 @@ Box Box::calc_intersection (const Box &a, const Box &b)
 //==============================================================================
 //==============================================================================
 
-DTboolean Box::is_touching (const Box &other)
+bool Box::is_touching (const Box &other)
 {
     if (!Rectangle::is_touching(other) ||
         other._minus_z > _plus_z ||
@@ -205,7 +205,7 @@ DTboolean Box::is_touching (const Box &other)
 //==============================================================================
 //==============================================================================
 
-DTboolean Box::is_touching (const Vector3 &pt) const
+bool Box::is_touching (const Vector3 &pt) const
 {
     if (_minus_x <= pt.x && _plus_x >= pt.x &&
         _minus_y <= pt.y && _plus_y >= pt.y &&
@@ -219,7 +219,7 @@ DTboolean Box::is_touching (const Vector3 &pt) const
 //==============================================================================
 //==============================================================================
 
-DTboolean Box::is_touching (const Vector3 &from, const Vector3 &to, const DTfloat r)
+bool Box::is_touching (const Vector3 &from, const Vector3 &to, const DTfloat r)
 {
     DTfloat   plus_x = _plus_x + r;
     DTfloat   plus_y = _plus_y + r;
@@ -267,7 +267,7 @@ DTboolean Box::is_touching (const Vector3 &from, const Vector3 &to, const DTfloa
 //==============================================================================
 
 
-DTboolean Box::is_touching (const Vector3 &from, const Vector3 &to)
+bool Box::is_touching (const Vector3 &from, const Vector3 &to)
 {
     // page 577 of Real-Time rendering 2nd edition
     Vector3 c,w;

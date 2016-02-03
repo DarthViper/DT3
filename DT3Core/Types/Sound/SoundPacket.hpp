@@ -84,8 +84,8 @@ class SoundPacket: public BaseClass {
 
 
         // Always different
-        DTboolean           operator ==             (const SoundPacket& /*rhs*/) const  {   return false;   }
-        DTboolean           operator !=             (const SoundPacket& /*rhs*/) const  {   return true;    }
+        bool           operator ==             (const SoundPacket& /*rhs*/) const  {   return false;   }
+        bool           operator !=             (const SoundPacket& /*rhs*/) const  {   return true;    }
 
     private:
         std::shared_ptr<std::vector<DTubyte>>   _buffer;

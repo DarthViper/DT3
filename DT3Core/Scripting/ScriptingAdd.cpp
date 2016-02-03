@@ -107,7 +107,7 @@ void ScriptingAdd::archive (const std::shared_ptr<Archive> &archive)
 //==============================================================================
 //==============================================================================
 
-DTboolean ScriptingAdd::compute (const PlugBase *plug)
+bool ScriptingAdd::compute (const PlugBase *plug)
 {
 	PROFILER(SCRIPTING);
 

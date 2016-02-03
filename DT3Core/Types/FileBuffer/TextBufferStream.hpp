@@ -49,7 +49,7 @@ class TextBufferStream: public TextStream {
         public:
 
                 Stream&				operator<<			(const Stream::FS)	{	*this << " ";	return *this;	}
-                Stream&				operator<<			(const DTboolean n);
+                Stream&				operator<<			(const bool n);
                 Stream&				operator<<			(const DTbyte n);
                 Stream&				operator<<			(const DTshort n);
                 Stream&				operator<<			(const DTint n);
@@ -70,7 +70,7 @@ class TextBufferStream: public TextStream {
                 Stream&				operator<<			(const TextBufferStream& n);
 
 
-                Stream&				operator>>			(DTboolean &n);
+                Stream&				operator>>			(bool &n);
                 Stream&				operator>>			(DTbyte &n);
                 Stream&				operator>>			(DTshort &n);
                 Stream&				operator>>			(DTint &n);
@@ -130,11 +130,11 @@ class TextBufferStream: public TextStream {
 
                 /// Sets the ignore whitespace flag. This ignores spaces when reading strings
                 /// \param ignore_whitepace ignore whitepace flag
-        void                            set_ignore_whitespace   (DTboolean ignore_whitepace)    {   _ignore_whitespace = ignore_whitepace;  }
+        void                            set_ignore_whitespace   (bool ignore_whitepace)    {   _ignore_whitespace = ignore_whitepace;  }
 
         private:
                 std::stringstream				_buffer;
-        DTboolean                       _ignore_whitespace;
+        bool                       _ignore_whitespace;
 
 };
 

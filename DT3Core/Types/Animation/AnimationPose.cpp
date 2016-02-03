@@ -113,7 +113,7 @@ void AnimationPose::update (const DTfloat time, const std::shared_ptr<AnimationR
 //==============================================================================
 //==============================================================================
 
-DTboolean AnimationPose::joint_transform (DTuint joint_name_hash, Matrix4 &transform) const
+bool AnimationPose::joint_transform (DTuint joint_name_hash, Matrix4 &transform) const
 {
 	std::map<DTuint, AnimationPoseJoint>::const_iterator i = _joints.find(joint_name_hash);
 	if (i == _joints.end()) {

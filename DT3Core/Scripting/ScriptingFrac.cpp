@@ -98,7 +98,7 @@ void ScriptingFrac::archive (const std::shared_ptr<Archive> &archive)
 //==============================================================================
 //==============================================================================
 
-DTboolean ScriptingFrac::compute (const PlugBase *plug)
+bool ScriptingFrac::compute (const PlugBase *plug)
 {
 	PROFILER(SCRIPTING);
 

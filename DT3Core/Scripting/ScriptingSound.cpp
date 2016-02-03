@@ -133,7 +133,7 @@ void ScriptingSound::event_reset (PlugNode *sender)
 //==============================================================================
 //==============================================================================
 
-DTboolean ScriptingSound::compute (const PlugBase *plug)
+bool ScriptingSound::compute (const PlugBase *plug)
 {
 	PROFILER(SOUND);
 

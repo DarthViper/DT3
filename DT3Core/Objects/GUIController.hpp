@@ -64,10 +64,10 @@ class GUIController: public PlaceableObject {
         /// \param new_focus focused object
         void                            set_focus                   (GUIObject *new_focus);
 
-        DEFINE_ACCESSORS(use_stencil, set_use_stencil, DTboolean, _use_stencil)
+        DEFINE_ACCESSORS(use_stencil, set_use_stencil, bool, _use_stencil)
     private:
         GUITouchEvent                   _touch;
-        DTboolean                       _use_stencil;
+        bool                       _use_stencil;
 
         void                            draw_gui_recursive          (PlaceableObject *root, const std::shared_ptr<CameraObject> &camera, const Color4f &parent_color, DTint stencil);
 

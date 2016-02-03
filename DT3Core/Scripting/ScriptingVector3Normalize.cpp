@@ -107,7 +107,7 @@ void ScriptingVector3Normalize::archive (const std::shared_ptr<Archive> &archive
 //==============================================================================
 //==============================================================================
 
-DTboolean ScriptingVector3Normalize::compute (const PlugBase *plug)
+bool ScriptingVector3Normalize::compute (const PlugBase *plug)
 {
 	PROFILER(SCRIPTING);
 

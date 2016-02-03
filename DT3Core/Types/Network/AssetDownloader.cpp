@@ -333,14 +333,14 @@ void AssetDownloader::cancel (void)
 //==============================================================================
 //==============================================================================
 
-DTboolean AssetDownloader::is_done (void) const
+bool AssetDownloader::is_done (void) const
 {
     return  _status == AssetDownloader::STATUS_ERROR ||
             _status == AssetDownloader::STATUS_COMPLETE ||
             _status == AssetDownloader::STATUS_CANCELLED;
 }
 
-DTboolean AssetDownloader::is_idle (void) const
+bool AssetDownloader::is_idle (void) const
 {
     return  _status == AssetDownloader::STATUS_IDLE ||
             _status == AssetDownloader::STATUS_ERROR ||

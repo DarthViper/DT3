@@ -43,7 +43,7 @@ class ScriptingKeyframesBool: public ScriptingKeyframes {
     public:
         /// Computes the value of the node
         /// \param plug plug to compute
-        DTboolean					compute					(const PlugBase *plug);
+        bool					compute					(const PlugBase *plug);
 
         /// Set a key at the current time
         virtual void				set_key					(void);
@@ -77,14 +77,14 @@ class ScriptingKeyframesBool: public ScriptingKeyframes {
 
     private:
         Plug<DTfloat>				_t;
-        Plug<DTboolean>				_out;
+        Plug<bool>				_out;
         DTint						_id;
 
         struct keyframe {
             int operator < (const keyframe& rhs) const	{	return _time < rhs._time;	}
 
             DTfloat                 _time;
-            DTboolean               _value;
+            bool               _value;
             DTint                   _id;
         };
 

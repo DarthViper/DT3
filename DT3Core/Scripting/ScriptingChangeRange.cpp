@@ -134,7 +134,7 @@ void ScriptingChangeRange::archive (const std::shared_ptr<Archive> &archive)
 //==============================================================================
 //==============================================================================
 
-DTboolean ScriptingChangeRange::compute (const PlugBase *plug)
+bool ScriptingChangeRange::compute (const PlugBase *plug)
 {
 	PROFILER(SCRIPTING);
 

@@ -67,7 +67,7 @@ TextLine::~TextLine (void)
 
 }
 
-DTboolean TextLine::is_blank(void) const
+bool TextLine::is_blank(void) const
 {
     for (auto &g : _glyphs) {
         DTuint c = g.glyph_entry()->character();
@@ -615,7 +615,7 @@ void TextLines::wrap (DTfloat width, DTfloat height, Alignment alignment)
                     
                         // Build list of spaces
                         std::vector<TextCharacter*> spaces;
-                        DTboolean                   found_char = false;
+                        bool                   found_char = false;
                         
                         for (auto j = glyphs.rbegin(); j != glyphs.rend(); ++j) {
                             TextCharacter &ct = *j;

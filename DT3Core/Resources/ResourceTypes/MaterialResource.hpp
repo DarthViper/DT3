@@ -49,7 +49,7 @@ inline void S(T var_)			{	_rasterizer_state.V = var_;   _rasterizer_state_dirty 
 
 #define DEFINE_ACCESSORS_TEXTURE_SLOT(G,S,T,V)                                                                                           \
 inline T G(void) const			{	return _textures[_unit].V;  }	\
-inline void S(T var_)			{	_textures[_unit].V = var_;  }
+inline void S(const T &var_)			{	_textures[_unit].V = var_;  }
 
 #define DEFINE_ACCESSORS_SAMPLER(G,S,T,V)                                                                                           \
 inline T G(void) const			{	return _textures[_unit]._sampler_state.V;                                                   }	\
@@ -86,7 +86,7 @@ class MaterialResource: public Resource {
 
         /// Checks if a reload is needed
         /// \return reload needed
-        virtual DTboolean               is_changed                (void) const;
+        virtual bool               is_changed                (void) const;
 
         /// Description
         /// \param param description
@@ -100,11 +100,11 @@ class MaterialResource: public Resource {
         // Depth Stencil State
         //
 
-        DEFINE_ACCESSORS_DEPTH_STENCIL(depth_enable,set_depth_enable,DTboolean,depth_enable)
-        DEFINE_ACCESSORS_DEPTH_STENCIL(depth_write_mask,set_depth_write_mask,DTboolean,depth_write_mask)
+        DEFINE_ACCESSORS_DEPTH_STENCIL(depth_enable,set_depth_enable,bool,depth_enable)
+        DEFINE_ACCESSORS_DEPTH_STENCIL(depth_write_mask,set_depth_write_mask,bool,depth_write_mask)
         DEFINE_ACCESSORS_DEPTH_STENCIL(depth_func,set_depth_func,DT3GLComparison,depth_func)
 
-        DEFINE_ACCESSORS_DEPTH_STENCIL(stencil_enable,set_stencil_enable,DTboolean,stencil_enable)
+        DEFINE_ACCESSORS_DEPTH_STENCIL(stencil_enable,set_stencil_enable,bool,stencil_enable)
         DEFINE_ACCESSORS_DEPTH_STENCIL(stencil_read_mask,set_stencil_read_mask,DTuint,stencil_read_mask)
         DEFINE_ACCESSORS_DEPTH_STENCIL(stencil_write_mask,set_stencil_write_mask,DTuint,stencil_write_mask)
 
@@ -122,15 +122,15 @@ class MaterialResource: public Resource {
         // Blend State
         //
 
-        DEFINE_ACCESSORS_BLEND(blend_enable,set_blend_enable,DTboolean,blend_enable)
+        DEFINE_ACCESSORS_BLEND(blend_enable,set_blend_enable,bool,blend_enable)
         DEFINE_ACCESSORS_BLEND(src_blend,set_src_blend,DT3GLBlend,src_blend)
         DEFINE_ACCESSORS_BLEND(dest_blend,set_dest_blend,DT3GLBlend,dest_blend)
         DEFINE_ACCESSORS_BLEND(src_blend_alpha,set_src_blend_alpha,DT3GLBlend,src_blend_alpha)
         DEFINE_ACCESSORS_BLEND(dest_blend_alpha,set_dest_blend_alpha,DT3GLBlend,dest_blend_alpha)
-        DEFINE_ACCESSORS_BLEND(render_target_write_mask_r,set_render_target_write_mask_r,DTboolean,render_target_write_mask_r)
-        DEFINE_ACCESSORS_BLEND(render_target_write_mask_g,set_render_target_write_mask_g,DTboolean,render_target_write_mask_g)
-        DEFINE_ACCESSORS_BLEND(render_target_write_mask_b,set_render_target_write_mask_b,DTboolean,render_target_write_mask_b)
-        DEFINE_ACCESSORS_BLEND(render_target_write_mask_a,set_render_target_write_mask_a,DTboolean,render_target_write_mask_a)
+        DEFINE_ACCESSORS_BLEND(render_target_write_mask_r,set_render_target_write_mask_r,bool,render_target_write_mask_r)
+        DEFINE_ACCESSORS_BLEND(render_target_write_mask_g,set_render_target_write_mask_g,bool,render_target_write_mask_g)
+        DEFINE_ACCESSORS_BLEND(render_target_write_mask_b,set_render_target_write_mask_b,bool,render_target_write_mask_b)
+        DEFINE_ACCESSORS_BLEND(render_target_write_mask_a,set_render_target_write_mask_a,bool,render_target_write_mask_a)
 
         //
         // Rasterizer State
@@ -140,7 +140,7 @@ class MaterialResource: public Resource {
         DEFINE_ACCESSORS_RASTERIZER(depth_bias,set_depth_bias,DTfloat,depth_bias)
         DEFINE_ACCESSORS_RASTERIZER(slope_scaled_depth_bias,set_slope_scaled_depth_bias,DTfloat,slope_scaled_depth_bias)
         DEFINE_ACCESSORS_RASTERIZER(depth_bias_clamp,set_depth_bias_clamp,DTfloat,depth_bias_clamp)
-        DEFINE_ACCESSORS_RASTERIZER(scissor_enable,set_scissor_enable,DTboolean,scissor_enable)
+        DEFINE_ACCESSORS_RASTERIZER(scissor_enable,set_scissor_enable,bool,scissor_enable)
 
         //
         // Texture State
@@ -190,15 +190,15 @@ class MaterialResource: public Resource {
 
 
         DT3GLDepthStencilState                      _depth_stencil_state;
-        DTboolean                                   _depth_stencil_state_dirty;
+        bool                                   _depth_stencil_state_dirty;
         std::shared_ptr<DT3GLDepthStencilResource>  _depth_stencil_resource;
 
         DT3GLBlendState                             _blend_state;
-        DTboolean                                   _blend_state_dirty;
+        bool                                   _blend_state_dirty;
         std::shared_ptr<DT3GLBlendResource>         _blend_state_resource;
 
         DT3GLRasterizerState                        _rasterizer_state;
-        DTboolean                                   _rasterizer_state_dirty;
+        bool                                   _rasterizer_state_dirty;
         std::shared_ptr<DT3GLRasterizerResource>    _rasterizer_resource;
 
         struct TextureSlot {
@@ -211,7 +211,7 @@ class MaterialResource: public Resource {
             std::shared_ptr<DT3GLTextureCubeResource>    _texture_cube_res;
 
             DT3GLSamplerState                       _sampler_state;
-            DTboolean                               _sampler_state_dirty;
+            bool                               _sampler_state_dirty;
             std::shared_ptr<DT3GLSamplerResource>   _sampler_state_resource;
 
             std::shared_ptr<DT3GLUniformResource>   _transform_uniform;

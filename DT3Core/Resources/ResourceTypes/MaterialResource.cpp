@@ -189,7 +189,7 @@ DTerr MaterialResource::import (const FilePath &pathname, std::string args)
     return err;
 }
 
-DTboolean MaterialResource::is_changed (void) const
+bool MaterialResource::is_changed (void) const
 {
     if (Resource::is_changed())
         return true;

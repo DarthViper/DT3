@@ -60,7 +60,7 @@ DTerr ImporterImagePNG::import (TextureResource2D *target, std::string args)
 
     import(pathname, args, width, height, data, format);
 
-    DTboolean mipmapped = (MoreStrings::lowercase(args).find("mipmapped") != std::string::npos);
+    bool mipmapped = (MoreStrings::lowercase(args).find("mipmapped") != std::string::npos);
 
     target->set_textels(width, height, data, format, mipmapped);
 

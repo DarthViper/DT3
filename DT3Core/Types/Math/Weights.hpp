@@ -43,7 +43,7 @@ class Weights {
 
     public:
 
-        DTboolean				operator ==			(const Weights& rhs) const   {	return	_weight_1 == rhs._weight_1 &&
+        bool				operator ==			(const Weights& rhs) const   {	return	_weight_1 == rhs._weight_1 &&
                                                                                             _weight_2 == rhs._weight_2 &&
                                                                                             _weight_3 == rhs._weight_3 &&
                                                                                             _weight_4 == rhs._weight_4 &&
@@ -52,7 +52,7 @@ class Weights {
                                                                                             _bone_3 == rhs._bone_3 &&
                                                                                             _bone_4 == rhs._bone_4;     }
 
-        DTboolean				operator !=			(const Weights& rhs) const   {	return	_weight_1 != rhs._weight_1 ||
+        bool				operator !=			(const Weights& rhs) const   {	return	_weight_1 != rhs._weight_1 ||
                                                                                             _weight_2 != rhs._weight_2 ||
                                                                                             _weight_3 != rhs._weight_3 ||
                                                                                             _weight_4 != rhs._weight_4 ||

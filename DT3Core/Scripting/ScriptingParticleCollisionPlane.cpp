@@ -134,7 +134,7 @@ void ScriptingParticleCollisionPlane::archive (const std::shared_ptr<Archive> &a
 //==============================================================================
 //==============================================================================
 
-DTboolean ScriptingParticleCollisionPlane::compute (const PlugBase *plug)
+bool ScriptingParticleCollisionPlane::compute (const PlugBase *plug)
 {
 	PROFILER(PARTICLES);
 

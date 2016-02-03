@@ -57,7 +57,7 @@ class NetworkAddress {
 
         /// Checks if the network address is empty or not
         /// \return Address is empty
-        DTboolean				is_empty                (void) const				{	return _address.size() == 0;	}
+        bool				is_empty                (void) const				{	return _address.size() == 0;	}
 
     private:
         friend int operator == (const NetworkAddress& a, const NetworkAddress& b);

@@ -107,7 +107,7 @@ void ScriptingGreaterThan::archive (const std::shared_ptr<Archive> &archive)
 //==============================================================================
 //==============================================================================
 
-DTboolean ScriptingGreaterThan::compute (const PlugBase *plug)
+bool ScriptingGreaterThan::compute (const PlugBase *plug)
 {
 	PROFILER(SCRIPTING);
 

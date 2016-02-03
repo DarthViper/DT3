@@ -1,6 +1,4 @@
 #pragma once
-#ifndef DT3_SCRIPTINGSOUND
-#define DT3_SCRIPTINGSOUND
 //==============================================================================
 ///
 ///	File: ScriptingSound.hpp
@@ -14,6 +12,7 @@
 
 #include "DT3Core/Scripting/ScriptingSoundBase.hpp"
 #include "DT3Core/Types/Sound/SoundPacket.hpp"
+#include "DT3Core/Types/Node/Event.hpp"
 
 //==============================================================================
 //==============================================================================
@@ -46,7 +45,7 @@ class ScriptingSound: public ScriptingSoundBase {
     public:
         /// Computes the value of the node
         /// \param plug plug to compute
-        DTboolean                               compute					(const PlugBase *plug);
+        bool                               compute					(const PlugBase *plug);
 
         /// Reset Event
         void                                    event_reset             (PlugNode *sender);
@@ -63,7 +62,7 @@ class ScriptingSound: public ScriptingSoundBase {
         std::shared_ptr<SoundResource>              _sound;
         Plug<SoundPacket>     _sound_packet;
 
-        Plug<DTboolean>                             _looping;
+        Plug<bool>                             _looping;
         Event                                       _reset_e;
 
         DTuint                                      _chunk_index;
@@ -73,5 +72,3 @@ class ScriptingSound: public ScriptingSoundBase {
 //==============================================================================
 
 } // DT3
-
-#endif

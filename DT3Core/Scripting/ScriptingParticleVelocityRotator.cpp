@@ -101,7 +101,7 @@ void ScriptingParticleVelocityRotator::archive (const std::shared_ptr<Archive> &
 //==============================================================================
 //==============================================================================
 
-DTboolean ScriptingParticleVelocityRotator::compute (const PlugBase *plug)
+bool ScriptingParticleVelocityRotator::compute (const PlugBase *plug)
 {
 	PROFILER(PARTICLES);
 

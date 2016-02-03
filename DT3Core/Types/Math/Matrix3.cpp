@@ -141,7 +141,7 @@ Stream& operator >> (Stream &s, Matrix3&m)
 //==============================================================================
 //==============================================================================
 
-DTboolean Matrix3::operator == (const Matrix3& rhs) const
+bool Matrix3::operator == (const Matrix3& rhs) const
 {
 	return (    _m11 == rhs._m11	&& _m21 == rhs._m21     && _m31 == rhs._m31     && 
 		_m12 == rhs._m12	&& _m22 == rhs._m22     && _m32 == rhs._m32     && 
@@ -150,7 +150,7 @@ DTboolean Matrix3::operator == (const Matrix3& rhs) const
 }
 
 
-DTboolean Matrix3::operator != (const Matrix3& rhs) const
+bool Matrix3::operator != (const Matrix3& rhs) const
 {
 	return (    _m11 != rhs._m11	|| _m21 != rhs._m21     || _m31 != rhs._m31     || 
 		_m12 != rhs._m12	|| _m22 != rhs._m22     || _m32 != rhs._m32     || 

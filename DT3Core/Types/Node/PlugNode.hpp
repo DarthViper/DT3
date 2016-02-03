@@ -146,7 +146,7 @@ class PlugNode: public BaseClass {
         /// Compute function called when a plug value needs to be calculated
         /// \param plug plug to compute
         /// \return Compute successful
-        virtual DTboolean				compute                             (const PlugBase *plug);
+        virtual bool				compute                             (const PlugBase *plug);
 
 
         /// Disconnect all of the plugs

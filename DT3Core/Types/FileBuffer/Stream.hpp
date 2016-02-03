@@ -47,7 +47,7 @@ class Stream: public BaseClass {
 
 
                 virtual Stream&				operator<<			(const FS) = 0;
-                virtual Stream&				operator<<			(const DTboolean n) = 0;
+                virtual Stream&				operator<<			(const bool n) = 0;
                 virtual Stream&				operator<<			(const DTbyte n) = 0;
                 virtual Stream&				operator<<			(const DTshort n) = 0;
                 virtual Stream&				operator<<			(const DTint n) = 0;
@@ -72,7 +72,7 @@ class Stream: public BaseClass {
 
 
 
-                virtual Stream&				operator>>			(DTboolean &n) = 0;
+                virtual Stream&				operator>>			(bool &n) = 0;
                 virtual Stream&				operator>>			(DTbyte &n) = 0;
                 virtual Stream&				operator>>			(DTshort &n) = 0;
                 virtual Stream&				operator>>			(DTint &n) = 0;

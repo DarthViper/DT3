@@ -134,7 +134,7 @@ void ScriptingParticleColorSequencer::archive (const std::shared_ptr<Archive> &a
 //==============================================================================
 //==============================================================================
 
-DTboolean ScriptingParticleColorSequencer::compute (const PlugBase *plug)
+bool ScriptingParticleColorSequencer::compute (const PlugBase *plug)
 {
 	PROFILER(PARTICLES);
 

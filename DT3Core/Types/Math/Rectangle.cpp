@@ -101,7 +101,7 @@ Stream& operator >>(Stream &s, Rectangle&v)
 //==============================================================================
 //==============================================================================
 
-DTboolean Rectangle::operator == (const Rectangle& rhs) const
+bool Rectangle::operator == (const Rectangle& rhs) const
 {
     return  (_minus_x == rhs._minus_x) &&
             (_plus_x == rhs._plus_x) &&
@@ -109,7 +109,7 @@ DTboolean Rectangle::operator == (const Rectangle& rhs) const
             (_plus_y == rhs._plus_y);
 }
 		
-DTboolean Rectangle::operator != (const Rectangle& rhs) const
+bool Rectangle::operator != (const Rectangle& rhs) const
 {
     return  (_minus_x != rhs._minus_x) ||
             (_plus_x != rhs._plus_x) ||
@@ -199,7 +199,7 @@ Rectangle Rectangle::calc_intersection (const Rectangle &a, const Rectangle &b)
 //==============================================================================
 //==============================================================================
 
-DTboolean Rectangle::is_touching (const Rectangle &other)
+bool Rectangle::is_touching (const Rectangle &other)
 {
     if (other._minus_x > _plus_x ||
         other._plus_x < _minus_x ||
@@ -213,7 +213,7 @@ DTboolean Rectangle::is_touching (const Rectangle &other)
 //==============================================================================
 //==============================================================================
 
-DTboolean Rectangle::is_touching (const Vector2 &pt) const
+bool Rectangle::is_touching (const Vector2 &pt) const
 {
     if (_minus_x <= pt.x && _plus_x >= pt.x &&
         _minus_y <= pt.y && _plus_y >= pt.y)

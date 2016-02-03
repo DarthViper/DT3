@@ -1,6 +1,4 @@
 #pragma once
-#ifndef DT3_SCRIPTINGANALYTICS
-#define DT3_SCRIPTINGANALYTICS
 //==============================================================================
 ///
 ///	File: ScriptingAnalytics.hpp
@@ -13,6 +11,7 @@
 //==============================================================================
 
 #include "DT3Core/Scripting/ScriptingBase.hpp"
+#include "DT3Core/Types/Node/Event.hpp"
 #include <string>
 
 //==============================================================================
@@ -58,5 +57,3 @@ class ScriptingAnalytics: public ScriptingBase {
 //==============================================================================
 
 } // DT3
-
-#endif

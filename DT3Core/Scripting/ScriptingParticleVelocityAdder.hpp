@@ -45,9 +45,9 @@ class ScriptingParticleVelocityAdder: public ScriptingBase {
     public:
         /// Computes the value of the node
         /// \param plug plug to compute
-        DTboolean					compute					(const PlugBase *plug);
+        bool					compute					(const PlugBase *plug);
 
-        DEFINE_ACCESSORS(continuous, set_continuous, DTboolean, _continuous);
+        DEFINE_ACCESSORS(continuous, set_continuous, bool, _continuous);
         DEFINE_ACCESSORS(velocity, set_velocity, Vector3, _velocity);
 
 #ifdef DT3_EDITOR
@@ -57,7 +57,7 @@ class ScriptingParticleVelocityAdder: public ScriptingBase {
 #endif
 
     private:
-        DTboolean									_continuous;
+        bool									_continuous;
 
         Plug<Vector3>								_velocity;
 

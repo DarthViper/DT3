@@ -34,7 +34,7 @@ TextBufferStream::~TextBufferStream (void)
 //==============================================================================
 //==============================================================================
 
-Stream& TextBufferStream::operator<< (const DTboolean n)
+Stream& TextBufferStream::operator<< (const bool n)
 {
         _buffer << n;
         return *this;
@@ -144,7 +144,7 @@ Stream& TextBufferStream::operator<< (const TextBufferStream& n)
 //==============================================================================
 //==============================================================================
 
-Stream& TextBufferStream::operator>> (DTboolean &n)
+Stream& TextBufferStream::operator>> (bool &n)
 {
         _buffer >> n;
         return *this;

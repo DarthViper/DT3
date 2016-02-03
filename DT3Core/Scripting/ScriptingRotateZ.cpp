@@ -111,7 +111,7 @@ void ScriptingRotateZ::archive (const std::shared_ptr<Archive> &archive)
 //==============================================================================
 //==============================================================================
 
-DTboolean ScriptingRotateZ::compute (const PlugBase *plug)
+bool ScriptingRotateZ::compute (const PlugBase *plug)
 {
 	PROFILER(SCRIPTING);
 

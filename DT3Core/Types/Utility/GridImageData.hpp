@@ -43,8 +43,8 @@ class GridImageData {
 
     public:
 
-        inline DTboolean	operator ==                     (const GridImageData& /*rhs*/) const  {	return false;		}
-        inline DTboolean	operator !=                     (const GridImageData& /*rhs*/) const  {	return true;		}
+        inline bool	operator ==                     (const GridImageData& /*rhs*/) const  {	return false;		}
+        inline bool	operator !=                     (const GridImageData& /*rhs*/) const  {	return true;		}
 
 
         /// Set number of control points in X direction

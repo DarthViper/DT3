@@ -80,7 +80,7 @@ class TextureResourceCube: public Resource {
                                                             const std::shared_ptr<DTubyte> &textels_top,
                                                             const std::shared_ptr<DTubyte> &textels_bottom,
                                                             DT3GLTextelFormat format,
-                                                            DTboolean mipmapped,
+                                                            bool mipmapped,
                                                             DTuint flags = DT3GL_ACCESS_CPU_NONE | DT3GL_ACCESS_GPU_READ);
 
         /// Width of the buffer
@@ -123,7 +123,7 @@ class TextureResourceCube: public Resource {
         DTint                                       _width;
         DTint                                       _height;
 
-        DTboolean                                   _mipmapped;
+        bool                                   _mipmapped;
         DTuint                                      _flags;
 
         std::shared_ptr<DT3GLTextureCubeResource>   _resource_cube;

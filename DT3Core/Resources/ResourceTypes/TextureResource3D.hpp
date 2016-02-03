@@ -69,7 +69,7 @@ class TextureResource3D: public Resource {
         /// \param textels textel data (can be NULL)
         /// \param format format
         /// \param mipmapped mipmapped
-        void                        set_textels         (const DTint width, const DTint height, const DTint depth, std::shared_ptr<DTubyte> &textels, DT3GLTextelFormat format, DTboolean mipmapped, DTuint flags = DT3GL_ACCESS_CPU_NONE | DT3GL_ACCESS_GPU_READ);
+        void                        set_textels         (const DTint width, const DTint height, const DTint depth, std::shared_ptr<DTubyte> &textels, DT3GLTextelFormat format, bool mipmapped, DTuint flags = DT3GL_ACCESS_CPU_NONE | DT3GL_ACCESS_GPU_READ);
 
         /// Width of the buffer
         /// \return buffer width
@@ -89,7 +89,7 @@ class TextureResource3D: public Resource {
 
         /// Get the mipmapped flag
         /// \return mipmapped
-        DTboolean					is_mipmapped        (void) const    {	return _mipmapped;  }
+        bool					is_mipmapped        (void) const    {	return _mipmapped;  }
 
         /// Activate the resource
         /// \param texture_slot which slot to activate the texture in
@@ -119,7 +119,7 @@ class TextureResource3D: public Resource {
         DTint                                   _height;
         DTint                                   _depth;
 
-        DTboolean                               _mipmapped;
+        bool                               _mipmapped;
         DTuint                                  _flags;
 
         std::shared_ptr<DT3GLTexture3DResource> _resource_3D;

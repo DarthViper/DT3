@@ -89,7 +89,7 @@ Stream& operator >> (Stream &s, Matrix2&m)
 //==============================================================================
 //==============================================================================
 
-DTboolean Matrix2::operator == (const Matrix2& rhs) const
+bool Matrix2::operator == (const Matrix2& rhs) const
 {
 	return (    _m11 == rhs._m11	&& _m21 == rhs._m21		&& 
 				_m12 == rhs._m12	&& _m22 == rhs._m22
@@ -97,7 +97,7 @@ DTboolean Matrix2::operator == (const Matrix2& rhs) const
 }
 
 
-DTboolean Matrix2::operator != (const Matrix2& rhs) const
+bool Matrix2::operator != (const Matrix2& rhs) const
 {
 	return (    _m11 != rhs._m11	|| _m21 != rhs._m21     || 
 				_m12 != rhs._m12	|| _m22 != rhs._m22 

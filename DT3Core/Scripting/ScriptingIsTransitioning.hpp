@@ -1,6 +1,4 @@
 #pragma once
-#ifndef DT3_SCRIPTINGISTRANSITIONING
-#define DT3_SCRIPTINGISTRANSITIONING
 //==============================================================================
 ///
 ///	File: ScriptingIsTransitioning.hpp
@@ -13,6 +11,7 @@
 //==============================================================================
 
 #include "DT3Core/Scripting/ScriptingBase.hpp"
+#include "DT3Core/Types/Node/Event.hpp"
 
 //==============================================================================
 //==============================================================================
@@ -53,8 +52,8 @@ class ScriptingIsTransitioning: public ScriptingBase {
         void                        tick                        (const DTfloat dt);
 
     private:
-        Plug<DTboolean>				_is_transitioning;
-        DTboolean                   _last_is_transitioning;
+        Plug<bool>				_is_transitioning;
+        bool                   _last_is_transitioning;
 
         Event                       _begin_transition_e;
         Event                       _end_transition_e;
@@ -64,5 +63,3 @@ class ScriptingIsTransitioning: public ScriptingBase {
 //==============================================================================
 
 } // DT3
-
-#endif

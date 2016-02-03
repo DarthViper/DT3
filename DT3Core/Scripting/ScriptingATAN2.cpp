@@ -108,7 +108,7 @@ void ScriptingATAN2::archive (const std::shared_ptr<Archive> &archive)
 //==============================================================================
 //==============================================================================
 
-DTboolean ScriptingATAN2::compute (const PlugBase *plug)
+bool ScriptingATAN2::compute (const PlugBase *plug)
 {
 	PROFILER(SCRIPTING);
 

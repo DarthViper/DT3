@@ -90,7 +90,7 @@ class FilePath {
 
         /// Returns if the file is in a package
         /// \return is in package
-        DTboolean                           in_package				(void) const;
+        bool                           in_package				(void) const;
 
         /// Returns the path to the package
         /// \return path to package
@@ -101,7 +101,7 @@ class FilePath {
 
         /// Tests for empty path
         /// \return Path is empty
-        DTboolean                           is_blank                (void) const		{	return _original_path.empty();	}
+        bool                           is_blank                (void) const		{	return _original_path.empty();	}
 
 
         /// Returns modification date for file
@@ -110,20 +110,20 @@ class FilePath {
 
         /// Returns wether path is a directory
         /// \return Is a directory
-        DTboolean                           is_dir                  (void) const;
+        bool                           is_dir                  (void) const;
 
         /// Checks if the file exists
         /// \return file exists
-        DTboolean                           exists					(void) const;
+        bool                           exists					(void) const;
 
         /// Moves the file
         /// \param new_path new path to file
         /// \return Success
-        DTboolean                           move					(const FilePath &new_path) const;
+        bool                           move					(const FilePath &new_path) const;
 
         /// Deletes the file
         /// \return Success
-        DTboolean                           del                     (void) const;
+        bool                           del                     (void) const;
 
         /// Checksum the file with MD5
         /// \return MD5 hash

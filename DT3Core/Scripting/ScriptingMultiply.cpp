@@ -107,7 +107,7 @@ void ScriptingMultiply::archive (const std::shared_ptr<Archive> &archive)
 //==============================================================================
 //==============================================================================
 
-DTboolean ScriptingMultiply::compute (const PlugBase *plug)
+bool ScriptingMultiply::compute (const PlugBase *plug)
 {
 	PROFILER(SCRIPTING);
 

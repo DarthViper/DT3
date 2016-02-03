@@ -20,6 +20,7 @@
 // Engine includes
 #include "DT3Core/World/WorldNode.hpp"
 #include "DT3Core/Types/FileBuffer/FilePath.hpp"
+#include "DT3Core/Types/Node/Event.hpp"
 #include "DT3Core/Types/Utility/MoreStrings.hpp"
 #include "DT3Core/Types/Math/MoreMath.hpp"
 #include "DT3Core/Components/ComponentBase.hpp"

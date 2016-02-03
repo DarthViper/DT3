@@ -1,6 +1,4 @@
 #pragma once
-#ifndef DT3_SCRIPTINGFLIPFLOP
-#define DT3_SCRIPTINGFLIPFLOP
 //==============================================================================
 ///
 ///	File: ScriptingFLIPFLOP.hpp
@@ -13,6 +11,7 @@
 //==============================================================================
 
 #include "DT3Core/Scripting/ScriptingBase.hpp"
+#include "DT3Core/Types/Node/Event.hpp"
 
 //==============================================================================
 //==============================================================================
@@ -43,7 +42,7 @@ class ScriptingFLIPFLOP: public ScriptingBase {
     public:
         /// Computes the value of the node
         /// \param plug plug to compute
-        DTboolean					compute					(const PlugBase *plug);
+        bool					compute					(const PlugBase *plug);
 
         /// Set Event
         void                        event_set               (PlugNode *sender);
@@ -55,21 +54,19 @@ class ScriptingFLIPFLOP: public ScriptingBase {
         void                        event_toggle            (PlugNode *sender);
 
     private:
-        Plug<DTboolean>				_set;
-        Plug<DTboolean>				_reset;
+        Plug<bool>				_set;
+        Plug<bool>				_reset;
 
         Event                       _set_e;
         Event                       _reset_e;
 
         Event                       _toggle_e;
 
-        Plug<DTboolean>				_out;
-        Plug<DTboolean>				_out_inv;
+        Plug<bool>				_out;
+        Plug<bool>				_out_inv;
 };
 
 //==============================================================================
 //==============================================================================
 
 } // DT3
-
-#endif

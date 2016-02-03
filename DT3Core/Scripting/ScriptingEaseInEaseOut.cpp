@@ -98,7 +98,7 @@ void ScriptingEaseInEaseOut::archive (const std::shared_ptr<Archive> &archive)
 //==============================================================================
 //==============================================================================
 
-DTboolean ScriptingEaseInEaseOut::compute (const PlugBase *plug)
+bool ScriptingEaseInEaseOut::compute (const PlugBase *plug)
 {
 	PROFILER(SCRIPTING);
 

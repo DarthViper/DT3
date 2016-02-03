@@ -1,6 +1,4 @@
 #pragma once
-#ifndef DT3_EVENT
-#define DT3_EVENT
 //==============================================================================
 ///
 ///	File: Event.hpp
@@ -63,15 +61,15 @@ class Event {
 
         /// Returns no draw flag
         /// \return No draw flag
-        DTboolean                           is_no_draw                  (void) const    {	return info().is_no_draw();		}
+        bool                           is_no_draw                  (void) const    {	return info().is_no_draw();		}
 
         /// Returns is input flag
         /// \return is input
-        DTboolean                           is_input                    (void) const    {	return info().is_input();		}
+        bool                           is_input                    (void) const    {	return info().is_input();		}
 
         /// Returns is output flag
         /// \return is output
-        DTboolean                           is_output                   (void) const    {	return info().is_output();		}
+        bool                           is_output                   (void) const    {	return info().is_output();		}
 
 
 
@@ -92,7 +90,7 @@ class Event {
 
         /// Returns true if there is at least one incoming connection
         /// \return has incoming connection
-        DTboolean                           has_incoming_connection		(void) const;
+        bool                           has_incoming_connection		(void) const;
 
 
         /// Returns all outgoing connections
@@ -112,7 +110,7 @@ class Event {
 
         /// Returns true if there is at least one outgoing connection
         /// \return has outgoing connection
-        DTboolean                           has_outgoing_connection		(void) const;
+        bool                           has_outgoing_connection		(void) const;
 
 
 
@@ -163,5 +161,3 @@ class Event {
 //==============================================================================
 
 } // DT3
-
-#endif

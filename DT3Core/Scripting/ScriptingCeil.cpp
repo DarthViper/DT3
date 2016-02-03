@@ -98,7 +98,7 @@ void ScriptingCeil::archive (const std::shared_ptr<Archive> &archive)
 //==============================================================================
 //==============================================================================
 
-DTboolean ScriptingCeil::compute (const PlugBase *plug)
+bool ScriptingCeil::compute (const PlugBase *plug)
 {
 	PROFILER(SCRIPTING);
 

@@ -112,12 +112,12 @@ void ArchiveTextWriter::pop_domain (void)
 //==============================================================================
 //==============================================================================
 
-DTboolean ArchiveTextWriter::is_reading (void) const
+bool ArchiveTextWriter::is_reading (void) const
 {
 	return false;
 }
 
-DTboolean ArchiveTextWriter::is_writing (void) const
+bool ArchiveTextWriter::is_writing (void) const
 {
 	return true;
 }

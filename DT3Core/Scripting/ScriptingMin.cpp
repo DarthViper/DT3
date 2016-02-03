@@ -107,7 +107,7 @@ void ScriptingMin::archive (const std::shared_ptr<Archive> &archive)
 //==============================================================================
 //==============================================================================
 
-DTboolean ScriptingMin::compute (const PlugBase *plug)
+bool ScriptingMin::compute (const PlugBase *plug)
 {
 	PROFILER(SCRIPTING);
 

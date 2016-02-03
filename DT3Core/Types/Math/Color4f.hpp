@@ -1,6 +1,4 @@
 #pragma once
-#ifndef DT3_COLOR4F
-#define DT3_COLOR4F
 //==============================================================================
 ///
 ///	File: Color4f.hpp
@@ -47,8 +45,8 @@ class Color4f {
 
     public:
 
-        DTboolean								operator ==				(const Color4f& rhs) const	{	return r == rhs.r && g == rhs.g && b == rhs.b && a == rhs.a;	}
-        DTboolean								operator !=				(const Color4f& rhs) const	{	return r != rhs.r || g != rhs.g || b != rhs.b || a != rhs.a;	}
+        bool								operator ==				(const Color4f& rhs) const	{	return r == rhs.r && g == rhs.g && b == rhs.b && a == rhs.a;	}
+        bool								operator !=				(const Color4f& rhs) const	{	return r != rhs.r || g != rhs.g || b != rhs.b || a != rhs.a;	}
 
         //
         // Color4f setting routines
@@ -113,11 +111,11 @@ class Color4f {
 
         /// Returns wether the color is black
         /// \return is black
-        DTboolean								is_black                (void) const            {	return r == 0.0F && g == 0.0F && b == 0.0F; }
+        bool								is_black                (void) const            {	return r == 0.0F && g == 0.0F && b == 0.0F; }
 
         /// Returns wether the color is white
         /// \return is white
-        DTboolean								is_white                (void) const            {	return r == 1.0F && g == 1.0F && b == 1.0F;	}
+        bool								is_white                (void) const            {	return r == 1.0F && g == 1.0F && b == 1.0F;	}
 
 
         /// Some standard colors
@@ -207,4 +205,3 @@ template <> struct Info<Color4f> {
 //==============================================================================
 
 } // DT3
-#endif

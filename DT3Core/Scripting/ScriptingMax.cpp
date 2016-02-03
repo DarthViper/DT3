@@ -107,7 +107,7 @@ void ScriptingMax::archive (const std::shared_ptr<Archive> &archive)
 //==============================================================================
 //==============================================================================
 
-DTboolean ScriptingMax::compute (const PlugBase *plug)
+bool ScriptingMax::compute (const PlugBase *plug)
 {
 	PROFILER(SCRIPTING);
 

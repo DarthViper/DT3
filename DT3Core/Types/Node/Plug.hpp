@@ -72,7 +72,7 @@ class PlugBase {
 
         /// Returns the dirty flag for the plug
         /// \return dirty flag
-        DTboolean                       is_dirty                    (void) const                {	return _is_dirty;                           }
+        bool                       is_dirty                    (void) const                {	return _is_dirty;                           }
 
         /// Sets the dirty flag for the plug and connected plugs
         void                            set_dirty                   (void);
@@ -84,19 +84,19 @@ class PlugBase {
 
         /// Returns no draw flag
         /// \return No draw flag
-        DTboolean                       is_no_draw                  (void) const                {	return info().is_no_draw();                 }
+        bool                       is_no_draw                  (void) const                {	return info().is_no_draw();                 }
 
         /// Returns is input flag
         /// \return is input
-        DTboolean                       is_input                    (void) const                {	return info().is_input();                   }
+        bool                       is_input                    (void) const                {	return info().is_input();                   }
 
         /// Returns is output flag
         /// \return is output
-        DTboolean                       is_output                   (void) const                {	return info().is_output();                  }
+        bool                       is_output                   (void) const                {	return info().is_output();                  }
 
         /// Returns is single output flag (i.e. can only connect to one other plug)
         /// \return is single output
-        DTboolean                       is_single_output            (void) const                {	return info().is_single_output();           }
+        bool                       is_single_output            (void) const                {	return info().is_single_output();           }
 
 
 
@@ -106,11 +106,11 @@ class PlugBase {
 
         /// Returns true if there is an incoming connection
         /// \return has incoming connection
-        DTboolean                       has_incoming_connection     (void) const;
+        bool                       has_incoming_connection     (void) const;
 
         /// Set an incoming plug connection
         /// \param incoming incoming plug
-        DTboolean                       set_incoming_connection     (PlugBase* incoming);
+        bool                       set_incoming_connection     (PlugBase* incoming);
 
         /// Remove an incoming connection
         /// \param incoming incoming plug
@@ -124,12 +124,12 @@ class PlugBase {
 
         /// Returns true if there is at least one outgoing connection
         /// \return has outgoing connection
-        DTboolean                       has_outgoing_connection     (void) const;
+        bool                       has_outgoing_connection     (void) const;
 
         /// Add an outgoing plug connection
         /// \param outgoing outgoing plug
         /// \return success
-        DTboolean                       add_outgoing_connection     (PlugBase* outgoing);
+        bool                       add_outgoing_connection     (PlugBase* outgoing);
 
         /// Remove an outgoing connection
         /// \param outgoing outgoing plug
@@ -143,7 +143,7 @@ class PlugBase {
         /// Checks to see if this plug is compatible with another one
         /// \param p Other plug
         /// \return True if compatible, false if not
-        DTboolean                       is_compatible               (const PlugBase* p) const   {	return p->plug_type() == plug_type();       }
+        bool                       is_compatible               (const PlugBase* p) const   {	return p->plug_type() == plug_type();       }
 
         // Compute the nodes feeding this one. This could take a while.
         void                            compute                     (void) const;
@@ -164,8 +164,8 @@ class PlugBase {
 
     private:
 
-        DTboolean                       try_set_dirty               (void);
-        static DTboolean                try_compute                 (PlugBase *p);
+        bool                       try_set_dirty               (void);
+        static bool                try_compute                 (PlugBase *p);
 
         //
         // Connection list pool
@@ -223,6 +223,7 @@ class Plug: public PlugBase {
                                                                                     }
                                                                                     return *this;
                                                                                 }
+                            ~Plug() = default;
 
         // Dereference operator
         const T&            as_ref_no_compute	(void) const            {	return _value;                  }

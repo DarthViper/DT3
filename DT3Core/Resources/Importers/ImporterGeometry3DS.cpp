@@ -115,15 +115,7 @@ DTuint	ImporterGeometry3DS::read(BinaryFileStream &in, DTubyte &v)
 DTuint	ImporterGeometry3DS::read(BinaryFileStream &in, DTushort &v)
 {
 
-#if DT3_BYTEORDER == DT3_LIL_ENDIAN
     in.read_raw((DTubyte*)&v, sizeof(DTushort));
-#else
-    DTubyte	b1,b2;
-    
-    read(in, b1);
-    read(in, b2);
-    v = (DTushort) ((static_cast<DTuint>(b2) << 8) | (static_cast<DTuint>(b1) << 0));
-#endif
     return sizeof(DTushort);
 }
 
@@ -133,16 +125,7 @@ DTuint	ImporterGeometry3DS::read(BinaryFileStream &in, DTushort &v)
 DTuint	ImporterGeometry3DS::read(BinaryFileStream &in, DTshort &v)
 {
     
-#if DT3_BYTEORDER == DT3_LIL_ENDIAN
     in.read_raw((DTubyte*)&v, sizeof(DTshort));
-#else
-    DTubyte	b1,b2;
-    
-    read(in, b1);
-    read(in, b2);
-    v = (DTshort) ((static_cast<DTuint>(b2) << 8) | (static_cast<DTuint>(b1) << 0));
-#endif
-
     return sizeof(DTshort);
 }
 
@@ -151,22 +134,7 @@ DTuint	ImporterGeometry3DS::read(BinaryFileStream &in, DTshort &v)
 
 DTuint	ImporterGeometry3DS::read(BinaryFileStream &in, DTuint &v)
 {    
-#if DT3_BYTEORDER == DT3_LIL_ENDIAN
     in.read_raw((DTubyte*)&v, sizeof(DTuint));
-#else
-    DTubyte	b1,b2,b3,b4;
-    
-    read(in, b1);
-    read(in, b2);
-    read(in, b3);
-    read(in, b4);
-	
-	v = (DTuint)    (static_cast<DTuint>(b4) << 24) |
-                    (static_cast<DTuint>(b3) << 16) |
-                    (static_cast<DTuint>(b2) << 8) |
-                    (static_cast<DTuint>(b1) << 0);
-#endif
-
     return sizeof(DTuint);
 }
 
@@ -176,14 +144,7 @@ DTuint	ImporterGeometry3DS::read(BinaryFileStream &in, DTuint &v)
 DTuint	ImporterGeometry3DS::read(BinaryFileStream &in, DTfloat &v)
 {
 
-#if DT3_BYTEORDER == DT3_LIL_ENDIAN
     in.read_raw((DTubyte*)&v, sizeof(DTfloat));
-#else    
-    DTuint loaded_float;
-    read(in, loaded_float);
-    v = *((DTfloat*) &loaded_float);
-#endif
-
     return sizeof(DTfloat);
 }
 

@@ -46,16 +46,16 @@ class GUIAnimKey {
     public:
         /// Sets repeating animation
         /// \return this object
-        GUIAnimKey&					set_repeat              (DTboolean s = true);
+        GUIAnimKey&					set_repeat              (bool s = true);
 
         /// Description
         /// \param param description
         /// \return description
-        DTboolean					is_repeat               (void) const	{	return _repeat_flag;	}
+        bool					is_repeat               (void) const	{	return _repeat_flag;	}
 
         /// Sets spline interpolation
         /// \return this object
-        GUIAnimKey&					set_spline              (DTboolean s = true);
+        GUIAnimKey&					set_spline              (bool s = true);
 
         /// Sets latent call to be called
         /// \return this object
@@ -108,11 +108,11 @@ class GUIAnimKey {
         /// Pass time in the animation frame
         /// \param dt delta time
         /// \return Still animating
-        DTboolean					animate                 (DTfloat dt, GUIObject *frame);
+        bool					animate                 (DTfloat dt, GUIObject *frame);
 
         /// Returns wether this frame is used in an active animation
         /// \return is used in animation
-        DTboolean                   is_busy                 (void) const    {   return _busy;  }
+        bool                   is_busy                 (void) const    {   return _busy;  }
 
     private:
 

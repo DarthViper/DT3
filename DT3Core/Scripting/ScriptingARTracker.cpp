@@ -223,9 +223,9 @@ void ScriptingARTracker::magnetometer (const Vector3 &m)
         DTfloat abs_y = std::abs(diff.y);
         DTfloat abs_z = std::abs(diff.z);
 
-        DTboolean x_major = (abs_x >= abs_y) && (abs_x >= abs_z);
-        DTboolean y_major = (abs_y >= abs_x) && (abs_y >= abs_z);
-        DTboolean z_major = (!x_major) && (!y_major);
+        bool x_major = (abs_x >= abs_y) && (abs_x >= abs_z);
+        bool y_major = (abs_y >= abs_x) && (abs_y >= abs_z);
+        bool z_major = (!x_major) && (!y_major);
 
         // First 6 bits for faces
         if ( (_calibration_directions & 0x0000003F) != 0x0000003F) {
@@ -250,7 +250,7 @@ void ScriptingARTracker::magnetometer (const Vector3 &m)
 //==============================================================================
 //==============================================================================
 
-DTboolean ScriptingARTracker::append_calibration_sample (const Vector3 &m)
+bool ScriptingARTracker::append_calibration_sample (const Vector3 &m)
 {
     PROFILER(SCRIPTING);
 
@@ -306,7 +306,7 @@ DTboolean ScriptingARTracker::append_calibration_sample (const Vector3 &m)
     return false;
 }
 
-DTboolean ScriptingARTracker::process_calibration_samples (void)
+bool ScriptingARTracker::process_calibration_samples (void)
 {
     PROFILER(SCRIPTING);
 

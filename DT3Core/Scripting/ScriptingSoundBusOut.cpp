@@ -138,7 +138,7 @@ void ScriptingSoundBusOut::archive (const std::shared_ptr<Archive> &archive)
 //==============================================================================
 //==============================================================================
 
-DTboolean ScriptingSoundBusOut::compute (const PlugBase *plug)
+bool ScriptingSoundBusOut::compute (const PlugBase *plug)
 {
 	PROFILER(SOUND);
 

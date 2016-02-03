@@ -125,7 +125,7 @@ void ScriptingColorToComponents::archive (const std::shared_ptr<Archive> &archiv
 //==============================================================================
 //==============================================================================
 
-DTboolean ScriptingColorToComponents::compute (const PlugBase *plug)
+bool ScriptingColorToComponents::compute (const PlugBase *plug)
 {
 	PROFILER(SCRIPTING);
 

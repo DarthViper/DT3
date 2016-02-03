@@ -111,7 +111,7 @@ std::shared_ptr<BaseClass> Factory::create_world (const std::string cid)
 //==============================================================================
 //==============================================================================
 
-std::shared_ptr<BaseClass> Factory::create_object (const std::string cid, DTboolean net_create)
+std::shared_ptr<BaseClass> Factory::create_object (const std::string cid, bool net_create)
 {
     std::string real_cid = Globals::substitute_global(cid);
 

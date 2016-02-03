@@ -219,7 +219,7 @@ class World: public PlugNode {
         // GUI
         //
 
-        virtual DTboolean                           touch_gui       (const TouchEvent *event);
+        virtual bool                           touch_gui       (const TouchEvent *event);
 
 
         //

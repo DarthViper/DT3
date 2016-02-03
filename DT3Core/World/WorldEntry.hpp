@@ -56,7 +56,7 @@ class WorldEntry {
         ~WorldEntry (void)  {}
 
     public:
-        DTboolean       operator ==         (const WorldEntry<CB> &rhs) const
+        bool       operator ==         (const WorldEntry<CB> &rhs) const
         {
             return (_node == rhs._node) && (*_cb == *rhs._cb);
         }

@@ -1,6 +1,4 @@
 #pragma once
-#ifndef DT3_PLUGNODEUTILS
-#define DT3_PLUGNODEUTILS
 //==============================================================================
 ///
 ///	File: PlugNodeUtils.hpp
@@ -70,5 +68,3 @@ class PlugNodeUtils {
 //==============================================================================
 
 } // DT3
-
-#endif

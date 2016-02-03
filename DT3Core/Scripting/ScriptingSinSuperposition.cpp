@@ -143,7 +143,7 @@ void ScriptingSinSuperposition::archive (const std::shared_ptr<Archive> &archive
 //==============================================================================
 //==============================================================================
 
-DTboolean ScriptingSinSuperposition::compute (const PlugBase *plug)
+bool ScriptingSinSuperposition::compute (const PlugBase *plug)
 {
 	PROFILER(SCRIPTING);
 
