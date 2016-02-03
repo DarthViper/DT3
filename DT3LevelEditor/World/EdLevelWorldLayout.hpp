@@ -10,7 +10,6 @@
 ///
 //==============================================================================
 
-// Editor include
 // Qt include
 #include <QtWidgets/QLayout>
 #include <QtCore/QVector>
@@ -23,7 +22,7 @@ class EdLevelWorldLayout : public QLayout
 {
 public:
     EdLevelWorldLayout(QWidget *parent);
-    EdLevelWorldLayout(void);
+    EdLevelWorldLayout(void) = default;
     ~EdLevelWorldLayout(void);
 
 public:

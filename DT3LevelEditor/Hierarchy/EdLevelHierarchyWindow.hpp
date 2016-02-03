@@ -1,6 +1,4 @@
 #pragma once
-#ifndef EDLEVELHIERARCHYWINDOW
-#define EDLEVELHIERARCHYWINDOW
 //==============================================================================
 ///
 ///	File: EdLevelHierarchyWindow.hpp
@@ -144,5 +142,3 @@ class EdLevelHierarchyWindow : public QTreeWidget
 
 //==============================================================================
 //==============================================================================
-
-#endif

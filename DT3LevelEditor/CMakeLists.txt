@@ -1,6 +1,16 @@
 ######################################################################
 # QT Project file
 ######################################################################
+find_package(Qt5Core 5.4.0)
+find_package(Qt5Xml 5.4.0)
+find_package(Qt5Gui 5.4.0)
+find_package(Qt5Widgets 5.4.0)
+find_package(Qt5Multimedia 5.4.0)
+find_package(Threads REQUIRED)
+
+find_package(ZLIB REQUIRED)
+find_package(PNG REQUIRED)
+find_package(Freetype REQUIRED)
 
 ## LIBRARIES STUFF
 set(CMAKE_AUTOMOC ON)

@@ -434,62 +434,54 @@ void WorldWindow::updateBuiltInCameras(void)
 
 void WorldWindow::paintGL(void)
 {
-    //makeCurrent();
-    {
-        DT3::DrawBatcher                _draw_batcher;
-        updateBuiltInCameras();
+    DT3::DrawBatcher _draw_batcher;
+    updateBuiltInCameras();
 
-        //refreshCameras();
+    // refreshCameras();
 
+    System::renderer()->change_display(width(), height());
 
-        System::renderer()->change_display (width(), height());
+    ::glClearColor(0.15F, 0.15F, 0.15F, 0.0F);
+    ::glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
 
-        ::glClearColor( 0.15F, 0.15F, 0.15F, 0.0F );
-        ::glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT );
-
-        if (!_camera) {
-            //swapBuffers();
-            //doneCurrent();
-            return;
-        }
-
-        // Save aspect ratio
-        float save_aspect = _camera->aspect_ratio_mul();
-        _camera->set_aspect_ratio_mul( static_cast<float>(width()) / static_cast<float>(height()) / System::renderer()->screen_aspect() );
-
-        // Activate the camera
-        //DrawUtils::activate_camera(_camera);
-
-        // Replace the camera temporarily in the world
-        std::shared_ptr<CameraObject> save_camera = _document->world()->camera();
-        _document->world()->set_camera(_camera);
-
-        // Draw the objects
-        drawScene(_camera, calcScale(_camera));
-
-        // Draw the selections
-        for(const std::shared_ptr<PlugNode> &n : _document->selection()) {
-            const std::shared_ptr<PlaceableObject> placeable = checked_cast<PlaceableObject>(n);
-            if (!placeable) {
-                continue;
-            }
-
-            DrawUtils::draw_selection (_draw_batcher, _camera, _grid_material, _shader, placeable->transform(), Color4b::green, placeable->radius());
-        }
-
-        if (getGridVisible()) {
-            drawGrid (_draw_batcher,_camera);
-        }
-
-        _document->world()->set_camera(save_camera);
-
-        // Set aspect ratio back to what it was
-        _camera->set_aspect_ratio_mul(save_aspect);
-        // drawbatcher destructor calls draw here.
+    if (!_camera) {
+        return;
     }
 
-    //swapBuffers();
-    //doneCurrent();
+    // Save aspect ratio
+    float save_aspect = _camera->aspect_ratio_mul();
+    _camera->set_aspect_ratio_mul(static_cast<float>(width()) / static_cast<float>(height()) /
+                                  System::renderer()->screen_aspect());
+
+    // Activate the camera
+    // DrawUtils::activate_camera(_camera);
+
+    // Replace the camera temporarily in the world
+    std::shared_ptr<CameraObject> save_camera = _document->world()->camera();
+    _document->world()->set_camera(_camera);
+
+    // Draw the objects
+    drawScene(_camera, calcScale(_camera));
+
+    // Draw the selections
+    for (const std::shared_ptr<PlugNode> &n : _document->selection()) {
+        const std::shared_ptr<PlaceableObject> placeable = checked_cast<PlaceableObject>(n);
+        if (!placeable) {
+            continue;
+        }
+
+        DrawUtils::draw_selection(_draw_batcher, _camera, _grid_material, _shader, placeable->transform(),
+                                  Color4b::green, placeable->radius());
+    }
+
+    if (getGridVisible()) {
+        drawGrid(_draw_batcher, _camera);
+    }
+
+    _document->world()->set_camera(save_camera);
+
+    // Set aspect ratio back to what it was
+    _camera->set_aspect_ratio_mul(save_aspect);
 }
 
 void WorldWindow::pickGL(QPointF pos, EdLevelToolEvent &tool_event)
