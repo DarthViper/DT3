@@ -84,7 +84,7 @@ void EdLevelSoundThumbnail::cache (void)
         }
     }
 
-    _image = QImage( (DTubyte*) _buffer,_width,_height, QImage::Format_RGB32);
+    _image = QImage( (uint8_t*) _buffer,_width,_height, QImage::Format_RGB32);
 }
 
 //==============================================================================

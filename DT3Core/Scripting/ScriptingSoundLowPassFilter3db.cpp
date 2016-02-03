@@ -141,21 +141,21 @@ bool ScriptingSoundLowPassFilter3db::compute (const PlugBase *plug)
         DTfloat period = 1.0F / sound_packet_in.frequency();
         DTfloat alpha = period / ( (1.0F / (TWO_PI * _cutoff_frequency)) + period );
     
-        DTshort *data_in = (DTshort *) sound_packet_in.buffer();
-        DTshort *data_out = (DTshort *) sound_packet_out.buffer();
+        int16_t *data_in = (int16_t *) sound_packet_in.buffer();
+        int16_t *data_out = (int16_t *) sound_packet_out.buffer();
         
-        DTint one_minus_alpha_int = UNIT_TO_10BIT_INT(1.0F-alpha);
-        DTint alpha_int = UNIT_TO_10BIT_INT(alpha);
+        int32_t one_minus_alpha_int = UNIT_TO_10BIT_INT(1.0F-alpha);
+        int32_t alpha_int = UNIT_TO_10BIT_INT(alpha);
 
 
         if (sound_packet_in.format() == SoundResource::FORMAT_MONO16) {
         
             DTsize num_samples = sound_packet_in.num_samples();
-            DTshort *sample_in = &data_in[0];
-            DTshort *sample_out = &data_out[0];
+            int16_t *sample_in = &data_in[0];
+            int16_t *sample_out = &data_out[0];
 
-            for (DTuint s = 0; s < num_samples; ++s) {
-                (*sample_out) = static_cast<DTshort>(REM_10BIT(CLAMP_PAD_10BIT(alpha_int * (*sample_in) + one_minus_alpha_int * _last_sample_left)));
+            for (uint32_t s = 0; s < num_samples; ++s) {
+                (*sample_out) = static_cast<int16_t>(REM_10BIT(CLAMP_PAD_10BIT(alpha_int * (*sample_in) + one_minus_alpha_int * _last_sample_left)));
                 _last_sample_left = (*sample_out);
                 
                 ++sample_in;
@@ -165,17 +165,17 @@ bool ScriptingSoundLowPassFilter3db::compute (const PlugBase *plug)
         } else if (sound_packet_in.format() == SoundResource::FORMAT_STEREO16) {
 
             DTsize num_samples = sound_packet_in.num_samples();
-            DTshort *sample_in = &data_in[0];
-            DTshort *sample_out = &data_out[0];
+            int16_t *sample_in = &data_in[0];
+            int16_t *sample_out = &data_out[0];
 
-            for (DTuint s = 0; s < num_samples; ++s) {
-                (*sample_out) = static_cast<DTshort>(REM_10BIT(CLAMP_PAD_10BIT(alpha_int * (*sample_in) + one_minus_alpha_int * _last_sample_left)));
+            for (uint32_t s = 0; s < num_samples; ++s) {
+                (*sample_out) = static_cast<int16_t>(REM_10BIT(CLAMP_PAD_10BIT(alpha_int * (*sample_in) + one_minus_alpha_int * _last_sample_left)));
                 _last_sample_left = (*sample_out);
             
                 ++sample_in;
                 ++sample_out;
                 
-                (*sample_out) = static_cast<DTshort>(REM_10BIT(CLAMP_PAD_10BIT(alpha_int * (*sample_in) + one_minus_alpha_int * _last_sample_right)));
+                (*sample_out) = static_cast<int16_t>(REM_10BIT(CLAMP_PAD_10BIT(alpha_int * (*sample_in) + one_minus_alpha_int * _last_sample_right)));
                 _last_sample_right = (*sample_out);
             
                 ++sample_in;

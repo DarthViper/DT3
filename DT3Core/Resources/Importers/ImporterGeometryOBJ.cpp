@@ -83,7 +83,7 @@ DTerr	ImporterGeometryOBJ::import(GeometryResource *target, std::string args)
 			
 			Face face;
 			
-			for (DTint i = 0; i < 3; ++i) {
+            for (int32_t i = 0; i < 3; ++i) {
 				std::string f;
 				ss >> f;
 				
@@ -97,18 +97,18 @@ DTerr	ImporterGeometryOBJ::import(GeometryResource *target, std::string args)
 				ssv >> face._vt[i];
 				ssv >> face._vn[i];
                                 
-                if (face._v[i] < 0) face._v[i] = static_cast<DTint>(_vertices.size()) + face._v[i];
+                if (face._v[i] < 0) face._v[i] = static_cast<int32_t>(_vertices.size()) + face._v[i];
                 else                face._v[i] -= 1;
                 
-                if (face._vt[i] < 0)face._vt[i] = static_cast<DTint>(_texcoords.size()) + face._vt[i];
+                if (face._vt[i] < 0)face._vt[i] = static_cast<int32_t>(_texcoords.size()) + face._vt[i];
                 else                face._vt[i] -= 1;
 
-                if (face._vn[i] < 0)face._vn[i] = static_cast<DTint>(_normals.size()) + face._vn[i];
+                if (face._vn[i] < 0)face._vn[i] = static_cast<int32_t>(_normals.size()) + face._vn[i];
                 else                face._vn[i] -= 1;
                 
-                ASSERT(face._v[i] >= 0 && face._v[i] < static_cast<DTint>(_vertices.size()));
-                ASSERT(face._vt[i] >= 0 && face._vt[i] < static_cast<DTint>(_texcoords.size()));
-                ASSERT(face._vn[i] >= 0 && face._vn[i] < static_cast<DTint>(_normals.size()));
+                ASSERT(face._v[i] >= 0 && face._v[i] < static_cast<int32_t>(_vertices.size()));
+                ASSERT(face._vt[i] >= 0 && face._vt[i] < static_cast<int32_t>(_texcoords.size()));
+                ASSERT(face._vn[i] >= 0 && face._vn[i] < static_cast<int32_t>(_normals.size()));
             }
 			
 			_faces.push_back(face);
@@ -116,10 +116,10 @@ DTerr	ImporterGeometryOBJ::import(GeometryResource *target, std::string args)
 		}
 	}
     
-    LOG_MESSAGE << "Read " << static_cast<DTint>(_vertices.size()) << " vertices";
-    LOG_MESSAGE << "Read " << static_cast<DTint>(_texcoords.size()) << " texcoords";
-    LOG_MESSAGE << "Read " << static_cast<DTint>(_normals.size()) << " normals";
-    LOG_MESSAGE << "Read " << static_cast<DTint>(_faces.size()) << " faces";
+    LOG_MESSAGE << "Read " << static_cast<int32_t>(_vertices.size()) << " vertices";
+    LOG_MESSAGE << "Read " << static_cast<int32_t>(_texcoords.size()) << " texcoords";
+    LOG_MESSAGE << "Read " << static_cast<int32_t>(_normals.size()) << " normals";
+    LOG_MESSAGE << "Read " << static_cast<int32_t>(_faces.size()) << " faces";
 	
 	//
 	// compile geometry
@@ -135,13 +135,13 @@ DTerr	ImporterGeometryOBJ::import(GeometryResource *target, std::string args)
 	uvs_stream.resize(_faces.size() * 3);
 	index_stream.resize(_faces.size());
 	
-	DTint index = 0;
+    int32_t index = 0;
 	for (std::size_t f = 0; f < _faces.size(); ++f) {
 		index_stream[f].v[0] = index+0;
 		index_stream[f].v[1] = index+1;
 		index_stream[f].v[2] = index+2;
 
-		for (DTint v = 0; v < 3; ++v) {
+        for (int32_t v = 0; v < 3; ++v) {
 			vertices_stream[index] = _vertices[ _faces[f]._v[v]];
 			normals_stream[index] = _normals[ _faces[f]._vn[v] ];
 			uvs_stream[index] = _texcoords[ _faces[f]._vt[v] ];

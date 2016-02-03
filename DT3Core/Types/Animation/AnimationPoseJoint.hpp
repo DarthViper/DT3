@@ -44,20 +44,20 @@ class AnimationPoseJoint {
 
         /// Returns the hashed name of the object
         /// \return hashed name
-        DTuint					name_hash           (void) const				{   return _name_hash;					}
+        uint32_t					name_hash           (void) const				{   return _name_hash;					}
 
         /// Sets the hashed name of the object
         /// \param name_hash hash value to set
-        void					set_name_hash		(const DTuint name_hash)	{   _name_hash = name_hash;				}
+        void					set_name_hash		(const uint32_t name_hash)	{   _name_hash = name_hash;				}
 
 
         /// Sets cached index of the keyframe
         /// \param keyframe_cache cached index
-        void					set_keyframe_cache	(DTuint keyframe_cache)		{	_keyframe_cache = keyframe_cache;	}
+        void					set_keyframe_cache	(uint32_t keyframe_cache)		{	_keyframe_cache = keyframe_cache;	}
 
         /// Returns the cached index of the keyframe
         /// \return cached keyframe index
-        DTuint					keyframe_cache      (void) const				{	return _keyframe_cache;				}
+        uint32_t					keyframe_cache      (void) const				{	return _keyframe_cache;				}
 
 
         /// Sets transform of the key frame
@@ -80,8 +80,8 @@ class AnimationPoseJoint {
 
 
     public:
-        DTuint					_name_hash;
-        DTuint					_keyframe_cache;
+        uint32_t					_name_hash;
+        uint32_t					_keyframe_cache;
         Quaternion				_orientation;
         Vector3					_translation;
 };

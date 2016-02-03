@@ -138,7 +138,7 @@ void MaterialResource::uninitialize_static (void)
 //==============================================================================
 //==============================================================================
 
-void MaterialResource::screen_opened (DTuint width, DTuint height)
+void MaterialResource::screen_opened (uint32_t width, uint32_t height)
 {
     LOG_MESSAGE << "MaterialResource::screen_opened";
 }
@@ -155,7 +155,7 @@ void MaterialResource::screen_closed (void)
     _blend_state_dirty = true;
     _rasterizer_state_dirty = true;
 
-    for (DTuint i = 0; i < ARRAY_SIZE(_textures); ++i) {
+    for (uint32_t i = 0; i < ARRAY_SIZE(_textures); ++i) {
         TextureSlot &ts = _textures[i];
         ts._sampler_state_resource.reset();
         ts._transform_uniform.reset();
@@ -194,7 +194,7 @@ bool MaterialResource::is_changed (void) const
     if (Resource::is_changed())
         return true;
 
-    for (DTuint i = 0; i < ARRAY_SIZE(_textures); ++i) {
+    for (uint32_t i = 0; i < ARRAY_SIZE(_textures); ++i) {
         if (_textures[i]._texture_2D && _textures[i]._texture_2D->is_changed())
             return true;
         if (_textures[i]._texture_3D && _textures[i]._texture_3D->is_changed())
@@ -285,7 +285,7 @@ void MaterialResource::activate (void)
         _rasterizer_state_dirty = false;
     }
 
-    for (DTuint i = 0; i < ARRAY_SIZE(_textures); ++i) {
+    for (uint32_t i = 0; i < ARRAY_SIZE(_textures); ++i) {
 
         TextureSlot &ts = _textures[i];
 
@@ -307,7 +307,7 @@ void MaterialResource::activate (void)
     System::renderer()->attach_blend_state(_blend_state_resource);
     System::renderer()->attach_rasterizer_state(_rasterizer_resource);
 
-    for (DTuint i = 0; i < ARRAY_SIZE(_textures); ++i) {
+    for (uint32_t i = 0; i < ARRAY_SIZE(_textures); ++i) {
 
         TextureSlot &ts = _textures[i];
 

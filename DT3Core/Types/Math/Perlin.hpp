@@ -67,9 +67,9 @@ class Perlin {
     private:
         static DTfloat          fade                (DTfloat t);
         static DTfloat          lerp                (DTfloat t, DTfloat a, DTfloat b);
-        static DTfloat          grad                (DTint hash, DTfloat x, DTfloat y, DTfloat z);
+        static DTfloat          grad                (int32_t hash, DTfloat x, DTfloat y, DTfloat z);
 
-        static const DTubyte    p[512];
+        static const uint8_t    p[512];
 
 };
 

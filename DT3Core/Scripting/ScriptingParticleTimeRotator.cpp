@@ -126,12 +126,12 @@ bool ScriptingParticleTimeRotator::compute (const PlugBase *plug)
 			particles->build_rotations_stream();
 		}
         
-        DTint rs = MoreMath::random_seed();
+        int32_t rs = MoreMath::random_seed();
 
 		// Do processing
 		std::vector<DTfloat> &lifetimes = particles->lifetimes_stream();
 		std::vector<DTfloat> &rotations = particles->rotations_stream();
-		for (DTint i = particles->active_start(); i != particles->active_end(); i = (i + 1) % particles->translations_stream().size()) {
+		for (int32_t i = particles->active_start(); i != particles->active_end(); i = (i + 1) % particles->translations_stream().size()) {
 			DTfloat time = lifetimes[i];
 			DTfloat &rotation = rotations[i];
 			

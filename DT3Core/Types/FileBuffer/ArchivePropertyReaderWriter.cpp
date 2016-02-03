@@ -121,7 +121,7 @@ void ArchivePropertyReaderWriter::clear (void)
 
 std::shared_ptr<ArchiveData> ArchivePropertyReaderWriter::property (const std::string &name)
 {
-    for (DTuint i = 0; i < _properties.size(); ++i)
+    for (uint32_t i = 0; i < _properties.size(); ++i)
         if (_properties[i]->title() == name)
             return _properties[i];
 

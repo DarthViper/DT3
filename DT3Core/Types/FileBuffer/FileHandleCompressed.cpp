@@ -43,7 +43,7 @@ FileHandleCompressed::~FileHandleCompressed (void)
 //==============================================================================
 //==============================================================================
 
-DTsize FileHandleCompressed::read (DTubyte *buffer, DTsize size)
+DTsize FileHandleCompressed::read (uint8_t *buffer, DTsize size)
 {
     if (_file_g >= static_cast<DTsize>(_data.size()))
         _eof = true;
@@ -58,7 +58,7 @@ DTsize FileHandleCompressed::read (DTubyte *buffer, DTsize size)
     return gcount;
 }
 
-void FileHandleCompressed::write (const DTubyte *buffer, DTsize size)
+void FileHandleCompressed::write (const uint8_t *buffer, DTsize size)
 {
     ERRORMSG("This function is unsupported");
 }
@@ -78,7 +78,7 @@ DTerr FileHandleCompressed::open_file (const FilePath &pathname, DTsize start, D
         return DT3_ERR_FILE_OPEN_FAILED;
     }
 
-    std::vector<DTubyte>  compressed_buffer;
+    std::vector<uint8_t>  compressed_buffer;
 
     // Read the compressed file
     compressed_buffer.resize(length);
@@ -94,14 +94,14 @@ DTerr FileHandleCompressed::open_file (const FilePath &pathname, DTsize start, D
     z_stream strm;
     strm.zalloc = 0;
     strm.zfree = 0;
-    strm.next_in = reinterpret_cast<DTubyte *>(&compressed_buffer[0]);
+    strm.next_in = reinterpret_cast<uint8_t *>(&compressed_buffer[0]);
     strm.avail_in = (uInt) compressed_buffer.size();
-    strm.next_out = reinterpret_cast<DTubyte *>(&_data[0]);
+    strm.next_out = reinterpret_cast<uint8_t *>(&_data[0]);
     strm.avail_out = (uInt) _data.size();
 
     inflateInit(&strm);
 
-    DTint err;
+    int32_t err;
 
     while (strm.total_out < _data.size() && strm.total_in < compressed_buffer.size()) {
         err = inflate(&strm, Z_NO_FLUSH);

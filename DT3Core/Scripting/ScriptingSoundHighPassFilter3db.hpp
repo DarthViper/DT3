@@ -54,10 +54,10 @@ class ScriptingSoundHighPassFilter3db: public ScriptingSoundBase {
 
         Plug<DTfloat>                               _cutoff_frequency;
 
-        DTshort                                     _last_out_sample_left;
-        DTshort                                     _last_in_sample_left;
-        DTshort                                     _last_out_sample_right;
-        DTshort                                     _last_in_sample_right;
+        int16_t                                     _last_out_sample_left;
+        int16_t                                     _last_in_sample_left;
+        int16_t                                     _last_out_sample_right;
+        int16_t                                     _last_in_sample_right;
 };
 
 //==============================================================================

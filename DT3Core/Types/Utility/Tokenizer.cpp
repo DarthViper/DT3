@@ -88,11 +88,11 @@ void Tokenizer::syntax_error(std::string err)
 //==============================================================================
 //==============================================================================
 
-bool Tokenizer::parse_whitespace(const std::string &buffer, DTint &pos, std::list<std::string> &tokens)
+bool Tokenizer::parse_whitespace(const std::string &buffer, int32_t &pos, std::list<std::string> &tokens)
 {
     bool had_space = false;
 
-    while ( (pos < (DTint) buffer.size()) && (::isspace(buffer[pos]) || buffer[pos] == ';') ) {
+    while ( (pos < (int32_t) buffer.size()) && (::isspace(buffer[pos]) || buffer[pos] == ';') ) {
         ++pos;
         had_space = true;
     }
@@ -103,12 +103,12 @@ bool Tokenizer::parse_whitespace(const std::string &buffer, DTint &pos, std::lis
 //==============================================================================
 //==============================================================================
 
-bool Tokenizer::parse_symbol(const std::string &buffer, DTint &pos, std::list<std::string> &tokens)
+bool Tokenizer::parse_symbol(const std::string &buffer, int32_t &pos, std::list<std::string> &tokens)
 {
     std::string token;
     token.reserve(128);
 
-    while (	(pos < (DTint) buffer.size()) && (isalpha(buffer[pos]) || isdigit(buffer[pos]) || buffer[pos]=='#' || buffer[pos]=='_' || buffer[pos]=='.' || buffer[pos]=='-' || buffer[pos]=='+' || buffer[pos]==':')) {
+    while (	(pos < (int32_t) buffer.size()) && (isalpha(buffer[pos]) || isdigit(buffer[pos]) || buffer[pos]=='#' || buffer[pos]=='_' || buffer[pos]=='.' || buffer[pos]=='-' || buffer[pos]=='+' || buffer[pos]==':')) {
         token += buffer[pos];
         ++pos;
     }
@@ -124,12 +124,12 @@ bool Tokenizer::parse_symbol(const std::string &buffer, DTint &pos, std::list<st
 //==============================================================================
 //==============================================================================
 
-bool Tokenizer::parse_equals(const std::string &buffer, DTint &pos, std::list<std::string> &tokens)
+bool Tokenizer::parse_equals(const std::string &buffer, int32_t &pos, std::list<std::string> &tokens)
 {
     std::string token;
     token.reserve(128);
 
-    while (	(pos < (DTint) buffer.size()) && buffer[pos] == '=') {
+    while (	(pos < (int32_t) buffer.size()) && buffer[pos] == '=') {
         token += buffer[pos];
         ++pos;
     }
@@ -145,12 +145,12 @@ bool Tokenizer::parse_equals(const std::string &buffer, DTint &pos, std::list<st
 //==============================================================================
 //==============================================================================
 
-bool Tokenizer::parse_braces(const std::string &buffer, DTint &pos, std::list<std::string> &tokens)
+bool Tokenizer::parse_braces(const std::string &buffer, int32_t &pos, std::list<std::string> &tokens)
 {
     std::string token;
     token.reserve(128);
 
-    while (	(pos < (DTint) buffer.size()) && (buffer[pos] == '{' || buffer[pos] == '}')) {
+    while (	(pos < (int32_t) buffer.size()) && (buffer[pos] == '{' || buffer[pos] == '}')) {
         token += buffer[pos];
         ++pos;
     }
@@ -166,7 +166,7 @@ bool Tokenizer::parse_braces(const std::string &buffer, DTint &pos, std::list<st
 //==============================================================================
 //==============================================================================
 
-bool Tokenizer::parse_string(const std::string &buffer, DTint &pos, std::list<std::string> &tokens)
+bool Tokenizer::parse_string(const std::string &buffer, int32_t &pos, std::list<std::string> &tokens)
 {
     if (buffer[pos] != '\"')	return false;
     ++pos;
@@ -175,7 +175,7 @@ bool Tokenizer::parse_string(const std::string &buffer, DTint &pos, std::list<st
     std::string token;
     token.reserve(128);
 
-    while ( (pos < (DTint) buffer.size()) && (escaped || buffer[pos] != '\"') ) {
+    while ( (pos < (int32_t) buffer.size()) && (escaped || buffer[pos] != '\"') ) {
 
         if (!escaped && buffer[pos] == '\\') {
             escaped = true;
@@ -197,7 +197,7 @@ bool Tokenizer::parse_string(const std::string &buffer, DTint &pos, std::list<st
 //==============================================================================
 //==============================================================================
 
-bool Tokenizer::parse_multi_param(const std::string &buffer, DTint &pos, std::list<std::string> &tokens)
+bool Tokenizer::parse_multi_param(const std::string &buffer, int32_t &pos, std::list<std::string> &tokens)
 {
     if (buffer[pos] != '(')	return false;
     ++pos;
@@ -205,7 +205,7 @@ bool Tokenizer::parse_multi_param(const std::string &buffer, DTint &pos, std::li
     std::string token;
     token.reserve(128);
 
-    while ( (pos < (DTint) buffer.size()) && buffer[pos] != ')' ) {
+    while ( (pos < (int32_t) buffer.size()) && buffer[pos] != ')' ) {
         token += buffer[pos];
         ++pos;
     }
@@ -294,10 +294,10 @@ DTerr Tokenizer::parse_token_stream (const std::string &contents, bool append)
 {
     // Parse out tokens
     std::list<std::string>	tokens;
-    DTint pos = 0;
-    DTint old_pos = 0;
+    int32_t pos = 0;
+    int32_t old_pos = 0;
 
-    while (pos < (DTint) contents.size()) {
+    while (pos < (int32_t) contents.size()) {
 
         if (parse_whitespace(contents, pos, tokens))	{   old_pos = pos;  continue;   }
         if (parse_string(contents, pos, tokens))		{   old_pos = pos;  continue;   }
@@ -368,7 +368,7 @@ DTfloat Tokenizer::next_token_number (void)
     return token_num;
 }
 
-DTuint Tokenizer::next_token_hex (void)
+uint32_t Tokenizer::next_token_hex (void)
 {
     std::string token = _pending_tokens.front();
     _pending_tokens.pop_front();
@@ -381,7 +381,7 @@ DTuint Tokenizer::next_token_hex (void)
     // Substitute globals
     token = Globals::substitute_global(token);
 
-    DTuint result = 0;
+    uint32_t result = 0;
     MoreStrings::from_hex_string (token, &result, 4);
 
     return result;

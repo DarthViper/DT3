@@ -120,7 +120,7 @@ bool GlyphCacheEntry::is_same_family (const std::shared_ptr<GlyphCacheEntry> &rh
 //==============================================================================
 //==============================================================================
 
-DTuint GlyphCacheEntry::hash (void) const
+uint32_t GlyphCacheEntry::hash (void) const
 {
     if (_hash == 0) {
         _hash = hashlittle( (unsigned char *) &_font, (unsigned int) sizeof(_font), _hash);
@@ -143,13 +143,13 @@ void GlyphCacheEntry::set_font (const std::shared_ptr<FontResource> &font)
     _font = font;
 }
 
-void GlyphCacheEntry::set_character (DTuint c)
+void GlyphCacheEntry::set_character (uint32_t c)
 {
     clear_glyph();
     _c = c;
 }
 
-void GlyphCacheEntry::set_size (DTuint size)
+void GlyphCacheEntry::set_size (uint32_t size)
 {
     clear_glyph();
     _size = size;
@@ -203,7 +203,7 @@ FT_Glyph GlyphCacheEntry::glyph (void) const
         start.x = static_cast<FT_Pos>(_transform.translation().x * 64.0F);
         start.y = static_cast<FT_Pos>(_transform.translation().y * 64.0F);
         
-        DTuint glyph_index = ::FT_Get_Char_Index( face, _c);
+        uint32_t glyph_index = ::FT_Get_Char_Index( face, _c);
 
         // A function used to load a single glyph into the glyph slot of a face object.
         error = ::FT_Load_Glyph( face, glyph_index, FT_LOAD_NO_BITMAP | FT_LOAD_NO_HINTING );

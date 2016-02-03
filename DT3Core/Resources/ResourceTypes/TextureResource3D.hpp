@@ -69,23 +69,23 @@ class TextureResource3D: public Resource {
         /// \param textels textel data (can be NULL)
         /// \param format format
         /// \param mipmapped mipmapped
-        void                        set_textels         (const DTint width, const DTint height, const DTint depth, std::shared_ptr<DTubyte> &textels, DT3GLTextelFormat format, bool mipmapped, DTuint flags = DT3GL_ACCESS_CPU_NONE | DT3GL_ACCESS_GPU_READ);
+        void                        set_textels         (const int32_t width, const int32_t height, const int32_t depth, std::shared_ptr<uint8_t> &textels, DT3GLTextelFormat format, bool mipmapped, uint32_t flags = DT3GL_ACCESS_CPU_NONE | DT3GL_ACCESS_GPU_READ);
 
         /// Width of the buffer
         /// \return buffer width
-        DTint						width               (void) const	{	return _width;	}
+        int32_t						width               (void) const	{	return _width;	}
 
         /// Height of the buffer
         /// \return buffer height
-        DTint						height              (void) const	{	return _height;	}
+        int32_t						height              (void) const	{	return _height;	}
 
         /// Depth of the buffer
         /// \return buffer depth
-        DTint						depth               (void) const	{	return _depth;	}
+        int32_t						depth               (void) const	{	return _depth;	}
 
         /// Returns format of the texture file
         /// \return format of texture file
-        DTint						format              (void) const    {	return _format;     }
+        int32_t						format              (void) const    {	return _format;     }
 
         /// Get the mipmapped flag
         /// \return mipmapped
@@ -93,7 +93,7 @@ class TextureResource3D: public Resource {
 
         /// Activate the resource
         /// \param texture_slot which slot to activate the texture in
-        void                        activate            (DTuint texture_slot);
+        void                        activate            (uint32_t texture_slot);
 
         /// Load the resource
         /// \param pathname path to file
@@ -107,20 +107,20 @@ class TextureResource3D: public Resource {
 
         static void                 reload_if_changed   (void);
 
-        void                        screen_opened       (DTuint width, DTuint height);
+        void                        screen_opened       (uint32_t width, uint32_t height);
         void                        screen_closed       (void);
 
         // Data for 2D and 3D textures
-        std::shared_ptr<DTubyte>                _textels;
+        std::shared_ptr<uint8_t>                _textels;
 
         DT3GLTextelFormat                       _format;
 
-        DTint                                   _width;
-        DTint                                   _height;
-        DTint                                   _depth;
+        int32_t                                   _width;
+        int32_t                                   _height;
+        int32_t                                   _depth;
 
         bool                               _mipmapped;
-        DTuint                                  _flags;
+        uint32_t                                  _flags;
 
         std::shared_ptr<DT3GLTexture3DResource> _resource_3D;
 };

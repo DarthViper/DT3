@@ -52,20 +52,20 @@ DTerr ImporterAnimationTWA::import(AnimationResource *target, std::string args)
     // Read_ in header
     //
 
-    DTuint magic;
+    uint32_t magic;
     file >> magic;
     if (magic != MAGIC) {
         return DT3_ERR_FILE_WRONG_TYPE;
     }
 
-    DTuint version;
+    uint32_t version;
     file >> version;
 
     //
     // Read_ in data
     //
 
-    DTint section,size;
+    int32_t section,size;
     file >> section >> size;
     switch(section) {
         case FILE:	read_file(file, size);			break;
@@ -88,7 +88,7 @@ DTerr ImporterAnimationTWA::import(AnimationResource *target, std::string args)
         std::vector<AnimationKeyframe> new_keyframes;
         new_keyframes.resize( track._keyframes.size() );
 
-        for (DTuint j = 0; j < track._keyframes.size(); ++j) {
+        for (uint32_t j = 0; j < track._keyframes.size(); ++j) {
             new_keyframes[j].set_time(track._keyframes[j]._time);
             new_keyframes[j].set_transform(track._keyframes[j]._rotation, track._keyframes[j]._translation);
         }
@@ -107,21 +107,21 @@ DTerr ImporterAnimationTWA::import(AnimationResource *target, std::string args)
 //==============================================================================
 //==============================================================================
 
-void ImporterAnimationTWA::read_animation_keyframes (BinaryFileStream &file, DTuint remaining_size, std::vector<KeyFrame> &keyframes)
+void ImporterAnimationTWA::read_animation_keyframes (BinaryFileStream &file, uint32_t remaining_size, std::vector<KeyFrame> &keyframes)
 {
 
     //
     // Track info
     //
 
-    DTuint size;
+    uint32_t size;
     file >> size;
     keyframes.resize(size);
 
     //
     // Individual keyframes
     //
-    for (DTuint i = 0; i < keyframes.size(); ++i) {
+    for (uint32_t i = 0; i < keyframes.size(); ++i) {
         file >> keyframes[i]._time;
 
         Quaternion q;
@@ -149,7 +149,7 @@ void ImporterAnimationTWA::read_animation_keyframes (BinaryFileStream &file, DTu
 //==============================================================================
 //==============================================================================
 
-void ImporterAnimationTWA::read_animation_tracks (BinaryFileStream &file, DTuint remaining_size, std::map<std::string,Track> &tracks)
+void ImporterAnimationTWA::read_animation_tracks (BinaryFileStream &file, uint32_t remaining_size, std::map<std::string,Track> &tracks)
 {
     DTsize start_pos = file.g();
 
@@ -157,7 +157,7 @@ void ImporterAnimationTWA::read_animation_tracks (BinaryFileStream &file, DTuint
     // Number of tracks
     //
 
-    DTuint size;
+    uint32_t size;
     file >> size;
     //tracks.resize(size);
 
@@ -171,7 +171,7 @@ void ImporterAnimationTWA::read_animation_tracks (BinaryFileStream &file, DTuint
         std::string track_name;
         file >> track_name;
 
-        DTint section, section_size;
+        int32_t section, section_size;
         file >> section >> section_size;
 
         switch(section) {
@@ -188,7 +188,7 @@ void ImporterAnimationTWA::read_animation_tracks (BinaryFileStream &file, DTuint
 //==============================================================================
 //==============================================================================
 
-void ImporterAnimationTWA::read_animation(BinaryFileStream &file, DTuint remaining_size, Animation &animation)
+void ImporterAnimationTWA::read_animation(BinaryFileStream &file, uint32_t remaining_size, Animation &animation)
 {
     DTsize start_pos = file.g();
 
@@ -206,7 +206,7 @@ void ImporterAnimationTWA::read_animation(BinaryFileStream &file, DTuint remaini
 
     while (file.g() - start_pos < remaining_size)
     {
-        DTint section, size;
+        int32_t section, size;
         file >> section >> size;
 
         switch (section)
@@ -220,7 +220,7 @@ void ImporterAnimationTWA::read_animation(BinaryFileStream &file, DTuint remaini
 //==============================================================================
 //==============================================================================
 
-void ImporterAnimationTWA::read_file (BinaryFileStream &file, DTuint remaining_size)
+void ImporterAnimationTWA::read_file (BinaryFileStream &file, uint32_t remaining_size)
 {
     DTsize start_pos = file.g();
 
@@ -229,7 +229,7 @@ void ImporterAnimationTWA::read_file (BinaryFileStream &file, DTuint remaining_s
     //
 
     while (file.g() - start_pos < remaining_size) {
-        DTint section, size;
+        int32_t section, size;
         file >> section >> size;
 
         switch(section) {

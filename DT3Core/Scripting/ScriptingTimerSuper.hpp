@@ -62,8 +62,8 @@ class ScriptingTimerSuper: public ScriptingBase {
             STATE_CHANGE_BEHAVIOUR_COUNT_STOP_RESET_UPPER = 6
         };
 
-        Plug<DTint>                     _when_activated;
-        Plug<DTint>                     _when_deactivated;
+        Plug<int32_t>                     _when_activated;
+        Plug<int32_t>                     _when_deactivated;
 
         enum {
             STATE_RANGE_CONTINUE = 0,
@@ -72,8 +72,8 @@ class ScriptingTimerSuper: public ScriptingBase {
             STATE_RANGE_WRAP = 3
         };
 
-        Plug<DTint>                     _when_reach_upper;
-        Plug<DTint>                     _when_reach_lower;
+        Plug<int32_t>                     _when_reach_upper;
+        Plug<int32_t>                     _when_reach_lower;
 
         Plug<DTfloat>                   _upper_range;
         Plug<DTfloat>                   _lower_range;

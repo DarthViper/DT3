@@ -20,7 +20,7 @@ namespace DT3 {
 /// Standard class constructors/destructors
 //==============================================================================
 
-Triangle::Triangle (const DTushort v0_, const DTushort v1_, const DTushort v2_)
+Triangle::Triangle (const uint16_t v0_, const uint16_t v1_, const uint16_t v2_)
 {
 	v[0] = v0_;
 	v[1] = v1_;

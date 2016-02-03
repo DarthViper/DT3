@@ -50,7 +50,7 @@ void World_test::run_test (void)
 	// add a bunch of objects to the world
 	World *world = World::create();
 	
-	for (DTint i = 0; i < 100; ++i) {
+	for (int32_t i = 0; i < 100; ++i) {
 		WorldNode *obj = WorldNode::create();
 		
 		world->addObject(obj);

@@ -87,7 +87,7 @@ class ArchivePropertyReaderWriter: public Archive {
     private:
         std::vector<std::shared_ptr<ArchiveData>>   _properties;
         bool                                   _loading;
-        DTuint                                      _loading_index;
+        uint32_t                                      _loading_index;
 };
 
 //==============================================================================

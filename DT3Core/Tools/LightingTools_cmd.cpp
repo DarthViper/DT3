@@ -68,27 +68,27 @@ IMPLEMENT_FACTORY_COMMAND(LightingTools_cmd)
 //==============================================================================
 
 namespace {
-    const DTint PLUS_X = 0;
-    const DTint MINUS_X = 1;
-    const DTint PLUS_Y = 2;
-    const DTint MINUS_Y = 3;
-    const DTint PLUS_Z = 4;
-    const DTint MINUS_Z = 5;
-    const DTint NUM_SIDES = 6;
-    const DTint SRC_SIZE = 512;
+    const int32_t PLUS_X = 0;
+    const int32_t MINUS_X = 1;
+    const int32_t PLUS_Y = 2;
+    const int32_t MINUS_Y = 3;
+    const int32_t PLUS_Z = 4;
+    const int32_t MINUS_Z = 5;
+    const int32_t NUM_SIDES = 6;
+    const int32_t SRC_SIZE = 512;
 
-    void generate_maps (DTint  side,
+    void generate_maps (int32_t  side,
                         DTfloat gain,
                         DTfloat exponent, 
-                        DTint dst_size,
+                        int32_t dst_size,
                         DTfloat num_samples,
                         std::shared_ptr<TextureResource2D> src_tex,
                         std::shared_ptr<TextureResource2D> dst_tex)
     {
         const DTfloat HALF_PIXEL = 1.0F / dst_size * 0.5F;
 
-        for (DTint y = 0; y < dst_size; ++y) {
-            for (DTint x = 0; x < dst_size; ++x) {
+        for (int32_t y = 0; y < dst_size; ++y) {
+            for (int32_t x = 0; x < dst_size; ++x) {
                 
                 DTfloat s = static_cast<DTfloat>(x) / static_cast<DTfloat>(dst_size) + HALF_PIXEL - 0.5F;
                 DTfloat t = static_cast<DTfloat>(y) / static_cast<DTfloat>(dst_size) + HALF_PIXEL - 0.5F;
@@ -114,7 +114,7 @@ namespace {
                 
                 DTfloat rc=0.0F,gc=0.0F,bc=0.0F;
                 
-                for (DTint sample = 0; sample < num_samples; ++sample) {
+                for (int32_t sample = 0; sample < num_samples; ++sample) {
                 
                     Vector3 r = MoreMath::random_vector();   // Random direction
                     
@@ -136,7 +136,7 @@ namespace {
                     DTfloat my = std::abs(r.y);
                     DTfloat mz = std::abs(r.z);
                     
-                    DTint ma;
+                    int32_t ma;
                 
                     if (mx >= my && mx >= mz)       {   ma = (r.x > 0.0F) ? PLUS_X : MINUS_X;   }
                     else if (my >= mx && my >= mz)  {   ma = (r.y > 0.0F) ? PLUS_Y : MINUS_Y;   }
@@ -162,8 +162,8 @@ namespace {
                                         break;
                     };
                     
-                    DTint xs = static_cast<DTint>((tc_s / std::abs(tc_ma) + 1.0F) * 0.5F * SRC_SIZE);
-                    DTint ys = static_cast<DTint>((tc_t / std::abs(tc_ma) + 1.0F) * 0.5F * SRC_SIZE);
+                    int32_t xs = static_cast<int32_t>((tc_s / std::abs(tc_ma) + 1.0F) * 0.5F * SRC_SIZE);
+                    int32_t ys = static_cast<int32_t>((tc_t / std::abs(tc_ma) + 1.0F) * 0.5F * SRC_SIZE);
                     
                     Color4b c = src_tex->pixel(xs,ys);
                     rc += std::pow(c.r_as_float(), exponent) * dot;
@@ -192,8 +192,8 @@ CommandResult LightingTools_cmd::do_generate_irradiance_map (CommandContext &ctx
     
     DTfloat gain = MoreStrings::cast_from_string<DTfloat>(p[3]);
     DTfloat exponent = MoreStrings::cast_from_string<DTfloat>(p[4]);
-    DTint dst_size = MoreStrings::cast_from_string<DTint>(p[5]);
-    DTint num_samples = MoreStrings::cast_from_string<DTint>(p[6]);
+    int32_t dst_size = MoreStrings::cast_from_string<int32_t>(p[5]);
+    int32_t num_samples = MoreStrings::cast_from_string<int32_t>(p[6]);
     
     //
     // Load the Level
@@ -218,7 +218,7 @@ CommandResult LightingTools_cmd::do_generate_irradiance_map (CommandContext &ctx
     std::shared_ptr<TextureResource2D> src_tex[NUM_SIDES];
     std::shared_ptr<TextureResource2D> dst_tex[NUM_SIDES];
     
-    for (DTint i = 0; i < NUM_SIDES; ++i) {
+    for (int32_t i = 0; i < NUM_SIDES; ++i) {
         src_tex[i] = TextureResource2D::create();
         src_tex[i]->allocate_rgba_textels(SRC_SIZE,SRC_SIZE, false);
 
@@ -227,7 +227,7 @@ CommandResult LightingTools_cmd::do_generate_irradiance_map (CommandContext &ctx
     }
     
     // Setup the viewport
-    DTint x, y, width, height;
+    int32_t x, y, width, height;
     System::renderer()->viewport (x, y, width, height);
 	System::renderer()->set_viewport (0,0,SRC_SIZE,SRC_SIZE);
 
@@ -332,13 +332,13 @@ CommandResult LightingTools_cmd::do_unit_LUT (CommandContext &ctx, const Command
 {
     std::shared_ptr<TextureResource2D> tex = TextureResource2D::create();
     
-    const DTint SIZE = 16;
+    const int32_t SIZE = 16;
     
     tex->allocate_rgba_textels(SIZE, SIZE*SIZE, false);
 
-    for (DTint b = 0; b < SIZE; ++b) {
-        for (DTint g = 0; g < SIZE; ++g) {
-            for (DTint r = 0; r < SIZE; ++r) {
+    for (int32_t b = 0; b < SIZE; ++b) {
+        for (int32_t g = 0; g < SIZE; ++g) {
+            for (int32_t r = 0; r < SIZE; ++r) {
                 
                 Color4b c(  static_cast<DTfloat>(r) / (SIZE-1),
                             static_cast<DTfloat>(g) / (SIZE-1),
@@ -362,11 +362,11 @@ CommandResult LightingTools_cmd::do_unit_LUT2D (CommandContext &ctx, const Comma
 {
     std::shared_ptr<TextureResource2D> tex = TextureResource2D::create();
     
-    const DTint SIZE = 128;
+    const int32_t SIZE = 128;
     
     tex->allocate_rgba_textels(SIZE, 1, false);
 
-    for (DTint rgb = 0; rgb < SIZE; ++rgb) {
+    for (int32_t rgb = 0; rgb < SIZE; ++rgb) {
         Color4b c(  static_cast<DTfloat>(rgb) / (SIZE-1),
                     static_cast<DTfloat>(rgb) / (SIZE-1),
                     static_cast<DTfloat>(rgb) / (SIZE-1),
@@ -387,12 +387,12 @@ CommandResult LightingTools_cmd::do_unit_tex (CommandContext &ctx, const Command
 {
     std::shared_ptr<TextureResource2D> tex = TextureResource2D::create();
     
-    const DTint SIZE = 256;
+    const int32_t SIZE = 256;
     
     tex->allocate_rgba_textels(SIZE, SIZE, false);
 
-    for (DTint g = 0; g < SIZE; ++g) {
-        for (DTint r = 0; r < SIZE; ++r) {
+    for (int32_t g = 0; g < SIZE; ++g) {
+        for (int32_t r = 0; r < SIZE; ++r) {
             Color4b c(  static_cast<DTfloat>(r) / (SIZE-1),
                         static_cast<DTfloat>(g) / (SIZE-1),
                         0.0F, 1.0F);

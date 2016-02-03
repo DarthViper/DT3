@@ -23,7 +23,7 @@ namespace DT3 {
 // Random constant data
 //==============================================================================
 
-const DTubyte Perlin::p[512] = { 
+const uint8_t Perlin::p[512] = { 
     151,160,137,91,90,15,131,13,201,95,96,53,194,233,7,225,140,36,103,30,69,142,8,
     99,37,240,21,10,23,190,6,148,247,120,234,75,0,26,197,62,94,252,219,203,117,35,
     11,32,57,177,33,88,237,149,56,87,174,20,125,136,171,168,68,175,74,165,71,134,
@@ -63,9 +63,9 @@ DTfloat Perlin::lerp(DTfloat t, DTfloat a, DTfloat b)
     return a + t * (b - a);
 }
 
-DTfloat Perlin::grad(DTint hash, DTfloat x, DTfloat y, DTfloat z)
+DTfloat Perlin::grad(int32_t hash, DTfloat x, DTfloat y, DTfloat z)
 {
-    DTint       h = hash & 15;
+    int32_t       h = hash & 15;
     DTfloat     u = h < 8 ? x : y, v = h < 4 ? y : h==12||h==14 ? x : z;
     
     return ((h&1) == 0 ? u : -u) + ((h&2) == 0 ? v : -v);
@@ -81,17 +81,17 @@ DTfloat Perlin::noise_1D (DTfloat x, DTfloat num_octaves)
     DTfloat a = 1.0F;
     DTfloat f = 1.0F;
     
-    for (DTuint o = 0; o < num_octaves; ++o) {
+    for (uint32_t o = 0; o < num_octaves; ++o) {
 
         DTfloat fx = std::floor(x*f);
 
-        DTint   X = (DTint)fx & 255;        // find interval that contains the point
+        int32_t   X = (int32_t)fx & 255;        // find interval that contains the point
                 
         x -= fx;                            // find relative point in interval
         
         DTfloat u = fade(x);                // compute fade curves for x
             
-        DTint   A = p[X],                   // Hash coordinates of interval corners
+        int32_t   A = p[X],                   // Hash coordinates of interval corners
                 B = p[X+1];
         
         r +=    a * (
@@ -115,13 +115,13 @@ DTfloat Perlin::noise_2D(DTfloat x, DTfloat y, DTfloat num_octaves)
     DTfloat a = 1.0F;
     DTfloat f = 1.0F;
     
-    for (DTuint o = 0; o < num_octaves; ++o) {
+    for (uint32_t o = 0; o < num_octaves; ++o) {
 
         DTfloat fx = std::floor(x*f);
         DTfloat fy = std::floor(y*f);
 
-        DTint   X = (DTint)fx & 255,        // find unit square that contains the point
-                Y = (DTint)fy & 255;
+        int32_t   X = (int32_t)fx & 255,        // find unit square that contains the point
+                Y = (int32_t)fy & 255;
                 
         x -= fx;                            // find relative xy of point in square
         y -= fy;                              
@@ -129,7 +129,7 @@ DTfloat Perlin::noise_2D(DTfloat x, DTfloat y, DTfloat num_octaves)
         DTfloat u = fade(x),                // compute fade curves for x,y
                 v = fade(y);
         
-        DTint   A = p[X],                   // Hash coordinates of square corners
+        int32_t   A = p[X],                   // Hash coordinates of square corners
                 AA = p[A]+Y,
                 B = p[X+1],
                 BB = p[B]+Y;
@@ -162,15 +162,15 @@ DTfloat Perlin::noise_3D(DTfloat x, DTfloat y, DTfloat z, DTfloat num_octaves)
     DTfloat a = 1.0F;
     DTfloat f = 1.0F;
     
-    for (DTuint o = 0; o < num_octaves; ++o) {
+    for (uint32_t o = 0; o < num_octaves; ++o) {
 
         DTfloat fx = std::floor(x*f);
         DTfloat fy = std::floor(y*f);
         DTfloat fz = std::floor(z*f);
 
-        DTint   X = (DTint)fx & 255,        // find unit cube that contains the point
-                Y = (DTint)fy & 255,                
-                Z = (DTint)fz & 255;
+        int32_t   X = (int32_t)fx & 255,        // find unit cube that contains the point
+                Y = (int32_t)fy & 255,                
+                Z = (int32_t)fz & 255;
                 
         x -= fx;                            // find relative xyz of point in cube
         y -= fy;                              
@@ -180,7 +180,7 @@ DTfloat Perlin::noise_3D(DTfloat x, DTfloat y, DTfloat z, DTfloat num_octaves)
                 v = fade(y),                
                 w = fade(z);
             
-        DTint   A = p[X]+Y,                 // Hash coordinates of cube corners
+        int32_t   A = p[X]+Y,                 // Hash coordinates of cube corners
                 AA = p[A]+Z, 
                 AB = p[A+1]+Z, 
                 B = p[X+1]+Y, 

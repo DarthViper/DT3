@@ -44,7 +44,7 @@ FileHandleCompressedFD::~FileHandleCompressedFD (void)
 //==============================================================================
 //==============================================================================
 
-DTsize FileHandleCompressedFD::read (DTubyte *buffer, DTsize size)
+DTsize FileHandleCompressedFD::read (uint8_t *buffer, DTsize size)
 {
     if (_file_g >= static_cast<DTsize>(_data.size()))
         _eof = true;
@@ -59,7 +59,7 @@ DTsize FileHandleCompressedFD::read (DTubyte *buffer, DTsize size)
     return gcount;
 }
 
-void FileHandleCompressedFD::write (const DTubyte *buffer, DTsize size)
+void FileHandleCompressedFD::write (const uint8_t *buffer, DTsize size)
 {
     ERRORMSG("This function is unsupported");
 }
@@ -69,7 +69,7 @@ void FileHandleCompressedFD::write (const DTubyte *buffer, DTsize size)
 
 DTerr FileHandleCompressedFD::open_file (const FilePath &pathname, DTsize start, DTsize length, DTsize uncompressed_length)
 {
-    DTint fd;
+    int32_t fd;
 
     fd = ::open(pathname.full_path().c_str(), O_RDONLY);
     if (fd < 0) {
@@ -84,9 +84,9 @@ DTerr FileHandleCompressedFD::open_file (const FilePath &pathname, DTsize start,
     return DT3_ERR_NONE;
 }
 
-DTerr FileHandleCompressedFD::set_fd (DTint fd, DTsize start, DTsize length, DTsize uncompressed_length)
+DTerr FileHandleCompressedFD::set_fd (int32_t fd, DTsize start, DTsize length, DTsize uncompressed_length)
 {
-    std::vector<DTubyte>  compressed_buffer;
+    std::vector<uint8_t>  compressed_buffer;
 
     // Read the compressed file
     compressed_buffer.resize(length);
@@ -102,14 +102,14 @@ DTerr FileHandleCompressedFD::set_fd (DTint fd, DTsize start, DTsize length, DTs
     z_stream strm;
     strm.zalloc = 0;
     strm.zfree = 0;
-    strm.next_in = reinterpret_cast<DTubyte *>(&compressed_buffer[0]);
+    strm.next_in = reinterpret_cast<uint8_t *>(&compressed_buffer[0]);
     strm.avail_in = (uInt) compressed_buffer.size();
-    strm.next_out = reinterpret_cast<DTubyte *>(&_data[0]);
+    strm.next_out = reinterpret_cast<uint8_t *>(&_data[0]);
     strm.avail_out = (uInt) _data.size();
 
     inflateInit(&strm);
 
-    DTint err;
+    int32_t err;
 
     while (strm.total_out < _data.size() && strm.total_in < compressed_buffer.size()) {
         err = inflate(&strm, Z_NO_FLUSH);

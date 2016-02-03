@@ -73,7 +73,7 @@ class URL {
 
         /// Specified port
         /// \return Returns port if specified or 0 if none
-        DTushort				port                (void) const;
+        uint16_t				port                (void) const;
 
         /// Returns parameters from URL
         /// \return Parameters

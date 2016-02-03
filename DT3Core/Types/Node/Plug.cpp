@@ -568,7 +568,7 @@ void PlugBase::compute (void) const
 void PlugBase::initialize_static (void)
 {
     // Link up free list on first use
-    for (DTuint i = 1; i < DT3_PLUG_CONNECTION_POOL_SIZE; ++i) {
+    for (uint32_t i = 1; i < DT3_PLUG_CONNECTION_POOL_SIZE; ++i) {
         _pool[i-1]._next_free = &_pool[i];
     }
     _free_list = _pool;
@@ -589,7 +589,7 @@ PlugBase::PlugConnections& PlugBase::connections (void)
         c->_incoming = NULL;
         c->_outgoing.clear();
         
-        _connection_index = static_cast<DTushort>(c - _pool) + 1;
+        _connection_index = static_cast<uint16_t>(c - _pool) + 1;
     }
     
     return _pool[_connection_index-1];

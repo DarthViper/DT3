@@ -52,12 +52,12 @@ class Skeleton: public BaseClass {
 
         /// Gets the size of the skeleton for the geometry
         /// \return skeleton size
-        DTuint                              skeleton_size       (void) const        {   return _num_joints;         }
+        uint32_t                              skeleton_size       (void) const        {   return _num_joints;         }
 
 
     public:
         std::vector<SkeletonJoint>          _skeleton;
-        DTuint                              _num_joints;
+        uint32_t                              _num_joints;
 
         void                                analyze_skeleton    (const std::vector<SkeletonJoint>& joints);
 };

@@ -36,8 +36,8 @@ IMPLEMENT_PROFILER_CATEGORY(COLLISION,"Collision",ProfilerCategory::CATEGORY_PER
 //==============================================================================
     
 DT3_THREAD_LOCAL ProfilerTimer  *Profiler::_timer_stack = NULL;
-DTuint                          Profiler::_num_ticks = 0;
-DTuint                          Profiler::_num_frames = 0;
+uint32_t                          Profiler::_num_ticks = 0;
+uint32_t                          Profiler::_num_frames = 0;
 TimerLores                      Profiler::_display_timer;
 TimerHires                      Profiler::_profiler_timer;
 

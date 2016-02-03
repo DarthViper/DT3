@@ -29,25 +29,25 @@ template <int S> struct swapHelper {};
 
 
 template <> struct swapHelper<1> {
-    static void    swap    (DTubyte *v)
+    static void    swap    (uint8_t *v)
     {
         // Do nothing
     }
 };
 
 template <> struct swapHelper<2> {
-    static void    swap    (DTubyte *v)
+    static void    swap    (uint8_t *v)
     {
-        DTubyte temp = v[0];
+        uint8_t temp = v[0];
         v[0] = v[1];
         v[1] = temp;
     }
 };
 
 template <> struct swapHelper<4> {
-    static void    swap    (DTubyte *v)
+    static void    swap    (uint8_t *v)
     {
-        DTubyte temp = v[0];
+        uint8_t temp = v[0];
         v[0] = v[3];
         v[3] = temp;
 
@@ -58,9 +58,9 @@ template <> struct swapHelper<4> {
 };
 
 template <> struct swapHelper<8> {
-    static void    swap    (DTubyte *v)
+    static void    swap    (uint8_t *v)
     {
-        DTubyte temp = v[0];
+        uint8_t temp = v[0];
         v[0] = v[7];
         v[7] = temp;
 
@@ -96,7 +96,7 @@ class Endian {
         template <typename T>
         static void swap   (T &v)
         {
-            EndianInfo::swapHelper<sizeof(T)>::swap((DTubyte*)&v);
+            EndianInfo::swapHelper<sizeof(T)>::swap((uint8_t*)&v);
         }
 
 
@@ -106,7 +106,7 @@ class Endian {
         static void to_network_byte_order   (T &v)
         {
 #if DT3_BYTEORDER == DT3_LIL_ENDIAN
-            EndianInfo::swapHelper<sizeof(T)>::swap((DTubyte*)&v);
+            EndianInfo::swapHelper<sizeof(T)>::swap((uint8_t*)&v);
 #endif
         }
 
@@ -116,7 +116,7 @@ class Endian {
         static void from_network_byte_order (T &v)
         {
 #if DT3_BYTEORDER == DT3_LIL_ENDIAN
-            EndianInfo::swapHelper<sizeof(T)>::swap((DTubyte*)&v);
+            EndianInfo::swapHelper<sizeof(T)>::swap((uint8_t*)&v);
 #endif
         }
 
@@ -126,7 +126,7 @@ class Endian {
         template <typename T>
         static void to_big_endian   (T &v) {
 #if DT3_BYTEORDER == DT3_LIL_ENDIAN
-            EndianInfo::swapHelper<sizeof(T)>::swap((DTubyte*)&v);
+            EndianInfo::swapHelper<sizeof(T)>::swap((uint8_t*)&v);
 #endif
         }
 
@@ -135,7 +135,7 @@ class Endian {
         template <typename T>
         static void from_big_endian   (T &v) {
 #if DT3_BYTEORDER == DT3_LIL_ENDIAN
-            EndianInfo::swapHelper<sizeof(T)>::swap((DTubyte*)&v);
+            EndianInfo::swapHelper<sizeof(T)>::swap((uint8_t*)&v);
 #endif
         }
 
@@ -145,7 +145,7 @@ class Endian {
        template <typename T>
        static void to_little_endian   (T &v) {
 #if DT3_BYTEORDER == DT3_BIG_ENDIAN
-            EndianInfo::swapHelper<sizeof(T)>::swap((DTubyte*)&v);
+            EndianInfo::swapHelper<sizeof(T)>::swap((uint8_t*)&v);
 #endif
         }
 
@@ -154,7 +154,7 @@ class Endian {
         template <typename T>
         static void from_little_endian   (T &v) {
 #if DT3_BYTEORDER == DT3_BIG_ENDIAN
-            EndianInfo::swapHelper<sizeof(T)>::swap((DTubyte*)&v);
+            EndianInfo::swapHelper<sizeof(T)>::swap((uint8_t*)&v);
 #endif
         }
 

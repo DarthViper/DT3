@@ -244,7 +244,7 @@ void ImporterShaderSHDR::parse_attrib (ShaderResource *target)
 void ImporterShaderSHDR::parse_standard_attrib (ShaderResource *target)
 {
 	_tokenizer.assume_next_token("=");
-    DTint standard_attrib = static_cast<DTint>(_tokenizer.next_token_number());
+    int32_t standard_attrib = static_cast<int32_t>(_tokenizer.next_token_number());
     std::string name = _tokenizer.next_token_string();
 	target->add_attrib(name, (DT3GLStandardAttrib) standard_attrib);
 }
@@ -256,7 +256,7 @@ void ImporterShaderSHDR::parse_uniform_v (ShaderResource *target)
 {
 	_tokenizer.assume_next_token("=");
     
-    DTuint array_size = 1;
+    uint32_t array_size = 1;
     
     std::string uniform = _tokenizer.next_token_string();
     std::string::size_type open_bracket = uniform.find('[');
@@ -264,7 +264,7 @@ void ImporterShaderSHDR::parse_uniform_v (ShaderResource *target)
     
     if (open_bracket != std::string::npos && close_bracket != std::string::npos && close_bracket > open_bracket) {
         std::string num = uniform.substr(open_bracket+1, close_bracket-open_bracket-1);
-        array_size = MoreStrings::cast_from_string<DTuint>(num);
+        array_size = MoreStrings::cast_from_string<uint32_t>(num);
         
         uniform = uniform.substr(0,open_bracket);
     }
@@ -276,7 +276,7 @@ void ImporterShaderSHDR::parse_uniform_m (ShaderResource *target)
 {
 	_tokenizer.assume_next_token("=");
 
-    DTuint array_size = 1;
+    uint32_t array_size = 1;
         
     std::string uniform = _tokenizer.next_token_string();
     std::string::size_type open_bracket = uniform.find('[');
@@ -284,7 +284,7 @@ void ImporterShaderSHDR::parse_uniform_m (ShaderResource *target)
     
     if (open_bracket != std::string::npos && close_bracket != std::string::npos && close_bracket > open_bracket) {
         std::string num = uniform.substr(open_bracket+1, close_bracket-open_bracket-1);
-        array_size = MoreStrings::cast_from_string<DTuint>(num);
+        array_size = MoreStrings::cast_from_string<uint32_t>(num);
         
         uniform = uniform.substr(open_bracket);
     }
@@ -296,7 +296,7 @@ void ImporterShaderSHDR::parse_standard_uniform (ShaderResource *target)
 {
 	_tokenizer.assume_next_token("=");
 
-    DTint standard_attrib = static_cast<DTint>(_tokenizer.next_token_number());
+    int32_t standard_attrib = static_cast<int32_t>(_tokenizer.next_token_number());
     std::string name = _tokenizer.next_token_string();
     
     DT3GLUniformFormat fmt;

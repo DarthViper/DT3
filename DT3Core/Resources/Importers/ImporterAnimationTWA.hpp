@@ -82,7 +82,7 @@ private:
 
     struct Animation
     {
-        DTuint  _fps;
+        uint32_t  _fps;
         DTfloat _start;
         DTfloat _end;
 
@@ -91,10 +91,10 @@ private:
 
     Animation _animation;
 
-    void read_animation_keyframes(BinaryFileStream &file, DTuint remaining_size, std::vector<KeyFrame> &keyframes);
-    void read_animation_tracks(BinaryFileStream &file, DTuint remaining_size, std::map<std::string, Track> &tracks);
-    void read_animation(BinaryFileStream &file, DTuint remaining_size, Animation &animation);
-    void read_file(BinaryFileStream &file, DTuint remaining_size);
+    void read_animation_keyframes(BinaryFileStream &file, uint32_t remaining_size, std::vector<KeyFrame> &keyframes);
+    void read_animation_tracks(BinaryFileStream &file, uint32_t remaining_size, std::map<std::string, Track> &tracks);
+    void read_animation(BinaryFileStream &file, uint32_t remaining_size, Animation &animation);
+    void read_file(BinaryFileStream &file, uint32_t remaining_size);
 };
 
 //==============================================================================

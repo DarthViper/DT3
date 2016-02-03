@@ -52,7 +52,7 @@ class DeviceNetwork: public DeviceBase {
         /// \return Error Code
         virtual DTerr                   resolve_host    (   NetworkAddress &ip,
                                                             const std::string &UNUSED(host),
-                                                            DTushort UNUSED(port))                  {   UNUSED(ip)return DT3_ERR_NONE;    }
+                                                            uint16_t UNUSED(port))                  {   UNUSED(ip)return DT3_ERR_NONE;    }
 
         /// Attempts to determine the MAC address of an adapter
         /// \param mac Returned MAC address
@@ -66,7 +66,7 @@ class DeviceNetwork: public DeviceBase {
         /// \param port Port
         /// \return Error Code
         virtual DTerr					udp_open        (   NetworkSocket &socket,
-                                                            DTushort port)                  {   return DT3_ERR_NONE;    }
+                                                            uint16_t port)                  {   return DT3_ERR_NONE;    }
 
         /// Closes udp Socket
         /// \param socket Socket

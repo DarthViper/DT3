@@ -199,7 +199,7 @@ bool ScriptingSubtitleDriver::compute (const PlugBase *plug)
             _out = _subtitle_array[_subtitle_array.size() - 1]._text;
         } else {
         
-            for (DTint i = 0; i < (DTint) _subtitle_array.size() - 1; ++i) {
+            for (int32_t i = 0; i < (int32_t) _subtitle_array.size() - 1; ++i) {
                 if (_time >= _subtitle_array[i]._time && _time < _subtitle_array[i+1]._time) {
                     _out = _subtitle_array[i]._text;
                     break;

@@ -48,7 +48,7 @@ class ScriptingCRC32: public ScriptingBase {
 
     private:
         Plug<std::string>           _in;
-        Plug<DTuint>				_checksum;
+        Plug<uint32_t>				_checksum;
 
 };
 

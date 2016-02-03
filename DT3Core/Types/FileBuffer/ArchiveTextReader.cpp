@@ -166,12 +166,12 @@ void ArchiveTextReader::pop_domain (void)
 //==============================================================================
 //==============================================================================
 
-DTuint ArchiveTextReader::version (void) const
+uint32_t ArchiveTextReader::version (void) const
 {
 	return _version;
 }
 
-DTuint ArchiveTextReader::app_version (void) const
+uint32_t ArchiveTextReader::app_version (void) const
 {
 	return _app_version;
 }

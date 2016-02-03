@@ -77,7 +77,7 @@ CommandResult PackageTools_cmd::do_make_package (CommandContext &ctx, const Comm
     DirectoryLister lister;
     std::list<std::string> compression_types;
     
-    for (DTuint i = 0; i < p.count();) {
+    for (uint32_t i = 0; i < p.count();) {
         
         // Check for compression flag
         if (p[i] == "-compress") {
@@ -108,11 +108,11 @@ CommandResult PackageTools_cmd::do_make_package (CommandContext &ctx, const Comm
     bool needs_rebuild = false;
     
     FilePath package_pathname(p[1]);
-    DTuint64 package_modification_date = package_pathname.modification_date();
+    uint64_t package_modification_date = package_pathname.modification_date();
     
-    for (DTuint i = 0; i < lister.num_files(); ++i) {
+    for (uint32_t i = 0; i < lister.num_files(); ++i) {
         FilePath file_pathname = lister.file_path(i);
-        DTuint64 file_modification_date = file_pathname.modification_date();
+        uint64_t file_modification_date = file_pathname.modification_date();
     
         if (file_modification_date > package_modification_date) {
             needs_rebuild = true;
@@ -143,7 +143,7 @@ CommandResult PackageTools_cmd::do_make_package (CommandContext &ctx, const Comm
 		return CommandResult(true, "Unable to open package file for writing", CommandResult::UPDATE_NONE);
     
     // Write magic number
-	const DTuint MAGIC = 0x5041434B;	// i.e. PACK
+	const uint32_t MAGIC = 0x5041434B;	// i.e. PACK
     outfile << MAGIC;
     
     
@@ -170,7 +170,7 @@ CommandResult PackageTools_cmd::do_make_package (CommandContext &ctx, const Comm
 
     for (auto &f : files) {
     
-        std::vector<DTubyte> src_data;
+        std::vector<uint8_t> src_data;
         src_data.resize(f.length);
         
         // Read file into buffer
@@ -180,7 +180,7 @@ CommandResult PackageTools_cmd::do_make_package (CommandContext &ctx, const Comm
         
         // Should we compress this?
         if (std::find(compression_types.begin(), compression_types.end(), f.path.file_ext()) != compression_types.end()) {
-            std::vector<DTubyte> compressed_src_data;
+            std::vector<uint8_t> compressed_src_data;
             compressed_src_data.resize(src_data.size());
     
             DTsize compressed_size = Compressor::deflate (  &src_data[0], src_data.size(),
@@ -219,7 +219,7 @@ CommandResult PackageTools_cmd::do_make_package (CommandContext &ctx, const Comm
     }
     
     // Add an extra byte for good measure
-    outfile << (DTubyte) 0;
+    outfile << (uint8_t) 0;
 
     //
     // Report
@@ -252,7 +252,7 @@ CommandResult PackageTools_cmd::do_make_package (CommandContext &ctx, const Comm
     
     LOG_MESSAGE << "Largest files";
 
-    DTint count = 0;
+    int32_t count = 0;
     for (auto k = file_sizes.rbegin(); k != file_sizes.rend() && count < 25; ++k, ++count) {
         LOG_MESSAGE << "  " << k->second
                     << "   " << k->first;

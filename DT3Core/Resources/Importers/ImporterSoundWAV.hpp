@@ -55,7 +55,7 @@ class ImporterSoundWAV: public ImporterSound {
         /// \param data pointer to buffer
         /// \param start start of sound data (doesn't include header)
         /// \param length length of sound data in bytes
-        virtual DTsize					stream					(DTubyte *data, DTsize start, DTsize length);
+        virtual DTsize					stream					(uint8_t *data, DTsize start, DTsize length);
 
         /// Returns length of sound data
         /// \return length of sound data in bytes
@@ -65,16 +65,16 @@ class ImporterSoundWAV: public ImporterSound {
 
         struct ChunkHeader {
             DTcharacter	id[4];
-            DTuint		length;
+            uint32_t		length;
         };
 
         bool						is_type					(DTcharacter id[4], const DTcharacter *id_str);
 
-        void							read					(BinaryFileStream &infile, DTubyte &v);
-        void							read					(BinaryFileStream &infile, DTushort &v);
-        void							read					(BinaryFileStream &infile, DTshort &v);
-        void							read					(BinaryFileStream &infile, DTint &v);
-        void							read					(BinaryFileStream &infile, DTuint &v);
+        void							read					(BinaryFileStream &infile, uint8_t &v);
+        void							read					(BinaryFileStream &infile, uint16_t &v);
+        void							read					(BinaryFileStream &infile, int16_t &v);
+        void							read					(BinaryFileStream &infile, int32_t &v);
+        void							read					(BinaryFileStream &infile, uint32_t &v);
         void							read					(BinaryFileStream &infile, DTcharacter id[4]);
         void							read					(BinaryFileStream &infile, ChunkHeader &v);
 
@@ -92,7 +92,7 @@ class ImporterSoundWAV: public ImporterSound {
 
         // WAVE_FORMAT_PCM
         struct WaveFormatPCM{
-            DTushort            _bits_per_sample;
+            uint16_t            _bits_per_sample;
         };
 
         // FORMAT_MULAW
@@ -108,11 +108,11 @@ class ImporterSoundWAV: public ImporterSound {
         };
 
         struct Format {
-            DTushort            _format_tag;			// Format category
-            DTushort            _channels;              // Number of channels
-            DTuint              _samples_per_sec;		// Sampling rate
-            DTuint              _avg_bytes_per_sec;		// For buffer estimation
-            DTushort            _block_align;			// Data block size
+            uint16_t            _format_tag;			// Format category
+            uint16_t            _channels;              // Number of channels
+            uint32_t              _samples_per_sec;		// Sampling rate
+            uint32_t              _avg_bytes_per_sec;		// For buffer estimation
+            uint16_t            _block_align;			// Data block size
 
             union {
                 WaveFormatPCM	_wave_format_PCM;
@@ -130,7 +130,7 @@ class ImporterSoundWAV: public ImporterSound {
         DTsize                  _data_length;
 
 
-        DTubyte                 *_preloaded_chunk;
+        uint8_t                 *_preloaded_chunk;
         DTsize                  _preloaded_chunk_size;
 };
 

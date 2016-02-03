@@ -40,12 +40,12 @@ class AssertImpl {
         // Callbacks
         //
 
-        static void             set_callback_assert_msg (std::shared_ptr<Callback<const DTcharacter*, const DTcharacter*, DTint>> cb);
-        static void             call_assert_msg         (const DTcharacter* file, const DTcharacter* func, DTint line);
-        static void             call_assert_break       (const DTcharacter* file, const DTcharacter* func, DTint line)  __attribute__ ((noreturn));
+        static void             set_callback_assert_msg (std::shared_ptr<Callback<const DTcharacter*, const DTcharacter*, int32_t>> cb);
+        static void             call_assert_msg         (const DTcharacter* file, const DTcharacter* func, int32_t line);
+        static void             call_assert_break       (const DTcharacter* file, const DTcharacter* func, int32_t line)  __attribute__ ((noreturn));
 
     private:
-        static std::shared_ptr<Callback<const DTcharacter*, const DTcharacter*, DTint>> _callback_assert_msg;
+        static std::shared_ptr<Callback<const DTcharacter*, const DTcharacter*, int32_t>> _callback_assert_msg;
 
 };
 
@@ -56,15 +56,15 @@ class AssertImpl {
 
 #ifdef DT3_DEBUG
     #if DT3_OS == DT3_WINDOWS
-        #define ASSERT(cond)    if (!(cond))        DT3::AssertImpl::call_assert_msg((DT3::DTcharacter*)__FILE__, (DT3::DTcharacter*)__FUNCTION__, (DT3::DTint)__LINE__)
+        #define ASSERT(cond)    if (!(cond))        DT3::AssertImpl::call_assert_msg((DT3::DTcharacter*)__FILE__, (DT3::DTcharacter*)__FUNCTION__, (int32_t)__LINE__)
     #else
-        #define ASSERT(cond)    if (!(cond))        DT3::AssertImpl::call_assert_msg((DT3::DTcharacter*)__FILE__, (DT3::DTcharacter*)__func__, (DT3::DTint)__LINE__)
+        #define ASSERT(cond)    if (!(cond))        DT3::AssertImpl::call_assert_msg((DT3::DTcharacter*)__FILE__, (DT3::DTcharacter*)__func__, (int32_t)__LINE__)
     #endif
 
     #if DT3_OS == DT3_WINDOWS
-        #define ASSERTBREAK(cond)   if (!(cond))    DT3::AssertImpl::call_assert_break((DT3::DTcharacter*)__FILE__, (DT3::DTcharacter*)__FUNCTION__, (DT3::DTint)__LINE__)
+        #define ASSERTBREAK(cond)   if (!(cond))    DT3::AssertImpl::call_assert_break((DT3::DTcharacter*)__FILE__, (DT3::DTcharacter*)__FUNCTION__, (int32_t)__LINE__)
     #else
-        #define ASSERTBREAK(cond)   if (!(cond))    DT3::AssertImpl::call_assert_break((DT3::DTcharacter*)__FILE__, (DT3::DTcharacter*)__func__, (DT3::DTint)__LINE__)
+        #define ASSERTBREAK(cond)   if (!(cond))    DT3::AssertImpl::call_assert_break((DT3::DTcharacter*)__FILE__, (DT3::DTcharacter*)__func__, (int32_t)__LINE__)
     #endif
 
 #else

@@ -398,8 +398,8 @@ void DrawUtils::draw_cone(  DrawBatcher &draw_batcher,
 {
     draw_batcher.batch_begin(camera, material, shader, transform, DT3GL_PRIM_TRI_STRIP, DrawBatcher::FMT_V | DrawBatcher::FMT_C);
     
-    const DTint MAX_SEGMENTS = 16;
-    for (DTint i = 0; i < MAX_SEGMENTS; ++i) {
+    const int32_t MAX_SEGMENTS = 16;
+    for (int32_t i = 0; i < MAX_SEGMENTS; ++i) {
         DTfloat angle = static_cast<DTfloat>(i) / MAX_SEGMENTS * 2.0F * PI;
         DTfloat angle_plus_1 = static_cast<DTfloat>(i+1) / MAX_SEGMENTS * 2.0F * PI;
         
@@ -426,7 +426,7 @@ void DrawUtils::draw_ring ( DrawBatcher &draw_batcher,
     draw_batcher.batch_begin(camera, material, shader, transform, DT3GL_PRIM_LINE_LOOP, DrawBatcher::FMT_V | DrawBatcher::FMT_C);
     
     const DTfloat MAX_SEGMENTS = 64.0F;
-    for (DTuint i = 0; i <= MAX_SEGMENTS; ++i) {
+    for (uint32_t i = 0; i <= MAX_SEGMENTS; ++i) {
         DTfloat angle = static_cast<DTfloat>(i) / MAX_SEGMENTS * 2.0F * PI;
         draw_batcher.add().v(size * std::cos(angle), 0.0F, size * std::sin(angle)).c(color);
     }
@@ -449,7 +449,7 @@ void DrawUtils::draw_bit_font ( const std::shared_ptr<CameraObject> &camera,
     for (std::string::size_type i = 0; i < text.size(); ++i) {
 //        DTcharacter c = text[i];
         
-//        const DTubyte* bytes = BitFont::character_bitmap(c);
+//        const uint8_t* bytes = BitFont::character_bitmap(c);
 //        System::renderer()->draw_bitmap(material, Vector2(x, translation.y), 8, 8, bytes);
         
         x += 8;
@@ -474,7 +474,7 @@ void DrawUtils::activate_state (    const std::shared_ptr<CameraObject> &camera,
     
     
     // Set some shader parameters that were set in the material
-    for (DTuint i = 0; i < 16; ++i) {
+    for (uint32_t i = 0; i < 16; ++i) {
         material->set_current_unit(i);
         shader->set_uniform_value(  shader->uniform_slot((DT3GLStandardUniform) (DT3GL_UNIFORM_TEX_MATRIX0 + i)), material->transform());
     }

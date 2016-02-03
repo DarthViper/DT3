@@ -279,7 +279,7 @@ void ScriptingTimerSuper::tick (const DTfloat dt)
     
     if (_active != _last_active) {
 
-        DTint action = _active ? _when_activated : _when_deactivated;
+        int32_t action = _active ? _when_activated : _when_deactivated;
 
         switch(action) {
         

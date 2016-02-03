@@ -25,7 +25,7 @@ void TextRenderer::raster_callback(const int y, const int count, const FT_Span *
 {
     RasterInfo *raster_info = (RasterInfo*) user;
     
-    DTint y_offset = y + (DTint) raster_info->_offset.y;
+    int32_t y_offset = y + (int32_t) raster_info->_offset.y;
     
     // Check if outsize of image
     if (y_offset < 0)
@@ -38,8 +38,8 @@ void TextRenderer::raster_callback(const int y, const int count, const FT_Span *
     for (int i = 0; i < count; ++i) {
     
         // Clip span
-        DTint x_min = (DTint) raster_info->_offset.x + spans[i].x;
-        DTint x_max = x_min + spans[i].len - 1;
+        int32_t x_min = (int32_t) raster_info->_offset.x + spans[i].x;
+        int32_t x_max = x_min + spans[i].len - 1;
         
         if (x_min < 0)
             x_min = 0;
@@ -52,7 +52,7 @@ void TextRenderer::raster_callback(const int y, const int count, const FT_Span *
         Color4b* p = (Color4b*) raster_info->_destination->pixel_addr(x_min, y_offset);
     
         // Fill span
-        for (DTint x = x_min; x <= x_max; ++x) {
+        for (int32_t x = x_min; x <= x_max; ++x) {
             DTfloat src_a = c.a_as_float();
             DTfloat one_minus_src_a = 1.0F - src_a;
             DTfloat dst_a = p->a_as_float();
@@ -61,7 +61,7 @@ void TextRenderer::raster_callback(const int y, const int count, const FT_Span *
             
             DTfloat a_float = src_a + dst_a * one_minus_src_a;
             if (a_float <= 0.0F) {
-                *p = Color4b( (DTubyte) 0, (DTubyte) 0, (DTubyte) 0, (DTubyte) 0);
+                *p = Color4b( (uint8_t) 0, (uint8_t) 0, (uint8_t) 0, (uint8_t) 0);
                 
             } else {
                 DTfloat denom = 1.0F / a_float;
@@ -86,7 +86,7 @@ void TextRenderer::begin_render (std::shared_ptr<TextureResource2D> &destination
 {
     FT_Int  width = destination->width();
     FT_Int  height = destination->height();
-    DTubyte *buffer = destination->buffer();
+    uint8_t *buffer = destination->buffer();
     
     ASSERT(destination->format() == DT3GL_FORMAT_RGBA);
     
@@ -114,7 +114,7 @@ Rectangle TextRenderer::render_lines (  std::shared_ptr<TextureResource2D>  &des
     FT_Int  height = destination->height();
         
     Rectangle rect(0.0F,0.0F,0.0F,0.0F);
-    DTuint num_chars = 0;
+    uint32_t num_chars = 0;
 
     for (auto &line : lines.lines()) {
         
@@ -176,7 +176,7 @@ Rectangle TextRenderer::render_lines (  std::shared_ptr<TextureResource2D>  &des
                         FT_Stroker stroker;
                         FT_Stroker_New(FontResource::library(), &stroker);
                         FT_Stroker_Set(stroker,
-                                       (DTint)(ct.outline_size() * 64),
+                                       (int32_t)(ct.outline_size() * 64),
                                        FT_STROKER_LINECAP_ROUND,
                                        FT_STROKER_LINEJOIN_ROUND,
                                        0);

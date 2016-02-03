@@ -49,10 +49,10 @@ class SystemCallbacks {
     public:
 
         static CallbackList<>&                                      screen_inited_cb                (void)  {  return _screenInitedCB;      }
-        static CallbackList<DTuint,DTuint>&                         screen_opened_cb                (void)  {  return _screenOpenedCB;      }
+        static CallbackList<uint32_t,uint32_t>&                         screen_opened_cb                (void)  {  return _screenOpenedCB;      }
         static CallbackList<>&                                      screen_closed_cb                (void)  {  return _screenClosedCB;      }
         static CallbackList<>&                                      screen_swap_cb                  (void)  {  return _screenSwapCB;        }
-        static CallbackList<DTuint,DTuint>&                         screen_changed_cb               (void)  {  return _screenChangedCB;     }
+        static CallbackList<uint32_t,uint32_t>&                         screen_changed_cb               (void)  {  return _screenChangedCB;     }
 
         static CallbackList<World*, ComponentBase*>&                add_component_cb                (void)  {  return _addComponentCB;      }
         static CallbackList<World*, ComponentBase*>&                remove_component_cb             (void)  {  return _removeComponentCB;   }
@@ -70,8 +70,8 @@ class SystemCallbacks {
         static CallbackList<Event*,Event*>&                         disconnect_event_cb             (void)  {  return _disconnectEventCB;   }
 
         static CallbackList<const TouchEvent*>&                     touch_event_cb                  (void)  {  return _touchEventCB;            }
-        static CallbackList<DTuint,DTushort>&                       key_down_event_cb               (void)  {  return _keyDownEventCB;          }
-        static CallbackList<DTuint,DTushort>&                       key_up_event_cb                 (void)  {  return _keyUpEventCB;            }
+        static CallbackList<uint32_t,uint16_t>&                       key_down_event_cb               (void)  {  return _keyDownEventCB;          }
+        static CallbackList<uint32_t,uint16_t>&                       key_up_event_cb                 (void)  {  return _keyUpEventCB;            }
         static CallbackList<>&                                      back_button_event_cb            (void)  {  return _backButtonEventCB;       }
         static CallbackList<>&                                      menu_button_event_cb            (void)  {  return _menuButtonEventCB;       }
 
@@ -93,10 +93,10 @@ class SystemCallbacks {
 
         // Screen callbacks
         static CallbackList<>                                       _screenInitedCB;
-        static CallbackList<DTuint,DTuint>                          _screenOpenedCB;
+        static CallbackList<uint32_t,uint32_t>                          _screenOpenedCB;
         static CallbackList<>                                       _screenClosedCB;
         static CallbackList<>                                       _screenSwapCB;
-        static CallbackList<DTuint,DTuint>                          _screenChangedCB;
+        static CallbackList<uint32_t,uint32_t>                          _screenChangedCB;
 
         // Component Callbacks
         static CallbackList<World*, ComponentBase*>                 _addComponentCB;
@@ -118,8 +118,8 @@ class SystemCallbacks {
         static CallbackList<Event*,Event*>                          _disconnectEventCB;
 
         static CallbackList<const TouchEvent*>                      _touchEventCB;
-        static CallbackList<DTuint,DTushort>                        _keyDownEventCB;
-        static CallbackList<DTuint,DTushort>                        _keyUpEventCB;
+        static CallbackList<uint32_t,uint16_t>                        _keyDownEventCB;
+        static CallbackList<uint32_t,uint16_t>                        _keyUpEventCB;
         static CallbackList<>                                       _backButtonEventCB;
         static CallbackList<>                                       _menuButtonEventCB;
 

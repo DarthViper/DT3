@@ -127,7 +127,7 @@ class World: public PlugNode {
         /// Description
         /// \param param description
         /// \return description
-        std::shared_ptr<WorldNode>                  node_by_id      (DTuint unique_id);
+        std::shared_ptr<WorldNode>                  node_by_id      (uint32_t unique_id);
 
 
         //

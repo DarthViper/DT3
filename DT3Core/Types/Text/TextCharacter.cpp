@@ -90,12 +90,12 @@ TextCharacter::~TextCharacter (void)
 //==============================================================================
 //==============================================================================
 
-void TextCharacter::set_tab_size (DTuint size)
+void TextCharacter::set_tab_size (uint32_t size)
 {
     _tab_size = size;
 }
 
-void TextCharacter::set_baseline_shift (DTuint bl)
+void TextCharacter::set_baseline_shift (uint32_t bl)
 {
     _baseline = bl;
 }

@@ -47,7 +47,7 @@ class SphericalHarmonics {
         /// Step 1. Build the list of samples that will be used to sample the environment
         /// \param num_bands Number of bands in the SH function
         /// \param num_samples Number of samples used to approximate the function
-        void									build_spherical_samples	(DTint num_bands, DTint num_samples);
+        void									build_spherical_samples	(int32_t num_bands, int32_t num_samples);
 
         /// Step 2. Sample the function and build the coefficients
         /// \param fn The function used to build the coefficients
@@ -58,11 +58,11 @@ class SphericalHarmonics {
 
         /// Return the number of bands in the function
         /// \return Number of bands
-        DTint									num_bands				(void)	{	return _num_bands;				}
+        int32_t									num_bands				(void)	{	return _num_bands;				}
 
         /// Return the number of coefficients in the function
         /// \return Number of coefficients
-        DTint									num_coefficients		(void)	{	return _num_bands*_num_bands;	}
+        int32_t									num_coefficients		(void)	{	return _num_bands*_num_bands;	}
 
         /// Returns the coefficients
         /// \return coefficients
@@ -73,13 +73,13 @@ class SphericalHarmonics {
 
     private:
 
-        DTfloat									legendre				(DTint l,DTint m,DTfloat x);
-        DTfloat									legendre_scale			(DTint l, DTint m);
-        DTfloat									sH						(DTint l, DTint m, DTfloat theta, DTfloat phi);
+        DTfloat									legendre				(int32_t l,int32_t m,DTfloat x);
+        DTfloat									legendre_scale			(int32_t l, int32_t m);
+        DTfloat									sH						(int32_t l, int32_t m, DTfloat theta, DTfloat phi);
 
-        DTint									_num_bands;
-        DTint									_num_samples;
-        DTint									_num_samples_sqrt;
+        int32_t									_num_bands;
+        int32_t									_num_samples;
+        int32_t									_num_samples_sqrt;
 
         struct SHSample {
             Vector3                 _sph;

@@ -53,44 +53,44 @@ ImporterSoundWAV::~ImporterSoundWAV (void)
 //==============================================================================
 //==============================================================================
 
-void	ImporterSoundWAV::read(BinaryFileStream &infile, DTubyte &v)
+void	ImporterSoundWAV::read(BinaryFileStream &infile, uint8_t &v)
 {
-    infile.read_raw((DTubyte*)&v, sizeof(DTbyte));
+    infile.read_raw((uint8_t*)&v, sizeof(int8_t));
 }
 
 //==============================================================================
 //==============================================================================
 
-void	ImporterSoundWAV::read(BinaryFileStream &infile, DTushort &v)
+void	ImporterSoundWAV::read(BinaryFileStream &infile, uint16_t &v)
 {
-    infile.read_raw((DTubyte*)&v, sizeof(DTushort));
+    infile.read_raw((uint8_t*)&v, sizeof(uint16_t));
     Endian::from_little_endian(v);
 }
 
 //==============================================================================
 //==============================================================================
 
-void	ImporterSoundWAV::read(BinaryFileStream &infile, DTshort &v)
+void	ImporterSoundWAV::read(BinaryFileStream &infile, int16_t &v)
 {
-    infile.read_raw((DTubyte*)&v, sizeof(DTshort));
+    infile.read_raw((uint8_t*)&v, sizeof(int16_t));
     Endian::from_little_endian(v);
 }
 
 //==============================================================================
 //==============================================================================
 
-void	ImporterSoundWAV::read(BinaryFileStream &infile, DTuint &v)
+void	ImporterSoundWAV::read(BinaryFileStream &infile, uint32_t &v)
 {
-    infile.read_raw((DTubyte*)&v, sizeof(DTuint));
+    infile.read_raw((uint8_t*)&v, sizeof(uint32_t));
     Endian::from_little_endian(v);
 }
 
 //==============================================================================
 //==============================================================================
 
-void	ImporterSoundWAV::read(BinaryFileStream &infile, DTint &v)
+void	ImporterSoundWAV::read(BinaryFileStream &infile, int32_t &v)
 {
-    infile.read_raw((DTubyte*)&v, sizeof(DTint));
+    infile.read_raw((uint8_t*)&v, sizeof(int32_t));
     Endian::from_little_endian(v);
 }
 
@@ -99,10 +99,10 @@ void	ImporterSoundWAV::read(BinaryFileStream &infile, DTint &v)
 
 void	ImporterSoundWAV::read(BinaryFileStream &infile, DTcharacter id[4])
 {
-    infile.read_raw((DTubyte*)&id[0], sizeof(DTcharacter));
-    infile.read_raw((DTubyte*)&id[1], sizeof(DTcharacter));
-    infile.read_raw((DTubyte*)&id[2], sizeof(DTcharacter));
-    infile.read_raw((DTubyte*)&id[3], sizeof(DTcharacter));
+    infile.read_raw((uint8_t*)&id[0], sizeof(DTcharacter));
+    infile.read_raw((uint8_t*)&id[1], sizeof(DTcharacter));
+    infile.read_raw((uint8_t*)&id[2], sizeof(DTcharacter));
+    infile.read_raw((uint8_t*)&id[3], sizeof(DTcharacter));
 }
 
 //==============================================================================
@@ -157,7 +157,7 @@ DTerr ImporterSoundWAV::import(SoundResource *target, std::string args)
         return DT3_ERR_FILE_WRONG_TYPE;
 
 
-    DTint size_remaining = chunk_riff.length - 4; // 4 for "WAVE"
+    int32_t size_remaining = chunk_riff.length - 4; // 4 for "WAVE"
     while(size_remaining > 0) {
         // read the next chunk
         ChunkHeader chunk;
@@ -239,7 +239,7 @@ DTerr ImporterSoundWAV::import(SoundResource *target, std::string args)
 
     // Check large enough for streaming
     DTsize preloaded_chunk_size = MoreMath::min( (DTsize) DT3_AUDIO_STREAMING_BUFFER_SIZE, length());
-    _preloaded_chunk = new ("SoundBuffer") DTubyte[preloaded_chunk_size];
+    _preloaded_chunk = new ("SoundBuffer") uint8_t[preloaded_chunk_size];
 
 #ifdef DT3_DEBUG
     DTsize num_bytes = stream(_preloaded_chunk, 0, preloaded_chunk_size);
@@ -256,7 +256,7 @@ DTerr ImporterSoundWAV::import(SoundResource *target, std::string args)
 //==============================================================================
 //==============================================================================
 
-DTsize ImporterSoundWAV::stream (DTubyte *data, DTsize start, DTsize length)
+DTsize ImporterSoundWAV::stream (uint8_t *data, DTsize start, DTsize length)
 {
 
     DTsize actual_length = MoreMath::min(length, _data_length - start);
@@ -281,9 +281,9 @@ DTsize ImporterSoundWAV::stream (DTubyte *data, DTsize start, DTsize length)
     // 16 bits per sample
     } else if (_format.waveFormatPCM.bitsPerSample == 16) {
 
-        DTshort *d = (DTshort *) data;
-        DTuint l = length / 2;
-        for (DTuint i = 0; i < l; i++) {
+        int16_t *d = (int16_t *) data;
+        uint32_t l = length / 2;
+        for (uint32_t i = 0; i < l; i++) {
             Endian::fromLittleEndian(d[i]);
         }
 

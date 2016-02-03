@@ -154,13 +154,13 @@ class PlugBase {
         PlugInfo&                       info                        (void) const                {	return PlugInfo::get_info(_info_index); }
 
         // Data indices
-        DTuint                          _info_index:14;         // Index into Plug info pool
-        DTuint                          _connection_index:15;   // Index into connections pool
+        uint32_t                          _info_index:14;         // Index into Plug info pool
+        uint32_t                          _connection_index:15;   // Index into connections pool
 
         // Flags
-        DTuint                          _is_computing:1;
-        DTuint                          _is_dirty:1;
-        DTuint                          _will_compute:1;
+        uint32_t                          _is_computing:1;
+        uint32_t                          _is_dirty:1;
+        uint32_t                          _will_compute:1;
 
     private:
 
@@ -195,9 +195,9 @@ class Plug: public PlugBase {
     public:
         DEFINE_TYPE_SIMPLE(Plug,PlugBase)
 
-                            Plug                (DTushort info)                 {	_info_index = info;              }
+                            Plug                (uint16_t info)                 {	_info_index = info;              }
 
-                            Plug                (DTushort info, const T &rhs)   {	_info_index = info;
+                            Plug                (uint16_t info, const T &rhs)   {	_info_index = info;
                                                                                     _is_dirty = true;
                                                                                     _value = rhs;
                                                                                 }

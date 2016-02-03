@@ -47,7 +47,7 @@ DTerr ArchiveBinaryReader::open (const FilePath &pathname, std::shared_ptr<Progr
 		return error;
 
 	// Check magic number
-	DTuint magic;
+	uint32_t magic;
 	_infile >> magic;
 	
 	if (magic != DT3_BINARY_TOKEN) {
@@ -95,14 +95,14 @@ Archive& ArchiveBinaryReader::operator << (const ArchiveData& data)
 
 void ArchiveBinaryReader::push_domain (const std::string &domain)
 {
-	DTubyte marker;
+	uint8_t marker;
 	_infile >> marker;
 	ERROR(marker == 0xFF, "Error streaming file");
 }
 
 void ArchiveBinaryReader::pop_domain (void)
 {
-	DTubyte marker;
+	uint8_t marker;
 	_infile >> marker;
 	ERROR(marker == 0xAA, "Error streaming file");
 }
@@ -110,12 +110,12 @@ void ArchiveBinaryReader::pop_domain (void)
 //==============================================================================
 //==============================================================================
 
-DTuint ArchiveBinaryReader::get_engine_version (void) const
+uint32_t ArchiveBinaryReader::get_engine_version (void) const
 {
 	return _engine_version;
 }
 
-DTuint ArchiveBinaryReader::get_app_version (void) const
+uint32_t ArchiveBinaryReader::get_app_version (void) const
 {
 	return _app_version;
 }

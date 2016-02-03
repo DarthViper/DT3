@@ -45,7 +45,7 @@ MonkeyTest::~MonkeyTest (void)
 
 void MonkeyTest::new_event (void)
 {
-    DTuint event = MoreMath::random_int() % 3;
+    uint32_t event = MoreMath::random_int() % 3;
     
     switch (event) {
         case 0: _state = STATE_START_TAP;   break;
@@ -57,8 +57,8 @@ void MonkeyTest::new_event (void)
 
 void MonkeyTest::run (void)
 {
-    DTint width = System::renderer()->screen_width();
-    DTint height = System::renderer()->screen_height();
+    int32_t width = System::renderer()->screen_width();
+    int32_t height = System::renderer()->screen_height();
 
     _time_remaining -= _timer.delta_time();
     

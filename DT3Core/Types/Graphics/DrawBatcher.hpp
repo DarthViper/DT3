@@ -99,7 +99,7 @@ class DrawBatcher {
                                                 const std::shared_ptr<ShaderResource> &shader,
                                                 const Matrix4 &transform,
                                                 DT3GLPrimitiveType type,
-                                                DTushort fmt,
+                                                uint16_t fmt,
                                                 DTsize size_hint = 1024);
 
         /// Designate a point in drawing where the batch can be split
@@ -136,7 +136,7 @@ class DrawBatcher {
         void			draw				(bool clear_when_done = true);
 
     private:
-        void            screen_opened       (DTuint width, DTuint height);
+        void            screen_opened       (uint32_t width, uint32_t height);
         void            screen_closed       (void);
 
         DTsize                                      _size_hint;
@@ -148,19 +148,19 @@ class DrawBatcher {
         Matrix4                                     _transform;
 
         DT3GLPrimitiveType                          _type;
-        DTushort                                    _format;
+        uint16_t                                    _format;
 
-        DTshort                                     _cur_index;
+        int16_t                                     _cur_index;
 
         std::shared_ptr<Callback<DrawBatcher*>>     _flush_callback;
 
         // These are raw byte arrays
-        std::shared_ptr<DTubyte>                    _batch_v_raw;
-        std::shared_ptr<DTubyte>                    _batch_n_raw;
-        std::shared_ptr<DTubyte>                    _batch_t0_raw;
-        std::shared_ptr<DTubyte>                    _batch_t1_raw;
-        std::shared_ptr<DTubyte>                    _batch_c_raw;
-        std::shared_ptr<DTubyte>                    _batch_cf_raw;
+        std::shared_ptr<uint8_t>                    _batch_v_raw;
+        std::shared_ptr<uint8_t>                    _batch_n_raw;
+        std::shared_ptr<uint8_t>                    _batch_t0_raw;
+        std::shared_ptr<uint8_t>                    _batch_t1_raw;
+        std::shared_ptr<uint8_t>                    _batch_c_raw;
+        std::shared_ptr<uint8_t>                    _batch_cf_raw;
 
         std::shared_ptr<DT3GLAttribBufferResource>        _batch_v_buffer;
         std::shared_ptr<DT3GLAttribBufferResource>        _batch_n_buffer;

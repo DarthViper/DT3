@@ -49,11 +49,11 @@ ShaderResource::ShaderResource (void)
     :   _needs_recompile              (false)
 {
 
-    for (DTuint i = 0; i < ARRAY_SIZE(_standard_uniforms); ++i) {
+    for (uint32_t i = 0; i < ARRAY_SIZE(_standard_uniforms); ++i) {
         _standard_uniforms[i] = -1;
     }
 
-    for (DTuint i = 0; i < ARRAY_SIZE(_standard_attribs); ++i) {
+    for (uint32_t i = 0; i < ARRAY_SIZE(_standard_attribs); ++i) {
         _standard_attribs[i] = -1;
     }
     SystemCallbacks::screen_opened_cb().add(make_callback(this, &type::screen_opened));
@@ -144,7 +144,7 @@ void ShaderResource::uninitialize_static (void)
 //==============================================================================
 //==============================================================================
 
-void ShaderResource::screen_opened (DTuint width, DTuint height)
+void ShaderResource::screen_opened (uint32_t width, uint32_t height)
 {
     LOG_MESSAGE << "ShaderResource::screen_opened";
 }
@@ -234,7 +234,7 @@ void ShaderResource::add_attrib (   const std::string &name, DT3GLStandardAttrib
 
 void ShaderResource::add_uniform (  const std::string &name,
                                     DT3GLUniformFormat type,
-                                    DTint array_size,
+                                    int32_t array_size,
                                     DT3GLStandardUniform standard_uniform)
 {
     MappingUniform m;
@@ -252,22 +252,22 @@ void ShaderResource::add_uniform (  const std::string &name,
 //==============================================================================
 //==============================================================================
 
-DTint ShaderResource::attrib_slot (const std::string &name)
+int32_t ShaderResource::attrib_slot (const std::string &name)
 {
     recompile_if_needed();
 
-    for (DTuint i = 0; i < _attribs.size(); ++i)
+    for (uint32_t i = 0; i < _attribs.size(); ++i)
         if (_attribs[i]._name == name)
             return i;
 
     return -1;
 }
 
-DTint ShaderResource::attrib_slot (DT3GLStandardAttrib standard_attrib)
+int32_t ShaderResource::attrib_slot (DT3GLStandardAttrib standard_attrib)
 {
     recompile_if_needed();
 
-//	for (DTint i = 0; i < _attribs.size(); ++i)
+//	for (int32_t i = 0; i < _attribs.size(); ++i)
 //		if (_attribs[i]._standard_attrib == standard_attrib)
 //			return i;
 //
@@ -279,7 +279,7 @@ DTint ShaderResource::attrib_slot (DT3GLStandardAttrib standard_attrib)
 //==============================================================================
 //==============================================================================
 
-void ShaderResource::set_attribute_buffer (DTint attribute_slot, std::shared_ptr<DT3GLAttribBufferResource> res)
+void ShaderResource::set_attribute_buffer (int32_t attribute_slot, std::shared_ptr<DT3GLAttribBufferResource> res)
 {
     MappingAttribute &m = _attribs[attribute_slot];
 
@@ -289,22 +289,22 @@ void ShaderResource::set_attribute_buffer (DTint attribute_slot, std::shared_ptr
 //==============================================================================
 //==============================================================================
 
-DTint ShaderResource::uniform_slot (const std::string &name)
+int32_t ShaderResource::uniform_slot (const std::string &name)
 {
     recompile_if_needed();
 
-    for (DTint i = 0; i < (DTsize) _uniforms.size(); ++i)
+    for (int32_t i = 0; i < (DTsize) _uniforms.size(); ++i)
         if (_uniforms[i]._name == name)
             return i;
 
     return -1;
 }
 
-DTint ShaderResource::uniform_slot (DT3GLStandardUniform standard_uniform)
+int32_t ShaderResource::uniform_slot (DT3GLStandardUniform standard_uniform)
 {
     recompile_if_needed();
 
-//	for (DTint i = 0; i < _uniforms.size(); ++i)
+//	for (int32_t i = 0; i < _uniforms.size(); ++i)
 //		if (_uniforms[i]._standard_uniform == standard_uniform)
 //			return i;
 //
@@ -316,7 +316,7 @@ DTint ShaderResource::uniform_slot (DT3GLStandardUniform standard_uniform)
 //==============================================================================
 //==============================================================================
 
-void ShaderResource::attach_attribute_buffer (DTint attribute_slot, std::shared_ptr<DT3GLAttribBufferResource> res)
+void ShaderResource::attach_attribute_buffer (int32_t attribute_slot, std::shared_ptr<DT3GLAttribBufferResource> res)
 {
     ASSERT(attribute_slot >= 0);
 
@@ -324,7 +324,7 @@ void ShaderResource::attach_attribute_buffer (DTint attribute_slot, std::shared_
     System::renderer()->attach_attribute_buffer(_shader, m._index, res);
 }
 
-void ShaderResource::attach_uniform_buffer (DTint uniform_slot, std::shared_ptr<DT3GLUniformResource> res)
+void ShaderResource::attach_uniform_buffer (int32_t uniform_slot, std::shared_ptr<DT3GLUniformResource> res)
 {
     ASSERT(uniform_slot >= 0);
 
@@ -335,7 +335,7 @@ void ShaderResource::attach_uniform_buffer (DTint uniform_slot, std::shared_ptr<
 //==============================================================================
 //==============================================================================
 
-void ShaderResource::set_uniform_value (DTint uniform_slot, DTint buffer_data)
+void ShaderResource::set_uniform_value (int32_t uniform_slot, int32_t buffer_data)
 {
     if (uniform_slot < 0)
         return;
@@ -356,7 +356,7 @@ void ShaderResource::set_uniform_value (DTint uniform_slot, DTint buffer_data)
 
 }
 
-void ShaderResource::set_uniform_value (DTint uniform_slot, const Vector4 &buffer_data)
+void ShaderResource::set_uniform_value (int32_t uniform_slot, const Vector4 &buffer_data)
 {
     if (uniform_slot < 0)
         return;
@@ -377,7 +377,7 @@ void ShaderResource::set_uniform_value (DTint uniform_slot, const Vector4 &buffe
 
 }
 
-void ShaderResource::set_uniform_value (DTint uniform_slot, const std::vector<Vector4> &buffer_data)
+void ShaderResource::set_uniform_value (int32_t uniform_slot, const std::vector<Vector4> &buffer_data)
 {
     if (uniform_slot < 0)
         return;
@@ -398,7 +398,7 @@ void ShaderResource::set_uniform_value (DTint uniform_slot, const std::vector<Ve
 
 }
 
-void ShaderResource::set_uniform_value (DTint uniform_slot, const Matrix4 &buffer_data)
+void ShaderResource::set_uniform_value (int32_t uniform_slot, const Matrix4 &buffer_data)
 {
     if (uniform_slot < 0)
         return;
@@ -419,7 +419,7 @@ void ShaderResource::set_uniform_value (DTint uniform_slot, const Matrix4 &buffe
 
 }
 
-void ShaderResource::set_uniform_value (DTint uniform_slot, const std::vector<Matrix4> &buffer_data)
+void ShaderResource::set_uniform_value (int32_t uniform_slot, const std::vector<Matrix4> &buffer_data)
 {
     if (uniform_slot < 0)
         return;
@@ -440,7 +440,7 @@ void ShaderResource::set_uniform_value (DTint uniform_slot, const std::vector<Ma
 
 }
 
-void ShaderResource::set_uniform_value (DTint uniform_slot, const Color4f &buffer_data)
+void ShaderResource::set_uniform_value (int32_t uniform_slot, const Color4f &buffer_data)
 {
     if (uniform_slot < 0)
         return;
@@ -503,11 +503,11 @@ void ShaderResource::recompile_if_needed (void)
 
 
         // Clear standard attribs and uniforms
-        for (DTuint i = 0; i < ARRAY_SIZE(_standard_uniforms); ++i) {
+        for (uint32_t i = 0; i < ARRAY_SIZE(_standard_uniforms); ++i) {
             _standard_uniforms[i] = -1;
         }
 
-        for (DTuint i = 0; i < ARRAY_SIZE(_standard_attribs); ++i) {
+        for (uint32_t i = 0; i < ARRAY_SIZE(_standard_attribs); ++i) {
             _standard_attribs[i] = -1;
         }
 
@@ -531,7 +531,7 @@ void ShaderResource::recompile_if_needed (void)
         }
 
         // Setup texture slots
-        for (DTint i = 0; i < 16; ++i) {
+        for (int32_t i = 0; i < 16; ++i) {
             set_uniform_value(uniform_slot( (DT3GLStandardUniform) (DT3GL_UNIFORM_TEX0 + i) ), i);
         }
 

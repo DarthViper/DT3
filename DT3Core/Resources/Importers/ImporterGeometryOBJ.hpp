@@ -60,9 +60,9 @@ class ImporterGeometryOBJ: public ImporterGeometry {
         std::vector<Vector2>	_texcoords;
 
         struct Face {
-            DTint				_v[3];
-            DTint				_vt[3];
-            DTint				_vn[3];
+            int32_t				_v[3];
+            int32_t				_vt[3];
+            int32_t				_vn[3];
         };
         std::vector<Face>		_faces;
 };

@@ -59,16 +59,16 @@ class SkeletonJoint {
         /// Returns the name hash of the joint
         /// \param param description
         /// \return description
-        DTuint							name_hash               (void) const                {   return _name_hash;				}
+        uint32_t							name_hash               (void) const                {   return _name_hash;				}
 
 
         /// Sets the index of the matrix that weights refer to
         /// \param offset offset of matrix
-        void							set_joint_index         (const DTuint index)		{   _index = index;					}
+        void							set_joint_index         (const uint32_t index)		{   _index = index;					}
 
         /// Returns the index of the matrix that weights refer to
         /// \return matrix offset
-        DTuint							joint_index             (void) const				{   return _index;					}
+        uint32_t							joint_index             (void) const				{   return _index;					}
 
 
         /// Sets the local transform
@@ -108,8 +108,8 @@ class SkeletonJoint {
 
     private:
         std::string                 _name;
-        DTuint                      _name_hash;
-        DTuint                      _index;
+        uint32_t                      _name_hash;
+        uint32_t                      _index;
 
         Matrix4                     _local_transform;
         Matrix4                     _local_transform_inverse;

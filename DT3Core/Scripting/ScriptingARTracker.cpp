@@ -262,15 +262,15 @@ bool ScriptingARTracker::append_calibration_sample (const Vector3 &m)
         // Add samples that are more "distinct" than the existing samples
     } else {
 
-        DTint closest_sum_dist_index = -1;
+        int32_t closest_sum_dist_index = -1;
         DTfloat closest_sum_dist_distance = std::numeric_limits<DTfloat>::infinity();
 
         // Rank all of the existing samples
-        for (DTuint i = 0; i < ARRAY_SIZE(_calibration_samples); ++i) {
+        for (uint32_t i = 0; i < ARRAY_SIZE(_calibration_samples); ++i) {
 
             DTfloat dist = 0.0F;
 
-            for (DTuint j = 0; j < ARRAY_SIZE(_calibration_samples); ++j) {
+            for (uint32_t j = 0; j < ARRAY_SIZE(_calibration_samples); ++j) {
                 if (i == j)
                     continue;
 
@@ -328,7 +328,7 @@ bool ScriptingARTracker::process_calibration_samples (void)
     // Calculate Y
     DTfloat Y[ARRAY_SIZE(_calibration_samples)];
 
-    for (DTuint i = 0; i < ARRAY_SIZE(_calibration_samples); ++i) {
+    for (uint32_t i = 0; i < ARRAY_SIZE(_calibration_samples); ++i) {
         Y[i] = _calibration_samples[i].abs2();
     }
 
@@ -336,7 +336,7 @@ bool ScriptingARTracker::process_calibration_samples (void)
     DTfloat X[ARRAY_SIZE(_calibration_samples)][4];
     DTfloat XT[4][ARRAY_SIZE(_calibration_samples)];
 
-    for (DTuint i = 0; i < ARRAY_SIZE(_calibration_samples); ++i) {
+    for (uint32_t i = 0; i < ARRAY_SIZE(_calibration_samples); ++i) {
         X[i][0] = _calibration_samples[i].x;
         X[i][1] = _calibration_samples[i].y;
         X[i][2] = _calibration_samples[i].z;
@@ -355,8 +355,8 @@ bool ScriptingARTracker::process_calibration_samples (void)
     // XT * X   (Note: 4x6 matrix times 6x4 matrix = 4x4 matrix so then we can use matrix4)
     Matrix4 temp1;
 
-    for (DTint i = 0; i < 4; i++) {
-        for (DTint j = 0; j < 4; j++) {
+    for (int32_t i = 0; i < 4; i++) {
+        for (int32_t j = 0; j < 4; j++) {
 
             DTfloat sum = 0.0F;
 
@@ -373,10 +373,10 @@ bool ScriptingARTracker::process_calibration_samples (void)
 
     Vector4 temp2;
 
-    for (DTint i = 0; i < 4; ++i) {
+    for (int32_t i = 0; i < 4; ++i) {
         DTfloat sum = 0.0F;
 
-        for (DTuint j = 0; j < ARRAY_SIZE(_calibration_samples); ++j) {
+        for (uint32_t j = 0; j < ARRAY_SIZE(_calibration_samples); ++j) {
             sum += XT[i][j] * Y[j];
         }
 

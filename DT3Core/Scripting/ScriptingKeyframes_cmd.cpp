@@ -269,7 +269,7 @@ CommandResult ScriptingKeyframes_cmd::do_keyframe_index_to_id (CommandContext &c
         return CommandResult(false, "Object not keyframes: " + p[1], CommandResult::UPDATE_NONE);
     }
 
-    DTuint index = MoreStrings::cast_from_string<DTuint>(p[2]);
+    uint32_t index = MoreStrings::cast_from_string<uint32_t>(p[2]);
 
     std::string s = MoreStrings::cast_to_string(keyframes->key_id(index));
 
@@ -292,10 +292,10 @@ CommandResult ScriptingKeyframes_cmd::do_set_keyframe_time_by_id (CommandContext
         return CommandResult(false, "Object not keyframes: " + p[1], CommandResult::UPDATE_NONE);
     }
 
-    DTuint index = MoreStrings::cast_from_string<DTuint>(p[2]);
+    uint32_t index = MoreStrings::cast_from_string<uint32_t>(p[2]);
     DTfloat time = MoreStrings::cast_from_string<DTfloat>(p[3]);
 
-    DTint k = keyframes->key_index(index);
+    int32_t k = keyframes->key_index(index);
     keyframes->set_key_time(k, time);
 
     return CommandResult(true, p[3], CommandResult::UPDATE_ANIMATION);
@@ -317,9 +317,9 @@ CommandResult ScriptingKeyframes_cmd::do_clear_keyframe_by_id (CommandContext &c
         return CommandResult(false, "Object not keyframes: " + p[1], CommandResult::UPDATE_NONE);
     }
 
-    DTuint index = MoreStrings::cast_from_string<DTuint>(p[2]);
+    uint32_t index = MoreStrings::cast_from_string<uint32_t>(p[2]);
 
-    DTint k = keyframes->key_index(index);
+    int32_t k = keyframes->key_index(index);
     keyframes->clear_key(k);
 
     return CommandResult(true, p[3], CommandResult::UPDATE_ANIMATION);

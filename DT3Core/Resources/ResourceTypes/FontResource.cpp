@@ -171,13 +171,13 @@ FT_Face& FontResource::typeface (void)
 
 void* DT_FT_Alloc_Func(FT_Memory memory, long size)
 {
-    DTubyte *block = new ("Freetype") DTubyte[size];
+    uint8_t *block = new ("Freetype") uint8_t[size];
     return block;
 }
                     
 void DT_FT_Free_Func(FT_Memory memory, void* block)
 {
-    delete (DTubyte*) block;
+    delete (uint8_t*) block;
 }
 
 void* DT_FT_Realloc_Func(FT_Memory memory, long cur_size, long new_size, void* block)

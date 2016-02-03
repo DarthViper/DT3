@@ -183,7 +183,7 @@ DTsize ScriptingSpline::num_points (void) const
     return _transforms.size();              
 }
 
-void ScriptingSpline::set_point_transform (DTuint k, const Matrix4 &transform)
+void ScriptingSpline::set_point_transform (uint32_t k, const Matrix4 &transform)
 {
 	PROFILER(SCRIPTING);
 
@@ -195,14 +195,14 @@ void ScriptingSpline::set_point_transform (DTuint k, const Matrix4 &transform)
     _translation.set_dirty();
 }
 
-const Matrix4& ScriptingSpline::point_transform (DTuint k) const
+const Matrix4& ScriptingSpline::point_transform (uint32_t k) const
 {
 	PROFILER(SCRIPTING);
 
     return _transforms[k]._transform;       
 }
 
-void ScriptingSpline::set_point_tangent (DTuint k, const Vector3 &tangent)
+void ScriptingSpline::set_point_tangent (uint32_t k, const Vector3 &tangent)
 {
 	PROFILER(SCRIPTING);
 
@@ -214,7 +214,7 @@ void ScriptingSpline::set_point_tangent (DTuint k, const Vector3 &tangent)
     _translation.set_dirty();
 }
 
-const Vector3& ScriptingSpline::point_tangent (DTuint k) const
+const Vector3& ScriptingSpline::point_tangent (uint32_t k) const
 {
 	PROFILER(SCRIPTING);
 
@@ -237,7 +237,7 @@ void ScriptingSpline::process_distances (void)
     DTfloat distance = 0.0F;
     DTfloat length = 0.0;
 
-    DTuint i;
+    uint32_t i;
     for (i = 0; i < _transforms.size()-1; ++i) {
     
         _transforms[i]._distance = distance;
@@ -344,7 +344,7 @@ void ScriptingSpline::process_distances (void)
 //==============================================================================
 //==============================================================================
 
-void ScriptingSpline::interpolate (DTint i0, DTint i1, DTfloat d, Matrix4 &transform)
+void ScriptingSpline::interpolate (int32_t i0, int32_t i1, DTfloat d, Matrix4 &transform)
 {
     DTfloat d2 = d * d;
     DTfloat d3 = d * d2;
@@ -386,7 +386,7 @@ void ScriptingSpline::interpolate (DTfloat d, Matrix4 &transform)
     
 	// Scan for the best key
 	if (_keyframe_cache < 0)									_keyframe_cache = 0;
-	else if (_keyframe_cache > (DTint) _transforms.size() - 2)	_keyframe_cache = (DTint) _transforms.size() - 2;
+    else if (_keyframe_cache > (int32_t) _transforms.size() - 2)	_keyframe_cache = (int32_t) _transforms.size() - 2;
 			
 	while (1) {
 		if (d < _transforms[_keyframe_cache]._distance) {
@@ -398,8 +398,8 @@ void ScriptingSpline::interpolate (DTfloat d, Matrix4 &transform)
 			}
 		} else if (d > _transforms[_keyframe_cache+1]._distance) {
 			++_keyframe_cache;
-			if (_keyframe_cache > (DTint) _transforms.size() - 2) {
-				_keyframe_cache = (DTint) _transforms.size() - 2;
+            if (_keyframe_cache > (int32_t) _transforms.size() - 2) {
+                _keyframe_cache = (int32_t) _transforms.size() - 2;
 				transform = _transforms[_keyframe_cache+1]._transform;
 				break;
 			}

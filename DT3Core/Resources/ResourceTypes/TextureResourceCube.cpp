@@ -139,7 +139,7 @@ void TextureResourceCube::uninitialize_static (void)
 //==============================================================================
 //==============================================================================
 
-void TextureResourceCube::screen_opened (DTuint width, DTuint height)
+void TextureResourceCube::screen_opened (uint32_t width, uint32_t height)
 {
     LOG_MESSAGE << "TextureResourceCube::screen_opened";
 
@@ -199,16 +199,16 @@ DTerr TextureResourceCube::import (const FilePath &pathname, std::string args)
 //==============================================================================
 //==============================================================================
 
-void TextureResourceCube::set_textels_cube (const DTint width, const DTint height,
-                                            const std::shared_ptr<DTubyte> &textels_front,
-                                            const std::shared_ptr<DTubyte> &textels_back,
-                                            const std::shared_ptr<DTubyte> &textels_left,
-                                            const std::shared_ptr<DTubyte> &textels_right,
-                                            const std::shared_ptr<DTubyte> &textels_top,
-                                            const std::shared_ptr<DTubyte> &textels_bottom,
+void TextureResourceCube::set_textels_cube (const int32_t width, const int32_t height,
+                                            const std::shared_ptr<uint8_t> &textels_front,
+                                            const std::shared_ptr<uint8_t> &textels_back,
+                                            const std::shared_ptr<uint8_t> &textels_left,
+                                            const std::shared_ptr<uint8_t> &textels_right,
+                                            const std::shared_ptr<uint8_t> &textels_top,
+                                            const std::shared_ptr<uint8_t> &textels_bottom,
                                             DT3GLTextelFormat format,
                                             bool mipmapped,
-                                            DTuint flags)
+                                            uint32_t flags)
 {
     _textels_front = textels_front;
     _textels_back = textels_back;
@@ -242,7 +242,7 @@ void TextureResourceCube::set_textels_cube (const DTint width, const DTint heigh
 //==============================================================================
 //==============================================================================
 
-void TextureResourceCube::activate (DTuint texture_slot)
+void TextureResourceCube::activate (uint32_t texture_slot)
 {
     if (_resource_cube)
         System::renderer()->attach_texture(texture_slot, _resource_cube);

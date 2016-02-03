@@ -27,11 +27,11 @@ namespace DT3 {
 struct mcontext {
 
 #if DT3_CPU == DT3_INTEL && DT3_POINTER_SIZE == DT3_32_BIT
-    DTuint      gregs[65];
+    uint32_t      gregs[65];
 #elif DT3_CPU == DT3_INTEL && DT3_POINTER_SIZE == DT3_64_BIT
-    DTuint64	gregs[100]; // 8 bytes each on AMD64
+    uint64_t	gregs[100]; // 8 bytes each on AMD64
 #elif DT3_CPU == DT3_ARM
-    DTuint      gregs[16];
+    uint32_t      gregs[16];
     DTdouble    fregs[32];
 #endif
 
@@ -42,8 +42,8 @@ struct mcontext {
 
 struct uContext {
     mcontext            uc_mcontext;
-    DTuint              uc_stack_ss;
-    DTubyte*            uc_stack_sp;
+    uint32_t              uc_stack_ss;
+    uint8_t*            uc_stack_sp;
 };
 
 //==============================================================================
@@ -60,10 +60,10 @@ class ContextSwitcher {
 
     public:
 
-        static DTint        swap_context        (uContext *oucp, const uContext *ucp);
+        static int32_t        swap_context        (uContext *oucp, const uContext *ucp);
         static void         make_context        (uContext *ucp, void (*func)(void*), void *data);
 
-        static DTint        context             (uContext*ucp);
+        static int32_t        context             (uContext*ucp);
         static void         set_context         (const uContext*ucp);
 
 };

@@ -22,17 +22,17 @@ namespace DT3 {
 //==============================================================================
 //==============================================================================
 
-std::shared_ptr<Callback<const DTcharacter*, const DTcharacter*, DTint>>   AssertImpl::_callback_assert_msg;
+std::shared_ptr<Callback<const DTcharacter*, const DTcharacter*, int32_t>>   AssertImpl::_callback_assert_msg;
 
 //==============================================================================
 //==============================================================================
 
-void AssertImpl::set_callback_assert_msg (std::shared_ptr<Callback<const DTcharacter*, const DTcharacter*, DTint>> cb)
+void AssertImpl::set_callback_assert_msg (std::shared_ptr<Callback<const DTcharacter*, const DTcharacter*, int32_t>> cb)
 {
     _callback_assert_msg = cb;
 }
 
-void AssertImpl::call_assert_msg (const DTcharacter* file, const DTcharacter* func, const DTint line)
+void AssertImpl::call_assert_msg (const DTcharacter* file, const DTcharacter* func, const int32_t line)
 {
     if (_callback_assert_msg)
         (*_callback_assert_msg)(file, func, line);  
@@ -43,7 +43,7 @@ void AssertImpl::call_assert_msg (const DTcharacter* file, const DTcharacter* fu
     }
 }
 
-void AssertImpl::call_assert_break (const DTcharacter* file, const DTcharacter* func, const DTint line)
+void AssertImpl::call_assert_break (const DTcharacter* file, const DTcharacter* func, const int32_t line)
 {
     dt3_debug_break();
     exit(1);

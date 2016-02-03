@@ -101,7 +101,7 @@ bool Globals::global (const std::string &name_with_case, std::string &value)
 //==============================================================================
 //==============================================================================
 
-void Globals::set_global (const std::string &name_with_case, const std::string &value, const DTint lifetime)
+void Globals::set_global (const std::string &name_with_case, const std::string &value, const int32_t lifetime)
 {
     // Convert name to lowercase
     std::string name = MoreStrings::lowercase(name_with_case);
@@ -125,7 +125,7 @@ void Globals::set_global (const std::string &name_with_case, const std::string &
 //==============================================================================
 //==============================================================================
 
-void Globals::set_global_default (const std::string &name_with_case, const std::string &value, const DTint lifetime)
+void Globals::set_global_default (const std::string &name_with_case, const std::string &value, const int32_t lifetime)
 {
     // Convert name to lowercase
     std::string name = MoreStrings::lowercase(name_with_case);
@@ -161,7 +161,7 @@ bool Globals::substitute_global (const std::string &s, std::string &value)
 {
     value = s;
 
-    for (DTuint i = 0; i < 100; ++i) {
+    for (uint32_t i = 0; i < 100; ++i) {
         std::string::size_type first = value.find_last_of('{');
         std::string::size_type last = value.find_first_of('}',first);
 

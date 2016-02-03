@@ -36,9 +36,9 @@ class Color4f {
                                                 Color4f					(void);
                                                 Color4f					(const Color4f &rhs);
                                                 Color4f					(const DTfloat r_, const DTfloat g_, const DTfloat b_, const DTfloat a_ = 1.0F);
-                                                Color4f					(const DTubyte r_, const DTubyte g_, const DTubyte b_, const DTubyte a_ = DTUBYTE_MAX);
+                                                Color4f					(const uint8_t r_, const uint8_t g_, const uint8_t b_, const uint8_t a_ = DTUBYTE_MAX);
         explicit                                Color4f					(const DTfloat rhs[]);
-        explicit								Color4f					(const DTubyte rhs[]);
+        explicit								Color4f					(const uint8_t rhs[]);
         explicit                                Color4f                 (const Color4b& rhs);
         Color4f &								operator =              (const Color4f& rhs);
                                                 ~Color4f				(void)  {}
@@ -64,7 +64,7 @@ class Color4f {
         /// \param g_ green
         /// \param b_ blue
         /// \param a_ alpha
-        void                                    set                     (const DTubyte r_, const DTubyte g_, const DTubyte b_, const DTubyte a_ = DTUBYTE_MAX);
+        void                                    set                     (const uint8_t r_, const uint8_t g_, const uint8_t b_, const uint8_t a_ = DTUBYTE_MAX);
 
         /// Sets the color components as float array
         /// \param af color components as array
@@ -72,7 +72,7 @@ class Color4f {
 
         /// Sets the color components as byte array
         /// \param af color components as array
-        void                                    set                     (const DTubyte af[]);
+        void                                    set                     (const uint8_t af[]);
 
 
         //
@@ -86,10 +86,10 @@ class Color4f {
         void                                    set_a                   (const DTfloat a_)		{	a = a_;     }
 
         /// Sets color components as bytes
-        void                                    set_r                   (const DTubyte r_);
-        void                                    set_g                   (const DTubyte g_);
-        void                                    set_b                   (const DTubyte b_);
-        void                                    set_a                   (const DTubyte a_);
+        void                                    set_r                   (const uint8_t r_);
+        void                                    set_g                   (const uint8_t g_);
+        void                                    set_b                   (const uint8_t b_);
+        void                                    set_a                   (const uint8_t a_);
 
 
         /// Returns color components as floats
@@ -101,10 +101,10 @@ class Color4f {
 
         /// Returns color components as bytes
         /// \return color components
-        DTubyte                                 r_as_byte               (void) 	const;
-        DTubyte                                 g_as_byte               (void)	const;
-        DTubyte                                 b_as_byte               (void)	const;
-        DTubyte                                 a_as_byte               (void)	const;
+        uint8_t                                 r_as_byte               (void) 	const;
+        uint8_t                                 g_as_byte               (void)	const;
+        uint8_t                                 b_as_byte               (void)	const;
+        uint8_t                                 a_as_byte               (void)	const;
 
 
 

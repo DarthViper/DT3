@@ -193,15 +193,15 @@ DTfloat SoundResource::sample (DTsize s) const
 {
     switch (_format) {
         case FORMAT_MONO16: {
-            DTshort data;
-            _importer->stream((DTubyte*) &data, s*2, sizeof(data));
-            return (DTint) data / static_cast<DTfloat>(DTSHORT_MAX);
+            int16_t data;
+            _importer->stream((uint8_t*) &data, s*2, sizeof(data));
+            return (int32_t) data / static_cast<DTfloat>(DTSHORT_MAX);
         }
             
         case FORMAT_STEREO16: {
-            DTshort data[2];
-            _importer->stream((DTubyte*) data, s*4, sizeof(data));
-            return ((DTint) (data[0]+data[1])/2) / static_cast<DTfloat>(DTSHORT_MAX);
+            int16_t data[2];
+            _importer->stream((uint8_t*) data, s*4, sizeof(data));
+            return ((int32_t) (data[0]+data[1])/2) / static_cast<DTfloat>(DTSHORT_MAX);
         }
 
         default:
@@ -214,20 +214,20 @@ void SoundResource::sample_window (DTsize s, DTsize num, DTfloat &min_sample, DT
 {
     switch (_format) {
         case FORMAT_MONO16: {
-            DTshort *data = new DTshort[num];
-            _importer->stream((DTubyte*) &data, s*2, sizeof(num*2));
+            int16_t *data = new int16_t[num];
+            _importer->stream((uint8_t*) &data, s*2, sizeof(num*2));
 
-            DTshort min_s = data[0];
-            DTshort max_s = data[0];
+            int16_t min_s = data[0];
+            int16_t max_s = data[0];
             
-            DTshort *ip = data;
-            for (DTuint i = 0; i < num; ++i, ++ip) {
+            int16_t *ip = data;
+            for (uint32_t i = 0; i < num; ++i, ++ip) {
                 min_s = MoreMath::min(min_s, *ip);
                 max_s = MoreMath::min(max_s, *ip);
             }
             
-            min_sample = (DTint) min_s / static_cast<DTfloat>(DTSHORT_MAX);
-            max_sample = (DTint) max_s / static_cast<DTfloat>(DTSHORT_MAX);
+            min_sample = (int32_t) min_s / static_cast<DTfloat>(DTSHORT_MAX);
+            max_sample = (int32_t) max_s / static_cast<DTfloat>(DTSHORT_MAX);
             
 			delete[] data;
 
@@ -235,20 +235,20 @@ void SoundResource::sample_window (DTsize s, DTsize num, DTfloat &min_sample, DT
         }
                 
         case FORMAT_STEREO16: {
-            DTshort *data = new DTshort[num*2];
-            _importer->stream((DTubyte*) data, s*4, sizeof(num*4));
+            int16_t *data = new int16_t[num*2];
+            _importer->stream((uint8_t*) data, s*4, sizeof(num*4));
 
-            DTshort min_s = data[0];
-            DTshort max_s = data[0];
+            int16_t min_s = data[0];
+            int16_t max_s = data[0];
             
-            DTshort *ip = data;
-            for (DTuint i = 0; i < num*2; ++i, ++ip) {
+            int16_t *ip = data;
+            for (uint32_t i = 0; i < num*2; ++i, ++ip) {
                 min_s = MoreMath::min(min_s, *ip);
                 max_s = MoreMath::min(max_s, *ip);
             }
             
-            min_sample = (DTint) min_s / static_cast<DTfloat>(DTSHORT_MAX);
-            max_sample = (DTint) max_s / static_cast<DTfloat>(DTSHORT_MAX);
+            min_sample = (int32_t) min_s / static_cast<DTfloat>(DTSHORT_MAX);
+            max_sample = (int32_t) max_s / static_cast<DTfloat>(DTSHORT_MAX);
             
 			delete[] data;
 

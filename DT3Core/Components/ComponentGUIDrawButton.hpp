@@ -65,7 +65,7 @@ class ComponentGUIDrawButton: public ComponentBase {
         virtual void                remove_from_owner       (void);
 
         /// Screen created callback.
-        void                        screen_opened           (DTuint width, DTuint height);
+        void                        screen_opened           (uint32_t width, uint32_t height);
 
         /// Screen destroyed callback.
         void                        screen_closed           (void);
@@ -104,7 +104,7 @@ class ComponentGUIDrawButton: public ComponentBase {
         };
 
         /// Defines standard accessors for the draw style
-        DEFINE_ACCESSORS (draw_style, set_draw_style, DTuint, _draw_style);
+        DEFINE_ACCESSORS (draw_style, set_draw_style, uint32_t, _draw_style);
 
     private:
         DrawBatcher                                         _b;
@@ -117,7 +117,7 @@ class ComponentGUIDrawButton: public ComponentBase {
         Plug<std::shared_ptr<ShaderResource> >              _shader;
 
 
-        DTuint                                              _draw_style;
+        uint32_t                                              _draw_style;
 
         DTfloat                                             _corner_width;
         DTfloat                                             _corner_height;

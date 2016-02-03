@@ -52,14 +52,14 @@ class TextFileStream: public TextStream {
         public:
                 Stream&                             operator<<              (const Stream::FS)	{	*this << " ";	return *this;	}
                 Stream&                             operator<<              (const bool n);
-                Stream&                             operator<<              (const DTbyte n);
-                Stream&                             operator<<              (const DTshort n);
-                Stream&                             operator<<              (const DTint n);
-                Stream&                             operator<<              (const DTubyte n);
-                Stream&                             operator<<              (const DTushort n);
-                Stream&                             operator<<              (const DTuint n);
-                Stream&                             operator<<              (const DTint64 n);
-                Stream&                             operator<<              (const DTuint64 n);
+                Stream&                             operator<<              (const int8_t n);
+                Stream&                             operator<<              (const int16_t n);
+                Stream&                             operator<<              (const int32_t n);
+                Stream&                             operator<<              (const uint8_t n);
+                Stream&                             operator<<              (const uint16_t n);
+                Stream&                             operator<<              (const uint32_t n);
+                Stream&                             operator<<              (const int64_t n);
+                Stream&                             operator<<              (const uint64_t n);
 #if DT3_SIZES_ARE_DISTINCT_TYPES
                 Stream&                             operator<<              (const DTsize n);
 #endif
@@ -73,14 +73,14 @@ class TextFileStream: public TextStream {
 
 
                 Stream&                             operator>>              (bool &n);
-                Stream&                             operator>>              (DTbyte &n);
-                Stream&                             operator>>              (DTshort &n);
-                Stream&                             operator>>              (DTint &n);
-                Stream&                             operator>>              (DTubyte &n);
-                Stream&                             operator>>              (DTushort &n);
-                Stream&                             operator>>              (DTuint &n);
-                Stream&                             operator>>              (DTint64 &n);
-                Stream&                             operator>>              (DTuint64 &n);
+                Stream&                             operator>>              (int8_t &n);
+                Stream&                             operator>>              (int16_t &n);
+                Stream&                             operator>>              (int32_t &n);
+                Stream&                             operator>>              (uint8_t &n);
+                Stream&                             operator>>              (uint16_t &n);
+                Stream&                             operator>>              (uint32_t &n);
+                Stream&                             operator>>              (int64_t &n);
+                Stream&                             operator>>              (uint64_t &n);
 #if DT3_SIZES_ARE_DISTINCT_TYPES
                 Stream&                             operator>>              (DTsize &n);
 #endif
@@ -128,7 +128,7 @@ class TextFileStream: public TextStream {
                 /// Reads a line into a buffer
                 /// \param buffer raw buffer
                 /// \param size raw buffer length
-                void                                line                    (DTcharacter *buffer, DTuint size);
+                void                                line                    (DTcharacter *buffer, uint32_t size);
 
                 /// Associate the file handle with the stream. This opens a fragment of a file.
                 /// \param file file handle

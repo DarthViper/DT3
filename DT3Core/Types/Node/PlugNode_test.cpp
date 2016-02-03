@@ -95,10 +95,10 @@ struct A: public PlugNode {
 	
 	}
 
-	Plug<DTint>		_a_int_1;
-	Plug<DTint>		_a_int_2;
-	Plug<DTint>		_a_int_out_1;
-	Plug<DTint>		_a_int_out_2;
+	Plug<int32_t>		_a_int_1;
+	Plug<int32_t>		_a_int_2;
+	Plug<int32_t>		_a_int_out_1;
+	Plug<int32_t>		_a_int_out_2;
 };
 
 BEGIN_IMPLEMENT_PLUGS(A)
@@ -146,10 +146,10 @@ struct B: public PlugNode {
 	
 	}
 
-	Plug<DTint>		_b_int_1;
-	Plug<DTint>		_b_int_2;
-	Plug<DTint>		_b_int_out_1;
-	Plug<DTint>		_b_int_out_2;
+	Plug<int32_t>		_b_int_1;
+	Plug<int32_t>		_b_int_2;
+	Plug<int32_t>		_b_int_out_1;
+	Plug<int32_t>		_b_int_out_2;
 };
 
 BEGIN_IMPLEMENT_PLUGS(B)
@@ -196,10 +196,10 @@ struct C: public PlugNode {
 		return false;
 	}
 
-	Plug<DTint>		_c_int_1;
-	Plug<DTint>		_c_int_2;
-	Plug<DTint>		_c_int_out_1;
-	Plug<DTint>		_c_int_out_2;
+	Plug<int32_t>		_c_int_1;
+	Plug<int32_t>		_c_int_2;
+	Plug<int32_t>		_c_int_out_1;
+	Plug<int32_t>		_c_int_out_2;
 };
 
 BEGIN_IMPLEMENT_PLUGS(C)
@@ -294,9 +294,9 @@ namespace {
 void do_thread (A *a, B *b, C *c)
 {
     
-    for (DTuint i = 0; i < 1000; ++i) {
+    for (uint32_t i = 0; i < 1000; ++i) {
     
-        DTuint r = MoreMath::random_int() % 3;
+        uint32_t r = MoreMath::random_int() % 3;
         switch (r) {
             case 0:
                 a->_a_int_1 = MoreMath::random_int() % 10;
@@ -305,7 +305,7 @@ void do_thread (A *a, B *b, C *c)
                 b->_b_int_2 = MoreMath::random_int() % 10;
                 break;
             case 2:
-                DTint val = c->_c_int_out_2;
+                int32_t val = c->_c_int_out_2;
                 ++val;
                 break;
         }
@@ -317,10 +317,10 @@ void do_thread (A *a, B *b, C *c)
 
 void PlugNode_test::run_test (void)
 {
-    LOG_MESSAGE << "Sizeof Plug<DTuint>: " << (DTsize) sizeof(Plug<DTuint>);
+    LOG_MESSAGE << "Sizeof Plug<uint32_t>: " << (DTsize) sizeof(Plug<uint32_t>);
     LOG_MESSAGE << "Sizeof Event: " << (DTsize) sizeof(Event);
     
-    TEST_ASSERTION(sizeof(Plug<DTuint>) == 8);
+    TEST_ASSERTION(sizeof(Plug<uint32_t>) == 8);
     TEST_ASSERTION(sizeof(Event) == 4);
     
     LOG_MESSAGE << "Testing Events";
@@ -337,7 +337,7 @@ void PlugNode_test::run_test (void)
 	B obj_B;
 	C obj_C;
 
-	LOG_MESSAGE << "Plug Size " << static_cast<DTuint>(sizeof(obj_A._a_int_1));
+	LOG_MESSAGE << "Plug Size " << static_cast<uint32_t>(sizeof(obj_A._a_int_1));
 	
 	obj_A._a_int_1 = 2;
 	obj_A._a_int_2 = 3;

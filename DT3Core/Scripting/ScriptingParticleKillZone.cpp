@@ -149,9 +149,9 @@ bool ScriptingParticleKillZone::compute (const PlugBase *plug)
 		std::vector<DTfloat> sizes = particles->sizes_stream();
 		        
         DTfloat r2 = _radius * _radius;
-        DTint num_killed = 0;
+        int32_t num_killed = 0;
 
-		for (DTint i = particles->active_start(); i != particles->active_end(); i = (i + 1) % particles->translations_stream().size()) {
+		for (int32_t i = particles->active_start(); i != particles->active_end(); i = (i + 1) % particles->translations_stream().size()) {
 			Vector3 &pt = translations[i];
 			DTfloat &lifetime = lifetimes[i];
 			DTfloat &size = sizes[i];

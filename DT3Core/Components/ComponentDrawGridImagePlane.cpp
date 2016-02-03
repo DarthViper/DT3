@@ -128,22 +128,22 @@ void ComponentDrawGridImagePlane::archive (const std::shared_ptr<Archive> &archi
 //==============================================================================
 //==============================================================================
 
-void ComponentDrawGridImagePlane::set_num_x (const DTuint num_x)
+void ComponentDrawGridImagePlane::set_num_x (const uint32_t num_x)
 {
     _grid->set_num_x(num_x);
 }
 
-DT3::DTuint ComponentDrawGridImagePlane::num_x(void) const
+uint32_t ComponentDrawGridImagePlane::num_x(void) const
 {
     return _grid->num_x();
 }
 
-void ComponentDrawGridImagePlane::set_num_y (const DTuint num_y)
+void ComponentDrawGridImagePlane::set_num_y (const uint32_t num_y)
 {
     _grid->set_num_y(num_y);
 }
 
-DT3::DTuint ComponentDrawGridImagePlane::num_y(void) const
+uint32_t ComponentDrawGridImagePlane::num_y(void) const
 {
     return _grid->num_y();
 }
@@ -177,15 +177,15 @@ void ComponentDrawGridImagePlane::draw (const std::shared_ptr<CameraObject> &cam
         height = 1.0F;
     }
 
-    DTuint num_x = _grid->num_x();
-    DTuint num_y = _grid->num_y();
+    uint32_t num_x = _grid->num_x();
+    uint32_t num_y = _grid->num_y();
 
     if (num_x <= 0 || num_y <= 0)
         return;
 
     Color4b c(_color);
 
-    for (DTuint x = 0; x < (num_x-1); ++x) {
+    for (uint32_t x = 0; x < (num_x-1); ++x) {
         _b.batch_begin(  camera,
                         _material,
                         _shader,
@@ -197,7 +197,7 @@ void ComponentDrawGridImagePlane::draw (const std::shared_ptr<CameraObject> &cam
         DTfloat x0 = x / (DTfloat)(num_x-1);
         DTfloat x1 = (x+1) / (DTfloat)(num_x-1);
 
-        for (DTuint y = 0; y < num_y; ++y) {
+        for (uint32_t y = 0; y < num_y; ++y) {
             Vector2 p0 = _grid->point(x,y);
             Vector2 p1 = _grid->point(x+1,y);
 

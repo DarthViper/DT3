@@ -50,7 +50,7 @@ class ScriptingKeyframesVector2: public ScriptingKeyframes {
 
         /// Clear a key with index
         /// \param k key index
-        virtual void				clear_key				(DTint k);
+        virtual void				clear_key				(int32_t k);
 
         /// Get the number of keys
         /// \return number of keys
@@ -59,39 +59,39 @@ class ScriptingKeyframesVector2: public ScriptingKeyframes {
         /// Returns a unique ID for this key
         /// \param k key index
         /// \return ID
-        virtual DTint               key_id                  (DTint k) const        {   return _keyframes[k]._id;		}
+        virtual int32_t               key_id                  (int32_t k) const        {   return _keyframes[k]._id;		}
 
         /// Get the time for the key
         /// \param k key index
         /// \return time
-        virtual DTfloat				key_time                (DTint k) const        {	return _keyframes[k]._time;		}
+        virtual DTfloat				key_time                (int32_t k) const        {	return _keyframes[k]._time;		}
 
         /// Set the time for the key
         /// \param k key index
         /// \param time key time
         /// \return new index
-        virtual DTint				set_key_time            (DTint k, DTfloat time);
+        virtual int32_t				set_key_time            (int32_t k, DTfloat time);
 
 
         /// Set the point for the key
         /// \param k key index
         /// \param point point
-        void						set_key_point           (DTint k, const Vector2 &point)	{	_keyframes[k]._value = point;		_out.set_dirty();	}
+        void						set_key_point           (int32_t k, const Vector2 &point)	{	_keyframes[k]._value = point;		_out.set_dirty();	}
 
         /// Get the point for the key
         /// \param k key index
         /// \return point
-        const Vector2 &				key_point               (DTint k)	const					{	return _keyframes[k]._value;			}
+        const Vector2 &				key_point               (int32_t k)	const					{	return _keyframes[k]._value;			}
 
         /// Set the tangent for the key
         /// \param k key index
         /// \param tangent tangent
-        void						set_key_point_tangent   (DTint k, const Vector2 &tangent)	{	_keyframes[k]._tangent = tangent;	_out.set_dirty();	}
+        void						set_key_point_tangent   (int32_t k, const Vector2 &tangent)	{	_keyframes[k]._tangent = tangent;	_out.set_dirty();	}
 
         /// Get the tangent for the key
         /// \param k key index
         /// \return tangent
-        const Vector2 &				key_point_tangent       (DTint k)	const					{	return _keyframes[k]._tangent;		}
+        const Vector2 &				key_point_tangent       (int32_t k)	const					{	return _keyframes[k]._tangent;		}
 
         /// Interpolate along the keyframes
         /// \param t t (0.0-1.0)
@@ -106,7 +106,7 @@ class ScriptingKeyframesVector2: public ScriptingKeyframes {
         bool					_interpolated;
         Plug<DTfloat>				_t;
         Plug<Vector2>				_out;
-        DTint						_id;
+        int32_t						_id;
 
         struct keyframe {
             int operator < (const keyframe& rhs) const	{	return _time < rhs._time;	}
@@ -114,11 +114,11 @@ class ScriptingKeyframesVector2: public ScriptingKeyframes {
             DTfloat                 _time;
             Vector2                 _value;
             Vector2                 _tangent;
-            DTint                   _id;
+            int32_t                   _id;
         };
 
         std::vector<keyframe>		_keyframes;
-        mutable DTint				_keyframe_cache;
+        mutable int32_t				_keyframe_cache;
 };
 
 //==============================================================================

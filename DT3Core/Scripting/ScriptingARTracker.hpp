@@ -81,18 +81,18 @@ class ScriptingARTracker: public ScriptingBase {
             CORRECTION_ACCELEROMETER_AND_MAGNETOMETER = 2
         };
 
-        DTint                       _correction_mode;
+        int32_t                       _correction_mode;
 
         // Calibration state
         Plug<bool>             _is_calibrating;
         Plug<bool>             _is_calibrated;
 
         // For tracking when calibration is complete
-        DTuint                      _calibration_directions;
+        uint32_t                      _calibration_directions;
 
         // Best set of calibration samples
         Vector3                     _calibration_samples[6];
-        DTint                       _num_calibration_samples;
+        int32_t                       _num_calibration_samples;
 
         // Calibrated magnetometer offset
         Vector3                     _calibration;

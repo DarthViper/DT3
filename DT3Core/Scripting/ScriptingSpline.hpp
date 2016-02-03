@@ -55,22 +55,22 @@ class ScriptingSpline: public ScriptingBase {
         /// Sets the transform of a point along the path
         /// \param k index of point
         /// \param transform transform
-        void						set_point_transform     (DTuint k, const Matrix4 &transform);
+        void						set_point_transform     (uint32_t k, const Matrix4 &transform);
 
         /// Gets the transform of a point along the path
         /// \param k index of point
         /// \return transform
-        const Matrix4 &				point_transform         (DTuint k) const;
+        const Matrix4 &				point_transform         (uint32_t k) const;
 
         /// Sets the tangent of a point along the path
         /// \param k index of point
         /// \param tangent tangent
-        void						set_point_tangent       (DTuint k, const Vector3 &tangent);
+        void						set_point_tangent       (uint32_t k, const Vector3 &tangent);
 
         /// Gets the tangent of a point along the path
         /// \param k index of point
         /// \return tangent
-        const Vector3 &				point_tangent           (DTuint k) const;
+        const Vector3 &				point_tangent           (uint32_t k) const;
 
         /// Length of spline
         /// \return length
@@ -83,7 +83,7 @@ class ScriptingSpline: public ScriptingBase {
 
     private:
 
-        void                        interpolate             (DTint i0, DTint i1, DTfloat d, Matrix4 &transform);
+        void                        interpolate             (int32_t i0, int32_t i1, DTfloat d, Matrix4 &transform);
         void                        process_distances       (void);
 
         bool                   _constant_speed;
@@ -118,7 +118,7 @@ class ScriptingSpline: public ScriptingBase {
 
         std::vector<Pt>             _transforms;
 
-        mutable DTint				_keyframe_cache;
+        mutable int32_t				_keyframe_cache;
 
         bool                   _dirty;
 

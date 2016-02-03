@@ -275,7 +275,7 @@ void FilePath::clear (void)
 //==============================================================================
 //==============================================================================
 
-DTuint64 FilePath::modification_date	(void) const
+uint64_t FilePath::modification_date	(void) const
 {
     return HAL::modification_date(*this);
 }
@@ -326,13 +326,13 @@ std::string FilePath::checksum (void) const
     FileManager::open(file, *this, true);
 
     // read the header
-    const DTuint CHUNK_SIZE = 1024*16;
-    DTubyte chunk[CHUNK_SIZE];
+    const uint32_t CHUNK_SIZE = 1024*16;
+    uint8_t chunk[CHUNK_SIZE];
 
     QCryptographicHash  md5(QCryptographicHash::Md5);
     DTsize num = file.read_raw(chunk, CHUNK_SIZE);
     while (num > 0) {
-        md5.addData((char *)chunk, static_cast<DTuint>(num));
+        md5.addData((char *)chunk, static_cast<uint32_t>(num));
         num = file.read_raw(chunk, CHUNK_SIZE);
     }
     return md5.result().toHex().toStdString();

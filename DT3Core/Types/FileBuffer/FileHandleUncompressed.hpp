@@ -87,7 +87,7 @@ class FileHandleUncompressed: public FileHandle {
         virtual DTcharacter     peek				(void)	{	return static_cast<DTcharacter>(_file.peek());	}
 
         /// Ignores the next byte
-        virtual void            ignore				(void)	{	DTubyte b; read(&b, 1);	}
+        virtual void            ignore				(void)	{	uint8_t b; read(&b, 1);	}
 
 
         /// Checks for end of file
@@ -99,12 +99,12 @@ class FileHandleUncompressed: public FileHandle {
         /// \param buffer raw buffer
         /// \param size size of raw buffer
         /// \return actual number of bytes read
-        virtual DTsize          read				(DTubyte *buffer, DTsize size);
+        virtual DTsize          read				(uint8_t *buffer, DTsize size);
 
         /// Writes a chunk of raw binary data
         /// \param buffer raw buffer
         /// \param size size of raw buffer
-        virtual void            write				(const DTubyte *buffer, DTsize size);
+        virtual void            write				(const uint8_t *buffer, DTsize size);
 
 
     private:

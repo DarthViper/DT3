@@ -129,8 +129,8 @@ class Profiler {
     private:
         DT3_THREAD_LOCAL static ProfilerTimer   *_timer_stack;
 
-        static DTuint                           _num_ticks;
-        static DTuint                           _num_frames;
+        static uint32_t                           _num_ticks;
+        static uint32_t                           _num_frames;
         static TimerLores                       _display_timer;
         static TimerHires                       _profiler_timer;
 };

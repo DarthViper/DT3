@@ -68,7 +68,7 @@ class ScriptingVector3Smooth: public ScriptingBase {
         bool					_local_reset;
 
         std::vector<Vector3>		_history;
-        DTint						_history_index;
+        int32_t						_history_index;
         Vector3						_sum;
 };
 

@@ -30,7 +30,7 @@ ConsoleNullStream       ConsoleNullVar;
 /// Standard class constructors/destructors
 //==============================================================================
 
-ConsoleStream::ConsoleStream(DTuint type)
+ConsoleStream::ConsoleStream(uint32_t type)
 {
     _ss = std::shared_ptr<SS>(new SS);
     _ss->_type = type;

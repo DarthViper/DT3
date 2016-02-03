@@ -272,8 +272,8 @@ bool     PrimitiveCollisions::extruded_sphere_intersect_triangle   (	const Vecto
     // Mark that we haven't found a collision yet
     bool found_collision = false;
     
-    for (DTint i = 0; i < 3; ++i) {
-		DTint j = (i+1) % 3;  // next index
+    for (int32_t i = 0; i < 3; ++i) {
+		int32_t j = (i+1) % 3;  // next index
 			
 		// Some intermediate calcs that do change in the loop
 		Vector3 ke, kg;
@@ -343,7 +343,7 @@ bool     PrimitiveCollisions::extruded_sphere_intersect_triangle   (	const Vecto
 		return true;
     
     // Check the vertices
-    for (DTint i = 0; i < 3; ++i) {
+    for (int32_t i = 0; i < 3; ++i) {
     	
 		// Calculate collision time
 		DTfloat t0,t1;
@@ -560,7 +560,7 @@ void PrimitiveCollisions::dist_ray_point (const Vector3 &from, const Vector3 &di
 //==============================================================================
 //==============================================================================
 
-void PrimitiveCollisions::bressenham_line (DTint x0, DTint y0, DTint x1, DTint y1, std::vector<XY> &visited)
+void PrimitiveCollisions::bressenham_line (int32_t x0, int32_t y0, int32_t x1, int32_t y1, std::vector<XY> &visited)
 {
     // Algorithm presented at http://en.wikipedia.org/wiki/Bresenham's_line_algorithm
 
@@ -573,16 +573,16 @@ void PrimitiveCollisions::bressenham_line (DTint x0, DTint y0, DTint x1, DTint y
         std::swap(x0, x1);
         std::swap(y0, y1);
     }
-    DTint deltax = x1 - x0;
-    DTint deltay = std::abs(y1 - y0);
-    DTint error = deltax / 2;
-    DTint ystep;
-    DTint y = y0;
+    int32_t deltax = x1 - x0;
+    int32_t deltay = std::abs(y1 - y0);
+    int32_t error = deltax / 2;
+    int32_t ystep;
+    int32_t y = y0;
      
     if (y0 < y1)   ystep = 1;
     else           ystep = -1;
 
-    for (DTint x = x0; x <= x1; ++x) {
+    for (int32_t x = x0; x <= x1; ++x) {
         if (steep)      {   XY xy; xy.x = y; xy.y = x; visited.push_back(xy);    }
         else            {   XY xy; xy.x = x; xy.y = y; visited.push_back(xy);    }
 
@@ -603,11 +603,11 @@ void PrimitiveCollisions::raytrace_line (DTfloat x0, DTfloat y0, DTfloat x1, DTf
     DTdouble dx = fabs(x1 - x0);
     DTdouble dy = fabs(y1 - y0);
 
-    DTint x = DTint(floor(x0));
-    DTint y = DTint(floor(y0));
+    int32_t x = int32_t(floor(x0));
+    int32_t y = int32_t(floor(y0));
 
-    DTint n = 1;
-    DTint x_inc, y_inc;
+    int32_t n = 1;
+    int32_t x_inc, y_inc;
     DTdouble error;
 
     if (dx == 0) {
@@ -615,11 +615,11 @@ void PrimitiveCollisions::raytrace_line (DTfloat x0, DTfloat y0, DTfloat x1, DTf
         error = std::numeric_limits<DTdouble>::infinity();
     } else if (x1 > x0) {
         x_inc = 1;
-        n += DTint(floor(x1)) - x;
+        n += int32_t(floor(x1)) - x;
         error = (floor(x0) + 1 - x0) * dy;
     } else {
         x_inc = -1;
-        n += x - DTint(floor(x1));
+        n += x - int32_t(floor(x1));
         error = (x0 - floor(x0)) * dy;
     }
 
@@ -628,11 +628,11 @@ void PrimitiveCollisions::raytrace_line (DTfloat x0, DTfloat y0, DTfloat x1, DTf
         error -= std::numeric_limits<DTdouble>::infinity();
     } else if (y1 > y0) {
         y_inc = 1;
-        n += DTint(floor(y1)) - y;
+        n += int32_t(floor(y1)) - y;
         error -= (floor(y0) + 1 - y0) * dx;
     } else {
         y_inc = -1;
-        n += y - DTint(floor(y1));
+        n += y - int32_t(floor(y1));
         error -= (y0 - floor(y0)) * dx;
     }
 

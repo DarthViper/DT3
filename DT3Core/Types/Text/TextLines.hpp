@@ -114,7 +114,7 @@ class TextLines: public BaseClass {
                                                                 DTfloat resolution_scale,
                                                                 const std::string &text_raw,
                                                                 const std::shared_ptr<FontResource> &font,
-                                                                DTuint font_size,
+                                                                uint32_t font_size,
                                                                 const Color4f &color,
                                                                 TextCharacter::Justification justification);
 

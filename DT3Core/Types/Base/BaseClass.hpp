@@ -50,7 +50,7 @@ class BaseClass: public std::enable_shared_from_this<BaseClass> {
         /// Returns the unique ID for this object. The object ID is guaranteed to be unique per
         /// execution of the applcation.
         /// \return unique ID
-        inline DTuint				unique_id                       (void) const			{   return _unique_id;					}
+        inline uint32_t				unique_id                       (void) const			{   return _unique_id;					}
 
         /// Forces the object to get a new unique ID
         void						new_unique_id                   (void);
@@ -64,8 +64,8 @@ class BaseClass: public std::enable_shared_from_this<BaseClass> {
         bool					streamable                      (void) const			{	return _streamable;					}
 
     private:
-        static std::atomic<DTuint>  _unique_id_counter;
-        DTuint						_unique_id;
+        static std::atomic<uint32_t>  _unique_id_counter;
+        uint32_t						_unique_id;
         bool					_streamable;
 };
 

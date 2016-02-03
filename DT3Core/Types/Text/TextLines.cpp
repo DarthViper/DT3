@@ -70,7 +70,7 @@ TextLine::~TextLine (void)
 bool TextLine::is_blank(void) const
 {
     for (auto &g : _glyphs) {
-        DTuint c = g.glyph_entry()->character();
+        uint32_t c = g.glyph_entry()->character();
     
         if (c >= 128 || ::isalpha(c)) 
             return false;
@@ -119,7 +119,7 @@ void TextLines::add_line (  GlyphCache &cache,
                             DTfloat resolution_scale,
                             const std::string &text_raw,
                             const std::shared_ptr<FontResource> &font,
-                            DTuint font_size,
+                            uint32_t font_size,
                             const Color4f &color,
                             TextCharacter::Justification justification)
 {
@@ -151,10 +151,10 @@ void TextLines::add_line (  GlyphCache &cache,
     _lines.resize(_lines.size() + 1);
     TextLine        &line = _lines.back();
     
-    DTuint          incr;
+    uint32_t          incr;
 
-    for (DTuint i = 0; i < text.size(); i += incr) {
-        DTuint c = text[i];
+    for (uint32_t i = 0; i < text.size(); i += incr) {
+        uint32_t c = text[i];
         
         if (c > 127) {
             MoreStrings::extract_unicode (&text[i], incr, c);
@@ -250,10 +250,10 @@ void TextLines::add_line (GlyphCache &cache, const Matrix4 &transform, const Vec
     _lines.resize(_lines.size() + 1);
     TextLine        &line = _lines.back();
 
-    DTuint          incr;
+    uint32_t          incr;
 
-    for (DTuint i = 0; i < text.size(); i += incr) {
-        DTuint c = text[i];
+    for (uint32_t i = 0; i < text.size(); i += incr) {
+        uint32_t c = text[i];
         
         if (c > 127) {
             MoreStrings::extract_unicode (&text[i], incr, c);
@@ -326,7 +326,7 @@ void TextLines::add_line (GlyphCache &cache, const Matrix4 &transform, const Vec
                 
                 // Glyph Entry stuff
                 if (params[0] == "size") {
-                    ce.set_size(MoreStrings::cast_from_string<DTuint>(params[1]));
+                    ce.set_size(MoreStrings::cast_from_string<uint32_t>(params[1]));
                     continue;
                 }
                 
@@ -353,23 +353,23 @@ void TextLines::add_line (GlyphCache &cache, const Matrix4 &transform, const Vec
                 }
 
                 if (params[0] == "outlinesize") {
-                    ct.set_outline_size(MoreStrings::cast_from_string<DTuint>(params[1]));
+                    ct.set_outline_size(MoreStrings::cast_from_string<uint32_t>(params[1]));
                     continue;
                 }
 
                 if (params[0] == "tab") {
-                    ct.set_tab_size(MoreStrings::cast_from_string<DTuint>(params[1]));
+                    ct.set_tab_size(MoreStrings::cast_from_string<uint32_t>(params[1]));
                     continue;
                 }
                 
                 if (params[0] == "baseline") {
-                    ct.set_baseline_shift(MoreStrings::cast_from_string<DTuint>(params[1]));
+                    ct.set_baseline_shift(MoreStrings::cast_from_string<uint32_t>(params[1]));
                     continue;
                 }
                                 
                 // Unicode character
                 if (params[0] == "U") {
-                    c = MoreStrings::cast_from_string<DTuint>(params[1]);
+                    c = MoreStrings::cast_from_string<uint32_t>(params[1]);
                 }
                 
                                 
@@ -463,7 +463,7 @@ void TextLines::wrap (DTfloat width, DTfloat height, Alignment alignment)
         TextCharacter::Direction direction = glyphs.front().direction(); // Use direction from first glyph
         
         DTfloat extent = glyphs.front().outline_size();
-        DTint character_count = 0;
+        int32_t character_count = 0;
                
         DTfloat max_extent = (direction == TextCharacter::DIR_HORZ_LEFT_TO_RIGHT || direction == TextCharacter::DIR_HORZ_RIGHT_TO_LEFT) ? width : height;
         max_extent -= glyphs.front().outline_size();
@@ -630,7 +630,7 @@ void TextLines::wrap (DTfloat width, DTfloat height, Alignment alignment)
 
                         // Expand the spaces
                         if (spaces.size() > 0) {
-                            for (DTuint i = 0; actual_extent < extent_max; ++i) {
+                            for (uint32_t i = 0; actual_extent < extent_max; ++i) {
                                 TextCharacter *space = spaces[i%spaces.size()];
                                 
                                 if (direction == TextCharacter::DIR_HORZ_LEFT_TO_RIGHT || direction == TextCharacter::DIR_HORZ_RIGHT_TO_LEFT)

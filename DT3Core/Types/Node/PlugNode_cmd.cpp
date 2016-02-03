@@ -422,7 +422,7 @@ CommandResult PlugNode_cmd::do_list_prop (CommandContext &ctx, const CommandPara
     std::vector<std::shared_ptr<ArchiveData>>& properties_list = props->properties();
     
     std::string result;
-    for (DTuint i = 0; i < properties_list.size(); ++i) {
+    for (uint32_t i = 0; i < properties_list.size(); ++i) {
         result = properties_list[i]->title() + " " + result;
     }
     

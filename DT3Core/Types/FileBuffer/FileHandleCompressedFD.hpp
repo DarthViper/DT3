@@ -59,7 +59,7 @@ class FileHandleCompressedFD: public FileHandle {
         /// Sets an existing file descriptor for file
         /// \param fd file descriptor
         /// \return Error
-        virtual DTerr           set_fd                  (DTint fd, DTsize start, DTsize length, DTsize uncompressed_length);
+        virtual DTerr           set_fd                  (int32_t fd, DTsize start, DTsize length, DTsize uncompressed_length);
 
         /// Close the file handle
         virtual void            close                   (void);
@@ -93,7 +93,7 @@ class FileHandleCompressedFD: public FileHandle {
         virtual DTcharacter     peek                    (void)	{	return _data[_file_g];	}
 
         /// Ignores the next byte
-        virtual void            ignore                  (void)	{	DTubyte b; read(&b, 1);	}
+        virtual void            ignore                  (void)	{	uint8_t b; read(&b, 1);	}
 
 
         /// Checks for end of file
@@ -105,16 +105,16 @@ class FileHandleCompressedFD: public FileHandle {
         /// \param buffer raw buffer
         /// \param size size of raw buffer
         /// \return actual number of bytes read
-        virtual DTsize          read                    (DTubyte *buffer, DTsize size);
+        virtual DTsize          read                    (uint8_t *buffer, DTsize size);
 
         /// Writes a chunk of raw binary data
         /// \param buffer raw buffer
         /// \param size size of raw buffer
-        virtual void            write                   (const DTubyte *buffer, DTsize size);
+        virtual void            write                   (const uint8_t *buffer, DTsize size);
 
 
     private:
-        std::vector<DTubyte>    _data;
+        std::vector<uint8_t>    _data;
         bool               _eof;
         DTsize                  _file_g;
 };

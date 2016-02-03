@@ -44,45 +44,45 @@ WAVWriter::~WAVWriter (void)
 //==============================================================================
 //==============================================================================
 
-void	WAVWriter::write(std::ofstream &outfile, DTubyte &v)
+void	WAVWriter::write(std::ofstream &outfile, uint8_t &v)
 {
-    outfile.write((const char*)&v, sizeof(DTbyte));
+    outfile.write((const char*)&v, sizeof(int8_t));
 }
 
 //==============================================================================
 //==============================================================================
 
-void	WAVWriter::write(std::ofstream &outfile, DTushort &v)
-{
-	Endian::to_little_endian(v);
-    outfile.write((const char*)&v, sizeof(DTushort));
-}
-
-//==============================================================================
-//==============================================================================
-
-void	WAVWriter::write(std::ofstream &outfile, DTshort &v)
+void	WAVWriter::write(std::ofstream &outfile, uint16_t &v)
 {
 	Endian::to_little_endian(v);
-    outfile.write((const char*)&v, sizeof(DTshort));
+    outfile.write((const char*)&v, sizeof(uint16_t));
 }
 
 //==============================================================================
 //==============================================================================
 
-void	WAVWriter::write(std::ofstream &outfile, DTuint &v)
+void	WAVWriter::write(std::ofstream &outfile, int16_t &v)
+{
+	Endian::to_little_endian(v);
+    outfile.write((const char*)&v, sizeof(int16_t));
+}
+
+//==============================================================================
+//==============================================================================
+
+void	WAVWriter::write(std::ofstream &outfile, uint32_t &v)
 {    
 	Endian::to_little_endian(v);
-    outfile.write((const char*)&v, sizeof(DTuint));
+    outfile.write((const char*)&v, sizeof(uint32_t));
 }
 
 //==============================================================================
 //==============================================================================
 
-void	WAVWriter::write(std::ofstream &outfile, DTint &v)
+void	WAVWriter::write(std::ofstream &outfile, int32_t &v)
 {    
 	Endian::to_little_endian(v);
-    outfile.write((const char*)&v, sizeof(DTint));
+    outfile.write((const char*)&v, sizeof(int32_t));
 }
 
 //==============================================================================
@@ -119,7 +119,7 @@ void WAVWriter::set_type (DTcharacter id[4], const DTcharacter *id_str)
 //==============================================================================
 //==============================================================================
 
-DTerr WAVWriter::begin_write (const FilePath &pathname, DTushort num_channels, DTint sample_rate, DTushort bits_per_sample)
+DTerr WAVWriter::begin_write (const FilePath &pathname, uint16_t num_channels, int32_t sample_rate, uint16_t bits_per_sample)
 {
     // open the file
     _outfile.open(pathname.full_path().c_str(), std::ios::binary);
@@ -135,7 +135,7 @@ DTerr WAVWriter::begin_write (const FilePath &pathname, DTushort num_channels, D
     set_type(chunk_riff.id,"RIFF");
     chunk_riff.length = 0;   // To be filled in later
     write(_outfile, chunk_riff);
-    _header_length_offset = static_cast<DTuint>(_outfile.tellp()) - 4;
+    _header_length_offset = static_cast<uint32_t>(_outfile.tellp()) - 4;
     
     // write WAVE data
 	DTcharacter	id_wave[4];
@@ -167,12 +167,12 @@ DTerr WAVWriter::begin_write (const FilePath &pathname, DTushort num_channels, D
     set_type(chunk_data.id,"data");
     chunk_data.length = 0;  // To be filled in later
     write(_outfile, chunk_data);
-    _data_length_offset = static_cast<DTuint>(_outfile.tellp()) - 4;
+    _data_length_offset = static_cast<uint32_t>(_outfile.tellp()) - 4;
 
     return DT3_ERR_NONE;
 }
 
-DTerr WAVWriter::write (DTubyte *data, DTuint size)
+DTerr WAVWriter::write (uint8_t *data, uint32_t size)
 {
     _data_size += size;
     _outfile.write((const char*)data,size);
@@ -187,7 +187,7 @@ DTerr WAVWriter::end_write (void)
     
     _outfile.seekp(_header_length_offset, std::ios_base::beg);
     
-    DTuint header_size = _data_size + _data_length_offset - _header_length_offset;
+    uint32_t header_size = _data_size + _data_length_offset - _header_length_offset;
     write(_outfile, header_size);
     
     _outfile.close();

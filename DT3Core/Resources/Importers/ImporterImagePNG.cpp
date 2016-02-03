@@ -53,9 +53,9 @@ DTerr ImporterImagePNG::import (TextureResource2D *target, std::string args)
     // Convert path to this platform
     FilePath pathname(target->path());
 
-    DTuint                      width;
-    DTuint                      height;
-    std::shared_ptr<DTubyte>    data;
+    uint32_t                      width;
+    uint32_t                      height;
+    std::shared_ptr<uint8_t>    data;
     DT3GLTextelFormat           format;
 
     import(pathname, args, width, height, data, format);
@@ -72,9 +72,9 @@ DTerr ImporterImagePNG::import (TextureResource3D *target, std::string args)
     // Convert path to this platform
     FilePath pathname(target->path());
 
-    DTuint                      width;
-    DTuint                      height;
-    std::shared_ptr<DTubyte>    data;
+    uint32_t                      width;
+    uint32_t                      height;
+    std::shared_ptr<uint8_t>    data;
     DT3GLTextelFormat           format;
 
     import(pathname, args, width, height, data, format);
@@ -89,9 +89,9 @@ DTerr ImporterImagePNG::import (TextureResourceCube *target, std::string args)
     // Convert path to this platform
     FilePath pathname(target->path());
 
-    DTuint                      width;
-    DTuint                      height;
-    std::shared_ptr<DTubyte>    data;
+    uint32_t                      width;
+    uint32_t                      height;
+    std::shared_ptr<uint8_t>    data;
     DT3GLTextelFormat           format;
 
     import(pathname, args, width, height, data, format);
@@ -113,7 +113,7 @@ void ImporterImagePNG::png_read_data(png_structp png_ptr, png_bytep data, png_si
 //==============================================================================
 //==============================================================================
 
-DTerr ImporterImagePNG::import(const FilePath &pathname, const std::string &args, DTuint &width, DTuint &height, std::shared_ptr<DTubyte> &data, DT3GLTextelFormat &format)
+DTerr ImporterImagePNG::import(const FilePath &pathname, const std::string &args, uint32_t &width, uint32_t &height, std::shared_ptr<uint8_t> &data, DT3GLTextelFormat &format)
 {
     //
     // The following is based on the libpng manual. http://www.libpng.org/pub/png/libpng-1.2.5-manual.html#section-3.1
@@ -130,8 +130,8 @@ DTerr ImporterImagePNG::import(const FilePath &pathname, const std::string &args
         return err;
 
     // read the header
-    const DTuint NUM_HEADER_BYTES_TO_READ = 8;
-    DTubyte header[NUM_HEADER_BYTES_TO_READ];
+    const uint32_t NUM_HEADER_BYTES_TO_READ = 8;
+    uint8_t header[NUM_HEADER_BYTES_TO_READ];
 
     file.read_raw(header, NUM_HEADER_BYTES_TO_READ);
     if (png_sig_cmp((png_bytep) header, 0, NUM_HEADER_BYTES_TO_READ)) {
@@ -210,7 +210,7 @@ DTerr ImporterImagePNG::import(const FilePath &pathname, const std::string &args
     png_get_IHDR(png_ptr, info_ptr, &width, &height, &bit_depth, &color_type, &interlace_type, NULL, NULL);
 
     // allocate target image
-    std::shared_ptr<DTuint> buffer = std::shared_ptr<DTuint>(new DTuint[width * height]);
+    std::shared_ptr<uint32_t> buffer = std::shared_ptr<uint32_t>(new uint32_t[width * height]);
 
     // Setup row pointers
     row_pointers = new ("ImporterImagePNG") png_bytep[height];
@@ -219,7 +219,7 @@ DTerr ImporterImagePNG::import(const FilePath &pathname, const std::string &args
         return DT3_ERR_FILE_WRONG_TYPE;
     }
 
-    for (DTuint y = 0; y < height; ++y) {
+    for (uint32_t y = 0; y < height; ++y) {
         row_pointers[height - y - 1] = reinterpret_cast<png_byte*>( &(buffer.get())[y * width] );
     }
 
@@ -236,14 +236,14 @@ DTerr ImporterImagePNG::import(const FilePath &pathname, const std::string &args
     // Check for down conversion
     if (MoreStrings::lowercase(args).find("r5g5b5a1") != std::string::npos) {
         // Change data format to 16 bit
-        std::shared_ptr<DTubyte> b = std::shared_ptr<DTubyte>(new DTubyte[width * height * 2]);
+        std::shared_ptr<uint8_t> b = std::shared_ptr<uint8_t>(new uint8_t[width * height * 2]);
 
-        DTuint *src = buffer.get();
-        DTushort *dst = (DTushort*) b.get();
+        uint32_t *src = buffer.get();
+        uint16_t *dst = (uint16_t*) b.get();
 
-        for (DTuint y = 0; y < height; ++y) {
-            for (DTuint x = 0; x < width; ++x) {
-                *dst =	(DTushort) (((((*src) >>  0) & 0xFF) >> 3) << 11 |
+        for (uint32_t y = 0; y < height; ++y) {
+            for (uint32_t x = 0; x < width; ++x) {
+                *dst =	(uint16_t) (((((*src) >>  0) & 0xFF) >> 3) << 11 |
                                     ((((*src) >>  8) & 0xFF) >> 3) << 6 |
                                     ((((*src) >>  16) & 0xFF) >> 3) << 1 |
                                     ((*src) >> 31));
@@ -258,14 +258,14 @@ DTerr ImporterImagePNG::import(const FilePath &pathname, const std::string &args
 
     } else 	if (MoreStrings::lowercase(args).find("r4g4b4a4") != std::string::npos) {
         // Change data format to 16 bit
-        std::shared_ptr<DTubyte> b = std::shared_ptr<DTubyte>(new DTubyte[width * height * 2]);
+        std::shared_ptr<uint8_t> b = std::shared_ptr<uint8_t>(new uint8_t[width * height * 2]);
 
-        DTuint *src = buffer.get();
-        DTushort *dst = (DTushort*) b.get();
+        uint32_t *src = buffer.get();
+        uint16_t *dst = (uint16_t*) b.get();
 
-        for (DTuint y = 0; y < height; ++y) {
-            for (DTuint x = 0; x < width; ++x) {
-                *dst =	(DTushort) (((((*src) >>  0) & 0xFF) >> 4) << 12 |
+        for (uint32_t y = 0; y < height; ++y) {
+            for (uint32_t x = 0; x < width; ++x) {
+                *dst =	(uint16_t) (((((*src) >>  0) & 0xFF) >> 4) << 12 |
                                     ((((*src) >>  8) & 0xFF) >> 4) << 8 |
                                     ((((*src) >>  16) & 0xFF) >> 4) << 4 |
                                     ((((*src) >>  24) & 0xFF) >> 4) << 0);
@@ -280,14 +280,14 @@ DTerr ImporterImagePNG::import(const FilePath &pathname, const std::string &args
 
     } else 	if (MoreStrings::lowercase(args).find("r5g6b5") != std::string::npos) {
         // Change data format to 16 bit
-        std::shared_ptr<DTubyte> b = std::shared_ptr<DTubyte>(new DTubyte[width * height * 2]);
+        std::shared_ptr<uint8_t> b = std::shared_ptr<uint8_t>(new uint8_t[width * height * 2]);
 
-        DTuint *src = buffer.get();
-        DTushort *dst = (DTushort*) b.get();
+        uint32_t *src = buffer.get();
+        uint16_t *dst = (uint16_t*) b.get();
 
-        for (DTuint y = 0; y < height; ++y) {
-            for (DTuint x = 0; x < width; ++x) {
-                *dst =	(DTushort) (((((*src) >>  0) & 0xFF) >> 3) << 11 |
+        for (uint32_t y = 0; y < height; ++y) {
+            for (uint32_t x = 0; x < width; ++x) {
+                *dst =	(uint16_t) (((((*src) >>  0) & 0xFF) >> 3) << 11 |
                                     ((((*src) >>  8) & 0xFF) >> 2) << 5 |
                                     ((((*src) >>  16) & 0xFF) >> 3) << 0);
 
@@ -301,14 +301,14 @@ DTerr ImporterImagePNG::import(const FilePath &pathname, const std::string &args
 
     } else 	if (MoreStrings::lowercase(args).find("lum8") != std::string::npos) {
         // Change data format to 8 bit
-        std::shared_ptr<DTubyte> b = std::shared_ptr<DTubyte>(new DTubyte[width * height * 2]);
+        std::shared_ptr<uint8_t> b = std::shared_ptr<uint8_t>(new uint8_t[width * height * 2]);
 
-        DTuint *src = buffer.get();
-        DTushort *dst = (DTushort*) b.get();
+        uint32_t *src = buffer.get();
+        uint16_t *dst = (uint16_t*) b.get();
 
-        for (DTuint y = 0; y < height; ++y) {
-            for (DTuint x = 0; x < width; ++x) {
-                *dst =	(DTubyte)	(((*src) >>  0) & 0xFF);
+        for (uint32_t y = 0; y < height; ++y) {
+            for (uint32_t x = 0; x < width; ++x) {
+                *dst =	(uint8_t)	(((*src) >>  0) & 0xFF);
 
                 ++src;
                 ++dst;
@@ -320,10 +320,10 @@ DTerr ImporterImagePNG::import(const FilePath &pathname, const std::string &args
 
     } else {
         // Change data format to 8 bit
-        std::shared_ptr<DTubyte> b = std::shared_ptr<DTubyte>(new DTubyte[width * height * 4]);
+        std::shared_ptr<uint8_t> b = std::shared_ptr<uint8_t>(new uint8_t[width * height * 4]);
 
-        DTuint *src = buffer.get();
-        DTushort *dst = (DTushort*) b.get();
+        uint32_t *src = buffer.get();
+        uint16_t *dst = (uint16_t*) b.get();
 
         ::memcpy(dst, src, width * height * 4);
 

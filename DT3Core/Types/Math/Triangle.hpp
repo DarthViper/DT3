@@ -34,7 +34,7 @@ class Triangle {
         DEFINE_TYPE_SIMPLE_BASE(Triangle)
 
         inline					Triangle			(void)  {}
-                                Triangle			(const DTushort v0, const DTushort v1, const DTushort v2);
+                                Triangle			(const uint16_t v0, const uint16_t v1, const uint16_t v2);
                                 Triangle			(const Triangle &rhs);
         Triangle &				operator =			(const Triangle &rhs);
                                 ~Triangle			(void);
@@ -45,7 +45,7 @@ class Triangle {
         bool               operator !=			(const Triangle& rhs) const   {	return v[0] != rhs.v[0] || v[1] != rhs.v[1] || v[2] != rhs.v[2];	}
 
     public:
-        DTuint                  v[3];
+        uint32_t                  v[3];
 };
 
 //==============================================================================

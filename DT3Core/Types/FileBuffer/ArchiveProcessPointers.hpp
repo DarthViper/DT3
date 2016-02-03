@@ -39,10 +39,10 @@ class ArchiveProcessPointers: public ArchiveProcess {
         /// Post process for archiving
         /// \param archive Archive that owns the post process
         /// \param archive Objects Map of objects that have been archived
-        virtual void				process			(const std::shared_ptr<Archive> &archive, std::map<DTuint64, std::shared_ptr<BaseClass>> &objects);
+        virtual void				process			(const std::shared_ptr<Archive> &archive, std::map<uint64_t, std::shared_ptr<BaseClass>> &objects);
 
     private:
-        DTuint64            _ref;
+        uint64_t            _ref;
         std::shared_ptr<T>  &_ptr;
 };
 
@@ -70,7 +70,7 @@ ArchiveProcessPointers<T>::ArchiveProcessPointers(const std::shared_ptr<Archive>
 
         if (archive->ignore_streamable_flag() || (ptr && ptr->streamable())) {
 
-            DTuint ref = (ptr != NULL) ? ptr->unique_id() : 0;
+            uint32_t ref = (ptr != NULL) ? ptr->unique_id() : 0;
             *archive << ARCHIVE_DATA(ref, DATA_PERSISTENT);
 
             // Remember object for later
@@ -78,7 +78,7 @@ ArchiveProcessPointers<T>::ArchiveProcessPointers(const std::shared_ptr<Archive>
 
         // Stream a NULL
         } else {
-            DTuint ref = 0;  // This way it'll work with reading and writing
+            uint32_t ref = 0;  // This way it'll work with reading and writing
 
             *archive << ARCHIVE_DATA(ref, DATA_PERSISTENT);
 
@@ -87,7 +87,7 @@ ArchiveProcessPointers<T>::ArchiveProcessPointers(const std::shared_ptr<Archive>
 
     // Reading in pointer reference immediately
     } else {
-        DTuint ref = 0;
+        uint32_t ref = 0;
 
         *archive << ARCHIVE_DATA(ref, DATA_PERSISTENT);
 
@@ -120,7 +120,7 @@ ArchiveProcessPointers<T>::~ArchiveProcessPointers(void)
 }
 
 template <class T>
-void ArchiveProcessPointers<T>::process (const std::shared_ptr<Archive> &archive, std::map<DTuint64, std::shared_ptr<BaseClass>> &objects)
+void ArchiveProcessPointers<T>::process (const std::shared_ptr<Archive> &archive, std::map<uint64_t, std::shared_ptr<BaseClass>> &objects)
 {
     // write the actual object
     if (archive->is_writing()) {

@@ -24,10 +24,10 @@ namespace DT3 {
 //==============================================================================
 //==============================================================================
 
-DTsize Compressor::deflate (    DTubyte *src_data, DTsize src_data_size,
-                                DTubyte *dst_data, DTsize dst_data_size )
+DTsize Compressor::deflate (    uint8_t *src_data, DTsize src_data_size,
+                                uint8_t *dst_data, DTsize dst_data_size )
 {
-    DTint ret;
+    int32_t ret;
     z_stream strm;
     
     // Allocate deflate state
@@ -62,10 +62,10 @@ DTsize Compressor::deflate (    DTubyte *src_data, DTsize src_data_size,
 //==============================================================================
 //==============================================================================
 
-DTsize Compressor::inflate (    DTubyte *src_data, DTsize src_data_size,
-                                DTubyte *dst_data, DTsize dst_data_size )
+DTsize Compressor::inflate (    uint8_t *src_data, DTsize src_data_size,
+                                uint8_t *dst_data, DTsize dst_data_size )
 {
-    DTint ret;
+    int32_t ret;
     z_stream strm;
 
     // allocate inflate state

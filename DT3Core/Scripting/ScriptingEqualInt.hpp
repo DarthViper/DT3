@@ -46,8 +46,8 @@ class ScriptingEqualInt: public ScriptingBase {
         bool					compute					(const PlugBase *plug);
 
     private:
-        Plug<DTint>					_in1;
-        Plug<DTint>					_in2;
+        Plug<int32_t>					_in1;
+        Plug<int32_t>					_in2;
         Plug<bool>				_out;
 };
 

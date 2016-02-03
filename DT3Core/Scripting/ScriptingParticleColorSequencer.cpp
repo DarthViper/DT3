@@ -58,7 +58,7 @@ ScriptingParticleColorSequencer::ScriptingParticleColorSequencer (void)
 		_in			(PLUG_INFO_INDEX(_in)),
 		_out		(PLUG_INFO_INDEX(_out))
 {  
-	for (DTint i = 0; i < NUM_ENTRIES; ++i) {
+	for (int32_t i = 0; i < NUM_ENTRIES; ++i) {
 		_t[i] = i * 0.1F;
 		_c[i] = Color4b (1.0F,1.0F,1.0F,1.0F);
 	}
@@ -76,7 +76,7 @@ ScriptingParticleColorSequencer::ScriptingParticleColorSequencer (const Scriptin
 		_in					(rhs._in),
 		_out				(rhs._out)
 {   
-	for (DTint i = 0; i < NUM_ENTRIES; ++i) {
+	for (int32_t i = 0; i < NUM_ENTRIES; ++i) {
 		_t[i] = rhs._t[i];
 		_c[i] = rhs._c[i];
 	}
@@ -93,7 +93,7 @@ ScriptingParticleColorSequencer & ScriptingParticleColorSequencer::operator = (c
 		_b_mask = rhs._b_mask;
 		_a_mask = rhs._a_mask;
 		
-		for (DTint i = 0; i < NUM_ENTRIES; ++i) {
+		for (int32_t i = 0; i < NUM_ENTRIES; ++i) {
 			_t[i] = rhs._t[i];
 			_c[i] = rhs._c[i];
 		}
@@ -123,7 +123,7 @@ void ScriptingParticleColorSequencer::archive (const std::shared_ptr<Archive> &a
 	*archive << ARCHIVE_DATA(_b_mask, DATA_PERSISTENT | DATA_SETTABLE);
 	*archive << ARCHIVE_DATA(_a_mask, DATA_PERSISTENT | DATA_SETTABLE);
 	
-	for (DTint i = 0; i < NUM_ENTRIES; ++i) {
+	for (int32_t i = 0; i < NUM_ENTRIES; ++i) {
 		*archive << ARCHIVE_DATA_NAMED("Time" + MoreStrings::cast_to_string(i), _t[i], DATA_PERSISTENT | DATA_SETTABLE);
 		*archive << ARCHIVE_DATA_NAMED("Color" + MoreStrings::cast_to_string(i), _c[i], DATA_PERSISTENT | DATA_SETTABLE);
 	}
@@ -162,9 +162,9 @@ bool ScriptingParticleColorSequencer::compute (const PlugBase *plug)
 		std::vector<DTfloat> &lifetimes = particles->lifetimes_stream();
 		std::vector<Color4b> &colors = particles->color_stream();
 
-		for (DTint i = particles->active_start(); i != particles->active_end(); i = (i + 1) % particles->translations_stream().size()) {
+		for (int32_t i = particles->active_start(); i != particles->active_end(); i = (i + 1) % particles->translations_stream().size()) {
 			DTfloat &lifetime = lifetimes[i];
-			DTint &cache = _cache[i];
+			int32_t &cache = _cache[i];
 			Color4b &color = colors[i];
 			
 			// If lifetime is less than the cache entry, just start over
@@ -181,10 +181,10 @@ bool ScriptingParticleColorSequencer::compute (const PlugBase *plug)
 			DTfloat lerp = (lifetime - _t[cache]) / (_t[cache+1] - _t[cache]);
 			DTfloat one_minus_lerp = 1.0F - lerp;
 			
-			if (_r_mask)	color.set_r( (DTubyte) (_c[cache].r_as_float() * one_minus_lerp + _c[cache+1].r_as_float() * lerp));
-			if (_g_mask)	color.set_g( (DTubyte) (_c[cache].g_as_float() * one_minus_lerp + _c[cache+1].g_as_float() * lerp));
-			if (_b_mask)	color.set_b( (DTubyte) (_c[cache].b_as_float() * one_minus_lerp + _c[cache+1].b_as_float() * lerp));
-			if (_a_mask)	color.set_a( (DTubyte) (_c[cache].a_as_float() * one_minus_lerp + _c[cache+1].a_as_float() * lerp));
+			if (_r_mask)	color.set_r( (uint8_t) (_c[cache].r_as_float() * one_minus_lerp + _c[cache+1].r_as_float() * lerp));
+			if (_g_mask)	color.set_g( (uint8_t) (_c[cache].g_as_float() * one_minus_lerp + _c[cache+1].g_as_float() * lerp));
+			if (_b_mask)	color.set_b( (uint8_t) (_c[cache].b_as_float() * one_minus_lerp + _c[cache+1].b_as_float() * lerp));
+			if (_a_mask)	color.set_a( (uint8_t) (_c[cache].a_as_float() * one_minus_lerp + _c[cache+1].a_as_float() * lerp));
 		}
 
 		_out = particles;

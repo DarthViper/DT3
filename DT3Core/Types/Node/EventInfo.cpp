@@ -68,17 +68,17 @@ EventInfo& EventInfo::init (std::string name, DTsize offset, DTnodekind *event_n
 //==============================================================================	
 //==============================================================================	
 
-DTushort EventInfo::get_free_index (void)
+uint16_t EventInfo::get_free_index (void)
 {
-    static DTushort pool_index = 0;
+    static uint16_t pool_index = 0;
     
-    DTint r = pool_index++;
+    int32_t r = pool_index++;
     ASSERT(r < DT3_EVENT_POOL_SIZE);
     
-    return static_cast<DTushort>(r);
+    return static_cast<uint16_t>(r);
 }
 
-EventInfo& EventInfo::get_info (DTushort i)
+EventInfo& EventInfo::get_info (uint16_t i)
 {
     ASSERT(i != 0xFFFF);
     return _pool[i];

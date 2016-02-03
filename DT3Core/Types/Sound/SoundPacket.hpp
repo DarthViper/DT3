@@ -47,8 +47,8 @@ class SoundPacket: public BaseClass {
 
         /// Gets Buffer for streaming data
         /// \return Buffer for streaming data
-        DTubyte*            buffer                  (void)                  {   return _buffer ? &(*_buffer)[0] : NULL;        }
-        const DTubyte*      buffer                  (void) const            {   return _buffer ? &(*_buffer)[0] : NULL;        }
+        uint8_t*            buffer                  (void)                  {   return _buffer ? &(*_buffer)[0] : NULL;        }
+        const uint8_t*      buffer                  (void) const            {   return _buffer ? &(*_buffer)[0] : NULL;        }
 
         DTsize              num_bytes               (void) const			{	return _logical_size;           }
         void                set_num_bytes           (DTsize bytes);
@@ -57,7 +57,7 @@ class SoundPacket: public BaseClass {
         void                set_num_samples         (DTsize samples);
 
         DEFINE_ACCESSORS	(format, set_format, SoundResource::Format, _format);
-        DEFINE_ACCESSORS	(frequency, set_frequency, DTuint, _frequency);
+        DEFINE_ACCESSORS	(frequency, set_frequency, uint32_t, _frequency);
 
         // Merges sound packets
         void                append_packet           (const SoundPacket &rhs);
@@ -88,12 +88,12 @@ class SoundPacket: public BaseClass {
         bool           operator !=             (const SoundPacket& /*rhs*/) const  {   return true;    }
 
     private:
-        std::shared_ptr<std::vector<DTubyte>>   _buffer;
+        std::shared_ptr<std::vector<uint8_t>>   _buffer;
 
         DTsize                                  _logical_size;
 
         SoundResource::Format                   _format;
-        DTuint                                  _frequency;
+        uint32_t                                  _frequency;
 };
 
 //==============================================================================

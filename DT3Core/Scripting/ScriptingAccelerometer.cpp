@@ -137,7 +137,7 @@ void ScriptingAccelerometer::archive_done   (const std::shared_ptr<Archive> &arc
 
 #if DT3_OS == DT3_MACOSX || DT3_OS == DT3_WINDOWS
 
-void ScriptingAccelerometer::key (DTuint modifiers, DTushort key)
+void ScriptingAccelerometer::key (uint32_t modifiers, uint16_t key)
 {
 	PROFILER(SCRIPTING);
 

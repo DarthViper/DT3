@@ -35,7 +35,7 @@ FileHandleUncompressed::~FileHandleUncompressed (void)
 //==============================================================================
 //==============================================================================
 
-DTsize FileHandleUncompressed::read (DTubyte *buffer, DTsize size)
+DTsize FileHandleUncompressed::read (uint8_t *buffer, DTsize size)
 {		
 	_file.read( (char*)buffer, (size_t) size);
 	
@@ -52,7 +52,7 @@ DTsize FileHandleUncompressed::read (DTubyte *buffer, DTsize size)
 	return gcount;
 }
 
-void FileHandleUncompressed::write (const DTubyte *buffer, DTsize size)
+void FileHandleUncompressed::write (const uint8_t *buffer, DTsize size)
 {	
 	_file.write( (char*)buffer, (size_t) size);
 }

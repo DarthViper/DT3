@@ -46,8 +46,8 @@ class CommandParams {
         /// Access a command parameter
         /// \param i index of command
         /// \return command parameter
-        std::string                 operator[]          (DTuint i);
-        const std::string           operator[]          (DTuint i) const;
+        std::string                 operator[]          (uint32_t i);
+        const std::string           operator[]          (uint32_t i) const;
 
         /// Returns the number of command parameters
         /// \return number of command parameters

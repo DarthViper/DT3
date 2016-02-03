@@ -33,10 +33,10 @@ class Time {
 
     public:
         /// Returns the number of seconds on clock
-        static DTuint64				seconds             (void);
+        static uint64_t				seconds             (void);
 
         /// Returns the number of seconds like a clock
-        static std::string          seconds_to_clock    (DTuint seconds);
+        static std::string          seconds_to_clock    (uint32_t seconds);
 
         /// Returns the current time as a string
         /// \return time as a string

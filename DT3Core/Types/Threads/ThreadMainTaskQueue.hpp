@@ -66,10 +66,10 @@ class ThreadMainTaskQueue {
             DTfloat                             _priority;
             DTfloat                             _delay;
             std::shared_ptr<LatentCall>         _lc;
-            DTuint                              _loop_counter;   // For tracking newly added tasks
+            uint32_t                              _loop_counter;   // For tracking newly added tasks
         };
 
-        static DTuint                           _loop_counter;
+        static uint32_t                           _loop_counter;
 
         static std::mutex                       _queue_lock;
         static std::list<Task>                  _queue;

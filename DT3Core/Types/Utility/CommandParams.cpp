@@ -61,7 +61,7 @@ CommandParams::~CommandParams (void)
 //==============================================================================
 //==============================================================================
 
-std::string CommandParams::operator[] (DTuint i)
+std::string CommandParams::operator[] (uint32_t i)
 {	
     if (i >= _params.size())
         return std::string();
@@ -69,7 +69,7 @@ std::string CommandParams::operator[] (DTuint i)
     return _params[i];	
 }
 
-const std::string CommandParams::operator[] (DTuint i) const
+const std::string CommandParams::operator[] (uint32_t i) const
 {	
     if (i >= _params.size())
         return std::string();

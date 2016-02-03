@@ -76,29 +76,29 @@ template <> struct Info<bool> {
     enum { isFundamental = 1 };
 };
 
-template <> struct Info<DTbyte> {
-    static DTbyte				default_value(void)	{	return 0;		}
+template <> struct Info<int8_t> {
+    static int8_t				default_value(void)	{	return 0;		}
     static const DTcharacter*	name(void)          {	return "byte";	}
     static const DTcharacter*	name_caps(void)     {	return "Byte";	}
     enum { isFundamental = 1 };
 };
 
-template <> struct Info<DTshort> {
-    static DTshort				default_value(void)	{	return 0;		}
+template <> struct Info<int16_t> {
+    static int16_t				default_value(void)	{	return 0;		}
     static const DTcharacter*	name(void)          {	return "short";	}
     static const DTcharacter*	name_caps(void)     {	return "Short";	}
     enum { isFundamental = 1 };
 };
 
-template <> struct Info<DTint> {
-    static DTint				default_value(void)	{	return 0;		}
+template <> struct Info<int32_t> {
+    static int32_t				default_value(void)	{	return 0;		}
     static const DTcharacter*	name(void)          {	return "int";	}
     static const DTcharacter*	name_caps(void)     {	return "Int";	}
     enum { isFundamental = 1 };
 };
 
-template <> struct Info<DTint64> {
-    static DTint64				default_value(void)	{	return 0;		}
+template <> struct Info<int64_t> {
+    static int64_t				default_value(void)	{	return 0;		}
     static const DTcharacter*	name(void)          {	return "int64";	}
     static const DTcharacter*	name_caps(void)     {	return "Int64";	}
     enum { isFundamental = 1 };
@@ -113,29 +113,29 @@ template <> struct Info<DTsize> {
 };
 #endif
 
-template <> struct Info<DTubyte> {
-    static DTubyte				default_value(void)	{	return 0;		}
+template <> struct Info<uint8_t> {
+    static uint8_t				default_value(void)	{	return 0;		}
     static const DTcharacter*	name(void)          {	return "ubyte";	}
     static const DTcharacter*	name_caps(void)     {	return "UByte";	}
     enum { isFundamental = 1 };
 };
 
-template <> struct Info<DTushort> {
-    static DTushort				default_value(void)	{	return 0;		}
+template <> struct Info<uint16_t> {
+    static uint16_t				default_value(void)	{	return 0;		}
     static const DTcharacter*	name(void)          {	return "ushort";}
     static const DTcharacter*	name_caps(void)     {	return "UShort";}
     enum { isFundamental = 1 };
 };
 
-template <> struct Info<DTuint> {
-    static DTuint				default_value(void)	{	return 0;		}
+template <> struct Info<uint32_t> {
+    static uint32_t				default_value(void)	{	return 0;		}
     static const DTcharacter*	name(void)          {	return "uint";	}
     static const DTcharacter*	name_caps(void)     {	return "UInt";	}
     enum { isFundamental = 1 };
 };
 
-template <> struct Info<DTuint64> {
-    static DTuint64				default_value(void)	{	return 0;		}
+template <> struct Info<uint64_t> {
+    static uint64_t				default_value(void)	{	return 0;		}
     static const DTcharacter*	name(void)          {	return "uint64";}
     static const DTcharacter*	name_caps(void)     {	return "UInt64";}
     enum { isFundamental = 1 };

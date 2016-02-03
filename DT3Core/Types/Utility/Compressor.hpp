@@ -38,8 +38,8 @@ class Compressor {
         /// \param dst_data uncompressed data
         /// \param dst_data_size uncompressed data size
         /// \return size of compressed data or zero if not enough space in destination buffer
-        static DTsize           deflate             (   DTubyte *src_data, DTsize src_data_size,
-                                                        DTubyte *dst_data, DTsize dst_data_size );
+        static DTsize           deflate             (   uint8_t *src_data, DTsize src_data_size,
+                                                        uint8_t *dst_data, DTsize dst_data_size );
 
         /// inflate compressed data stream
         /// \param src_data uncompressed data
@@ -47,8 +47,8 @@ class Compressor {
         /// \param dst_data compressed data
         /// \param dst_data_size compressed data size
         /// \return size of decompressed data or zero if not enough space in destination buffer
-        static DTsize           inflate             (   DTubyte *src_data, DTsize src_data_size,
-                                                        DTubyte *dst_data, DTsize dst_data_size );
+        static DTsize           inflate             (   uint8_t *src_data, DTsize src_data_size,
+                                                        uint8_t *dst_data, DTsize dst_data_size );
 
 };
 

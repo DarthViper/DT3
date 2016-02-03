@@ -183,8 +183,8 @@ struct DT3GLDepthStencilState {
     DT3GLComparison     depth_func;
 
     bool           stencil_enable;
-    DTuint              stencil_read_mask;
-    DTuint              stencil_write_mask;
+    uint32_t              stencil_read_mask;
+    uint32_t              stencil_write_mask;
 
     DT3GLStencilOp      front_face_stencil_fail_op;
     DT3GLStencilOp      front_face_stencil_depth_fail_op;
@@ -424,23 +424,23 @@ class DeviceGraphics: public DeviceBase {
         /// Opens up a display or tells the Device that a new display was opened
         /// \param width width of the display
         /// \param height width of the display
-        virtual void                                        open_display                    (DTint width, DTint height) = 0;
+        virtual void                                        open_display                    (int32_t width, int32_t height) = 0;
 
         /// Changes a display or tells the Device that a display was changed
         /// \param width width of the display
         /// \param height width of the display
-        virtual void                                        change_display                  (DTuint width, DTuint height) = 0;
+        virtual void                                        change_display                  (uint32_t width, uint32_t height) = 0;
 
         /// Closes a display or tells the Device that a display was closed
         virtual void                                        close_display                   (void) = 0;
 
         /// Returns the width of the screen in pixels
         /// \return width of screen in pixels
-        virtual DTuint                                      screen_width                    (void) = 0;
+        virtual uint32_t                                      screen_width                    (void) = 0;
 
         /// Returns the height of the screen in pixels
         /// \return height of screen in pixels
-        virtual DTuint                                      screen_height                   (void) = 0;
+        virtual uint32_t                                      screen_height                   (void) = 0;
 
         /// Returns the aspect ratio of the screen in pixels
         /// \return aspect ratio of screen in pixels
@@ -452,7 +452,7 @@ class DeviceGraphics: public DeviceBase {
         /// \param y y
         /// \param width width
         /// \param height height
-        virtual void                                        viewport                        (DTint &x, DTint &y, DTint &width, DTint &height) = 0;
+        virtual void                                        viewport                        (int32_t &x, int32_t &y, int32_t &width, int32_t &height) = 0;
 
         /// Sets the current viewport
         /// \param x x
@@ -461,15 +461,15 @@ class DeviceGraphics: public DeviceBase {
         /// \param height height
         /// \param rt_width width of render target. Needed for compatibility with D3D. 0 for screen dimensions
         /// \param rt_height height of render target. Needed for compatibility with D3D. 0 for screen dimensions
-        virtual void                                        set_viewport                    (DTint x, DTint y, DTint width, DTint height, DTint rt_width = 0, DTint rt_height = 0) = 0;
+        virtual void                                        set_viewport                    (int32_t x, int32_t y, int32_t width, int32_t height, int32_t rt_width = 0, int32_t rt_height = 0) = 0;
 
         /// Returns the current viewport width
         /// \return viewport width
-        virtual DTuint                                      viewport_width                  (void) = 0;
+        virtual uint32_t                                      viewport_width                  (void) = 0;
 
         /// Returns the current viewport height
         /// \return viewport height
-        virtual DTuint                                      viewport_height                 (void) = 0;
+        virtual uint32_t                                      viewport_height                 (void) = 0;
 
         /// Returns the current viewport aspect ratio
         /// \return viewport aspect ratio
@@ -482,7 +482,7 @@ class DeviceGraphics: public DeviceBase {
 
 
         /// Viewport clear values
-        virtual void                                        clear_stencil_value             (DTuint s) = 0;
+        virtual void                                        clear_stencil_value             (uint32_t s) = 0;
         virtual void                                        clear_color_value               (const Color4f &c) = 0;
         virtual void                                        clear_depth_value               (DTfloat d) = 0;
 
@@ -491,7 +491,7 @@ class DeviceGraphics: public DeviceBase {
         //
 
         virtual std::shared_ptr<DT3GLDepthStencilResource>  create_depth_stencil_state      (const DT3GLDepthStencilState &state) = 0;
-        virtual void                                        set_stencil_ref                 (DTuint ref) = 0;
+        virtual void                                        set_stencil_ref                 (uint32_t ref) = 0;
 
         //
         // Blend State
@@ -515,52 +515,52 @@ class DeviceGraphics: public DeviceBase {
         // Textures
         //
 
-        virtual std::shared_ptr<DT3GLTexture2DResource>     create_texture_2D               (DTint width, DTint height, DTubyte *textels, DT3GLTextelFormat format, bool mipmapped, DTuint flags = DT3GL_ACCESS_CPU_NONE | DT3GL_ACCESS_GPU_READ) = 0;
-        virtual void                                        update_texture_2D               (const std::shared_ptr<DT3GLTexture2DResource> &res, DTint x, DTint y, DTint width, DTint height, DTubyte *textels) = 0;
+        virtual std::shared_ptr<DT3GLTexture2DResource>     create_texture_2D               (int32_t width, int32_t height, uint8_t *textels, DT3GLTextelFormat format, bool mipmapped, uint32_t flags = DT3GL_ACCESS_CPU_NONE | DT3GL_ACCESS_GPU_READ) = 0;
+        virtual void                                        update_texture_2D               (const std::shared_ptr<DT3GLTexture2DResource> &res, int32_t x, int32_t y, int32_t width, int32_t height, uint8_t *textels) = 0;
 
-        virtual std::shared_ptr<DT3GLTexture3DResource>     create_texture_3D               (DTint width, DTint height, DTint depth, DTubyte *textels, DT3GLTextelFormat format, bool mipmapped, DTuint flags = DT3GL_ACCESS_CPU_NONE | DT3GL_ACCESS_GPU_READ) = 0;
-        virtual void                                        update_texture_3D               (const std::shared_ptr<DT3GLTexture3DResource> &res, DTint x, DTint y, DTint z, DTint width, DTint height, DTint depth, DTubyte *textels) = 0;
+        virtual std::shared_ptr<DT3GLTexture3DResource>     create_texture_3D               (int32_t width, int32_t height, int32_t depth, uint8_t *textels, DT3GLTextelFormat format, bool mipmapped, uint32_t flags = DT3GL_ACCESS_CPU_NONE | DT3GL_ACCESS_GPU_READ) = 0;
+        virtual void                                        update_texture_3D               (const std::shared_ptr<DT3GLTexture3DResource> &res, int32_t x, int32_t y, int32_t z, int32_t width, int32_t height, int32_t depth, uint8_t *textels) = 0;
 
-        virtual std::shared_ptr<DT3GLTextureCubeResource>   create_texture_cube             (   DTint width, DTint height,
-                                                                                                DTubyte *textels_front,
-                                                                                                DTubyte *textels_back,
-                                                                                                DTubyte *textels_left,
-                                                                                                DTubyte *textels_right,
-                                                                                                DTubyte *textels_top,
-                                                                                                DTubyte *textels_bottom,
+        virtual std::shared_ptr<DT3GLTextureCubeResource>   create_texture_cube             (   int32_t width, int32_t height,
+                                                                                                uint8_t *textels_front,
+                                                                                                uint8_t *textels_back,
+                                                                                                uint8_t *textels_left,
+                                                                                                uint8_t *textels_right,
+                                                                                                uint8_t *textels_top,
+                                                                                                uint8_t *textels_bottom,
                                                                                                 DT3GLTextelFormat format,
                                                                                                 bool mipmapped,
-                                                                                                DTuint flags = DT3GL_ACCESS_CPU_NONE | DT3GL_ACCESS_GPU_READ) = 0;
-        virtual void                                        update_texture_cube             (   const std::shared_ptr<DT3GLTextureCubeResource> &res, DTint x, DTint y, DTint width, DTint height,
-                                                                                                DTubyte *textels_front,
-                                                                                                DTubyte *textels_back,
-                                                                                                DTubyte *textels_left,
-                                                                                                DTubyte *textels_right,
-                                                                                                DTubyte *textels_top,
-                                                                                                DTubyte *textels_bottom) = 0;
+                                                                                                uint32_t flags = DT3GL_ACCESS_CPU_NONE | DT3GL_ACCESS_GPU_READ) = 0;
+        virtual void                                        update_texture_cube             (   const std::shared_ptr<DT3GLTextureCubeResource> &res, int32_t x, int32_t y, int32_t width, int32_t height,
+                                                                                                uint8_t *textels_front,
+                                                                                                uint8_t *textels_back,
+                                                                                                uint8_t *textels_left,
+                                                                                                uint8_t *textels_right,
+                                                                                                uint8_t *textels_top,
+                                                                                                uint8_t *textels_bottom) = 0;
 
         //
         // Buffers
         //
 
-        virtual std::shared_ptr<DT3GLAttribBufferResource>  create_buffer                   (DTubyte *buffer_data, DTsize buffer_size, DT3GLBufferFormat buffer_format, DTuint flags = DT3GL_ACCESS_CPU_NONE | DT3GL_ACCESS_GPU_READ) = 0;
-        virtual void                                        update_buffer                   (const std::shared_ptr<DT3GLAttribBufferResource> &res, DTubyte *buffer_data, DTsize buffer_size, DTsize buffer_offset) = 0;
+        virtual std::shared_ptr<DT3GLAttribBufferResource>  create_buffer                   (uint8_t *buffer_data, DTsize buffer_size, DT3GLBufferFormat buffer_format, uint32_t flags = DT3GL_ACCESS_CPU_NONE | DT3GL_ACCESS_GPU_READ) = 0;
+        virtual void                                        update_buffer                   (const std::shared_ptr<DT3GLAttribBufferResource> &res, uint8_t *buffer_data, DTsize buffer_size, DTsize buffer_offset) = 0;
 
-        virtual std::shared_ptr<DT3GLElementBufferResource> create_index_buffer             (DTubyte *buffer_data, DTsize buffer_size, DT3GLBufferFormat buffer_format, DTuint flags = DT3GL_ACCESS_CPU_NONE | DT3GL_ACCESS_GPU_READ) = 0;
-        virtual void                                        update_index_buffer             (const std::shared_ptr<DT3GLElementBufferResource> &res, DTubyte *buffer_data, DTsize buffer_size, DTsize buffer_offset) = 0;
+        virtual std::shared_ptr<DT3GLElementBufferResource> create_index_buffer             (uint8_t *buffer_data, DTsize buffer_size, DT3GLBufferFormat buffer_format, uint32_t flags = DT3GL_ACCESS_CPU_NONE | DT3GL_ACCESS_GPU_READ) = 0;
+        virtual void                                        update_index_buffer             (const std::shared_ptr<DT3GLElementBufferResource> &res, uint8_t *buffer_data, DTsize buffer_size, DTsize buffer_offset) = 0;
 
         //
         // Uniforms
         //
 
-        virtual std::shared_ptr<DT3GLUniformResource>       create_uniform                  (const DTint buffer_data) = 0;
+        virtual std::shared_ptr<DT3GLUniformResource>       create_uniform                  (const int32_t buffer_data) = 0;
         virtual std::shared_ptr<DT3GLUniformResource>       create_uniform                  (const Vector4 &buffer_data) = 0;
         virtual std::shared_ptr<DT3GLUniformResource>       create_uniform                  (const std::vector<Vector4> &buffer_data) = 0;
         virtual std::shared_ptr<DT3GLUniformResource>       create_uniform                  (const Matrix4 &buffer_data) = 0;
         virtual std::shared_ptr<DT3GLUniformResource>       create_uniform                  (const std::vector<Matrix4> &buffer_data) = 0;
         virtual std::shared_ptr<DT3GLUniformResource>       create_uniform                  (const Color4f &buffer_data) = 0;
 
-        virtual void                                        update_uniform                  (const std::shared_ptr<DT3GLUniformResource> &res, const DTint buffer_data) = 0;
+        virtual void                                        update_uniform                  (const std::shared_ptr<DT3GLUniformResource> &res, const int32_t buffer_data) = 0;
         virtual void                                        update_uniform                  (const std::shared_ptr<DT3GLUniformResource> &res, const Vector4 &buffer_data) = 0;
         virtual void                                        update_uniform                  (const std::shared_ptr<DT3GLUniformResource> &res, const std::vector<Vector4> &buffer_data) = 0;
         virtual void                                        update_uniform                  (const std::shared_ptr<DT3GLUniformResource> &res, const Matrix4 &buffer_data) = 0;
@@ -578,8 +578,8 @@ class DeviceGraphics: public DeviceBase {
         virtual std::shared_ptr<DT3GLGeometryShaderResource>create_geometry_shader          (const std::string &source) = 0;
         virtual std::shared_ptr<DT3GLFragmentShaderResource>create_fragment_shader          (const std::string &source) = 0;
 
-        virtual DTint                                       attribute_slot                  (const std::shared_ptr<DT3GLShaderResource> &shader, const std::string &name) = 0;
-        virtual DTint                                       uniform_slot                    (const std::shared_ptr<DT3GLShaderResource> &shader, const std::string &name) = 0;
+        virtual int32_t                                       attribute_slot                  (const std::shared_ptr<DT3GLShaderResource> &shader, const std::string &name) = 0;
+        virtual int32_t                                       uniform_slot                    (const std::shared_ptr<DT3GLShaderResource> &shader, const std::string &name) = 0;
 
         //
         // Attachments
@@ -592,24 +592,24 @@ class DeviceGraphics: public DeviceBase {
         virtual void                                        attach_vertex_shader            (const std::shared_ptr<DT3GLShaderResource> &shader, const std::shared_ptr<DT3GLVertexShaderResource> &vertex_shader) = 0;
         virtual void                                        attach_geometry_shader          (const std::shared_ptr<DT3GLShaderResource> &shader, const std::shared_ptr<DT3GLGeometryShaderResource> &geometry_shader) = 0;
         virtual void                                        attach_fragment_shader          (const std::shared_ptr<DT3GLShaderResource> &shader, const std::shared_ptr<DT3GLFragmentShaderResource> &fragment_shader) = 0;
-        virtual void                                        attach_attribute_buffer         (const std::shared_ptr<DT3GLShaderResource> &shader, DTuint attribute_slot, const std::shared_ptr<DT3GLAttribBufferResource> &res) = 0;
-        virtual void                                        attach_uniform_buffer           (const std::shared_ptr<DT3GLShaderResource> &shader, DTuint uniform_slot, const std::shared_ptr<DT3GLUniformResource> &res) = 0;
+        virtual void                                        attach_attribute_buffer         (const std::shared_ptr<DT3GLShaderResource> &shader, uint32_t attribute_slot, const std::shared_ptr<DT3GLAttribBufferResource> &res) = 0;
+        virtual void                                        attach_uniform_buffer           (const std::shared_ptr<DT3GLShaderResource> &shader, uint32_t uniform_slot, const std::shared_ptr<DT3GLUniformResource> &res) = 0;
 
         virtual void                                        attach_shader                   (std::shared_ptr<DT3GLShaderResource> shader) = 0;
 
-        virtual void                                        attach_sampler                  (DTuint texture_slot, const std::shared_ptr<DT3GLSamplerResource> &res) = 0;
-        virtual void                                        attach_texture                  (DTuint texture_slot, const std::shared_ptr<DT3GLTexture2DResource> &res) = 0;
-        virtual void                                        attach_texture                  (DTuint texture_slot, const std::shared_ptr<DT3GLTexture3DResource> &res) = 0;
-        virtual void                                        attach_texture                  (DTuint texture_slot, const std::shared_ptr<DT3GLTextureCubeResource> &res) = 0;
+        virtual void                                        attach_sampler                  (uint32_t texture_slot, const std::shared_ptr<DT3GLSamplerResource> &res) = 0;
+        virtual void                                        attach_texture                  (uint32_t texture_slot, const std::shared_ptr<DT3GLTexture2DResource> &res) = 0;
+        virtual void                                        attach_texture                  (uint32_t texture_slot, const std::shared_ptr<DT3GLTexture3DResource> &res) = 0;
+        virtual void                                        attach_texture                  (uint32_t texture_slot, const std::shared_ptr<DT3GLTextureCubeResource> &res) = 0;
 
 
         //
         // Drawing
         //
 
-        virtual void                                        draw_arrays                     (DT3GLPrimitiveType primitive_type, DTuint num_elements) = 0;
-        virtual void                                        draw_arrays_ranged              (DT3GLPrimitiveType primitive_type, DTuint start_element, DTuint num_elements) = 0;
-        virtual void                                        draw_indexed_arrays             (const std::shared_ptr<DT3GLElementBufferResource> &elements, DT3GLPrimitiveType primitive_type, DTuint num_elements) = 0;
+        virtual void                                        draw_arrays                     (DT3GLPrimitiveType primitive_type, uint32_t num_elements) = 0;
+        virtual void                                        draw_arrays_ranged              (DT3GLPrimitiveType primitive_type, uint32_t start_element, uint32_t num_elements) = 0;
+        virtual void                                        draw_indexed_arrays             (const std::shared_ptr<DT3GLElementBufferResource> &elements, DT3GLPrimitiveType primitive_type, uint32_t num_elements) = 0;
 
         //
         // Framebuffers
@@ -618,11 +618,11 @@ class DeviceGraphics: public DeviceBase {
         virtual std::shared_ptr<DT3GLFramebufferResource>   create_framebuffer              (void) = 0;
         virtual void                                        activate_framebuffer            (const std::shared_ptr<DT3GLFramebufferResource> &framebuffer) = 0;
 
-        virtual void                                        attach_framebuffer_color        (const std::shared_ptr<DT3GLFramebufferResource> &framebuffer, const std::shared_ptr<DT3GLTexture2DResource> &tex, DTuint target_index = 0) = 0;
+        virtual void                                        attach_framebuffer_color        (const std::shared_ptr<DT3GLFramebufferResource> &framebuffer, const std::shared_ptr<DT3GLTexture2DResource> &tex, uint32_t target_index = 0) = 0;
         virtual void                                        attach_framebuffer_depth_stencil(const std::shared_ptr<DT3GLFramebufferResource> &framebuffer, const std::shared_ptr<DT3GLTexture2DResource> &tex) = 0;
 
-        virtual void                                        attach_renderbuffer_color       (const std::shared_ptr<DT3GLFramebufferResource> &framebuffer, DTint width, DTint height, DT3GLRenderBufferFormat format, DTuint target_index = 0) = 0;
-        virtual void                                        attach_renderbuffer_depth_stencil(const std::shared_ptr<DT3GLFramebufferResource> &framebuffer, DTint width, DTint height, DT3GLRenderBufferFormat format) = 0;
+        virtual void                                        attach_renderbuffer_color       (const std::shared_ptr<DT3GLFramebufferResource> &framebuffer, int32_t width, int32_t height, DT3GLRenderBufferFormat format, uint32_t target_index = 0) = 0;
+        virtual void                                        attach_renderbuffer_depth_stencil(const std::shared_ptr<DT3GLFramebufferResource> &framebuffer, int32_t width, int32_t height, DT3GLRenderBufferFormat format) = 0;
 
         /// Copies the current screen to a TextureResource2D
         /// \param tex destination texture

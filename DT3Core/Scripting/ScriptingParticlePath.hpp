@@ -61,22 +61,22 @@ class ScriptingParticlePath: public ScriptingBase {
         /// Sets the position of a point along the path
         /// \param k index of point
         /// \param point point
-        void						set_point               (DTint k, const Vector3 &point)    {	_points[k].value = point;		_out.set_dirty();	}
+        void						set_point               (int32_t k, const Vector3 &point)    {	_points[k].value = point;		_out.set_dirty();	}
 
         /// Gets the position of a point along the path
         /// \param k index of point
         /// \return point
-        const Vector3 &				point                   (DTint k)	const                   {	return _points[k].value;        }
+        const Vector3 &				point                   (int32_t k)	const                   {	return _points[k].value;        }
 
         /// Sets the tangent of a point along the path
         /// \param k index of point
         /// \param tangent tangent
-        void						set_point_tangent       (DTint k, const Vector3 &tangent)	{	_points[k].tangent = tangent;	_out.set_dirty();	}
+        void						set_point_tangent       (int32_t k, const Vector3 &tangent)	{	_points[k].tangent = tangent;	_out.set_dirty();	}
 
         /// Gets the tangent of a point along the path
         /// \param k index of point
         /// \return tangent
-        const Vector3 &				point_tangent           (DTint k)	const					{	return _points[k].tangent;		}
+        const Vector3 &				point_tangent           (int32_t k)	const					{	return _points[k].tangent;		}
 
 
 

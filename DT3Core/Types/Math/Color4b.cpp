@@ -66,7 +66,7 @@ Color4b::Color4b	(const DTfloat r_, const DTfloat g_, const DTfloat b_, const DT
     set(r_,g_,b_,a_);
 }
 
-Color4b::Color4b	(const DTubyte r_, const DTubyte g_, const DTubyte b_, const DTubyte a_)
+Color4b::Color4b	(const uint8_t r_, const uint8_t g_, const uint8_t b_, const uint8_t a_)
 {
     set(r_,g_,b_,a_);
 }	
@@ -76,7 +76,7 @@ Color4b::Color4b	(const DTfloat rhs[])
     set(rhs);
 }
 
-Color4b::Color4b	(const DTubyte rhs[])
+Color4b::Color4b	(const uint8_t rhs[])
 {
     set(rhs);
 }
@@ -129,16 +129,16 @@ Stream& operator >> (Stream &s, Color4b&c)
 
 void Color4b::set (const DTfloat r_, const DTfloat g_, const DTfloat b_, const DTfloat a_)
 { 
-    r = (DTubyte) (MoreMath::float_to_int(MoreMath::clamp_zero_one(r_) * static_cast<DTfloat>(DTUBYTE_MAX)));
-    g = (DTubyte) (MoreMath::float_to_int(MoreMath::clamp_zero_one(g_) * static_cast<DTfloat>(DTUBYTE_MAX)));
-    b = (DTubyte) (MoreMath::float_to_int(MoreMath::clamp_zero_one(b_) * static_cast<DTfloat>(DTUBYTE_MAX)));
-    a = (DTubyte) (MoreMath::float_to_int(MoreMath::clamp_zero_one(a_) * static_cast<DTfloat>(DTUBYTE_MAX)));
+    r = (uint8_t) (MoreMath::float_to_int(MoreMath::clamp_zero_one(r_) * static_cast<DTfloat>(DTUBYTE_MAX)));
+    g = (uint8_t) (MoreMath::float_to_int(MoreMath::clamp_zero_one(g_) * static_cast<DTfloat>(DTUBYTE_MAX)));
+    b = (uint8_t) (MoreMath::float_to_int(MoreMath::clamp_zero_one(b_) * static_cast<DTfloat>(DTUBYTE_MAX)));
+    a = (uint8_t) (MoreMath::float_to_int(MoreMath::clamp_zero_one(a_) * static_cast<DTfloat>(DTUBYTE_MAX)));
 }
 
 //==============================================================================
 //==============================================================================
 
-void Color4b::set (const DTubyte r_, const DTubyte g_, const DTubyte b_, const DTubyte a_)
+void Color4b::set (const uint8_t r_, const uint8_t g_, const uint8_t b_, const uint8_t a_)
 { 
     r = r_;
     g = g_;
@@ -151,16 +151,16 @@ void Color4b::set (const DTubyte r_, const DTubyte g_, const DTubyte b_, const D
 
 void Color4b::set (const DTfloat ar[])
 { 
-    r = (DTubyte) (MoreMath::float_to_int(MoreMath::clamp_zero_one(ar[0]) * static_cast<DTfloat>(DTUBYTE_MAX)));
-    g = (DTubyte) (MoreMath::float_to_int(MoreMath::clamp_zero_one(ar[1]) * static_cast<DTfloat>(DTUBYTE_MAX)));
-    b = (DTubyte) (MoreMath::float_to_int(MoreMath::clamp_zero_one(ar[2]) * static_cast<DTfloat>(DTUBYTE_MAX)));
-    a = (DTubyte) (MoreMath::float_to_int(MoreMath::clamp_zero_one(ar[3]) * static_cast<DTfloat>(DTUBYTE_MAX)));
+    r = (uint8_t) (MoreMath::float_to_int(MoreMath::clamp_zero_one(ar[0]) * static_cast<DTfloat>(DTUBYTE_MAX)));
+    g = (uint8_t) (MoreMath::float_to_int(MoreMath::clamp_zero_one(ar[1]) * static_cast<DTfloat>(DTUBYTE_MAX)));
+    b = (uint8_t) (MoreMath::float_to_int(MoreMath::clamp_zero_one(ar[2]) * static_cast<DTfloat>(DTUBYTE_MAX)));
+    a = (uint8_t) (MoreMath::float_to_int(MoreMath::clamp_zero_one(ar[3]) * static_cast<DTfloat>(DTUBYTE_MAX)));
 }
 
 //==============================================================================
 //==============================================================================
 
-void Color4b::set (const DTubyte ar[])
+void Color4b::set (const uint8_t ar[])
 { 
     r = ar[0];
     g = ar[1];
@@ -173,22 +173,22 @@ void Color4b::set (const DTubyte ar[])
 
 void Color4b::set_r (const DTfloat r_)
 {
-    r = (DTubyte) (MoreMath::float_to_int(MoreMath::clamp_zero_one(r_) * static_cast<DTfloat>(DTUBYTE_MAX)));
+    r = (uint8_t) (MoreMath::float_to_int(MoreMath::clamp_zero_one(r_) * static_cast<DTfloat>(DTUBYTE_MAX)));
 }
 
 void Color4b::set_g (const DTfloat g_)
 {
-    g = (DTubyte) (MoreMath::float_to_int(MoreMath::clamp_zero_one(g_) * static_cast<DTfloat>(DTUBYTE_MAX)));
+    g = (uint8_t) (MoreMath::float_to_int(MoreMath::clamp_zero_one(g_) * static_cast<DTfloat>(DTUBYTE_MAX)));
 }
 
 void Color4b::set_b (const DTfloat b_)
 {
-    b = (DTubyte) (MoreMath::float_to_int(MoreMath::clamp_zero_one(b_) * static_cast<DTfloat>(DTUBYTE_MAX)));
+    b = (uint8_t) (MoreMath::float_to_int(MoreMath::clamp_zero_one(b_) * static_cast<DTfloat>(DTUBYTE_MAX)));
 }
 
 void Color4b::set_a (const DTfloat a_)
 {
-    a = (DTubyte) (MoreMath::float_to_int(MoreMath::clamp_zero_one(a_) * static_cast<DTfloat>(DTUBYTE_MAX)));
+    a = (uint8_t) (MoreMath::float_to_int(MoreMath::clamp_zero_one(a_) * static_cast<DTfloat>(DTUBYTE_MAX)));
 }
 
 //==============================================================================

@@ -44,7 +44,7 @@ class CommandResult {
         };
 
                                         CommandResult			(void);
-                                        CommandResult           (bool result, const std::string &m, DTuint h)   {   set_result(result); set_message(m); set_update_hint(h);    }
+                                        CommandResult           (bool result, const std::string &m, uint32_t h)   {   set_result(result); set_message(m); set_update_hint(h);    }
                                         CommandResult			(const CommandResult &rhs);
         CommandResult &                 operator =				(const CommandResult &rhs);
         virtual                         ~CommandResult          (void);
@@ -52,7 +52,7 @@ class CommandResult {
     public:
 
         DEFINE_ACCESSORS(message, set_message, std::string, _message)
-        DEFINE_ACCESSORS(update_hint, set_update_hint, DTuint, _update_hint)
+        DEFINE_ACCESSORS(update_hint, set_update_hint, uint32_t, _update_hint)
         DEFINE_ACCESSORS(result, set_result, bool, _result)
 
         /// Appends a command to the undo queue
@@ -70,7 +70,7 @@ class CommandResult {
     private:
         std::string                 _message;
         bool                   _result;
-        DTuint                      _update_hint;
+        uint32_t                      _update_hint;
         std::list<CommandParams>    _undo_commands;
 };
 

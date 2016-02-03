@@ -22,7 +22,7 @@ namespace DT3 {
 //==============================================================================
 //==============================================================================
 
-DTuint64 Time::seconds (void)
+uint64_t Time::seconds (void)
 {
 	time_t rawtime;
 	time ( &rawtime );
@@ -32,10 +32,10 @@ DTuint64 Time::seconds (void)
 //==============================================================================
 //==============================================================================
 
-std::string Time::seconds_to_clock (DTuint s)
+std::string Time::seconds_to_clock (uint32_t s)
 {
-	DTint minutes = s / 60;
-	DTint seconds = s % 60;
+	int32_t minutes = s / 60;
+	int32_t seconds = s % 60;
 	
 	if (minutes > 0) {
 		if (seconds >= 0 && seconds <= 9)

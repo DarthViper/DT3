@@ -67,7 +67,7 @@ class MoreStrings {
         /// \param salt salt obfuscate data
         /// \param offset offset for obfuscating data
         /// \return Unobfuscated data
-        static void             obfuscate_raw                   (DTubyte *data, DTsize size, DTuint salt, DTsize offset);
+        static void             obfuscate_raw                   (uint8_t *data, DTsize size, uint32_t salt, DTsize offset);
 
         /// Convert string to lowercase
         /// \param s string
@@ -103,7 +103,7 @@ class MoreStrings {
         /// Hash a string
         /// \param s string
         /// \return hash of string
-        static DTuint           hash                            (const std::string &s);
+        static uint32_t           hash                            (const std::string &s);
 
 
         /// Clean the control characters in a string
@@ -143,7 +143,7 @@ class MoreStrings {
         /// \param start start of buffer
         /// \param num_bytes number of bytes consumed
         /// \param character unicode character
-        static void             extract_unicode                 (DTcharacter *start, DTuint &num_bytes, DTuint &character);
+        static void             extract_unicode                 (DTcharacter *start, uint32_t &num_bytes, uint32_t &character);
 
         /// Trim left (i.e. front) of string
         /// \param s string to trim

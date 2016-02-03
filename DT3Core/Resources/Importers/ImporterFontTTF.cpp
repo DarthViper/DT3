@@ -88,7 +88,7 @@ DTerr ImporterFontTTF::import(FontResource *target, std::string args)
     ftargs.stream=(FT_Stream)malloc(sizeof *(ftargs.stream));
     
     ftargs.stream->base = NULL;
-    ftargs.stream->size = static_cast<DTuint>(file->length());
+    ftargs.stream->size = static_cast<uint32_t>(file->length());
     ftargs.stream->pos = 0;
     ftargs.stream->descriptor.pointer = (void*) (file);
     ftargs.stream->pathname.pointer = NULL;

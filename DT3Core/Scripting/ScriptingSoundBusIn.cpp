@@ -179,7 +179,7 @@ bool ScriptingSoundBusIn::compute (const PlugBase *plug)
         // Upconvert to 16-bit Stereo and mix into 32 bit buffers
         //
         
-        std::vector<DTint> buffer;
+        std::vector<int32_t> buffer;
         buffer.resize(max_num_samples*2, 0);    // Interleaved 32-but ints
         
         FOR_EACH (i,_bus_sources) {
@@ -187,11 +187,11 @@ bool ScriptingSoundBusIn::compute (const PlugBase *plug)
 
             if (packet.format() == SoundResource::FORMAT_MONO16) {
             
-                DTshort *src = (DTshort*) packet.buffer();
-                DTint *dst = &buffer[0];
+                int16_t *src = (int16_t*) packet.buffer();
+                int32_t *dst = &buffer[0];
                 
-                for (DTuint j = 0; j < max_num_samples; ++j) {
-                    DTshort val = *src;
+                for (uint32_t j = 0; j < max_num_samples; ++j) {
+                    int16_t val = *src;
                     
                     *dst += val; ++dst;
                     *dst += val; ++dst;
@@ -200,10 +200,10 @@ bool ScriptingSoundBusIn::compute (const PlugBase *plug)
 
             } else if (packet.format() == SoundResource::FORMAT_STEREO16) {
             
-                DTshort *src = (DTshort*) packet.buffer();
-                DTint *dst = &buffer[0];
+                int16_t *src = (int16_t*) packet.buffer();
+                int32_t *dst = &buffer[0];
                 
-                for (DTuint j = 0; j < max_num_samples; ++j) {
+                for (uint32_t j = 0; j < max_num_samples; ++j) {
                     *dst += *src; 
                     ++dst;
                     ++src;
@@ -227,17 +227,17 @@ bool ScriptingSoundBusIn::compute (const PlugBase *plug)
         sound_packet_out.set_format(SoundResource::FORMAT_STEREO16);
         sound_packet_out.set_num_samples(max_num_samples);   // 2 channels of 2 bytes per channel
         
-        DTint *src = &buffer[0];
-        DTshort *dst = (DTshort*) sound_packet_out.buffer();
+        int32_t *src = &buffer[0];
+        int16_t *dst = (int16_t*) sound_packet_out.buffer();
         
-        for (DTuint i = 0; i < max_num_samples; ++i) {
+        for (uint32_t i = 0; i < max_num_samples; ++i) {
             // Left
-            *dst = static_cast<DTshort>(CLAMP_16BIT(*src));
+            *dst = static_cast<int16_t>(CLAMP_16BIT(*src));
             ++dst;
             ++src;
 
             // Right
-            *dst = static_cast<DTshort>(CLAMP_16BIT(*src));
+            *dst = static_cast<int16_t>(CLAMP_16BIT(*src));
             ++dst;
             ++src;
         }

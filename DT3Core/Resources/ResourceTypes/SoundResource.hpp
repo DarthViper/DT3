@@ -73,11 +73,11 @@ class SoundResource: public Resource {
 
         /// Sets frequency of sound data
         /// \param frequency frequency of sound data
-        void                            set_frequency       (DTuint frequency)		{	_frequency = frequency;		}
+        void                            set_frequency       (uint32_t frequency)		{	_frequency = frequency;		}
 
         /// Returns frequency of sound data
         /// \return frequency of sound data
-        DTuint                          frequency           (void) const            {	return _frequency;			}
+        uint32_t                          frequency           (void) const            {	return _frequency;			}
 
         /// Returns the raw sound data of streaming sound
         /// \param packet sound packet
@@ -119,8 +119,8 @@ class SoundResource: public Resource {
 
         static void                     reload_if_changed   (void);
 
-        DTuint                          _format;
-        DTuint                          _frequency;
+        uint32_t                          _format;
+        uint32_t                          _frequency;
 
         std::shared_ptr<ImporterSound>  _importer;
 

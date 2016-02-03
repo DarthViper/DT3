@@ -168,9 +168,9 @@ void ScriptingParticleStamFluids::tick (const DTfloat dt)
     
     _turbulence_timer += std::abs(_turbulence->x);
     
-    DTint i, j;
+    int32_t i, j;
     FOR_EACH_CELL
-        DTint index = IX(i,j);
+        int32_t index = IX(i,j);
         
         DTfloat x = Perlin::noise_3D (i / static_cast<DTfloat>(_n) * 2.0F + _turbulence_timer, j / static_cast<DTfloat>(_n) * 2.0F + _turbulence_timer, _turbulence_timer);
         DTfloat y = Perlin::noise_3D (i / static_cast<DTfloat>(_n) * 2.0F - _turbulence_timer, j / static_cast<DTfloat>(_n) * 2.0F - _turbulence_timer, -_turbulence_timer);
@@ -186,19 +186,19 @@ void ScriptingParticleStamFluids::tick (const DTfloat dt)
     std::vector<Vector3> &velocities = particles->velocity_stream();
     std::vector<Vector3> &translations = particles->translations_stream();
 
-    for (DTint k = particles->active_start(); k != particles->active_end(); k = (k + 1) % particles->translations_stream().size()) {
+    for (int32_t k = particles->active_start(); k != particles->active_end(); k = (k + 1) % particles->translations_stream().size()) {
         Vector3 &translation = translations[k];
         Vector3 &velocity = velocities[k];
 
-        DTint ix = (DTint) (_n * (translation.x - _rectangle.minus_x()) / (_rectangle.plus_x() - _rectangle.minus_x()));
+        int32_t ix = (int32_t) (_n * (translation.x - _rectangle.minus_x()) / (_rectangle.plus_x() - _rectangle.minus_x()));
         if (ix < 0)         ix = 0;
         else if (ix >= _n)  ix = _n-1;
 
-        DTint iy = (DTint) (_n * (translation.y - _rectangle.minus_y()) / (_rectangle.plus_y() - _rectangle.minus_y()));
+        int32_t iy = (int32_t) (_n * (translation.y - _rectangle.minus_y()) / (_rectangle.plus_y() - _rectangle.minus_y()));
         if (iy < 0)         iy = 0;
         else if (iy >= _n)  iy = _n-1;
         
-        DTint index = IX(ix,iy);
+        int32_t index = IX(ix,iy);
         
         velocity.x = _particle_drag * _u[index] * (_rectangle.plus_x() - _rectangle.minus_x()) + (1.0F-_particle_drag) * velocity.x;
         velocity.y = _particle_drag * _v[index] * (_rectangle.plus_y() - _rectangle.minus_y()) + (1.0F-_particle_drag) * velocity.y;
@@ -212,10 +212,10 @@ void ScriptingParticleStamFluids::tick (const DTfloat dt)
 //==============================================================================
 //==============================================================================
 
-void ScriptingParticleStamFluids::set_n (const DTint n)
+void ScriptingParticleStamFluids::set_n (const int32_t n)
 {
     _n = n;
-	DTint size = (_n+2)*(_n+2);
+	int32_t size = (_n+2)*(_n+2);
 
     _u.resize(size, 0.0F);
     _v.resize(size, 0.0F);
@@ -225,7 +225,7 @@ void ScriptingParticleStamFluids::set_n (const DTint n)
     _dens_prev.resize(size, 0.0F);
 }
 
-DTint ScriptingParticleStamFluids::n (void) const
+int32_t ScriptingParticleStamFluids::n (void) const
 {
     return _n;
 }
@@ -235,14 +235,14 @@ DTint ScriptingParticleStamFluids::n (void) const
 
 void ScriptingParticleStamFluids::add_source (DTfloat *x, DTfloat *s, DTfloat dt )
 {
-	DTint i, size=(_n+2)*(_n+2);
+	int32_t i, size=(_n+2)*(_n+2);
 	for ( i=0 ; i<size ; i++ ) 
         x[i] += dt*s[i];
 }
 
-void ScriptingParticleStamFluids::set_bnd (DTint b, DTfloat* x )
+void ScriptingParticleStamFluids::set_bnd (int32_t b, DTfloat* x )
 {
-	DTint i;
+	int32_t i;
 
 	for ( i=1 ; i<=_n ; i++ ) {
 		x[IX(0  ,i)] = b==1 ? -x[IX(1,i)] : x[IX(1,i)];
@@ -256,9 +256,9 @@ void ScriptingParticleStamFluids::set_bnd (DTint b, DTfloat* x )
 	x[IX(_n+1,_n+1)] = 0.5f*(x[IX(_n,_n+1)]+x[IX(_n+1,_n)]);
 }
 
-void ScriptingParticleStamFluids::lin_solve (DTint b, DTfloat *x, DTfloat *x0, DTfloat a, DTfloat c )
+void ScriptingParticleStamFluids::lin_solve (int32_t b, DTfloat *x, DTfloat *x0, DTfloat a, DTfloat c )
 {
-	DTint i, j, k;
+	int32_t i, j, k;
 
 	for ( k=0 ; k<20 ; k++ ) {
 		FOR_EACH_CELL
@@ -268,22 +268,22 @@ void ScriptingParticleStamFluids::lin_solve (DTint b, DTfloat *x, DTfloat *x0, D
 	}
 }
 
-void ScriptingParticleStamFluids::diffuse (DTint b, DTfloat *x, DTfloat *x0, DTfloat diff, DTfloat dt )
+void ScriptingParticleStamFluids::diffuse (int32_t b, DTfloat *x, DTfloat *x0, DTfloat diff, DTfloat dt )
 {
 	DTfloat a=dt*diff*_n*_n;
 	lin_solve (b, x, x0, a, 1+4*a );
 }
 
-void ScriptingParticleStamFluids::advect (DTint b, DTfloat *d, DTfloat *d0, DTfloat *u, DTfloat *v, DTfloat dt )
+void ScriptingParticleStamFluids::advect (int32_t b, DTfloat *d, DTfloat *d0, DTfloat *u, DTfloat *v, DTfloat dt )
 {
-	DTint i, j, i0, j0, i1, j1;
+	int32_t i, j, i0, j0, i1, j1;
 	DTfloat x, y, s0, t0, s1, t1, dt0;
 
 	dt0 = dt*_n;
 	FOR_EACH_CELL
 		x = i-dt0*u[IX(i,j)]; y = j-dt0*v[IX(i,j)];
-		if (x<0.5f) x=0.5f; if (x>_n+0.5f) x=_n+0.5f; i0=(DTint)x; i1=i0+1;
-		if (y<0.5f) y=0.5f; if (y>_n+0.5f) y=_n+0.5f; j0=(DTint)y; j1=j0+1;
+		if (x<0.5f) x=0.5f; if (x>_n+0.5f) x=_n+0.5f; i0=(int32_t)x; i1=i0+1;
+		if (y<0.5f) y=0.5f; if (y>_n+0.5f) y=_n+0.5f; j0=(int32_t)y; j1=j0+1;
 		s1 = x-i0; s0 = 1-s1; t1 = y-j0; t0 = 1-t1;
 		d[IX(i,j)] = s0*(t0*d0[IX(i0,j0)]+t1*d0[IX(i0,j1)])+
 					 s1*(t0*d0[IX(i1,j0)]+t1*d0[IX(i1,j1)]);
@@ -293,7 +293,7 @@ void ScriptingParticleStamFluids::advect (DTint b, DTfloat *d, DTfloat *d0, DTfl
 
 void ScriptingParticleStamFluids::project (DTfloat *u, DTfloat *v, DTfloat *p, DTfloat *div )
 {
-	DTint i, j;
+	int32_t i, j;
 
 	FOR_EACH_CELL
 		div[IX(i,j)] = -0.5f*(u[IX(i+1,j)]-u[IX(i-1,j)]+v[IX(i,j+1)]-v[IX(i,j-1)])/_n;

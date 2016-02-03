@@ -62,7 +62,7 @@ GlyphCache::~GlyphCache (void)
 
 std::shared_ptr<GlyphCacheEntry>& GlyphCache::entry (GlyphCacheEntry &s)
 {
-    DTuint h = s.hash();
+    uint32_t h = s.hash();
     
     auto i = _hash_table.find(h);
     if (i != _hash_table.end()) {

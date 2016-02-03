@@ -140,7 +140,7 @@ void TextureResource3D::uninitialize_static (void)
 //==============================================================================
 //==============================================================================
 
-void TextureResource3D::screen_opened (DTuint width, DTuint height)
+void TextureResource3D::screen_opened (uint32_t width, uint32_t height)
 {
     LOG_MESSAGE << "TextureResource3D::screen_opened";
 
@@ -187,7 +187,7 @@ DTerr TextureResource3D::import (const FilePath &pathname, std::string args)
 //==============================================================================
 //==============================================================================
 
-void TextureResource3D::set_textels (const DTint width, const DTint height, const DTint depth, std::shared_ptr<DTubyte> &textels, DT3GLTextelFormat format, bool mipmapped, DTuint flags)
+void TextureResource3D::set_textels (const int32_t width, const int32_t height, const int32_t depth, std::shared_ptr<uint8_t> &textels, DT3GLTextelFormat format, bool mipmapped, uint32_t flags)
 {
     _textels = textels;
 
@@ -207,7 +207,7 @@ void TextureResource3D::set_textels (const DTint width, const DTint height, cons
 //==============================================================================
 //==============================================================================
 
-void TextureResource3D::activate (DTuint texture_slot)
+void TextureResource3D::activate (uint32_t texture_slot)
 {
     if (_resource_3D)
         System::renderer()->attach_texture(texture_slot, _resource_3D);

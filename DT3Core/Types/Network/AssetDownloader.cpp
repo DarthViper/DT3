@@ -113,7 +113,7 @@ void AssetDownloader::append_data (std::string &data, BinaryFileStream &temp_fil
     if (_total_size > 0) {
         
         // Write out data to a file
-        temp_file.write_raw( (DTubyte*) &(data[0]), data.size());
+        temp_file.write_raw( (uint8_t*) &(data[0]), data.size());
         
         // Update sizes
         _current_size += data.size();
@@ -127,7 +127,7 @@ void AssetDownloader::append_data (std::string &data, BinaryFileStream &temp_fil
 void AssetDownloader::finalize_data (std::string &data, BinaryFileStream &temp_file)
 {
     // Write out data to a file
-    temp_file.write_raw( (DTubyte*) &(data[0]), data.size());
+    temp_file.write_raw( (uint8_t*) &(data[0]), data.size());
 
     // Update sizes
     _current_size += data.size();

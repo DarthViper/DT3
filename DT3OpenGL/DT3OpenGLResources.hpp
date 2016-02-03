@@ -215,7 +215,7 @@ struct DT3OpenGLTexture2DResource: public DT3GLTexture2DResource {
         virtual     ~DT3OpenGLTexture2DResource       (void)    {   ::glDeleteTextures (1, &name); ::glDeleteBuffers(1, &pbo); }
 
     public:
-        DTuint                          flags;
+        uint32_t                          flags;
         GLuint                          name;
         DT3GLTextelFormat               format;
         bool                       mipmapped;
@@ -236,7 +236,7 @@ struct DT3OpenGLTexture3DResource: public DT3GLTexture3DResource {
         virtual     ~DT3OpenGLTexture3DResource       (void)    {   ::glDeleteTextures (1, &name);  }
 
     public:
-        DTuint                          flags;
+        uint32_t                          flags;
         GLuint                          name;
         DT3GLTextelFormat               format;
         bool                       mipmapped;
@@ -253,7 +253,7 @@ struct DT3OpenGLTextureCubeResource: public DT3GLTextureCubeResource {
         virtual     ~DT3OpenGLTextureCubeResource   (void)      {   ::glDeleteTextures (1, &name);    }
 
     public:
-        DTuint                          flags;
+        uint32_t                          flags;
         GLuint                          name;
         DT3GLTextelFormat               format;
         bool                       mipmapped;
@@ -270,7 +270,7 @@ struct DT3OpenGLAttribBufferResource: public DT3GLAttribBufferResource {
         virtual     ~DT3OpenGLAttribBufferResource  (void)  {   ::glDeleteBuffers(1, &name); }
 
     public:
-        DTuint                          flags;
+        uint32_t                          flags;
         DT3GLBufferFormat               format;
         GLuint                          name;
 };
@@ -281,7 +281,7 @@ struct DT3OpenGLElementBufferResource: public DT3GLElementBufferResource {
         virtual     ~DT3OpenGLElementBufferResource (void)  {   ::glDeleteBuffers(1, &name); }
 
     public:
-        DTuint                          flags;
+        uint32_t                          flags;
         DT3GLBufferFormat               format;
         GLuint                          name;
 };
@@ -296,11 +296,11 @@ struct DT3OpenGLUniformResource: public DT3GLUniformResource {
 
     public:
         DT3GLUniformFormat              format;
-        DTint                           num;
+        int32_t                           num;
 
-        DTuint                          use_stamp;  // For tracking changes
+        uint32_t                          use_stamp;  // For tracking changes
     
-        std::vector<DTubyte>            data;
+        std::vector<uint8_t>            data;
 
 };
 
@@ -361,10 +361,10 @@ struct DT3OpenGLShaderResource: public DT3GLShaderResource {
             {}
 
             std::shared_ptr<DT3OpenGLUniformResource>       uniform;
-            DTuint                                          use_stamp;
+            uint32_t                                          use_stamp;
         };
 
-        std::map<DTint, Uniform>                            uniforms;
+        std::map<int32_t, Uniform>                            uniforms;
 
         struct Attribute {
             Attribute()
@@ -373,7 +373,7 @@ struct DT3OpenGLShaderResource: public DT3GLShaderResource {
             std::shared_ptr<DT3OpenGLAttribBufferResource>  attribute;
         };
 
-        std::map<DTint, Attribute>                          attributes;
+        std::map<int32_t, Attribute>                          attributes;
 
 
 };

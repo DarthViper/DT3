@@ -126,7 +126,7 @@ void Application::run_event_loop (void)
     _game_time.reset_abs_time();
 
     // Add entropy from random source
-    MoreMath::add_entropy ( (DTubyte*) &dt, sizeof(dt));
+    MoreMath::add_entropy ( (uint8_t*) &dt, sizeof(dt));
 
     // Clamp dt to a tenth of a second
     if (dt > DT3_MAX_TICK) {

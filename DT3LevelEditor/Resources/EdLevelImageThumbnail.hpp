@@ -50,7 +50,7 @@ class EdLevelImageThumbnail : public QWidget
         void                cache                   (void);
 
         struct Buffer {
-            DTubyte b,g,r,a;
+            uint8_t b,g,r,a;
         } *_buffer;
 
         QImage              _image;

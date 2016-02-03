@@ -123,7 +123,7 @@ void ScriptingScreen::archive_done   (const std::shared_ptr<Archive> &archive)
 //==============================================================================
 //==============================================================================
 
-void ScriptingScreen::screen_opened (DTuint width, DTuint height)
+void ScriptingScreen::screen_opened (uint32_t width, uint32_t height)
 {
     if (System::renderer()) {
         _width = System::renderer()->screen_width();
@@ -132,7 +132,7 @@ void ScriptingScreen::screen_opened (DTuint width, DTuint height)
     }
 }
 
-void ScriptingScreen::screen_changed (DTuint width, DTuint height)
+void ScriptingScreen::screen_changed (uint32_t width, uint32_t height)
 {
     if (System::renderer()) {
         _width = System::renderer()->screen_width();

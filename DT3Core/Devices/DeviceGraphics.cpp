@@ -45,12 +45,12 @@ void DeviceGraphics::init_display (void)
     SystemCallbacks::screen_inited_cb().fire();
 }
 
-void DeviceGraphics::open_display (DTint width, DTint height)
+void DeviceGraphics::open_display (int32_t width, int32_t height)
 {
     SystemCallbacks::screen_opened_cb().fire(width, height);
 }
 
-void DeviceGraphics::change_display (DTuint width, DTuint height)
+void DeviceGraphics::change_display (uint32_t width, uint32_t height)
 {
     SystemCallbacks::screen_changed_cb().fire(width,height);
 }

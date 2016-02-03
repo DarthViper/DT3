@@ -131,7 +131,7 @@ void ScriptingVector3Smooth::tick (const DTfloat dt)
         // If resetting
         if (_reset || _local_reset) {
             _sum = Vector3(0.0F,0.0F,0.0F);
-            for (DTuint i = 0; i < _history.size(); ++i) {
+            for (uint32_t i = 0; i < _history.size(); ++i) {
                 _sum += _in;
                 _history[i] = _in;
             }

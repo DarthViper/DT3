@@ -143,7 +143,7 @@ bool ScriptingSound::compute (const PlugBase *plug)
         
         // Stream chunk in
         if (_sound && _sound->count_chunks() > 0) {
-            DTuint chunk_index = _chunk_index;
+            uint32_t chunk_index = _chunk_index;
             
             if (_looping) {
                 _chunk_index = (_chunk_index + 1) % _sound->count_chunks();

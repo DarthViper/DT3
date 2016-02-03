@@ -49,31 +49,31 @@ class GridImageData {
 
         /// Set number of control points in X direction
         /// \param num_x number of control points
-        void                        set_num_x               (const DTuint num_x);
+        void                        set_num_x               (const uint32_t num_x);
 
         /// Returns number of control points in X direction
         /// \return number of control points
-        DTuint				num_x                   (void) const;
+        uint32_t				num_x                   (void) const;
 
         /// Set number of control points in Y direction
         /// \param num_y number of control points
-        void                        set_num_y               (const DTuint num_y);
+        void                        set_num_y               (const uint32_t num_y);
 
         /// Returns number of control points in Y direction
         /// \return number of control points
-        DTuint				num_y                   (void) const;
+        uint32_t				num_y                   (void) const;
 
         /// Returns the control point at x,y location
         /// \param x x index
         /// \param y y index
         /// \return Control Point
-        const Vector2 &             point                   (DTuint x, DTuint y);
+        const Vector2 &             point                   (uint32_t x, uint32_t y);
 
         /// Sets the control point at x,y location
         /// \param x x index
         /// \param y y index
         /// \param p new control point value
-        void                        set_point               (DTuint x, DTuint y, const Vector2 &p);
+        void                        set_point               (uint32_t x, uint32_t y, const Vector2 &p);
 
     private:
         friend Stream& operator << (Stream &s, const GridImageData&v);
@@ -85,8 +85,8 @@ class GridImageData {
 
         void                        clear                   (void);
 
-        DTuint                      _num_x;
-        DTuint                      _num_y;
+        uint32_t                      _num_x;
+        uint32_t                      _num_y;
         std::vector<Vector2>        _grid;
 
 };
@@ -106,7 +106,7 @@ inline GridImageData operator - (const GridImageData &a, const GridImageData &b)
 
     r._grid.resize(r._num_x * r._num_y);
 
-    for (DTuint i = 0; i < r._grid.size(); ++i) {
+    for (uint32_t i = 0; i < r._grid.size(); ++i) {
         r._grid[i] = a._grid[i] - b._grid[i];
     }
 
@@ -125,7 +125,7 @@ inline GridImageData operator + (const GridImageData &a, const GridImageData &b)
 
     r._grid.resize(r._num_x * r._num_y);
 
-    for (DTuint i = 0; i < r._grid.size(); ++i) {
+    for (uint32_t i = 0; i < r._grid.size(); ++i) {
         r._grid[i] = a._grid[i] + b._grid[i];
     }
 
@@ -141,7 +141,7 @@ inline GridImageData operator * (const DTfloat b, const GridImageData &a)
 
     r._grid.resize(r._num_x * r._num_y);
 
-    for (DTuint i = 0; i < r._grid.size(); ++i) {
+    for (uint32_t i = 0; i < r._grid.size(); ++i) {
         r._grid[i] = a._grid[i] * b;
     }
 

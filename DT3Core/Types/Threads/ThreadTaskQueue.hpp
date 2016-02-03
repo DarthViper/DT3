@@ -55,7 +55,7 @@ class ThreadTaskQueue {
 
         /// Sets the number of threads working on the queue
         /// \param n number of threads
-        static void                                 set_num_threads (DTuint n);
+        static void                                 set_num_threads (uint32_t n);
 
         /// Counts all of the tasks in the queue
         /// \return number of tasks
@@ -67,7 +67,7 @@ class ThreadTaskQueue {
     private:
 
         struct Task {
-            DTuint                                  _id;
+            uint32_t                                  _id;
             DTfloat                                 _priority;
             DTfloat                                 _delay;
             std::shared_ptr<ThreadTaskRef>          _ref;
@@ -90,7 +90,7 @@ class ThreadTaskQueue {
         static void                                 resume          (std::shared_ptr<Helper> &h);
 
         static std::list<std::shared_ptr<Helper>>  _threads;
-        static DTint                                _max_num_threads;
+        static int32_t                                _max_num_threads;
 };
 
 //==============================================================================

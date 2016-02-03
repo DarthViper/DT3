@@ -117,17 +117,17 @@ class GUIAnimKey {
     private:
 
 
-        DTubyte                         _repeat_flag:1;
-        DTubyte                         _color_flag:1;
-        DTubyte                         _scale_flag:1;
-        DTubyte                         _translation_flag:1;
-        DTubyte                         _orientation_flag:1;
-        DTubyte                         _spline_flag:1;
-        DTubyte                         _label_flag:1;
-        DTubyte                         _width_flag:1;
-        DTubyte                         _height_flag:1;
+        uint8_t                         _repeat_flag:1;
+        uint8_t                         _color_flag:1;
+        uint8_t                         _scale_flag:1;
+        uint8_t                         _translation_flag:1;
+        uint8_t                         _orientation_flag:1;
+        uint8_t                         _spline_flag:1;
+        uint8_t                         _label_flag:1;
+        uint8_t                         _width_flag:1;
+        uint8_t                         _height_flag:1;
 
-        DTubyte                         _busy:1;
+        uint8_t                         _busy:1;
 
         std::shared_ptr<LatentCall>     _latent_call;
 

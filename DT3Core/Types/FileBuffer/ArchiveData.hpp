@@ -32,16 +32,16 @@ class PlugBase;
 /// Constants
 //==============================================================================
 
-extern const DTint DATA_PERSISTENT;
-extern const DTint DATA_SETTABLE;
+extern const int32_t DATA_PERSISTENT;
+extern const int32_t DATA_SETTABLE;
 
-extern const DTint DATA_NET_SERVER_WRITE_CLIENT_READ;
-extern const DTint DATA_NET_CLIENT_WRITE_SERVER_READ;
-extern const DTint DATA_NET_CLIENT_SERVER_BIDIRECTIONAL;
-extern const DTint DATA_NET_INHERITED;
+extern const int32_t DATA_NET_SERVER_WRITE_CLIENT_READ;
+extern const int32_t DATA_NET_CLIENT_WRITE_SERVER_READ;
+extern const int32_t DATA_NET_CLIENT_SERVER_BIDIRECTIONAL;
+extern const int32_t DATA_NET_INHERITED;
 
-extern const DTint DATA_FLUSH_UI;
-extern const DTint DATA_DIRTY;
+extern const int32_t DATA_FLUSH_UI;
+extern const int32_t DATA_DIRTY;
 
 //==============================================================================
 /// Class
@@ -129,11 +129,11 @@ class ArchiveData: public BaseClass {
         /// Add a flag
         /// \param s enumeration
         /// \return this
-        ArchiveData&                    add_flags               (DTuint flags);
+        ArchiveData&                    add_flags               (uint32_t flags);
 
         /// Returns the flags for this data
         /// \return flags
-        DTuint                          flags                   (void) const			{	return _flags;	}
+        uint32_t                          flags                   (void) const			{	return _flags;	}
 
 
 
@@ -148,7 +148,7 @@ class ArchiveData: public BaseClass {
 
 
     protected:
-        DTuint                          _flags;
+        uint32_t                          _flags;
         std::string                     _title;
 
         std::vector<std::string>        _enums;
@@ -179,7 +179,7 @@ class ArchiveDataVariable: public ArchiveData {
         /// \param title name of data
         /// \param data reference to data
         /// \param flags flags for data
-        ArchiveDataVariable (const std::string &title, T &data, DTuint flags)
+        ArchiveDataVariable (const std::string &title, T &data, uint32_t flags)
             :	_data(&data)
         {
             set_title(title);
@@ -248,7 +248,7 @@ class ArchiveDataPlug: public ArchiveData {
         /// \param title name of data
         /// \param data reference to data
         /// \param flags flags for data
-        ArchiveDataPlug (Plug<T> &plug, DTuint flags)
+        ArchiveDataPlug (Plug<T> &plug, uint32_t flags)
             :	_plug(&plug)
         {
             set_title(_plug->name());
@@ -307,7 +307,7 @@ class ArchiveDataEvent: public ArchiveData {
         /// \param title name of data
         /// \param data reference to data
         /// \param flags flags for data
-        ArchiveDataEvent (Event &event, DTuint flags)
+        ArchiveDataEvent (Event &event, uint32_t flags)
             :	_event  (&event)
         {
             set_title(_event->name());
@@ -372,7 +372,7 @@ class ArchiveDataVariableAccessors: public ArchiveData {
         /// \param get accessor function for retrieving data
         /// \param set accessor function for setting data
         /// \param flags flags for data
-        ArchiveDataVariableAccessors (const std::string &title, T* object, GetFN get = NULL, SetFN set = NULL, DTuint flags = 0) {
+        ArchiveDataVariableAccessors (const std::string &title, T* object, GetFN get = NULL, SetFN set = NULL, uint32_t flags = 0) {
             _object = object;
             set_title(title);
             add_flags(flags);
@@ -458,7 +458,7 @@ class ArchiveDataIgnore: public ArchiveData {
 //
 
 template <typename T>
-ArchiveDataPlug<T> makeArchiveDataPlug (Plug<T> &plug, DTuint flags)
+ArchiveDataPlug<T> makeArchiveDataPlug (Plug<T> &plug, uint32_t flags)
 {
     return ArchiveDataPlug<T>(plug, flags);
 }
@@ -469,7 +469,7 @@ ArchiveDataPlug<T> makeArchiveDataPlug (Plug<T> &plug, DTuint flags)
 // Create data object for event
 //
 
-inline ArchiveDataEvent makeArchiveDataEvent (Event &event, DTuint flags)
+inline ArchiveDataEvent makeArchiveDataEvent (Event &event, uint32_t flags)
 {
     return ArchiveDataEvent(event, flags);
 }
@@ -489,7 +489,7 @@ ArchiveDataVariableAccessors<T,U,V> makeArchiveDataVariableAccessors (      cons
                                                                             T* object,
                                                                             U (T::*get)(void) const,
                                                                             void (T::*set)(V),
-                                                                            DTuint flags)
+                                                                            uint32_t flags)
 {
     return ArchiveDataVariableAccessors<T,U,V>(title,object,get,set,flags);
 }
@@ -502,7 +502,7 @@ ArchiveDataVariableAccessors<T,U,V> makeArchiveDataVariableAccessors (      cons
 //
 
 template<typename T>
-ArchiveDataVariable<T> makeArchiveDataVariable (std::string title, T &data, DTuint flags)
+ArchiveDataVariable<T> makeArchiveDataVariable (std::string title, T &data, uint32_t flags)
 {
     return ArchiveDataVariable<T>(title,data,flags);
 }

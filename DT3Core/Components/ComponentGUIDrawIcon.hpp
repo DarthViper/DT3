@@ -82,7 +82,7 @@ class ComponentGUIDrawIcon: public ComponentBase {
         };
 
         /// Defines standard accessors for the draw style
-        DEFINE_ACCESSORS (draw_style, set_draw_style, DTuint, _draw_style);
+        DEFINE_ACCESSORS (draw_style, set_draw_style, uint32_t, _draw_style);
 
     private:
         DrawBatcher                                     _b;
@@ -91,7 +91,7 @@ class ComponentGUIDrawIcon: public ComponentBase {
         Plug<std::shared_ptr<MaterialResource> >        _pressed_material;
         Plug<std::shared_ptr<ShaderResource> >          _shader;
 
-        DTuint                                          _draw_style;
+        uint32_t                                          _draw_style;
 
         DTfloat                                         _corner_width;
         DTfloat                                         _corner_height;

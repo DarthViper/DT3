@@ -87,7 +87,7 @@ ScriptingSoundHRTF::ScriptingSoundHRTF (void)
         _listener_transform (PLUG_INFO_INDEX(_listener_transform), Matrix4::identity()),
         _rolloff            (0.0)
 {
-    for (DTshort &i : _buffer) {
+    for (int16_t &i : _buffer) {
         i = 0;
     }
 
@@ -103,7 +103,7 @@ ScriptingSoundHRTF::ScriptingSoundHRTF (const ScriptingSoundHRTF &rhs)
         _listener_transform	(rhs._listener_transform),
         _rolloff            (0.0F)
 {
-    for (DTshort &i : _buffer) {
+    for (int16_t &i : _buffer) {
         i = 0;
     }
 
@@ -158,8 +158,8 @@ void ScriptingSoundHRTF::calc_elev (DTfloat elev, DTfloat &mix, const HRTFFilter
     DTfloat d_floor = std::floor(d);
     DTfloat d_ceil = std::ceil(d);
 
-    DTint index0 = (DTint) d_floor;
-    DTint index1 = (DTint) d_ceil;
+    int32_t index0 = (int32_t) d_floor;
+    int32_t index1 = (int32_t) d_ceil;
 
     if (index0 < -4)        index0 = -4;
     else if (index0 > 9)    index0 = 9;
@@ -177,7 +177,7 @@ void ScriptingSoundHRTF::calc_elev (DTfloat elev, DTfloat &mix, const HRTFFilter
     //LOG_MESSAGE << "ELEV: " << (index0 + 4) << "  " << (index1 + 4) << "  " << mix;
 }
 
-void ScriptingSoundHRTF::calc_azimuth (DTfloat azimuth, const HRTFFilterCoeffs *e, DTfloat &mix, const DTshort **l0, const DTshort **r0, const DTshort **l1, const DTshort **r1)
+void ScriptingSoundHRTF::calc_azimuth (DTfloat azimuth, const HRTFFilterCoeffs *e, DTfloat &mix, const int16_t **l0, const int16_t **r0, const int16_t **l1, const int16_t **r1)
 {
     // Special case 90 degrees
     if (e->num_angles <= 1) {
@@ -198,8 +198,8 @@ void ScriptingSoundHRTF::calc_azimuth (DTfloat azimuth, const HRTFFilterCoeffs *
         DTfloat d_floor = std::floor(d_abs);
         DTfloat d_ceil = std::ceil(d_abs);
 
-        DTint index0 = (DTint) d_floor;
-        DTint index1 = (DTint) d_ceil;
+        int32_t index0 = (int32_t) d_floor;
+        int32_t index1 = (int32_t) d_ceil;
 
         mix = d_abs - d_floor;
 
@@ -264,8 +264,8 @@ bool ScriptingSoundHRTF::compute (const PlugBase *plug)
         DTfloat emix,amix0, amix1;
         const HRTFFilterCoeffs *e0, *e1;
 
-        const DTshort *l00, *r00, *l10, *r10;
-        const DTshort *l01, *r01, *l11, *r11;
+        const int16_t *l00, *r00, *l10, *r10;
+        const int16_t *l01, *r01, *l11, *r11;
 
         calc_elev (elev, emix, &e0, &e1);
         calc_azimuth (azimuth, e0, amix0, &l00, &r00, &l10, &r10);
@@ -275,15 +275,15 @@ bool ScriptingSoundHRTF::compute (const PlugBase *plug)
         // Interpolate coefficients
         //
 
-        DTshort left[HRTF_LENGTH];
-        DTshort right[HRTF_LENGTH];
+        int16_t left[HRTF_LENGTH];
+        int16_t right[HRTF_LENGTH];
 
-        for (DTuint i = 0; i < HRTF_LENGTH; ++i) {
-            left[i] = (DTshort) (INTERP( INTERP(l00[i],l10[i],amix0), INTERP(l01[i],l11[i],amix1), emix));
+        for (uint32_t i = 0; i < HRTF_LENGTH; ++i) {
+            left[i] = (int16_t) (INTERP( INTERP(l00[i],l10[i],amix0), INTERP(l01[i],l11[i],amix1), emix));
         }
 
-        for (DTuint i = 0; i < HRTF_LENGTH; ++i) {
-            right[i] = (DTshort) (INTERP( INTERP(r00[i],r10[i],amix0), INTERP(r01[i],r11[i],amix1), emix));
+        for (uint32_t i = 0; i < HRTF_LENGTH; ++i) {
+            right[i] = (int16_t) (INTERP( INTERP(r00[i],r10[i],amix0), INTERP(r01[i],r11[i],amix1), emix));
         }
 
         //
@@ -308,14 +308,14 @@ bool ScriptingSoundHRTF::compute (const PlugBase *plug)
             sound_packet_out.set_format(SoundResource::FORMAT_STEREO16);
             sound_packet_out.set_frequency(sound_packet_in.frequency());
 
-            DTshort *data_in = (DTshort *) sound_packet_in.buffer();
-            DTshort *data_out = (DTshort *) sound_packet_out.buffer();
+            int16_t *data_in = (int16_t *) sound_packet_in.buffer();
+            int16_t *data_out = (int16_t *) sound_packet_out.buffer();
 
-            for (DTuint i = 0; i < num_samples; ++i) {
+            for (uint32_t i = 0; i < num_samples; ++i) {
 
-                DTshort &sample = data_in[i];
-                DTshort &out_left = data_out[i*2];
-                DTshort &out_right = data_out[i*2+1];
+                int16_t &sample = data_in[i];
+                int16_t &out_left = data_out[i*2];
+                int16_t &out_right = data_out[i*2+1];
 
                 // FIR filter
                 _buffer[_buffer_index] = sample;
@@ -323,28 +323,28 @@ bool ScriptingSoundHRTF::compute (const PlugBase *plug)
                 // Note: y = (coeff / DTSHORT_MAX * sample / DTSHORT_MAX) * DTSHORT_MAX yields 16 bit short
                 // so:   y = (coeff * sample) / DTSHORT_MAX
 
-                DTint y;
-                DTint out;
+                int32_t y;
+                int32_t out;
 
                 y = 0;
-                for (DTuint j = 0; j < HRTF_LENGTH; ++j) {
+                for (uint32_t j = 0; j < HRTF_LENGTH; ++j) {
                     y += left[j] * _buffer[(_buffer_index + j) % HRTF_LENGTH];
                 }
 
-                out = static_cast<DTint>((y / DTSHORT_MAX) * rolloff);
+                out = static_cast<int32_t>((y / DTSHORT_MAX) * rolloff);
                 if (out > DTSHORT_MAX)          out = DTSHORT_MAX;
                 else if (out < DTSHORT_MIN)     out = DTSHORT_MIN;
-                out_left = static_cast<DTshort>(out);
+                out_left = static_cast<int16_t>(out);
 
                 y = 0;
-                for (DTuint j = 0; j < HRTF_LENGTH; ++j) {
+                for (uint32_t j = 0; j < HRTF_LENGTH; ++j) {
                     y += right[j] * _buffer[(_buffer_index + j) % HRTF_LENGTH];
                 }
 
-                out = static_cast<DTint>((y / DTSHORT_MAX) * rolloff);
+                out = static_cast<int32_t>((y / DTSHORT_MAX) * rolloff);
                 if (out > DTSHORT_MAX)          out = DTSHORT_MAX;
                 else if (out < DTSHORT_MIN)     out = DTSHORT_MIN;
-                out_right = static_cast<DTshort>(out);
+                out_right = static_cast<int16_t>(out);
 
                 // Increment buffer index
                 _buffer_index = (_buffer_index + 1) % HRTF_LENGTH;

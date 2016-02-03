@@ -41,93 +41,93 @@ BinaryBufferStream::~BinaryBufferStream (void)
 
 Stream& BinaryBufferStream::operator<< (const bool n)
 {
-        return operator << ((DTbyte) n);
+        return operator << ((int8_t) n);
 }
 
-Stream& BinaryBufferStream::operator<< (const DTbyte nc)
+Stream& BinaryBufferStream::operator<< (const int8_t nc)
 {
-        DTbyte n = nc;
-        grow (sizeof(DTbyte));
+        int8_t n = nc;
+        grow (sizeof(int8_t));
         Endian::to_little_endian(n);
-        *(reinterpret_cast<DTbyte*>(&_stream[_pos_p])) = (DTbyte) n;
-        _pos_p += sizeof(DTbyte);
+        *(reinterpret_cast<int8_t*>(&_stream[_pos_p])) = (int8_t) n;
+        _pos_p += sizeof(int8_t);
 
         return *this;
 }
 
-Stream& BinaryBufferStream::operator<< (const DTshort nc)
+Stream& BinaryBufferStream::operator<< (const int16_t nc)
 {
-        DTshort n = nc;
-        grow (sizeof(DTshort));
+        int16_t n = nc;
+        grow (sizeof(int16_t));
         Endian::to_little_endian(n);
-        *(reinterpret_cast<DTshort*>(&_stream[_pos_p])) = (DTshort) n;
-        _pos_p += sizeof(DTshort);
+        *(reinterpret_cast<int16_t*>(&_stream[_pos_p])) = (int16_t) n;
+        _pos_p += sizeof(int16_t);
 
         return *this;
 }
 
-Stream& BinaryBufferStream::operator<< (const DTint nc)
+Stream& BinaryBufferStream::operator<< (const int32_t nc)
 {
-        DTint n = nc;
-        grow (sizeof(DTint));
+        int32_t n = nc;
+        grow (sizeof(int32_t));
         Endian::to_little_endian(n);
-        *(reinterpret_cast<DTint*>(&_stream[_pos_p])) = (DTint) n;
-        _pos_p += sizeof(DTint);
+        *(reinterpret_cast<int32_t*>(&_stream[_pos_p])) = (int32_t) n;
+        _pos_p += sizeof(int32_t);
 
         return *this;
 }
 
-Stream& BinaryBufferStream::operator<< (const DTubyte nc)
+Stream& BinaryBufferStream::operator<< (const uint8_t nc)
 {
-        DTubyte n = nc;
-        grow (sizeof(DTubyte));
+        uint8_t n = nc;
+        grow (sizeof(uint8_t));
         Endian::to_little_endian(n);
-        *(reinterpret_cast<DTubyte*>(&_stream[_pos_p])) = (DTubyte) n;
-        _pos_p += sizeof(DTubyte);
+        *(reinterpret_cast<uint8_t*>(&_stream[_pos_p])) = (uint8_t) n;
+        _pos_p += sizeof(uint8_t);
 
         return *this;
 }
 
-Stream& BinaryBufferStream::operator<< (const DTushort nc)
+Stream& BinaryBufferStream::operator<< (const uint16_t nc)
 {
-        DTushort n = nc;
-        grow (sizeof(DTushort));
+        uint16_t n = nc;
+        grow (sizeof(uint16_t));
         Endian::to_little_endian(n);
-        *(reinterpret_cast<DTushort*>(&_stream[_pos_p])) = (DTushort) n;
-        _pos_p += sizeof(DTushort);
+        *(reinterpret_cast<uint16_t*>(&_stream[_pos_p])) = (uint16_t) n;
+        _pos_p += sizeof(uint16_t);
 
         return *this;
 }
 
-Stream& BinaryBufferStream::operator<< (const DTuint nc)
+Stream& BinaryBufferStream::operator<< (const uint32_t nc)
 {
-        DTuint n = nc;
-        grow (sizeof(DTuint));
+        uint32_t n = nc;
+        grow (sizeof(uint32_t));
         Endian::to_little_endian(n);
-        *(reinterpret_cast<DTuint*>(&_stream[_pos_p])) = (DTuint) n;
-        _pos_p += sizeof(DTuint);
+        *(reinterpret_cast<uint32_t*>(&_stream[_pos_p])) = (uint32_t) n;
+        _pos_p += sizeof(uint32_t);
 
         return *this;
 }
 
-Stream& BinaryBufferStream::operator<< (const DTint64 nc)
+Stream& BinaryBufferStream::operator<< (const int64_t nc)
 {
-        DTint64 n = nc;
-        grow (sizeof(DTuint64));
+        int64_t n = nc;
+        grow (sizeof(uint64_t));
         Endian::to_little_endian(n);
-        *(reinterpret_cast<DTuint64*>(&_stream[_pos_p])) = (DTuint64) n;
-        _pos_p += sizeof(DTuint64);
+        *(reinterpret_cast<uint64_t*>(&_stream[_pos_p])) = (uint64_t) n;
+        _pos_p += sizeof(uint64_t);
 
         return *this;
 }
 
-Stream& BinaryBufferStream::operator<< (const DTuint64 nc)
+Stream& BinaryBufferStream::operator<< (const uint64_t nc)
 {
-        DTuint64 n = nc;
-        grow (sizeof(DTuint64));
+        uint64_t n = nc;
+        grow (sizeof(uint64_t));
         Endian::to_little_endian(n);
-        *(reinterpret_cast<DTuint64*>(&_stream[_pos_p])) = (DTuint64) n;
-        _pos_p += sizeof(DTuint64);
+        *(reinterpret_cast<uint64_t*>(&_stream[_pos_p])) = (uint64_t) n;
+        _pos_p += sizeof(uint64_t);
 
         return *this;
 }
@@ -189,7 +189,7 @@ Stream& BinaryBufferStream::operator<< (const DTlonglong nc)
 
 Stream& BinaryBufferStream::operator<< (const DTcharacter n)
 {
-        return operator << ((DTubyte) n);
+        return operator << ((uint8_t) n);
 }
 
 Stream& BinaryBufferStream::operator<< (const char* n)
@@ -201,7 +201,7 @@ Stream& BinaryBufferStream::operator<< (const char* n)
 
 Stream& BinaryBufferStream::operator<< (const std::string &n)
 {
-        for (DTuint i = 0; i < n.size(); ++i)
+        for (uint32_t i = 0; i < n.size(); ++i)
                 operator << ((DTcharacter) n[i]);
 
         operator << ('\0');
@@ -211,7 +211,7 @@ Stream& BinaryBufferStream::operator<< (const std::string &n)
 
 Stream& BinaryBufferStream::operator<< (const BinaryBufferStream& n)
 {
-        for (DTuint i = 0; i < n._logical_size; ++i)
+        for (uint32_t i = 0; i < n._logical_size; ++i)
                 operator << (n._stream[i]);
 
         return *this;
@@ -222,81 +222,81 @@ Stream& BinaryBufferStream::operator<< (const BinaryBufferStream& n)
 
 Stream& BinaryBufferStream::operator>> (bool &n)
 {
-        n = *(reinterpret_cast<DTbyte*>(&_stream[_pos_g])) != (DTbyte)0;
+        n = *(reinterpret_cast<int8_t*>(&_stream[_pos_g])) != (int8_t)0;
         Endian::from_little_endian(n);
-        _pos_g += sizeof(DTbyte);
+        _pos_g += sizeof(int8_t);
 
         return *this;
 }
 
-Stream& BinaryBufferStream::operator>> (DTbyte &n)
+Stream& BinaryBufferStream::operator>> (int8_t &n)
 {
-        n = *(reinterpret_cast<DTbyte*>(&_stream[_pos_g]));
+        n = *(reinterpret_cast<int8_t*>(&_stream[_pos_g]));
         Endian::from_little_endian(n);
-        _pos_g += sizeof(DTbyte);
+        _pos_g += sizeof(int8_t);
 
         return *this;
 }
 
-Stream& BinaryBufferStream::operator>> (DTshort &n)
+Stream& BinaryBufferStream::operator>> (int16_t &n)
 {
-        n = *(reinterpret_cast<DTshort*>(&_stream[_pos_g]));
+        n = *(reinterpret_cast<int16_t*>(&_stream[_pos_g]));
         Endian::from_little_endian(n);
-        _pos_g += sizeof(DTshort);
+        _pos_g += sizeof(int16_t);
 
         return *this;
 }
 
-Stream& BinaryBufferStream::operator>> (DTint &n)
+Stream& BinaryBufferStream::operator>> (int32_t &n)
 {
-        n = *(reinterpret_cast<DTint*>(&_stream[_pos_g]));
+        n = *(reinterpret_cast<int32_t*>(&_stream[_pos_g]));
         Endian::from_little_endian(n);
-        _pos_g += sizeof(DTint);
+        _pos_g += sizeof(int32_t);
 
         return *this;
 }
 
-Stream& BinaryBufferStream::operator>> (DTubyte &n)
+Stream& BinaryBufferStream::operator>> (uint8_t &n)
 {
-        n = *(reinterpret_cast<DTubyte*>(&_stream[_pos_g]));
+        n = *(reinterpret_cast<uint8_t*>(&_stream[_pos_g]));
         Endian::from_little_endian(n);
-        _pos_g += sizeof(DTubyte);
+        _pos_g += sizeof(uint8_t);
 
         return *this;
 }
 
-Stream& BinaryBufferStream::operator>> (DTushort &n)
+Stream& BinaryBufferStream::operator>> (uint16_t &n)
 {
-        n = *(reinterpret_cast<DTushort*>(&_stream[_pos_g]));
+        n = *(reinterpret_cast<uint16_t*>(&_stream[_pos_g]));
         Endian::from_little_endian(n);
-        _pos_g += sizeof(DTushort);
+        _pos_g += sizeof(uint16_t);
 
         return *this;
 }
 
-Stream& BinaryBufferStream::operator>> (DTuint &n)
+Stream& BinaryBufferStream::operator>> (uint32_t &n)
 {
-        n = *(reinterpret_cast<DTuint*>(&_stream[_pos_g]));
+        n = *(reinterpret_cast<uint32_t*>(&_stream[_pos_g]));
         Endian::from_little_endian(n);
-        _pos_g += sizeof(DTuint);
+        _pos_g += sizeof(uint32_t);
 
         return *this;
 }
 
-Stream& BinaryBufferStream::operator>> (DTint64 &n)
+Stream& BinaryBufferStream::operator>> (int64_t &n)
 {
-        n = *(reinterpret_cast<DTuint64*>(&_stream[_pos_g]));
+        n = *(reinterpret_cast<uint64_t*>(&_stream[_pos_g]));
         Endian::from_little_endian(n);
-        _pos_g += sizeof(DTuint64);
+        _pos_g += sizeof(uint64_t);
 
         return *this;
 }
 
-Stream& BinaryBufferStream::operator>> (DTuint64 &n)
+Stream& BinaryBufferStream::operator>> (uint64_t &n)
 {
-        n = *(reinterpret_cast<DTuint64*>(&_stream[_pos_g]));
+        n = *(reinterpret_cast<uint64_t*>(&_stream[_pos_g]));
         Endian::from_little_endian(n);
-        _pos_g += sizeof(DTuint64);
+        _pos_g += sizeof(uint64_t);
 
         return *this;
 }
@@ -376,7 +376,7 @@ Stream& BinaryBufferStream::operator>> (std::string &n)
 
 void BinaryBufferStream::resize (const DTsize size)
 {
-        const DTuint BUFFER_SIZE = 2048;
+        const uint32_t BUFFER_SIZE = 2048;
 
         std::size_t allocate_size = ((size/BUFFER_SIZE) + 1) * BUFFER_SIZE;
         if (allocate_size > _stream.size()) {
@@ -387,7 +387,7 @@ void BinaryBufferStream::resize (const DTsize size)
 
 void BinaryBufferStream::grow (DTsize size)
 {
-        if (_logical_size < (DTuint) (_pos_p + size)) {
+        if (_logical_size < (uint32_t) (_pos_p + size)) {
                 resize(_pos_p+size);
         }
 }

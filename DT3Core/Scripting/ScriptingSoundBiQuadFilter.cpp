@@ -291,19 +291,19 @@ bool ScriptingSoundBiquadFilter::compute (const PlugBase *plug)
             sound_packet_out.set_frequency(sound_packet_in.frequency());
             sound_packet_out.set_num_bytes(sound_packet_in.num_bytes());
        
-            DTshort *data_in = (DTshort *) sound_packet_in.buffer();
-            DTshort *data_out = (DTshort *) sound_packet_out.buffer();
+            int16_t *data_in = (int16_t *) sound_packet_in.buffer();
+            int16_t *data_out = (int16_t *) sound_packet_out.buffer();
 
             DTsize num_samples = sound_packet_in.num_samples();
             
-            DTint A_int = UNIT_TO_10BIT_INT(b0/a0);
-            DTint B_int = UNIT_TO_10BIT_INT(b1/a0);
-            DTint C_int = UNIT_TO_10BIT_INT(b2/a0);
-            DTint D_int = UNIT_TO_10BIT_INT(a1/a0);
-            DTint E_int = UNIT_TO_10BIT_INT(a2/a0);
+            int32_t A_int = UNIT_TO_10BIT_INT(b0/a0);
+            int32_t B_int = UNIT_TO_10BIT_INT(b1/a0);
+            int32_t C_int = UNIT_TO_10BIT_INT(b2/a0);
+            int32_t D_int = UNIT_TO_10BIT_INT(a1/a0);
+            int32_t E_int = UNIT_TO_10BIT_INT(a2/a0);
                                     
-            for (DTuint s = 0; s < num_samples; ++s) {
-                data_out[s] = static_cast<DTshort>(REM_10BIT(CLAMP_PAD_10BIT(A_int*data_in[s] + B_int*_last_in_minus_1 + C_int*_last_in_minus_2 - D_int*_last_out_minus_1 - E_int*_last_out_minus_2)));
+            for (uint32_t s = 0; s < num_samples; ++s) {
+                data_out[s] = static_cast<int16_t>(REM_10BIT(CLAMP_PAD_10BIT(A_int*data_in[s] + B_int*_last_in_minus_1 + C_int*_last_in_minus_2 - D_int*_last_out_minus_1 - E_int*_last_out_minus_2)));
                 
                 _last_in_minus_2 = _last_in_minus_1;
                 _last_in_minus_1 = data_in[s];

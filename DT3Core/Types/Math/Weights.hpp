@@ -32,10 +32,10 @@ class Weights {
         DEFINE_TYPE_SIMPLE_BASE(Weights)
 
         inline					Weights				(void)  {}
-                                Weights				(   DTushort bone_1, DTfloat w1,
-                                                        DTushort bone_2, DTfloat w2,
-                                                        DTushort bone_3, DTfloat w3,
-                                                        DTushort bone_4, DTfloat w4	);
+                                Weights				(   uint16_t bone_1, DTfloat w1,
+                                                        uint16_t bone_2, DTfloat w2,
+                                                        uint16_t bone_3, DTfloat w3,
+                                                        uint16_t bone_4, DTfloat w4	);
 
                                 Weights				(const Weights &rhs);
         Weights &				operator =			(const Weights &rhs);
@@ -70,19 +70,19 @@ class Weights {
         /// \param w3 weight of bone
         /// \param bone_4 index of bone
         /// \param w4 weight of bone
-        void					set					(   DTushort bone_1, DTfloat w1,
-                                                        DTushort bone_2, DTfloat w2,
-                                                        DTushort bone_3, DTfloat w3,
-                                                        DTushort bone_4, DTfloat w4	);
+        void					set					(   uint16_t bone_1, DTfloat w1,
+                                                        uint16_t bone_2, DTfloat w2,
+                                                        uint16_t bone_3, DTfloat w3,
+                                                        uint16_t bone_4, DTfloat w4	);
 
         /// Normalize the weights of the bones to that the weights sum to 1.0
         void					normalize_weights	(void);
 
 
-        DEFINE_ACCESSORS(bone_1, set_bone_1, DTushort, _bone_1)
-        DEFINE_ACCESSORS(bone_2, set_bone_2, DTushort, _bone_1)
-        DEFINE_ACCESSORS(bone_3, set_bone_3, DTushort, _bone_1)
-        DEFINE_ACCESSORS(bone_4, set_bone_4, DTushort, _bone_1)
+        DEFINE_ACCESSORS(bone_1, set_bone_1, uint16_t, _bone_1)
+        DEFINE_ACCESSORS(bone_2, set_bone_2, uint16_t, _bone_1)
+        DEFINE_ACCESSORS(bone_3, set_bone_3, uint16_t, _bone_1)
+        DEFINE_ACCESSORS(bone_4, set_bone_4, uint16_t, _bone_1)
 
         DEFINE_ACCESSORS(weight_1, set_weight_1, DTfloat, _weight_1)
         DEFINE_ACCESSORS(weight_2, set_weight_2, DTfloat, _weight_2)
@@ -91,10 +91,10 @@ class Weights {
 
     private:
 
-        DTushort			_bone_1;
-        DTushort			_bone_2;
-        DTushort			_bone_3;
-        DTushort			_bone_4;
+        uint16_t			_bone_1;
+        uint16_t			_bone_2;
+        uint16_t			_bone_3;
+        uint16_t			_bone_4;
 
         DTfloat				_weight_1;
         DTfloat				_weight_2;

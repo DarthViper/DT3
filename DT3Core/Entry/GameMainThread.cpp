@@ -279,7 +279,7 @@ void GameMainThread::process_arguments (std::vector<std::string> args)
 //==============================================================================
 //==============================================================================
 
-void GameMainThread::show_engine_impl (DTint width, DTint height)
+void GameMainThread::show_engine_impl (int32_t width, int32_t height)
 {
     LOG_DEBUG << "show_engine_impl called";
 
@@ -312,7 +312,7 @@ void GameMainThread::show_engine_impl (DTint width, DTint height)
     LOG_DEBUG << "show_engine_impl done";
 }
 
-void GameMainThread::show_engine (DTint width, DTint height)
+void GameMainThread::show_engine (int32_t width, int32_t height)
 {
     append(make_latent_call(&GameMainThread::show_engine_impl, width, height));
 }
@@ -346,7 +346,7 @@ void GameMainThread::hide_engine (void)
 //==============================================================================
 //==============================================================================
 
-void GameMainThread::resize_impl (DTint width, DTint height)
+void GameMainThread::resize_impl (int32_t width, int32_t height)
 {
     LOG_DEBUG << "resize_impl called";
 
@@ -356,7 +356,7 @@ void GameMainThread::resize_impl (DTint width, DTint height)
     LOG_DEBUG << "resize_impl done";
 }
 
-void GameMainThread::resize (DTint width, DTint height)
+void GameMainThread::resize (int32_t width, int32_t height)
 {
     append(make_latent_call(&GameMainThread::resize_impl, width, height));
 }
@@ -378,13 +378,13 @@ void GameMainThread::touch_event (TouchEvent event)
 //==============================================================================
 //==============================================================================
 
-void GameMainThread::key_down_event_impl (DTuint modifiers, DTushort key)
+void GameMainThread::key_down_event_impl (uint32_t modifiers, uint16_t key)
 {
     if (System::input_manager() && System::renderer())
         System::input_manager()->set_key_down_event (modifiers, key);
 }
 
-void GameMainThread::key_down_event (DTuint modifiers, DTushort key)
+void GameMainThread::key_down_event (uint32_t modifiers, uint16_t key)
 {
     append(make_latent_call(&GameMainThread::key_down_event_impl, modifiers, key));
 }
@@ -392,13 +392,13 @@ void GameMainThread::key_down_event (DTuint modifiers, DTushort key)
 //==============================================================================
 //==============================================================================
 
-void GameMainThread::key_up_event_impl (DTuint modifiers, DTushort key)
+void GameMainThread::key_up_event_impl (uint32_t modifiers, uint16_t key)
 {
     if (System::input_manager())
         System::input_manager()->set_key_up_event (modifiers, key);
 }
 
-void GameMainThread::key_up_event (DTuint modifiers, DTushort key)
+void GameMainThread::key_up_event (uint32_t modifiers, uint16_t key)
 {
     append(make_latent_call(&GameMainThread::key_up_event_impl, modifiers, key));
 }

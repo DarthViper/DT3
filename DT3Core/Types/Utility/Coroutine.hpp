@@ -36,7 +36,7 @@ class Coroutine {
 
         typedef void (T::*CB)(Coroutine<T>*);
 
-                                    Coroutine           (T *object, CB cb, DTuint stack_size);
+                                    Coroutine           (T *object, CB cb, uint32_t stack_size);
 
     private:
                                     Coroutine           (const Coroutine &rhs);
@@ -60,7 +60,7 @@ class Coroutine {
         CB                          _cb;
         T                           *_object;
 
-        std::vector<DTubyte>        _stack;
+        std::vector<uint8_t>        _stack;
 
         uContext                    _context;
         uContext                    _link_context;
@@ -73,7 +73,7 @@ class Coroutine {
 //==============================================================================
 
 template <class T>
-Coroutine<T>::Coroutine (T *object, Coroutine<T>::CB cb, DTuint stack_size)
+Coroutine<T>::Coroutine (T *object, Coroutine<T>::CB cb, uint32_t stack_size)
 {
     _object = object;
     _cb = cb;
@@ -82,7 +82,7 @@ Coroutine<T>::Coroutine (T *object, Coroutine<T>::CB cb, DTuint stack_size)
     _stack.resize(stack_size);
 
     // Set bottom memory to known value
-    *((DTuint*)(&_stack[0])) = 0xDEADBEEF;
+    *((uint32_t*)(&_stack[0])) = 0xDEADBEEF;
 
     ::memset(&_context,0,sizeof(_context));
     ::memset(&_link_context,0,sizeof(_link_context));
@@ -107,7 +107,7 @@ Coroutine<T>::Coroutine (T *object, Coroutine<T>::CB cb, DTuint stack_size)
 template <class T>
 void Coroutine<T>::resume (void)
 {
-    ASSERT( *((DTuint*)(&_stack[0])) == 0xDEADBEEF );
+    ASSERT( *((uint32_t*)(&_stack[0])) == 0xDEADBEEF );
 
     DTfloat dt = static_cast<DTfloat>(_yield_timer.delta_time());
     if (dt > DT3_MAX_TICK)
@@ -120,13 +120,13 @@ void Coroutine<T>::resume (void)
         ContextSwitcher::swap_context(&_link_context, &_context);
     }
 
-    ASSERT( *((DTuint*)(&_stack[0])) == 0xDEADBEEF );
+    ASSERT( *((uint32_t*)(&_stack[0])) == 0xDEADBEEF );
 }
 
 template <class T>
 void Coroutine<T>::yield (DTfloat yield_time)
 {
-    ASSERT( *((DTuint*)(&_stack[0])) == 0xDEADBEEF );
+    ASSERT( *((uint32_t*)(&_stack[0])) == 0xDEADBEEF );
 
     //LOG_MESSAGE << "Yield: " << yield_time;
 
@@ -134,7 +134,7 @@ void Coroutine<T>::yield (DTfloat yield_time)
 
     ContextSwitcher::swap_context(&_context, &_link_context);
 
-    ASSERT( *((DTuint*)(&_stack[0])) == 0xDEADBEEF );
+    ASSERT( *((uint32_t*)(&_stack[0])) == 0xDEADBEEF );
 }
 
 //==============================================================================

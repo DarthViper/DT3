@@ -74,30 +74,30 @@ class GUIGridLayout: public GUILayout {
         /// Sets the number of rows in columns in the sizer
         /// \param num_rows number of rows
         /// \param num_cols number of columns
-        void                        set_rows_and_columns    (DTint num_rows, DTint num_cols);
+        void                        set_rows_and_columns    (int32_t num_rows, int32_t num_cols);
 
         /// Sets the policy for resizing a column
         /// \param column column index
         /// \param p Policy
-        void                        set_column_policy       (DTuint column, const GUILayoutPolicy &p);
+        void                        set_column_policy       (uint32_t column, const GUILayoutPolicy &p);
 
         /// Sets the policy for resizing a row
         /// \param row row index
         /// \param p Policy
-        void                        set_row_policy          (DTuint row, const GUILayoutPolicy &p);
+        void                        set_row_policy          (uint32_t row, const GUILayoutPolicy &p);
 
         /// Add an item to the layout
         /// \param row row index
         /// \param column column index
         /// \param object object to add
         /// \param resize_mode how to resize the item
-        void                        add_item                (DTuint row, DTuint column, const std::shared_ptr<GUIObject> &object, GUIGridLayoutItem::ResizeMode resize_mode = GUIGridLayoutItem::RESIZE_MODE_RESIZE);
+        void                        add_item                (uint32_t row, uint32_t column, const std::shared_ptr<GUIObject> &object, GUIGridLayoutItem::ResizeMode resize_mode = GUIGridLayoutItem::RESIZE_MODE_RESIZE);
 
         /// Add sub layout to the layout
         /// \param row row index
         /// \param column column index
         /// \param layout layout to add
-        void                        add_item                (DTuint row, DTuint column, const std::shared_ptr<GUILayout> &layout);
+        void                        add_item                (uint32_t row, uint32_t column, const std::shared_ptr<GUILayout> &layout);
 
         /// Set the border item
         /// \param object object to add
@@ -129,12 +129,12 @@ class GUIGridLayout: public GUILayout {
         /// Returns the height of the row
         /// \param i row index
         /// \return row height
-        DTfloat                     row_height              (DTuint i)      {   return _heights[i];     }
+        DTfloat                     row_height              (uint32_t i)      {   return _heights[i];     }
 
         /// Returns the width of the column
         /// \param i column index
         /// \return column width
-        DTfloat                     column_width            (DTuint i)      {   return _widths[i];      }
+        DTfloat                     column_width            (uint32_t i)      {   return _widths[i];      }
 
         /// Returns all objects managed by the layout
         /// \return all objects
@@ -149,8 +149,8 @@ class GUIGridLayout: public GUILayout {
         std::vector<GUILayoutPolicy>        _column_policies;
 
         std::vector<GUIGridLayoutItem>      _items;
-        DTuint                              _num_rows;
-        DTuint                              _num_columns;
+        uint32_t                              _num_rows;
+        uint32_t                              _num_columns;
 
         Rectangle                           _border_rect;
         std::shared_ptr<GUIObject>          _border_item;

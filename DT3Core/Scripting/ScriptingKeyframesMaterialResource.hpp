@@ -50,7 +50,7 @@ class ScriptingKeyframesMaterialResource: public ScriptingKeyframes {
 
         /// Clear a key with index
         /// \param k key index
-        virtual void				clear_key				(DTint k);
+        virtual void				clear_key				(int32_t k);
 
         /// Get the number of keys
         /// \return number of keys
@@ -59,34 +59,34 @@ class ScriptingKeyframesMaterialResource: public ScriptingKeyframes {
         /// Returns a unique ID for this key
         /// \param k key index
         /// \return ID
-        virtual DTint               key_id                  (DTint k) const        {   return _keyframes[k]._id;		}
+        virtual int32_t               key_id                  (int32_t k) const        {   return _keyframes[k]._id;		}
 
         /// Get the time for the key
         /// \param k key index
         /// \return time
-        virtual DTfloat				key_time                (DTint k) const        {	return _keyframes[k]._time;		}
+        virtual DTfloat				key_time                (int32_t k) const        {	return _keyframes[k]._time;		}
 
         /// Set the time for the key
         /// \param k key index
         /// \param time key time
         /// \return new index
-        virtual DTint				set_key_time            (DTint k, DTfloat time);
+        virtual int32_t				set_key_time            (int32_t k, DTfloat time);
 
     private:
         Plug<DTfloat>                               _t;
         Plug<std::shared_ptr<MaterialResource>>    _out;
-        DTint                                       _id;
+        int32_t                                       _id;
 
         struct keyframe {
             int operator < (const keyframe& rhs) const	{	return _time < rhs._time;	}
 
             DTfloat                                 _time;
             std::shared_ptr<MaterialResource>       _value;
-            DTint                                   _id;
+            int32_t                                   _id;
         };
 
         std::vector<keyframe>		_keyframes;
-        mutable DTint				_keyframe_cache;
+        mutable int32_t				_keyframe_cache;
 };
 
 //==============================================================================

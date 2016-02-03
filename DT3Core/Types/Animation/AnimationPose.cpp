@@ -104,7 +104,7 @@ void AnimationPose::update (const DTfloat time, const std::shared_ptr<AnimationR
 	if (_joints.size() != animation->num_tracks())
 		_joints.clear();
 		
-	for (DTuint i = 0; i < animation->num_tracks(); ++i) {
+	for (uint32_t i = 0; i < animation->num_tracks(); ++i) {
 		const std::shared_ptr<AnimationTrack> &track = animation->track(i);
 		track->update_joint(time, _joints[track->name_hash()]);
 	}
@@ -113,9 +113,9 @@ void AnimationPose::update (const DTfloat time, const std::shared_ptr<AnimationR
 //==============================================================================
 //==============================================================================
 
-bool AnimationPose::joint_transform (DTuint joint_name_hash, Matrix4 &transform) const
+bool AnimationPose::joint_transform (uint32_t joint_name_hash, Matrix4 &transform) const
 {
-	std::map<DTuint, AnimationPoseJoint>::const_iterator i = _joints.find(joint_name_hash);
+	std::map<uint32_t, AnimationPoseJoint>::const_iterator i = _joints.find(joint_name_hash);
 	if (i == _joints.end()) {
 		return false;
 	} else {

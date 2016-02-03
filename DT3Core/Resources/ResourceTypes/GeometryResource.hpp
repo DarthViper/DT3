@@ -99,7 +99,7 @@ class GeometryResource: public Resource {
 
         static void                     reload_if_changed       (void);
 
-        void                            screen_opened           (DTuint width, DTuint height);
+        void                            screen_opened           (uint32_t width, uint32_t height);
         void                            screen_closed           (void);
 
         std::vector<std::shared_ptr<Mesh>>      _meshes;

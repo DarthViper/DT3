@@ -79,32 +79,32 @@ class ImporterGeometry3DS: public ImporterGeometry {
             CHUNK_OBJPIVOT			= 0xB013
         };
 
-        DTuint				read					(BinaryFileStream &in, DTubyte &v);
-        DTuint				read					(BinaryFileStream &in, DTushort &v);
-        DTuint				read					(BinaryFileStream &in, DTshort &v);
-        DTuint				read					(BinaryFileStream &in, DTuint &v);
-        DTuint				read					(BinaryFileStream &in, DTfloat &v);
-        DTuint				read					(BinaryFileStream &in, std::string &v);
+        uint32_t				read					(BinaryFileStream &in, uint8_t &v);
+        uint32_t				read					(BinaryFileStream &in, uint16_t &v);
+        uint32_t				read					(BinaryFileStream &in, int16_t &v);
+        uint32_t				read					(BinaryFileStream &in, uint32_t &v);
+        uint32_t				read					(BinaryFileStream &in, DTfloat &v);
+        uint32_t				read					(BinaryFileStream &in, std::string &v);
 
-        DTuint				parse_main_3DS			(BinaryFileStream &in, DTuint owner_chunk_size);
-        DTuint				parse_edit_3DS			(BinaryFileStream &in, DTuint owner_chunk_size);
-        DTuint				parse_edit_object       (BinaryFileStream &in, DTuint owner_chunk_size);
-        DTuint				parse_obj_trimesh       (BinaryFileStream &in, DTuint owner_chunk_size);
+        uint32_t				parse_main_3DS			(BinaryFileStream &in, uint32_t owner_chunk_size);
+        uint32_t				parse_edit_3DS			(BinaryFileStream &in, uint32_t owner_chunk_size);
+        uint32_t				parse_edit_object       (BinaryFileStream &in, uint32_t owner_chunk_size);
+        uint32_t				parse_obj_trimesh       (BinaryFileStream &in, uint32_t owner_chunk_size);
 
-        DTuint				parse_tri_vertex        (BinaryFileStream &in, DTuint owner_chunk_size);
-        DTuint				parse_tri_mapping_coords(BinaryFileStream &in, DTuint owner_chunk_size);
-        DTuint				parse_tri_face			(BinaryFileStream &in, DTuint owner_chunk_size);
-        DTuint				parse_tri_face_map      (BinaryFileStream &in, DTuint owner_chunk_size);
-        DTuint				parse_tri_local			(BinaryFileStream &in, DTuint owner_chunk_size);
+        uint32_t				parse_tri_vertex        (BinaryFileStream &in, uint32_t owner_chunk_size);
+        uint32_t				parse_tri_mapping_coords(BinaryFileStream &in, uint32_t owner_chunk_size);
+        uint32_t				parse_tri_face			(BinaryFileStream &in, uint32_t owner_chunk_size);
+        uint32_t				parse_tri_face_map      (BinaryFileStream &in, uint32_t owner_chunk_size);
+        uint32_t				parse_tri_local			(BinaryFileStream &in, uint32_t owner_chunk_size);
 
-        DTuint				parse_key_f3DS			(BinaryFileStream &in, DTuint owner_chunk_size);
-        DTuint				parse_obj_des           (BinaryFileStream &in, DTuint owner_chunk_size);
-        DTuint				parse_obj_hier			(BinaryFileStream &in, DTuint owner_chunk_size);
+        uint32_t				parse_key_f3DS			(BinaryFileStream &in, uint32_t owner_chunk_size);
+        uint32_t				parse_obj_des           (BinaryFileStream &in, uint32_t owner_chunk_size);
+        uint32_t				parse_obj_hier			(BinaryFileStream &in, uint32_t owner_chunk_size);
 
-        DTuint				parse_edit_material		(BinaryFileStream &in, DTuint owner_chunk_size);
-        DTuint				parse_mat_name_01       (BinaryFileStream &in, DTuint owner_chunk_size);
+        uint32_t				parse_edit_material		(BinaryFileStream &in, uint32_t owner_chunk_size);
+        uint32_t				parse_mat_name_01       (BinaryFileStream &in, uint32_t owner_chunk_size);
 
-        DTuint				parse_next_chunk        (BinaryFileStream &in, DTuint owner_chunk_size);
+        uint32_t				parse_next_chunk        (BinaryFileStream &in, uint32_t owner_chunk_size);
 
 
     private:
@@ -117,11 +117,11 @@ class ImporterGeometry3DS: public ImporterGeometry {
         std::vector<Vector4>        _weights_strength_stream;
         std::vector<Triangle>       _index_stream;
 
-        DTint                       _current_obj_id;
-        DTint                       _current_hier_id;
+        int32_t                       _current_obj_id;
+        int32_t                       _current_hier_id;
 
-        DTint                       _base_face;
-        DTint                       _base_vertex;
+        int32_t                       _base_face;
+        int32_t                       _base_vertex;
 };
 
 //==============================================================================

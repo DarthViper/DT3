@@ -55,27 +55,27 @@ class DirectoryLister: public BaseClass {
 
         /// Return number of files that have been found
         /// \return number of files
-        DTuint						num_files               (void);
+        uint32_t						num_files               (void);
 
         /// Retrieve file name
         /// \param index Index to entry
         /// \return name
-        std::string                 file_name               (DTuint index);
+        std::string                 file_name               (uint32_t index);
 
         /// Retrieve file name
         /// \param index Index to entry
         /// \return name without extension
-        std::string                 file_name_no_ext        (DTuint index);
+        std::string                 file_name_no_ext        (uint32_t index);
 
         /// Retrieve file path
         /// \param index Index to entry
         /// \return path to file
-        FilePath					file_path               (DTuint index);
+        FilePath					file_path               (uint32_t index);
 
         /// Returns wehter index is a directory
         /// \param index Index to entry
         /// \return is a directory
-        bool					is_directory            (DTuint index) const;
+        bool					is_directory            (uint32_t index) const;
 
     private:
         std::vector<FilePath>       _paths;

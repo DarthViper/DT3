@@ -69,12 +69,12 @@ class MoreMath {
         /// Add some random bytes to pool
         /// \param data pointer to bytes
         /// \param data_size number of bytes to add
-        static void             add_entropy                     (DTubyte *data, DTsize data_size);
+        static void             add_entropy                     (uint8_t *data, DTsize data_size);
 
         /// Get some random bytes from pool
         /// \param data pointer to bytes
         /// \param data_size number of bytes to retrieve (Max 17)
-        static void             entropy                         (DTubyte *data, DTsize data_size);
+        static void             entropy                         (uint8_t *data, DTsize data_size);
 
         //
         // Random Number generators
@@ -90,15 +90,15 @@ class MoreMath {
 
         /// Generate a random int
         /// \return random number
-        static DTuint			random_int                      (void);
+        static uint32_t			random_int                      (void);
 
         /// Generate a random int
         /// \return random number
-        static DTuint			random_MT_int                   (void);
+        static uint32_t			random_MT_int                   (void);
 
         /// Sets the random seed
         /// \param random_seed Random seed
-        static void				set_random_seed                 (DTuint random_seed)	{	_random_seed = random_seed;		}
+        static void				set_random_seed                 (uint32_t random_seed)	{	_random_seed = random_seed;		}
 
         /// Sets the random seed from entropy pool
         /// \param random_seed Random seed
@@ -106,7 +106,7 @@ class MoreMath {
 
         /// Returns the random seed
         /// \return random seed
-        static DTuint           random_seed                     (void)                  {   return _random_seed;            }
+        static uint32_t           random_seed                     (void)                  {   return _random_seed;            }
 
 
         //
@@ -116,7 +116,7 @@ class MoreMath {
         /// Calculate a factorial. Note it it uses floats so it's probably really only useful for smallish inputs
         /// \param f number
         /// \return Factorial of number
-        static DTfloat			factorial						(DTint f);
+        static DTfloat			factorial						(int32_t f);
 
         /// Solves a quadratic equation at^2 + bt + c = 0. See http://en.wikipedia.org/wiki/Quadratic_equation
         /// \param a a coefficient of equation
@@ -150,10 +150,10 @@ class MoreMath {
         /// Tries to quickly convert a float to an int
         /// \param f float value
         /// \return int value
-        static inline DTint		float_to_int        (DTfloat f)
+        static inline int32_t		float_to_int        (DTfloat f)
         {
         #if DT3_CPU	== DT3_INTEL
-            return (DTint) f;
+            return (int32_t) f;
         #else
             IntOrFloat	n;
             IntOrFloat	bias;
@@ -171,7 +171,7 @@ class MoreMath {
         /// Tries to quickly convert a int to a float
         /// \param i int value
         /// \return float value
-        static inline DTfloat   int_to_float        (DTint i)
+        static inline DTfloat   int_to_float        (int32_t i)
         {
         #if DT3_CPU	== DT3_INTEL
             return static_cast<DTfloat>(i);
@@ -303,7 +303,7 @@ class MoreMath {
         /// Checks is a value is a power of 2
         /// \param v value
         /// \return return wether is power of 2 or not
-        static inline bool	is_power_2      (DTuint v)
+        static inline bool	is_power_2      (uint32_t v)
         {
             return (!(v & (v-1)));
         }
@@ -311,7 +311,7 @@ class MoreMath {
         /// Gets next power of 2
         /// \param v value
         /// \return next power of 2
-        static inline DTuint	next_power_2    (DTuint v)
+        static inline uint32_t	next_power_2    (uint32_t v)
         {
             --v;
             v = (v >> 1) | v;
@@ -409,7 +409,7 @@ class MoreMath {
         /// \param data pointer to raw bytes
         /// \param length length of raw bytes
         /// \return 32 bit hash
-        static DTuint			calc_crc32      (const void* data, DTsize length);
+        static uint32_t			calc_crc32      (const void* data, DTsize length);
 
 
         //
@@ -419,7 +419,7 @@ class MoreMath {
         /// Converts a 4 bit number to 8 bit keeping the correct proportions
         /// \param v 4 bit value
         /// \return 8 bit value out
-        static inline DTubyte convert_4_to_8_bit    (DTubyte v)
+        static inline uint8_t convert_4_to_8_bit    (uint8_t v)
         {
             return _4_to_8_bit[v];
         }
@@ -427,7 +427,7 @@ class MoreMath {
         /// Converts a 5 bit number to 8 bit keeping the correct proportions
         /// \param v 5 bit value
         /// \return 8 bit value out
-        static inline DTubyte convert_5_to_8_bit    (DTubyte v)
+        static inline uint8_t convert_5_to_8_bit    (uint8_t v)
         {
             return _5_to_8_bit[v];
         }
@@ -435,7 +435,7 @@ class MoreMath {
         /// Converts a 6 bit number to 8 bit keeping the correct proportions
         /// \param v 6 bit value
         /// \return 8 bit value out
-        static inline DTubyte convert_6_to_8_bit    (DTubyte v)
+        static inline uint8_t convert_6_to_8_bit    (uint8_t v)
         {
             return _6_to_8_bit[v];
         }
@@ -449,34 +449,34 @@ class MoreMath {
     private:
 
         typedef union {
-            DTint		i;
+            int32_t		i;
             DTfloat		f;
         } IntOrFloat;
 
         typedef union {
-            DTubyte     b[2];
-            DTushort    s;
+            uint8_t     b[2];
+            uint16_t    s;
         } ShortOrBytes;
 
-        static const DTint CRC_TABLE_SIZE = 256;
-        static const DTint FACTORIAL_TABLE_SIZE = 16;
-        static const DTint MT_LEN = 624;
+        static const int32_t CRC_TABLE_SIZE = 256;
+        static const int32_t FACTORIAL_TABLE_SIZE = 16;
+        static const int32_t MT_LEN = 624;
 
-        static DTuint		_crc_table[CRC_TABLE_SIZE];
-        static DTuint		_random_seed;
+        static uint32_t		_crc_table[CRC_TABLE_SIZE];
+        static uint32_t		_random_seed;
 
-        static DTubyte      _4_to_8_bit[16];
-        static DTubyte      _5_to_8_bit[32];
-        static DTubyte      _6_to_8_bit[64];
+        static uint8_t      _4_to_8_bit[16];
+        static uint8_t      _5_to_8_bit[32];
+        static uint8_t      _6_to_8_bit[64];
 
         static DTfloat		_factorial[FACTORIAL_TABLE_SIZE];
         static DTfloat		_factorial_inv[FACTORIAL_TABLE_SIZE];
 
-        static DTint        _mt_index;
-        static DTuint       _mt_buffer[MT_LEN];
+        static int32_t        _mt_index;
+        static uint32_t       _mt_buffer[MT_LEN];
 
-        static DTubyte      _entropy_pool[17];  // 17 is prime
-        static DTushort     _entropy_pool_pos;
+        static uint8_t      _entropy_pool[17];  // 17 is prime
+        static uint16_t     _entropy_pool_pos;
 };
 
 //==============================================================================

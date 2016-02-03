@@ -66,11 +66,11 @@ class ArchiveTextReader: public Archive {
 
         /// Returns the version of the archive
         /// \return the version of the archive
-        DTuint					version                 (void) const;
+        uint32_t					version                 (void) const;
 
         /// Returns the app version of the archive
         /// \return the app version of the archive
-        DTuint					app_version             (void) const;
+        uint32_t					app_version             (void) const;
 
         /// Returns wether the archive is reading or not
         /// \return archive is loading
@@ -87,8 +87,8 @@ class ArchiveTextReader: public Archive {
     private:
         void					eat_whitespace			(void);
 
-        DTuint					_version;
-        DTuint					_app_version;
+        uint32_t					_version;
+        uint32_t					_app_version;
         TextFileStream			_infile;
 };
 

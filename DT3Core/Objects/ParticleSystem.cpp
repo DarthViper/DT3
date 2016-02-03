@@ -115,8 +115,8 @@ void ParticleSystem::draw (const std::shared_ptr<CameraObject> &camera, const DT
 
     if (!particles || !material)  return;
 
-	DTint start = particles->active_start();
-	DTint end = particles->active_end();
+    int32_t start = particles->active_start();
+    int32_t end = particles->active_end();
 	
 	if (start == end)
 		return;
@@ -134,7 +134,7 @@ void ParticleSystem::draw (const std::shared_ptr<CameraObject> &camera, const DT
 //		DrawUtils::drawParticles(   getTransform(),
 //                                    particles.get(),
 //                                    material,
-//                                    start, (DTint) particles->translations_stream().size() - start);
+//                                    start, (int32_t) particles->translations_stream().size() - start);
 //								
 //		DrawUtils::drawParticles(   getTransform(),
 //                                    particles.get(),
@@ -157,7 +157,7 @@ void ParticleSystem::eval_particles (const DTfloat dt)
 		std::vector<Vector3> &translations = particles->translations_stream();
         std::vector<Vector3> &velocities = particles->velocity_stream();
 
-		for (DTint i = particles->active_start(); i != particles->active_end(); i = (i + 1) % particles->translations_stream().size()) {
+        for (int32_t i = particles->active_start(); i != particles->active_end(); i = (i + 1) % particles->translations_stream().size()) {
 			Vector3 &translation = translations[i];
 			Vector3 &velocity = velocities[i];
 			translation += velocity * dt;

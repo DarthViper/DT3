@@ -20,11 +20,11 @@ namespace DT3 {
 // Constants
 //==============================================================================
 
-const DTint DATA_PERSISTENT = 1 << 0;
-const DTint DATA_SETTABLE = 1 << 1;
+const int32_t DATA_PERSISTENT = 1 << 0;
+const int32_t DATA_SETTABLE = 1 << 1;
 
-const DTint DATA_FLUSH_UI = 1 << 5;
-const DTint DATA_DIRTY = 1 << 31;
+const int32_t DATA_FLUSH_UI = 1 << 5;
+const int32_t DATA_DIRTY = 1 << 31;
 
 //==============================================================================
 /// Standard class constructors/destructors
@@ -78,7 +78,7 @@ ArchiveData& ArchiveData::set_title (const std::string &s)
     return (*this);
 }
 
-ArchiveData& ArchiveData::add_flags (DTuint flags)
+ArchiveData& ArchiveData::add_flags (uint32_t flags)
 {   
     _flags |= flags;    
     return (*this);

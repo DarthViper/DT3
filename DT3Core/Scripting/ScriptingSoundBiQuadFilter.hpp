@@ -66,15 +66,15 @@ class ScriptingSoundBiquadFilter: public ScriptingSoundBase {
         Plug<SoundPacket>         _sound_packet_in;
         Plug<SoundPacket>         _sound_packet_out;
 
-        Plug<DTuint>                                _filter_type;
+        Plug<uint32_t>                                _filter_type;
         Plug<DTfloat>                               _cutoff_frequency;
         Plug<DTfloat>                               _db_gain;
         Plug<DTfloat>                               _Q;
 
-        DTshort                                     _last_in_minus_1;
-        DTshort                                     _last_in_minus_2;
-        DTshort                                     _last_out_minus_1;
-        DTshort                                     _last_out_minus_2;
+        int16_t                                     _last_in_minus_1;
+        int16_t                                     _last_in_minus_2;
+        int16_t                                     _last_out_minus_1;
+        int16_t                                     _last_out_minus_2;
 };
 
 //==============================================================================

@@ -54,18 +54,18 @@ DTerr Package::load_package (const FilePath &pathname)
     _offset = file.start();
     
     // Read magic number
-    DTuint magic;
+    uint32_t magic;
     file >> magic;
     
     if (magic != 0x5041434B) // i.e. PACK
         return DT3_ERR_FILE_WRONG_TYPE;
     	
 	// read the number of paths in the package
-	DTuint num_paths;
+	uint32_t num_paths;
 	file >> num_paths;
 	
 	// Info for all of the entries in the package
-	for (DTuint i = 0; i < num_paths; ++i) {
+	for (uint32_t i = 0; i < num_paths; ++i) {
 		Entry entry;		
 		file >> entry._name;
 		file >> entry._start;

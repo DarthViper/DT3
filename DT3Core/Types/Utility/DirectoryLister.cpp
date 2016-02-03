@@ -77,32 +77,32 @@ void DirectoryLister::scan_path (const FilePath &pathname, bool recursive)
     HAL::list_directory(pathname, recursive, _paths);
 }
 
-DTuint DirectoryLister::num_files (void)
+uint32_t DirectoryLister::num_files (void)
 {
-	return static_cast<DTuint>(_paths.size());
+	return static_cast<uint32_t>(_paths.size());
 }
 
-std::string DirectoryLister::file_name (DTuint index)
+std::string DirectoryLister::file_name (uint32_t index)
 {
 	ASSERT(index >= 0 && index < _paths.size());
 
 	return _paths[index].file_name();
 }
 
-std::string DirectoryLister::file_name_no_ext (DTuint index)
+std::string DirectoryLister::file_name_no_ext (uint32_t index)
 {
 	ASSERT(index >= 0 && index < _paths.size());
 	
 	return _paths[index].file_name_no_ext();
 }
 
-FilePath DirectoryLister::file_path (DTuint index)
+FilePath DirectoryLister::file_path (uint32_t index)
 {
 	ASSERT(index >= 0 && index < _paths.size());
 	return _paths[index];
 }
 
-bool DirectoryLister::is_directory(DTuint index) const
+bool DirectoryLister::is_directory(uint32_t index) const
 {
 	ASSERT(index >= 0 && index < _paths.size());
 	return HAL::is_dir(_paths[index]);

@@ -62,16 +62,16 @@ class ExpressionParser:public BaseClass {
         struct Token {
             std::string             _token;
             bool               _unary;
-            DTuint                  _type;
+            uint32_t                  _type;
         };
 
-        bool                   parse_whitespace        (const std::string &string, DTuint &pos, std::list<Token> &tokens);
-        bool                   parse_comma             (const std::string &string, DTuint &pos, std::list<Token> &tokens);
-        bool                   parse_operator          (const std::string &string, DTuint &pos, std::list<Token> &tokens);
-        bool                   parse_function          (const std::string &string, DTuint &pos, std::list<Token> &tokens);
-        bool                   parse_number            (const std::string &string, DTuint &pos, std::list<Token> &tokens);
-        bool                   parse_variable          (const std::string &string, DTuint &pos, std::list<Token> &tokens);
-        bool                   parse_bracket           (const std::string &string, DTuint &pos, std::list<Token> &tokens);
+        bool                   parse_whitespace        (const std::string &string, uint32_t &pos, std::list<Token> &tokens);
+        bool                   parse_comma             (const std::string &string, uint32_t &pos, std::list<Token> &tokens);
+        bool                   parse_operator          (const std::string &string, uint32_t &pos, std::list<Token> &tokens);
+        bool                   parse_function          (const std::string &string, uint32_t &pos, std::list<Token> &tokens);
+        bool                   parse_number            (const std::string &string, uint32_t &pos, std::list<Token> &tokens);
+        bool                   parse_variable          (const std::string &string, uint32_t &pos, std::list<Token> &tokens);
+        bool                   parse_bracket           (const std::string &string, uint32_t &pos, std::list<Token> &tokens);
 
         enum {
             TYPE_OPERATOR,
@@ -82,7 +82,7 @@ class ExpressionParser:public BaseClass {
             TYPE_COMMA
         };
 
-        DTuint                      precedence              (Token *t);
+        uint32_t                      precedence              (Token *t);
         bool                   left_associative        (Token *t);
 
         std::list<Token>            _tokens;

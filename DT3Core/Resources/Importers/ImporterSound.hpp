@@ -55,7 +55,7 @@ class ImporterSound: public BaseClass {
         /// \param data pointer to buffer
         /// \param start start of sound data (doesn't include header)
         /// \param length length of sound data in bytes
-        virtual DTsize				stream				(DTubyte *data, DTsize start, DTsize length) = 0;
+        virtual DTsize				stream				(uint8_t *data, DTsize start, DTsize length) = 0;
 
         /// Returns length of sound data
         /// \return length of sound data in bytes

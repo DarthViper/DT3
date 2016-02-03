@@ -109,15 +109,15 @@ class MemoryAllocatorTrace {
         static bool            _alloc_recording;
         static bool            _alloc_checking;
 
-        static const DTuint MAGIC = 0xDEADBEEF;
+        static const uint32_t MAGIC = 0xDEADBEEF;
 
         struct Header {
-            DTuint magic;
+            uint32_t magic;
             DTsize size;
         };
 
         struct Footer {
-            DTuint magic;
+            uint32_t magic;
         };
 
         struct Allocation {

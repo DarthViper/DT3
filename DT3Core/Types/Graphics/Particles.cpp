@@ -63,7 +63,7 @@ Stream& operator >>(Stream &s, std::shared_ptr<Particles> &r)
 //==============================================================================
 //==============================================================================
 
-void Particles::screen_opened (DTuint width, DTuint height)
+void Particles::screen_opened (uint32_t width, uint32_t height)
 {
 
 }
@@ -106,7 +106,7 @@ void Particles::build_rotations_stream	(void)
 //==============================================================================
 //==============================================================================
 
-void Particles::resize (DTuint size)
+void Particles::resize (uint32_t size)
 {
 	if (_translations.size() != size) {
     
@@ -124,7 +124,7 @@ void Particles::resize (DTuint size)
 //==============================================================================
 //==============================================================================
 
-void Particles::draw (const std::shared_ptr<CameraObject> &camera, DTint first, DTint num)
+void Particles::draw (const std::shared_ptr<CameraObject> &camera, int32_t first, int32_t num)
 {
 
     if (_translations.size() <= 0)
@@ -133,15 +133,15 @@ void Particles::draw (const std::shared_ptr<CameraObject> &camera, DTint first, 
 //    DTsize num_particles = _translations.size();
 //    
 //    
-//    std::shared_ptr<ArrayBlock<DTubyte>> vertex_stream = makeSmartPtr(ArrayBlock<DTubyte>::create());
+//    std::shared_ptr<ArrayBlock<uint8_t>> vertex_stream = makeSmartPtr(ArrayBlock<uint8_t>::create());
 //    vertex_stream->resize(sizeof(Vector3) * 6 * num_particles);
 //    Vector3 *vertices = (Vector3*) vertex_stream->getBuffer();
 //
-//    std::shared_ptr<ArrayBlock<DTubyte>> texcoords_stream = makeSmartPtr(ArrayBlock<DTubyte>::create());
+//    std::shared_ptr<ArrayBlock<uint8_t>> texcoords_stream = makeSmartPtr(ArrayBlock<uint8_t>::create());
 //    texcoords_stream->resize(sizeof(Texcoord2) * 6 * num_particles);
 //    Texcoord2 *texcoords = (Texcoord2*) texcoords_stream->getBuffer();
 //
-//    std::shared_ptr<ArrayBlock<DTubyte>> colors_stream = makeSmartPtr(ArrayBlock<DTubyte>::create());
+//    std::shared_ptr<ArrayBlock<uint8_t>> colors_stream = makeSmartPtr(ArrayBlock<uint8_t>::create());
 //    colors_stream->resize(sizeof(Color) * 6 * num_particles);
 //    Color *colors = (Color*) colors_stream->getBuffer();
 //    
@@ -151,7 +151,7 @@ void Particles::draw (const std::shared_ptr<CameraObject> &camera, DTint first, 
 //    
 //    
 //    // Fill in the streams
-//    for (DTint i = 0; i < num_particles; ++i) {
+//    for (int32_t i = 0; i < num_particles; ++i) {
 //        const Vector3 translation = Vector3(_translations[i]);
 //
 //        // Default texcoords

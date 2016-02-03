@@ -47,16 +47,16 @@ class GlyphCacheEntry: public BaseClass {
 
         /// Returns a hash of the glyph entry for faster searching and comparison
         /// \return Hash
-        DTuint                                  hash                    (void) const;
+        uint32_t                                  hash                    (void) const;
 
 
         /// Set the character
         /// \param c character
-        void                                    set_character           (DTuint c);
+        void                                    set_character           (uint32_t c);
 
         /// Returns the character
         /// \return character
-        DTuint                                  character               (void) const                {   return _c;   }
+        uint32_t                                  character               (void) const                {   return _c;   }
 
 
         /// Set the font
@@ -70,11 +70,11 @@ class GlyphCacheEntry: public BaseClass {
 
         /// Set the size
         /// \param font size
-        void                                    set_size                (DTuint size);
+        void                                    set_size                (uint32_t size);
 
         /// Returns the size
         /// \return size
-        DTuint                                  size                    (void) const                {   return _size;   }
+        uint32_t                                  size                    (void) const                {   return _size;   }
 
 
         /// Set the resolution scale
@@ -122,11 +122,11 @@ class GlyphCacheEntry: public BaseClass {
     private:
         void                                    clear_glyph             (void);
 
-        mutable DTuint                          _hash;
-        DTuint                                  _c;
+        mutable uint32_t                          _hash;
+        uint32_t                                  _c;
 
         std::shared_ptr<FontResource>           _font;
-        DTuint                                  _size;
+        uint32_t                                  _size;
         DTfloat                                 _resolution_scale;
 
         Matrix4                                 _transform;

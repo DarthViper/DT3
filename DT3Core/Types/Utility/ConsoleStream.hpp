@@ -28,7 +28,7 @@ namespace DT3 {
 class ConsoleStream {
     public:
 
-                        ConsoleStream   (DTuint type);
+                        ConsoleStream   (uint32_t type);
                         ConsoleStream   (ConsoleStream &rhs);
 
     private:
@@ -54,7 +54,7 @@ class ConsoleStream {
     private:
         struct SS {
             TextBufferStream    _buffer;
-            DTuint				_type;
+            uint32_t				_type;
         };
 
         std::shared_ptr<SS>     _ss;

@@ -103,11 +103,11 @@ void ScriptingKeyframesEvent::archive (const std::shared_ptr<Archive> &archive)
 
     if (archive->is_reading()) {
 
-        DTint keyCount;
+        int32_t keyCount;
         *archive << ARCHIVE_DATA(keyCount,DATA_PERSISTENT);
         _keyframes.resize(keyCount);
         
-        for (DTint i = 0; i < keyCount; ++i) {
+        for (int32_t i = 0; i < keyCount; ++i) {
             *archive << ARCHIVE_DATA_RAW(_keyframes[i]._time, DATA_PERSISTENT);
 
             if (archive->is_reading())
@@ -117,10 +117,10 @@ void ScriptingKeyframesEvent::archive (const std::shared_ptr<Archive> &archive)
         _last_t = _t;
     } else {
 
-        DTint keyCount = (DTint) _keyframes.size();
+        int32_t keyCount = (int32_t) _keyframes.size();
         *archive << ARCHIVE_DATA(keyCount,DATA_PERSISTENT);
 
-        for (DTint i = 0; i < keyCount; ++i) {
+        for (int32_t i = 0; i < keyCount; ++i) {
             *archive << ARCHIVE_DATA_RAW(_keyframes[i]._time, DATA_PERSISTENT);
         }
     }
@@ -131,23 +131,23 @@ void ScriptingKeyframesEvent::archive (const std::shared_ptr<Archive> &archive)
 //==============================================================================
 //==============================================================================
 
-DTint  ScriptingKeyframesEvent::set_key_time (DTint k, DTfloat time)
+int32_t  ScriptingKeyframesEvent::set_key_time (int32_t k, DTfloat time)
 {
 	PROFILER(SCRIPTING);
 
-	DTint oldid = _keyframes[k]._id;
+	int32_t oldid = _keyframes[k]._id;
 	
 	_keyframes[k]._time = time;
 	std::sort(_keyframes.begin(), _keyframes.end());
 	
 	for (std::size_t i = 0; i < _keyframes.size(); ++i)
 		if (oldid == _keyframes[i]._id)
-			return static_cast<DTint>(i);
+			return static_cast<int32_t>(i);
 			
 	return -1;
 }
 
-void  ScriptingKeyframesEvent::clear_key (DTint k)
+void  ScriptingKeyframesEvent::clear_key (int32_t k)
 {
 	PROFILER(SCRIPTING);
 

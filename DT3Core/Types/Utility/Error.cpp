@@ -21,18 +21,18 @@ namespace DT3 {
 //==============================================================================
 //==============================================================================
 
-std::shared_ptr<Callback<const DTcharacter*, const DTcharacter*, DTint, const DTcharacter*>>   ErrorImpl::_callback_error_msg;
-std::shared_ptr<Callback<const DTcharacter*, const DTcharacter*, DTint, const DTcharacter*>>   ErrorImpl::_callback_warning_msg;
+std::shared_ptr<Callback<const DTcharacter*, const DTcharacter*, int32_t, const DTcharacter*>>   ErrorImpl::_callback_error_msg;
+std::shared_ptr<Callback<const DTcharacter*, const DTcharacter*, int32_t, const DTcharacter*>>   ErrorImpl::_callback_warning_msg;
 
 //==============================================================================
 //==============================================================================
 
-void ErrorImpl::set_callback_error_msg (std::shared_ptr<Callback<const DTcharacter*, const DTcharacter*, DTint, const DTcharacter*>> cb)
+void ErrorImpl::set_callback_error_msg (std::shared_ptr<Callback<const DTcharacter*, const DTcharacter*, int32_t, const DTcharacter*>> cb)
 {   
     _callback_error_msg = cb;
 }
 
-void ErrorImpl::call_error_msg (const DTcharacter* file, const DTcharacter* func, DTint line, const DTcharacter *msg)
+void ErrorImpl::call_error_msg (const DTcharacter* file, const DTcharacter* func, int32_t line, const DTcharacter *msg)
 {
     if (_callback_error_msg)
         (*_callback_error_msg)(file, func, line, msg);  
@@ -44,12 +44,12 @@ void ErrorImpl::call_error_msg (const DTcharacter* file, const DTcharacter* func
 //==============================================================================
 //==============================================================================
 
-void ErrorImpl::set_callback_warning_msg (std::shared_ptr<Callback<const DTcharacter*, const DTcharacter*, DTint, const DTcharacter*>> cb)
+void ErrorImpl::set_callback_warning_msg (std::shared_ptr<Callback<const DTcharacter*, const DTcharacter*, int32_t, const DTcharacter*>> cb)
 {   
     _callback_error_msg = cb;
 }
 
-void ErrorImpl::call_warning_msg (const DTcharacter* file, const DTcharacter* func, DTint line, const DTcharacter *msg)
+void ErrorImpl::call_warning_msg (const DTcharacter* file, const DTcharacter* func, int32_t line, const DTcharacter *msg)
 {
     if (_callback_warning_msg)
         (*_callback_warning_msg)(file, func, line, msg);  

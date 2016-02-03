@@ -43,15 +43,15 @@ class ErrorImpl {
         // Callbacks
         //
 
-        static void         set_callback_error_msg      (std::shared_ptr<Callback<const DTcharacter*, const DTcharacter*, DTint, const DTcharacter*>> cb);
-        static void         call_error_msg              (const DTcharacter* file, const DTcharacter* func, DTint line, const DTcharacter *msg);
+        static void         set_callback_error_msg      (std::shared_ptr<Callback<const DTcharacter*, const DTcharacter*, int32_t, const DTcharacter*>> cb);
+        static void         call_error_msg              (const DTcharacter* file, const DTcharacter* func, int32_t line, const DTcharacter *msg);
 
-        static void         set_callback_warning_msg    (std::shared_ptr<Callback<const DTcharacter*, const DTcharacter*, DTint, const DTcharacter*>> cb);
-        static void         call_warning_msg            (const DTcharacter* file, const DTcharacter* func, DTint line, const DTcharacter *msg);
+        static void         set_callback_warning_msg    (std::shared_ptr<Callback<const DTcharacter*, const DTcharacter*, int32_t, const DTcharacter*>> cb);
+        static void         call_warning_msg            (const DTcharacter* file, const DTcharacter* func, int32_t line, const DTcharacter *msg);
 
     private:
-        static std::shared_ptr<Callback<const DTcharacter*, const DTcharacter*, DTint, const DTcharacter *>>  _callback_error_msg;
-        static std::shared_ptr<Callback<const DTcharacter*, const DTcharacter*, DTint, const DTcharacter *>>  _callback_warning_msg;
+        static std::shared_ptr<Callback<const DTcharacter*, const DTcharacter*, int32_t, const DTcharacter *>>  _callback_error_msg;
+        static std::shared_ptr<Callback<const DTcharacter*, const DTcharacter*, int32_t, const DTcharacter *>>  _callback_warning_msg;
 
 };
 
@@ -62,30 +62,30 @@ class ErrorImpl {
 
 
 #if DT3_OS == DT3_WINDOWS
-    #define ERROR(cond, msg)    if (!(cond))        ErrorImpl::call_error_msg   ((DT3::DTcharacter*)__FILE__, (DT3::DTcharacter*)__FUNCTION__, (DT3::DTint)__LINE__, msg)
+    #define ERROR(cond, msg)    if (!(cond))        ErrorImpl::call_error_msg   ((DT3::DTcharacter*)__FILE__, (DT3::DTcharacter*)__FUNCTION__, (int32_t)__LINE__, msg)
 #else
-    #define ERROR(cond, msg)    if (!(cond))        ErrorImpl::call_error_msg   ((DT3::DTcharacter*)__FILE__, (DT3::DTcharacter*)__func__, (DT3::DTint)__LINE__, msg)
+    #define ERROR(cond, msg)    if (!(cond))        ErrorImpl::call_error_msg   ((DT3::DTcharacter*)__FILE__, (DT3::DTcharacter*)__func__, (int32_t)__LINE__, msg)
 #endif
 
 
 #if DT3_OS == DT3_WINDOWS
-    #define ERRORMSG(msg)       ErrorImpl::call_error_msg ((DT3::DTcharacter*)__FILE__, (DT3::DTcharacter*)__FUNCTION__, (DT3::DTint)__LINE__, msg)
+    #define ERRORMSG(msg)       ErrorImpl::call_error_msg ((DT3::DTcharacter*)__FILE__, (DT3::DTcharacter*)__FUNCTION__, (int32_t)__LINE__, msg)
 #else
-    #define ERRORMSG(msg)       ErrorImpl::call_error_msg ((DT3::DTcharacter*)__FILE__, (DT3::DTcharacter*)__func__, (DT3::DTint)__LINE__, msg)
+    #define ERRORMSG(msg)       ErrorImpl::call_error_msg ((DT3::DTcharacter*)__FILE__, (DT3::DTcharacter*)__func__, (int32_t)__LINE__, msg)
 #endif
 
 
 #if DT3_OS == DT3_WINDOWS
-    #define WARNING(cond, msg)  if (!(cond))        ErrorImpl::call_warning_msg ((DT3::DTcharacter*)__FILE__, (DT3::DTcharacter*)__FUNCTION__, (DT3::DTint)__LINE__, msg)
+    #define WARNING(cond, msg)  if (!(cond))        ErrorImpl::call_warning_msg ((DT3::DTcharacter*)__FILE__, (DT3::DTcharacter*)__FUNCTION__, (int32_t)__LINE__, msg)
 #else
-    #define WARNING(cond, msg)  if (!(cond))        ErrorImpl::call_warning_msg ((DT3::DTcharacter*)__FILE__, (DT3::DTcharacter*)__func__, (DT3::DTint)__LINE__, msg)
+    #define WARNING(cond, msg)  if (!(cond))        ErrorImpl::call_warning_msg ((DT3::DTcharacter*)__FILE__, (DT3::DTcharacter*)__func__, (int32_t)__LINE__, msg)
 #endif
 
 
 #if DT3_OS == DT3_WINDOWS
-    #define WARNINGMSG(msg)     ErrorImpl::call_warning_msg ((DT3::DTcharacter*)__FILE__, (DT3::DTcharacter*)__FUNCTION__, (DT3::DTint)__LINE__, msg)
+    #define WARNINGMSG(msg)     ErrorImpl::call_warning_msg ((DT3::DTcharacter*)__FILE__, (DT3::DTcharacter*)__FUNCTION__, (int32_t)__LINE__, msg)
 #else
-    #define WARNINGMSG(msg)     ErrorImpl::call_warning_msg ((DT3::DTcharacter*)__FILE__, (DT3::DTcharacter*)__func__, (DT3::DTint)__LINE__, msg)
+    #define WARNINGMSG(msg)     ErrorImpl::call_warning_msg ((DT3::DTcharacter*)__FILE__, (DT3::DTcharacter*)__func__, (int32_t)__LINE__, msg)
 #endif
 
 

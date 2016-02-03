@@ -128,9 +128,9 @@ void AnimationTrack::update_joint (const DTfloat time, AnimationPoseJoint &joint
 	}
 		
 	// Clamp cached value
-	DTint cur_keyframe_cache = joint.keyframe_cache();
+	int32_t cur_keyframe_cache = joint.keyframe_cache();
 	if (cur_keyframe_cache < 0)	cur_keyframe_cache = 0;
-	else if (cur_keyframe_cache+1 >= (DTint) _keyframes.size())	cur_keyframe_cache = (DTint) _keyframes.size()-2;
+	else if (cur_keyframe_cache+1 >= (int32_t) _keyframes.size())	cur_keyframe_cache = (int32_t) _keyframes.size()-2;
 
 	// Do the search
 	while (1) {	
@@ -144,8 +144,8 @@ void AnimationTrack::update_joint (const DTfloat time, AnimationPoseJoint &joint
 		} else if (time >= _keyframes[cur_keyframe_cache+1].time()) {
 			++cur_keyframe_cache;
 			// Check limits
-			if (cur_keyframe_cache+1 >= (DTint) _keyframes.size()) {
-				cur_keyframe_cache = (DTint) _keyframes.size()-2;
+			if (cur_keyframe_cache+1 >= (int32_t) _keyframes.size()) {
+				cur_keyframe_cache = (int32_t) _keyframes.size()-2;
 				break;
 			}
 		} else {

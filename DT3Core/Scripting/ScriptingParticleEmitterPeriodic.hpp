@@ -63,20 +63,20 @@ class ScriptingParticleEmitterPeriodic: public ScriptingParticleEmitter {
         DEFINE_ACCESSORS(spawn_translation, set_spawn_translation, Vector3, _spawn_translation);
         DEFINE_ACCESSORS(max_lifetime, set_max_lifetime, DTfloat, _max_lifetime);
         DEFINE_ACCESSORS(active, set_active, bool, _active);
-        DEFINE_ACCESSORS(max_num, set_max_num, DTint, _max_num);
-        DEFINE_ACCESSORS(batch_size, set_batch_size, DTint, _batch_size);
+        DEFINE_ACCESSORS(max_num, set_max_num, int32_t, _max_num);
+        DEFINE_ACCESSORS(batch_size, set_batch_size, int32_t, _batch_size);
 
     private:
         Plug<DTfloat>								_period;
         Plug<DTfloat>								_variation;
-        DTint										_batch_size;
+        int32_t										_batch_size;
 
         Plug<Vector3>								_spawn_translation;
         Plug<DTfloat>								_max_lifetime;
 
         Plug<bool>								_active;
 
-        DTint										_max_num;
+        int32_t										_max_num;
 
         Plug<std::shared_ptr<Particles>>            _out;
 

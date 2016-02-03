@@ -52,7 +52,7 @@ class Globals {
         };
 
         struct GlobalsEntry {
-            DTint       lifetime;
+            int32_t       lifetime;
             std::string name;
             std::string	value;
         };
@@ -82,13 +82,13 @@ class Globals {
         /// \param name name of global
         /// \param value value of global
         /// \param lifetime READ_ONLY, VOLATILE, or PERSISTENT
-        static void                                         set_global              (const std::string &name_with_case, const std::string &value, const DTint lifetime);
+        static void                                         set_global              (const std::string &name_with_case, const std::string &value, const int32_t lifetime);
 
         /// Sets the value of a global if not already set
         /// \param name name of global
         /// \param value value of global
         /// \param lifetime READ_ONLY, VOLATILE, or PERSISTENT
-        static void                                         set_global_default		(const std::string &name_with_case, const std::string &value, const DTint lifetime);
+        static void                                         set_global_default		(const std::string &name_with_case, const std::string &value, const int32_t lifetime);
 
         /// Substitutes values in strings with global variables. i.e. "My name is {NAME}" replaces
         /// {NAME} with the value of the global variable NAME.  Will substitute recursively.

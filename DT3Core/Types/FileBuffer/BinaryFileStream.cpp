@@ -56,73 +56,73 @@ void BinaryFileStream::set_file_handle (const std::shared_ptr<FileHandle> &file_
 
 Stream& BinaryFileStream::operator<< (const bool nc)
 {
-    DTubyte n = nc;
+    uint8_t n = nc;
     Endian::to_little_endian(n);
-    write_raw((DTubyte*) &n, sizeof(n));
+    write_raw((uint8_t*) &n, sizeof(n));
     return *this;
 }
 
-Stream& BinaryFileStream::operator<< (const DTbyte nc)
+Stream& BinaryFileStream::operator<< (const int8_t nc)
 {
-    DTbyte n = nc;
+    int8_t n = nc;
     Endian::to_little_endian(n);
-    write_raw((DTubyte*) &n, sizeof(n));
+    write_raw((uint8_t*) &n, sizeof(n));
     return *this;
 }
 
-Stream& BinaryFileStream::operator<< (const DTshort nc)
+Stream& BinaryFileStream::operator<< (const int16_t nc)
 {
-    DTshort n = nc;
+    int16_t n = nc;
     Endian::to_little_endian(n);
-    write_raw((DTubyte*) &n, sizeof(n));
+    write_raw((uint8_t*) &n, sizeof(n));
     return *this;
 }
 
-Stream& BinaryFileStream::operator<< (const DTint nc)
+Stream& BinaryFileStream::operator<< (const int32_t nc)
 {
-    DTint n = nc;
+    int32_t n = nc;
     Endian::to_little_endian(n);
-    write_raw((DTubyte*) &n, sizeof(n));
+    write_raw((uint8_t*) &n, sizeof(n));
     return *this;
 }
 
-Stream& BinaryFileStream::operator<< (const DTubyte nc)
+Stream& BinaryFileStream::operator<< (const uint8_t nc)
 {
-    DTubyte n = nc;
+    uint8_t n = nc;
     Endian::to_little_endian(n);
-    write_raw((DTubyte*) &n, sizeof(n));
+    write_raw((uint8_t*) &n, sizeof(n));
     return *this;
 }
 
-Stream& BinaryFileStream::operator<< (const DTushort nc)
+Stream& BinaryFileStream::operator<< (const uint16_t nc)
 {
-    DTushort n = nc;
+    uint16_t n = nc;
     Endian::to_little_endian(n);
-    write_raw((DTubyte*) &n, sizeof(n));
+    write_raw((uint8_t*) &n, sizeof(n));
     return *this;
 }
 
-Stream& BinaryFileStream::operator<< (const DTuint nc)
+Stream& BinaryFileStream::operator<< (const uint32_t nc)
 {
-    DTuint n = nc;
+    uint32_t n = nc;
     Endian::to_little_endian(n);
-    write_raw((DTubyte*) &n, sizeof(n));
+    write_raw((uint8_t*) &n, sizeof(n));
     return *this;
 }
 
-Stream& BinaryFileStream::operator<< (const DTint64 nc)
+Stream& BinaryFileStream::operator<< (const int64_t nc)
 {
-    DTint64 n = nc;
+    int64_t n = nc;
     Endian::to_little_endian(n);
-    write_raw((DTubyte*) &n, sizeof(n));
+    write_raw((uint8_t*) &n, sizeof(n));
     return *this;
 }
 
-Stream& BinaryFileStream::operator<< (const DTuint64 nc)
+Stream& BinaryFileStream::operator<< (const uint64_t nc)
 {
-    DTuint64 n = nc;
+    uint64_t n = nc;
     Endian::to_little_endian(n);
-    write_raw((DTubyte*) &n, sizeof(n));
+    write_raw((uint8_t*) &n, sizeof(n));
     return *this;
 }
 
@@ -131,7 +131,7 @@ Stream& BinaryFileStream::operator<< (const DTsize nc)
 {
     DTsize n = nc;
     Endian::to_little_endian(n);
-    write_raw((DTubyte*) &n, sizeof(n));
+    write_raw((uint8_t*) &n, sizeof(n));
     return *this;
 }
 #endif
@@ -140,7 +140,7 @@ Stream& BinaryFileStream::operator<< (const DTfloat nc)
 {
     DTfloat n = nc;
     Endian::to_little_endian(n);
-    write_raw((DTubyte*) &n, sizeof(n));
+    write_raw((uint8_t*) &n, sizeof(n));
     return *this;
 }
 
@@ -148,7 +148,7 @@ Stream& BinaryFileStream::operator<< (const DTdouble nc)
 {
     DTdouble n = nc;
     Endian::to_little_endian(n);
-    write_raw((DTubyte*) &n, sizeof(n));
+    write_raw((uint8_t*) &n, sizeof(n));
     return *this;
 }
 
@@ -156,13 +156,13 @@ Stream& BinaryFileStream::operator<< (const DTlonglong nc)
 {
     DTlonglong n = nc;
     Endian::to_little_endian(n);
-    write_raw((DTubyte*) &n, sizeof(n));
+    write_raw((uint8_t*) &n, sizeof(n));
     return *this;
 }
 
 Stream& BinaryFileStream::operator<< (const DTcharacter n)
 {
-    return operator << ((DTubyte) n);
+    return operator << ((uint8_t) n);
 }
 
 Stream& BinaryFileStream::operator<< (const char* n)
@@ -187,65 +187,65 @@ Stream& BinaryFileStream::operator<< (const std::string &n)
 
 Stream& BinaryFileStream::operator>> (bool &n)
 {
-    DTubyte nc;
-    read_raw((DTubyte*) &nc, sizeof(nc));
+    uint8_t nc;
+    read_raw((uint8_t*) &nc, sizeof(nc));
     Endian::from_little_endian(nc);
     n = nc;
     return *this;
 }
 
-Stream& BinaryFileStream::operator>> (DTbyte &n)
+Stream& BinaryFileStream::operator>> (int8_t &n)
 {
-    read_raw((DTubyte*) &n, sizeof(n));
+    read_raw((uint8_t*) &n, sizeof(n));
     Endian::from_little_endian(n);
     return *this;
 }
 
-Stream& BinaryFileStream::operator>> (DTshort &n)
+Stream& BinaryFileStream::operator>> (int16_t &n)
 {
-    read_raw((DTubyte*) &n, sizeof(n));
+    read_raw((uint8_t*) &n, sizeof(n));
     Endian::from_little_endian(n);
     return *this;
 }
 
-Stream& BinaryFileStream::operator>> (DTint &n)
+Stream& BinaryFileStream::operator>> (int32_t &n)
 {
-    read_raw((DTubyte*) &n, sizeof(n));
+    read_raw((uint8_t*) &n, sizeof(n));
     Endian::from_little_endian(n);
     return *this;
 }
 
-Stream& BinaryFileStream::operator>> (DTubyte &n)
+Stream& BinaryFileStream::operator>> (uint8_t &n)
 {
-    read_raw((DTubyte*) &n, sizeof(n));
+    read_raw((uint8_t*) &n, sizeof(n));
     Endian::from_little_endian(n);
     return *this;
 }
 
-Stream& BinaryFileStream::operator>> (DTushort &n)
+Stream& BinaryFileStream::operator>> (uint16_t &n)
 {
-    read_raw((DTubyte*) &n, sizeof(n));
+    read_raw((uint8_t*) &n, sizeof(n));
     Endian::from_little_endian(n);
     return *this;
 }
 
-Stream& BinaryFileStream::operator>> (DTuint &n)
+Stream& BinaryFileStream::operator>> (uint32_t &n)
 {
-    read_raw((DTubyte*) &n, sizeof(n));
+    read_raw((uint8_t*) &n, sizeof(n));
     Endian::from_little_endian(n);
     return *this;
 }
 
-Stream& BinaryFileStream::operator>> (DTint64 &n)
+Stream& BinaryFileStream::operator>> (int64_t &n)
 {
-    read_raw((DTubyte*) &n, sizeof(n));
+    read_raw((uint8_t*) &n, sizeof(n));
     Endian::from_little_endian(n);
     return *this;
 }
 
-Stream& BinaryFileStream::operator>> (DTuint64 &n)
+Stream& BinaryFileStream::operator>> (uint64_t &n)
 {
-    read_raw((DTubyte*) &n, sizeof(n));
+    read_raw((uint8_t*) &n, sizeof(n));
     Endian::from_little_endian(n);
     return *this;
 }
@@ -253,7 +253,7 @@ Stream& BinaryFileStream::operator>> (DTuint64 &n)
 #if DT3_SIZES_ARE_DISTINCT_TYPES
 Stream& BinaryFileStream::operator>> (DTsize &n)
 {
-    read_raw((DTubyte*) &n, sizeof(n));
+    read_raw((uint8_t*) &n, sizeof(n));
     Endian::from_little_endian(n);
     return *this;
 }
@@ -261,28 +261,28 @@ Stream& BinaryFileStream::operator>> (DTsize &n)
 
 Stream& BinaryFileStream::operator>> (DTfloat &n)
 {
-    read_raw((DTubyte*) &n, sizeof(n));
+    read_raw((uint8_t*) &n, sizeof(n));
     Endian::from_little_endian(n);
     return *this;
 }
 
 Stream& BinaryFileStream::operator>> (DTdouble &n)
 {
-    read_raw((DTubyte*) &n, sizeof(n));
+    read_raw((uint8_t*) &n, sizeof(n));
     Endian::from_little_endian(n);
     return *this;
 }
 
 Stream& BinaryFileStream::operator>> (DTlonglong &n)
 {
-    read_raw((DTubyte*) &n, sizeof(n));
+    read_raw((uint8_t*) &n, sizeof(n));
     Endian::from_little_endian(n);
     return *this;
 }
 
 Stream& BinaryFileStream::operator>> (DTcharacter &n)
 {
-    read_raw((DTubyte*) &n, sizeof(n));
+    read_raw((uint8_t*) &n, sizeof(n));
     Endian::from_little_endian(n);
     return *this;
 }
@@ -292,11 +292,11 @@ Stream& BinaryFileStream::operator>> (std::string &n)
     n.clear();
 
     DTcharacter c;
-    read_raw((DTubyte*) &c, sizeof(c));
+    read_raw((uint8_t*) &c, sizeof(c));
 
     while (c != '\0') {
         n += c;
-        read_raw((DTubyte*) &c, sizeof(c));
+        read_raw((uint8_t*) &c, sizeof(c));
     }
 
     return *this;
@@ -305,7 +305,7 @@ Stream& BinaryFileStream::operator>> (std::string &n)
 //==============================================================================
 //==============================================================================
 
-DTsize BinaryFileStream::read_raw (DTubyte *data, DTsize size)
+DTsize BinaryFileStream::read_raw (uint8_t *data, DTsize size)
 {
     DTsize file_g = _file->g();
     _eof = (file_g == -1) || (file_g >= (_start + _length));
@@ -322,7 +322,7 @@ DTsize BinaryFileStream::read_raw (DTubyte *data, DTsize size)
     return count;
 }
 
-void BinaryFileStream::write_raw (DTubyte *data, DTsize size)
+void BinaryFileStream::write_raw (uint8_t *data, DTsize size)
 {
     _file->write(data, size);
 }

@@ -20,7 +20,7 @@ namespace DT3 {
 //==============================================================================
 //==============================================================================
 
-DTuint                                  ThreadMainTaskQueue::_loop_counter = 0;
+uint32_t                                  ThreadMainTaskQueue::_loop_counter = 0;
 std::mutex                              ThreadMainTaskQueue::_queue_lock;
 std::list<ThreadMainTaskQueue::Task>    ThreadMainTaskQueue::_queue;
 

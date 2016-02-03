@@ -24,7 +24,7 @@ namespace DT3 {
 
 std::mutex                                              ThreadTaskQueue::_queue_lock;
 std::list<ThreadTaskQueue::Task>                        ThreadTaskQueue::_queue;
-DTint                                                   ThreadTaskQueue::_max_num_threads = 1;
+int32_t                                                   ThreadTaskQueue::_max_num_threads = 1;
 std::list<std::shared_ptr<ThreadTaskQueue::Helper>>    ThreadTaskQueue::_threads;
 
 //==============================================================================
@@ -81,7 +81,7 @@ void ThreadTaskQueue::remove_all_tasks (void)
     _queue.clear();
 }
 
-void ThreadTaskQueue::set_num_threads (DTuint n)
+void ThreadTaskQueue::set_num_threads (uint32_t n)
 {
     // Join old threads
     std::for_each(_threads.begin(), _threads.end(),

@@ -105,8 +105,8 @@ class MaterialResource: public Resource {
         DEFINE_ACCESSORS_DEPTH_STENCIL(depth_func,set_depth_func,DT3GLComparison,depth_func)
 
         DEFINE_ACCESSORS_DEPTH_STENCIL(stencil_enable,set_stencil_enable,bool,stencil_enable)
-        DEFINE_ACCESSORS_DEPTH_STENCIL(stencil_read_mask,set_stencil_read_mask,DTuint,stencil_read_mask)
-        DEFINE_ACCESSORS_DEPTH_STENCIL(stencil_write_mask,set_stencil_write_mask,DTuint,stencil_write_mask)
+        DEFINE_ACCESSORS_DEPTH_STENCIL(stencil_read_mask,set_stencil_read_mask,uint32_t,stencil_read_mask)
+        DEFINE_ACCESSORS_DEPTH_STENCIL(stencil_write_mask,set_stencil_write_mask,uint32_t,stencil_write_mask)
 
         DEFINE_ACCESSORS_DEPTH_STENCIL(front_face_stencil_fail_op,set_front_face_stencil_fail_op,DT3GLStencilOp,front_face_stencil_fail_op)
         DEFINE_ACCESSORS_DEPTH_STENCIL(front_face_stencil_depth_fail_op,set_front_face_stencil_depth_fail_op,DT3GLStencilOp,front_face_stencil_depth_fail_op)
@@ -146,7 +146,7 @@ class MaterialResource: public Resource {
         // Texture State
         //
 
-        DEFINE_ACCESSORS(current_unit, set_current_unit, DTuint, _unit)
+        DEFINE_ACCESSORS(current_unit, set_current_unit, uint32_t, _unit)
 
         DEFINE_ACCESSORS_TEXTURE_SLOT(texture_2D,set_texture_2D,std::shared_ptr<TextureResource2D>,_texture_2D)
         DEFINE_ACCESSORS_TEXTURE_SLOT(texture_3D,set_texture_3D,std::shared_ptr<TextureResource3D>,_texture_3D)
@@ -185,7 +185,7 @@ class MaterialResource: public Resource {
 
         static void                         reload_if_changed       (void);
 
-        void                                screen_opened           (DTuint width, DTuint height);
+        void                                screen_opened           (uint32_t width, uint32_t height);
         void                                screen_closed           (void);
 
 
@@ -219,7 +219,7 @@ class MaterialResource: public Resource {
         };
         TextureSlot                                 _textures[16];
 
-        DTuint                                      _unit;
+        uint32_t                                      _unit;
 };
 
 //==============================================================================

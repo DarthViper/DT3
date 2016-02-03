@@ -87,7 +87,7 @@ class ComponentDrawMesh: public ComponentBase {
         void                                set_geometry          (const std::shared_ptr<GeometryResource> &geometry);
 
     private:
-        void                                screen_opened       (DTuint width, DTuint height);
+        void                                screen_opened       (uint32_t width, uint32_t height);
         void                                screen_closed       (void);
 
         Plug<std::shared_ptr<GeometryResource> >        _geometry;
@@ -95,8 +95,8 @@ class ComponentDrawMesh: public ComponentBase {
         Plug<std::shared_ptr<ShaderResource> >          _shader;
 
         struct MeshCache {
-            DTuint                                      _num_verts;
-            DTuint                                      _num_indices;
+            uint32_t                                      _num_verts;
+            uint32_t                                      _num_indices;
 
             std::shared_ptr<DT3GLAttribBufferResource>  _v_buffer;
             std::shared_ptr<DT3GLAttribBufferResource>  _n_buffer;

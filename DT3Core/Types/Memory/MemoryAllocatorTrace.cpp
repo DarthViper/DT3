@@ -88,7 +88,7 @@ void MemoryAllocatorTrace::check_allocations (void)
     for (auto &i : allocations()) {
         void *pp = i.first;
 
-        DTubyte *p = (DTubyte*) pp - sizeof(Header);
+        uint8_t *p = (uint8_t*) pp - sizeof(Header);
 
         // Useful pointers
         Header *header = (Header*) p;
@@ -148,7 +148,7 @@ void MemoryAllocatorTrace::exit (void)
         auto lower = grouped.lower_bound(grouped_i->first);
         auto upper = grouped.upper_bound(grouped_i->first);
 
-        DTuint count = 0;
+        uint32_t count = 0;
         DTsize size = 0;
         for (auto grouped_j = lower; grouped_j != upper; ++grouped_j) {
             ++count;
@@ -164,7 +164,7 @@ void MemoryAllocatorTrace::exit (void)
 
     LOG_MESSAGE << "Unnamed objects leaked: ";
 
-    std::multimap<DTuint, Allocation*, std::greater<DTuint>> ordered;
+    std::multimap<uint32_t, Allocation*, std::greater<uint32_t>> ordered;
     FOR_EACH (i,allocations()) {
         if (!i->second._name) {
             ordered.insert(std::make_pair(i->second._size, &(i->second)));
@@ -176,7 +176,7 @@ void MemoryAllocatorTrace::exit (void)
         auto lower = ordered.lower_bound(ordered_i->first);
         auto upper = ordered.upper_bound(ordered_i->first);
 
-        DTuint count = 0;
+        uint32_t count = 0;
         for (auto ordered_j = lower; ordered_j != upper; ++ordered_j) {
             ++count;
         }
@@ -194,7 +194,7 @@ void* MemoryAllocatorTrace::allocate (const DTsize size, const DTcharacter *name
 #if DT3_GUARD_ALLOCATIONS
     check_allocations();
 
-    DTubyte *p = (DTubyte*) std::malloc( sizeof(Header) + size + sizeof(Footer) );
+    uint8_t *p = (uint8_t*) std::malloc( sizeof(Header) + size + sizeof(Footer) );
 
     // Useful pointers
     Header *header = (Header*) p;
@@ -222,7 +222,7 @@ void MemoryAllocatorTrace::deallocate (void *pp)
 #if DT3_GUARD_ALLOCATIONS
     check_allocations();
 
-    DTubyte *p = (DTubyte*) pp - sizeof(Header);
+    uint8_t *p = (uint8_t*) pp - sizeof(Header);
 #else
     void *p = pp;
 #endif

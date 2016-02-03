@@ -44,15 +44,15 @@ class ArchiveProcessEvents: public ArchiveProcess {
         /// Post process for archiving
         /// \param archive Archive that owns the post process
         /// \param archive Objects Map of objects that have been archived
-        virtual void				process                 (const std::shared_ptr<Archive> &archive, std::map<DTuint64, std::shared_ptr<BaseClass>> &objects);
+        virtual void				process                 (const std::shared_ptr<Archive> &archive, std::map<uint64_t, std::shared_ptr<BaseClass>> &objects);
 
     private:
 
-        DTuint                      _dst_node_id;
+        uint32_t                      _dst_node_id;
         std::string                 _dst_name;
 
         struct Connection {
-            DTuint                  _src_node_id;
+            uint32_t                  _src_node_id;
             std::string             _src_name;
         };
         std::vector<Connection>     _connections;
@@ -84,14 +84,14 @@ ArchiveProcessEvents<T>::ArchiveProcessEvents(const std::shared_ptr<Archive> &ar
         DTsize num_connections = src_events.size();
         *archive << ARCHIVE_DATA(num_connections, DATA_PERSISTENT);
 
-        DTuint	dst_node_id = dst_event->owner()->unique_id();
+        uint32_t	dst_node_id = dst_event->owner()->unique_id();
         std::string  dst_name = dst_event->name();
 
         *archive << ARCHIVE_DATA(dst_node_id, DATA_PERSISTENT);
         *archive << ARCHIVE_DATA(dst_name, DATA_PERSISTENT);
 
-        for (DTuint i = 0; i < num_connections; ++i) {
-            DTuint	src_node_id = src_events[i]->owner()->unique_id();
+        for (uint32_t i = 0; i < num_connections; ++i) {
+            uint32_t	src_node_id = src_events[i]->owner()->unique_id();
             std::string	src_name = src_events[i]->name();
 
             *archive << ARCHIVE_DATA(src_node_id, DATA_PERSISTENT);
@@ -103,8 +103,8 @@ ArchiveProcessEvents<T>::ArchiveProcessEvents(const std::shared_ptr<Archive> &ar
 
     // Reading in pointer reference immediately
     } else {
-        DTuint		src_node_id;
-        DTuint		dst_node_id;
+        uint32_t		src_node_id;
+        uint32_t		dst_node_id;
         std::string	src_name;
         std::string dst_name;
 
@@ -119,7 +119,7 @@ ArchiveProcessEvents<T>::ArchiveProcessEvents(const std::shared_ptr<Archive> &ar
         _dst_node_id = dst_node_id;
         _dst_name = dst_name;
 
-        for (DTuint i = 0; i < num_connections; ++i) {
+        for (uint32_t i = 0; i < num_connections; ++i) {
             *archive << ARCHIVE_DATA(src_node_id, DATA_PERSISTENT);
             *archive << ARCHIVE_DATA(src_name, DATA_PERSISTENT);
 
@@ -154,7 +154,7 @@ ArchiveProcessEvents<T>::~ArchiveProcessEvents(void)
 }
 
 template <class T>
-void ArchiveProcessEvents<T>::process (const std::shared_ptr<Archive> &archive, std::map<DTuint64, std::shared_ptr<BaseClass>> &objects)
+void ArchiveProcessEvents<T>::process (const std::shared_ptr<Archive> &archive, std::map<uint64_t, std::shared_ptr<BaseClass>> &objects)
 {
     // write the actual object
     if (archive->is_writing()) {

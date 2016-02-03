@@ -95,12 +95,12 @@ class FileHandle: public BaseClass {
         /// \param buffer raw buffer
         /// \param size size of raw buffer
         /// \return actual number of bytes read
-        virtual DTsize          read				(DTubyte *buffer, DTsize size) = 0;
+        virtual DTsize          read				(uint8_t *buffer, DTsize size) = 0;
 
         /// Writes a chunk of raw binary data
         /// \param buffer raw buffer
         /// \param size size of raw buffer
-        virtual void            write				(const DTubyte *buffer, DTsize size) = 0;
+        virtual void            write				(const uint8_t *buffer, DTsize size) = 0;
 };
 
 //==============================================================================

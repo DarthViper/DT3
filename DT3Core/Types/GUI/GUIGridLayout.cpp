@@ -105,7 +105,7 @@ GUIGridLayout::~GUIGridLayout (void)
 //==============================================================================
 //==============================================================================
 
-void GUIGridLayout::set_rows_and_columns (DTint num_rows, DTint num_cols)
+void GUIGridLayout::set_rows_and_columns (int32_t num_rows, int32_t num_cols)
 {
     _num_rows = num_rows;
     _num_columns = num_cols;
@@ -115,26 +115,26 @@ void GUIGridLayout::set_rows_and_columns (DTint num_rows, DTint num_cols)
     _items.resize(num_rows * num_cols);
 }
 
-void GUIGridLayout::set_column_policy (DTuint column, const GUILayoutPolicy &p)
+void GUIGridLayout::set_column_policy (uint32_t column, const GUILayoutPolicy &p)
 {
     ASSERT(column >= 0);
     ASSERT(column < _num_columns);
     _column_policies[column] = p;
 }
 
-void GUIGridLayout::set_row_policy (DTuint row, const GUILayoutPolicy &p)
+void GUIGridLayout::set_row_policy (uint32_t row, const GUILayoutPolicy &p)
 {
     ASSERT(row >= 0);
     ASSERT(row < _num_rows);
     _row_policies[row] = p;
 }
 
-void GUIGridLayout::add_item (DTuint row, DTuint column, const std::shared_ptr<GUIObject> &object, GUIGridLayoutItem::ResizeMode resize_mode)
+void GUIGridLayout::add_item (uint32_t row, uint32_t column, const std::shared_ptr<GUIObject> &object, GUIGridLayoutItem::ResizeMode resize_mode)
 {
     ASSERT(column < _num_columns);
     ASSERT(row < _num_rows);
 
-    DTuint i = row * _num_columns + column;
+    uint32_t i = row * _num_columns + column;
 
     GUIGridLayoutItem &item = _items[i];
 
@@ -145,12 +145,12 @@ void GUIGridLayout::add_item (DTuint row, DTuint column, const std::shared_ptr<G
     item._objects.push_back(obj_entry);
 }
 
-void GUIGridLayout::add_item (DTuint row, DTuint column, const std::shared_ptr<GUILayout> &layout)
+void GUIGridLayout::add_item (uint32_t row, uint32_t column, const std::shared_ptr<GUILayout> &layout)
 {
     ASSERT(column < _num_columns);
     ASSERT(row < _num_rows);
 
-    DTuint i = row * _num_columns + column;
+    uint32_t i = row * _num_columns + column;
 
     GUIGridLayoutItem &item = _items[i];
     item._layouts.push_back(layout);
@@ -187,12 +187,12 @@ void GUIGridLayout::animate (const Rectangle &size_target, DTfloat time, bool sp
     _widths.clear();
     _widths.resize(_num_columns, 0.0F);
 
-    std::vector<DTuint>   variable_column_indices;
+    std::vector<uint32_t>   variable_column_indices;
     DTfloat         total_column_width = 0.0F;
     DTfloat         total_column_weights = 0.0F;
 
     // Scan for variable columns, total weights, and current size
-    for (DTuint i = 0; i < _widths.size(); ++i) {
+    for (uint32_t i = 0; i < _widths.size(); ++i) {
         GUILayoutPolicy &p = _column_policies[i];
 
         if (p.policy() == GUILayoutPolicy::POLICY_FIXED_SIZE) {
@@ -208,8 +208,8 @@ void GUIGridLayout::animate (const Rectangle &size_target, DTfloat time, bool sp
     // Update variable columns
     total_column_width = total_width - total_column_width;  // Adjust to remaining width
 
-    for (DTuint i = 0; i < variable_column_indices.size(); ++i) {
-        DTuint c = variable_column_indices[i];
+    for (uint32_t i = 0; i < variable_column_indices.size(); ++i) {
+        uint32_t c = variable_column_indices[i];
 
         _widths[c] = (_column_policies[c].value() / total_column_weights) * total_column_width;
     }
@@ -221,12 +221,12 @@ void GUIGridLayout::animate (const Rectangle &size_target, DTfloat time, bool sp
     _heights.clear();
     _heights.resize(_num_rows, 0.0F);
 
-    std::vector<DTuint>   variable_row_indices;
+    std::vector<uint32_t>   variable_row_indices;
     DTfloat         total_row_height = 0.0F;
     DTfloat         total_row_weights = 0.0F;
 
     // Scan for variable rows, total weights, and current size
-    for (DTuint i = 0; i < _heights.size(); ++i) {
+    for (uint32_t i = 0; i < _heights.size(); ++i) {
         GUILayoutPolicy &p = _row_policies[i];
 
         if (p.policy() == GUILayoutPolicy::POLICY_FIXED_SIZE) {
@@ -242,8 +242,8 @@ void GUIGridLayout::animate (const Rectangle &size_target, DTfloat time, bool sp
     // Update variable rows
     total_row_height = total_height - total_row_height;  // Adjust to remaining height
 
-    for (DTuint i = 0; i < variable_row_indices.size(); ++i) {
-        DTuint c = variable_row_indices[i];
+    for (uint32_t i = 0; i < variable_row_indices.size(); ++i) {
+        uint32_t c = variable_row_indices[i];
 
         _heights[c] = (_row_policies[c].value() / total_row_weights) * total_row_height;
     }
@@ -256,14 +256,14 @@ void GUIGridLayout::animate (const Rectangle &size_target, DTfloat time, bool sp
     _border_rect.clear();
 
     DTfloat row_pos = size_target.minus_y();
-    for (DTuint row = 0; row < _num_rows; ++row) {
+    for (uint32_t row = 0; row < _num_rows; ++row) {
         DTfloat row_height = _heights[row];
 
         DTfloat column_pos = size_target.minus_x();
-        for (DTuint column = 0; column < _num_columns; ++column) {
+        for (uint32_t column = 0; column < _num_columns; ++column) {
             DTfloat column_width = _widths[column];
 
-            DTuint i = row * _num_columns + column;
+            uint32_t i = row * _num_columns + column;
             GUIGridLayoutItem &item = _items[i];
 
             // Update border rect
@@ -367,7 +367,7 @@ void GUIGridLayout::animate (const Rectangle &size_target, DTfloat time, bool sp
             }
 
             // Child layouts
-            for (DTuint j = 0; j < item._layouts.size(); ++j) {
+            for (uint32_t j = 0; j < item._layouts.size(); ++j) {
                 std::shared_ptr<GUILayout> &layout = item._layouts[j];
 
                 Rectangle r;
@@ -474,10 +474,10 @@ std::list<std::shared_ptr<GUIObject>> GUIGridLayout::all_objects ()
 {
     std::list<std::shared_ptr<GUIObject>> objects;
 
-    for (DTuint row = 0; row < _num_rows; ++row) {
-        for (DTuint column = 0; column < _num_columns; ++column) {
+    for (uint32_t row = 0; row < _num_rows; ++row) {
+        for (uint32_t column = 0; column < _num_columns; ++column) {
 
-            DTuint i = row * _num_columns + column;
+            uint32_t i = row * _num_columns + column;
             GUIGridLayoutItem &item = _items[i];
 
             // Objects

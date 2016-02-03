@@ -106,7 +106,7 @@ class FilePath {
 
         /// Returns modification date for file
         /// \return modification date
-        DTuint64                            modification_date       (void) const;
+        uint64_t                            modification_date       (void) const;
 
         /// Returns wether path is a directory
         /// \return Is a directory

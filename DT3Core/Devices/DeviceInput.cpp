@@ -66,16 +66,16 @@ void DeviceInput::set_touch_event (TouchEvent *event)
     DTfloat x = event->touches[0].pos.x;
     DTfloat y = event->touches[0].pos.y;
 
-    MoreMath::add_entropy ( (DTubyte*) &x, sizeof(x));
-    MoreMath::add_entropy ( (DTubyte*) &y, sizeof(y));
+    MoreMath::add_entropy ( (uint8_t*) &x, sizeof(x));
+    MoreMath::add_entropy ( (uint8_t*) &y, sizeof(y));
 }
 
-void DeviceInput::set_key_down_event (DTuint modifiers, DTushort key)
+void DeviceInput::set_key_down_event (uint32_t modifiers, uint16_t key)
 {
     SystemCallbacks::key_down_event_cb().fire(modifiers,key);
 }
 
-void DeviceInput::set_key_up_event (DTuint modifiers, DTushort key)
+void DeviceInput::set_key_up_event (uint32_t modifiers, uint16_t key)
 {
     SystemCallbacks::key_up_event_cb().fire(modifiers,key);
 }
@@ -85,9 +85,9 @@ void DeviceInput::set_acceleration_event (const Vector3 &a)
     SystemCallbacks::acceleration_cb().fire(a);
     
     // Add entropy from random source
-    MoreMath::add_entropy ( (DTubyte*) &a.x, sizeof(a.x));
-    MoreMath::add_entropy ( (DTubyte*) &a.y, sizeof(a.y));
-    MoreMath::add_entropy ( (DTubyte*) &a.z, sizeof(a.z));
+    MoreMath::add_entropy ( (uint8_t*) &a.x, sizeof(a.x));
+    MoreMath::add_entropy ( (uint8_t*) &a.y, sizeof(a.y));
+    MoreMath::add_entropy ( (uint8_t*) &a.z, sizeof(a.z));
 }
 
 void DeviceInput::set_gyro_event (const Vector3 &w)
@@ -95,9 +95,9 @@ void DeviceInput::set_gyro_event (const Vector3 &w)
     SystemCallbacks::gyro_cb().fire(w);
 
     // Add entropy from random source
-    MoreMath::add_entropy ( (DTubyte*) &w.x, sizeof(w.x));
-    MoreMath::add_entropy ( (DTubyte*) &w.y, sizeof(w.y));
-    MoreMath::add_entropy ( (DTubyte*) &w.z, sizeof(w.z));
+    MoreMath::add_entropy ( (uint8_t*) &w.x, sizeof(w.x));
+    MoreMath::add_entropy ( (uint8_t*) &w.y, sizeof(w.y));
+    MoreMath::add_entropy ( (uint8_t*) &w.z, sizeof(w.z));
 }
 
 void DeviceInput::set_magnetometer_event (const Vector3 &m)
@@ -105,9 +105,9 @@ void DeviceInput::set_magnetometer_event (const Vector3 &m)
     SystemCallbacks::magnetometer_cb().fire(m);
 
     // Add entropy from random source
-    MoreMath::add_entropy ( (DTubyte*) &m.x, sizeof(m.x));
-    MoreMath::add_entropy ( (DTubyte*) &m.y, sizeof(m.y));
-    MoreMath::add_entropy ( (DTubyte*) &m.z, sizeof(m.z));
+    MoreMath::add_entropy ( (uint8_t*) &m.x, sizeof(m.x));
+    MoreMath::add_entropy ( (uint8_t*) &m.y, sizeof(m.y));
+    MoreMath::add_entropy ( (uint8_t*) &m.z, sizeof(m.z));
 }
 
 //==============================================================================

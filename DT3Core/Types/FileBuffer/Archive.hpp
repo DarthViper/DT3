@@ -65,11 +65,11 @@ class Archive: public BaseClass {
 
                 /// Returns the version of the archive
                 /// \return the version of the archive
-                virtual DTuint                  version                     (void) const;
+                virtual uint32_t                  version                     (void) const;
 
                 /// Returns the version of the archive
                 /// \return the version of the archive
-                virtual DTuint                  app_version                 (void) const                {	return AppConfig::app_version();	}
+                virtual uint32_t                  app_version                 (void) const                {	return AppConfig::app_version();	}
 
                 /// Returns wether the archive is reading or not
                 /// \return archive is loading

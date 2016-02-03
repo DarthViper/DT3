@@ -65,7 +65,7 @@ class ScriptingSound: public ScriptingSoundBase {
         Plug<bool>                             _looping;
         Event                                       _reset_e;
 
-        DTuint                                      _chunk_index;
+        uint32_t                                      _chunk_index;
 };
 
 //==============================================================================

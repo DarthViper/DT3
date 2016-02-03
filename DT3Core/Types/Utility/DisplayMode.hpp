@@ -41,13 +41,13 @@ class DisplayMode: public BaseClass {
         bool               operator <			(const DisplayMode& rhs) const	{	return _width * _height * _refresh_rate < rhs._width * rhs._height * rhs._refresh_rate; }
         bool               operator >          (const DisplayMode& rhs) const	{	return !operator < (rhs);   }
 
-        DEFINE_ACCESSORS(width, set_width, DTint, _width)
-        DEFINE_ACCESSORS(height, set_height, DTint, _height)
+        DEFINE_ACCESSORS(width, set_width, int32_t, _width)
+        DEFINE_ACCESSORS(height, set_height, int32_t, _height)
         DEFINE_ACCESSORS(refresh_rate, set_refresh_rate, DTdouble, _refresh_rate)
 
     private:
-        DTint		_width;
-        DTint		_height;
+        int32_t		_width;
+        int32_t		_height;
         DTdouble    _refresh_rate;
 };
 

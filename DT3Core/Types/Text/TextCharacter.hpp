@@ -47,15 +47,15 @@ class TextCharacter {
 
         /// Set the tab size
         /// \param size tab size
-        void                    set_tab_size            (DTuint size);
+        void                    set_tab_size            (uint32_t size);
 
         /// Returns the tab size
         /// \return tab size
-        DTuint                  tab_size                (void) const                    {   return _tab_size;   }
+        uint32_t                  tab_size                (void) const                    {   return _tab_size;   }
 
         /// Set the baseline shift
         /// \param bl baseline shift
-        void                    set_baseline_shift      (DTuint bl);
+        void                    set_baseline_shift      (uint32_t bl);
 
         /// Returns the baseline shift
         /// \return baseline shift
@@ -156,7 +156,7 @@ class TextCharacter {
 
     private:
         Justification                       _justification;
-        DTuint                              _tab_size;
+        uint32_t                              _tab_size;
         DTfloat                             _baseline;
         DTfloat                             _kerning;
         Color4f                             _color;

@@ -45,15 +45,15 @@ class WAVWriter {
         /// \param bits_per_sample number of bits per sample
         /// \return error
         DTerr                   begin_write         (   const FilePath &pathname,
-                                                        DTushort num_channels = 2,
-                                                        DTint sample_rate = 44100,
-                                                        DTushort bits_per_sample = 16);
+                                                        uint16_t num_channels = 2,
+                                                        int32_t sample_rate = 44100,
+                                                        uint16_t bits_per_sample = 16);
 
         /// Write some sound data
         /// \param pointer to raw sound data
         /// \param size of raw sound data
         /// \return error
-        DTerr                   write               (DTubyte *data, DTuint size);
+        DTerr                   write               (uint8_t *data, uint32_t size);
 
         /// Finish writing sound file
         /// \return error
@@ -62,7 +62,7 @@ class WAVWriter {
     private:
         struct ChunkHeader {
             DTcharacter	id[4];
-            DTuint		length;
+            uint32_t		length;
         };
 
         enum FORMAT_TAG {
@@ -74,27 +74,27 @@ class WAVWriter {
         //
 
         struct Format {
-            DTushort	formatTag;			// Format category
-            DTushort	channels;			// Number of channels
-            DTuint		samplesPerSec;		// Sampling rate
-            DTuint		avgBytesPerSec;		// For buffer estimation
-            DTushort	blockAlign;			// Data block size
-            DTushort	bitsPerSample;
+            uint16_t	formatTag;			// Format category
+            uint16_t	channels;			// Number of channels
+            uint32_t		samplesPerSec;		// Sampling rate
+            uint32_t		avgBytesPerSec;		// For buffer estimation
+            uint16_t	blockAlign;			// Data block size
+            uint16_t	bitsPerSample;
         };
 
-        void					write				(std::ofstream &outfile, DTubyte &v);
-        void					write				(std::ofstream &outfile, DTushort &v);
-        void					write				(std::ofstream &outfile, DTshort &v);
-        void					write				(std::ofstream &outfile, DTint &v);
-        void					write				(std::ofstream &outfile, DTuint &v);
+        void					write				(std::ofstream &outfile, uint8_t &v);
+        void					write				(std::ofstream &outfile, uint16_t &v);
+        void					write				(std::ofstream &outfile, int16_t &v);
+        void					write				(std::ofstream &outfile, int32_t &v);
+        void					write				(std::ofstream &outfile, uint32_t &v);
         void					write				(std::ofstream &outfile, DTcharacter id[4]);
         void					write				(std::ofstream &outfile, ChunkHeader &v);
         void                    set_type            (DTcharacter id[4], const DTcharacter *id_str);
 
         std::ofstream           _outfile;
-        DTuint                  _header_length_offset;
-        DTuint                  _data_length_offset;
-        DTuint                  _data_size;
+        uint32_t                  _header_length_offset;
+        uint32_t                  _data_length_offset;
+        uint32_t                  _data_size;
 
 
 };

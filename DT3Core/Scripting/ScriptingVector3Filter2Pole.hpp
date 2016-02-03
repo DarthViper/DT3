@@ -64,11 +64,11 @@ class ScriptingVector3Filter2Pole: public ScriptingBase {
 
         /// Set the number of filter passes
         /// \param num_passes number of passes
-        void                            set_num_passes			(const DTint num_passes)        {	_num_passes = num_passes;	_passes.resize(num_passes);   _initialized = false;	}
+        void                            set_num_passes			(const int32_t num_passes)        {	_num_passes = num_passes;	_passes.resize(num_passes);   _initialized = false;	}
 
         /// Get the number of filter passes
         /// \return number of passes
-        inline DTint                    num_passes              (void) 	const                   {	return _num_passes;	}
+        inline int32_t                    num_passes              (void) 	const                   {	return _num_passes;	}
 
         /// Set the cutoff frequency
         /// \param freq_3db cutoff frequency
@@ -91,7 +91,7 @@ class ScriptingVector3Filter2Pole: public ScriptingBase {
         Plug<Vector3>                   _out;
 
         Filters::FilterType             _type;
-        DTint                           _num_passes;
+        int32_t                           _num_passes;
         DTfloat                         _freq_3db;
         DTfloat                         _freq_sampling;
 

@@ -122,28 +122,28 @@ class ImporterGeometryTWM: public ImporterGeometry {
 
 
         // Some book keeping
-        DTuint                              _normals_count;
-        DTuint                              _uv_set_0_count;
-        DTuint                              _uv_set_1_count;
-        DTuint                              _weights_count;
+        uint32_t                              _normals_count;
+        uint32_t                              _uv_set_0_count;
+        uint32_t                              _uv_set_1_count;
+        uint32_t                              _weights_count;
 
 
-        void            read_mesh_name		(BinaryFileStream &file, DTuint remaining_size, std::string &name);
-        void            read_mesh_positions	(BinaryFileStream &file, DTuint remaining_size, std::vector<Vector3> &positions);
-        void            read_mesh_normals   (BinaryFileStream &file, DTuint remaining_size, std::vector<Vector3> &normals);
-        void            read_mesh_uvs       (BinaryFileStream &file, DTuint remaining_size, std::vector<Vector2> &uvs);
-        void            read_mesh_uv_sets   (BinaryFileStream &file, DTuint remaining_size, std::vector<UVset> &uvs_sets);
-        void            read_mesh_joints    (BinaryFileStream &file, DTuint remaining_size, std::vector<std::string> &joints);
-        void            read_mesh_influences(BinaryFileStream &file, DTuint remaining_size, std::vector<Weights> &weights);
-        void            read_mesh_skinning	(BinaryFileStream &file, DTuint remaining_size, std::vector<std::string> &joints, std::vector<Weights> &weights);
-        void            read_mesh_indices   (BinaryFileStream &file, DTuint remaining_size, std::vector<Triangle> &indices);
-        void            read_mesh			(BinaryFileStream &file, DTuint remaining_size, MeshData &mesh);
-        void            read_meshes			(BinaryFileStream &file, DTuint remaining_size, std::vector<MeshData> &meshes);
+        void            read_mesh_name		(BinaryFileStream &file, uint32_t remaining_size, std::string &name);
+        void            read_mesh_positions	(BinaryFileStream &file, uint32_t remaining_size, std::vector<Vector3> &positions);
+        void            read_mesh_normals   (BinaryFileStream &file, uint32_t remaining_size, std::vector<Vector3> &normals);
+        void            read_mesh_uvs       (BinaryFileStream &file, uint32_t remaining_size, std::vector<Vector2> &uvs);
+        void            read_mesh_uv_sets   (BinaryFileStream &file, uint32_t remaining_size, std::vector<UVset> &uvs_sets);
+        void            read_mesh_joints    (BinaryFileStream &file, uint32_t remaining_size, std::vector<std::string> &joints);
+        void            read_mesh_influences(BinaryFileStream &file, uint32_t remaining_size, std::vector<Weights> &weights);
+        void            read_mesh_skinning	(BinaryFileStream &file, uint32_t remaining_size, std::vector<std::string> &joints, std::vector<Weights> &weights);
+        void            read_mesh_indices   (BinaryFileStream &file, uint32_t remaining_size, std::vector<Triangle> &indices);
+        void            read_mesh			(BinaryFileStream &file, uint32_t remaining_size, MeshData &mesh);
+        void            read_meshes			(BinaryFileStream &file, uint32_t remaining_size, std::vector<MeshData> &meshes);
 
-        void            read_skeleton_joints(BinaryFileStream &file, DTuint remaining_size, std::vector<Joint> &joints);
-        void            read_skeleton		(BinaryFileStream &file, DTuint remaining_size, SkeletonData &skeleton);
+        void            read_skeleton_joints(BinaryFileStream &file, uint32_t remaining_size, std::vector<Joint> &joints);
+        void            read_skeleton		(BinaryFileStream &file, uint32_t remaining_size, SkeletonData &skeleton);
 
-        void            read_file			(BinaryFileStream &file, DTuint remaining_size);
+        void            read_file			(BinaryFileStream &file, uint32_t remaining_size);
 
 
         // Recursive function to build the skeleton

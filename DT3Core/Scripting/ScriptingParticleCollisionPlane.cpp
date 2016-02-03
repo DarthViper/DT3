@@ -161,7 +161,7 @@ bool ScriptingParticleCollisionPlane::compute (const PlugBase *plug)
 		Vector3 normal = _normal;
 		Plane p(normal.x, normal.y, normal.z, _d);
 
-		for (DTint i = particles->active_start(); i != particles->active_end(); i = (i + 1) % particles->translations_stream().size()) {
+		for (int32_t i = particles->active_start(); i != particles->active_end(); i = (i + 1) % particles->translations_stream().size()) {
 			Vector3 &pt = translations[i];
 			Vector3 &vel = velocities[i];
 			

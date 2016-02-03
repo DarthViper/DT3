@@ -132,14 +132,14 @@ bool ScriptingSoundGain::compute (const PlugBase *plug)
         if (sound_packet_in.format() == SoundResource::FORMAT_MONO16 ||
             sound_packet_in.format() == SoundResource::FORMAT_STEREO16) {
                 
-            DTshort *data_in = (DTshort *) sound_packet_in.buffer();
-            DTshort *data_out = (DTshort *) sound_packet_out.buffer();
+            int16_t *data_in = (int16_t *) sound_packet_in.buffer();
+            int16_t *data_out = (int16_t *) sound_packet_out.buffer();
 
             DTsize num_samples = sound_packet_in.num_samples();
-            DTint gain_int = UNIT_TO_10BIT_INT(_output_gain);
+            int32_t gain_int = UNIT_TO_10BIT_INT(_output_gain);
             
             for (DTsize s = 0; s < num_samples; ++s) {
-                (*data_out) = (DTshort) REM_10BIT(CLAMP_PAD_10BIT( (*data_in) * gain_int));
+                (*data_out) = (int16_t) REM_10BIT(CLAMP_PAD_10BIT( (*data_in) * gain_int));
                 
                 ++data_in;
                 ++data_out;

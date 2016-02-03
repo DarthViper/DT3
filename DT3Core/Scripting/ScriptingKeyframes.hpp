@@ -48,7 +48,7 @@ class ScriptingKeyframes: public ScriptingBase {
 
         /// Clear a key with index
         /// \param k key index
-        virtual void				clear_key				(DTint k) = 0;
+        virtual void				clear_key				(int32_t k) = 0;
 
         /// Get the number of keys
         /// \return number of keys
@@ -57,23 +57,23 @@ class ScriptingKeyframes: public ScriptingBase {
         /// Returns a unique ID for this key
         /// \param k key index
         /// \return ID
-        virtual DTint               key_id                  (DTint k) const = 0;
+        virtual int32_t               key_id                  (int32_t k) const = 0;
 
         /// Returns an index for the key with the ID
         /// \param id key id
         /// \return index
-        virtual DTint               key_index               (DTint id) const;
+        virtual int32_t               key_index               (int32_t id) const;
 
         /// Get the time for the key
         /// \param k key index
         /// \return time
-        virtual DTfloat				key_time                (DTint k) const = 0;
+        virtual DTfloat				key_time                (int32_t k) const = 0;
 
         /// Set the time for the key
         /// \param k key index
         /// \param time key time
         /// \return new index
-        virtual DTint				set_key_time            (DTint k, DTfloat time) = 0;
+        virtual int32_t				set_key_time            (int32_t k, DTfloat time) = 0;
 
 };
 

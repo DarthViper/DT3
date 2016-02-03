@@ -54,7 +54,7 @@ class ScriptingParticleColorRandomizer: public ScriptingBase {
         DEFINE_ACCESSORS(a_mag, set_a_mag, DTfloat, _a_mag);
 
     private:
-        static const DTint NUM_ENTRIES = 8;
+        static const int32_t NUM_ENTRIES = 8;
 
         DTfloat		_r_mag;
         DTfloat		_g_mag;

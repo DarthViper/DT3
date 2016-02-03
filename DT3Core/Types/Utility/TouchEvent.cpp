@@ -31,7 +31,7 @@ TouchEvent::TouchEvent (const TouchEvent &rhs)
 {
     clear();
     
-    for (DTuint i = 0; i < ARRAY_SIZE(touches); ++i) {
+    for (uint32_t i = 0; i < ARRAY_SIZE(touches); ++i) {
         touches[i] = rhs.touches[i];
     }
 }
@@ -40,7 +40,7 @@ TouchEvent& TouchEvent::operator = (const TouchEvent &rhs)
 {	
     clear();
     
-    for (DTuint i = 0; i < ARRAY_SIZE(touches); ++i) {
+    for (uint32_t i = 0; i < ARRAY_SIZE(touches); ++i) {
         touches[i] = rhs.touches[i];
     }
 
@@ -58,7 +58,7 @@ TouchEvent::~TouchEvent (void)
 void TouchEvent::clear (void)
 {
     
-    for (DTuint i = 0; i < MAX_NUM_TOUCHES; ++i) {
+    for (uint32_t i = 0; i < MAX_NUM_TOUCHES; ++i) {
         touches[i].state = STATE_NONE;
         touches[i].pos = {0.0F,0.0F};
         touches[i].previous_pos = {0.0F,0.0F};
@@ -104,7 +104,7 @@ Vector2 TouchEvent::normalize_input_ndc (Vector2 pos)
 
 void TouchEvent::cleanup_releases (void)
 {
-    for (DTuint i = 0; i < MAX_NUM_TOUCHES; ++i) {
+    for (uint32_t i = 0; i < MAX_NUM_TOUCHES; ++i) {
         if (touches[i].state == STATE_RELEASED)
             touches[i].state = STATE_NONE;
     }

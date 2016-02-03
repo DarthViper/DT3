@@ -52,9 +52,9 @@ DTerr ImporterImageJPG::import (TextureResource2D *target, std::string args)
     // Convert path to this platform
     FilePath pathname(target->path());
 
-    DTuint                      width;
-    DTuint                      height;
-    std::shared_ptr<DTubyte>    data;
+    uint32_t                      width;
+    uint32_t                      height;
+    std::shared_ptr<uint8_t>    data;
     DT3GLTextelFormat            format;
 
     import(pathname, args, width, height, data, format);
@@ -72,9 +72,9 @@ DTerr ImporterImageJPG::import (TextureResource3D *target, std::string args)
     // Convert path to this platform
     FilePath pathname(target->path());
 
-    DTuint                      width;
-    DTuint                      height;
-    std::shared_ptr<DTubyte>    data;
+    uint32_t                      width;
+    uint32_t                      height;
+    std::shared_ptr<uint8_t>    data;
     DT3GLTextelFormat            format;
 
     import(pathname, args, width, height, data, format);
@@ -89,9 +89,9 @@ DTerr ImporterImageJPG::import (TextureResourceCube *target, std::string args)
     // Convert path to this platform
     FilePath pathname(target->path());
 
-    DTuint                      width;
-    DTuint                      height;
-    std::shared_ptr<DTubyte>    data;
+    uint32_t                      width;
+    uint32_t                      height;
+    std::shared_ptr<uint8_t>    data;
     DT3GLTextelFormat            format;
 
     import(pathname, args, width, height, data, format);
@@ -181,7 +181,7 @@ void ImporterImageJPG::jpeg_stream_src (j_decompress_ptr cinfo, BinaryFileStream
 //==============================================================================
 //==============================================================================
 
-DTerr ImporterImageJPG::import(const FilePath &pathname, const std::string &args, DTuint &width, DTuint &height, std::shared_ptr<DTubyte> &data, DT3GLTextelFormat &format)
+DTerr ImporterImageJPG::import(const FilePath &pathname, const std::string &args, uint32_t &width, uint32_t &height, std::shared_ptr<uint8_t> &data, DT3GLTextelFormat &format)
 {
 
     //
@@ -246,10 +246,10 @@ DTerr ImporterImageJPG::import(const FilePath &pathname, const std::string &args
     format = DT3GL_FORMAT_RGB;
 
     // Change data format to 16 bit
-    data = std::shared_ptr<DTubyte>(new DTubyte[width * height * 3]);
-    DTubyte *buffer = data.get();
+    data = std::shared_ptr<uint8_t>(new uint8_t[width * height * 3]);
+    uint8_t *buffer = data.get();
 
-    DTint row_stride = cinfo.output_width * cinfo.output_components;
+    int32_t row_stride = cinfo.output_width * cinfo.output_components;
 
     // Make a one-row-high sample array that will go away when done with image
     JSAMPARRAY scanline_buffer = (*cinfo.mem->alloc_sarray) ((j_common_ptr) &cinfo, JPOOL_IMAGE, row_stride, 1);
@@ -266,8 +266,8 @@ DTerr ImporterImageJPG::import(const FilePath &pathname, const std::string &args
         jpeg_read_scanlines(&cinfo, scanline_buffer, 1);
 
         // Copy Row into buffer
-        DTubyte *src_data = (DTubyte*) scanline_buffer[0];
-        DTubyte *dst_data = (DTubyte*) &buffer[width * (height - cinfo.output_scanline) * 3];
+        uint8_t *src_data = (uint8_t*) scanline_buffer[0];
+        uint8_t *dst_data = (uint8_t*) &buffer[width * (height - cinfo.output_scanline) * 3];
 
         // Copy row
         ::memcpy(dst_data, src_data, row_stride);

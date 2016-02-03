@@ -61,7 +61,7 @@ class RefCounter {
         }
 
     private:
-        std::atomic<DTint>  _ref_count;
+        std::atomic<int32_t>  _ref_count;
         T                   _obj;
 };
 

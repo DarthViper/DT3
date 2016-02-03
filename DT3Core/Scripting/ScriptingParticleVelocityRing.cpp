@@ -139,7 +139,7 @@ bool ScriptingParticleVelocityRing::compute (const PlugBase *plug)
         
         Vector3 n = _normal->normalized();
 
-		for (DTint i = particles->active_start(); i != particles->active_end(); i = (i + 1) % particles->translations_stream().size()) {
+		for (int32_t i = particles->active_start(); i != particles->active_end(); i = (i + 1) % particles->translations_stream().size()) {
 			if (lifetimes[i] == 0.0F) {                
                 Vector3 v = MoreMath::random_vector();
                 v = v - n * Vector3::dot(n, v);

@@ -63,7 +63,7 @@ class ScriptingSoundRandomizer: public ScriptingSoundBase {
         Plug<DTfloat>               _in_weight_4;
 
         Event                       _randomize_inputs;
-        DTuint                      _current_input;
+        uint32_t                      _current_input;
 
         Plug<SoundPacket>           _sound_packet_out;
 };

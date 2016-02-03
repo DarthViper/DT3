@@ -47,15 +47,15 @@ class ScriptingIntSwitcher: public ScriptingBase {
 
     private:
         Plug<bool>                _in1;
-        Plug<DTint>                    _in_int1;
+        Plug<int32_t>                    _in_int1;
         Plug<bool>                _in2;
-        Plug<DTint>                    _in_int2;
+        Plug<int32_t>                    _in_int2;
         Plug<bool>                _in3;
-        Plug<DTint>                    _in_int3;
+        Plug<int32_t>                    _in_int3;
         Plug<bool>                _in4;
-        Plug<DTint>                    _in_int4;
+        Plug<int32_t>                    _in_int4;
 
-        Plug<DTint>                    _out;
+        Plug<int32_t>                    _out;
         bool                   _buffer_output;
 };
 

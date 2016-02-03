@@ -57,9 +57,9 @@ class ScriptingParticleEmitterBurst: public ScriptingParticleEmitter {
         void						eventActive             (PlugNode *sender);
 
 
-        DEFINE_ACCESSORS(max_num, set_max_num, DTint, _max_num);
-        DEFINE_ACCESSORS(num, set_num, DTint, _num);
-        DEFINE_ACCESSORS(num_variation, set_num_variation, DTint, _num_variation);
+        DEFINE_ACCESSORS(max_num, set_max_num, int32_t, _max_num);
+        DEFINE_ACCESSORS(num, set_num, int32_t, _num);
+        DEFINE_ACCESSORS(num_variation, set_num_variation, int32_t, _num_variation);
         DEFINE_ACCESSORS(spawn_translation, set_spawn_translation, Vector3, _spawn_translation);
         DEFINE_ACCESSORS(max_lifetime, set_max_lifetime, DTfloat, _max_lifetime);
         DEFINE_ACCESSORS(active, set_active, bool, _active);
@@ -73,8 +73,8 @@ class ScriptingParticleEmitterBurst: public ScriptingParticleEmitter {
     private:
         void                        emitParticle            (void);
 
-        Plug<DTint>									_num;
-        Plug<DTint>									_num_variation;
+        Plug<int32_t>									_num;
+        Plug<int32_t>									_num_variation;
 
         Plug<Vector3>								_spawn_translation;
         Plug<DTfloat>								_max_lifetime;
@@ -84,7 +84,7 @@ class ScriptingParticleEmitterBurst: public ScriptingParticleEmitter {
 
         bool									_last_active;
 
-        DTint										_max_num;
+        int32_t										_max_num;
 
         Plug<std::shared_ptr<Particles>>          _out;
 };

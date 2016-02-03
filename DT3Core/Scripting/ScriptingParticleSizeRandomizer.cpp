@@ -135,9 +135,9 @@ bool ScriptingParticleSizeRandomizer::compute (const PlugBase *plug)
 		std::vector<DTfloat> &sizes = particles->sizes_stream();
 		std::vector<DTfloat> &lifetimes = particles->lifetimes_stream();
 
-        DTint rs = MoreMath::random_seed();
+        int32_t rs = MoreMath::random_seed();
 
-		for (DTint i = particles->active_start(); i != particles->active_end(); i = (i + 1) % particles->translations_stream().size()) {
+		for (int32_t i = particles->active_start(); i != particles->active_end(); i = (i + 1) % particles->translations_stream().size()) {
 			if (_continuous || lifetimes[i] == 0.0F) {
                 DTfloat &size = sizes[i];
                 

@@ -40,11 +40,11 @@ void	StaticInitializer::initialize (void)
 	std::list<StaticInitializerCallback*> callbacks = initializer_callbacks_list();
 	
 	// Keep iterating through list until all initializers are called
-	DTuint current_priority = 0;
+	uint32_t current_priority = 0;
 	
 	while (callbacks.size() > 0) {
     
-		DTuint pending_priority = DTUINT_MAX;
+		uint32_t pending_priority = DTUINT_MAX;
 
 		for (auto iter = callbacks.begin(); iter != callbacks.end();) {
 			StaticInitializerCallback *cb = *iter;
@@ -74,11 +74,11 @@ void	StaticInitializer::destroy (void)
 	std::list<StaticInitializerCallback*> callbacks = initializer_callbacks_list();
 	
 	// Keep iterating through list until all initializers are called
-	DTuint current_priority = 0;
+	uint32_t current_priority = 0;
 	
 	while (callbacks.size() > 0) {
     
-		DTuint pending_priority = DTUINT_MAX;
+		uint32_t pending_priority = DTUINT_MAX;
 
 		for (auto iter = callbacks.begin(); iter != callbacks.end();) {
 			StaticInitializerCallback *cb = *iter;

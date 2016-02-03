@@ -71,7 +71,7 @@ class ArchiveTextBufferWriter: public Archive {
     private:
         std::string					indent                      (void) const;
 
-        DTint                       _indent;
+        int32_t                       _indent;
         TextBufferStream            _buffer;
 
 };

@@ -30,12 +30,12 @@ class SoundResource;
 //==============================================================================
 //==============================================================================
 
-const DTshort HRTF_LENGTH = 128;
+const int16_t HRTF_LENGTH = 128;
 
 struct HRTFFilterCoeffs {
-    DTint   num_angles;
-    DTint   max_angle;
-    DTshort coeffs[37][2][HRTF_LENGTH];
+    int32_t   num_angles;
+    int32_t   max_angle;
+    int16_t coeffs[37][2][HRTF_LENGTH];
 };
 
 //==============================================================================
@@ -63,7 +63,7 @@ class ScriptingSoundHRTF: public ScriptingSoundBase {
     private:
 
         void                        calc_elev               (DTfloat elev, DTfloat &mix, const HRTFFilterCoeffs **e0, const HRTFFilterCoeffs **e1);
-        void                        calc_azimuth            (DTfloat azimuth, const HRTFFilterCoeffs *e, DTfloat &mix, const DTshort **l0, const DTshort **r0, const DTshort **l1, const DTshort **r1);
+        void                        calc_azimuth            (DTfloat azimuth, const HRTFFilterCoeffs *e, DTfloat &mix, const int16_t **l0, const int16_t **r0, const int16_t **l1, const int16_t **r1);
 
         Plug<SoundPacket>                           _sound_packet_in;
         Plug<SoundPacket>                           _sound_packet_out;
@@ -71,8 +71,8 @@ class ScriptingSoundHRTF: public ScriptingSoundBase {
         Plug<Vector3>                               _source_position;
         Plug<Matrix4>                               _listener_transform;
 
-        DTshort                                     _buffer[HRTF_LENGTH];
-        DTuint                                      _buffer_index;
+        int16_t                                     _buffer[HRTF_LENGTH];
+        uint32_t                                      _buffer_index;
 
         DTfloat                                     _rolloff;
 };

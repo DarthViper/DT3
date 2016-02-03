@@ -34,7 +34,7 @@ class WeightsIndex {
         DEFINE_TYPE_SIMPLE_BASE(WeightsIndex)
 
                                 WeightsIndex		(void);
-                                WeightsIndex		(const DTuint w0, const DTuint w1, const DTuint w2, const DTuint w3)  {	w[0] = w0; w[1] = w1; w[2] = w2; w[3] = w3;	    }
+                                WeightsIndex		(const uint32_t w0, const uint32_t w1, const uint32_t w2, const uint32_t w3)  {	w[0] = w0; w[1] = w1; w[2] = w2; w[3] = w3;	    }
                                 WeightsIndex		(const WeightsIndex &rhs);
         WeightsIndex &			operator =			(const WeightsIndex &rhs);
                                 ~WeightsIndex		(void)  {}
@@ -45,7 +45,7 @@ class WeightsIndex {
         bool               operator !=			(const WeightsIndex& rhs) const   {	return w[0] != rhs.w[0] || w[1] != rhs.w[1] || w[2] != rhs.w[2] || w[3] != rhs.w[3];	}
 
     public:
-        DTuint                 w[4];
+        uint32_t                 w[4];
 };
 
 //==============================================================================

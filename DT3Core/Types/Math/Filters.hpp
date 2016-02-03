@@ -54,7 +54,7 @@ class Filters {
         /// \param fs sampling frequency
         /// \param default_val initialization value
         void            initialize			(	FilterType type,
-                                                DTuint n,
+                                                uint32_t n,
                                                 DTfloat f0,
                                                 DTfloat fs,
                                                 DTfloat default_val);

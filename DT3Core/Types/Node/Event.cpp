@@ -43,7 +43,7 @@ Event::Event (void)
 
 }
 
-Event::Event (DTushort info)
+Event::Event (uint16_t info)
 	:	_is_computing       (false),
         _info_index         (info),
         _connection_index   (0)
@@ -239,7 +239,7 @@ void Event::trigger (PlugNode *sender)
 void Event::initialize_static (void)
 {
     // Link up free list on first use
-    for (DTuint i = 1; i < DT3_EVENT_CONNECTION_POOL_SIZE; ++i) {
+    for (uint32_t i = 1; i < DT3_EVENT_CONNECTION_POOL_SIZE; ++i) {
         _pool[i-1]._next_free = &_pool[i];
     }
     _free_list = _pool;
@@ -260,7 +260,7 @@ Event::EventConnections& Event::connections (void)
         c->_incoming.clear();
         c->_outgoing.clear();
 
-        _connection_index = static_cast<DTushort>(c - _pool) + 1;
+        _connection_index = static_cast<uint16_t>(c - _pool) + 1;
     }
     
     return _pool[_connection_index-1];

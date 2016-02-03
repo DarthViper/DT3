@@ -41,25 +41,25 @@ class Framebuffer: public BaseClass {
         /// \param height height of framebuffer
         /// \param color_format Format of color buffer
         /// \param depth_format Format of depth buffer
-        void                                        allocate                    (DTint width, DTint height, DT3GLTextelFormat color_format, DT3GLTextelFormat depth_format, DTuint num_color_targets = 1);
+        void                                        allocate                    (int32_t width, int32_t height, DT3GLTextelFormat color_format, DT3GLTextelFormat depth_format, uint32_t num_color_targets = 1);
 
         /// Allocate a framebuffer with color and depth render buffer
         /// \param width width of framebuffer
         /// \param height height of framebuffer
         /// \param color_format Format of color buffer
         /// \param depth_format Format of depth buffer
-        void                                        allocate                    (DTint width, DTint height, DT3GLTextelFormat color_format, DT3GLRenderBufferFormat depth_format, DTuint num_color_targets = 1);
+        void                                        allocate                    (int32_t width, int32_t height, DT3GLTextelFormat color_format, DT3GLRenderBufferFormat depth_format, uint32_t num_color_targets = 1);
 
         /// Allocate a framebuffer with color render buffer and depth texture
         /// \param width width of framebuffer
         /// \param height height of framebuffer
         /// \param color_format Format of color buffer
         /// \param depth_format Format of depth buffer
-        void                                        allocate                    (DTint width, DTint height, DT3GLRenderBufferFormat color_format, DT3GLTextelFormat depth_format);
+        void                                        allocate                    (int32_t width, int32_t height, DT3GLRenderBufferFormat color_format, DT3GLTextelFormat depth_format);
 
         /// Returns the color texture if there is one
         /// \return color texture
-        std::shared_ptr<DT3GLTexture2DResource>&    color_texture               (DTuint color_target_index = 0);
+        std::shared_ptr<DT3GLTexture2DResource>&    color_texture               (uint32_t color_target_index = 0);
 
         /// Returns the depth texture if there is one
         /// \return depth texture
@@ -76,11 +76,11 @@ class Framebuffer: public BaseClass {
 
         /// Returns width of framebuffer
         /// \return width
-        DTint                                       width                       (void) const    {   return _width;  }
+        int32_t                                       width                       (void) const    {   return _width;  }
 
         /// Returns height of framebuffer
         /// \return height
-        DTint                                       height                      (void) const    {   return _height;  }
+        int32_t                                       height                      (void) const    {   return _height;  }
 
         /// Activate the framebuffer
         void                                        activate                    (void);
@@ -88,8 +88,8 @@ class Framebuffer: public BaseClass {
     private:
         DT3GLRenderBufferFormat                                 _rb_color_format;
         DT3GLRenderBufferFormat                                 _rb_depth_format;
-        DTint                                                   _width;
-        DTint                                                   _height;
+        int32_t                                                   _width;
+        int32_t                                                   _height;
 
         std::vector<std::shared_ptr<DT3GLTexture2DResource>>    _color_texture;
         std::shared_ptr<DT3GLTexture2DResource>                 _depth_texture;

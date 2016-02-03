@@ -219,7 +219,7 @@ void ImporterMaterialMAT::parse_sampler_block (MaterialResource *target)
 
 void ImporterMaterialMAT::parse_tex_block (MaterialResource *target)
 {
-    DTint tex_slot = static_cast<DTint>(_tokenizer.next_token_number());
+    int32_t tex_slot = static_cast<int32_t>(_tokenizer.next_token_number());
     
     target->set_current_unit(tex_slot);
 

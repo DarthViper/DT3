@@ -90,7 +90,7 @@ class DeviceAudio: public DeviceBase {
 
         /// Returns which channel a source is playing on
         /// \return channel index
-        virtual DTshort                         channel                 (const std::shared_ptr<SoundSource> &source)    {   return -1;      }
+        virtual int16_t                         channel                 (const std::shared_ptr<SoundSource> &source)    {   return -1;      }
 
         /// Stops the sound source
         /// \param source sound source to stop
@@ -105,7 +105,7 @@ class DeviceAudio: public DeviceBase {
 
         /// Sets the number of channels to play on
         /// \param num_channels number of sound channels
-        virtual void                            set_number_of_channels  (const DTint num_channels)                      {}
+        virtual void                            set_number_of_channels  (const int32_t num_channels)                      {}
 
         /// Adds a bus
         /// \param sound source

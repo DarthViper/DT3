@@ -97,8 +97,8 @@ void GridImageData::clear (void)
     }
 
     // Init array
-    for (DTuint y = 0; y < _num_y; ++y) {
-        for (DTuint x = 0; x < _num_x; ++x) {
+    for (uint32_t y = 0; y < _num_y; ++y) {
+        for (uint32_t x = 0; x < _num_x; ++x) {
             DTfloat xpos = static_cast<DTfloat>(x) / (_num_x - 1) * 2.0F - 1.0F;
             DTfloat ypos = static_cast<DTfloat>(y) / (_num_y - 1) * 2.0F - 1.0F;
         
@@ -110,26 +110,26 @@ void GridImageData::clear (void)
 //==============================================================================
 //==============================================================================
 
-void GridImageData::set_num_x (const DTuint num_x)
+void GridImageData::set_num_x (const uint32_t num_x)
 {
     _num_x = num_x;
     
     clear();
 }
 
-DTuint GridImageData::num_x(void) const
+uint32_t GridImageData::num_x(void) const
 {
     return _num_x;
 }
 
-void GridImageData::set_num_y (const DTuint num_y)
+void GridImageData::set_num_y (const uint32_t num_y)
 {
     _num_y = num_y;
 
     clear();
 }
 
-DTuint GridImageData::num_y(void) const
+uint32_t GridImageData::num_y(void) const
 {
     return _num_y;
 }
@@ -137,12 +137,12 @@ DTuint GridImageData::num_y(void) const
 //==============================================================================
 //==============================================================================
 
-const Vector2 & GridImageData::point (DTuint x, DTuint y)
+const Vector2 & GridImageData::point (uint32_t x, uint32_t y)
 {
     return _grid[y * _num_x + x];
 }
 
-void GridImageData::set_point (DTuint x, DTuint y, const Vector2 &p)
+void GridImageData::set_point (uint32_t x, uint32_t y, const Vector2 &p)
 {
     _grid[y * _num_x + x] = p;
 }

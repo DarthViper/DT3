@@ -50,7 +50,7 @@ class ScriptingParticleKillZone: public ScriptingBase {
     private:
         Plug<Vector3>								_translation;
         Plug<DTfloat>								_radius;
-        Plug<DTint>                                 _num_killed;
+        Plug<int32_t>                                 _num_killed;
 
         Plug<std::shared_ptr<Particles>>		_in;
         Plug<std::shared_ptr<Particles>>		_out;

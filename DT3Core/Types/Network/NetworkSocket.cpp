@@ -33,7 +33,7 @@ NetworkSocket::NetworkSocket (void)
 
 }
 
-NetworkSocket::NetworkSocket (const DTubyte *socket_structure, DTuint length)
+NetworkSocket::NetworkSocket (const uint8_t *socket_structure, uint32_t length)
 {
     set_network_socket_data(socket_structure, length);
 }
@@ -70,7 +70,7 @@ NetworkSocket::~NetworkSocket (void)
 //==============================================================================
 //==============================================================================
 
-void NetworkSocket::set_network_socket_data (const DTubyte *socket_structure, DTuint length)
+void NetworkSocket::set_network_socket_data (const uint8_t *socket_structure, uint32_t length)
 {
     _data.resize(length);
     ::memcpy(&_data[0], socket_structure, length);

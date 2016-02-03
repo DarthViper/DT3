@@ -139,7 +139,7 @@ void ComponentGUIDrawText::archive (const std::shared_ptr<Archive> &archive)
 //==============================================================================
 //==============================================================================
 
-void ComponentGUIDrawText::screen_opened (DTuint width, DTuint height)
+void ComponentGUIDrawText::screen_opened (uint32_t width, uint32_t height)
 {
     // If for some reason the render context is created, we have to rerender
     
@@ -211,8 +211,8 @@ void ComponentGUIDrawText::draw (const std::shared_ptr<CameraObject> &camera, co
         _needs_render = false;
         _label = full_label;
     
-        DTint tex_width = (_bounds.plus_x() - _bounds.minus_x()) * System::renderer()->screen_width();
-        DTint tex_height = (_bounds.plus_y() - _bounds.minus_y()) * System::renderer()->screen_height();
+        int32_t tex_width = (_bounds.plus_x() - _bounds.minus_x()) * System::renderer()->screen_width();
+        int32_t tex_height = (_bounds.plus_y() - _bounds.minus_y()) * System::renderer()->screen_height();
         
         if (!_text_image || (_text_image->width() != tex_width) || (_text_image->height() != tex_height) ) {
         

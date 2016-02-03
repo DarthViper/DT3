@@ -108,23 +108,23 @@ void Mesh::generate_normals (void)
 {
     ASSERT(_vertex_stream.size() > 0);
 
-    const DTuint HASH_TABLE_SIZE = 1021;
+    const uint32_t HASH_TABLE_SIZE = 1021;
 
     _normals_stream.clear();
     _normals_stream.resize(_vertex_stream.size(), Vector3(0.0F,0.0F,0.0F));
     
     // Fill hash table
-    std::list<DTuint> vert_hashes[HASH_TABLE_SIZE];
+    std::list<uint32_t> vert_hashes[HASH_TABLE_SIZE];
     
-    for (DTuint i = 0; i < _vertex_stream.size(); ++i) {
-        DTuint h = hash_vertex (i, true);
+    for (uint32_t i = 0; i < _vertex_stream.size(); ++i) {
+        uint32_t h = hash_vertex (i, true);
         
         vert_hashes[h % HASH_TABLE_SIZE].push_back(i);
     }
 
     // Accumulate normals
-	for (DTuint i = 0; i < _index_stream.size(); ++i) {
-		DTuint ai,bi,ci;
+    for (uint32_t i = 0; i < _index_stream.size(); ++i) {
+        uint32_t ai,bi,ci;
 		
 		ai = _index_stream[i].v[0];
 		bi = _index_stream[i].v[1];
@@ -138,14 +138,14 @@ void Mesh::generate_normals (void)
 		n.normalize();
         
         // Hashes of vertex positions
-        DTuint h0 = hash_vertex(ai, true);
-        DTuint h1 = hash_vertex(bi, true);
-        DTuint h2 = hash_vertex(ci, true);
+        uint32_t h0 = hash_vertex(ai, true);
+        uint32_t h1 = hash_vertex(bi, true);
+        uint32_t h2 = hash_vertex(ci, true);
         
         // Get hash entries for verts
-        std::list<DTuint> &list0 = vert_hashes[h0 % HASH_TABLE_SIZE];
-        std::list<DTuint> &list1 = vert_hashes[h1 % HASH_TABLE_SIZE];
-        std::list<DTuint> &list2 = vert_hashes[h2 % HASH_TABLE_SIZE];
+        std::list<uint32_t> &list0 = vert_hashes[h0 % HASH_TABLE_SIZE];
+        std::list<uint32_t> &list1 = vert_hashes[h1 % HASH_TABLE_SIZE];
+        std::list<uint32_t> &list2 = vert_hashes[h2 % HASH_TABLE_SIZE];
         
         for (auto j : list0) {
             if (equal_vertex(ai, j, true))
@@ -164,7 +164,7 @@ void Mesh::generate_normals (void)
 		
 	}
 	
-	for (DTuint i = 0; i < _vertex_stream.size(); ++i)
+    for (uint32_t i = 0; i < _vertex_stream.size(); ++i)
 		if (_normals_stream[i] != Vector3(0.0F,0.0F,0.0F))
 			_normals_stream[i].normalize();
 		
@@ -181,10 +181,10 @@ void Mesh::generate_tangents	(void)
     tan1.resize(_vertex_stream.size(), Vector3(0.0F,0.0F,0.0F));
     tan2.resize(_vertex_stream.size(), Vector3(0.0F,0.0F,0.0F));
 
-    for (DTuint face_index = 0; face_index < _index_stream.size(); ++face_index) {
-		DTuint i1 = _index_stream[face_index].v[0];
-		DTuint i2 = _index_stream[face_index].v[1];
-		DTuint i3 = _index_stream[face_index].v[2];
+    for (uint32_t face_index = 0; face_index < _index_stream.size(); ++face_index) {
+        uint32_t i1 = _index_stream[face_index].v[0];
+        uint32_t i2 = _index_stream[face_index].v[1];
+        uint32_t i3 = _index_stream[face_index].v[2];
 		
 		ASSERT(i1 < _vertex_stream.size());
 		ASSERT(i2 < _vertex_stream.size());
@@ -234,7 +234,7 @@ void Mesh::generate_tangents	(void)
 
     _tangents_stream.resize(_vertex_stream.size());
 
-    for (DTuint vert_index = 0; vert_index < _vertex_stream.size(); ++vert_index) {
+    for (uint32_t vert_index = 0; vert_index < _vertex_stream.size(); ++vert_index) {
 		const Vector3 n = _normals_stream[vert_index];
 		const Vector3 t = tan1[vert_index];
 		
@@ -260,9 +260,9 @@ void Mesh::generate_tangents	(void)
 //==============================================================================
 //==============================================================================	
 
-DTuint Mesh::hash_vertex (DTuint i, bool vertex_only)
+uint32_t Mesh::hash_vertex (uint32_t i, bool vertex_only)
 {
-    DTuint h = 0;
+    uint32_t h = 0;
     
     if (_smoothing_group.size() > 0) {
         h = hashlittle( (unsigned char *) &_smoothing_group[i], (unsigned int) sizeof(_smoothing_group[i]), h);
@@ -296,7 +296,7 @@ DTuint Mesh::hash_vertex (DTuint i, bool vertex_only)
     return h;
 }
 
-bool Mesh::equal_vertex(DTuint v1, DTuint v2, bool vertex_only)
+bool Mesh::equal_vertex(uint32_t v1, uint32_t v2, bool vertex_only)
 {
     if (v1 == v2)
         return true;
@@ -339,7 +339,7 @@ bool Mesh::equal_vertex(DTuint v1, DTuint v2, bool vertex_only)
 
 void Mesh::collapse_verts (void)
 {
-    const DTuint HASH_TABLE_SIZE = 1021;
+    const uint32_t HASH_TABLE_SIZE = 1021;
     DTsize num_old_verts = _vertex_stream.size();
     DTsize num_new_verts = 0;
         
@@ -356,7 +356,7 @@ void Mesh::collapse_verts (void)
     std::vector<WeightsIndex>   weights_index_stream;
     std::vector<Vector4>        weights_strength_stream;
     
-    std::vector<DTuint>         smoothing_group;
+    std::vector<uint32_t>         smoothing_group;
 
     if (_vertex_stream.size() > 0)              vertex_stream.resize(num_old_verts);
     if (_normals_stream.size() > 0)             normals_stream.resize(num_old_verts);
@@ -369,14 +369,14 @@ void Mesh::collapse_verts (void)
     if (_smoothing_group.size() > 0)            smoothing_group.resize(num_old_verts);
     
     // Hash all vertices
-    std::list<std::pair<DTuint, DTuint>> vert_hashes[HASH_TABLE_SIZE];   // new index, old index
-    for (DTuint i = 0; i < num_old_verts; ++i) {
+    std::list<std::pair<uint32_t, uint32_t>> vert_hashes[HASH_TABLE_SIZE];   // new index, old index
+    for (uint32_t i = 0; i < num_old_verts; ++i) {
     
-        DTuint h = hash_vertex(i);
+        uint32_t h = hash_vertex(i);
         
         // Add vertex only if unique
-        std::list<std::pair<DTuint, DTuint>> &list = vert_hashes[h % HASH_TABLE_SIZE];
-        std::list<std::pair<DTuint, DTuint>>::iterator j;
+        std::list<std::pair<uint32_t, uint32_t>> &list = vert_hashes[h % HASH_TABLE_SIZE];
+        std::list<std::pair<uint32_t, uint32_t>>::iterator j;
         
         for (j = list.begin(); j != list.end(); ++j) {
             if (j->second == i)
@@ -407,25 +407,25 @@ void Mesh::collapse_verts (void)
     }
     
     // Time to re-wire the face indices
-    for (DTuint f = 0; f < _index_stream.size(); ++f) {
-        DTuint &v0 = _index_stream[f].v[0];
-        DTuint &v1 = _index_stream[f].v[1];
-        DTuint &v2 = _index_stream[f].v[2];
+    for (uint32_t f = 0; f < _index_stream.size(); ++f) {
+        uint32_t &v0 = _index_stream[f].v[0];
+        uint32_t &v1 = _index_stream[f].v[1];
+        uint32_t &v2 = _index_stream[f].v[2];
         
         ASSERT(v0 < num_old_verts);
         ASSERT(v1 < num_old_verts);
         ASSERT(v2 < num_old_verts);
     
-        DTuint h0 = hash_vertex(v0);
-        DTuint h1 = hash_vertex(v1);
-        DTuint h2 = hash_vertex(v2);
+        uint32_t h0 = hash_vertex(v0);
+        uint32_t h1 = hash_vertex(v1);
+        uint32_t h2 = hash_vertex(v2);
         
         // Add vertex only if unique
-        std::list<std::pair<DTuint, DTuint>> &list0 = vert_hashes[h0 % HASH_TABLE_SIZE];
-        std::list<std::pair<DTuint, DTuint>> &list1 = vert_hashes[h1 % HASH_TABLE_SIZE];
-        std::list<std::pair<DTuint, DTuint>> &list2 = vert_hashes[h2 % HASH_TABLE_SIZE];
+        std::list<std::pair<uint32_t, uint32_t>> &list0 = vert_hashes[h0 % HASH_TABLE_SIZE];
+        std::list<std::pair<uint32_t, uint32_t>> &list1 = vert_hashes[h1 % HASH_TABLE_SIZE];
+        std::list<std::pair<uint32_t, uint32_t>> &list2 = vert_hashes[h2 % HASH_TABLE_SIZE];
 
-        std::list<std::pair<DTuint, DTuint>>::iterator j;
+        std::list<std::pair<uint32_t, uint32_t>>::iterator j;
         
         for (j = list0.begin(); j != list0.end(); ++j) {
             if (equal_vertex(j->second, v0)) {

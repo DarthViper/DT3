@@ -52,13 +52,13 @@ class ScriptingSoundReverb: public ScriptingSoundBase {
         Plug<SoundPacket>         _sound_packet_in;
         Plug<SoundPacket>         _sound_packet_out;
 
-        Plug<DTuint>                                _delay;
+        Plug<uint32_t>                                _delay;
         Plug<DTfloat>                               _reverb_gain;
         Plug<DTfloat>                               _output_gain;
 
-        std::vector<DTshort>                              _samples_left;
-        std::vector<DTshort>                              _samples_right;
-        DTuint                                      _sample_index;
+        std::vector<int16_t>                              _samples_left;
+        std::vector<int16_t>                              _samples_right;
+        uint32_t                                      _sample_index;
 };
 
 //==============================================================================

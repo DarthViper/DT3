@@ -89,9 +89,9 @@ CameraObject::CameraObject (const CameraObject &rhs)
         _post_projection        (rhs._post_projection)
 		
 {
-    for (DTint i = 0; i < 6; ++i)	
+    for (int32_t i = 0; i < 6; ++i)	
         _frustum[i] = rhs._frustum[i];
-    for (DTint i = 0; i < 4; ++i)	
+    for (int32_t i = 0; i < 4; ++i)	
         _viewport[i] = rhs._viewport[i];
 
 }
@@ -127,9 +127,9 @@ CameraObject & CameraObject::operator = (const CameraObject& rhs)
         _projection = rhs._projection;
         _post_projection = rhs._post_projection;
 	
-		for (DTint i = 0; i < 6; ++i)	
+		for (int32_t i = 0; i < 6; ++i)	
 			_frustum[i] = rhs._frustum[i];
-		for (DTint i = 0; i < 4; ++i)	
+		for (int32_t i = 0; i < 4; ++i)	
 			_viewport[i] = rhs._viewport[i];
         
 
@@ -176,7 +176,7 @@ void CameraObject::archive (const std::shared_ptr<Archive> &archive)
 
 bool CameraObject::point_in_frustum(const Vector3  &point) const
 {
-    for (DTint plane = 0; plane < 6; ++plane)
+    for (int32_t plane = 0; plane < 6; ++plane)
         if (_frustum[plane].distance_to_point(point) < 0.0F)
             return false;
                             
@@ -187,7 +187,7 @@ DTfloat CameraObject::distance_to_frustum (const Vector3 &point) const
 {
 	DTfloat dist = 0.0F;
 	
-    for (DTint plane = 0; plane < 6; ++plane) {
+    for (int32_t plane = 0; plane < 6; ++plane) {
 		DTfloat distance = _frustum[plane].distance_to_point(point);
 		dist = MoreMath::min(distance, dist);
 	}
@@ -202,7 +202,7 @@ DTfloat CameraObject::distance_to_frustum (const Vector3 &point) const
 bool CameraObject::sphere_in_frustum(const Vector3 &translation, const Sphere &sphere) const
 {
 
-    for (DTint plane = 0; plane < 6; ++plane) {            
+    for (int32_t plane = 0; plane < 6; ++plane) {            
         if (_frustum[plane].is_sphere_completely_in_back(translation, sphere))
             return false;
     }
@@ -212,7 +212,7 @@ bool CameraObject::sphere_in_frustum(const Vector3 &translation, const Sphere &s
 
 bool CameraObject::sphere_in_frustum_no_front_back	(const Vector3 &translation, const Sphere &sphere) const
 {
-    for (DTint plane = 2; plane < 6; ++plane) {            
+    for (int32_t plane = 2; plane < 6; ++plane) {            
         if (_frustum[plane].is_sphere_completely_in_back(translation, sphere))
             return false;
     }
@@ -225,7 +225,7 @@ bool CameraObject::sphere_in_frustum_no_front_back	(const Vector3 &translation, 
 //==============================================================================
 
 bool CameraObject::box_in_frustum(const Box &box) const {
-    for (DTint plane = 0; plane < 6; ++plane) {
+    for (int32_t plane = 0; plane < 6; ++plane) {
 		DTfloat dist = _frustum[plane].distance_to_box(box);
         if (dist < 0.0F)	return false;
 		else if (dist == 0.0F)  return true;
@@ -295,7 +295,7 @@ void CameraObject::set_ortho (const DTfloat left, const DTfloat right, const DTf
 	_perspective = false;
 }
 
-void CameraObject::set_picking (const DTfloat x, const DTfloat y, const DTfloat deltax, const DTfloat deltay, DTint viewport[4])
+void CameraObject::set_picking (const DTfloat x, const DTfloat y, const DTfloat deltax, const DTfloat deltay, int32_t viewport[4])
 {
 	_x = x;
 	_y = y;

@@ -142,7 +142,7 @@ bool ScriptingParticleTimeFader::compute (const PlugBase *plug)
 		
 		DTfloat fade_time = _time_end_fade - _time_begin_fade;
 
-		for (DTint i = particles->active_start(); i != particles->active_end(); i = (i + 1) % particles->translations_stream().size()) {
+		for (int32_t i = particles->active_start(); i != particles->active_end(); i = (i + 1) % particles->translations_stream().size()) {
 			Color4b &color = colors[i];
 			DTfloat fade = 1.0F - (lifetimes[i] - _time_begin_fade) / fade_time;
 			fade = MoreMath::clamp_zero_one(fade);

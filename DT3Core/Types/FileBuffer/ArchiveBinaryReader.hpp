@@ -66,11 +66,11 @@ class ArchiveBinaryReader: public Archive {
 
         /// Returns the engine version of the archive
         /// \return the engine version of the archive
-        DTuint					get_engine_version      (void) const;
+        uint32_t					get_engine_version      (void) const;
 
         /// Returns the app version of the archive
         /// \return the app version of the archive
-        DTuint					get_app_version			(void) const;
+        uint32_t					get_app_version			(void) const;
 
         /// Returns wether the archive is reading or not
         /// \return archive is loading
@@ -85,8 +85,8 @@ class ArchiveBinaryReader: public Archive {
         BinaryFileStream&		stream                  (void)		{	return _infile;	}
 
     private:
-        DTuint					_engine_version;
-        DTuint					_app_version;
+        uint32_t					_engine_version;
+        uint32_t					_app_version;
         BinaryFileStream		_infile;
 };
 

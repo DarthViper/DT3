@@ -84,17 +84,17 @@ class ShaderResource: public Resource {
         /// Get attribute slot
         /// \param name attribute name
         /// \return slot
-        DTint                                   attrib_slot             (const std::string &name);
+        int32_t                                   attrib_slot             (const std::string &name);
 
         /// Get attribute slot
         /// \param standard_attrib attribute id
         /// \return slot
-        DTint                                   attrib_slot             (DT3GLStandardAttrib standard_attrib);
+        int32_t                                   attrib_slot             (DT3GLStandardAttrib standard_attrib);
 
         /// Convenience function to set vertex attribute
         /// \param attribute_slot index
         /// \param res Attribute buffer to bind
-        void                                    set_attribute_buffer    (DTint attribute_slot, std::shared_ptr<DT3GLAttribBufferResource> res);
+        void                                    set_attribute_buffer    (int32_t attribute_slot, std::shared_ptr<DT3GLAttribBufferResource> res);
 
         //
         // Mappings for uniforms
@@ -106,27 +106,27 @@ class ShaderResource: public Resource {
         /// \param array_size number of elements in the unform array
         void                                    add_uniform             (   const std::string &name,
                                                                             DT3GLUniformFormat type,
-                                                                            DTint array_size,
+                                                                            int32_t array_size,
                                                                             DT3GLStandardUniform standard_uniform = DT3GL_UNIFORM_NONE);
 
         /// Gets the index of a uniform
         /// \param name name of uniform
         /// \return index of uniform
-        DTint                                   uniform_slot            (const std::string &name);
+        int32_t                                   uniform_slot            (const std::string &name);
 
         /// Gets the index of a standard uniform
         /// \param standard_uniform uniform id
         /// \return index of uniform
-        DTint                                   uniform_slot            (DT3GLStandardUniform standard_uniform);
+        int32_t                                   uniform_slot            (DT3GLStandardUniform standard_uniform);
 
         /// Convenience function to set uniform values
         /// \param uniform_slot index
-        void                                    set_uniform_value       (DTint uniform_slot, DTint buffer_data);
-        void                                    set_uniform_value       (DTint uniform_slot, const Vector4 &buffer_data);
-        void                                    set_uniform_value       (DTint uniform_slot, const std::vector<Vector4> &buffer_data);
-        void                                    set_uniform_value       (DTint uniform_slot, const Matrix4 &buffer_data);
-        void                                    set_uniform_value       (DTint uniform_slot, const std::vector<Matrix4> &buffer_data);
-        void                                    set_uniform_value       (DTint uniform_slot, const Color4f &buffer_data);
+        void                                    set_uniform_value       (int32_t uniform_slot, int32_t buffer_data);
+        void                                    set_uniform_value       (int32_t uniform_slot, const Vector4 &buffer_data);
+        void                                    set_uniform_value       (int32_t uniform_slot, const std::vector<Vector4> &buffer_data);
+        void                                    set_uniform_value       (int32_t uniform_slot, const Matrix4 &buffer_data);
+        void                                    set_uniform_value       (int32_t uniform_slot, const std::vector<Matrix4> &buffer_data);
+        void                                    set_uniform_value       (int32_t uniform_slot, const Color4f &buffer_data);
 
         /// Activate the resource
         void                                    activate                (void);
@@ -134,12 +134,12 @@ class ShaderResource: public Resource {
         /// Attach attribute to the shader
         /// \param attribute_slot attribute slot
         /// \param res attribute buffer
-        void                                    attach_attribute_buffer (DTint attribute_slot, std::shared_ptr<DT3GLAttribBufferResource> res);
+        void                                    attach_attribute_buffer (int32_t attribute_slot, std::shared_ptr<DT3GLAttribBufferResource> res);
 
         /// Attach uniform to the shader
         /// \param uniform_slot uniform slot
         /// \param res uniform buffer
-        void                                    attach_uniform_buffer   (DTint uniform_slot, std::shared_ptr<DT3GLUniformResource> res);
+        void                                    attach_uniform_buffer   (int32_t uniform_slot, std::shared_ptr<DT3GLUniformResource> res);
 
         /// Load the resource
         /// \param pathname path to file
@@ -154,32 +154,32 @@ class ShaderResource: public Resource {
         static void                             reload_if_changed       (void);
         void                                    recompile_if_needed     (void);
 
-        void                                    screen_opened           (DTuint width, DTuint height);
+        void                                    screen_opened           (uint32_t width, uint32_t height);
         void                                    screen_closed           (void);
 
 
         struct MappingUniform {
             std::string                                 _name;
-            DTint                                       _index;
-            DTint                                       _array_size;
+            int32_t                                       _index;
+            int32_t                                       _array_size;
             DT3GLUniformFormat                          _type;
             DT3GLStandardUniform                        _standard_uniform;
 
             std::shared_ptr<DT3GLUniformResource>       _uniform_resource;
         };
         std::vector<MappingUniform>                     _uniforms;
-        DTint                                           _standard_uniforms[DT3GL_UNIFORM_NUM];
+        int32_t                                           _standard_uniforms[DT3GL_UNIFORM_NUM];
 
 
         struct MappingAttribute {
             std::string                                 _name;
-            DTint                                       _index;
+            int32_t                                       _index;
             DT3GLStandardAttrib                         _standard_attrib;
 
             std::shared_ptr<DT3GLAttribBufferResource>  _attrib_buffer_resource;
         };
         std::vector<MappingAttribute>                   _attribs;
-        DTint                                           _standard_attribs[DT3GL_ATTRIB_NUM];
+        int32_t                                           _standard_attribs[DT3GL_ATTRIB_NUM];
 
         std::map<std::string,std::vector<std::string>>  _fragment_shaders;
         std::map<std::string,std::vector<std::string>>  _geometry_shaders;

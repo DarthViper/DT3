@@ -134,7 +134,7 @@ void GeometryResource::uninitialize_static (void)
 //==============================================================================
 //==============================================================================
 
-void GeometryResource::screen_opened (DTuint width, DTuint height)
+void GeometryResource::screen_opened (uint32_t width, uint32_t height)
 {
 
 }

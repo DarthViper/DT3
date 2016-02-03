@@ -93,13 +93,13 @@ void GUIController::archive (const std::shared_ptr<Archive> &archive)
 namespace {
     
     struct CompareDraw {
-        DTint operator() (PlaceableObject *a, PlaceableObject *b) const {
+        int32_t operator() (PlaceableObject *a, PlaceableObject *b) const {
           return (a->translation().z < b->translation().z);
         }
     };
 
     struct CompareTouch {
-        DTint operator() (PlaceableObject *a, PlaceableObject *b) const {
+        int32_t operator() (PlaceableObject *a, PlaceableObject *b) const {
           return (a->translation().z > b->translation().z);
         }
     };
@@ -115,7 +115,7 @@ void GUIController::touch_gui (const TouchEvent *event, const std::shared_ptr<Ca
         return;
 
     // Scan for first event
-    for (DTuint i = 0; i < TouchEvent::MAX_NUM_TOUCHES; ++i) {
+    for (uint32_t i = 0; i < TouchEvent::MAX_NUM_TOUCHES; ++i) {
         if ( event->touches[i].state != TouchEvent::STATE_NONE ) {
             _touch.set_initial_position(event->touches[i].first_pos);
             _touch.set_previous_position(event->touches[i].previous_pos);
@@ -183,7 +183,7 @@ void GUIController::touch_gui (const TouchEvent *event, const std::shared_ptr<Ca
     
 }
 
-void GUIController::draw_gui_recursive (PlaceableObject *root, const std::shared_ptr<CameraObject> &camera, const Color4f &parent_color, DTint stencil)
+void GUIController::draw_gui_recursive (PlaceableObject *root, const std::shared_ptr<CameraObject> &camera, const Color4f &parent_color, int32_t stencil)
 {
     GUIObject *gui = checked_cast<GUIObject*>(root);
     Rectangle gui_rect(0.0F,1.0F,0.0F,1.0F);

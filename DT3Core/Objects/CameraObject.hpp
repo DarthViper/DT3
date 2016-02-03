@@ -115,7 +115,7 @@ class CameraObject: public PlaceableObject {
         /// \param width width of window
         /// \param height height of window
         /// \param viewport viewport of window
-        void						set_picking                 (const DTfloat x, const DTfloat y, const DTfloat width, const DTfloat height, DTint viewport[4]);
+        void						set_picking                 (const DTfloat x, const DTfloat y, const DTfloat width, const DTfloat height, int32_t viewport[4]);
 
         /// End picking and return the camera back to normal
         void						end_picking					(void)							{	_picking = false;		}
@@ -228,7 +228,7 @@ class CameraObject: public PlaceableObject {
         /// Retrieves a clip plane from the camera
         /// \param which_plane plane index
         /// \return clip plane
-        const Plane&				camera_plane                (DTint which_plane)				{	return _frustum[which_plane];	}
+        const Plane&				camera_plane                (int32_t which_plane)				{	return _frustum[which_plane];	}
 
 
         /// Sets the post projection matrix. This is used to modify the projection matrix.
@@ -266,7 +266,7 @@ class CameraObject: public PlaceableObject {
         DTfloat				_y;
         DTfloat				_deltax;
         DTfloat				_deltay;
-        DTint				_viewport[4];
+        int32_t				_viewport[4];
 
         // Calculated matrices
         Matrix4				_modelview;

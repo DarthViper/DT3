@@ -170,7 +170,7 @@ void ScriptingKeyDown::archive (const std::shared_ptr<Archive> &archive)
 //==============================================================================
 //==============================================================================
 
-void ScriptingKeyDown::key (DTuint modifiers, DTushort key)
+void ScriptingKeyDown::key (uint32_t modifiers, uint16_t key)
 {
 	PROFILER(SCRIPTING);
 

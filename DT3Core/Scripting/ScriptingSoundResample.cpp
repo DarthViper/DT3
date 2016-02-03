@@ -133,8 +133,8 @@ bool ScriptingSoundResample::compute (const PlugBase *plug)
             sound_packet_out.set_format(sound_packet_in.format());
             sound_packet_out.set_frequency(_sampling_rate);
                 
-            DTshort *data_in = (DTshort *) sound_packet_in.buffer();
-            DTshort *data_out = (DTshort *) sound_packet_out.buffer();
+            int16_t *data_in = (int16_t *) sound_packet_in.buffer();
+            int16_t *data_out = (int16_t *) sound_packet_out.buffer();
             
             DTfloat ratio = static_cast<DTfloat>(sound_packet_in.frequency()) / static_cast<DTfloat>(sound_packet_out.frequency());
 
@@ -145,13 +145,13 @@ bool ScriptingSoundResample::compute (const PlugBase *plug)
             //
             
             DTfloat old_sample_in = _sample_in;
-            DTuint s = static_cast<DTuint>(_sample_in);
-            DTuint sample_out = 0;
+            uint32_t s = static_cast<uint32_t>(_sample_in);
+            uint32_t sample_out = 0;
 
             while (s < (num_samples_in-1)) {                
                 ++sample_out;
                 _sample_in += ratio;
-                s = static_cast<DTuint>(_sample_in);
+                s = static_cast<uint32_t>(_sample_in);
             }
             
             sound_packet_out.set_num_bytes(sample_out*2);
@@ -161,17 +161,17 @@ bool ScriptingSoundResample::compute (const PlugBase *plug)
             //
             
             _sample_in = old_sample_in;
-            s = static_cast<DTuint>(_sample_in);
+            s = static_cast<uint32_t>(_sample_in);
             sample_out = 0;
 
             while (s < (num_samples_in-1)) {
                 DTfloat t = _sample_in - std::floor(_sample_in);
-                data_out[sample_out] = (DTshort) (data_in[s] * (1.0F-t) + data_in[s+1] * t);
+                data_out[sample_out] = (int16_t) (data_in[s] * (1.0F-t) + data_in[s+1] * t);
                 
                 ++sample_out;
                 _sample_in += ratio;
                 
-                s = static_cast<DTuint>(_sample_in);
+                s = static_cast<uint32_t>(_sample_in);
             }
             
             _sample_in -= s;

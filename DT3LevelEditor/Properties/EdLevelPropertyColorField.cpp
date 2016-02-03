@@ -227,7 +227,7 @@ void EdLevelPropertyColorField::doReadParams(void)
 
 void EdLevelPropertyColorField::doWriteParams(void)
 {
-    Color4f val(Color4b( (DTubyte) _r->value(), (DTubyte) _g->value(), (DTubyte) _b->value(), (DTubyte) _a->value()));
+    Color4f val(Color4b( (uint8_t) _r->value(), (uint8_t) _g->value(), (uint8_t) _b->value(), (uint8_t) _a->value()));
 
     TextBufferStream stream;
     stream << val;

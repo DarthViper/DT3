@@ -40,7 +40,7 @@ ObjectBase::ObjectBase (void)
 ObjectBase::ObjectBase (const ObjectBase &rhs)
     :   WorldNode				(rhs)
 {   
-    for (DTuint i = 0; i < ComponentBase::NUM_COMPONENT_TYPES; ++i) {
+    for (uint32_t i = 0; i < ComponentBase::NUM_COMPONENT_TYPES; ++i) {
         if (rhs._components[i]) {
             _components[i] = checked_static_cast<ComponentBase>(rhs._components[i]->clone());
         }
@@ -53,7 +53,7 @@ ObjectBase & ObjectBase::operator = (const ObjectBase &rhs)
     if (&rhs != this) {        
 		WorldNode::operator = (rhs);
         
-        for (DTuint i = 0; i < ComponentBase::NUM_COMPONENT_TYPES; ++i) {
+        for (uint32_t i = 0; i < ComponentBase::NUM_COMPONENT_TYPES; ++i) {
             _components[i].reset();
             
             if (rhs._components[i]) {
@@ -79,10 +79,10 @@ void ObjectBase::archive (const std::shared_ptr<Archive> &archive)
 
     archive->push_domain (class_id ());
 
-    DTuint num_components = ComponentBase::NUM_COMPONENT_TYPES;
+    uint32_t num_components = ComponentBase::NUM_COMPONENT_TYPES;
     *archive << ARCHIVE_DATA(num_components,DATA_PERSISTENT);
 	
-    for (DTuint i = 0; i < ComponentBase::NUM_COMPONENT_TYPES; ++i)
+    for (uint32_t i = 0; i < ComponentBase::NUM_COMPONENT_TYPES; ++i)
         archive->add_post_process(ARCHIVE_PROCESS_POINTERS(archive,_components[i]));
 
     archive->pop_domain ();
@@ -96,7 +96,7 @@ void ObjectBase::add_to_world(World *world)
     WorldNode::add_to_world(world);
 
     // Tell the components that they were added to this object
-    for (DTint i = 0; i < ComponentBase::NUM_COMPONENT_TYPES; ++i) {
+    for (int32_t i = 0; i < ComponentBase::NUM_COMPONENT_TYPES; ++i) {
         if (_components[i]) {
         
             if (_components[i]->owner() == this) {
@@ -119,7 +119,7 @@ void ObjectBase::add_to_world(World *world)
 void ObjectBase::remove_from_world (void)			
 {	
     // Tell the components that they were removed from this object
-    for (DTint i = ComponentBase::NUM_COMPONENT_TYPES-1; i >= 0; --i) {
+    for (int32_t i = ComponentBase::NUM_COMPONENT_TYPES-1; i >= 0; --i) {
         if (_components[i]) {
             SystemCallbacks::remove_component_cb().fire(world(),_components[i].get());
                 
@@ -174,7 +174,7 @@ std::list<std::shared_ptr<ComponentBase>> ObjectBase::all_components (void) cons
 {   
     std::list<std::shared_ptr<ComponentBase>> components;
     
-    for (DTuint i = 0; i < ComponentBase::NUM_COMPONENT_TYPES; ++i) {
+    for (uint32_t i = 0; i < ComponentBase::NUM_COMPONENT_TYPES; ++i) {
         if (_components[i]) {
             components.push_back(_components[i]);
         }
@@ -185,7 +185,7 @@ std::list<std::shared_ptr<ComponentBase>> ObjectBase::all_components (void) cons
 
 std::shared_ptr<ComponentBase> ObjectBase::component_by_name (const std::string &name)
 {
-    for (DTuint i = 0; i < ComponentBase::NUM_COMPONENT_TYPES; ++i) {
+    for (uint32_t i = 0; i < ComponentBase::NUM_COMPONENT_TYPES; ++i) {
         if (_components[i] && (_components[i]->name() == name)) {
             return _components[i];
         }

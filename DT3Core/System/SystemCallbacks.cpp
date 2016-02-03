@@ -20,10 +20,10 @@ namespace DT3 {
 //==============================================================================
 
 CallbackList<>                                          SystemCallbacks::_screenInitedCB;
-CallbackList<DTuint,DTuint>                             SystemCallbacks::_screenOpenedCB;
+CallbackList<uint32_t,uint32_t>                             SystemCallbacks::_screenOpenedCB;
 CallbackList<>                                          SystemCallbacks::_screenClosedCB;
 CallbackList<>                                          SystemCallbacks::_screenSwapCB;
-CallbackList<DTuint,DTuint>                             SystemCallbacks::_screenChangedCB;
+CallbackList<uint32_t,uint32_t>                             SystemCallbacks::_screenChangedCB;
 
 CallbackList<World*, ComponentBase*>                        SystemCallbacks::_addComponentCB;
 CallbackList<World*, ComponentBase*>                        SystemCallbacks::_removeComponentCB;
@@ -39,8 +39,8 @@ CallbackList<Event*,Event*>                             SystemCallbacks::_connec
 CallbackList<Event*,Event*>                             SystemCallbacks::_disconnectEventCB;
 
 CallbackList<const TouchEvent*>                         SystemCallbacks::_touchEventCB;
-CallbackList<DTuint,DTushort>                           SystemCallbacks::_keyDownEventCB;
-CallbackList<DTuint,DTushort>                           SystemCallbacks::_keyUpEventCB;
+CallbackList<uint32_t,uint16_t>                           SystemCallbacks::_keyDownEventCB;
+CallbackList<uint32_t,uint16_t>                           SystemCallbacks::_keyUpEventCB;
 CallbackList<>                                          SystemCallbacks::_backButtonEventCB;
 CallbackList<>                                          SystemCallbacks::_menuButtonEventCB;
 

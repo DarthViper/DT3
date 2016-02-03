@@ -49,13 +49,13 @@ Archive &	ArchiveBinaryBufferWriter::operator << (const ArchiveData& data)
 
 void ArchiveBinaryBufferWriter::push_domain (const std::string &domain)
 {
-	DTubyte marker = 0xFF;
+	uint8_t marker = 0xFF;
 	_buffer << marker;
 }
 
 void ArchiveBinaryBufferWriter::pop_domain (void)
 {
-	DTubyte marker = 0xAA;
+	uint8_t marker = 0xAA;
 	_buffer << marker;
 }
 

@@ -128,7 +128,7 @@ DTerr PNGWriter::write (const FilePath &pathname, const std::shared_ptr<TextureR
 
     Color4b *buffer = (Color4b*) tex->buffer();
     
-	for (DTint k = 0; k < tex->height(); k++)
+	for (int32_t k = 0; k < tex->height(); k++)
 		row_pointers[k] = (png_bytep) &(buffer[tex->width() * (tex->height() - k - 1)]);
 
 	//write out the entire image data in one call

@@ -101,11 +101,11 @@ void ScriptingKeyframesGridImageData::archive (const std::shared_ptr<Archive> &a
     *archive << ARCHIVE_PLUG(_t, DATA_PERSISTENT | DATA_SETTABLE);
     *archive << ARCHIVE_PLUG(_out, DATA_PERSISTENT);
 
-    DTint keyCount = (DTint) _keyframes.size();
+    int32_t keyCount = (int32_t) _keyframes.size();
     *archive << ARCHIVE_DATA(keyCount,DATA_PERSISTENT);
     _keyframes.resize(keyCount);
     
-    for (DTint i = 0; i < keyCount; ++i) {
+    for (int32_t i = 0; i < keyCount; ++i) {
         *archive << ARCHIVE_DATA_RAW(_keyframes[i]._time, DATA_PERSISTENT);
         *archive << ARCHIVE_DATA_RAW(_keyframes[i]._value, DATA_PERSISTENT);
 
@@ -119,23 +119,23 @@ void ScriptingKeyframesGridImageData::archive (const std::shared_ptr<Archive> &a
 //==============================================================================
 //==============================================================================
 
-DTint  ScriptingKeyframesGridImageData::set_key_time (DTint k, DTfloat time)
+int32_t  ScriptingKeyframesGridImageData::set_key_time (int32_t k, DTfloat time)
 {
 	PROFILER(SCRIPTING);
 
-	DTint oldid = _keyframes[k]._id;
+	int32_t oldid = _keyframes[k]._id;
 	
 	_keyframes[k]._time = time;
 	std::sort(_keyframes.begin(), _keyframes.end());
 	
 	for (std::size_t i = 0; i < _keyframes.size(); ++i)
 		if (oldid == _keyframes[i]._id)
-			return static_cast<DTint>(i);
+			return static_cast<int32_t>(i);
 			
 	return -1;
 }
 
-void  ScriptingKeyframesGridImageData::clear_key (DTint k)
+void  ScriptingKeyframesGridImageData::clear_key (int32_t k)
 {
 	PROFILER(SCRIPTING);
 
@@ -209,7 +209,7 @@ bool ScriptingKeyframesGridImageData::compute (const PlugBase *plug)
 		
 		// Scan for the best key
 		if (_keyframe_cache < 0)									_keyframe_cache = 0;
-		else if (_keyframe_cache > (DTint) _keyframes.size() - 2)	_keyframe_cache = (DTint) _keyframes.size() - 2;
+		else if (_keyframe_cache > (int32_t) _keyframes.size() - 2)	_keyframe_cache = (int32_t) _keyframes.size() - 2;
 				
 		while (1) {
 			if (t < _keyframes[_keyframe_cache]._time) {
@@ -221,8 +221,8 @@ bool ScriptingKeyframesGridImageData::compute (const PlugBase *plug)
 				}
 			} else if (t > _keyframes[_keyframe_cache+1]._time) {
 				++_keyframe_cache;
-				if (_keyframe_cache > (DTint) _keyframes.size() - 2) {
-					_keyframe_cache = (DTint) _keyframes.size() - 2;
+				if (_keyframe_cache > (int32_t) _keyframes.size() - 2) {
+					_keyframe_cache = (int32_t) _keyframes.size() - 2;
 					_out = _keyframes[_keyframe_cache+1]._value;
 					break;
 				}

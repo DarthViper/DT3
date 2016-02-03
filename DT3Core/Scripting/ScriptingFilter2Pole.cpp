@@ -126,7 +126,7 @@ void ScriptingFilter2Pole::archive (const std::shared_ptr<Archive> &archive)
     *archive << ARCHIVE_DATA_ACCESSORS("Freq_3db", ScriptingFilter2Pole::freq3db, ScriptingFilter2Pole::set_freq3db, DATA_PERSISTENT | DATA_SETTABLE);
     *archive << ARCHIVE_DATA_ACCESSORS("Freq_Sampling", ScriptingFilter2Pole::freq_sampling, ScriptingFilter2Pole::set_freq_sampling, DATA_PERSISTENT | DATA_SETTABLE);
 
-    for (DTuint i = 0; i < _passes.size(); ++i) {
+    for (uint32_t i = 0; i < _passes.size(); ++i) {
         *archive << ARCHIVE_DATA_RAW(_passes[i], DATA_PERSISTENT);
     }
     
@@ -142,7 +142,7 @@ void ScriptingFilter2Pole::tick (const DTfloat dt)
 
     if (!_initialized) {
         _passes.resize(_num_passes);
-        for (DTuint i = 0; i < _passes.size(); ++i) {
+        for (uint32_t i = 0; i < _passes.size(); ++i) {
             _passes[i].initialize(_type, _num_passes, _freq_3db, _freq_sampling, _in);
         }
         
@@ -151,7 +151,7 @@ void ScriptingFilter2Pole::tick (const DTfloat dt)
 
     DTfloat out = _in;
     
-    for (DTuint i = 0; i < _passes.size(); ++i) {
+    for (uint32_t i = 0; i < _passes.size(); ++i) {
         out = _passes[i].filter(out);
     }
     

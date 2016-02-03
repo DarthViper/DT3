@@ -54,15 +54,15 @@ class ScriptingCounter: public ScriptingBase {
         void                        event_reset             (PlugNode *sender);
 
     private:
-        Plug<DTint>                 _min;
-        Plug<DTint>                 _max;
+        Plug<int32_t>                 _min;
+        Plug<int32_t>                 _max;
         Plug<bool>				_wrap;
 
         Event                       _incr_e;
         Event                       _decr_e;
         Event                       _reset_e;
 
-        Plug<DTint>                 _out;
+        Plug<int32_t>                 _out;
 };
 
 //==============================================================================

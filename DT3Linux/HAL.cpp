@@ -55,7 +55,7 @@ GLOBAL_STATIC_DESTRUCTION(0,HAL::destroy())
 
 #if DT3_OS == DT3_MACOSX
     // Restore state for displays
-    const DTint         MAX_DISPLAYS = 32;
+    const int32_t         MAX_DISPLAYS = 32;
     CGDisplayModeRef    g_display_restore_state[MAX_DISPLAYS];
 #endif
 
@@ -159,7 +159,7 @@ void HAL::run_on_command_line (const std::string &command, const std::vector<std
 //==============================================================================
 //==============================================================================
 # if 0
-void HAL::display_modes (std::map<DTint, std::vector<DisplayMode>> &modes)
+void HAL::display_modes (std::map<int32_t, std::vector<DisplayMode>> &modes)
 {
     modes.clear();
 
@@ -172,7 +172,7 @@ void HAL::display_modes (std::map<DTint, std::vector<DisplayMode>> &modes)
     CGGetActiveDisplayList (MAX_DISPLAYS, display_array, &numDisplays);
 
 
-    for(DTuint i = 0; i < numDisplays; i++) {
+    for(uint32_t i = 0; i < numDisplays; i++) {
 
         // get a list of display modes for the display
         CFArrayRef mode_list = ::CGDisplayCopyAllDisplayModes(display_array[i],NULL);
@@ -180,7 +180,7 @@ void HAL::display_modes (std::map<DTint, std::vector<DisplayMode>> &modes)
 
         std::vector<DisplayMode> modes_for_display;
 
-        for(DTuint j = 0; j < count; j++) {
+        for(uint32_t j = 0; j < count; j++) {
 
             // look at each mode in the available list
             CGDisplayModeRef cg_mode = (CGDisplayModeRef)CFArrayGetValueAtIndex(mode_list, j);
@@ -189,8 +189,8 @@ void HAL::display_modes (std::map<DTint, std::vector<DisplayMode>> &modes)
             //if (!stretched || !CFBooleanGetValue(stretched))	continue;
 
             //CFNumberRef bitsPerPixel = (CFNumberRef)CFDictionaryGetValue(mode, kCGDisplayBitsPerPixel);
-            DTint width = static_cast<DTint>(::CGDisplayModeGetWidth(cg_mode));
-            DTint height = static_cast<DTint>(::CGDisplayModeGetHeight(cg_mode));
+            int32_t width = static_cast<int32_t>(::CGDisplayModeGetWidth(cg_mode));
+            int32_t height = static_cast<int32_t>(::CGDisplayModeGetHeight(cg_mode));
             DTdouble refresh = static_cast<DTdouble>(::CGDisplayModeGetRefreshRate(cg_mode));
 
             CFStringRef pixelEncoding = ::CGDisplayModeCopyPixelEncoding(cg_mode);
@@ -224,7 +224,7 @@ void HAL::display_modes (std::map<DTint, std::vector<DisplayMode>> &modes)
 
 }
 
-void HAL::switch_display_mode (DTint display, DisplayMode mode)
+void HAL::switch_display_mode (int32_t display, DisplayMode mode)
 {
 
 #if DT3_OS == DT3_MACOSX
@@ -245,8 +245,8 @@ void HAL::switch_display_mode (DTint display, DisplayMode mode)
 
         cg_mode = (CGDisplayModeRef)CFArrayGetValueAtIndex (mode_list, index);
 
-        DTint width = (DTint) ::CGDisplayModeGetWidth(cg_mode);
-        DTint height = (DTint) ::CGDisplayModeGetHeight(cg_mode);
+        int32_t width = (int32_t) ::CGDisplayModeGetWidth(cg_mode);
+        int32_t height = (int32_t) ::CGDisplayModeGetHeight(cg_mode);
         CFStringRef pixelEncoding = ::CGDisplayModeCopyPixelEncoding(cg_mode);
 
         if (height == mode.height() && width == mode.width() && CFStringCompare(pixelEncoding,CFSTR(IO32BitDirectPixels),0) == kCFCompareEqualTo) {
@@ -269,7 +269,7 @@ void HAL::switch_display_mode (DTint display, DisplayMode mode)
 #endif
 
 }
-void HAL::display_rect (DTint display, DTint &x, DTint &y, DTint &width, DTint &height)
+void HAL::display_rect (int32_t display, int32_t &x, int32_t &y, int32_t &width, int32_t &height)
 {
 #if DT3_OS == DT3_MACOSX
 
@@ -278,10 +278,10 @@ void HAL::display_rect (DTint display, DTint &x, DTint &y, DTint &width, DTint &
     ::CGGetActiveDisplayList (MAX_DISPLAYS, display_array, &numDisplays);
 
     CGRect r = ::CGDisplayBounds (display_array[display]);
-    x = static_cast<DTint>(r.origin.x);
-    y = static_cast<DTint>(r.origin.y);
-    width = static_cast<DTint>(r.size.width);
-    height = static_cast<DTint>(r.size.height);
+    x = static_cast<int32_t>(r.origin.x);
+    y = static_cast<int32_t>(r.origin.y);
+    width = static_cast<int32_t>(r.size.width);
+    height = static_cast<int32_t>(r.size.height);
 
 #endif
 }
@@ -306,7 +306,7 @@ void HAL::launch_editor (const FilePath &path)
 //==============================================================================
 //==============================================================================
 
-DTuint HAL::num_CPU_cores (void)
+uint32_t HAL::num_CPU_cores (void)
 {
     return std::thread::hardware_concurrency();
 }
@@ -334,13 +334,13 @@ bool HAL::delete_file (const FilePath &file)
     return true;
 }
 
-DTuint64 HAL::modification_date (const FilePath &file)
+uint64_t HAL::modification_date (const FilePath &file)
 {
     struct stat buffer;
     if (stat(file.full_path().c_str(), &buffer))
         return 0;
 
-    return static_cast<DTuint>(buffer.st_mtime);
+    return static_cast<uint32_t>(buffer.st_mtime);
 }
 
 bool HAL::is_dir (const FilePath &file)
@@ -510,7 +510,7 @@ std::string HAL::region (void)
     CFLocaleRef locale_ref = ::CFLocaleCopyCurrent();
     CFTypeRef countryRef = ::CFLocaleGetValue(locale_ref, kCFLocaleCountryCode);
 
-    const DTuint MAX_LOCALE = 128;
+    const uint32_t MAX_LOCALE = 128;
     DTcharacter countrycode_c[MAX_LOCALE];
     ::CFStringGetCString((CFStringRef) countryRef, countrycode_c, MAX_LOCALE, kCFStringEncodingASCII);
 
@@ -528,7 +528,7 @@ std::string HAL::language (void)
     CFArrayRef langs = ::CFLocaleCopyPreferredLanguages();
     CFStringRef langCode = (CFStringRef) ::CFArrayGetValueAtIndex (langs, 0);
 
-    const DTuint MAX_LANG = 128;
+    const uint32_t MAX_LANG = 128;
     DTcharacter languagecode_c[MAX_LANG];
     ::CFStringGetCString((CFStringRef) langCode, languagecode_c, MAX_LANG, kCFStringEncodingASCII);
 
@@ -555,7 +555,7 @@ std::map<StringCopier, Globals::GlobalsEntry> HAL::load_globals (void)
     std::map<StringCopier, Globals::GlobalsEntry> g;
     for(QString name : prefs.allKeys()) {
         QString value = prefs.value(name).toString();
-        DTuint lifetime = Globals::PERSISTENT;
+        uint32_t lifetime = Globals::PERSISTENT;
 
         if (name.startsWith('-')) {
             name.remove(0,1);

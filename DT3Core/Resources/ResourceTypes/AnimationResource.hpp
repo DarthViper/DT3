@@ -72,18 +72,18 @@ class AnimationResource: public Resource {
 
         /// Gets the number of animation tracks
         /// \return number of tracks
-        DTuint                                  num_tracks          (void) const				{	return static_cast<DTuint>(_tracks.size());	}
+        uint32_t                                  num_tracks          (void) const				{	return static_cast<uint32_t>(_tracks.size());	}
 
         /// Gets the animation track
         /// \param track index of track
         /// \return animation track
-        const std::shared_ptr<AnimationTrack>&  track               (DTuint track) const		{	return _tracks[track];      }
+        const std::shared_ptr<AnimationTrack>&  track               (uint32_t track) const		{	return _tracks[track];      }
 
 
 
         /// Sets the rate at which the animation plays
         /// \param fps frames per second
-        void                                    set_fps				(DTuint fps)				{	_fps = fps;                 }
+        void                                    set_fps				(uint32_t fps)				{	_fps = fps;                 }
 
         /// Gets the rate at which the animation plays
         /// \return frames per second

@@ -113,7 +113,7 @@ namespace {
             :   _sort_horz(sort_horz)
         {}
     
-        DTint operator() (const std::shared_ptr<WorldNode> &a, const std::shared_ptr<WorldNode> &b) const {
+        int32_t operator() (const std::shared_ptr<WorldNode> &a, const std::shared_ptr<WorldNode> &b) const {
             if (_sort_horz) {
                 
                 if (a->node_position().x > b->node_position().x) return 1;
@@ -172,8 +172,8 @@ CommandResult WorldNode_cmd::do_align_nodes (CommandContext &ctx, const CommandP
 
     
     // Check the orientation of the existing nodes
-    DTuint horz_count = 0;
-    DTuint vert_count = 0;
+    uint32_t horz_count = 0;
+    uint32_t vert_count = 0;
     
     FOR_EACH (i,nodes) {
         FOR_EACH (j,nodes) {            
@@ -199,14 +199,14 @@ CommandResult WorldNode_cmd::do_align_nodes (CommandContext &ctx, const CommandP
     
     if (sort_horz) {
         
-        for (DTuint i = 0; i < nodes.size(); ++i) {
+        for (uint32_t i = 0; i < nodes.size(); ++i) {
             nodes[i]->set_node_position(origin);
             origin.x += HORZ_SPACING;
         }
     
     } else {
     
-        for (DTuint i = 0; i < nodes.size(); ++i) {
+        for (uint32_t i = 0; i < nodes.size(); ++i) {
             nodes[i]->set_node_position(origin);
             origin.y += VERT_SPACING;
         }

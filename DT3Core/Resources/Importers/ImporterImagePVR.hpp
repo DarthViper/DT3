@@ -67,9 +67,9 @@ class ImporterImagePVR: public ImporterImage {
     private:
         DTerr                       import              (   const FilePath &pathname,
                                                             const std::string &args,
-                                                            DTuint &width,
-                                                            DTuint &height,
-                                                            std::shared_ptr<DTubyte> &data,
+                                                            uint32_t &width,
+                                                            uint32_t &height,
+                                                            std::shared_ptr<uint8_t> &data,
                                                             DT3GLTextelFormat &format);
 
         // From Apple sample code
@@ -79,19 +79,19 @@ class ImporterImagePVR: public ImporterImage {
         };
 
         struct PVRTexHeader {
-            DTuint headerLength;
-            DTuint height;
-            DTuint width;
-            DTuint numMipmaps;
-            DTuint flags;
-            DTuint dataLength;
-            DTuint bpp;
-            DTuint bitmaskRed;
-            DTuint bitmaskGreen;
-            DTuint bitmaskBlue;
-            DTuint bitmaskAlpha;
-            DTuint pvrTag;
-            DTuint numSurfs;
+            uint32_t headerLength;
+            uint32_t height;
+            uint32_t width;
+            uint32_t numMipmaps;
+            uint32_t flags;
+            uint32_t dataLength;
+            uint32_t bpp;
+            uint32_t bitmaskRed;
+            uint32_t bitmaskGreen;
+            uint32_t bitmaskBlue;
+            uint32_t bitmaskAlpha;
+            uint32_t pvrTag;
+            uint32_t numSurfs;
         };
 };
 

@@ -55,7 +55,7 @@ class NetworkPacket: public BaseClass {
 
         /// Sets the packet data
         /// \param data Packet data
-        void						set_data				(const std::vector<DTubyte> &data);
+        void						set_data				(const std::vector<uint8_t> &data);
 
         /// Sets the packet data
         /// \param data Packet data
@@ -73,7 +73,7 @@ class NetworkPacket: public BaseClass {
 
         /// Raw pointer to data
         /// \return pointer to data
-        DTubyte*					data                    (void) const            {	return (DTubyte*) &_data[0];            }
+        uint8_t*					data                    (void) const            {	return (uint8_t*) &_data[0];            }
 
         /// Raw pointer to data
         /// \return pointer to data
@@ -104,7 +104,7 @@ class NetworkPacket: public BaseClass {
         TimerLores					_time_since_sent;
         TimerLores					_time_since_recv;
 
-        std::vector<DTubyte>        _data;
+        std::vector<uint8_t>        _data;
 
 };
 

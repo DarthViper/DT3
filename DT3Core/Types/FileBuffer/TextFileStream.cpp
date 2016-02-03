@@ -83,12 +83,12 @@ void TextFileStream::read_float_string (DTcharacter buffer[TEMP_BUFFER_SIZE])
                 return;
 
         DTcharacter c = peek();
-        DTushort i = 0;
+        uint16_t i = 0;
 
         while (	i < TEMP_BUFFER_SIZE &&
                         (c == '+' || c == '-' || (c >= '0' && c <= '9') || c == '.' || c == 'e' || c == 'E')  &&
                         _file->g() < (_start + _length)) {
-                _file->read((DTubyte*) &buffer[i++], 1);
+                _file->read((uint8_t*) &buffer[i++], 1);
                 c = peek();
         }
         buffer[i++] = '\0';
@@ -103,71 +103,71 @@ Stream& TextFileStream::operator<< (const bool n)
 {
         std::stringstream ss;
         ss << n;
-        _file->write((const DTubyte*) ss.str().c_str(), ss.str().size());
+        _file->write((const uint8_t*) ss.str().c_str(), ss.str().size());
         return *this;
 }
 
-Stream& TextFileStream::operator<< (const DTbyte n)
+Stream& TextFileStream::operator<< (const int8_t n)
 {
         std::stringstream ss;
         ss << n;
-        _file->write((const DTubyte*) ss.str().c_str(), ss.str().size());
+        _file->write((const uint8_t*) ss.str().c_str(), ss.str().size());
         return *this;
 }
 
-Stream& TextFileStream::operator<< (const DTshort n)
+Stream& TextFileStream::operator<< (const int16_t n)
 {
         std::stringstream ss;
         ss << n;
-        _file->write((const DTubyte*) ss.str().c_str(), ss.str().size());
+        _file->write((const uint8_t*) ss.str().c_str(), ss.str().size());
         return *this;
 }
 
-Stream& TextFileStream::operator<< (const DTint n)
+Stream& TextFileStream::operator<< (const int32_t n)
 {
         std::stringstream ss;
         ss << n;
-        _file->write((const DTubyte*) ss.str().c_str(), ss.str().size());
+        _file->write((const uint8_t*) ss.str().c_str(), ss.str().size());
         return *this;
 }
 
-Stream& TextFileStream::operator<< (const DTubyte n)
+Stream& TextFileStream::operator<< (const uint8_t n)
 {
         std::stringstream ss;
         ss << n;
-        _file->write((const DTubyte*) ss.str().c_str(), ss.str().size());
+        _file->write((const uint8_t*) ss.str().c_str(), ss.str().size());
         return *this;
 }
 
-Stream& TextFileStream::operator<< (const DTushort n)
+Stream& TextFileStream::operator<< (const uint16_t n)
 {
         std::stringstream ss;
         ss << n;
-        _file->write((const DTubyte*) ss.str().c_str(), ss.str().size());
+        _file->write((const uint8_t*) ss.str().c_str(), ss.str().size());
         return *this;
 }
 
-Stream& TextFileStream::operator<< (const DTuint n)
+Stream& TextFileStream::operator<< (const uint32_t n)
 {
         std::stringstream ss;
         ss << n;
-        _file->write((const DTubyte*) ss.str().c_str(), ss.str().size());
+        _file->write((const uint8_t*) ss.str().c_str(), ss.str().size());
         return *this;
 }
 
-Stream& TextFileStream::operator<< (const DTint64 n)
+Stream& TextFileStream::operator<< (const int64_t n)
 {
         std::stringstream ss;
         ss << n;
-        _file->write((const DTubyte*) ss.str().c_str(), ss.str().size());
+        _file->write((const uint8_t*) ss.str().c_str(), ss.str().size());
         return *this;
 }
 
-Stream& TextFileStream::operator<< (const DTuint64 n)
+Stream& TextFileStream::operator<< (const uint64_t n)
 {
         std::stringstream ss;
         ss << n;
-        _file->write((const DTubyte*) ss.str().c_str(), ss.str().size());
+        _file->write((const uint8_t*) ss.str().c_str(), ss.str().size());
         return *this;
 }
 
@@ -176,7 +176,7 @@ Stream& TextFileStream::operator<< (const DTsize n)
 {
         std::stringstream ss;
         ss << n;
-        _file->write((const DTubyte*) ss.str().c_str(), ss.str().size());
+        _file->write((const uint8_t*) ss.str().c_str(), ss.str().size());
         return *this;
 }
 #endif
@@ -187,7 +187,7 @@ Stream& TextFileStream::operator<< (const DTfloat n)
     ss.precision(7);
     ss.setf(std::ios::showpoint);
         ss << n;
-        _file->write((const DTubyte*) ss.str().c_str(), ss.str().size());
+        _file->write((const uint8_t*) ss.str().c_str(), ss.str().size());
         return *this;
 }
 
@@ -197,7 +197,7 @@ Stream& TextFileStream::operator<< (const DTdouble n)
     ss.precision(17);
     ss.setf(std::ios::showpoint);
         ss << n;
-        _file->write((const DTubyte*) ss.str().c_str(), ss.str().size());
+        _file->write((const uint8_t*) ss.str().c_str(), ss.str().size());
         return *this;
 }
 
@@ -205,7 +205,7 @@ Stream& TextFileStream::operator<< (const DTlonglong n)
 {
         std::stringstream ss;
         ss << n;
-        _file->write((const DTubyte*) ss.str().c_str(), ss.str().size());
+        _file->write((const uint8_t*) ss.str().c_str(), ss.str().size());
         return *this;
 }
 
@@ -213,7 +213,7 @@ Stream& TextFileStream::operator<< (const DTcharacter n)
 {
         std::stringstream ss;
         ss << n;
-        _file->write((const DTubyte*) ss.str().c_str(), ss.str().size());
+        _file->write((const uint8_t*) ss.str().c_str(), ss.str().size());
         return *this;
 }
 
@@ -221,7 +221,7 @@ Stream& TextFileStream::operator<< (const char* n)
 {
         std::stringstream ss;
         ss << n;
-        _file->write((const DTubyte*) ss.str().c_str(), ss.str().size());
+        _file->write((const uint8_t*) ss.str().c_str(), ss.str().size());
         return *this;
 }
 
@@ -229,7 +229,7 @@ Stream& TextFileStream::operator<< (const std::string &n)
 {
         std::stringstream ss;
         ss << n.c_str();
-        _file->write((const DTubyte*) ss.str().c_str(), ss.str().size());
+        _file->write((const uint8_t*) ss.str().c_str(), ss.str().size());
         return *this;
 }
 
@@ -244,67 +244,67 @@ Stream& TextFileStream::operator>> (bool &n)
         return *this;
 }
 
-Stream& TextFileStream::operator>> (DTbyte &n)
+Stream& TextFileStream::operator>> (int8_t &n)
 {
         DTcharacter buffer[TEMP_BUFFER_SIZE];
         read_float_string (buffer);
-        n = MoreStrings::cast_from_string<DTbyte>(buffer);
+        n = MoreStrings::cast_from_string<int8_t>(buffer);
         return *this;
 }
 
-Stream& TextFileStream::operator>> (DTshort &n)
+Stream& TextFileStream::operator>> (int16_t &n)
 {
         DTcharacter buffer[TEMP_BUFFER_SIZE];
         read_float_string (buffer);
-        n = MoreStrings::cast_from_string<DTshort>(buffer);
+        n = MoreStrings::cast_from_string<int16_t>(buffer);
         return *this;
 }
 
-Stream& TextFileStream::operator>> (DTint &n)
+Stream& TextFileStream::operator>> (int32_t &n)
 {
         DTcharacter buffer[TEMP_BUFFER_SIZE];
         read_float_string (buffer);
-        n = MoreStrings::cast_from_string<DTint>(buffer);
+        n = MoreStrings::cast_from_string<int32_t>(buffer);
         return *this;
 }
 
-Stream& TextFileStream::operator>> (DTubyte &n)
+Stream& TextFileStream::operator>> (uint8_t &n)
 {
         DTcharacter buffer[TEMP_BUFFER_SIZE];
         read_float_string (buffer);
-        n = MoreStrings::cast_from_string<DTubyte>(buffer);
+        n = MoreStrings::cast_from_string<uint8_t>(buffer);
         return *this;
 }
 
-Stream& TextFileStream::operator>> (DTushort &n)
+Stream& TextFileStream::operator>> (uint16_t &n)
 {
         DTcharacter buffer[TEMP_BUFFER_SIZE];
         read_float_string (buffer);
-        n = MoreStrings::cast_from_string<DTushort>(buffer);
+        n = MoreStrings::cast_from_string<uint16_t>(buffer);
         return *this;
 }
 
-Stream& TextFileStream::operator>> (DTuint &n)
+Stream& TextFileStream::operator>> (uint32_t &n)
 {
         DTcharacter buffer[TEMP_BUFFER_SIZE];
         read_float_string (buffer);
-        n = MoreStrings::cast_from_string<DTuint>(buffer);
+        n = MoreStrings::cast_from_string<uint32_t>(buffer);
         return *this;
 }
 
-Stream& TextFileStream::operator>> (DTint64 &n)
+Stream& TextFileStream::operator>> (int64_t &n)
 {
         DTcharacter buffer[TEMP_BUFFER_SIZE];
         read_float_string (buffer);
-        n = MoreStrings::cast_from_string<DTint64>(buffer);
+        n = MoreStrings::cast_from_string<int64_t>(buffer);
         return *this;
 }
 
-Stream& TextFileStream::operator>> (DTuint64 &n)
+Stream& TextFileStream::operator>> (uint64_t &n)
 {
         DTcharacter buffer[TEMP_BUFFER_SIZE];
         read_float_string (buffer);
-        n = MoreStrings::cast_from_string<DTuint64>(buffer);
+        n = MoreStrings::cast_from_string<uint64_t>(buffer);
         return *this;
 }
 
@@ -346,7 +346,7 @@ Stream& TextFileStream::operator>> (DTcharacter &n)
 {
     DTsize file_g = _file->g();
         _eof = (file_g == -1) || (file_g >= (_start + _length));
-        _file->read((DTubyte*) &n, 1);
+        _file->read((uint8_t*) &n, 1);
 
     update_progress();
 
@@ -365,10 +365,10 @@ Stream& TextFileStream::operator>> (std::string &n)
 
         DTcharacter buffer[TEMP_BUFFER_SIZE];
         DTcharacter c = peek();
-        DTushort i = 0;
+        uint16_t i = 0;
 
         while (i < TEMP_BUFFER_SIZE-1 && c != '\n') {
-            _file->read((DTubyte*) &buffer[i++], 1);
+            _file->read((uint8_t*) &buffer[i++], 1);
             c = peek();
         }
         buffer[i++] = '\0';
@@ -390,14 +390,14 @@ Stream& TextFileStream::operator>> (std::string &n)
 
         DTcharacter buffer[TEMP_BUFFER_SIZE];
         DTcharacter c = peek();
-        DTushort i = 0;
+        uint16_t i = 0;
 
 #if DT3_COMPILER == DT3_VISUALC || DT3_OS == DT3_ANDROID
         while (i < TEMP_BUFFER_SIZE-1 && !isspace(c) ) {
 #else
         while (i < TEMP_BUFFER_SIZE-1 && !std::isspace(c) ) {
 #endif
-            _file->read((DTubyte*) &buffer[i++], 1);
+            _file->read((uint8_t*) &buffer[i++], 1);
             c = peek();
         }
         buffer[i++] = '\0';
@@ -459,7 +459,7 @@ bool TextFileStream::is_eof (void)
         return _eof;
 }
 
-void TextFileStream::line (DTcharacter *buffer, DTuint size)
+void TextFileStream::line (DTcharacter *buffer, uint32_t size)
 {
     DTsize file_g = _file->g();
         _eof = (file_g == -1) || (file_g >= (_start + _length));
@@ -467,12 +467,12 @@ void TextFileStream::line (DTcharacter *buffer, DTuint size)
                 return;
 
         DTcharacter c = peek();
-        DTuint i = 0;
+        uint32_t i = 0;
 
         while (i < (size-1) && _file->g() < (_start + _length) && (c != '\n' && c != '\r' && c != -1) ) {
 
                 // read the character
-                _file->read((DTubyte*) &buffer[i++], 1);
+                _file->read((uint8_t*) &buffer[i++], 1);
 
                 c = peek();
         }

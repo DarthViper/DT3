@@ -59,7 +59,7 @@ void FileHandleUncompressedFD_test::file_open_cb (const FilePath &path, std::sha
 {
     if (path.full_path() == "Asset@Troika-debug.apk") {
         std::string pp = "/Users/tod/Documents/GameProjects/kaiser/trunk/install/data/Troika-debug.apk";
-        DTint fd = ::open (pp.c_str(), 0);
+        int32_t fd = ::open (pp.c_str(), 0);
         auto fh = FileHandleUncompressedFD::create();
         fh->set_fd(fd);
 
@@ -69,7 +69,7 @@ void FileHandleUncompressedFD_test::file_open_cb (const FilePath &path, std::sha
 
     } else if (path.full_path() == "Asset@config.txt") {
         std::string pp = "/Users/tod/Documents/GameProjects/kaiser/trunk/install/data/Troika-debug.apk";
-        DTint fd = ::open (pp.c_str(), 0);
+        int32_t fd = ::open (pp.c_str(), 0);
         auto fh = FileHandleUncompressedFD::create();
         fh->set_fd(fd);
 
@@ -87,7 +87,7 @@ void FileHandleUncompressedFD_test::file_open_cb (const FilePath &path, std::sha
 
         if (file_length == file_uncompressed_length) {
             std::string pp = "/Users/tod/Documents/GameProjects/kaiser/trunk/install/data/Troika-debug.apk";
-            DTint fd = ::open (pp.c_str(), 0);
+            int32_t fd = ::open (pp.c_str(), 0);
             auto fh = FileHandleUncompressedFD::create();
             fh->set_fd(fd);
 
@@ -97,7 +97,7 @@ void FileHandleUncompressedFD_test::file_open_cb (const FilePath &path, std::sha
 
         } else {
             std::string pp = "/Users/tod/Documents/GameProjects/kaiser/trunk/install/data/Troika-debug.apk";
-            DTint fd = ::open (pp.c_str(), 0);
+            int32_t fd = ::open (pp.c_str(), 0);
             auto fh = FileHandleCompressedFD::create();
             fh->set_fd(fd,file_start,file_length,file_uncompressed_length);
 
@@ -135,7 +135,7 @@ void FileHandleUncompressedFD_test::run_test (void)
 //	DTerr error = FileManager::open(infile, pathname, true, NULL);
 //    TEST_ASSERTION(error == DT3_ERR_NONE);
 //
-//    DTubyte buffer[1024];
+//    uint8_t buffer[1024];
 //	DTsize size = infile.read_raw(buffer, s.length());
 //    TEST_ASSERTION(size == s.length());
 

@@ -20,10 +20,10 @@ namespace DT3 {
 /// Standard class constructors/destructors
 //==============================================================================
 
-Weights::Weights (	DTushort bone_1, DTfloat weight_1, 
-					DTushort bone_2, DTfloat weight_2,
-					DTushort bone_3, DTfloat weight_3, 
-					DTushort bone_4, DTfloat weight_4)
+Weights::Weights (	uint16_t bone_1, DTfloat weight_1, 
+					uint16_t bone_2, DTfloat weight_2,
+					uint16_t bone_3, DTfloat weight_3, 
+					uint16_t bone_4, DTfloat weight_4)
 	:	_bone_1		(bone_1),
 		_bone_2		(bone_2),
 		_bone_3		(bone_3),
@@ -67,10 +67,10 @@ Weights& Weights::operator = (const Weights &rhs)
 //==============================================================================
 //==============================================================================
 
-void Weights::set (	DTushort bone_1, DTfloat weight_1, 
-					DTushort bone_2, DTfloat weight_2,
-					DTushort bone_3, DTfloat weight_3, 
-					DTushort bone_4, DTfloat weight_4)
+void Weights::set (	uint16_t bone_1, DTfloat weight_1, 
+					uint16_t bone_2, DTfloat weight_2,
+					uint16_t bone_3, DTfloat weight_3, 
+					uint16_t bone_4, DTfloat weight_4)
 {
 	_bone_1 = bone_1;
 	_bone_2 = bone_2;

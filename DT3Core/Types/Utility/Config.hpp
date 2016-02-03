@@ -34,7 +34,7 @@ class Config {
 
         /// Returns the engine version
         /// \return engine version
-        static DTuint				engine_version      (void);
+        static uint32_t				engine_version      (void);
 
 };
 

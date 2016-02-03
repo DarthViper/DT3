@@ -83,12 +83,12 @@ class HAL {
 
                 /// Returns a list of supported display modes
                 /// \param modes Display modes
-        //static void                 display_modes           (std::map<DTint, std::vector<DisplayMode>> &modes);
+        //static void                 display_modes           (std::map<int32_t, std::vector<DisplayMode>> &modes);
 
                 /// Switches to a display mode
                 /// \param display index of display
                 /// \param mode resolution of display
-        //static void                 switch_display_mode     (DTint display, DisplayMode mode);
+        //static void                 switch_display_mode     (int32_t display, DisplayMode mode);
 
                 /// Returns the rectangle of the display
                 /// \param display index of display
@@ -96,7 +96,7 @@ class HAL {
                 /// \param y y location
                 /// \param width width of display
                 /// \param height height of display
-        //static void                 display_rect            (DTint display, DTint &x, DTint &y, DTint &width, DTint &height);
+        //static void                 display_rect            (int32_t display, int32_t &x, int32_t &y, int32_t &width, int32_t &height);
 
         //
         // Web Browser
@@ -109,7 +109,7 @@ class HAL {
         // CPU Query
         //
 
-        static DTuint               num_CPU_cores           (void);
+        static uint32_t               num_CPU_cores           (void);
 
         //
         // File System
@@ -117,7 +117,7 @@ class HAL {
 
         static bool            move_file               (const FilePath &from, const FilePath &to);
         static bool            delete_file             (const FilePath &file);
-        static DTuint64             modification_date       (const FilePath &file);
+        static uint64_t             modification_date       (const FilePath &file);
         static bool            is_dir                  (const FilePath &file);
         static std::string          path_separator          (void);
         static void                 list_directory          (const FilePath &pathname, bool recursive, std::vector<FilePath> &paths);

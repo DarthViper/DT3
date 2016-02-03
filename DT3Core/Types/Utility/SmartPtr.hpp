@@ -92,14 +92,14 @@ class SmartPtrControl {
         /// Description
         /// \param param description
         /// \return description
-        DTint   use_count   (void) const
+        int32_t   use_count   (void) const
         {
             return _shared_count;
         }
 
     private:
-        std::atomic<DTint>   _shared_count;
-        std::atomic<DTint>   _weak_count;
+        std::atomic<int32_t>   _shared_count;
+        std::atomic<int32_t>   _weak_count;
 };
 
 //==============================================================================
@@ -229,7 +229,7 @@ class WeakPtr {
         /// Description
         /// \param param description
         /// \return description
-        DTint       use_count   (void)
+        int32_t       use_count   (void)
         {
             ASSERT(_control->use_count() >= 0);
             return _control->use_count();
@@ -399,7 +399,7 @@ class SharedPtr {
         /// Description
         /// \param param description
         /// \return description
-        DTint       use_count   (void)
+        int32_t       use_count   (void)
         {
             return _control->use_count();
         }

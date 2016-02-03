@@ -62,19 +62,19 @@ class ComponentDrawGridImagePlane: public ComponentBase {
 
         /// Sets the number of grid points in the X direction
         /// \param num_x Number of grid points
-        void                        set_num_x           (const DTuint num_x);
+        void                        set_num_x           (const uint32_t num_x);
 
         /// Returns the number of grid points in the X direction
         /// \return Number of grid points in X
-        DTuint				num_x				(void) const;
+        uint32_t				num_x				(void) const;
 
         /// Sets the number of grid points in the Y direction
         /// \param num_y Number of grid points
-        void                        set_num_y			(const DTuint num_y);
+        void                        set_num_y			(const uint32_t num_y);
 
         /// Returns the number of grid points in the Y direction
         /// \return Number of grid points in Y
-        DTuint				num_y				(void) const;
+        uint32_t				num_y				(void) const;
 
 
         /// Called when this component is added to the owner. Note that this will

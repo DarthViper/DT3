@@ -59,14 +59,14 @@ class GameMainThread {
         static void             process_arguments       (std::vector<std::string> args);
 
         /// Tell the engine that the screen has been shown
-        static void             show_engine             (DTint width, DTint height);
+        static void             show_engine             (int32_t width, int32_t height);
 
         /// Tell the engine that the screen has been hidden
         static void             hide_engine             (void);
 
 
         /// Tell the engine that the screen has been hidden
-        static void             resize                  (DTint width, DTint height);
+        static void             resize                  (int32_t width, int32_t height);
 
 
         /// Send a touch input event
@@ -75,11 +75,11 @@ class GameMainThread {
 
         /// Send a key input event
         /// \param event Key input event
-        static void             key_down_event          (DTuint modifiers, DTushort key);
+        static void             key_down_event          (uint32_t modifiers, uint16_t key);
 
         /// Send a key input event
         /// \param event Key input event
-        static void             key_up_event            (DTuint modifiers, DTushort key);
+        static void             key_up_event            (uint32_t modifiers, uint16_t key);
 
 
         /// Send a back button event (Android only)
@@ -91,7 +91,7 @@ class GameMainThread {
 
         /// Send a orientation changed event
         /// \param orientation new orientation
-        static void             set_orientation         (DTuint orientation);
+        static void             set_orientation         (uint32_t orientation);
 
 
         /// Send an accelerometer event
@@ -130,16 +130,16 @@ class GameMainThread {
         static void             initialize_engine_impl  (void);
         static void             destroy_engine_impl     (void);
         static void             process_arguments_impl  (std::vector<std::string> args);
-        static void             show_engine_impl        (DTint width, DTint height);
+        static void             show_engine_impl        (int32_t width, int32_t height);
         static void             hide_engine_impl        (void);
-        static void             resize_impl             (DTint width, DTint height);
+        static void             resize_impl             (int32_t width, int32_t height);
         static void             loop_impl               (void);
         static void             touch_event_impl        (TouchEvent event);
-        static void             key_down_event_impl     (DTuint modifiers, DTushort key);
-        static void             key_up_event_impl       (DTuint modifiers, DTushort key);
+        static void             key_down_event_impl     (uint32_t modifiers, uint16_t key);
+        static void             key_up_event_impl       (uint32_t modifiers, uint16_t key);
         static void             do_back_button_impl     (void);
         static void             do_menu_button_impl     (void);
-        static void             set_orientation_impl    (DTuint orientation);
+        static void             set_orientation_impl    (uint32_t orientation);
         static void             do_accelerometer_impl   (Vector3 a);
         static void             do_gyro_impl            (Vector3 w);
         static void             do_magnetometer_impl    (Vector3 m);

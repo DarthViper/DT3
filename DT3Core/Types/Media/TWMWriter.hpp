@@ -67,7 +67,7 @@ class TWMWriter {
         };
 
         // Exporting
-        static DTsize   begin_export_section        (BinaryFileStream &file, DTint section);
+        static DTsize   begin_export_section        (BinaryFileStream &file, int32_t section);
         static void     end_export_section          (BinaryFileStream &file, DTsize size_location);
 
 

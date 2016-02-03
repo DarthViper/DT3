@@ -180,7 +180,7 @@ bool ScriptingParticlePositionRandomizer::compute (const PlugBase *plug)
 		std::vector<Vector3> &translations = particles->translations_stream();
 		std::vector<DTfloat> &lifetimes = particles->lifetimes_stream();
 
-		for (DTint i = particles->active_start(); i != particles->active_end(); i = (i + 1) % particles->translations_stream().size()) {
+		for (int32_t i = particles->active_start(); i != particles->active_end(); i = (i + 1) % particles->translations_stream().size()) {
 			if (_continuous || lifetimes[i] == 0.0F) {
 				translations[i].x += MoreMath::random_float() * (_max_x - _min_x) + _min_x;
 				translations[i].y += MoreMath::random_float() * (_max_y - _min_y) + _min_y;

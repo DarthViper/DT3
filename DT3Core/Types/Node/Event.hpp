@@ -34,7 +34,7 @@ class Event {
         DEFINE_TYPE_SIMPLE_BASE(Event)
 
                                             Event       (void);
-                                            Event       (DTushort info);
+                                            Event       (uint16_t info);
                                             Event       (const Event &rhs);
     private:
         Event &                             operator =  (const Event &rhs);
@@ -128,13 +128,13 @@ class Event {
 
 
         // Data indices
-        DTuint                          _info_index:14;         // Index into Event info pool
-        DTuint                          _connection_index:15;   // Index into connections pool
+        uint32_t                          _info_index:14;         // Index into Event info pool
+        uint32_t                          _connection_index:15;   // Index into connections pool
 
         // Flags
-        DTuint                          _is_computing:1;        // Is computing flag
-        DTuint                          _spare_0:1;             // Spare flag
-        DTuint                          _spare_1:1;             // Spare flag
+        uint32_t                          _is_computing:1;        // Is computing flag
+        uint32_t                          _spare_0:1;             // Spare flag
+        uint32_t                          _spare_1:1;             // Spare flag
 
 
         //

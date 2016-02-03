@@ -40,7 +40,7 @@ FileHandleUncompressedFD::~FileHandleUncompressedFD (void)
 //==============================================================================
 //==============================================================================
 
-DTsize FileHandleUncompressedFD::read (DTubyte *buffer, DTsize size)
+DTsize FileHandleUncompressedFD::read (uint8_t *buffer, DTsize size)
 {		
 	DTsize gcount = ::read( _file, (char*)buffer, (size_t) size);
     
@@ -55,7 +55,7 @@ DTsize FileHandleUncompressedFD::read (DTubyte *buffer, DTsize size)
 	return gcount;
 }
 
-void FileHandleUncompressedFD::write (const DTubyte *buffer, DTsize size)
+void FileHandleUncompressedFD::write (const uint8_t *buffer, DTsize size)
 {	
 	::write( _file, (char*)buffer, (size_t) size);
 }
@@ -81,7 +81,7 @@ DTcharacter FileHandleUncompressedFD::peek (void)
     DTcharacter c;
     
     DTsize cur = g();
-    read ( (DTubyte *) &c, 1);
+    read ( (uint8_t *) &c, 1);
     seek_g(cur, FROM_BEGINNING);
 
     return c;
@@ -89,7 +89,7 @@ DTcharacter FileHandleUncompressedFD::peek (void)
 
 void FileHandleUncompressedFD::ignore (void)
 {
-    DTubyte b;
+    uint8_t b;
     read(&b, 1);
 }
 
@@ -121,7 +121,7 @@ DTerr FileHandleUncompressedFD::open_file (const FilePath &pathname, bool read)
 	return DT3_ERR_NONE;
 }
 
-DTerr FileHandleUncompressedFD::set_fd (DTint fd)
+DTerr FileHandleUncompressedFD::set_fd (int32_t fd)
 {
     _file = fd;
     

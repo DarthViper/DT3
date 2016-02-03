@@ -444,7 +444,7 @@ Rectangle GUIObject::children_content_rectangle (void) const
         Rectangle r;
         r.clear();
 
-        DTuint num = 0;
+        uint32_t num = 0;
 
         for (auto &i : c) {
             GUIObject *gui = checked_cast<GUIObject*>(i);
@@ -591,7 +591,7 @@ void GUIObject::clear_anims (void)
 namespace {
 
     struct CompareTouch {
-        DTint operator() (PlaceableObject *a, PlaceableObject *b) const {
+        int32_t operator() (PlaceableObject *a, PlaceableObject *b) const {
           return (a->translation().z > b->translation().z);
         }
     };

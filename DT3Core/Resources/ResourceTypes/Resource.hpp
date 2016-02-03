@@ -99,7 +99,7 @@ class Resource: public BaseClass {
         void                        add_dependencies    (const std::vector<FilePath> &paths);
 
     private:
-        DTuint64					_time_loaded;
+        uint64_t					_time_loaded;
         FilePath					_file_path;
         std::string                 _args;
 

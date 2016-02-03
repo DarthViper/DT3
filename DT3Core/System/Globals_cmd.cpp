@@ -56,7 +56,7 @@ CommandResult Globals_cmd::do_set_global (CommandContext &ctx, const CommandPara
     
     std::string name = p[1];
     std::string value = p[2];
-    DTuint flags = Globals::VOLATILE;
+    uint32_t flags = Globals::VOLATILE;
     
     if (p[3].find("READ_ONLY") != std::string::npos)                     flags = Globals::READ_ONLY;
     else if (p[3].find("VOLATILE") != std::string::npos)                 flags = Globals::VOLATILE;

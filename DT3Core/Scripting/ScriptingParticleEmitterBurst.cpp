@@ -162,8 +162,8 @@ void ScriptingParticleEmitterBurst::emitParticle (void)
 {
 	PROFILER(PARTICLES);
 
-    DTint num = (DTint) (_num + MoreMath::random_float() * _num_variation);
-    for (DTint i = 0; i < num; ++i) {
+    int32_t num = (int32_t) (_num + MoreMath::random_float() * _num_variation);
+    for (int32_t i = 0; i < num; ++i) {
 
         std::shared_ptr<Particles> particles = _out;
         if (!particles || particles->translations_stream().size() <= 0) {
@@ -172,13 +172,13 @@ void ScriptingParticleEmitterBurst::emitParticle (void)
         }
             
         ASSERT(	_max_num > 0 &&
-                static_cast<DTint>(particles->translations_stream().size()) == _max_num &&
-                static_cast<DTint>(particles->lifetimes_stream().size()) == _max_num);
+                static_cast<int32_t>(particles->translations_stream().size()) == _max_num &&
+                static_cast<int32_t>(particles->lifetimes_stream().size()) == _max_num);
         
-        DTint index = particles->active_end();
-        ASSERT (index < static_cast<DTint>(particles->translations_stream().size()));
+        int32_t index = particles->active_end();
+        ASSERT (index < static_cast<int32_t>(particles->translations_stream().size()));
         
-        DTint next_index = (index + 1) % particles->translations_stream().size();
+        int32_t next_index = (index + 1) % particles->translations_stream().size();
                 
         // Check if ring buffer all filled up
         if (next_index == particles->active_start())
@@ -241,11 +241,11 @@ void ScriptingParticleEmitterBurst::tick (const DTfloat dt)
     
     
     ASSERT(	_max_num > 0 &&
-            static_cast<DTint>(particles->translations_stream().size()) == _max_num &&
-            static_cast<DTint>(particles->lifetimes_stream().size()) == _max_num);
+            static_cast<int32_t>(particles->translations_stream().size()) == _max_num &&
+            static_cast<int32_t>(particles->lifetimes_stream().size()) == _max_num);
     
     // Increment lifetimes and expire objects
-    for (DTint i = particles->active_start(); i != particles->active_end(); i = (i + 1) % particles->translations_stream().size()) {
+    for (int32_t i = particles->active_start(); i != particles->active_end(); i = (i + 1) % particles->translations_stream().size()) {
         
         particles->lifetimes_stream()[i] += dt;
         if (particles->lifetimes_stream()[i] >= _max_lifetime)

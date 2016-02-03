@@ -66,7 +66,7 @@ class TextureResource2D: public Resource {
         /// \param width width of texture
         /// \param height height of texture
         /// \param mipmapped mipmapped
-        void                        allocate_rgba_textels   (const DTint width, const DTint height, bool mipmapped);
+        void                        allocate_rgba_textels   (const int32_t width, const int32_t height, bool mipmapped);
 
         /// Sets a 2D texture from a renderer resource bypassing any resource management
         void                        set_resource_textels     (std::shared_ptr<DT3GLTexture2DResource> tex);
@@ -77,7 +77,7 @@ class TextureResource2D: public Resource {
         /// \param textels textel data (can be NULL)
         /// \param format format
         /// \param mipmapped mipmapped
-        void                        set_textels             (const DTint width, const DTint height, std::shared_ptr<DTubyte> &textels, DT3GLTextelFormat format, bool mipmapped, DTuint flags = DT3GL_ACCESS_CPU_NONE | DT3GL_ACCESS_GPU_READ);
+        void                        set_textels             (const int32_t width, const int32_t height, std::shared_ptr<uint8_t> &textels, DT3GLTextelFormat format, bool mipmapped, uint32_t flags = DT3GL_ACCESS_CPU_NONE | DT3GL_ACCESS_GPU_READ);
 
         /// Allocate a compressed 2D texture
         /// \param width width of texture
@@ -85,24 +85,24 @@ class TextureResource2D: public Resource {
         /// \param textels textel data
         /// \param format format
         /// \param mipmapped mipmapped
-        void                        set_textels_compressed  (const DTint width, const DTint height, std::shared_ptr<DTubyte> &textels, DT3GLTextelFormat format, bool mipmapped, DTuint flags = DT3GL_ACCESS_CPU_NONE | DT3GL_ACCESS_GPU_READ);
+        void                        set_textels_compressed  (const int32_t width, const int32_t height, std::shared_ptr<uint8_t> &textels, DT3GLTextelFormat format, bool mipmapped, uint32_t flags = DT3GL_ACCESS_CPU_NONE | DT3GL_ACCESS_GPU_READ);
 
         /// Width of the buffer
         /// \return buffer width
-        DTint						width                   (void) const	{	return _width;	}
+        int32_t						width                   (void) const	{	return _width;	}
 
         /// Height of the buffer
         /// \return buffer height
-        DTint						height                  (void) const	{	return _height;	}
+        int32_t						height                  (void) const	{	return _height;	}
 
         /// Returns the buffer (if available)
         /// \return buffer
-        DTubyte*                    buffer                  (void)          {	_dirty_rectangle.set(0, _width, 0, _height);    return _textels.get();  }
+        uint8_t*                    buffer                  (void)          {	_dirty_rectangle.set(0, _width, 0, _height);    return _textels.get();  }
 
 
         /// Returns format of the texture file
         /// \return format of texture file
-        DTint						format                  (void) const    {	return _format;     }
+        int32_t						format                  (void) const    {	return _format;     }
 
         /// Get the mipmapped flag
         /// \return mipmapped
@@ -113,19 +113,19 @@ class TextureResource2D: public Resource {
         /// \param x x coord
         /// \param y y coord
         /// \return color
-        Color4b                     pixel                   (DTint x, DTint y);
+        Color4b                     pixel                   (int32_t x, int32_t y);
 
         /// Gets a pixel address from the buffer
         /// \param x x coord
         /// \param y y coord
         /// \return address
-        DTubyte*                    pixel_addr              (DTint x, DTint y);
+        uint8_t*                    pixel_addr              (int32_t x, int32_t y);
 
         /// Sets a pixel in the buffer
         /// \param x x coord
         /// \param y y coord
         /// \param pixel color
-        void                        set_pixel               (DTint x, DTint y, const Color4b &pixel);
+        void                        set_pixel               (int32_t x, int32_t y, const Color4b &pixel);
 
         /// Updates texture data
         /// \param dst_x x position to copy the data to
@@ -134,11 +134,11 @@ class TextureResource2D: public Resource {
         /// \param src_width width of data
         /// \param src_height height of data
         /// \param rowbytes bytes per row
-        void                        replace_sub_rectangle   (DTint dst_x, DTint dst_y, const DTubyte *buffer, DTint src_width, DTint src_height, DTint rowbytes = 0);
+        void                        replace_sub_rectangle   (int32_t dst_x, int32_t dst_y, const uint8_t *buffer, int32_t src_width, int32_t src_height, int32_t rowbytes = 0);
 
         /// Activate the resource
         /// \param texture_slot which slot to activate the texture in
-        void                        activate                (DTuint texture_slot);
+        void                        activate                (uint32_t texture_slot);
 
         /// Load the resource
         /// \param pathname path to file
@@ -152,19 +152,19 @@ class TextureResource2D: public Resource {
 
         static void                 reload_if_changed       (void);
 
-        void                        screen_opened           (DTuint width, DTuint height);
+        void                        screen_opened           (uint32_t width, uint32_t height);
         void                        screen_closed           (void);
 
         // Data for 2D and 3D textures
-        std::shared_ptr<DTubyte>                _textels;
+        std::shared_ptr<uint8_t>                _textels;
 
         DT3GLTextelFormat                       _format;
 
-        DTint                                   _width;
-        DTint                                   _height;
+        int32_t                                   _width;
+        int32_t                                   _height;
 
         bool                               _mipmapped;
-        DTuint                                  _flags;
+        uint32_t                                  _flags;
 
         std::shared_ptr<DT3GLTexture2DResource> _resource_2D;
 

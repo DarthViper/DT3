@@ -176,27 +176,27 @@ bool ScriptingSoundMixer::compute (const PlugBase *plug)
                 sound_packet_out.set_frequency(_sound_packet_buffer_1.frequency());
                 sound_packet_out.set_num_bytes(buffer_size);
 
-                DTshort *data_in_1 = (DTshort *) _sound_packet_buffer_1.buffer();
-                DTshort *data_in_2 = (DTshort *) _sound_packet_buffer_2.buffer();
-                DTshort *data_out = (DTshort *) sound_packet_out.buffer();
+                int16_t *data_in_1 = (int16_t *) _sound_packet_buffer_1.buffer();
+                int16_t *data_in_2 = (int16_t *) _sound_packet_buffer_2.buffer();
+                int16_t *data_out = (int16_t *) sound_packet_out.buffer();
 
                 DTsize num_samples = buffer_size / 2;
                 
                 if (_in_gain_1 == 0.0F && _in_gain_2 != 0.0F) {
-                    for (DTuint s = 0; s < num_samples; ++s) {
-                        data_out[s] = (DTshort) (data_in_2[s] * _in_gain_2);
+                    for (uint32_t s = 0; s < num_samples; ++s) {
+                        data_out[s] = (int16_t) (data_in_2[s] * _in_gain_2);
                     }
                 } else if (_in_gain_1 != 0.0F && _in_gain_2 == 0.0F) {
-                    for (DTuint s = 0; s < num_samples; ++s) {
-                        data_out[s] = (DTshort) (data_in_1[s] * _in_gain_1);
+                    for (uint32_t s = 0; s < num_samples; ++s) {
+                        data_out[s] = (int16_t) (data_in_1[s] * _in_gain_1);
                     }
                 } else if (_in_gain_1 == 0.0F && _in_gain_2 == 0.0F) {
-                    for (DTuint s = 0; s < num_samples; ++s) {
+                    for (uint32_t s = 0; s < num_samples; ++s) {
                         data_out[s] = 0;
                     }
                 } else {
-                    for (DTuint s = 0; s < num_samples; ++s) {
-                        data_out[s] = (DTshort) (( (DTshort) (data_in_1[s] * _in_gain_1) + (DTshort) (data_in_2[s] * _in_gain_2) ) * _output_gain);
+                    for (uint32_t s = 0; s < num_samples; ++s) {
+                        data_out[s] = (int16_t) (( (int16_t) (data_in_1[s] * _in_gain_1) + (int16_t) (data_in_2[s] * _in_gain_2) ) * _output_gain);
                     }
                 }
                 

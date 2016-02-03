@@ -54,16 +54,16 @@ Quaternion::Quaternion (const Matrix3 &rhs)
     else
     {
         // |w| <= 1/2
-        DTint i = 0;
-		static DTint ms_iNext[3] = { 1, 2, 0 };
+        int32_t i = 0;
+		static int32_t ms_iNext[3] = { 1, 2, 0 };
 	
         if ( rhs._m[1][1] > rhs._m[0][0] )
             i = 1;
         if ( rhs._m[2][2] > rhs._m[i][i] )
             i = 2;
 	    
-        DTint j = ms_iNext[i];
-        DTint k = ms_iNext[j];
+        int32_t j = ms_iNext[i];
+        int32_t k = ms_iNext[j];
 
         fRoot = std::sqrt(rhs._m[i][i] - rhs._m[j][j] - rhs._m[k][k] + 1.0F);
         DTfloat* apfQuat[3] = { &x, &y, &z };

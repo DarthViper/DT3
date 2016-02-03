@@ -69,7 +69,7 @@ class GUIController: public PlaceableObject {
         GUITouchEvent                   _touch;
         bool                       _use_stencil;
 
-        void                            draw_gui_recursive          (PlaceableObject *root, const std::shared_ptr<CameraObject> &camera, const Color4f &parent_color, DTint stencil);
+        void                            draw_gui_recursive          (PlaceableObject *root, const std::shared_ptr<CameraObject> &camera, const Color4f &parent_color, int32_t stencil);
 
         std::shared_ptr<CameraObject>   _gui_camera;
 };

@@ -66,12 +66,12 @@ class StaticInitializerCallback {
         /// Description
         /// \param param description
         /// \return description
-        void						set_priority                        (DTuint priority)	{	_priority = priority;	}
+        void						set_priority                        (uint32_t priority)	{	_priority = priority;	}
 
         /// Description
         /// \param param description
         /// \return description
-        DTuint						priority                            (void) const		{	return _priority;		}
+        uint32_t						priority                            (void) const		{	return _priority;		}
 
         /// Description
         /// \param param description
@@ -84,7 +84,7 @@ class StaticInitializerCallback {
         virtual void				destroy                             (void)              {}
 
     private:
-        DTuint						_priority;
+        uint32_t						_priority;
 };
 
 //==============================================================================

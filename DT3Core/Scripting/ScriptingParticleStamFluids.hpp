@@ -57,11 +57,11 @@ class ScriptingParticleStamFluids: public ScriptingBase {
 
         /// Sets number of cells
         /// \param n number of cells
-        void                            set_n                   (const DTint n);
+        void                            set_n                   (const int32_t n);
 
         /// Returns number of cells
         /// return number of cells
-        DTint                           n                       (void) const;
+        int32_t                           n                       (void) const;
 
         /// Registered with world to tick this node
         /// \param dt delta time
@@ -72,10 +72,10 @@ class ScriptingParticleStamFluids: public ScriptingBase {
         // Stam fluid solver
         //
         void    add_source  (DTfloat *x, DTfloat *s, DTfloat dt );
-        void    set_bnd     (DTint b, DTfloat* x );
-        void    lin_solve   (DTint b, DTfloat *x, DTfloat *x0, DTfloat a, DTfloat c );
-        void    diffuse     (DTint b, DTfloat *x, DTfloat *x0, DTfloat diff, DTfloat dt );
-        void    advect      (DTint b, DTfloat *d, DTfloat *d0, DTfloat *u, DTfloat *v, DTfloat dt );
+        void    set_bnd     (int32_t b, DTfloat* x );
+        void    lin_solve   (int32_t b, DTfloat *x, DTfloat *x0, DTfloat a, DTfloat c );
+        void    diffuse     (int32_t b, DTfloat *x, DTfloat *x0, DTfloat diff, DTfloat dt );
+        void    advect      (int32_t b, DTfloat *d, DTfloat *d0, DTfloat *u, DTfloat *v, DTfloat dt );
         void    project     (DTfloat *u, DTfloat *v, DTfloat *p, DTfloat *div );
         void    dens_step   (DTfloat *x, DTfloat *x0, DTfloat *u, DTfloat *v, DTfloat diff, DTfloat dt );
         void    vel_step    (DTfloat *u, DTfloat *v, DTfloat *u0, DTfloat *v0, DTfloat visc, DTfloat dt );
@@ -87,7 +87,7 @@ class ScriptingParticleStamFluids: public ScriptingBase {
         std::vector<DTfloat>                    _dens;
         std::vector<DTfloat>                    _dens_prev;
 
-        DTint                                   _n;
+        int32_t                                   _n;
 
         DTfloat                                 _diff;
         DTfloat                                 _visc;

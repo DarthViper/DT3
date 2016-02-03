@@ -137,7 +137,7 @@ class PlugInfo {
         /// Sets which plugs are affected by this plug
         /// \param other other plug
         /// \return plug info
-        PlugInfo&                       affects             (DTushort other);
+        PlugInfo&                       affects             (uint16_t other);
 
         /// Returns which plugs are affected by this plug
         /// \return affected plugs
@@ -146,7 +146,7 @@ class PlugInfo {
 
         /// Sets a plug that affects this plug
         /// \return plug info
-        PlugInfo&                       affected_by         (DTushort other);
+        PlugInfo&                       affected_by         (uint16_t other);
 
         /// Returns which plugs that affects this plug
         /// \return affected by plugs
@@ -163,7 +163,7 @@ class PlugInfo {
         /// \return owner node
         PlugNode*                       plug_to_node        (const PlugBase *plug) {
             ASSERT(_offset != 0);
-            return reinterpret_cast<PlugNode*>( (DTubyte*) plug - _offset);
+            return reinterpret_cast<PlugNode*>( (uint8_t*) plug - _offset);
         }
 
         /// Given the node, return a pointer to the plug
@@ -171,7 +171,7 @@ class PlugInfo {
         /// \return Plug
         PlugBase*                       node_to_plug        (const PlugNode *node){
             ASSERT(_offset != 0);
-            return reinterpret_cast<PlugBase*>( (DTubyte*) node + _offset);
+            return reinterpret_cast<PlugBase*>( (uint8_t*) node + _offset);
         }
 
 
@@ -181,19 +181,19 @@ class PlugInfo {
 
         /// Returns the next free index in the pool
         /// \return Next free index
-        static DTushort                 get_free_index      (void);
+        static uint16_t                 get_free_index      (void);
 
         /// Returns the info at the specified index
         /// \param i index
-        static PlugInfo&                get_info            (DTushort i);
+        static PlugInfo&                get_info            (uint16_t i);
 
     private:
-        DTubyte                         _is_input:1;
-        DTubyte                         _is_output:1;
-        DTubyte                         _is_compute:1;
-        DTubyte                         _is_no_draw:1;
-        DTubyte                         _is_single_output:1;
-        DTubyte                         _is_always_dirty:1;
+        uint8_t                         _is_input:1;
+        uint8_t                         _is_output:1;
+        uint8_t                         _is_compute:1;
+        uint8_t                         _is_no_draw:1;
+        uint8_t                         _is_single_output:1;
+        uint8_t                         _is_always_dirty:1;
 
         DTsize                          _offset;
         PlugInfo                        *_next;
@@ -217,10 +217,10 @@ class PlugInfo {
 
 #define PLUG_INFO_INDEX(Plug)       Plug##Index
 
-#define IMPLEMENT_PLUG_INFO_INDEX(Plug)	namespace {	DTushort PLUG_INFO_INDEX(Plug) = PlugInfo::get_free_index();	}
+#define IMPLEMENT_PLUG_INFO_INDEX(Plug)	namespace {	uint16_t PLUG_INFO_INDEX(Plug) = PlugInfo::get_free_index();	}
 
-#define PLUG_OFFSET(Plug)			(	(DTubyte*) (static_cast<PlugBase*>(&(reinterpret_cast<type*>(0x99999999)->Plug))) - \
-                                        (DTubyte*) (static_cast<PlugNode*>(reinterpret_cast<type*>(0x99999999)))	)
+#define PLUG_OFFSET(Plug)			(	(uint8_t*) (static_cast<PlugBase*>(&(reinterpret_cast<type*>(0x99999999)->Plug))) - \
+                                        (uint8_t*) (static_cast<PlugNode*>(reinterpret_cast<type*>(0x99999999)))	)
 
 #define PLUG_INIT(Plug, Name)       PlugInfo::get_info(PLUG_INFO_INDEX(Plug)).init(         \
                                         Name,                                               \

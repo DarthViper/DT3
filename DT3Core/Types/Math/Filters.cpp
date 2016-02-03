@@ -109,7 +109,7 @@ Stream& operator >> (Stream &s, Filters &f)
 //==============================================================================
 
 void Filters::initialize (	FilterType type,
-                            DTuint n,
+                            uint32_t n,
                             DTfloat f0,
                             DTfloat fs,
                             DTfloat default_val)

@@ -292,7 +292,7 @@ CommandResult World_cmd::doRemove (CommandContext &ctx, const CommandParams &p)
                 
                 // Outgoing
                 const std::vector<PlugBase*> connections = p_iter()->outgoing_connections();
-                for (DTuint k = 0; k < connections.size(); ++k) {
+                for (uint32_t k = 0; k < connections.size(); ++k) {
                     if (connections[k]->is_no_draw())   continue;
                     cr.append_undo_command(CommandParams("ConnectPlugs \"" + p_iter()->full_name() + "\" \"" + connections[k]->full_name() + "\"" ));
                 }
@@ -305,14 +305,14 @@ CommandResult World_cmd::doRemove (CommandContext &ctx, const CommandParams &p)
 
                 // Incoming
                 const std::vector<Event*> connections_in = e_iter()->incoming_connections();
-                for (DTuint k = 0; k < connections_in.size(); ++k) {
+                for (uint32_t k = 0; k < connections_in.size(); ++k) {
                     if (connections_in[k]->is_no_draw())   continue;
                     cr.append_undo_command(CommandParams("ConnectEvents \"" + connections_in[k]->full_name() + "\" \"" + e_iter()->full_name() + "\"" ));
                 }
                 
                 // Outgoing
                 const std::vector<Event*> connections_out = e_iter()->outgoing_connections();
-                for (DTuint k = 0; k < connections_out.size(); ++k) {
+                for (uint32_t k = 0; k < connections_out.size(); ++k) {
                     if (connections_out[k]->is_no_draw())   continue;
                     cr.append_undo_command(CommandParams("ConnectEvents \"" + e_iter()->full_name() + "\" \"" + connections_out[k]->full_name() + "\"" ));
                 }
@@ -564,7 +564,7 @@ CommandResult World_cmd::doSelect (CommandContext &ctx, const CommandParams &p)
     // Change the selection
     std::list<std::shared_ptr<PlugNode>> new_selection;
           
-    for (DTuint i = 1; i != p.count(); ++i) {
+    for (uint32_t i = 1; i != p.count(); ++i) {
         std::shared_ptr<PlugNode> obj = checked_cast<PlugNode>(ctx.world()->node_by_name(p[i]));
         if (obj) {
             new_selection.push_back(obj);

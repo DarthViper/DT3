@@ -45,7 +45,7 @@ void PlugNodeUtils::copy_nodes (    const std::list<std::shared_ptr<PlugNode>> &
             std::shared_ptr<ObjectBase> orig_node_base = checked_static_cast<ObjectBase>(*si);
             std::shared_ptr<ObjectBase> new_node_base = checked_static_cast<ObjectBase>(new_node);
             
-            for (DTuint i = 0; i < ComponentBase::NUM_COMPONENT_TYPES; ++i) {
+            for (uint32_t i = 0; i < ComponentBase::NUM_COMPONENT_TYPES; ++i) {
                 std::shared_ptr<ComponentBase> orig_component_base = orig_node_base->component_by_type	( (ComponentBase::ComponentType) i);
                 std::shared_ptr<ComponentBase> new_component_base = new_node_base->component_by_type ( (ComponentBase::ComponentType) i);
                 
@@ -89,7 +89,7 @@ void PlugNodeUtils::copy_nodes (    const std::list<std::shared_ptr<PlugNode>> &
             
             // Outgoing
             const std::vector<PlugBase*> connections = p_iter()->outgoing_connections();
-            for (DTuint k = 0; k < connections.size(); ++k) {
+            for (uint32_t k = 0; k < connections.size(); ++k) {
                 std::shared_ptr<PlugNode> orig_node_dest = checked_static_cast<PlugNode>(connections[k]->owner()->shared_from_this());
 
                 auto ni = orig_to_new_node.find(orig_node_dest);
@@ -114,7 +114,7 @@ void PlugNodeUtils::copy_nodes (    const std::list<std::shared_ptr<PlugNode>> &
             
             // Incoming
             const std::vector<Event*> connections_in = e_iter()->incoming_connections();
-            for (DTuint k = 0; k < connections_in.size(); ++k) {
+            for (uint32_t k = 0; k < connections_in.size(); ++k) {
                 std::shared_ptr<PlugNode> orig_node_dest = checked_static_cast<PlugNode>(connections_in[k]->owner()->shared_from_this());
                 if (!orig_node_dest)    continue;
 
@@ -133,7 +133,7 @@ void PlugNodeUtils::copy_nodes (    const std::list<std::shared_ptr<PlugNode>> &
             
             // Outgoing
             const std::vector<Event*> connections_out = e_iter()->outgoing_connections();
-            for (DTuint k = 0; k < connections_out.size(); ++k) {
+            for (uint32_t k = 0; k < connections_out.size(); ++k) {
                 std::shared_ptr<PlugNode> orig_node_dest = checked_static_cast<PlugNode>(connections_out[k]->owner()->shared_from_this());
                 if (!orig_node_dest)    continue;
 
@@ -166,7 +166,7 @@ void PlugNodeUtils::copy_connections     (PlugBase* src, PlugBase* dst)
         dst->set_incoming_connection(src->incoming_connection());
     
     const std::vector<PlugBase*> connections = src->outgoing_connections();
-    for (DTuint i = 0; i < connections.size(); ++i) {
+    for (uint32_t i = 0; i < connections.size(); ++i) {
         dst->add_outgoing_connection(connections[i]);
     }
     
@@ -207,7 +207,7 @@ void PlugNodeUtils::all_connected_nodes(std::shared_ptr<PlugNode> root, std::lis
             }
 
             const std::vector<PlugBase*> outgoing = (**j).outgoing_connections();
-            for (DTuint k = 0; k < outgoing.size(); ++k) {
+            for (uint32_t k = 0; k < outgoing.size(); ++k) {
                 std::shared_ptr<PlugNode> remove = checked_static_cast<PlugNode>(outgoing[k]->owner()->shared_from_this());
                 if (std::find(nodes_and_components.begin(), nodes_and_components.end(), remove) == nodes_and_components.end())
                     nodes_and_components.push_back(remove);
@@ -220,7 +220,7 @@ void PlugNodeUtils::all_connected_nodes(std::shared_ptr<PlugNode> root, std::lis
         FOR_EACH (j,events) {
         
             const std::vector<Event*> incoming = (**j).incoming_connections();
-            for (DTuint k = 0; k < incoming.size(); ++k) {
+            for (uint32_t k = 0; k < incoming.size(); ++k) {
                 std::shared_ptr<PlugNode> remove = checked_static_cast<PlugNode>(incoming[k]->owner()->shared_from_this());
                 if (std::find(nodes_and_components.begin(), nodes_and_components.end(), remove) == nodes_and_components.end())
                     nodes_and_components.push_back(remove);
@@ -228,7 +228,7 @@ void PlugNodeUtils::all_connected_nodes(std::shared_ptr<PlugNode> root, std::lis
 
 
             const std::vector<Event*> outgoing = (**j).outgoing_connections();
-            for (DTuint k = 0; k < outgoing.size(); ++k) {
+            for (uint32_t k = 0; k < outgoing.size(); ++k) {
                 std::shared_ptr<PlugNode> remove = checked_static_cast<PlugNode>(outgoing[k]->owner()->shared_from_this());
                 if (std::find(nodes_and_components.begin(), nodes_and_components.end(), remove) == nodes_and_components.end())
                     nodes_and_components.push_back(remove);
@@ -242,7 +242,7 @@ void PlugNodeUtils::all_connected_nodes(std::shared_ptr<PlugNode> root, std::lis
         if (node->isa(ObjectBase::kind())) {
             std::shared_ptr<ObjectBase> node_base = checked_static_cast<ObjectBase>(node);
             
-            for (DTuint j = 0; j < ComponentBase::NUM_COMPONENT_TYPES; ++j) {
+            for (uint32_t j = 0; j < ComponentBase::NUM_COMPONENT_TYPES; ++j) {
                 std::shared_ptr<ComponentBase> component_base = node_base->component_by_type ( (ComponentBase::ComponentType) j);
                 
                 if (component_base) {
@@ -271,7 +271,7 @@ void PlugNodeUtils::node_and_components(std::shared_ptr<PlugNode> n, std::list<s
     if (n->isa(ObjectBase::kind())) {
         std::shared_ptr<ObjectBase> object_base = checked_static_cast<ObjectBase>(n);
         
-        for (DTuint i = 0; i < ComponentBase::NUM_COMPONENT_TYPES; ++i) {
+        for (uint32_t i = 0; i < ComponentBase::NUM_COMPONENT_TYPES; ++i) {
             std::shared_ptr<PlugNode> node = object_base->component_by_type ( (ComponentBase::ComponentType) i);
             if (node)
                 nodes.push_back(node);

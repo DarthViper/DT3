@@ -48,11 +48,11 @@ class ArchiveProcessPlugs: public ArchiveProcess {
         /// Post process for archiving
         /// \param archive Archive that owns the post process
         /// \param archive Objects Map of objects that have been archived
-        virtual void				process                 (const std::shared_ptr<Archive> &archive, std::map<DTuint64, std::shared_ptr<BaseClass>> &objects);
+        virtual void				process                 (const std::shared_ptr<Archive> &archive, std::map<uint64_t, std::shared_ptr<BaseClass>> &objects);
 
     private:
-        DTuint                      _src_node_id;
-        DTuint                      _dst_node_id;
+        uint32_t                      _src_node_id;
+        uint32_t                      _dst_node_id;
         std::string                 _src_name;
         std::string                 _dst_name;
 };
@@ -79,8 +79,8 @@ ArchiveProcessPlugs<T>::ArchiveProcessPlugs(const std::shared_ptr<Archive> &arch
         T	src_plug = dst_plug->incoming_connection();
 
         if (src_plug) {
-            DTuint	src_node_id = src_plug->owner()->unique_id();
-            DTuint	dst_node_id = dst_plug->owner()->unique_id();
+            uint32_t	src_node_id = src_plug->owner()->unique_id();
+            uint32_t	dst_node_id = dst_plug->owner()->unique_id();
             std::string	src_name = src_plug->name();
             std::string dst_name = dst_plug->name();
 
@@ -98,8 +98,8 @@ ArchiveProcessPlugs<T>::ArchiveProcessPlugs(const std::shared_ptr<Archive> &arch
 
     // Reading in pointer reference immediately
     } else {
-        DTuint		src_node_id;
-        DTuint		dst_node_id;
+        uint32_t		src_node_id;
+        uint32_t		dst_node_id;
         std::string      src_name;
         std::string      dst_name;
 
@@ -144,7 +144,7 @@ ArchiveProcessPlugs<T>::~ArchiveProcessPlugs(void)
 }
 
 template <class T>
-void ArchiveProcessPlugs<T>::process (const std::shared_ptr<Archive> &archive, std::map<DTuint64, std::shared_ptr<BaseClass>> &objects)
+void ArchiveProcessPlugs<T>::process (const std::shared_ptr<Archive> &archive, std::map<uint64_t, std::shared_ptr<BaseClass>> &objects)
 {
     // write the actual object
     if (archive->is_writing()) {

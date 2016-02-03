@@ -77,7 +77,7 @@ class Tokenizer: public BaseClass {
 
         /// Get the next token as a hex string
         /// \return Next token
-        DTuint							next_token_hex                  (void);
+        uint32_t							next_token_hex                  (void);
 
         /// Eat and check the next token
         /// \param expected_token Token to eat
@@ -99,12 +99,12 @@ class Tokenizer: public BaseClass {
     private:
         DTerr							parse_token_stream              (const std::string &contents, bool append = true);
 
-        bool						parse_whitespace                (const std::string &buffer, DTint &pos, std::list<std::string> &tokens);
-        bool						parse_symbol                    (const std::string &buffer, DTint &pos, std::list<std::string> &tokens);
-        bool						parse_equals                    (const std::string &buffer, DTint &pos, std::list<std::string> &tokens);
-        bool						parse_braces                    (const std::string &buffer, DTint &pos, std::list<std::string> &tokens);
-        bool						parse_string                    (const std::string &buffer, DTint &pos, std::list<std::string> &tokens);
-        bool						parse_multi_param               (const std::string &buffer, DTint &pos, std::list<std::string> &tokens);
+        bool						parse_whitespace                (const std::string &buffer, int32_t &pos, std::list<std::string> &tokens);
+        bool						parse_symbol                    (const std::string &buffer, int32_t &pos, std::list<std::string> &tokens);
+        bool						parse_equals                    (const std::string &buffer, int32_t &pos, std::list<std::string> &tokens);
+        bool						parse_braces                    (const std::string &buffer, int32_t &pos, std::list<std::string> &tokens);
+        bool						parse_string                    (const std::string &buffer, int32_t &pos, std::list<std::string> &tokens);
+        bool						parse_multi_param               (const std::string &buffer, int32_t &pos, std::list<std::string> &tokens);
 
         void							preprocessor_include            (void);
         void							preprocessor_if                 (void);

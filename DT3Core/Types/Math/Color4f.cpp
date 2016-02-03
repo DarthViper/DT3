@@ -66,7 +66,7 @@ Color4f::Color4f	(const DTfloat r_, const DTfloat g_, const DTfloat b_, const DT
     set(r_,g_,b_,a_);
 }
 
-Color4f::Color4f	(const DTubyte r_, const DTubyte g_, const DTubyte b_, const DTubyte a_)
+Color4f::Color4f	(const uint8_t r_, const uint8_t g_, const uint8_t b_, const uint8_t a_)
 {
     set(r_,g_,b_,a_);
 }	
@@ -76,7 +76,7 @@ Color4f::Color4f	(const DTfloat rhs[])
     set(rhs);
 }
 
-Color4f::Color4f	(const DTubyte rhs[])
+Color4f::Color4f	(const uint8_t rhs[])
 {
     set(rhs);
 }
@@ -138,7 +138,7 @@ void Color4f::set (const DTfloat r_, const DTfloat g_, const DTfloat b_, const D
 //==============================================================================
 //==============================================================================
 
-void Color4f::set (const DTubyte r_, const DTubyte g_, const DTubyte b_, const DTubyte a_)
+void Color4f::set (const uint8_t r_, const uint8_t g_, const uint8_t b_, const uint8_t a_)
 {
     r = MoreMath::int_to_float(r_) / 255.0F;
     g = MoreMath::int_to_float(g_) / 255.0F;
@@ -160,7 +160,7 @@ void Color4f::set (const DTfloat ar[])
 //==============================================================================
 //==============================================================================
 
-void Color4f::set (const DTubyte ar[])
+void Color4f::set (const uint8_t ar[])
 { 
     r = MoreMath::int_to_float(ar[0]) / 255.0F;
     g = MoreMath::int_to_float(ar[1]) / 255.0F;
@@ -171,22 +171,22 @@ void Color4f::set (const DTubyte ar[])
 //==============================================================================
 //==============================================================================
 
-void Color4f::set_r (const DTubyte r_)
+void Color4f::set_r (const uint8_t r_)
 {
     r = MoreMath::int_to_float(r_) / 255.0F;
 }
 
-void Color4f::set_g (const DTubyte g_)
+void Color4f::set_g (const uint8_t g_)
 {
 	g = MoreMath::int_to_float(g_) / 255.0F;
 }
 
-void Color4f::set_b (const DTubyte b_)
+void Color4f::set_b (const uint8_t b_)
 {
     b = MoreMath::int_to_float(b_) / 255.0F;
 }
 
-void Color4f::set_a (const DTubyte a_)
+void Color4f::set_a (const uint8_t a_)
 {
     a = MoreMath::int_to_float(a_) / 255.0F;
 }
@@ -194,24 +194,24 @@ void Color4f::set_a (const DTubyte a_)
 //==============================================================================
 //==============================================================================
 
-DTubyte Color4f::r_as_byte (void) 	const
+uint8_t Color4f::r_as_byte (void) 	const
 {
-    return static_cast<DTubyte>(MoreMath::float_to_int(MoreMath::clamp_zero_one(r) * 255.0F));
+    return static_cast<uint8_t>(MoreMath::float_to_int(MoreMath::clamp_zero_one(r) * 255.0F));
 }
 
-DTubyte Color4f::g_as_byte (void)	const
+uint8_t Color4f::g_as_byte (void)	const
 {
-    return static_cast<DTubyte>(MoreMath::float_to_int(MoreMath::clamp_zero_one(g) * 255.0F));
+    return static_cast<uint8_t>(MoreMath::float_to_int(MoreMath::clamp_zero_one(g) * 255.0F));
 }
 
-DTubyte Color4f::b_as_byte (void)	const
+uint8_t Color4f::b_as_byte (void)	const
 {
-    return static_cast<DTubyte>(MoreMath::float_to_int(MoreMath::clamp_zero_one(b) * 255.0F));
+    return static_cast<uint8_t>(MoreMath::float_to_int(MoreMath::clamp_zero_one(b) * 255.0F));
 }
 
-DTubyte Color4f::a_as_byte (void)	const
+uint8_t Color4f::a_as_byte (void)	const
 {
-    return static_cast<DTubyte>(MoreMath::float_to_int(MoreMath::clamp_zero_one(a) * 255.0F));
+    return static_cast<uint8_t>(MoreMath::float_to_int(MoreMath::clamp_zero_one(a) * 255.0F));
 }
 
 //==============================================================================

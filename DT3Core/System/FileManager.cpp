@@ -81,8 +81,8 @@ void FileManager::scan_files	(void)
 	LOG_MESSAGE << "Scanning files at " << p.full_path();
 	lister.scan_path(p);
 
-    DTuint num_files = lister.num_files();
-	for (DTuint i = 0; i < num_files; ++i) {
+    uint32_t num_files = lister.num_files();
+	for (uint32_t i = 0; i < num_files; ++i) {
         if (!lister.file_path(i).is_dir()) {
             Globals::set_global(lister.file_name(i), lister.file_path(i).full_path(), Globals::VOLATILE);
          

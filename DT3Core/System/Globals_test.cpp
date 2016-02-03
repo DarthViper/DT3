@@ -50,10 +50,10 @@ namespace {
 
 void do_thread (void)
 {			        
-    for (DTuint i = 0; i < 100; ++i) {
+    for (uint32_t i = 0; i < 100; ++i) {
 
-        DTuint rr = MoreMath::random_int() % 25;
-        DTuint rw = MoreMath::random_int() % 25;
+        uint32_t rr = MoreMath::random_int() % 25;
+        uint32_t rw = MoreMath::random_int() % 25;
         
         Globals::set_global(MoreStrings::cast_to_string(rw), MoreStrings::cast_to_string(rw), Globals::VOLATILE);
         std::string s1 = Globals::global(MoreStrings::cast_to_string(rr));

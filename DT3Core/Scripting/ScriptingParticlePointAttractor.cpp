@@ -151,7 +151,7 @@ bool ScriptingParticlePointAttractor::compute (const PlugBase *plug)
 
 		DTfloat converge_time_inv = 1.0F / _converge_time;
 
-		for (DTint i = particles->active_start(); i != particles->active_end(); i = (i + 1) % particles->translations_stream().size()) {
+		for (int32_t i = particles->active_start(); i != particles->active_end(); i = (i + 1) % particles->translations_stream().size()) {
 			DTfloat t = lifetimes[i] * converge_time_inv;
 			t = std::pow(t,_strength);
 			

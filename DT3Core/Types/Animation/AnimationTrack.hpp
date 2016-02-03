@@ -69,7 +69,7 @@ class AnimationTrack: public BaseClass {
 
         /// Returns the hashed name of the object
         /// \return hashed bone name
-        DTuint                                  name_hash               (void) const                {   return _name_hash;					}
+        uint32_t                                  name_hash               (void) const                {   return _name_hash;					}
 
 
 
@@ -80,7 +80,7 @@ class AnimationTrack: public BaseClass {
 
     private:
         std::string                         _name;
-        DTuint                              _name_hash;
+        uint32_t                              _name_hash;
         std::vector<AnimationKeyframe>		_keyframes;
 
 };

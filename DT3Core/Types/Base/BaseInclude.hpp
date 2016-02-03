@@ -292,21 +292,13 @@ namespace DT3 {
 //==============================================================================
 //==============================================================================
 
-typedef int8_t          DTbyte;
-typedef int16_t         DTshort;
-typedef int32_t         DTint;
-typedef uint8_t         DTubyte;
-typedef uint16_t        DTushort;
-typedef uint32_t        DTuint;
 typedef float			DTfloat;
 typedef double          DTdouble;
 typedef	char            DTcharacter;
 typedef	wchar_t         DTwcharacter;
 typedef int             DTerr;
-typedef int64_t         DTint64;
-typedef uint64_t        DTuint64;
-typedef DTint64         DTsize;
-typedef DTint64         DToffset;
+typedef int64_t         DTsize;
+typedef int64_t         DToffset;
 typedef long            DTlong;
 typedef long long       DTlonglong;
 typedef unsigned long   DTulong;
@@ -439,7 +431,7 @@ inline void S(const T &var_)	{	V = var_;				}
 /// Array size macro
 //==============================================================================
 
-//#define ARRAY_SIZE(a) (static_cast<DTint>(sizeof(a))/static_cast<DTint>(sizeof(a[0])))
+//#define ARRAY_SIZE(a) (static_cast<int32_t>(sizeof(a))/static_cast<int32_t>(sizeof(a[0])))
 template<typename T, size_t N>
 constexpr size_t ARRAY_SIZE(T (&)[N]) { return N; }
 

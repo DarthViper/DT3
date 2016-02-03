@@ -77,7 +77,7 @@ PlugInfo& PlugInfo::init (  std::string name,
 //==============================================================================
 //==============================================================================
 
-PlugInfo& PlugInfo::affects (DTushort other)
+PlugInfo& PlugInfo::affects (uint16_t other)
 {
     PlugInfo &i = PlugInfo::get_info(other);
     
@@ -86,7 +86,7 @@ PlugInfo& PlugInfo::affects (DTushort other)
 	return *this;	
 }
 
-PlugInfo& PlugInfo::affected_by (DTushort other)
+PlugInfo& PlugInfo::affected_by (uint16_t other)
 {
     PlugInfo &i = PlugInfo::get_info(other);
 
@@ -98,17 +98,17 @@ PlugInfo& PlugInfo::affected_by (DTushort other)
 //==============================================================================	
 //==============================================================================	
 
-DTushort PlugInfo::get_free_index (void)
+uint16_t PlugInfo::get_free_index (void)
 {
-    static DTushort pool_index = 0;
+    static uint16_t pool_index = 0;
     
-    DTint r = pool_index++;
+    int32_t r = pool_index++;
     ASSERT(r < DT3_PLUG_POOL_SIZE);
     
-    return static_cast<DTushort>(r);
+    return static_cast<uint16_t>(r);
 }
 
-PlugInfo& PlugInfo::get_info (DTushort i)
+PlugInfo& PlugInfo::get_info (uint16_t i)
 {
     ASSERT(i != 0xFFFF);
     return _pool[i];

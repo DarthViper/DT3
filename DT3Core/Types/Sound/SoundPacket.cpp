@@ -99,7 +99,7 @@ void SoundPacket::copy (const SoundPacket &rhs)
 void SoundPacket::set_num_bytes (DTsize bytes)
 {
     if ( !_buffer) {
-        _buffer = std::shared_ptr<std::vector<DTubyte>>(new std::vector<DTubyte>() );
+        _buffer = std::shared_ptr<std::vector<uint8_t>>(new std::vector<uint8_t>() );
         _buffer->resize(bytes);
 
     } else if (bytes > static_cast<DTsize>(_buffer->size()) ) {

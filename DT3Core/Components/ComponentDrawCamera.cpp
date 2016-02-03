@@ -195,12 +195,12 @@ void ComponentDrawCamera::draw (const std::shared_ptr<CameraObject> &camera, con
                     DrawBatcher::FMT_V | DrawBatcher::FMT_C);
 
     // Can
-    for (DTuint i = 0; i < ARRAY_SIZE(can); ++i) {
+    for (uint32_t i = 0; i < ARRAY_SIZE(can); ++i) {
         b.add().v(THICKNESS, can[i].x, can[i].y).c(c);
         b.add().v(-THICKNESS, can[i].x, can[i].y).c(c);
     }
 
-    for (DTuint i = 0; i < ARRAY_SIZE(can)-1; ++i) {
+    for (uint32_t i = 0; i < ARRAY_SIZE(can)-1; ++i) {
         b.add().v(THICKNESS, can[i].x, can[i].y).c(c);
         b.add().v(THICKNESS, can[i+1].x, can[i+1].y).c(c);
 
@@ -209,12 +209,12 @@ void ComponentDrawCamera::draw (const std::shared_ptr<CameraObject> &camera, con
     }
 
     // Box
-    for (DTuint i = 0; i < ARRAY_SIZE(box); ++i) {
+    for (uint32_t i = 0; i < ARRAY_SIZE(box); ++i) {
         b.add().v(THICKNESS, box[i].x, box[i].y).c(c);
         b.add().v(-THICKNESS, box[i].x, box[i].y).c(c);
     }
 
-    for (DTuint i = 0; i < ARRAY_SIZE(box)-1; ++i) {
+    for (uint32_t i = 0; i < ARRAY_SIZE(box)-1; ++i) {
         b.add().v(THICKNESS, box[i].x, box[i].y).c(c);
         b.add().v(THICKNESS, box[i+1].x, box[i+1].y).c(c);
 
@@ -223,12 +223,12 @@ void ComponentDrawCamera::draw (const std::shared_ptr<CameraObject> &camera, con
     }
 
     // Side
-    for (DTuint i = 0; i < ARRAY_SIZE(side); ++i) {
+    for (uint32_t i = 0; i < ARRAY_SIZE(side); ++i) {
         b.add().v(THICKNESS, side[i].x, side[i].y).c(c);
         b.add().v(SIDE_THICKNESS+THICKNESS, side[i].x, side[i].y).c(c);
     }
 
-    for (DTuint i = 0; i < ARRAY_SIZE(side)-1; ++i) {
+    for (uint32_t i = 0; i < ARRAY_SIZE(side)-1; ++i) {
         b.add().v(THICKNESS, side[i].x, side[i].y).c(c);
         b.add().v(THICKNESS, side[i+1].x, side[i+1].y).c(c);
 
@@ -237,12 +237,12 @@ void ComponentDrawCamera::draw (const std::shared_ptr<CameraObject> &camera, con
     }
 
     // Lens
-    for (DTuint i = 0; i < ARRAY_SIZE(lens); ++i) {
+    for (uint32_t i = 0; i < ARRAY_SIZE(lens); ++i) {
         b.add().v(LENS_THICKNESS, lens[i].x, lens[i].y).c(c);
         b.add().v(-LENS_THICKNESS, lens[i].x, lens[i].y).c(c);
     }
 
-    for (DTuint i = 0; i < ARRAY_SIZE(lens)-1; ++i) {
+    for (uint32_t i = 0; i < ARRAY_SIZE(lens)-1; ++i) {
         b.add().v(LENS_THICKNESS, lens[i].x, lens[i].y).c(c);
         b.add().v(LENS_THICKNESS, lens[i+1].x, lens[i+1].y).c(c);
 

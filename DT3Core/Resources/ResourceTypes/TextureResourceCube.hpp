@@ -72,28 +72,28 @@ class TextureResourceCube: public Resource {
         /// \param textels_bottom textels_bottom data (can be NULL)
         /// \param format format
         /// \param mipmapped mipmapped
-        void                        set_textels_cube    (   const DTint width, const DTint height,
-                                                            const std::shared_ptr<DTubyte> &textels_front,
-                                                            const std::shared_ptr<DTubyte> &textels_back,
-                                                            const std::shared_ptr<DTubyte> &textels_left,
-                                                            const std::shared_ptr<DTubyte> &textels_right,
-                                                            const std::shared_ptr<DTubyte> &textels_top,
-                                                            const std::shared_ptr<DTubyte> &textels_bottom,
+        void                        set_textels_cube    (   const int32_t width, const int32_t height,
+                                                            const std::shared_ptr<uint8_t> &textels_front,
+                                                            const std::shared_ptr<uint8_t> &textels_back,
+                                                            const std::shared_ptr<uint8_t> &textels_left,
+                                                            const std::shared_ptr<uint8_t> &textels_right,
+                                                            const std::shared_ptr<uint8_t> &textels_top,
+                                                            const std::shared_ptr<uint8_t> &textels_bottom,
                                                             DT3GLTextelFormat format,
                                                             bool mipmapped,
-                                                            DTuint flags = DT3GL_ACCESS_CPU_NONE | DT3GL_ACCESS_GPU_READ);
+                                                            uint32_t flags = DT3GL_ACCESS_CPU_NONE | DT3GL_ACCESS_GPU_READ);
 
         /// Width of the buffer
         /// \return buffer width
-        DTint						width               (void) const	{	return _width;	}
+        int32_t						width               (void) const	{	return _width;	}
 
         /// Height of the buffer
         /// \return buffer height
-        DTint						height              (void) const	{	return _height;	}
+        int32_t						height              (void) const	{	return _height;	}
 
         /// Activate the resource
         /// \param texture_slot which slot to activate the texture in
-        void                        activate            (DTuint texture_slot);
+        void                        activate            (uint32_t texture_slot);
 
         /// Load the resource
         /// \param pathname path to file
@@ -107,24 +107,24 @@ class TextureResourceCube: public Resource {
 
         static void                 reload_if_changed   (void);
 
-        void                        screen_opened       (DTuint width, DTuint height);
+        void                        screen_opened       (uint32_t width, uint32_t height);
         void                        screen_closed       (void);
 
         // Data for Cube Maps
-        std::shared_ptr<DTubyte>                    _textels_front;
-        std::shared_ptr<DTubyte>                    _textels_back;
-        std::shared_ptr<DTubyte>                    _textels_left;
-        std::shared_ptr<DTubyte>                    _textels_right;
-        std::shared_ptr<DTubyte>                    _textels_top;
-        std::shared_ptr<DTubyte>                    _textels_bottom;
+        std::shared_ptr<uint8_t>                    _textels_front;
+        std::shared_ptr<uint8_t>                    _textels_back;
+        std::shared_ptr<uint8_t>                    _textels_left;
+        std::shared_ptr<uint8_t>                    _textels_right;
+        std::shared_ptr<uint8_t>                    _textels_top;
+        std::shared_ptr<uint8_t>                    _textels_bottom;
 
         DT3GLTextelFormat                            _format;
 
-        DTint                                       _width;
-        DTint                                       _height;
+        int32_t                                       _width;
+        int32_t                                       _height;
 
         bool                                   _mipmapped;
-        DTuint                                      _flags;
+        uint32_t                                      _flags;
 
         std::shared_ptr<DT3GLTextureCubeResource>   _resource_cube;
 };

@@ -105,7 +105,7 @@ ComponentDrawMesh::~ComponentDrawMesh (void)
 //==============================================================================
 //==============================================================================
 
-void ComponentDrawMesh::screen_opened (DTuint width, DTuint height)
+void ComponentDrawMesh::screen_opened (uint32_t width, uint32_t height)
 {
     LOG_MESSAGE << "DrawBatcher::screen_opened (" << width <<'x' <<height <<")";
 }
@@ -185,12 +185,12 @@ void ComponentDrawMesh::draw (const std::shared_ptr<CameraObject> &camera, const
     if (!placeable)
         return;
 
-    DTint a_position = (*_shader)->attrib_slot(DT3GL_ATTRIB_POSITION);
-    DTint a_normal = (*_shader)->attrib_slot(DT3GL_ATTRIB_NORMAL);
-    DTint a_texcoord0 = (*_shader)->attrib_slot(DT3GL_ATTRIB_TEXCOORD0);
-    DTint a_texcoord1 = (*_shader)->attrib_slot(DT3GL_ATTRIB_TEXCOORD1);
-    DTint a_color = (*_shader)->attrib_slot(DT3GL_ATTRIB_COLOR);
-    DTint a_tangent = (*_shader)->attrib_slot(DT3GL_ATTRIB_TANGENT);
+    int32_t a_position = (*_shader)->attrib_slot(DT3GL_ATTRIB_POSITION);
+    int32_t a_normal = (*_shader)->attrib_slot(DT3GL_ATTRIB_NORMAL);
+    int32_t a_texcoord0 = (*_shader)->attrib_slot(DT3GL_ATTRIB_TEXCOORD0);
+    int32_t a_texcoord1 = (*_shader)->attrib_slot(DT3GL_ATTRIB_TEXCOORD1);
+    int32_t a_color = (*_shader)->attrib_slot(DT3GL_ATTRIB_COLOR);
+    int32_t a_tangent = (*_shader)->attrib_slot(DT3GL_ATTRIB_TANGENT);
 
     const std::vector<std::shared_ptr<Mesh>>& meshes = (*_geometry)->meshes();
 
@@ -202,40 +202,40 @@ void ComponentDrawMesh::draw (const std::shared_ptr<CameraObject> &camera, const
 
         _mesh_cache.resize(meshes.size());
 
-        for (DTuint i = 0; i < meshes.size(); ++i) {
+        for (uint32_t i = 0; i < meshes.size(); ++i) {
             const std::shared_ptr<Mesh> &mesh = meshes[i];
 
             if (a_position >= 0 && mesh->vertex_stream().size() > 0) {
                 _mesh_cache[i]._num_verts = mesh->vertex_stream().size();
-                _mesh_cache[i]._v_buffer = System::renderer()->create_buffer( (DTubyte*) &(mesh->vertex_stream()[0]), mesh->vertex_stream().size() * sizeof(Vector3), DT3GL_BUFFER_FORMAT_3_FLOAT);
+                _mesh_cache[i]._v_buffer = System::renderer()->create_buffer( (uint8_t*) &(mesh->vertex_stream()[0]), mesh->vertex_stream().size() * sizeof(Vector3), DT3GL_BUFFER_FORMAT_3_FLOAT);
             } else {
                 _mesh_cache[i]._num_verts = 0;
             }
 
             if (a_normal >= 0 && mesh->normals_stream().size() > 0) {
-                _mesh_cache[i]._n_buffer = System::renderer()->create_buffer( (DTubyte*) &(mesh->normals_stream()[0]), mesh->normals_stream().size() * sizeof(Vector3), DT3GL_BUFFER_FORMAT_3_FLOAT);
+                _mesh_cache[i]._n_buffer = System::renderer()->create_buffer( (uint8_t*) &(mesh->normals_stream()[0]), mesh->normals_stream().size() * sizeof(Vector3), DT3GL_BUFFER_FORMAT_3_FLOAT);
             }
 
             if (a_tangent >= 0 && mesh->tangents_stream().size() > 0) {
-                _mesh_cache[i]._t_buffer = System::renderer()->create_buffer( (DTubyte*) &(mesh->tangents_stream()[0]), mesh->tangents_stream().size() * sizeof(Vector3), DT3GL_BUFFER_FORMAT_3_FLOAT);
+                _mesh_cache[i]._t_buffer = System::renderer()->create_buffer( (uint8_t*) &(mesh->tangents_stream()[0]), mesh->tangents_stream().size() * sizeof(Vector3), DT3GL_BUFFER_FORMAT_3_FLOAT);
             }
 
             if (a_texcoord0 >= 0 && mesh->uv_stream0().size() > 0) {
-                _mesh_cache[i]._t0_buffer = System::renderer()->create_buffer( (DTubyte*) &(mesh->uv_stream0()[0]), mesh->uv_stream0().size() * sizeof(Vector2), DT3GL_BUFFER_FORMAT_2_FLOAT);
+                _mesh_cache[i]._t0_buffer = System::renderer()->create_buffer( (uint8_t*) &(mesh->uv_stream0()[0]), mesh->uv_stream0().size() * sizeof(Vector2), DT3GL_BUFFER_FORMAT_2_FLOAT);
             }
 
             if (a_texcoord1 >= 0 && mesh->uv_stream1().size() > 0) {
-                _mesh_cache[i]._t1_buffer = System::renderer()->create_buffer( (DTubyte*) &(mesh->uv_stream1()[0]), mesh->uv_stream1().size() * sizeof(Vector2), DT3GL_BUFFER_FORMAT_2_FLOAT);
+                _mesh_cache[i]._t1_buffer = System::renderer()->create_buffer( (uint8_t*) &(mesh->uv_stream1()[0]), mesh->uv_stream1().size() * sizeof(Vector2), DT3GL_BUFFER_FORMAT_2_FLOAT);
             }
 
             if (a_texcoord1 >= 0 && mesh->uv_stream1().size() > 0) {
-                _mesh_cache[i]._t1_buffer = System::renderer()->create_buffer( (DTubyte*) &(mesh->uv_stream1()[0]), mesh->uv_stream1().size() * sizeof(Vector2), DT3GL_BUFFER_FORMAT_2_FLOAT);
+                _mesh_cache[i]._t1_buffer = System::renderer()->create_buffer( (uint8_t*) &(mesh->uv_stream1()[0]), mesh->uv_stream1().size() * sizeof(Vector2), DT3GL_BUFFER_FORMAT_2_FLOAT);
             }
 
             // Elements
             if (mesh->index_stream().size() > 0) {
                 _mesh_cache[i]._num_indices = mesh->index_stream().size() * 3;
-                _mesh_cache[i]._elements_buffer = System::renderer()->create_index_buffer( (DTubyte*) &(mesh->index_stream()[0]), mesh->index_stream().size() * sizeof(DTuint) * 3, DT3GL_BUFFER_FORMAT_1_UINT);
+                _mesh_cache[i]._elements_buffer = System::renderer()->create_index_buffer( (uint8_t*) &(mesh->index_stream()[0]), mesh->index_stream().size() * sizeof(uint32_t) * 3, DT3GL_BUFFER_FORMAT_1_UINT);
             }
 
         }
@@ -245,7 +245,7 @@ void ComponentDrawMesh::draw (const std::shared_ptr<CameraObject> &camera, const
     // Draw all meshes
     //
 
-    for (DTuint i = 0; i < _mesh_cache.size(); ++i) {
+    for (uint32_t i = 0; i < _mesh_cache.size(); ++i) {
 
         if (_mesh_cache[i]._v_buffer && a_position >= 0)     (*_shader)->attach_attribute_buffer(a_position, _mesh_cache[i]._v_buffer);
         else if (a_position >= 0)                            (*_shader)->attach_attribute_buffer(a_position, NULL);

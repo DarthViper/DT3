@@ -50,7 +50,7 @@ class ScriptingKeyDown: public ScriptingBase {
 
     public:
         /// Called in accelerometer callback
-        void                        key                     (DTuint modifiers, DTushort key);
+        void                        key                     (uint32_t modifiers, uint16_t key);
 
     private:
         Plug<std::string>           _keys;

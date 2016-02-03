@@ -52,14 +52,14 @@ class BinaryFileStream: public BinaryStream {
     public:
         Stream&                             operator<<			(const Stream::FS)	{	return *this;	}
         Stream&                             operator<<			(const bool n);
-        Stream&                             operator<<			(const DTbyte n);
-        Stream&                             operator<<			(const DTshort n);
-        Stream&                             operator<<			(const DTint n);
-        Stream&                             operator<<			(const DTubyte n);
-        Stream&                             operator<<			(const DTushort n);
-        Stream&                             operator<<			(const DTuint n);
-        Stream&                             operator<<			(const DTint64 n);
-        Stream&                             operator<<			(const DTuint64 n);
+        Stream&                             operator<<			(const int8_t n);
+        Stream&                             operator<<			(const int16_t n);
+        Stream&                             operator<<			(const int32_t n);
+        Stream&                             operator<<			(const uint8_t n);
+        Stream&                             operator<<			(const uint16_t n);
+        Stream&                             operator<<			(const uint32_t n);
+        Stream&                             operator<<			(const int64_t n);
+        Stream&                             operator<<			(const uint64_t n);
 #if DT3_SIZES_ARE_DISTINCT_TYPES
         Stream&                             operator<<			(const DTsize n);
 #endif
@@ -73,14 +73,14 @@ class BinaryFileStream: public BinaryStream {
 
 
         Stream&                             operator>>			(bool &n);
-        Stream&                             operator>>			(DTbyte &n);
-        Stream&                             operator>>			(DTshort &n);
-        Stream&                             operator>>			(DTint &n);
-        Stream&                             operator>>			(DTubyte &n);
-        Stream&                             operator>>			(DTushort &n);
-        Stream&                             operator>>			(DTuint &n);
-        Stream&                             operator>>			(DTint64 &n);
-        Stream&                             operator>>			(DTuint64 &n);
+        Stream&                             operator>>			(int8_t &n);
+        Stream&                             operator>>			(int16_t &n);
+        Stream&                             operator>>			(int32_t &n);
+        Stream&                             operator>>			(uint8_t &n);
+        Stream&                             operator>>			(uint16_t &n);
+        Stream&                             operator>>			(uint32_t &n);
+        Stream&                             operator>>			(int64_t &n);
+        Stream&                             operator>>			(uint64_t &n);
 #if DT3_SIZES_ARE_DISTINCT_TYPES
         Stream&                             operator>>			(DTsize &n);
 #endif
@@ -95,12 +95,12 @@ class BinaryFileStream: public BinaryStream {
         /// \param data pointer to buffer
         /// \param size size to read
         /// \return size actually read
-        DTsize                              read_raw			(DTubyte *data, DTsize size);
+        DTsize                              read_raw			(uint8_t *data, DTsize size);
 
         /// Write data from a binary buffer
         /// \param data pointer to buffer
         /// \param size size to read
-        void                                write_raw			(DTubyte *data, DTsize size);
+        void                                write_raw			(uint8_t *data, DTsize size);
 
         /// Return write position
         /// \return write position

@@ -160,17 +160,17 @@ bool ScriptingSoundReverb::compute (const PlugBase *plug)
                 _sample_index = 0;            
             }
         
-            DTshort *data_in = (DTshort *) sound_packet_in.buffer();
-            DTshort *data_out = (DTshort *) sound_packet_out.buffer();
+            int16_t *data_in = (int16_t *) sound_packet_in.buffer();
+            int16_t *data_out = (int16_t *) sound_packet_out.buffer();
 
             DTsize num_samples = sound_packet_in.num_samples();
-            DTint reverb_gain_int = UNIT_TO_10BIT_INT(_reverb_gain);
-            DTint output_gain_int = UNIT_TO_10BIT_INT(_output_gain);
+            int32_t reverb_gain_int = UNIT_TO_10BIT_INT(_reverb_gain);
+            int32_t output_gain_int = UNIT_TO_10BIT_INT(_output_gain);
 
-            for (DTuint s = 0; s < num_samples; ++s) {
+            for (uint32_t s = 0; s < num_samples; ++s) {
                 
-                DTint val = _samples_left[_sample_index];
-                DTshort fb = static_cast<DTshort>(REM_10BIT(CLAMP_PAD_10BIT(reverb_gain_int * val)));
+                int32_t val = _samples_left[_sample_index];
+                int16_t fb = static_cast<int16_t>(REM_10BIT(CLAMP_PAD_10BIT(reverb_gain_int * val)));
                 
                 _samples_left[_sample_index] = fb + (s >= num_samples ? 0 : data_in[s]);
                 
@@ -178,7 +178,7 @@ bool ScriptingSoundReverb::compute (const PlugBase *plug)
                 if (_sample_index >= _samples_left.size())
                     _sample_index = 0;
                 
-                data_out[s] = static_cast<DTshort>(REM_10BIT(CLAMP_PAD_10BIT(output_gain_int * val)));
+                data_out[s] = static_cast<int16_t>(REM_10BIT(CLAMP_PAD_10BIT(output_gain_int * val)));
             }
             
             
@@ -195,28 +195,28 @@ bool ScriptingSoundReverb::compute (const PlugBase *plug)
                 _sample_index = 0;            
             }
         
-            DTshort *data_in = (DTshort *) sound_packet_in.buffer();
-            DTshort *data_out = (DTshort *) sound_packet_out.buffer();
+            int16_t *data_in = (int16_t *) sound_packet_in.buffer();
+            int16_t *data_out = (int16_t *) sound_packet_out.buffer();
 
             DTsize num_samples = sound_packet_in.num_samples();
-            DTint reverb_gain_int = UNIT_TO_10BIT_INT(_reverb_gain);
-            DTint output_gain_int = UNIT_TO_10BIT_INT(_output_gain);
+            int32_t reverb_gain_int = UNIT_TO_10BIT_INT(_reverb_gain);
+            int32_t output_gain_int = UNIT_TO_10BIT_INT(_output_gain);
 
-            for (DTuint s = 0; s < num_samples; ++s) {
+            for (uint32_t s = 0; s < num_samples; ++s) {
                 
-                DTshort val = _samples_left[_sample_index];
-                DTshort fb = static_cast<DTshort>(REM_10BIT(CLAMP_PAD_10BIT(reverb_gain_int * val)));
+                int16_t val = _samples_left[_sample_index];
+                int16_t fb = static_cast<int16_t>(REM_10BIT(CLAMP_PAD_10BIT(reverb_gain_int * val)));
                 
                 _samples_left[_sample_index] = fb + (s >= num_samples ? 0 : (*data_in));
-                (*data_out) = static_cast<DTshort>(REM_10BIT(CLAMP_PAD_10BIT(output_gain_int * val)));
+                (*data_out) = static_cast<int16_t>(REM_10BIT(CLAMP_PAD_10BIT(output_gain_int * val)));
                 ++data_out;
                 ++data_in;
 
                 val = _samples_right[_sample_index];
-                fb = static_cast<DTshort>(REM_10BIT(CLAMP_PAD_10BIT(reverb_gain_int * val)));
+                fb = static_cast<int16_t>(REM_10BIT(CLAMP_PAD_10BIT(reverb_gain_int * val)));
 
                 _samples_right[_sample_index] = fb + (s >= num_samples ? 0 : (*data_in));
-                (*data_out) = static_cast<DTshort>(REM_10BIT(CLAMP_PAD_10BIT(output_gain_int * val)));
+                (*data_out) = static_cast<int16_t>(REM_10BIT(CLAMP_PAD_10BIT(output_gain_int * val)));
                 ++data_out;
                 ++data_in;
                 

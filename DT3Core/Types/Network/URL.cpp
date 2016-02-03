@@ -172,7 +172,7 @@ std::string URL::strip_protocol_and_parameters (void) const
     return no_protocol.substr(0, no_protocol.find('?'));
 }
 
-DTushort URL::port (void) const
+uint16_t URL::port (void) const
 {
 	std::string domain = _url;
 	
@@ -194,7 +194,7 @@ DTushort URL::port (void) const
 	if (length != std::string::npos)
 		domain.erase(length);
 	
-	return MoreStrings::cast_from_string<DTushort>(domain);
+	return MoreStrings::cast_from_string<uint16_t>(domain);
 }
 
 std::string URL::parameters (void) const
@@ -210,7 +210,7 @@ std::string URL::encode_URL (const std::string &s)
 {
     std::string out;
     
-    for (DTuint i = 0; i < s.size(); ++i) {
+    for (uint32_t i = 0; i < s.size(); ++i) {
         
         if ((s[i] >= 'A' && s[i] <= 'Z') || 
             (s[i] >= 'a' && s[i] <= 'z') ||
@@ -234,7 +234,7 @@ std::string URL::decode_URL (const std::string &s)
 {
     std::string out;
     
-    for (DTuint i = 0; i < s.size(); ) {
+    for (uint32_t i = 0; i < s.size(); ) {
     
         if (s[i] == '%' && i < (s.size() - 2) ) {
             std::string hex;

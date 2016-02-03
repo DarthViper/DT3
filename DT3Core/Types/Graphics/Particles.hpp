@@ -49,8 +49,8 @@ class Particles: public BaseClass {
 
     public:
 
-        DEFINE_ACCESSORS(active_start, set_active_start, DTint, _active_start);
-        DEFINE_ACCESSORS(active_end, set_active_end, DTint, _active_end);
+        DEFINE_ACCESSORS(active_start, set_active_start, int32_t, _active_start);
+        DEFINE_ACCESSORS(active_end, set_active_end, int32_t, _active_end);
 
         DEFINE_ACCESSORS_REFERENCED_CONST(default_velocity, set_default_velocity, Vector3, _default_velocity);
         DEFINE_ACCESSORS(default_size, set_default_size, DTfloat, _default_size);
@@ -78,17 +78,17 @@ class Particles: public BaseClass {
         /// Description
         /// \param param description
         /// \return description
-        void                                        resize					(DTuint size);
+        void                                        resize					(uint32_t size);
 
 
         /// Draws the resource
         /// \param camera Camera used for drawing
-        void                                        draw                    (const std::shared_ptr<CameraObject> &camera, DTint first, DTint num);
+        void                                        draw                    (const std::shared_ptr<CameraObject> &camera, int32_t first, int32_t num);
 
     private:
         static void                                 reload_if_changed       (void);
 
-        void                                        screen_opened           (DTuint width, DTuint height);
+        void                                        screen_opened           (uint32_t width, uint32_t height);
         void                                        screen_closed           (void);
 
         std::vector<Vector3>                        _translations;
@@ -104,8 +104,8 @@ class Particles: public BaseClass {
         DTfloat                                     _default_rotation;
         Color4b                                     _default_color;
 
-        DTint                                       _active_start;
-        DTint                                       _active_end;
+        int32_t                                       _active_start;
+        int32_t                                       _active_end;
 
         // Resources
         std::shared_ptr<DT3GLAttribBufferResource>        _translations_resource;

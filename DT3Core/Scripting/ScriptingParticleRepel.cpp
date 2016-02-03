@@ -156,7 +156,7 @@ void ScriptingParticleRepel::tick (const DTfloat dt)
     std::vector<Vector3> &translations = particles->translations_stream();
 
     if (_active) {
-        for (DTint i = particles->active_start(); i != particles->active_end(); i = (i + 1) % particles->translations_stream().size()) {
+        for (int32_t i = particles->active_start(); i != particles->active_end(); i = (i + 1) % particles->translations_stream().size()) {
             
             Vector3 diff = translations[i] - _translation;
             DTfloat dist2 = diff.abs2();

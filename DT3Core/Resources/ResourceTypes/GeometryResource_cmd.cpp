@@ -66,23 +66,23 @@ IMPLEMENT_FACTORY_COMMAND(GeometryResource_cmd)
 //==============================================================================
 
 namespace {
-    const DTint MAGIC = 0x5E11E70D;								// Smellytoad
-    const DTint VERSION = (1 << 24) | (0 << 16) | (0 << 16);		// 1.0.0
+    const int32_t MAGIC = 0x5E11E70D;								// Smellytoad
+    const int32_t VERSION = (1 << 24) | (0 << 16) | (0 << 16);		// 1.0.0
 
-    const DTint FILE = 0;
-        const DTint MESHES = 1;
-            const DTint MESHES_MESH = 2;
-                const DTint MESHES_MESH_NAME = 3;
-                const DTint MESHES_MESH_POSITIONS = 4;
-                const DTint MESHES_MESH_NORMALS = 5;
-                const DTint MESHES_MESH_UV_SETS = 6;
-                    const DTint MESHES_MESH_UVS = 7;
-//                const DTint MESHES_MESH_SKINNING = 8;
-//                    const DTint MESHES_MESH_SKINNING_JOINTS = 9;
-//                    const DTint MESHES_MESH_SKINNING_INFLUENCES = 10;
-                const DTint MESHES_MESH_INDICES = 12;
+    const int32_t FILE = 0;
+        const int32_t MESHES = 1;
+            const int32_t MESHES_MESH = 2;
+                const int32_t MESHES_MESH_NAME = 3;
+                const int32_t MESHES_MESH_POSITIONS = 4;
+                const int32_t MESHES_MESH_NORMALS = 5;
+                const int32_t MESHES_MESH_UV_SETS = 6;
+                    const int32_t MESHES_MESH_UVS = 7;
+//                const int32_t MESHES_MESH_SKINNING = 8;
+//                    const int32_t MESHES_MESH_SKINNING_JOINTS = 9;
+//                    const int32_t MESHES_MESH_SKINNING_INFLUENCES = 10;
+                const int32_t MESHES_MESH_INDICES = 12;
                 
-//        const DTint SKELETON = 13;
+//        const int32_t SKELETON = 13;
 };
 
 //==============================================================================
@@ -90,14 +90,14 @@ namespace {
 //==============================================================================
 
 #define BEGIN_EXPORT_SECTION(S)											\
-	file << (DTint) S;													\
+    file << (int32_t) S;													\
 	DTsize size_location = file.p();                                 \
-	file << (DTint) 0;						
+    file << (int32_t) 0;
 	
 #define END_EXPORT_SECTION												\
 	DTsize save_location = file.p();                                 \
 	file.seek_p(size_location, BinaryFileStream::FROM_BEGINNING);		\
-	file << (DTint) (save_location - size_location - sizeof(DTint));	\
+    file << (int32_t) (save_location - size_location - sizeof(int32_t));	\
 	file.seek_p(save_location, BinaryFileStream::FROM_BEGINNING);
 
 //==============================================================================
@@ -124,10 +124,10 @@ void GeometryResource_cmd::write_mesh_positions(BinaryFileStream &file, std::sha
     std::vector<Vector3> vertices = mesh->vertex_stream();
 	
 	// Write vertices
-	file << static_cast<DTuint>(vertices.size());
+    file << static_cast<uint32_t>(vertices.size());
 	LOG_MESSAGE << "Writing positions: " << (DTsize) vertices.size();
 	
-	for (DTuint i = 0; i < vertices.size(); ++i) {
+    for (uint32_t i = 0; i < vertices.size(); ++i) {
 		file << static_cast<DTfloat>(vertices[i].x);
 		file << static_cast<DTfloat>(vertices[i].y);
 		file << static_cast<DTfloat>(vertices[i].z);
@@ -143,10 +143,10 @@ void GeometryResource_cmd::write_mesh_normals(BinaryFileStream &file, std::share
     std::vector<Vector3> normals = mesh->normals_stream();
 
 	// Write normals
-	file << static_cast<DTuint>(normals.size());
+    file << static_cast<uint32_t>(normals.size());
 	LOG_MESSAGE << "Writing normals: " << (DTsize) normals.size();
 
-	for (DTuint i = 0; i < normals.size(); ++i) {
+    for (uint32_t i = 0; i < normals.size(); ++i) {
 		file << static_cast<DTfloat>(normals[i].x);
 		file << static_cast<DTfloat>(normals[i].y);
 		file << static_cast<DTfloat>(normals[i].z);
@@ -165,10 +165,10 @@ void GeometryResource_cmd::write_mesh_uvs(BinaryFileStream &file, std::shared_pt
     std::vector<Vector2> uvs = mesh->uv_stream0();
 	
 	// Write uvs
-	file << static_cast<DTuint>(uvs.size());
+    file << static_cast<uint32_t>(uvs.size());
 	LOG_MESSAGE << "Writing uvs: " << (DTsize) uvs.size();
 
-	for (DTuint i = 0; i < uvs.size(); ++i) {
+    for (uint32_t i = 0; i < uvs.size(); ++i) {
         file << static_cast<DTfloat>(uvs[i].x);
         file << static_cast<DTfloat>(uvs[i].y);
 	}
@@ -181,7 +181,7 @@ void GeometryResource_cmd::write_mesh_uv_sets(BinaryFileStream &file, std::share
 	BEGIN_EXPORT_SECTION(MESHES_MESH_UV_SETS);
 	
 	// Write uvs
-	file << static_cast<DTuint>(1);
+    file << static_cast<uint32_t>(1);
 	LOG_MESSAGE << "Writing uv sets: " << 1;
 	
     write_mesh_uvs(file, mesh);
@@ -199,10 +199,10 @@ void GeometryResource_cmd::write_mesh_indices(BinaryFileStream &file, std::share
     std::vector<Triangle> indices = mesh->index_stream();
 
 	// Write triangle indices
-	file << static_cast<DTuint>(indices.size());
+    file << static_cast<uint32_t>(indices.size());
 	LOG_MESSAGE << "Writing indices: " << (DTsize) indices.size();
 	
-	for (DTuint i = 0; i < indices.size(); ++i) {
+    for (uint32_t i = 0; i < indices.size(); ++i) {
 		file << indices[i].v[0];
 		file << indices[i].v[1];
 		file << indices[i].v[2];
@@ -244,9 +244,9 @@ void GeometryResource_cmd::write_meshes(BinaryFileStream &file, const std::share
     
     const std::vector<std::shared_ptr<Mesh>>& meshes = geo->meshes ();
     
-    file << static_cast<DTuint>(meshes.size());
+    file << static_cast<uint32_t>(meshes.size());
 
-    for (DTuint i = 0; i < meshes.size(); ++i) {
+    for (uint32_t i = 0; i < meshes.size(); ++i) {
         write_mesh(file, meshes[i]);
     }
 	

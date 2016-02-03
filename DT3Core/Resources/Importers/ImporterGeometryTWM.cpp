@@ -56,13 +56,13 @@ DTerr	ImporterGeometryTWM::import(GeometryResource *target, std::string args)
 	// Read_ in header
 	//
 	
-	DTuint magic;
+	uint32_t magic;
 	file >> magic;
     if (magic != MAGIC) {
         return DT3_ERR_FILE_WRONG_TYPE;
     }
 	
-	DTuint version;
+	uint32_t version;
 	file >> version;
 	
 	//
@@ -74,7 +74,7 @@ DTerr	ImporterGeometryTWM::import(GeometryResource *target, std::string args)
 	_uv_set_1_count = 0;
 	_weights_count = 0;
 	
-	DTint section,size;
+	int32_t section,size;
 	file >> section >> size;
 	switch(section) {
 		case FILE:		read_file(file, size);			break;
@@ -86,18 +86,18 @@ DTerr	ImporterGeometryTWM::import(GeometryResource *target, std::string args)
 	//
     
 	// Calculate sizes needed
-	DTuint joints_size = 0;
+	uint32_t joints_size = 0;
 	
-	for (DTuint i = 0; i < _meshes.size(); ++i) {
+	for (uint32_t i = 0; i < _meshes.size(); ++i) {
 		joints_size += _meshes[i]._joint_names.size();
 	}
 
 	// allocate joint names, force first one to always be identity
 	std::vector<std::string>	joint_names;
 	joint_names.resize(joints_size);	
-	DTuint joint_offset = 0;	// Account for identity above
+	uint32_t joint_offset = 0;	// Account for identity above
 
-	for (DTuint i = 0; i < _meshes.size(); ++i) {
+	for (uint32_t i = 0; i < _meshes.size(); ++i) {
 		MeshData &meshdata = _meshes[i];
 
         if (meshdata._vertices.size() == 0)
@@ -106,7 +106,7 @@ DTerr	ImporterGeometryTWM::import(GeometryResource *target, std::string args)
         std::shared_ptr<Mesh> mesh = Mesh::create();
 		
 		// copy joint names
-		for (DTuint j = 0; j < meshdata._joint_names.size(); ++j) {
+		for (uint32_t j = 0; j < meshdata._joint_names.size(); ++j) {
 			joint_names[joint_offset + j] = meshdata._joint_names[j];
 		}
         
@@ -129,7 +129,7 @@ DTerr	ImporterGeometryTWM::import(GeometryResource *target, std::string args)
             weights_index.resize(meshdata._weights.size());
             weights_strength.resize(meshdata._weights.size());
         
-            for (DTuint j = 0; j < meshdata._weights.size(); ++j) {
+            for (uint32_t j = 0; j < meshdata._weights.size(); ++j) {
                 weights_strength[j] = Vector4(      meshdata._weights[j].weight_1(),
                                                     meshdata._weights[j].weight_2(),
                                                     meshdata._weights[j].weight_3(),
@@ -158,7 +158,7 @@ DTerr	ImporterGeometryTWM::import(GeometryResource *target, std::string args)
         // Add the mesh
         target->add_mesh(mesh);
 
-		joint_offset += (DTushort) meshdata._joint_names.size();
+		joint_offset += (uint16_t) meshdata._joint_names.size();
 	}
 		 	
 	
@@ -187,7 +187,7 @@ void ImporterGeometryTWM::build_skeleton(   std::vector<std::string> &joint_name
 	// allocate space for destination joints
 	dst_joints.resize(src_joints.size());
 
-	for (DTuint i = 0; i < src_joints.size(); ++i) {
+	for (uint32_t i = 0; i < src_joints.size(); ++i) {
 		Joint &joint = src_joints[i];
 			
 		// find index of joint in names
@@ -209,7 +209,7 @@ void ImporterGeometryTWM::build_skeleton(   std::vector<std::string> &joint_name
 		// Buid copy of joint
 		SkeletonJoint &dest_joint = dst_joints[i];
 		dest_joint.set_name(joint._name);
-		dest_joint.set_joint_index( static_cast<DTuint>(joint_index) );
+		dest_joint.set_joint_index( static_cast<uint32_t>(joint_index) );
 		dest_joint.set_local_transform(joint._local_transform);
 		dest_joint.set_world_transform(joint._world_transform);
 		
@@ -224,7 +224,7 @@ void ImporterGeometryTWM::build_skeleton(   std::vector<std::string> &joint_name
 //==============================================================================
 //==============================================================================
 
-void ImporterGeometryTWM::read_mesh_name(BinaryFileStream &file, DTuint remaining_size, std::string &name)
+void ImporterGeometryTWM::read_mesh_name(BinaryFileStream &file, uint32_t remaining_size, std::string &name)
 {	
 	// Read_ string
 	file >> name;
@@ -234,19 +234,19 @@ void ImporterGeometryTWM::read_mesh_name(BinaryFileStream &file, DTuint remainin
 //==============================================================================
 //==============================================================================
 
-void ImporterGeometryTWM::read_mesh_positions(BinaryFileStream &file, DTuint remaining_size, std::vector<Vector3> &positions)
+void ImporterGeometryTWM::read_mesh_positions(BinaryFileStream &file, uint32_t remaining_size, std::vector<Vector3> &positions)
 {
 	// Read_ positions
-	DTuint size;
+	uint32_t size;
 	file >> size;
 	positions.resize(size);
 	
 	LOG_MESSAGE << "Reading positions: " << (DTsize) positions.size();
 
 #if DT3_BYTEORDER == DT3_LIL_ENDIAN
-    file.read_raw( (DTubyte*) &positions[0], sizeof(Vector3) * positions.size());
+    file.read_raw( (uint8_t*) &positions[0], sizeof(Vector3) * positions.size());
 #else
-	for (DTuint i = 0; i < positions.size(); ++i) {
+	for (uint32_t i = 0; i < positions.size(); ++i) {
 		file >> positions[i].x;
 		file >> positions[i].y;
 		file >> positions[i].z;
@@ -254,19 +254,19 @@ void ImporterGeometryTWM::read_mesh_positions(BinaryFileStream &file, DTuint rem
 #endif
 }
 
-void ImporterGeometryTWM::read_mesh_normals(BinaryFileStream &file, DTuint remaining_size, std::vector<Vector3> &normals)
+void ImporterGeometryTWM::read_mesh_normals(BinaryFileStream &file, uint32_t remaining_size, std::vector<Vector3> &normals)
 {
 	// Read_ normals
-	DTuint size;
+	uint32_t size;
 	file >> size;
 	normals.resize(size);
 	
 	LOG_MESSAGE << "Reading normals: " << (DTsize) normals.size();
 
 #if DT3_BYTEORDER == DT3_LIL_ENDIAN
-    file.read_raw( (DTubyte*) &normals[0], sizeof(Vector3) * normals.size());
+    file.read_raw( (uint8_t*) &normals[0], sizeof(Vector3) * normals.size());
 #else
-	for (DTuint i = 0; i < normals.size(); ++i) {
+	for (uint32_t i = 0; i < normals.size(); ++i) {
 		file >> normals[i].x;
 		file >> normals[i].y;
 		file >> normals[i].z;
@@ -277,40 +277,40 @@ void ImporterGeometryTWM::read_mesh_normals(BinaryFileStream &file, DTuint remai
 //==============================================================================
 //==============================================================================
 
-void ImporterGeometryTWM::read_mesh_uvs(BinaryFileStream &file, DTuint remaining_size, std::vector<Vector2> &uvs)
+void ImporterGeometryTWM::read_mesh_uvs(BinaryFileStream &file, uint32_t remaining_size, std::vector<Vector2> &uvs)
 {
 	// Read_ uvs
-	DTuint size;
+	uint32_t size;
 	file >> size;
 	uvs.resize(size);
 	
 	LOG_MESSAGE << "Reading uvs: " << (DTsize) uvs.size();
 
 #if DT3_BYTEORDER == DT3_LIL_ENDIAN
-        file.read_raw( (DTubyte*) &uvs[0], sizeof(Vector2) * uvs.size());
+        file.read_raw( (uint8_t*) &uvs[0], sizeof(Vector2) * uvs.size());
 #else
-	for (DTuint i = 0; i < uvs.size(); ++i) {
+	for (uint32_t i = 0; i < uvs.size(); ++i) {
 		file >> uvs[i].u;
 		file >> uvs[i].v;
 	}
 #endif
 }
 
-void ImporterGeometryTWM::read_mesh_uv_sets(BinaryFileStream &file, DTuint remaining_size, std::vector<UVset> &uvs_sets)
+void ImporterGeometryTWM::read_mesh_uv_sets(BinaryFileStream &file, uint32_t remaining_size, std::vector<UVset> &uvs_sets)
 {	
-	//DTuint start_pos = file.getG();
+	//uint32_t start_pos = file.getG();
 
 	// Read_ uvs
-	DTuint size;
+	uint32_t size;
 	file >> size;
 	uvs_sets.resize(size);
 
 	LOG_MESSAGE << "Reading uv sets: " << (DTsize) uvs_sets.size();
 	
-	for (DTuint i = 0; i < uvs_sets.size(); ++i) {
+	for (uint32_t i = 0; i < uvs_sets.size(); ++i) {
 	
 		//while (file.getG() - start_pos < remaining_size) {
-			DTint section, section_size;
+			int32_t section, section_size;
 			file >> section >> section_size;
 		
 			switch(section) {
@@ -325,31 +325,31 @@ void ImporterGeometryTWM::read_mesh_uv_sets(BinaryFileStream &file, DTuint remai
 //==============================================================================
 //==============================================================================
 
-void ImporterGeometryTWM::read_mesh_joints(BinaryFileStream &file, DTuint remaining_size, std::vector<std::string> &joints)
+void ImporterGeometryTWM::read_mesh_joints(BinaryFileStream &file, uint32_t remaining_size, std::vector<std::string> &joints)
 {
 	// Read_ joints
-	DTuint size;
+	uint32_t size;
 	file >> size;
 	joints.resize(size);
 
 	LOG_MESSAGE << "Reading joints: " << (DTsize) joints.size();
 	
-	for (DTuint i = 0; i < joints.size(); ++i) {
+	for (uint32_t i = 0; i < joints.size(); ++i) {
 		file >> joints[i];
 	}
 }
 
-void ImporterGeometryTWM::read_mesh_influences(BinaryFileStream &file, DTuint remaining_size, std::vector<Weights> &weights)
+void ImporterGeometryTWM::read_mesh_influences(BinaryFileStream &file, uint32_t remaining_size, std::vector<Weights> &weights)
 {	
 	// Read_ influences
-	DTuint size;
+	uint32_t size;
 	file >> size;
 	weights.resize(size);
 
 	LOG_MESSAGE << "Reading weights: " << (DTsize) weights.size();
 	
-	for (DTuint i = 0; i < weights.size(); ++i) {
-		DTuint	b[4];
+	for (uint32_t i = 0; i < weights.size(); ++i) {
+		uint32_t	b[4];
 		DTfloat	w[4];
 			
 		file >> b[0];
@@ -361,14 +361,14 @@ void ImporterGeometryTWM::read_mesh_influences(BinaryFileStream &file, DTuint re
 		file >> b[3];
 		file >> w[3];
 		
-		weights[i].set( (DTushort) b[0],w[0],
-                        (DTushort) b[1],w[1],
-                        (DTushort) b[2],w[2],
-                        (DTushort) b[3],w[3]);
+		weights[i].set( (uint16_t) b[0],w[0],
+                        (uint16_t) b[1],w[1],
+                        (uint16_t) b[2],w[2],
+                        (uint16_t) b[3],w[3]);
 	}
 }
 
-void ImporterGeometryTWM::read_mesh_skinning(BinaryFileStream &file, DTuint remaining_size, std::vector<std::string> &joints, std::vector<Weights> &weights)
+void ImporterGeometryTWM::read_mesh_skinning(BinaryFileStream &file, uint32_t remaining_size, std::vector<std::string> &joints, std::vector<Weights> &weights)
 {
 	DTsize start_pos = file.g();
 
@@ -377,7 +377,7 @@ void ImporterGeometryTWM::read_mesh_skinning(BinaryFileStream &file, DTuint rema
 	//
 	
 	while (file.g() - start_pos < remaining_size) {
-		DTint section, size;
+		int32_t section, size;
 		file >> section >> size;
 	
 		switch(section) {
@@ -392,17 +392,17 @@ void ImporterGeometryTWM::read_mesh_skinning(BinaryFileStream &file, DTuint rema
 //==============================================================================
 //==============================================================================
 
-void ImporterGeometryTWM::read_mesh_indices(BinaryFileStream &file, DTuint remaining_size, std::vector<Triangle> &indices)
+void ImporterGeometryTWM::read_mesh_indices(BinaryFileStream &file, uint32_t remaining_size, std::vector<Triangle> &indices)
 {
 	// Read_ triangle indices
-	DTuint size;
+	uint32_t size;
 	file >> size;
 	indices.resize(size);
 
 	LOG_MESSAGE << "Reading indices: " << (DTsize) indices.size();
 	
-	for (DTuint i = 0; i < indices.size(); ++i) {
-		DTushort i1,i2,i3;
+	for (uint32_t i = 0; i < indices.size(); ++i) {
+		uint16_t i1,i2,i3;
 	
 		file >> i1;
 		file >> i2;
@@ -416,7 +416,7 @@ void ImporterGeometryTWM::read_mesh_indices(BinaryFileStream &file, DTuint remai
 //==============================================================================
 //==============================================================================
 
-void ImporterGeometryTWM::read_mesh(BinaryFileStream &file, DTuint remaining_size, MeshData &mesh)
+void ImporterGeometryTWM::read_mesh(BinaryFileStream &file, uint32_t remaining_size, MeshData &mesh)
 {	
 	DTsize start_pos = file.g();
 
@@ -426,7 +426,7 @@ void ImporterGeometryTWM::read_mesh(BinaryFileStream &file, DTuint remaining_siz
 	
 	// Make sure there are 2 uv sets allocated just in case	
 	while (file.g() - start_pos < remaining_size) {
-		DTint section, size;
+		int32_t section, size;
 		file >> section >> size;
 	
 		switch(section) {
@@ -449,14 +449,14 @@ void ImporterGeometryTWM::read_mesh(BinaryFileStream &file, DTuint remaining_siz
 //==============================================================================
 //==============================================================================
 
-void ImporterGeometryTWM::read_meshes(BinaryFileStream &file, DTuint remaining_size, std::vector<MeshData> &meshes)
+void ImporterGeometryTWM::read_meshes(BinaryFileStream &file, uint32_t remaining_size, std::vector<MeshData> &meshes)
 {	
-	//DTuint start_pos = file.getG();
+	//uint32_t start_pos = file.getG();
 
 	//
 	// Meshes header
 	//
-	DTuint size;
+	uint32_t size;
 	file >> size;		
 	meshes.resize(size);
 
@@ -464,10 +464,10 @@ void ImporterGeometryTWM::read_meshes(BinaryFileStream &file, DTuint remaining_s
 	// Individual meshes
 	//
 
-	for (DTuint i = 0; i < meshes.size(); ++i) {
+	for (uint32_t i = 0; i < meshes.size(); ++i) {
 	
 		//while (file.getG() - start_pos < remaining_size) {
-			DTint section, section_size;
+			int32_t section, section_size;
 			file >> section >> section_size;
 		
 			switch(section) {
@@ -482,7 +482,7 @@ void ImporterGeometryTWM::read_meshes(BinaryFileStream &file, DTuint remaining_s
 //==============================================================================
 //==============================================================================
 
-void ImporterGeometryTWM::read_skeleton_joints (BinaryFileStream &file, DTuint remaining_size, std::vector<Joint> &joints)
+void ImporterGeometryTWM::read_skeleton_joints (BinaryFileStream &file, uint32_t remaining_size, std::vector<Joint> &joints)
 {
     if (remaining_size == 0)
         return;
@@ -491,11 +491,11 @@ void ImporterGeometryTWM::read_skeleton_joints (BinaryFileStream &file, DTuint r
 	// Joints list
 	//
 	
-	DTuint size;
+	uint32_t size;
 	file >> size;
 	joints.resize(size);
 	
-	for (DTuint i = 0; i < joints.size(); ++i) {
+	for (uint32_t i = 0; i < joints.size(); ++i) {
 		file >> joints[i]._name;
 		
 		file >> joints[i]._local_transform._m11 >> joints[i]._local_transform._m21 >> joints[i]._local_transform._m31 >> joints[i]._local_transform._m41;
@@ -514,7 +514,7 @@ void ImporterGeometryTWM::read_skeleton_joints (BinaryFileStream &file, DTuint r
 
 }
 
-void ImporterGeometryTWM::read_skeleton (BinaryFileStream &file, DTuint remaining_size, SkeletonData &skeleton)
+void ImporterGeometryTWM::read_skeleton (BinaryFileStream &file, uint32_t remaining_size, SkeletonData &skeleton)
 {
 	read_skeleton_joints(file, remaining_size, skeleton._joints);
 }
@@ -523,7 +523,7 @@ void ImporterGeometryTWM::read_skeleton (BinaryFileStream &file, DTuint remainin
 //==============================================================================
 //==============================================================================
 
-void ImporterGeometryTWM::read_file (BinaryFileStream &file, DTuint remaining_size)
+void ImporterGeometryTWM::read_file (BinaryFileStream &file, uint32_t remaining_size)
 {
 	DTsize start_pos = file.g();
 
@@ -532,7 +532,7 @@ void ImporterGeometryTWM::read_file (BinaryFileStream &file, DTuint remaining_si
 	//
 	
 	while (file.g() - start_pos < remaining_size) {
-		DTint section, size;
+		int32_t section, size;
 		file >> section >> size;
 	
 		switch(section) {

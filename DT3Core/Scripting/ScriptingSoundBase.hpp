@@ -47,11 +47,11 @@ class ScriptingSoundBase: public ScriptingBase {
 // Fixed point help
 //==============================================================================
 
-#define UNIT_TO_10BIT_INT(f)    ((DTint)(f * 1024))
-//#define PAD_10BIT(i)            (((DTint) i) << 10)
-//#define REM_10BIT(i)            (((DTint) i) >> 10)
-#define PAD_10BIT(i)            (((DTint) i) * (1 << 10))
-#define REM_10BIT(i)            (((DTint) i) / (1 << 10))
+#define UNIT_TO_10BIT_INT(f)    ((int32_t)(f * 1024))
+//#define PAD_10BIT(i)            (((int32_t) i) << 10)
+//#define REM_10BIT(i)            (((int32_t) i) >> 10)
+#define PAD_10BIT(i)            (((int32_t) i) * (1 << 10))
+#define REM_10BIT(i)            (((int32_t) i) / (1 << 10))
 
 #define CLAMP_PAD_10BIT(i)      ( std::max(PAD_10BIT(DTSHORT_MIN), std::min(PAD_10BIT(DTSHORT_MAX), i)) )
 #define CLAMP_16BIT(i)          ( std::max(DTSHORT_MIN, std::min(DTSHORT_MAX,i)) )

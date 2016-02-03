@@ -67,12 +67,12 @@ class ScriptingParticleSizeSequencer: public ScriptingBase {
         DEFINE_ACCESSORS(size_7, set_size_7, DTfloat, _s[7]);
 
     private:
-        static const DTint NUM_ENTRIES = 8;
+        static const int32_t NUM_ENTRIES = 8;
 
         DTfloat                             _t[NUM_ENTRIES];
         DTfloat                             _s[NUM_ENTRIES];
 
-        std::vector<DTint>                  _cache;
+        std::vector<int32_t>                  _cache;
 
         Plug<std::shared_ptr<Particles>>    _in;
         Plug<std::shared_ptr<Particles>>    _out;

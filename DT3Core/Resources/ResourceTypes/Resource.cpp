@@ -64,7 +64,7 @@ bool Resource::is_changed (void) const
     }
         
     // Check dependencies
-    for (DTuint i = 0; i < _dependencies.size(); ++i) {
+    for (uint32_t i = 0; i < _dependencies.size(); ++i) {
         if (_time_loaded < _dependencies[i].modification_date()) {
             return true;
         }

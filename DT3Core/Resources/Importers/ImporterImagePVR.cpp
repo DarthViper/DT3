@@ -56,9 +56,9 @@ DTerr ImporterImagePVR::import (TextureResource2D *target, std::string args)
     // Convert path to this platform
 	FilePath pathname(target->path());
     
-    DTuint                      width;
-    DTuint                      height;
-    std::shared_ptr<DTubyte>    data;
+    uint32_t                      width;
+    uint32_t                      height;
+    std::shared_ptr<uint8_t>    data;
     DT3GLTextelFormat           format;
 
     import(pathname, args, width, height, data, format);
@@ -75,9 +75,9 @@ DTerr ImporterImagePVR::import (TextureResource3D *target, std::string args)
     // Convert path to this platform
 	FilePath pathname(target->path());
     
-    DTuint                      width;
-    DTuint                      height;
-    std::shared_ptr<DTubyte>    data;
+    uint32_t                      width;
+    uint32_t                      height;
+    std::shared_ptr<uint8_t>    data;
     DT3GLTextelFormat           format;
 
     import(pathname, args, width, height, data, format);
@@ -92,9 +92,9 @@ DTerr ImporterImagePVR::import (TextureResourceCube *target, std::string args)
     // Convert path to this platform
 	FilePath pathname(target->path());
     
-    DTuint                      width;
-    DTuint                      height;
-    std::shared_ptr<DTubyte>    data;
+    uint32_t                      width;
+    uint32_t                      height;
+    std::shared_ptr<uint8_t>    data;
     DT3GLTextelFormat           format;
 
     import(pathname, args, width, height, data, format);
@@ -107,7 +107,7 @@ DTerr ImporterImagePVR::import (TextureResourceCube *target, std::string args)
 //==============================================================================
 //==============================================================================
 	
-DTerr ImporterImagePVR::import(const FilePath &pathname, const std::string &args, DTuint &width, DTuint &height, std::shared_ptr<DTubyte> &data, DT3GLTextelFormat &format)
+DTerr ImporterImagePVR::import(const FilePath &pathname, const std::string &args, uint32_t &width, uint32_t &height, std::shared_ptr<uint8_t> &data, DT3GLTextelFormat &format)
 {
 	// open the file
 	BinaryFileStream file;
@@ -117,9 +117,9 @@ DTerr ImporterImagePVR::import(const FilePath &pathname, const std::string &args
 	
 	// read the header
 	PVRTexHeader header;
-	file.read_raw((DTubyte*) &header, sizeof(header));
+	file.read_raw((uint8_t*) &header, sizeof(header));
 	
-    DTuint pvrTag = header.pvrTag;
+    uint32_t pvrTag = header.pvrTag;
 
     if (gPVRTexIdentifier[0] != ((pvrTag >>  0) & 0xff) ||
         gPVRTexIdentifier[1] != ((pvrTag >>  8) & 0xff) ||
@@ -129,16 +129,16 @@ DTerr ImporterImagePVR::import(const FilePath &pathname, const std::string &args
         return DT3_ERR_FILE_WRONG_TYPE;
     }
 	
-	DTuint flags = header.flags;
-	DTuint formatFlags = flags & PVR_TEXTURE_FLAG_TYPE_MASK;
+	uint32_t flags = header.flags;
+	uint32_t formatFlags = flags & PVR_TEXTURE_FLAG_TYPE_MASK;
 	
 	ASSERT (formatFlags == kPVRTextureFlagTypePVR_4 || formatFlags == kPVRTextureFlagTypePVR_2);
 	
 	// allocate a buffer
-    DTuint blockSize = 0, widthBlocks = 0, heightBlocks = 0;
+    uint32_t blockSize = 0, widthBlocks = 0, heightBlocks = 0;
     width = header.width;
     height = header.height;
-    DTuint bpp = 4;
+    uint32_t bpp = 4;
 
 	if (formatFlags == kPVRTextureFlagTypePVR_4)
 	{
@@ -159,12 +159,12 @@ DTerr ImporterImagePVR::import(const FilePath &pathname, const std::string &args
 	if (heightBlocks < 2)
 		heightBlocks = 2;
 
-	DTuint size = widthBlocks * heightBlocks * ((blockSize  * bpp) / 8);
+	uint32_t size = widthBlocks * heightBlocks * ((blockSize  * bpp) / 8);
     
-    std::shared_ptr<DTuint> buffer = std::shared_ptr<DTuint>(new DTuint[size]);
+    std::shared_ptr<uint32_t> buffer = std::shared_ptr<uint32_t>(new uint32_t[size]);
 
 	// Read the entire file
-	file.read_raw((DTubyte*) buffer.get(), size);
+	file.read_raw((uint8_t*) buffer.get(), size);
     
 	if (header.bitmaskAlpha) {
         if (formatFlags == kPVRTextureFlagTypePVR_4)		format = DT3GL_FORMAT_PVR4_RGBA;

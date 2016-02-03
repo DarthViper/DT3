@@ -138,9 +138,9 @@ bool ScriptingParticleColorRandomizer::compute (const PlugBase *plug)
 		// Do processing
 		std::vector<Color4b> &colors = particles->color_stream();
         
-        DTint rs = MoreMath::random_seed();
+        int32_t rs = MoreMath::random_seed();
 
-		for (DTint i = particles->active_start(); i != particles->active_end(); i = (i + 1) % particles->translations_stream().size()) {
+		for (int32_t i = particles->active_start(); i != particles->active_end(); i = (i + 1) % particles->translations_stream().size()) {
 			Color4b &color = colors[i];
 			
 			// Generate random number

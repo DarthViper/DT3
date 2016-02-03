@@ -163,8 +163,8 @@ class PrimitiveCollisions {
 
 
         struct XY {
-            DTint x;
-            DTint y;
+            int32_t x;
+            int32_t y;
         };
 
         /// Bressenham Line algorithm
@@ -173,7 +173,7 @@ class PrimitiveCollisions {
         /// \param x1 start point x
         /// \param y1 start point y
         /// \param visited list of points that get visited
-        static void                 bressenham_line                     (DTint x0, DTint y0, DTint x1, DTint y1, std::vector<XY> &visited);
+        static void                 bressenham_line                     (int32_t x0, int32_t y0, int32_t x1, int32_t y1, std::vector<XY> &visited);
 
         /// Raytracing Line algorithm. Works better than Bressenham if points are floats.
         /// \param x0 start point x

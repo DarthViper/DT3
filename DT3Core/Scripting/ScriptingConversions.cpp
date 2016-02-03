@@ -52,15 +52,15 @@ class Scripting##FROMTYPE##To##TOTYPE: public ScriptingBase {                   
 	private:                                                                        \
 		Plug<FT>                    _in;                                            \
 		Plug<TT>                    _out;                                           \
-        static DTushort             _inIndex;                                       \
-        static DTushort             _outIndex;                                      \
+        static uint16_t             _inIndex;                                       \
+        static uint16_t             _outIndex;                                      \
 };                                                                                  \
                                                                                     \
 IMPLEMENT_FACTORY_CREATION_SCRIPT(Scripting##FROMTYPE##To##TOTYPE,"Conversion",NULL)\
 IMPLEMENT_PLUG_NODE(Scripting##FROMTYPE##To##TOTYPE)                                \
                                                                                     \
-DTushort Scripting##FROMTYPE##To##TOTYPE::_inIndex = PlugInfo::get_free_index();    \
-DTushort Scripting##FROMTYPE##To##TOTYPE::_outIndex = PlugInfo::get_free_index();   \
+uint16_t Scripting##FROMTYPE##To##TOTYPE::_inIndex = PlugInfo::get_free_index();    \
+uint16_t Scripting##FROMTYPE##To##TOTYPE::_outIndex = PlugInfo::get_free_index();   \
                                                                                     \
 BEGIN_IMPLEMENT_PLUGS(Scripting##FROMTYPE##To##TOTYPE)                              \
 	PLUG_INIT(_in,"In")                                                             \
@@ -143,62 +143,62 @@ bool Scripting##FROMTYPE##To##TOTYPE::compute (const PlugBase *plug)           \
 //==============================================================================
 //==============================================================================
 
-BUILD_CONVERSION_NUMBER (Bool,bool,Short,DTshort,false,0)
-BUILD_CONVERSION_NUMBER (Bool,bool,UShort,DTushort,false,0)
-BUILD_CONVERSION_NUMBER (Bool,bool,Int,DTint,false,0L)
-BUILD_CONVERSION_NUMBER (Bool,bool,UInt,DTuint,false,0UL)
+BUILD_CONVERSION_NUMBER (Bool,bool,Short,int16_t,false,0)
+BUILD_CONVERSION_NUMBER (Bool,bool,UShort,uint16_t,false,0)
+BUILD_CONVERSION_NUMBER (Bool,bool,Int,int32_t,false,0L)
+BUILD_CONVERSION_NUMBER (Bool,bool,UInt,uint32_t,false,0UL)
 BUILD_CONVERSION_NUMBER (Bool,bool,Float,DTfloat,false,0.0F)
 BUILD_CONVERSION_NUMBER (Bool,bool,Double,DTdouble,false,0.0)
 
-BUILD_CONVERSION_NUMBER (Short,DTshort,UShort,DTushort,0,0)
-BUILD_CONVERSION_NUMBER (Short,DTshort,Bool,bool,0,false)
-BUILD_CONVERSION_NUMBER (Short,DTshort,Int,DTint,0,0L)
-BUILD_CONVERSION_NUMBER (Short,DTshort,UInt,DTuint,0,0UL)
-BUILD_CONVERSION_NUMBER (Short,DTshort,Float,DTfloat,0,0.0F)
-BUILD_CONVERSION_NUMBER (Short,DTshort,Double,DTdouble,0,0.0)
+BUILD_CONVERSION_NUMBER (Short,int16_t,UShort,uint16_t,0,0)
+BUILD_CONVERSION_NUMBER (Short,int16_t,Bool,bool,0,false)
+BUILD_CONVERSION_NUMBER (Short,int16_t,Int,int32_t,0,0L)
+BUILD_CONVERSION_NUMBER (Short,int16_t,UInt,uint32_t,0,0UL)
+BUILD_CONVERSION_NUMBER (Short,int16_t,Float,DTfloat,0,0.0F)
+BUILD_CONVERSION_NUMBER (Short,int16_t,Double,DTdouble,0,0.0)
 
-BUILD_CONVERSION_NUMBER (UShort,DTushort,Bool,bool,0U,false)
-BUILD_CONVERSION_NUMBER (UShort,DTushort,Short,DTshort,0U,0)
-BUILD_CONVERSION_NUMBER (UShort,DTushort,Int,DTint,0U,0L)
-BUILD_CONVERSION_NUMBER (UShort,DTushort,UInt,DTuint,0U,0UL)
-BUILD_CONVERSION_NUMBER (UShort,DTushort,Float,DTfloat,0U,0.0F)
-BUILD_CONVERSION_NUMBER (UShort,DTushort,Double,DTdouble,0U,0.0)
+BUILD_CONVERSION_NUMBER (UShort,uint16_t,Bool,bool,0U,false)
+BUILD_CONVERSION_NUMBER (UShort,uint16_t,Short,int16_t,0U,0)
+BUILD_CONVERSION_NUMBER (UShort,uint16_t,Int,int32_t,0U,0L)
+BUILD_CONVERSION_NUMBER (UShort,uint16_t,UInt,uint32_t,0U,0UL)
+BUILD_CONVERSION_NUMBER (UShort,uint16_t,Float,DTfloat,0U,0.0F)
+BUILD_CONVERSION_NUMBER (UShort,uint16_t,Double,DTdouble,0U,0.0)
 
-BUILD_CONVERSION_NUMBER (Int,DTint,Bool,bool,0L,false)
-BUILD_CONVERSION_NUMBER (Int,DTint,Short,DTshort,0L,0)
-BUILD_CONVERSION_NUMBER (Int,DTint,UShort,DTushort,0L,0)
-BUILD_CONVERSION_NUMBER (Int,DTint,UInt,DTuint,0L,0UL)
-BUILD_CONVERSION_NUMBER (Int,DTint,Float,DTfloat,0L,0.0F)
-BUILD_CONVERSION_NUMBER (Int,DTint,Double,DTdouble,0L,0.0)
+BUILD_CONVERSION_NUMBER (Int,int32_t,Bool,bool,0L,false)
+BUILD_CONVERSION_NUMBER (Int,int32_t,Short,int16_t,0L,0)
+BUILD_CONVERSION_NUMBER (Int,int32_t,UShort,uint16_t,0L,0)
+BUILD_CONVERSION_NUMBER (Int,int32_t,UInt,uint32_t,0L,0UL)
+BUILD_CONVERSION_NUMBER (Int,int32_t,Float,DTfloat,0L,0.0F)
+BUILD_CONVERSION_NUMBER (Int,int32_t,Double,DTdouble,0L,0.0)
 
-BUILD_CONVERSION_NUMBER (UInt,DTuint,Bool,bool,0UL,false)
-BUILD_CONVERSION_NUMBER (UInt,DTuint,Short,DTshort,0UL,0)
-BUILD_CONVERSION_NUMBER (UInt,DTuint,UShort,DTushort,0UL,0)
-BUILD_CONVERSION_NUMBER (UInt,DTuint,Int,DTint,0UL,0L)
-BUILD_CONVERSION_NUMBER (UInt,DTuint,Float,DTfloat,0UL,0.0F)
-BUILD_CONVERSION_NUMBER (UInt,DTuint,Double,DTdouble,0UL,0.0)
+BUILD_CONVERSION_NUMBER (UInt,uint32_t,Bool,bool,0UL,false)
+BUILD_CONVERSION_NUMBER (UInt,uint32_t,Short,int16_t,0UL,0)
+BUILD_CONVERSION_NUMBER (UInt,uint32_t,UShort,uint16_t,0UL,0)
+BUILD_CONVERSION_NUMBER (UInt,uint32_t,Int,int32_t,0UL,0L)
+BUILD_CONVERSION_NUMBER (UInt,uint32_t,Float,DTfloat,0UL,0.0F)
+BUILD_CONVERSION_NUMBER (UInt,uint32_t,Double,DTdouble,0UL,0.0)
 
 BUILD_CONVERSION_NUMBER (Float,DTfloat,Bool,bool,0.0F,false)
-BUILD_CONVERSION_NUMBER (Float,DTfloat,Short,DTshort,0.0F,0)
-BUILD_CONVERSION_NUMBER (Float,DTfloat,UShort,DTushort,0.0F,0)
-BUILD_CONVERSION_NUMBER (Float,DTfloat,Int,DTint,0.0F,0L)
-BUILD_CONVERSION_NUMBER (Float,DTfloat,UInt,DTuint,0.0F,0UL)
+BUILD_CONVERSION_NUMBER (Float,DTfloat,Short,int16_t,0.0F,0)
+BUILD_CONVERSION_NUMBER (Float,DTfloat,UShort,uint16_t,0.0F,0)
+BUILD_CONVERSION_NUMBER (Float,DTfloat,Int,int32_t,0.0F,0L)
+BUILD_CONVERSION_NUMBER (Float,DTfloat,UInt,uint32_t,0.0F,0UL)
 BUILD_CONVERSION_NUMBER (Float,DTfloat,Double,DTdouble,0.0F,0.0)
 
 BUILD_CONVERSION_NUMBER (Double,DTdouble,Bool,bool,0.0,false)
-BUILD_CONVERSION_NUMBER (Double,DTdouble,Short,DTshort,0.0,0)
-BUILD_CONVERSION_NUMBER (Double,DTdouble,UShort,DTushort,0.0,0)
-BUILD_CONVERSION_NUMBER (Double,DTdouble,Int,DTint,0.0,0L)
-BUILD_CONVERSION_NUMBER (Double,DTdouble,UInt,DTuint,0.0,0UL)
+BUILD_CONVERSION_NUMBER (Double,DTdouble,Short,int16_t,0.0,0)
+BUILD_CONVERSION_NUMBER (Double,DTdouble,UShort,uint16_t,0.0,0)
+BUILD_CONVERSION_NUMBER (Double,DTdouble,Int,int32_t,0.0,0L)
+BUILD_CONVERSION_NUMBER (Double,DTdouble,UInt,uint32_t,0.0,0UL)
 BUILD_CONVERSION_NUMBER (Double,DTdouble,Float,DTfloat,0.0,0.0F)
 
 BUILD_CONVERSION_TO_VECTOR3(Float,DTfloat,0.0F)
 
 BUILD_CONVERSION_TO_STRING(Bool,bool,false)
-BUILD_CONVERSION_TO_STRING(Short,DTshort,0)
-BUILD_CONVERSION_TO_STRING(UShort,DTushort,0U)
-BUILD_CONVERSION_TO_STRING(Int,DTint,0L)
-BUILD_CONVERSION_TO_STRING(UInt,DTuint,0UL)
+BUILD_CONVERSION_TO_STRING(Short,int16_t,0)
+BUILD_CONVERSION_TO_STRING(UShort,uint16_t,0U)
+BUILD_CONVERSION_TO_STRING(Int,int32_t,0L)
+BUILD_CONVERSION_TO_STRING(UInt,uint32_t,0UL)
 BUILD_CONVERSION_TO_STRING(Float,DTfloat,0.0F)
 BUILD_CONVERSION_TO_STRING(Double,DTdouble,0.0)
 BUILD_CONVERSION_TO_STRING(Vector2,Vector2,(Vector2{0.0F,0.0F}))
@@ -209,10 +209,10 @@ BUILD_CONVERSION_TO_STRING(Matrix4,Matrix4,Matrix4(Matrix4::identity()))
 BUILD_CONVERSION_TO_STRING(Color4f,Color4f,Color4f(1.0F,1.0F,1.0F,1.0F))
 
 BUILD_CONVERSION_FROM_STRING(Bool,bool,false)
-BUILD_CONVERSION_FROM_STRING(Short,DTshort,0)
-BUILD_CONVERSION_FROM_STRING(UShort,DTushort,0U)
-BUILD_CONVERSION_FROM_STRING(Int,DTint,0L)
-BUILD_CONVERSION_FROM_STRING(UInt,DTuint,0UL)
+BUILD_CONVERSION_FROM_STRING(Short,int16_t,0)
+BUILD_CONVERSION_FROM_STRING(UShort,uint16_t,0U)
+BUILD_CONVERSION_FROM_STRING(Int,int32_t,0L)
+BUILD_CONVERSION_FROM_STRING(UInt,uint32_t,0UL)
 BUILD_CONVERSION_FROM_STRING(Float,DTfloat,0.0F)
 BUILD_CONVERSION_FROM_STRING(Double,DTdouble,0.0)
 BUILD_CONVERSION_FROM_STRING(Vector2,Vector2,(Vector2{0.0F,0.0F}))

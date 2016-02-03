@@ -54,7 +54,7 @@ ScriptingParticleSizeSequencer::ScriptingParticleSizeSequencer (void)
     :   _in			(PLUG_INFO_INDEX(_in)),
 		_out		(PLUG_INFO_INDEX(_out))
 {  
-	for (DTint i = 0; i < NUM_ENTRIES; ++i) {
+	for (int32_t i = 0; i < NUM_ENTRIES; ++i) {
 		_t[i] = i;
 		_s[i] = 1.0F;
 	}
@@ -68,7 +68,7 @@ ScriptingParticleSizeSequencer::ScriptingParticleSizeSequencer (const ScriptingP
 		_in					(rhs._in),
 		_out				(rhs._out)
 {   
-	for (DTint i = 0; i < NUM_ENTRIES; ++i) {
+	for (int32_t i = 0; i < NUM_ENTRIES; ++i) {
 		_t[i] = rhs._t[i];
 		_s[i] = rhs._s[i];
 	}
@@ -80,7 +80,7 @@ ScriptingParticleSizeSequencer & ScriptingParticleSizeSequencer::operator = (con
     if (&rhs != this) {        
 		ScriptingBase::operator = (rhs);
 
-		for (DTint i = 0; i < NUM_ENTRIES; ++i) {
+		for (int32_t i = 0; i < NUM_ENTRIES; ++i) {
 			_t[i] = rhs._t[i];
 			_s[i] = rhs._s[i];
 		}
@@ -104,7 +104,7 @@ void ScriptingParticleSizeSequencer::archive (const std::shared_ptr<Archive> &ar
 
 	archive->push_domain (class_id ());
 		
-	for (DTint i = 0; i < NUM_ENTRIES; ++i) {
+	for (int32_t i = 0; i < NUM_ENTRIES; ++i) {
 		*archive << ARCHIVE_DATA_NAMED("Time" + MoreStrings::cast_to_string(i), _t[i], DATA_PERSISTENT | DATA_SETTABLE);
 		*archive << ARCHIVE_DATA_NAMED("size" + MoreStrings::cast_to_string(i), _s[i], DATA_PERSISTENT | DATA_SETTABLE);
 	}
@@ -143,9 +143,9 @@ bool ScriptingParticleSizeSequencer::compute (const PlugBase *plug)
 		std::vector<DTfloat> &lifetimes = particles->lifetimes_stream();
 		std::vector<DTfloat> &sizes = particles->sizes_stream();
 
-		for (DTint i = particles->active_start(); i != particles->active_end(); i = (i + 1) % particles->translations_stream().size()) {
+		for (int32_t i = particles->active_start(); i != particles->active_end(); i = (i + 1) % particles->translations_stream().size()) {
 			DTfloat &lifetime = lifetimes[i];
-			DTint &cache = _cache[i];
+			int32_t &cache = _cache[i];
 			DTfloat &size = sizes[i];
 			
 			// If lifetime is less than the cache entry, just start over

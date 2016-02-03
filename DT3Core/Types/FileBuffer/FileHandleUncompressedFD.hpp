@@ -57,7 +57,7 @@ class FileHandleUncompressedFD: public FileHandle {
         /// Sets an existing file descriptor for file
         /// \param fd file descriptor
         /// \return Error
-        virtual DTerr           set_fd              (DTint fd);
+        virtual DTerr           set_fd              (int32_t fd);
 
         /// Close the file handle
         virtual void            close				(void);
@@ -103,16 +103,16 @@ class FileHandleUncompressedFD: public FileHandle {
         /// \param buffer raw buffer
         /// \param size size of raw buffer
         /// \return actual number of bytes read
-        virtual DTsize          read				(DTubyte *buffer, DTsize size);
+        virtual DTsize          read				(uint8_t *buffer, DTsize size);
 
         /// Writes a chunk of raw binary data
         /// \param buffer raw buffer
         /// \param size size of raw buffer
-        virtual void            write				(const DTubyte *buffer, DTsize size);
+        virtual void            write				(const uint8_t *buffer, DTsize size);
 
     private:
         DTsize				_length;
-        DTint               _file;
+        int32_t               _file;
         bool           _eof;
 };
 

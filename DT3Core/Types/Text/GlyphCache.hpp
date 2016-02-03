@@ -54,7 +54,7 @@ class GlyphCache {
         void                                clear   (void);
 
      private:
-        std::unordered_map<DTuint, std::shared_ptr<GlyphCacheEntry>>   _hash_table;
+        std::unordered_map<uint32_t, std::shared_ptr<GlyphCacheEntry>>   _hash_table;
 };
 
 //==============================================================================

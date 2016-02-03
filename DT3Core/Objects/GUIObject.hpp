@@ -105,11 +105,11 @@ class GUIObject: public PlaceableObject {
 
         /// Returns the size mode for the object. The size mode is how the object interprets its width and height.
         /// \return size mode
-        DTint                       size_mode                   (void) const                    {   return _size_mode;          }
+        int32_t                       size_mode                   (void) const                    {   return _size_mode;          }
 
         /// Sets the size mode for the object.
         /// \param size_mode size mode
-        void						set_size_mode               (const DTint size_mode)         {   _size_mode = size_mode;     }
+        void						set_size_mode               (const int32_t size_mode)         {   _size_mode = size_mode;     }
 
 
         enum {
@@ -122,11 +122,11 @@ class GUIObject: public PlaceableObject {
 
         /// Returns the pivot for the object.
         /// \return pivot
-        DTint						pivot                       (void) const                    {   return _pivot;              }
+        int32_t						pivot                       (void) const                    {   return _pivot;              }
 
         /// Sets the pivot for the object.
         /// \param pivot pivot
-        void						set_pivot                   (const DTint pivot)             {   _pivot = pivot;             }
+        void						set_pivot                   (const int32_t pivot)             {   _pivot = pivot;             }
 
 
 
@@ -326,8 +326,8 @@ class GUIObject: public PlaceableObject {
 
         State                       _state;
 
-        DTint                       _size_mode;
-        DTint                       _pivot;
+        int32_t                       _size_mode;
+        int32_t                       _pivot;
 
         bool                   _no_focus;
 

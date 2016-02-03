@@ -142,7 +142,7 @@ class EventInfo {
         /// \return owner node
         PlugNode*                       event_to_node   (const Event *evt) {
             ASSERT(_offset != 0);
-            return reinterpret_cast<PlugNode*>( (DTubyte*) evt - _offset);
+            return reinterpret_cast<PlugNode*>( (uint8_t*) evt - _offset);
         }
 
         /// Given the node, return a pointer to the event
@@ -150,7 +150,7 @@ class EventInfo {
         /// \return Event
         Event*                          node_to_event   (const PlugNode *node){
             ASSERT(_offset != 0);
-            return reinterpret_cast<Event*>( (DTubyte*) node + _offset);
+            return reinterpret_cast<Event*>( (uint8_t*) node + _offset);
         }
 
 
@@ -160,17 +160,17 @@ class EventInfo {
 
         /// Returns the next free index in the pool
         /// \return Next free index
-        static DTushort                 get_free_index      (void);
+        static uint16_t                 get_free_index      (void);
 
         /// Returns the info at the specified index
         /// \param i index
         /// \return Info
-        static EventInfo&               get_info            (DTushort i);
+        static EventInfo&               get_info            (uint16_t i);
 
     private:
-        DTubyte                         _is_input:1;
-        DTubyte                         _is_output:1;
-        DTubyte                         _is_no_draw:1;
+        uint8_t                         _is_input:1;
+        uint8_t                         _is_output:1;
+        uint8_t                         _is_no_draw:1;
 
         DTsize                          _offset;
 
@@ -187,10 +187,10 @@ class EventInfo {
 
 #define EVENT_INFO_INDEX(Evt)               Evt##Index
 
-#define IMPLEMENT_EVENT_INFO_INDEX(Evt)     namespace {	DTushort EVENT_INFO_INDEX(Evt) = EventInfo::get_free_index();	}
+#define IMPLEMENT_EVENT_INFO_INDEX(Evt)     namespace {	uint16_t EVENT_INFO_INDEX(Evt) = EventInfo::get_free_index();	}
 
-#define EVENT_OFFSET(Evt)                   (	(DTubyte*) (static_cast<Event*>(&(reinterpret_cast<type*>(0x99999999)->Evt))) - \
-                                                (DTubyte*) (static_cast<PlugNode*>(reinterpret_cast<type*>(0x99999999)))	)
+#define EVENT_OFFSET(Evt)                   (	(uint8_t*) (static_cast<Event*>(&(reinterpret_cast<type*>(0x99999999)->Evt))) - \
+                                                (uint8_t*) (static_cast<PlugNode*>(reinterpret_cast<type*>(0x99999999)))	)
 
 #define EVENT_INIT(Evt, Name)               EventInfo::get_info(EVENT_INFO_INDEX(Evt)).init(    \
                                                 Name,                                           \

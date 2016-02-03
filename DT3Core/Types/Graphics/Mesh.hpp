@@ -55,7 +55,7 @@ class Mesh: public BaseClass {
 
         DEFINE_ACCESSORS(index_stream, set_index_stream, std::vector<Triangle>, _index_stream);
 
-        DEFINE_ACCESSORS(smoothing_groups, set_smoothing_groups, std::vector<DTuint>, _smoothing_group);
+        DEFINE_ACCESSORS(smoothing_groups, set_smoothing_groups, std::vector<uint32_t>, _smoothing_group);
 
 
         /// Generate some normals for the geometry
@@ -76,8 +76,8 @@ class Mesh: public BaseClass {
         DEFINE_ACCESSORS(material, set_material, std::string, _material)
 
     private:
-        DTuint                          hash_vertex         (DTuint i, bool vertex_only = false);
-        bool                       equal_vertex        (DTuint v1, DTuint v2, bool vertex_only = false);
+        uint32_t                          hash_vertex         (uint32_t i, bool vertex_only = false);
+        bool                       equal_vertex        (uint32_t v1, uint32_t v2, bool vertex_only = false);
 
         std::string                     _name;
         std::string                     _material;  // Name of imported material
@@ -92,7 +92,7 @@ class Mesh: public BaseClass {
         std::vector<Vector4>            _weights_strength_stream;
         std::vector<Triangle>           _index_stream;
 
-        std::vector<DTuint>             _smoothing_group;   // Only used on import for normals calculations
+        std::vector<uint32_t>             _smoothing_group;   // Only used on import for normals calculations
 };
 
 //==============================================================================

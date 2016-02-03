@@ -45,7 +45,7 @@ class ArchiveProcess: public BaseClass {
         /// Post process for archiving
         /// \param archive Archive that owns the post process
         /// \param archive Objects Map of objects that have been archived
-        virtual void		process			(const std::shared_ptr<Archive> &archive, std::map<DTuint64, std::shared_ptr<BaseClass>> &objects) = 0;
+        virtual void		process			(const std::shared_ptr<Archive> &archive, std::map<uint64_t, std::shared_ptr<BaseClass>> &objects) = 0;
 };
 
 //==============================================================================

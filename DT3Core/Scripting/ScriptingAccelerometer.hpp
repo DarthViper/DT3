@@ -57,7 +57,7 @@ class ScriptingAccelerometer: public ScriptingBase {
         /// Registered with system to get key presses
         /// \param modifiers modifiers
         /// \param key key code
-        void                        key                     (DTuint modifiers, DTushort key);
+        void                        key                     (uint32_t modifiers, uint16_t key);
 #endif
 
     private:

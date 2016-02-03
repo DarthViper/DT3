@@ -50,7 +50,7 @@ void EdLevelImageThumbnail::cache (void)
 {
     std::shared_ptr<TextureResource2D> texture = TextureResource2D::import_resource(_path);
     if (texture->buffer() == NULL) {
-        _image = QImage( (DTubyte*) NULL, 0U, 0U, QImage::Format_ARGB32);
+        _image = QImage( (uint8_t*) NULL, 0U, 0U, QImage::Format_ARGB32);
         return;
     }
 
@@ -91,7 +91,7 @@ void EdLevelImageThumbnail::cache (void)
         }
     }
 
-    _image = QImage( (DTubyte*) _buffer,_width,_height, QImage::Format_ARGB32);
+    _image = QImage( (uint8_t*) _buffer,_width,_height, QImage::Format_ARGB32);
 }
 
 //==============================================================================

@@ -75,9 +75,9 @@ class ImporterImageJPG: public ImporterImage {
 
         DTerr                       import              (   const FilePath &pathname,
                                                             const std::string &args,
-                                                            DTuint &width,
-                                                            DTuint &height,
-                                                            std::shared_ptr<DTubyte> &data,
+                                                            uint32_t &width,
+                                                            uint32_t &height,
+                                                            std::shared_ptr<uint8_t> &data,
                                                             DT3GLTextelFormat &format);
 
         struct ImportErr {

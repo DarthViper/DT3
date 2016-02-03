@@ -174,23 +174,23 @@ bool ScriptingSoundBusOut::compute (const PlugBase *plug)
             sound_packet_out.set_frequency(sound_packet_in.frequency());
             sound_packet_out.set_num_bytes(sound_packet_in.num_bytes()*2);
                 
-            DTshort *data_in = (DTshort *) sound_packet_in.buffer();
-            DTshort *data_out = (DTshort *) sound_packet_out.buffer();
+            int16_t *data_in = (int16_t *) sound_packet_in.buffer();
+            int16_t *data_out = (int16_t *) sound_packet_out.buffer();
 
-            DTint gain_left_int = UNIT_TO_10BIT_INT(_gain_left);
-            DTint gain_right_int = UNIT_TO_10BIT_INT(_gain_right);
+            int32_t gain_left_int = UNIT_TO_10BIT_INT(_gain_left);
+            int32_t gain_right_int = UNIT_TO_10BIT_INT(_gain_right);
             
-            DTuint64 sum_left = 0;
-            DTuint64 sum_right = 0;
+            uint64_t sum_left = 0;
+            uint64_t sum_right = 0;
 
-            for (DTuint s = 0; s < num_samples; ++s) {
-                (*data_out) = (DTshort) REM_10BIT(CLAMP_PAD_10BIT( (*data_in) * gain_left_int));
+            for (uint32_t s = 0; s < num_samples; ++s) {
+                (*data_out) = (int16_t) REM_10BIT(CLAMP_PAD_10BIT( (*data_in) * gain_left_int));
                 
                 sum_left += (*data_out) * (*data_out);
 
                 ++data_out;
                 
-                (*data_out) = (DTshort) REM_10BIT(CLAMP_PAD_10BIT( (*data_in) * gain_right_int));
+                (*data_out) = (int16_t) REM_10BIT(CLAMP_PAD_10BIT( (*data_in) * gain_right_int));
 
                 sum_right += (*data_out) * (*data_out);
 
@@ -210,24 +210,24 @@ bool ScriptingSoundBusOut::compute (const PlugBase *plug)
             sound_packet_out.set_frequency(sound_packet_in.frequency());
             sound_packet_out.set_num_bytes(sound_packet_in.num_bytes());
                 
-            DTshort *data_in = (DTshort *) sound_packet_in.buffer();
-            DTshort *data_out = (DTshort *) sound_packet_out.buffer();
+            int16_t *data_in = (int16_t *) sound_packet_in.buffer();
+            int16_t *data_out = (int16_t *) sound_packet_out.buffer();
 
-            DTint gain_left_int = UNIT_TO_10BIT_INT(_gain_left);
-            DTint gain_right_int = UNIT_TO_10BIT_INT(_gain_right);
+            int32_t gain_left_int = UNIT_TO_10BIT_INT(_gain_left);
+            int32_t gain_right_int = UNIT_TO_10BIT_INT(_gain_right);
             
-            DTuint64 sum_left = 0;
-            DTuint64 sum_right = 0;
+            uint64_t sum_left = 0;
+            uint64_t sum_right = 0;
 
-            for (DTuint s = 0; s < num_samples; ++s) {
-                (*data_out) = (DTshort) REM_10BIT(CLAMP_PAD_10BIT( (*data_in) * gain_left_int));
+            for (uint32_t s = 0; s < num_samples; ++s) {
+                (*data_out) = (int16_t) REM_10BIT(CLAMP_PAD_10BIT( (*data_in) * gain_left_int));
                 
                 sum_left += (*data_out) * (*data_out);
 
                 ++data_out;
                 ++data_in;
                 
-                (*data_out) = (DTshort) REM_10BIT(CLAMP_PAD_10BIT( (*data_in) * gain_right_int));
+                (*data_out) = (int16_t) REM_10BIT(CLAMP_PAD_10BIT( (*data_in) * gain_right_int));
 
                 sum_right += (*data_out) * (*data_out);
 

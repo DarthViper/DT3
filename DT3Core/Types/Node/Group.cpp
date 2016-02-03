@@ -35,7 +35,7 @@ IMPLEMENT_FACTORY_CREATION(Group)
 
 Group::Group (void)
     :   _description("Description"),
-        _group_color((DTubyte)80,(DTubyte)80,(DTubyte)80,(DTubyte)255)
+        _group_color((uint8_t)80,(uint8_t)80,(uint8_t)80,(uint8_t)255)
 {  
 
 }

@@ -71,10 +71,10 @@ void ScriptingKeyframes::archive (const std::shared_ptr<Archive> &archive)
 //==============================================================================
 //==============================================================================
 
-DTint ScriptingKeyframes::key_index (DTint id) const
+int32_t ScriptingKeyframes::key_index (int32_t id) const
 {
-    DTint n = (DTint) num_keys();
-    for (DTint i = 0; i < n; ++i) {
+    int32_t n = (int32_t) num_keys();
+    for (int32_t i = 0; i < n; ++i) {
     
         if (key_id(i) == id)
             return i;

@@ -51,14 +51,14 @@ Archive& ArchiveBinaryBufferReader::operator << (const ArchiveData& data)
 
 void ArchiveBinaryBufferReader::push_domain (const std::string &domain)
 {
-	DTubyte marker;
+	uint8_t marker;
 	_buffer >> marker;
 	ERROR(marker == 0xFF, "Error streaming buffer");
 }
 
 void ArchiveBinaryBufferReader::pop_domain (void)
 {
-	DTubyte marker;
+	uint8_t marker;
 	_buffer >> marker;
 	ERROR(marker == 0xAA, "Error streaming buffer");
 }

@@ -59,7 +59,7 @@ ScriptingVector3Filter2Pole::ScriptingVector3Filter2Pole (void)
         _initialized    (false)
 {  
     _passes.resize(_num_passes);
-    for (DTuint i = 0; i < _passes.size(); ++i) {
+    for (uint32_t i = 0; i < _passes.size(); ++i) {
         _passes[i]._fx.initialize(_type, _num_passes, _freq_3db, _freq_sampling, _in->x);
         _passes[i]._fy.initialize(_type, _num_passes, _freq_3db, _freq_sampling, _in->y);
         _passes[i]._fz.initialize(_type, _num_passes, _freq_3db, _freq_sampling, _in->z);
@@ -78,7 +78,7 @@ ScriptingVector3Filter2Pole::ScriptingVector3Filter2Pole (const ScriptingVector3
         _initialized    (false)
 {   
     _passes.resize(_num_passes);
-    for (DTuint i = 0; i < _passes.size(); ++i) {
+    for (uint32_t i = 0; i < _passes.size(); ++i) {
         _passes[i]._fx.initialize(_type, _num_passes, _freq_3db, _freq_sampling, _in->x);
         _passes[i]._fy.initialize(_type, _num_passes, _freq_3db, _freq_sampling, _in->y);
         _passes[i]._fz.initialize(_type, _num_passes, _freq_3db, _freq_sampling, _in->z);
@@ -131,7 +131,7 @@ void ScriptingVector3Filter2Pole::archive (const std::shared_ptr<Archive> &archi
 	*archive << ARCHIVE_DATA_ACCESSORS("Freq_3db", ScriptingVector3Filter2Pole::freq3db, ScriptingVector3Filter2Pole::set_freq3db, DATA_PERSISTENT | DATA_SETTABLE);
 	*archive << ARCHIVE_DATA_ACCESSORS("Freq_Sampling", ScriptingVector3Filter2Pole::freq_sampling, ScriptingVector3Filter2Pole::set_freq_sampling, DATA_PERSISTENT | DATA_SETTABLE);
 
-	for (DTuint i = 0; i < _passes.size(); ++i) {
+	for (uint32_t i = 0; i < _passes.size(); ++i) {
         *archive << ARCHIVE_DATA_RAW(_passes[i]._fx, DATA_PERSISTENT | DATA_SETTABLE);
         *archive << ARCHIVE_DATA_RAW(_passes[i]._fy, DATA_PERSISTENT | DATA_SETTABLE);
         *archive << ARCHIVE_DATA_RAW(_passes[i]._fz, DATA_PERSISTENT | DATA_SETTABLE);
@@ -149,7 +149,7 @@ void ScriptingVector3Filter2Pole::tick (const DTfloat dt)
     
     if (!_initialized) {
         _passes.resize(_num_passes);
-        for (DTuint i = 0; i < _passes.size(); ++i) {
+        for (uint32_t i = 0; i < _passes.size(); ++i) {
             _passes[i]._fx.initialize(_type, _num_passes, _freq_3db, _freq_sampling, _in->x);
             _passes[i]._fy.initialize(_type, _num_passes, _freq_3db, _freq_sampling, _in->y);
             _passes[i]._fz.initialize(_type, _num_passes, _freq_3db, _freq_sampling, _in->z);
@@ -160,7 +160,7 @@ void ScriptingVector3Filter2Pole::tick (const DTfloat dt)
 
     Vector3 out = _in;
     
-    for (DTuint i = 0; i < _passes.size(); ++i) {
+    for (uint32_t i = 0; i < _passes.size(); ++i) {
         out.x = _passes[i]._fx.filter(out.x);
         out.y = _passes[i]._fy.filter(out.y);
         out.z = _passes[i]._fz.filter(out.z);

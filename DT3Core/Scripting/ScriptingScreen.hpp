@@ -49,10 +49,10 @@ class ScriptingScreen: public ScriptingBase {
     public:
 
         /// Screen changed callback.
-        void                        screen_opened           (DTuint width, DTuint height);
+        void                        screen_opened           (uint32_t width, uint32_t height);
 
         /// Screen changed callback.
-        void                        screen_changed          (DTuint width, DTuint height);
+        void                        screen_changed          (uint32_t width, uint32_t height);
 
     private:
         Plug<DTfloat>				_width;

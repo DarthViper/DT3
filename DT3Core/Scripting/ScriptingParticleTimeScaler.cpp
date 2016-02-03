@@ -148,7 +148,7 @@ bool ScriptingParticleTimeScaler::compute (const PlugBase *plug)
 		std::vector<DTfloat> sizes = particles->sizes_stream();
 		std::vector<DTfloat> &lifetimes = particles->lifetimes_stream();
         
-		for (DTint i = particles->active_start(); i != particles->active_end(); i = (i + 1) % particles->translations_stream().size()) {
+		for (int32_t i = particles->active_start(); i != particles->active_end(); i = (i + 1) % particles->translations_stream().size()) {
 			DTfloat time = lifetimes[i];
 			sizes[i] = _constant_scale + _linear_scale * time + _quadtratic_scale * time * time;
 		}

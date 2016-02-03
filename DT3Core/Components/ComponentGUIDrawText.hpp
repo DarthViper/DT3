@@ -88,7 +88,7 @@ class ComponentGUIDrawText: public ComponentBase {
         virtual void                remove_from_owner       (void);
 
         /// Screen created callback.
-        void                        screen_opened           (DTuint width, DTuint height);
+        void                        screen_opened           (uint32_t width, uint32_t height);
 
         /// Screen destroyed callback.
         void                        screen_closed           (void);

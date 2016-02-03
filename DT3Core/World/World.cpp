@@ -221,7 +221,7 @@ void World::add_node_unique_name (const std::shared_ptr<WorldNode> &node)
         std::string default_name = MoreStrings::trim_end_digits(MoreStrings::trim(node->name()));
 
         // Check existing object names
-        DTuint index = 1;
+        uint32_t index = 1;
         std::string test_name = default_name + MoreStrings::cast_to_string(index);
         
         while (node_by_name(test_name)) {
@@ -300,7 +300,7 @@ void World::add_group_unique_name (const std::shared_ptr<Group> &group)
         std::string default_name = MoreStrings::trim_end_digits(MoreStrings::trim(group->name()));
 
         // Check existing object names
-        DTuint index = 1;
+        uint32_t index = 1;
         std::string test_name = default_name + MoreStrings::cast_to_string(index);
         
         while (group_by_name(test_name)) {
@@ -350,7 +350,7 @@ std::shared_ptr<WorldNode> World::node_by_name (std::string name)
     return i == _nodes.end() ? NULL : *i;
 }
 
-std::shared_ptr<WorldNode> World::node_by_id (DTuint unique_id)
+std::shared_ptr<WorldNode> World::node_by_id (uint32_t unique_id)
 {
     auto i = std::find_if(_nodes.begin(), _nodes.end(),
         [&unique_id](std::shared_ptr<WorldNode> &n) {

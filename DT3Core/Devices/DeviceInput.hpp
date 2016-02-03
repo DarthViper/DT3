@@ -325,12 +325,12 @@ class DeviceInput: public DeviceBase {
         /// Sets the current keybaord state
         /// \param modifiers Bitmask of modifier keys
         /// \param key Key code
-        virtual void                set_key_down_event          (DTuint modifiers, DTushort key);
+        virtual void                set_key_down_event          (uint32_t modifiers, uint16_t key);
 
         /// Sets the current keybaord state
         /// \param modifiers Bitmask of modifier keys
         /// \param key Key code
-        virtual void                set_key_up_event            (DTuint modifiers, DTushort key);
+        virtual void                set_key_up_event            (uint32_t modifiers, uint16_t key);
 
         /// Fires a back button event (Android only)
         virtual void				do_back_button              (void);

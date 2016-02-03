@@ -52,7 +52,7 @@ void ExpressionParser::set_variable (const std::string &var, const DTfloat &valu
 //==============================================================================
 //==============================================================================
 
-bool ExpressionParser::parse_whitespace (const std::string &string, DTuint &pos, std::list<Token> &tokens)
+bool ExpressionParser::parse_whitespace (const std::string &string, uint32_t &pos, std::list<Token> &tokens)
 {
     DTcharacter c = string[pos];
     if (::isspace(c)) {
@@ -63,7 +63,7 @@ bool ExpressionParser::parse_whitespace (const std::string &string, DTuint &pos,
     }
 }
 
-bool ExpressionParser::parse_comma (const std::string &string, DTuint &pos, std::list<Token> &tokens)
+bool ExpressionParser::parse_comma (const std::string &string, uint32_t &pos, std::list<Token> &tokens)
 {
     std::string token;
     DTcharacter c = string[pos];
@@ -84,7 +84,7 @@ bool ExpressionParser::parse_comma (const std::string &string, DTuint &pos, std:
     }
 }
 
-bool ExpressionParser::parse_operator (const std::string &string, DTuint &pos, std::list<Token> &tokens)
+bool ExpressionParser::parse_operator (const std::string &string, uint32_t &pos, std::list<Token> &tokens)
 {
     std::string token;
     DTcharacter c = string[pos];
@@ -124,7 +124,7 @@ bool ExpressionParser::parse_operator (const std::string &string, DTuint &pos, s
     
 }
 
-bool ExpressionParser::parse_function (const std::string &string, DTuint &pos, std::list<Token> &tokens)
+bool ExpressionParser::parse_function (const std::string &string, uint32_t &pos, std::list<Token> &tokens)
 {
     std::string token;
     DTcharacter c = string[pos];
@@ -146,7 +146,7 @@ bool ExpressionParser::parse_function (const std::string &string, DTuint &pos, s
     return true;
 }
 
-bool ExpressionParser::parse_number (const std::string &string, DTuint &pos, std::list<Token> &tokens)
+bool ExpressionParser::parse_number (const std::string &string, uint32_t &pos, std::list<Token> &tokens)
 {
     std::string token;
     DTcharacter c = string[pos];
@@ -168,7 +168,7 @@ bool ExpressionParser::parse_number (const std::string &string, DTuint &pos, std
     return true;
 }
 
-bool ExpressionParser::parse_variable (const std::string &string, DTuint &pos, std::list<Token> &tokens)
+bool ExpressionParser::parse_variable (const std::string &string, uint32_t &pos, std::list<Token> &tokens)
 {
     std::string token;
     DTcharacter c = string[pos];
@@ -194,7 +194,7 @@ bool ExpressionParser::parse_variable (const std::string &string, DTuint &pos, s
     return true;
 }
 
-bool ExpressionParser::parse_bracket (const std::string &string, DTuint &pos, std::list<Token> &tokens)
+bool ExpressionParser::parse_bracket (const std::string &string, uint32_t &pos, std::list<Token> &tokens)
 {
     std::string token;
     DTcharacter c = string[pos];
@@ -218,7 +218,7 @@ bool ExpressionParser::parse_bracket (const std::string &string, DTuint &pos, st
 //==============================================================================
 //==============================================================================
 
-DTuint ExpressionParser::precedence(Token *t)
+uint32_t ExpressionParser::precedence(Token *t)
 {
     if (t->_token == "!")   return 6;
     if (t->_token == "+" && t->_unary)   return 6;
@@ -265,7 +265,7 @@ bool ExpressionParser::parse (const std::string &contents)
     // Tokenize expression
     //
     
-    DTuint pos = 0;
+    uint32_t pos = 0;
     
     while (pos < full_contents.size()) {
         if (parse_whitespace(full_contents, pos, _tokens)) continue;
@@ -441,7 +441,7 @@ bool ExpressionParser::eval (DTfloat &result)
         }
      
         bool unary = (**i)._unary;
-        DTuint type = (**i)._type;
+        uint32_t type = (**i)._type;
         
         // Functions
         if (type == TYPE_FUNCTION) {

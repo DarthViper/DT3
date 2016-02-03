@@ -84,7 +84,7 @@ const NetworkAddress & NetworkPacket::network_address (void) const
 //==============================================================================
 //==============================================================================
 
-void NetworkPacket::set_data (const std::vector<DTubyte> &data)
+void NetworkPacket::set_data (const std::vector<uint8_t> &data)
 {
     set_data (&data[0], data.size());
 }

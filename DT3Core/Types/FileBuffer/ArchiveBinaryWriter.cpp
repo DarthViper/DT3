@@ -46,7 +46,7 @@ DTerr ArchiveBinaryWriter::open (const FilePath &pathname)
 		return error;
    
 	// write out some header information
-	_outfile << static_cast<DTuint>(DT3_BINARY_TOKEN);
+	_outfile << static_cast<uint32_t>(DT3_BINARY_TOKEN);
     
 	_outfile << Config::engine_version();
 	_outfile << AppConfig::app_version();
@@ -76,13 +76,13 @@ Archive& ArchiveBinaryWriter::operator << (const ArchiveData& data)
 
 void ArchiveBinaryWriter::push_domain (const std::string &domain)
 {
-	DTubyte marker = 0xFF;
+	uint8_t marker = 0xFF;
 	_outfile << marker;
 }
 
 void ArchiveBinaryWriter::pop_domain (void)
 {
-	DTubyte marker = 0xAA;
+	uint8_t marker = 0xAA;
 	_outfile << marker;
 }
 

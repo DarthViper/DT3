@@ -47,7 +47,7 @@ DrawBatcher::~DrawBatcher (void)
 //==============================================================================
 //==============================================================================
 
-void DrawBatcher::screen_opened (DTuint width, DTuint height)
+void DrawBatcher::screen_opened (uint32_t width, uint32_t height)
 {
     LOG_MESSAGE << "DrawBatcher::screen_opened";
 }
@@ -72,7 +72,7 @@ void	 DrawBatcher::batch_begin ( const std::shared_ptr<CameraObject> &camera,
                                     const std::shared_ptr<ShaderResource> &shader,
                                     const Matrix4 &transform,
                                     DT3GLPrimitiveType type,
-                                    DTushort fmt,
+                                    uint16_t fmt,
                                     DTsize size_hint)
 {
 	// flush for materials and format changes
@@ -90,37 +90,37 @@ void	 DrawBatcher::batch_begin ( const std::shared_ptr<CameraObject> &camera,
 
     if (fmt & FMT_V) {
         if (!_batch_v_raw)
-            _batch_v_raw = std::shared_ptr<DTubyte>(new DTubyte[_size_hint * sizeof(Vector3)]);
+            _batch_v_raw = std::shared_ptr<uint8_t>(new uint8_t[_size_hint * sizeof(Vector3)]);
     } else
         _batch_v_raw.reset();
     
     if (fmt & FMT_N) {
         if (!_batch_n_raw)
-            _batch_n_raw = std::shared_ptr<DTubyte>(new DTubyte[_size_hint * sizeof(Vector3)]);
+            _batch_n_raw = std::shared_ptr<uint8_t>(new uint8_t[_size_hint * sizeof(Vector3)]);
     } else
         _batch_n_raw.reset();
 
     if (fmt & FMT_T0) {
         if (!_batch_t0_raw)
-            _batch_t0_raw = std::shared_ptr<DTubyte>(new DTubyte[_size_hint * sizeof(Vector2)]);
+            _batch_t0_raw = std::shared_ptr<uint8_t>(new uint8_t[_size_hint * sizeof(Vector2)]);
     } else
         _batch_t0_raw.reset();
 
     if (fmt & FMT_T1) {
         if (!_batch_t1_raw)
-            _batch_t1_raw = std::shared_ptr<DTubyte>(new DTubyte[_size_hint * sizeof(Vector2)]);
+            _batch_t1_raw = std::shared_ptr<uint8_t>(new uint8_t[_size_hint * sizeof(Vector2)]);
     } else
         _batch_t1_raw.reset();
 
     if (fmt & FMT_C) {
         if (!_batch_c_raw)
-            _batch_c_raw = std::shared_ptr<DTubyte>(new DTubyte[_size_hint * sizeof(Color4b)]);
+            _batch_c_raw = std::shared_ptr<uint8_t>(new uint8_t[_size_hint * sizeof(Color4b)]);
     } else
         _batch_c_raw.reset();
 
     if (fmt & FMT_CF) {
         if (!_batch_cf_raw)
-            _batch_cf_raw = std::shared_ptr<DTubyte>(new DTubyte[_size_hint * sizeof(Color4f)]);
+            _batch_cf_raw = std::shared_ptr<uint8_t>(new uint8_t[_size_hint * sizeof(Color4f)]);
     } else
         _batch_cf_raw.reset();
 }
@@ -154,12 +154,12 @@ void DrawBatcher::draw (bool clear_when_done)
         if (!_shader)
             return;
         
-        DTint a_position = _shader->attrib_slot(DT3GL_ATTRIB_POSITION);
-        DTint a_normal = _shader->attrib_slot(DT3GL_ATTRIB_NORMAL);
-        DTint a_texcoord0 = _shader->attrib_slot(DT3GL_ATTRIB_TEXCOORD0);
-        DTint a_texcoord1 = _shader->attrib_slot(DT3GL_ATTRIB_TEXCOORD1);
-        DTint a_color = _shader->attrib_slot(DT3GL_ATTRIB_COLOR);
-        DTint a_tangent = _shader->attrib_slot(DT3GL_ATTRIB_TANGENT);
+        int32_t a_position = _shader->attrib_slot(DT3GL_ATTRIB_POSITION);
+        int32_t a_normal = _shader->attrib_slot(DT3GL_ATTRIB_NORMAL);
+        int32_t a_texcoord0 = _shader->attrib_slot(DT3GL_ATTRIB_TEXCOORD0);
+        int32_t a_texcoord1 = _shader->attrib_slot(DT3GL_ATTRIB_TEXCOORD1);
+        int32_t a_color = _shader->attrib_slot(DT3GL_ATTRIB_COLOR);
+        int32_t a_tangent = _shader->attrib_slot(DT3GL_ATTRIB_TANGENT);
     
         if (_batch_v_raw && a_position >= 0) {
             if (!_batch_v_buffer)

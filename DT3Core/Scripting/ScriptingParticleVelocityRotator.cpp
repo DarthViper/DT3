@@ -130,7 +130,7 @@ bool ScriptingParticleVelocityRotator::compute (const PlugBase *plug)
 		std::vector<DTfloat> &rotations = particles->rotations_stream();
         std::vector<Vector3> &velocities = particles->velocity_stream();
 
-		for (DTint i = particles->active_start(); i != particles->active_end(); i = (i + 1) % particles->translations_stream().size()) {
+		for (int32_t i = particles->active_start(); i != particles->active_end(); i = (i + 1) % particles->translations_stream().size()) {
 			DTfloat &rotation = rotations[i];
             Vector3 &velocity = velocities[i];
 			

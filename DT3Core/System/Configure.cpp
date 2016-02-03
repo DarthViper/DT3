@@ -80,7 +80,7 @@ void Configure::parse_default_block (Tokenizer &tokenizer)
 	
 	std::string name;
 	std::string value;
-	DTuint lifetime = Globals::VOLATILE;
+	uint32_t lifetime = Globals::VOLATILE;
 
 	while (true) {
 		std::string token = tokenizer.next_token_string();
@@ -94,7 +94,7 @@ void Configure::parse_default_block (Tokenizer &tokenizer)
 		
 		if (MoreStrings::iequals(token,"Name"))		{	tokenizer.assume_next_token("="); name = tokenizer.next_token_string();                         continue;	}
 		if (MoreStrings::iequals(token,"Value"))	{	tokenizer.assume_next_token("="); value = tokenizer.next_token_string_no_substitute();          continue;	}
-		if (MoreStrings::iequals(token,"Lifetime"))	{	tokenizer.assume_next_token("="); lifetime = static_cast<DTuint>(tokenizer.next_token_number());continue;	}
+		if (MoreStrings::iequals(token,"Lifetime"))	{	tokenizer.assume_next_token("="); lifetime = static_cast<uint32_t>(tokenizer.next_token_number());continue;	}
 		
 		tokenizer.syntax_error("Unknown Token " + token);
 	};
@@ -111,7 +111,7 @@ void Configure::parse_global_block (Tokenizer &tokenizer)
 		
 	std::string name;
 	std::string value;
-    DTuint lifetime = Globals::VOLATILE;
+    uint32_t lifetime = Globals::VOLATILE;
 
 	while (true) {
 		std::string token = tokenizer.next_token_string();
@@ -125,7 +125,7 @@ void Configure::parse_global_block (Tokenizer &tokenizer)
 		
 		if (MoreStrings::iequals(token,"Name"))		{	tokenizer.assume_next_token("="); name = tokenizer.next_token_string();                 continue;	}
 		if (MoreStrings::iequals(token,"Value"))	{	tokenizer.assume_next_token("="); value = tokenizer.next_token_string_no_substitute();  continue;	}
-		if (MoreStrings::iequals(token,"Lifetime"))	{	tokenizer.assume_next_token("="); lifetime = (DTuint) tokenizer.next_token_number();	continue;	}
+		if (MoreStrings::iequals(token,"Lifetime"))	{	tokenizer.assume_next_token("="); lifetime = (uint32_t) tokenizer.next_token_number();	continue;	}
 		
 		tokenizer.syntax_error("Unknown Token " + token);
 	};
@@ -313,7 +313,7 @@ bool Configure::setup_system_globals    (void)
     // Number of cores
     //
     
-    DTuint num_cores = HAL::num_CPU_cores();
+    uint32_t num_cores = HAL::num_CPU_cores();
 	Globals::set_global ("SYS_NUM_CORES", MoreStrings::cast_to_string(num_cores), Globals::READ_ONLY);
 	Globals::set_global ("SYS_MULTICORE", num_cores > 1 ? "1" : "0", Globals::READ_ONLY);
 

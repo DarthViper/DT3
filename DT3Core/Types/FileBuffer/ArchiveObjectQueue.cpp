@@ -29,7 +29,7 @@ std::shared_ptr<BaseClass> ArchiveObjectQueue::queue_in_tree (  const std::share
                                                                 std::shared_ptr<Callback<std::shared_ptr<BaseClass>>> obj_loaded_cb)
 {    
 	std::shared_ptr<BaseClass> first = NULL;
-	std::map<DTuint64, std::shared_ptr<BaseClass>>  newly_created_objects;
+	std::map<uint64_t, std::shared_ptr<BaseClass>>  newly_created_objects;
 		
 	std::string obj_type;
 	*archive << ARCHIVE_DATA(obj_type, DATA_PERSISTENT);
@@ -90,7 +90,7 @@ std::shared_ptr<BaseClass> ArchiveObjectQueue::queue_in_tree (  const std::share
 
 void ArchiveObjectQueue::queue_out_tree (const std::shared_ptr<Archive> &archive, BaseClass *ptr)
 {
-    std::map<DTuint64, std::shared_ptr<BaseClass>>  queued_objects;
+    std::map<uint64_t, std::shared_ptr<BaseClass>>  queued_objects;
 	
 	// Write out first object
 	std::string obj_type = ptr->class_id_child();

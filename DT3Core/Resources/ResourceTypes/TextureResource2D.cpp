@@ -143,7 +143,7 @@ void TextureResource2D::uninitialize_static (void)
 //==============================================================================
 //==============================================================================
 
-void TextureResource2D::screen_opened (DTuint width, DTuint height)
+void TextureResource2D::screen_opened (uint32_t width, uint32_t height)
 {
     LOG_MESSAGE << "TextureResource2D::screen_opened";
 
@@ -208,7 +208,7 @@ void TextureResource2D::set_resource_textels (std::shared_ptr<DT3GLTexture2DReso
 //==============================================================================
 //==============================================================================
 
-void TextureResource2D::allocate_rgba_textels (const DTint width, const DTint height, bool mipmapped)
+void TextureResource2D::allocate_rgba_textels (const int32_t width, const int32_t height, bool mipmapped)
 {
     _format = DT3GL_FORMAT_RGBA;
 
@@ -218,7 +218,7 @@ void TextureResource2D::allocate_rgba_textels (const DTint width, const DTint he
     _mipmapped = mipmapped;
     _flags = DT3GL_ACCESS_CPU_READ | DT3GL_ACCESS_CPU_WRITE | DT3GL_ACCESS_GPU_READ;
 
-    _textels = std::shared_ptr<DTubyte>(new DTubyte[_width * _height * sizeof(Color4b)]);
+    _textels = std::shared_ptr<uint8_t>(new uint8_t[_width * _height * sizeof(Color4b)]);
 
     // Build the resource
     _resource_2D = System::renderer()->create_texture_2D(_width, _height, _textels.get(), _format, _mipmapped, _flags);
@@ -226,7 +226,7 @@ void TextureResource2D::allocate_rgba_textels (const DTint width, const DTint he
     _dirty_rectangle.clear();
 }
 
-void TextureResource2D::set_textels (const DTint width, const DTint height, std::shared_ptr<DTubyte> &textels, DT3GLTextelFormat format, bool mipmapped, DTuint flags)
+void TextureResource2D::set_textels (const int32_t width, const int32_t height, std::shared_ptr<uint8_t> &textels, DT3GLTextelFormat format, bool mipmapped, uint32_t flags)
 {
     _textels = textels;
 
@@ -247,7 +247,7 @@ void TextureResource2D::set_textels (const DTint width, const DTint height, std:
 //==============================================================================
 //==============================================================================
 
-void TextureResource2D::set_textels_compressed (const DTint width, const DTint height, std::shared_ptr<DTubyte> &textels, DT3GLTextelFormat format, bool mipmapped, DTuint flags)
+void TextureResource2D::set_textels_compressed (const int32_t width, const int32_t height, std::shared_ptr<uint8_t> &textels, DT3GLTextelFormat format, bool mipmapped, uint32_t flags)
 {
     ASSERT ( (_flags & (DT3GL_ACCESS_CPU_WRITE | DT3GL_ACCESS_CPU_READ)) == 0);
 
@@ -270,7 +270,7 @@ void TextureResource2D::set_textels_compressed (const DTint width, const DTint h
 //==============================================================================
 //==============================================================================
 
-Color4b TextureResource2D::pixel(DTint x, DTint y)
+Color4b TextureResource2D::pixel(int32_t x, int32_t y)
 {
     ASSERT(_flags & DT3GL_ACCESS_CPU_READ);
     ASSERT( _format == DT3GL_FORMAT_RGBA ||
@@ -280,26 +280,26 @@ Color4b TextureResource2D::pixel(DTint x, DTint y)
             _format == DT3GL_FORMAT_LUM_8 ||
             _format == DT3GL_FORMAT_RGB);
 
-    DTubyte *buffer = _textels.get();
+    uint8_t *buffer = _textels.get();
 
     switch (_format) {
         case DT3GL_FORMAT_RGBA: {
-            DTubyte *base = buffer + ((_width * y) + x) * 4;
+            uint8_t *base = buffer + ((_width * y) + x) * 4;
             return Color4b(base[0],base[1],base[2],base[3]);
         }
 
         case DT3GL_FORMAT_RGBA_5551: {
-            DTubyte *base = buffer + ((_width * y) + x) * 2;
-            DTushort base_short = *((DTushort *) base);
+            uint8_t *base = buffer + ((_width * y) + x) * 2;
+            uint16_t base_short = *((uint16_t *) base);
             return Color4b( MoreMath::convert_5_to_8_bit( (base_short >> 11) & 0x1F ),
                             MoreMath::convert_5_to_8_bit( (base_short >> 6) & 0x1F ),
                             MoreMath::convert_5_to_8_bit( (base_short >> 1) & 0x1F ),
-                            (DTubyte) ( (base_short & 0x1 ) * 255) );
+                            (uint8_t) ( (base_short & 0x1 ) * 255) );
         }
 
         case DT3GL_FORMAT_RGBA_4444: {
-            DTubyte *base = buffer + ((_width * y) + x) * 2;
-            DTushort base_short = *((DTushort *) base);
+            uint8_t *base = buffer + ((_width * y) + x) * 2;
+            uint16_t base_short = *((uint16_t *) base);
             return Color4b( MoreMath::convert_4_to_8_bit( (base_short >> 12) & 0x0F ),
                             MoreMath::convert_4_to_8_bit( (base_short >> 8) & 0x0F ),
                             MoreMath::convert_4_to_8_bit( (base_short >> 4) & 0x0F ),
@@ -307,8 +307,8 @@ Color4b TextureResource2D::pixel(DTint x, DTint y)
         }
 
         case DT3GL_FORMAT_RGB_565: {
-            DTubyte *base = buffer + ((_width * y) + x) * 2;
-            DTushort base_short = *((DTushort *) base);
+            uint8_t *base = buffer + ((_width * y) + x) * 2;
+            uint16_t base_short = *((uint16_t *) base);
             return Color4b( MoreMath::convert_5_to_8_bit( (base_short >> 11) & 0x1F ),
                             MoreMath::convert_5_to_8_bit( (base_short >> 5) & 0x3F ),
                             MoreMath::convert_5_to_8_bit( (base_short >> 0) & 0x1F ),
@@ -316,22 +316,22 @@ Color4b TextureResource2D::pixel(DTint x, DTint y)
         }
 
         case DT3GL_FORMAT_LUM_8: {
-            DTubyte *base = buffer + (_width*1 * y) + (x*1);
-            return Color4b(*base,*base,*base,(DTubyte)255);
+            uint8_t *base = buffer + (_width*1 * y) + (x*1);
+            return Color4b(*base,*base,*base,(uint8_t)255);
         }
 
         case DT3GL_FORMAT_RGB: {
-            DTubyte *base = buffer + ((_width * y) + x) * 3;
+            uint8_t *base = buffer + ((_width * y) + x) * 3;
             return Color4b(base[0],base[1],base[2],255);
         }
 
         default:
-            return Color4b((DTubyte)0,(DTubyte)0,(DTubyte)0,(DTubyte)0);
+            return Color4b((uint8_t)0,(uint8_t)0,(uint8_t)0,(uint8_t)0);
     };
 
 }
 
-DTubyte* TextureResource2D::pixel_addr (DTint x, DTint y)
+uint8_t* TextureResource2D::pixel_addr (int32_t x, int32_t y)
 {
     ASSERT(_flags & DT3GL_ACCESS_CPU_READ);
     ASSERT( _format == DT3GL_FORMAT_RGBA ||
@@ -341,7 +341,7 @@ DTubyte* TextureResource2D::pixel_addr (DTint x, DTint y)
             _format == DT3GL_FORMAT_LUM_8 ||
             _format == DT3GL_FORMAT_RGB);
 
-    DTubyte *buffer = _textels.get();
+    uint8_t *buffer = _textels.get();
 
     // Have to set all dirty
     _dirty_rectangle.set(0, _width, 0, _height);
@@ -360,12 +360,12 @@ DTubyte* TextureResource2D::pixel_addr (DTint x, DTint y)
     return NULL;
 }
 
-void TextureResource2D::set_pixel (DTint x, DTint y, const Color4b &pixel)
+void TextureResource2D::set_pixel (int32_t x, int32_t y, const Color4b &pixel)
 {
     ASSERT(_flags & DT3GL_ACCESS_CPU_WRITE);
     ASSERT(_format == DT3GL_FORMAT_RGBA);
 
-    DTubyte *buffer = _textels.get();
+    uint8_t *buffer = _textels.get();
 
     Color4b *c = (Color4b*) (buffer + ((_width * y) + x) * sizeof(Color4b));
     *c = pixel;
@@ -376,26 +376,26 @@ void TextureResource2D::set_pixel (DTint x, DTint y, const Color4b &pixel)
 //==============================================================================
 //==============================================================================
 
-void TextureResource2D::replace_sub_rectangle (DTint dst_x, DTint dst_y, const DTubyte *b, DTint src_width, DTint src_height, DTint rowbytes)
+void TextureResource2D::replace_sub_rectangle (int32_t dst_x, int32_t dst_y, const uint8_t *b, int32_t src_width, int32_t src_height, int32_t rowbytes)
 {
     ASSERT(_flags & DT3GL_ACCESS_CPU_WRITE);
     ASSERT(_format == DT3GL_FORMAT_RGBA || _format == DT3GL_FORMAT_BGRA);
 
-    DTubyte *buffer = _textels.get();
+    uint8_t *buffer = _textels.get();
 
-    DTint clip_src_width = MoreMath::min(_width - dst_x, src_width);
-    DTint clip_src_height = MoreMath::min(_height - dst_x, src_height);
+    int32_t clip_src_width = MoreMath::min(_width - dst_x, src_width);
+    int32_t clip_src_height = MoreMath::min(_height - dst_x, src_height);
 
     if (clip_src_width <= 0)    return;
     if (clip_src_height <= 0)   return;
 
-    DTint num_bytes = clip_src_width * 4;
+    int32_t num_bytes = clip_src_width * 4;
     if (rowbytes == 0)  rowbytes = src_width * 4;
 
-    DTint i,j;
+    int32_t i,j;
     for (i = dst_y, j = 0; i < dst_y + clip_src_height; ++i, ++j) {
-        DTubyte *dst = (buffer + ((_width * i) + dst_x) * 4);
-        const DTubyte *src = (b + (rowbytes * j));
+        uint8_t *dst = (buffer + ((_width * i) + dst_x) * 4);
+        const uint8_t *src = (b + (rowbytes * j));
 
         ::memcpy(dst, src, num_bytes);
     }
@@ -406,7 +406,7 @@ void TextureResource2D::replace_sub_rectangle (DTint dst_x, DTint dst_y, const D
 //==============================================================================
 //==============================================================================
 
-void TextureResource2D::activate (DTuint texture_slot)
+void TextureResource2D::activate (uint32_t texture_slot)
 {
     // Check if resource needs updating
     if (!_dirty_rectangle.is_clear()) {

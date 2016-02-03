@@ -52,7 +52,7 @@ class ScriptingSoundResample: public ScriptingSoundBase {
         Plug<SoundPacket>           _sound_packet_in;
         Plug<SoundPacket>           _sound_packet_out;
 
-        Plug<DTuint>                _sampling_rate;
+        Plug<uint32_t>                _sampling_rate;
         DTfloat                     _sample_in;
     };
 

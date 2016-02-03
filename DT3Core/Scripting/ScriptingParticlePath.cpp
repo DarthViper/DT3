@@ -113,11 +113,11 @@ void ScriptingParticlePath::archive (const std::shared_ptr<Archive> &archive)
     
     *archive << ARCHIVE_DATA_ACCESSORS("Num_Points", ScriptingParticlePath::num_points, ScriptingParticlePath::set_num_points, DATA_PERSISTENT | DATA_SETTABLE);
 
-    DTint pointCount = (DTint) _points.size();
+    int32_t pointCount = (int32_t) _points.size();
     *archive << ARCHIVE_DATA(pointCount,DATA_PERSISTENT);
     _points.resize(pointCount);
     
-    for (DTint i = 0; i < pointCount; ++i) {
+    for (int32_t i = 0; i < pointCount; ++i) {
         *archive << ARCHIVE_DATA_RAW(_points[i].value, DATA_PERSISTENT);
         *archive << ARCHIVE_DATA_RAW(_points[i].tangent, DATA_PERSISTENT);
     }
@@ -143,10 +143,10 @@ void ScriptingParticlePath::interpolate (DTfloat t, Vector3 &translation) const
 	}
     
     DTfloat index_float = t;
-    DTint index = (DTint)(index_float);
+    int32_t index = (int32_t)(index_float);
     
     if (index < 0)                                      return;
-    if (index > static_cast<DTint>(_points.size()-2))   return;
+    if (index > static_cast<int32_t>(_points.size()-2))   return;
 	
     DTfloat t1 = index_float - index;
     DTfloat t2 = t1 * t1;
@@ -191,7 +191,7 @@ bool ScriptingParticlePath::compute (const PlugBase *plug)
         std::vector<Vector3> &translations = particles->translations_stream();
 		std::vector<DTfloat> &lifetimes = particles->lifetimes_stream();
 
-		for (DTint i = particles->active_start(); i != particles->active_end(); i = (i + 1) % particles->translations_stream().size()) {
+		for (int32_t i = particles->active_start(); i != particles->active_end(); i = (i + 1) % particles->translations_stream().size()) {
             interpolate (lifetimes[i] * _speed + _bias, translations[i]);
 		}
 

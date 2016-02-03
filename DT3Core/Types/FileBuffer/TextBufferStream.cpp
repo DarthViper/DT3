@@ -40,49 +40,49 @@ Stream& TextBufferStream::operator<< (const bool n)
         return *this;
 }
 
-Stream& TextBufferStream::operator<< (const DTbyte n)
+Stream& TextBufferStream::operator<< (const int8_t n)
 {
         _buffer << n;
         return *this;
 }
 
-Stream& TextBufferStream::operator<< (const DTshort n)
+Stream& TextBufferStream::operator<< (const int16_t n)
 {
         _buffer << n;
         return *this;
 }
 
-Stream& TextBufferStream::operator<< (const DTint n)
+Stream& TextBufferStream::operator<< (const int32_t n)
 {
         _buffer << n;
         return *this;
 }
 
-Stream& TextBufferStream::operator<< (const DTubyte n)
+Stream& TextBufferStream::operator<< (const uint8_t n)
 {
         _buffer << n;
         return *this;
 }
 
-Stream& TextBufferStream::operator<< (const DTushort n)
+Stream& TextBufferStream::operator<< (const uint16_t n)
 {
         _buffer << n;
         return *this;
 }
 
-Stream& TextBufferStream::operator<< (const DTuint n)
+Stream& TextBufferStream::operator<< (const uint32_t n)
 {
         _buffer << n;
         return *this;
 }
 
-Stream& TextBufferStream::operator<< (const DTint64 n)
+Stream& TextBufferStream::operator<< (const int64_t n)
 {
         _buffer << n;
         return *this;
 }
 
-Stream& TextBufferStream::operator<< (const DTuint64 n)
+Stream& TextBufferStream::operator<< (const uint64_t n)
 {
         _buffer << n;
         return *this;
@@ -134,7 +134,7 @@ Stream& TextBufferStream::operator<< (const std::string &n)
 
 Stream& TextBufferStream::operator<< (const TextBufferStream& n)
 {
-        for (DTuint i = 0; i < n._buffer.str().size(); ++i)
+        for (uint32_t i = 0; i < n._buffer.str().size(); ++i)
                 operator << (n._buffer.str()[i]);
 
         return *this;
@@ -150,49 +150,49 @@ Stream& TextBufferStream::operator>> (bool &n)
         return *this;
 }
 
-Stream& TextBufferStream::operator>> (DTbyte &n)
+Stream& TextBufferStream::operator>> (int8_t &n)
 {
         _buffer >> n;
         return *this;
 }
 
-Stream& TextBufferStream::operator>> (DTshort &n)
+Stream& TextBufferStream::operator>> (int16_t &n)
 {
         _buffer >> n;
         return *this;
 }
 
-Stream& TextBufferStream::operator>> (DTint &n)
+Stream& TextBufferStream::operator>> (int32_t &n)
 {
         _buffer >> n;
         return *this;
 }
 
-Stream& TextBufferStream::operator>> (DTubyte &n)
+Stream& TextBufferStream::operator>> (uint8_t &n)
 {
         _buffer >> n;
         return *this;
 }
 
-Stream& TextBufferStream::operator>> (DTushort &n)
+Stream& TextBufferStream::operator>> (uint16_t &n)
 {
         _buffer >> n;
         return *this;
 }
 
-Stream& TextBufferStream::operator>> (DTuint &n)
+Stream& TextBufferStream::operator>> (uint32_t &n)
 {
         _buffer >> n;
         return *this;
 }
 
-Stream& TextBufferStream::operator>> (DTint64 &n)
+Stream& TextBufferStream::operator>> (int64_t &n)
 {
         _buffer >> n;
         return *this;
 }
 
-Stream& TextBufferStream::operator>> (DTuint64 &n)
+Stream& TextBufferStream::operator>> (uint64_t &n)
 {
         _buffer >> n;
         return *this;
@@ -285,12 +285,12 @@ Stream& TextBufferStream::operator>> (std::string &n)
 
 DTsize TextBufferStream::p (void)
 {
-        return (DTint) _buffer.tellp();
+        return (int32_t) _buffer.tellp();
 }
 
 DTsize TextBufferStream::g (void)
 {
-        return (DTint) _buffer.tellg();
+        return (int32_t) _buffer.tellg();
 }
 
 void TextBufferStream::seek_p (DToffset p, Relative r)

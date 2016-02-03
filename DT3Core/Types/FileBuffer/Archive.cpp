@@ -47,7 +47,7 @@ Archive& Archive::add_post_process		(const std::shared_ptr<ArchiveProcess> &proc
 	return (*this);
 }
 
-DTuint Archive::version() const                {	return Config::engine_version();			}
+uint32_t Archive::version() const                {	return Config::engine_version();			}
 
 std::shared_ptr<ArchiveProcess> Archive::pop_post_process (void)
 {

@@ -56,8 +56,8 @@ DTerr	ImporterGeometry3DS::import(GeometryResource *target, std::string args)
 	FileManager::open(infile, pathname, true);
     
     // Verify file type
-    DTushort	chunk_id;
-    DTuint	chunk_size;
+    uint16_t	chunk_id;
+    uint32_t	chunk_size;
     read(infile, chunk_id);
     read(infile, chunk_size);
     
@@ -103,57 +103,57 @@ DTerr	ImporterGeometry3DS::import(GeometryResource *target, std::string args)
 //==============================================================================
 //==============================================================================
 
-DTuint	ImporterGeometry3DS::read(BinaryFileStream &in, DTubyte &v)
+uint32_t	ImporterGeometry3DS::read(BinaryFileStream &in, uint8_t &v)
 {
-    in.read_raw((DTubyte*)&v, sizeof(DTbyte));
-    return sizeof(DTubyte);
+    in.read_raw((uint8_t*)&v, sizeof(int8_t));
+    return sizeof(uint8_t);
 }
 
 //==============================================================================
 //==============================================================================
 
-DTuint	ImporterGeometry3DS::read(BinaryFileStream &in, DTushort &v)
+uint32_t	ImporterGeometry3DS::read(BinaryFileStream &in, uint16_t &v)
 {
 
-    in.read_raw((DTubyte*)&v, sizeof(DTushort));
-    return sizeof(DTushort);
+    in.read_raw((uint8_t*)&v, sizeof(uint16_t));
+    return sizeof(uint16_t);
 }
 
 //==============================================================================
 //==============================================================================
 
-DTuint	ImporterGeometry3DS::read(BinaryFileStream &in, DTshort &v)
+uint32_t	ImporterGeometry3DS::read(BinaryFileStream &in, int16_t &v)
 {
     
-    in.read_raw((DTubyte*)&v, sizeof(DTshort));
-    return sizeof(DTshort);
+    in.read_raw((uint8_t*)&v, sizeof(int16_t));
+    return sizeof(int16_t);
 }
 
 //==============================================================================
 //==============================================================================
 
-DTuint	ImporterGeometry3DS::read(BinaryFileStream &in, DTuint &v)
+uint32_t	ImporterGeometry3DS::read(BinaryFileStream &in, uint32_t &v)
 {    
-    in.read_raw((DTubyte*)&v, sizeof(DTuint));
-    return sizeof(DTuint);
+    in.read_raw((uint8_t*)&v, sizeof(uint32_t));
+    return sizeof(uint32_t);
 }
 
 //==============================================================================
 //==============================================================================
 
-DTuint	ImporterGeometry3DS::read(BinaryFileStream &in, DTfloat &v)
+uint32_t	ImporterGeometry3DS::read(BinaryFileStream &in, DTfloat &v)
 {
 
-    in.read_raw((DTubyte*)&v, sizeof(DTfloat));
+    in.read_raw((uint8_t*)&v, sizeof(DTfloat));
     return sizeof(DTfloat);
 }
 
 //==============================================================================
 //==============================================================================
 
-DTuint	ImporterGeometry3DS::read(BinaryFileStream &in, std::string &v)
+uint32_t	ImporterGeometry3DS::read(BinaryFileStream &in, std::string &v)
 {
-    DTubyte character;
+    uint8_t character;
 
     // clear the string
     v = "";
@@ -164,14 +164,14 @@ DTuint	ImporterGeometry3DS::read(BinaryFileStream &in, std::string &v)
         read(in, character);
     };
     
-    return static_cast<DTuint>(v.size()) + 1;
+    return static_cast<uint32_t>(v.size()) + 1;
 }
 
 
 //==============================================================================
 //==============================================================================
 
-DTuint	ImporterGeometry3DS::parse_main_3DS(BinaryFileStream &in, DTuint owner_chunk_size)
+uint32_t	ImporterGeometry3DS::parse_main_3DS(BinaryFileStream &in, uint32_t owner_chunk_size)
 {
     return parse_next_chunk(in, owner_chunk_size);
 }
@@ -179,7 +179,7 @@ DTuint	ImporterGeometry3DS::parse_main_3DS(BinaryFileStream &in, DTuint owner_ch
 //==============================================================================
 //==============================================================================
 
-DTuint	ImporterGeometry3DS::parse_edit_3DS(BinaryFileStream &in, DTuint owner_chunk_size)
+uint32_t	ImporterGeometry3DS::parse_edit_3DS(BinaryFileStream &in, uint32_t owner_chunk_size)
 {
     return parse_next_chunk(in, owner_chunk_size);
 }
@@ -187,9 +187,9 @@ DTuint	ImporterGeometry3DS::parse_edit_3DS(BinaryFileStream &in, DTuint owner_ch
 //==============================================================================
 //==============================================================================
 
-DTuint	ImporterGeometry3DS::parse_edit_object(BinaryFileStream &in, DTuint owner_chunk_size)
+uint32_t	ImporterGeometry3DS::parse_edit_object(BinaryFileStream &in, uint32_t owner_chunk_size)
 {
-    DTuint size_read = 0;
+    uint32_t size_read = 0;
 
     // add another object
     ++_current_obj_id;
@@ -201,8 +201,8 @@ DTuint	ImporterGeometry3DS::parse_edit_object(BinaryFileStream &in, DTuint owner
     //_hierarchy[_current_obj_id]._name = object_name;
 	
 	// Remember base index
-	_base_face = (DTint) _index_stream.size();
-	_base_vertex = (DTint) _vertices_stream.size();
+    _base_face = (int32_t) _index_stream.size();
+    _base_vertex = (int32_t) _vertices_stream.size();
             
     // Keep on Parsing
     size_read += parse_next_chunk(in, owner_chunk_size - size_read);
@@ -213,7 +213,7 @@ DTuint	ImporterGeometry3DS::parse_edit_object(BinaryFileStream &in, DTuint owner
 //==============================================================================
 //==============================================================================
 
-DTuint	ImporterGeometry3DS::parse_obj_trimesh(BinaryFileStream &in, DTuint owner_chunk_size)
+uint32_t	ImporterGeometry3DS::parse_obj_trimesh(BinaryFileStream &in, uint32_t owner_chunk_size)
 {	
     return parse_next_chunk(in, owner_chunk_size);
 }
@@ -233,10 +233,10 @@ void ImporterGeometry3DS::left_to_right_handed (const Vector3 &a, Vector3 &r)
     r.z = z;
 }
 
-DTuint	ImporterGeometry3DS::parse_tri_vertex(BinaryFileStream &in, DTuint owner_chunk_size)
+uint32_t	ImporterGeometry3DS::parse_tri_vertex(BinaryFileStream &in, uint32_t owner_chunk_size)
 {
-    DTint size_read = 0;
-    DTushort	num_verts;
+    int32_t size_read = 0;
+    uint16_t	num_verts;
     
     size_read += read(in,num_verts);
 	
@@ -246,7 +246,7 @@ DTuint	ImporterGeometry3DS::parse_tri_vertex(BinaryFileStream &in, DTuint owner_
 	_uvs_stream_0.resize(_base_vertex + num_verts);
 	_uvs_stream_1.resize(_base_vertex + num_verts);
     
-    for (DTuint i = 0; i < num_verts; ++i) {
+    for (uint32_t i = 0; i < num_verts; ++i) {
         DTfloat x,y,z;
                         
         size_read += read(in,x);
@@ -266,14 +266,14 @@ DTuint	ImporterGeometry3DS::parse_tri_vertex(BinaryFileStream &in, DTuint owner_
 //==============================================================================
 //==============================================================================
 
-DTuint	ImporterGeometry3DS::parse_tri_mapping_coords(BinaryFileStream &in, DTuint owner_chunk_size)
+uint32_t	ImporterGeometry3DS::parse_tri_mapping_coords(BinaryFileStream &in, uint32_t owner_chunk_size)
 {
-    DTuint size_read = 0;
-    DTushort num_coords;
+    uint32_t size_read = 0;
+    uint16_t num_coords;
     
     size_read += read(in,num_coords);
 
-    for (DTuint i = 0; i < num_coords; ++i) {
+    for (uint32_t i = 0; i < num_coords; ++i) {
 		DTfloat u,v;
     
         size_read += read(in,u);
@@ -291,10 +291,10 @@ DTuint	ImporterGeometry3DS::parse_tri_mapping_coords(BinaryFileStream &in, DTuin
 //==============================================================================
 //==============================================================================
 
-DTuint	ImporterGeometry3DS::parse_tri_face(BinaryFileStream &in, DTuint owner_chunk_size)
+uint32_t	ImporterGeometry3DS::parse_tri_face(BinaryFileStream &in, uint32_t owner_chunk_size)
 {
-    DTuint size_read = 0;
-    DTushort	num_faces, info;
+    uint32_t size_read = 0;
+    uint16_t	num_faces, info;
     
     size_read += read(in,num_faces);
 
@@ -302,8 +302,8 @@ DTuint	ImporterGeometry3DS::parse_tri_face(BinaryFileStream &in, DTuint owner_ch
 	
 	//_hierarchy[_current_obj_id]._num_faces = num_faces;
 		
-    for (DTuint i = 0; i < num_faces; ++i) {
-		DTushort v1,v2,v3;
+    for (uint32_t i = 0; i < num_faces; ++i) {
+        uint16_t v1,v2,v3;
 	
         size_read += read(in,v1);
         size_read += read(in,v2);
@@ -315,13 +315,13 @@ DTuint	ImporterGeometry3DS::parse_tri_face(BinaryFileStream &in, DTuint owner_ch
         
         // Test for inverting normal
         if (!(info & 0x0007)) {
-			_index_stream[_base_face + i].v[0] = (DTushort) (v1 + _base_vertex);
-			_index_stream[_base_face + i].v[1] = (DTushort) (v3 + _base_vertex);
-			_index_stream[_base_face + i].v[2] = (DTushort) (v2 + _base_vertex);
+            _index_stream[_base_face + i].v[0] = (uint16_t) (v1 + _base_vertex);
+            _index_stream[_base_face + i].v[1] = (uint16_t) (v3 + _base_vertex);
+            _index_stream[_base_face + i].v[2] = (uint16_t) (v2 + _base_vertex);
 		} else {
-			_index_stream[_base_face + i].v[0] = (DTushort) (v1 + _base_vertex);
-			_index_stream[_base_face + i].v[1] = (DTushort) (v2 + _base_vertex);
-			_index_stream[_base_face + i].v[2] = (DTushort) (v3 + _base_vertex);
+            _index_stream[_base_face + i].v[0] = (uint16_t) (v1 + _base_vertex);
+            _index_stream[_base_face + i].v[1] = (uint16_t) (v2 + _base_vertex);
+            _index_stream[_base_face + i].v[2] = (uint16_t) (v3 + _base_vertex);
 		}
 	
     }
@@ -331,17 +331,17 @@ DTuint	ImporterGeometry3DS::parse_tri_face(BinaryFileStream &in, DTuint owner_ch
 //==============================================================================
 //==============================================================================
 
-DTuint	ImporterGeometry3DS::parse_tri_face_map(BinaryFileStream &in, DTuint owner_chunk_size)
+uint32_t	ImporterGeometry3DS::parse_tri_face_map(BinaryFileStream &in, uint32_t owner_chunk_size)
 {
-    DTuint size_read = 0;
-    DTushort num_faces;
+    uint32_t size_read = 0;
+    uint16_t num_faces;
 	std::string name;
  
     size_read += read(in,name);
     size_read += read(in,num_faces);
 		
-    for (DTuint i = 0; i < num_faces; ++i) {
-		DTushort face;
+    for (uint32_t i = 0; i < num_faces; ++i) {
+        uint16_t face;
 	
         size_read += read(in,face);
     }
@@ -351,9 +351,9 @@ DTuint	ImporterGeometry3DS::parse_tri_face_map(BinaryFileStream &in, DTuint owne
 //==============================================================================
 //==============================================================================
 
-DTuint	ImporterGeometry3DS::parse_tri_local(BinaryFileStream &in, DTuint owner_chunk_size)
+uint32_t	ImporterGeometry3DS::parse_tri_local(BinaryFileStream &in, uint32_t owner_chunk_size)
 {
-    DTuint size_read = 0;
+    uint32_t size_read = 0;
     DTfloat xx,xy,xz, yx,yy,yz, zx,zy,zz, ox,oy,oz;
     
     size_read += read(in,xx);
@@ -384,7 +384,7 @@ DTuint	ImporterGeometry3DS::parse_tri_local(BinaryFileStream &in, DTuint owner_c
 //==============================================================================
 //==============================================================================
 
-DTuint	ImporterGeometry3DS::parse_key_f3DS (BinaryFileStream &in, DTuint owner_chunk_size)
+uint32_t	ImporterGeometry3DS::parse_key_f3DS (BinaryFileStream &in, uint32_t owner_chunk_size)
 {
     return parse_next_chunk(in, owner_chunk_size);
 }
@@ -392,7 +392,7 @@ DTuint	ImporterGeometry3DS::parse_key_f3DS (BinaryFileStream &in, DTuint owner_c
 //==============================================================================
 //==============================================================================
 
-DTuint	ImporterGeometry3DS::parse_obj_des (BinaryFileStream &in, DTuint owner_chunk_size)
+uint32_t	ImporterGeometry3DS::parse_obj_des (BinaryFileStream &in, uint32_t owner_chunk_size)
 {
     return parse_next_chunk(in, owner_chunk_size);
 }
@@ -400,11 +400,11 @@ DTuint	ImporterGeometry3DS::parse_obj_des (BinaryFileStream &in, DTuint owner_ch
 //==============================================================================
 //==============================================================================
 
-DTuint	ImporterGeometry3DS::parse_obj_hier (BinaryFileStream &in, DTuint owner_chunk_size)
+uint32_t	ImporterGeometry3DS::parse_obj_hier (BinaryFileStream &in, uint32_t owner_chunk_size)
 {
-    DTuint size_read = 0;
+    uint32_t size_read = 0;
     
-    DTshort       flags1,flags2,parent;
+    int16_t       flags1,flags2,parent;
     std::string     name;
     
     size_read += read(in, name);
@@ -423,7 +423,7 @@ DTuint	ImporterGeometry3DS::parse_obj_hier (BinaryFileStream &in, DTuint owner_c
 //==============================================================================
 //==============================================================================
 
-DTuint	ImporterGeometry3DS::parse_edit_material (BinaryFileStream &in, DTuint owner_chunk_size)
+uint32_t	ImporterGeometry3DS::parse_edit_material (BinaryFileStream &in, uint32_t owner_chunk_size)
 {
     return parse_next_chunk(in, owner_chunk_size);
 }
@@ -431,9 +431,9 @@ DTuint	ImporterGeometry3DS::parse_edit_material (BinaryFileStream &in, DTuint ow
 //==============================================================================
 //==============================================================================
 
-DTuint	ImporterGeometry3DS::parse_mat_name_01 (BinaryFileStream &in, DTuint owner_chunk_size)
+uint32_t	ImporterGeometry3DS::parse_mat_name_01 (BinaryFileStream &in, uint32_t owner_chunk_size)
 {
-    DTint size_read = 0;
+    int32_t size_read = 0;
 	std::string materialname;
   
     size_read += read(in,materialname);
@@ -444,12 +444,12 @@ DTuint	ImporterGeometry3DS::parse_mat_name_01 (BinaryFileStream &in, DTuint owne
 //==============================================================================
 //==============================================================================
 
-DTuint	ImporterGeometry3DS::parse_next_chunk(BinaryFileStream &in, DTuint owner_chunk_size)
+uint32_t	ImporterGeometry3DS::parse_next_chunk(BinaryFileStream &in, uint32_t owner_chunk_size)
 {
-    const DTuint    chunk_header_size = 6;	// 6 bytes for data read (chunk_id & chunk_size)
-    DTushort        chunk_id;
-    DTuint          chunk_size;
-    DTuint          offset_in_chunk = 0;    // start after chunk id
+    const uint32_t    chunk_header_size = 6;	// 6 bytes for data read (chunk_id & chunk_size)
+    uint16_t        chunk_id;
+    uint32_t          chunk_size;
+    uint32_t          offset_in_chunk = 0;    // start after chunk id
 
     do {
         offset_in_chunk += read(in, chunk_id);
@@ -476,7 +476,7 @@ DTuint	ImporterGeometry3DS::parse_next_chunk(BinaryFileStream &in, DTuint owner_
 			case CHUNK_EDIT_MATERIAL:			offset_in_chunk += parse_edit_material(in, chunk_size);		break;
 			case CHUNK_MAT_NAME01:				offset_in_chunk += parse_mat_name_01(in, chunk_size);		break;
 
-            default:                            in.seek_g((DTint) chunk_size, BinaryStream::FROM_CURRENT);
+            default:                            in.seek_g((int32_t) chunk_size, BinaryStream::FROM_CURRENT);
                                                 offset_in_chunk += chunk_size;		
                                                 break;	// Skip chunk
         };

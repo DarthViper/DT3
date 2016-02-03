@@ -153,7 +153,7 @@ bool ScriptingParticleVelocityRandomizer::compute (const PlugBase *plug)
         std::vector<Vector3> &velocities = particles->velocity_stream();
 		std::vector<DTfloat> &lifetimes = particles->lifetimes_stream();
 
-		for (DTint i = particles->active_start(); i != particles->active_end(); i = (i + 1) % particles->translations_stream().size()) {
+		for (int32_t i = particles->active_start(); i != particles->active_end(); i = (i + 1) % particles->translations_stream().size()) {
 			if (_continuous || lifetimes[i] == 0.0F) {
             
                 Vector3 v = MoreMath::random_vector();

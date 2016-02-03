@@ -146,22 +146,22 @@ bool ScriptingSoundHighPassFilter3db::compute (const PlugBase *plug)
         DTfloat RC = 1.0F / (TWO_PI * _cutoff_frequency);
         DTfloat alpha = RC / ( RC + period );
     
-        DTshort *data_in = (DTshort *) sound_packet_in.buffer();
-        DTshort *data_out = (DTshort *) sound_packet_out.buffer();
+        int16_t *data_in = (int16_t *) sound_packet_in.buffer();
+        int16_t *data_out = (int16_t *) sound_packet_out.buffer();
 
-        DTint alpha_int = UNIT_TO_10BIT_INT(alpha);
+        int32_t alpha_int = UNIT_TO_10BIT_INT(alpha);
 
         if (sound_packet_in.format() == SoundResource::FORMAT_MONO16) {
 
             DTsize num_samples = sound_packet_in.num_samples();
-            DTshort *sample_in = &data_in[0];
-            DTshort *sample_out = &data_out[0];
+            int16_t *sample_in = &data_in[0];
+            int16_t *sample_out = &data_out[0];
 
-            for (DTuint s = 0; s < num_samples; ++s) {
+            for (uint32_t s = 0; s < num_samples; ++s) {
                 
-                DTshort last_in_sample = (*sample_in);
+                int16_t last_in_sample = (*sample_in);
                 
-                (*sample_out) = static_cast<DTshort>(REM_10BIT(CLAMP_PAD_10BIT(alpha_int * (_last_out_sample_left + last_in_sample - _last_in_sample_left))));
+                (*sample_out) = static_cast<int16_t>(REM_10BIT(CLAMP_PAD_10BIT(alpha_int * (_last_out_sample_left + last_in_sample - _last_in_sample_left))));
                 _last_in_sample_left = last_in_sample;
                 _last_out_sample_left = (*sample_out);
                 
@@ -172,14 +172,14 @@ bool ScriptingSoundHighPassFilter3db::compute (const PlugBase *plug)
         } else if (sound_packet_in.format() == SoundResource::FORMAT_STEREO16) {
         
             DTsize num_samples = sound_packet_in.num_samples();
-            DTshort *sample_in = &data_in[0];
-            DTshort *sample_out = &data_out[0];
+            int16_t *sample_in = &data_in[0];
+            int16_t *sample_out = &data_out[0];
 
-            for (DTuint s = 0; s < num_samples; ++s) {
+            for (uint32_t s = 0; s < num_samples; ++s) {
                 
-                DTshort last_in_sample = (*sample_in);
+                int16_t last_in_sample = (*sample_in);
 
-                (*sample_out) = static_cast<DTshort>(REM_10BIT(CLAMP_PAD_10BIT(alpha_int * (_last_out_sample_left + last_in_sample - _last_in_sample_left))));
+                (*sample_out) = static_cast<int16_t>(REM_10BIT(CLAMP_PAD_10BIT(alpha_int * (_last_out_sample_left + last_in_sample - _last_in_sample_left))));
                 _last_in_sample_left = last_in_sample;
                 _last_out_sample_left = (*sample_out);
                 
@@ -188,7 +188,7 @@ bool ScriptingSoundHighPassFilter3db::compute (const PlugBase *plug)
 
                 last_in_sample = (*sample_in);
                 
-                (*sample_out) = static_cast<DTshort>(REM_10BIT(CLAMP_PAD_10BIT(alpha_int * (_last_out_sample_right + last_in_sample - _last_in_sample_right))));
+                (*sample_out) = static_cast<int16_t>(REM_10BIT(CLAMP_PAD_10BIT(alpha_int * (_last_out_sample_right + last_in_sample - _last_in_sample_right))));
                 _last_in_sample_right = last_in_sample;
                 _last_out_sample_right = (*sample_out);
                 
