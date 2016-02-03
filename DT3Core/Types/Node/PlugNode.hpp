@@ -1,6 +1,4 @@
 #pragma once
-#ifndef DT3_PLUGNODE
-#define DT3_PLUGNODE
 //==============================================================================
 ///
 ///	File: PlugNode.hpp
@@ -13,8 +11,6 @@
 //==============================================================================
 
 #include "DT3Core/Types/Base/BaseClass.hpp"
-#include "DT3Core/Types/Node/PlugInfo.hpp"
-#include "DT3Core/Types/Node/EventInfo.hpp"
 #include <string>
 #include <mutex>
 #include <list>
@@ -29,6 +25,7 @@ namespace DT3 {
 //==============================================================================
 
 class Event;
+class EventInfo;
 class PlugInfo;
 class EventInfo;
 
@@ -229,11 +226,11 @@ class PlugIter {
         virtual						~PlugIter					(void)			{}
 
         // Increment the iterator to the next item
-        inline PlugIter&			operator ++					(void)			{	_info = _info->next_info(); return *this;	}
+        inline PlugIter&			operator ++					(void);
 
         // Return the current item
-        inline PlugBase*			operator ->					(void) const	{	return _info->node_to_plug(_node);	}
-        inline PlugBase*			operator ()					(void) const	{	return _info->node_to_plug(_node);	}
+        inline PlugBase*			operator ->					(void) const;
+        inline PlugBase*			operator ()					(void) const;
 
         // Returns non-zero value if the iterator is valid
         inline 						operator const void *		(void) const	{	return (void*) (_info != NULL);	}
@@ -242,6 +239,7 @@ class PlugIter {
         PlugInfo        *_info;
         PlugNode        *_node;
 };
+
 
 //==============================================================================
 //==============================================================================
@@ -255,14 +253,14 @@ class EventIter {
         EventIter &					operator =					(const EventIter &rhs);
 
     public:
-        virtual						~EventIter					(void)			{}
+        virtual						~EventIter					(void) = default;
 
         // Increment the iterator to the next item
-        inline EventIter&			operator ++					(void)			{	_info = _info->next_info(); return *this;	}
+        inline EventIter&			operator ++					(void);
 
         // Return the current item
-        inline Event*               operator ->					(void) const	{	return _info->node_to_event(_node);	}
-        inline Event*               operator ()					(void) const	{	return _info->node_to_event(_node);	}
+        inline Event*               operator ->					(void) const;
+        inline Event*               operator ()					(void) const;
 
         // Returns non-zero value if the iterator is valid
         inline 						operator const void *		(void) const	{	return (void*) (_info != NULL);	}
@@ -271,10 +269,7 @@ class EventIter {
         EventInfo       *_info;
         PlugNode        *_node;
 };
-
 //==============================================================================
 //==============================================================================
 
 } // DT3
-
-#endif

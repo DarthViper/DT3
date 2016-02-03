@@ -57,7 +57,8 @@ BEGIN_IMPLEMENT_PLUGS(ComponentDrawGridImagePlane)
         .set_input(true);
 
 END_IMPLEMENT_PLUGS
-
+} // DT3
+using namespace DT3;
 //==============================================================================
 /// Standard class constructors/destructors
 //==============================================================================
@@ -241,6 +242,3 @@ void ComponentDrawGridImagePlane::remove_from_owner (void)
 
 //==============================================================================
 //==============================================================================
-
-} // DT3
-

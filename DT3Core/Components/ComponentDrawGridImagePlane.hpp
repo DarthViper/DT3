@@ -1,6 +1,4 @@
 #pragma once
-#ifndef DT3_COMPONENTDRAWGRIDIMAGEPLANE
-#define DT3_COMPONENTDRAWGRIDIMAGEPLANE
 //==============================================================================
 ///
 ///	File: ComponentDrawGridImagePlane.hpp
@@ -114,5 +112,3 @@ class ComponentDrawGridImagePlane: public ComponentBase {
 //==============================================================================
 
 } // DT3
-
-#endif

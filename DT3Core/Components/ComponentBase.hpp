@@ -1,6 +1,4 @@
 #pragma once
-#ifndef DT3_COMPONENTBASE
-#define DT3_COMPONENTBASE
 //==============================================================================
 ///
 ///	File: ComponentBase.hpp
@@ -90,5 +88,3 @@ class ComponentBase: public PlugNode {
 //==============================================================================
 
 } // DT3
-
-#endif

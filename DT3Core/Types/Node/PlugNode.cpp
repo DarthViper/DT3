@@ -12,6 +12,8 @@
 #include "DT3Core/Types/Node/PlugNode.hpp"
 #include "DT3Core/Types/Node/Plug.hpp"
 #include "DT3Core/Types/Node/Event.hpp"
+#include "DT3Core/Types/Node/EventInfo.hpp"
+#include "DT3Core/Types/Node/PlugInfo.hpp"
 #include "DT3Core/System/Factory.hpp"
 #include "DT3Core/System/SystemCallbacks.hpp"
 #include "DT3Core/Types/FileBuffer/Archive.hpp"
@@ -34,8 +36,11 @@ IMPLEMENT_FACTORY_CREATION(PlugNode)
 //==============================================================================
 
 BEGIN_IMPLEMENT_PLUGS(PlugNode)
-END_IMPLEMENT_PLUGS
 
+
+END_IMPLEMENT_PLUGS
+}
+using namespace DT3;
 //==============================================================================
 /// Standard class constructors/destructors
 //==============================================================================
@@ -305,6 +310,12 @@ bool PlugNode::compute (const PlugBase *plug)
 //==============================================================================
 //==============================================================================
 
+EventIter &EventIter::operator ++()			{	_info = _info->next_info(); return *this;	}
+Event *EventIter::operator ->() const	{	return _info->node_to_event(_node);	}
+Event *EventIter::operator ()() const	{	return _info->node_to_event(_node);	}
 
-} // DT3
+PlugIter &PlugIter::operator ++()			{	_info = _info->next_info(); return *this;	}
 
+PlugBase *PlugIter::operator ->() const	{	return _info->node_to_plug(_node);	}
+
+PlugBase *PlugIter::operator ()() const	{	return _info->node_to_plug(_node);	}

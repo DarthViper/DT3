@@ -22,7 +22,7 @@
 
 // Engine includes
 #include "DT3Core/Scripting/ScriptingSoundBusOut.hpp"
-
+#include "DT3Core/Types/Utility/CheckedCast.hpp"
 //==============================================================================
 //==============================================================================
 
