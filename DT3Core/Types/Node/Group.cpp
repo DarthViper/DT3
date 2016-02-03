@@ -155,7 +155,7 @@ void Group::set_nodes_center (const Vector2 &center)
     
     avg /= _nodes.size();
     
-    Vector2 delta = center - Vector2(avg);
+    Vector2 delta = center - Vector2::fromVector3(avg);
     
     // Add an offset
     FOR_EACH (i,_nodes) {

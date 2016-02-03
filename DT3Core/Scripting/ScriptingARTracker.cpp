@@ -42,18 +42,18 @@ IMPLEMENT_EVENT_INFO_INDEX(_begin_auto_calibration)
 
 BEGIN_IMPLEMENT_PLUGS(ScriptingARTracker)
 
-    PLUG_INIT(_orientation, "Orientation")
-        .set_output(true);
+PLUG_INIT(_orientation, "Orientation")
+.set_output(true);
 
-    PLUG_INIT(_is_calibrating, "Is_Calibrating")
-        .set_output(true);
+PLUG_INIT(_is_calibrating, "Is_Calibrating")
+.set_output(true);
 
-    PLUG_INIT(_is_calibrated, "Is_Calibrated")
-        .set_output(true);
+PLUG_INIT(_is_calibrated, "Is_Calibrated")
+.set_output(true);
 
-    EVENT_INIT(_begin_auto_calibration,"Begin_Auto_Calibration")
-        .set_input(true)
-        .set_event(&ScriptingARTracker::begin_auto_calibration);
+EVENT_INIT(_begin_auto_calibration,"Begin_Auto_Calibration")
+.set_input(true)
+.set_event(&ScriptingARTracker::begin_auto_calibration);
 
 END_IMPLEMENT_PLUGS
 
@@ -62,36 +62,36 @@ END_IMPLEMENT_PLUGS
 //==============================================================================
 
 ScriptingARTracker::ScriptingARTracker (void)
-    :   _gyro_orientation               (Matrix3::identity()),
-        _accelerometer                  (0.0F,0.0F,0.0F),
-        _magnetometer                   (0.0F,0.0F,0.0F),
-        _orientation                    (PLUG_INFO_INDEX(_orientation), Matrix3::identity()),
-        _correction_mix_factor          (0.02F),
-        _correction_mode                (CORRECTION_ACCELEROMETER_AND_MAGNETOMETER),
-        _is_calibrating                 (PLUG_INFO_INDEX(_is_calibrating), false),
-        _is_calibrated                  (PLUG_INFO_INDEX(_is_calibrated), false),
-        _calibration_directions         (0),
-        _num_calibration_samples        (0),
-        _calibration                    (Vector3(0.0F,0.0F,0.0F)),
-        _begin_auto_calibration         (EVENT_INFO_INDEX(_begin_auto_calibration))
+    : _begin_auto_calibration         (EVENT_INFO_INDEX(_begin_auto_calibration)),
+      _gyro_orientation               (Matrix3::identity()),
+      _accelerometer                  (0.0F,0.0F,0.0F),
+      _magnetometer                   (0.0F,0.0F,0.0F),
+      _orientation                    (PLUG_INFO_INDEX(_orientation), Matrix3::identity()),
+      _correction_mix_factor          (0.02F),
+      _correction_mode                (CORRECTION_ACCELEROMETER_AND_MAGNETOMETER),
+      _is_calibrating                 (PLUG_INFO_INDEX(_is_calibrating), false),
+      _is_calibrated                  (PLUG_INFO_INDEX(_is_calibrated), false),
+      _calibration_directions         (0),
+      _num_calibration_samples        (0),
+      _calibration                    (Vector3(0.0F,0.0F,0.0F))
 {
 
 }
 
 ScriptingARTracker::ScriptingARTracker (const ScriptingARTracker &rhs)
     :   ScriptingBase                   (rhs),
-        _gyro_orientation               (rhs._gyro_orientation),
-        _accelerometer                  (rhs._accelerometer),
-        _magnetometer                   (rhs._magnetometer),
-        _orientation                    (rhs._orientation),
-        _correction_mix_factor          (rhs._correction_mix_factor),
-        _correction_mode                (rhs._correction_mode),
-        _is_calibrating                 (PLUG_INFO_INDEX(_is_calibrating), false),
-        _is_calibrated                  (PLUG_INFO_INDEX(_is_calibrated), false),
-        _calibration_directions         (0),
-        _num_calibration_samples        (0),
-        _calibration                    (Vector3(0.0F,0.0F,0.0F)),
-        _begin_auto_calibration         (EVENT_INFO_INDEX(_begin_auto_calibration))
+      _begin_auto_calibration         (EVENT_INFO_INDEX(_begin_auto_calibration)),
+      _gyro_orientation               (rhs._gyro_orientation),
+      _accelerometer                  (rhs._accelerometer),
+      _magnetometer                   (rhs._magnetometer),
+      _orientation                    (rhs._orientation),
+      _correction_mix_factor          (rhs._correction_mix_factor),
+      _correction_mode                (rhs._correction_mode),
+      _is_calibrating                 (PLUG_INFO_INDEX(_is_calibrating), false),
+      _is_calibrated                  (PLUG_INFO_INDEX(_is_calibrated), false),
+      _calibration_directions         (0),
+      _num_calibration_samples        (0),
+      _calibration                    (Vector3(0.0F,0.0F,0.0F))
 {
 
 }
@@ -138,9 +138,9 @@ void ScriptingARTracker::archive (const std::shared_ptr<Archive> &archive)
 
     *archive << ARCHIVE_DATA(_correction_mix_factor, DATA_PERSISTENT | DATA_SETTABLE);
     *archive << ARCHIVE_DATA(_correction_mode, DATA_PERSISTENT | DATA_SETTABLE)
-        .add_enum("None")
-        .add_enum("Accelerometer")
-        .add_enum("Accelerometer and Magnetometer");
+                .add_enum("None")
+                .add_enum("Accelerometer")
+                .add_enum("Accelerometer and Magnetometer");
 
     archive->pop_domain ();
 }
@@ -233,7 +233,7 @@ void ScriptingARTracker::magnetometer (const Vector3 &m)
             else if (y_major)   _calibration_directions |= (diff.y > 0.0F) ? (0x00000001 << 2) : (0x00000001 << 3);
             else if (z_major)   _calibration_directions |= (diff.z > 0.0F) ? (0x00000001 << 4) : (0x00000001 << 5);
 
-        // Done!
+            // Done!
         } else {
             _calibration_directions = 0;
 
@@ -259,7 +259,7 @@ DTboolean ScriptingARTracker::append_calibration_sample (const Vector3 &m)
         _calibration_samples[_num_calibration_samples] = m;
         ++_num_calibration_samples;
 
-    // Add samples that are more "distinct" than the existing samples
+        // Add samples that are more "distinct" than the existing samples
     } else {
 
         DTint closest_sum_dist_index = -1;
@@ -387,7 +387,7 @@ DTboolean ScriptingARTracker::process_calibration_samples (void)
     // Calculate B
     //
     Vector4 B = temp1.inversed() * temp2;
-    _calibration = B * 0.5F;
+    _calibration = Vector3::fromVec4(B * 0.5f);
 
     // Check valid result
     if (B.v[3] < 0.0F)
@@ -398,9 +398,9 @@ DTboolean ScriptingARTracker::process_calibration_samples (void)
     //
 
     DTfloat field_strength = std::sqrt( B.v[3] +
-                                        _calibration.x*_calibration.x +
-                                        _calibration.y*_calibration.y +
-                                        _calibration.z*_calibration.z);
+            _calibration.x*_calibration.x +
+            _calibration.y*_calibration.y +
+            _calibration.z*_calibration.z);
 
     LOG_MESSAGE << "V: " << _calibration.x << " " << _calibration.y << " " << _calibration.z << " uT";
     LOG_MESSAGE << "Field Strength: " << field_strength << " uT";

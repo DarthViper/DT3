@@ -232,8 +232,10 @@ Vector3 operator * (const Matrix3 &a, const Vector3 &b)
 
 Vector2 operator * (const Matrix3 &a, const Vector2 &b)
 {    
-	return Vector2(	a._m11 * b.x + a._m12 * b.y + a._m13,
-					a._m21 * b.x + a._m22 * b.y + a._m23);
+    return 	{
+        a._m11 * b.x + a._m12 * b.y + a._m13,
+        a._m21 * b.x + a._m22 * b.y + a._m23
+    };
 }
 
 Matrix3 operator / (const Matrix3 &a, const DTfloat b)

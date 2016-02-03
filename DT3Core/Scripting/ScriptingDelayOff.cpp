@@ -44,15 +44,16 @@ BEGIN_IMPLEMENT_PLUGS(ScriptingDelayOff)
 		.set_output(true);
         
 END_IMPLEMENT_PLUGS
-
+}
+using namespace DT3;
 //==============================================================================
 /// Standard class constructors/destructors
 //==============================================================================
 
 ScriptingDelayOff::ScriptingDelayOff (void)
     :   _time		(0.0F),
+      _delay		(1.0F),
 		_in			(PLUG_INFO_INDEX(_in), false),
-		_delay		(1.0F),
 		_out		(PLUG_INFO_INDEX(_out), false)
 {  
 
@@ -61,8 +62,8 @@ ScriptingDelayOff::ScriptingDelayOff (void)
 ScriptingDelayOff::ScriptingDelayOff (const ScriptingDelayOff &rhs)
     :   ScriptingBase	(rhs),
 		_time			(rhs._time),
+        _delay			(rhs._delay),
 		_in				(rhs._in),
-		_delay			(rhs._delay),
 		_out			(rhs._out)
 {   
 
@@ -141,6 +142,3 @@ void ScriptingDelayOff::remove_from_world (void)
 
 //==============================================================================
 //==============================================================================
-
-} // DT3
-

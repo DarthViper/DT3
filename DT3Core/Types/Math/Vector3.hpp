@@ -45,7 +45,7 @@ class Vector3 {
                                                                                     y = rhs.y;
                                                                                     z = rhs.z;
                                                                                 }
-                            Vector3					(const Vector4 &rhs);
+        static Vector3      fromVec4(const Vector4 &rhs);
 
         explicit inline     Vector3					(  const DTfloat x_,
                                                         const DTfloat y_,

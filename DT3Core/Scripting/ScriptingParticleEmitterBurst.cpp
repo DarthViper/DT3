@@ -85,10 +85,10 @@ ScriptingParticleEmitterBurst::ScriptingParticleEmitterBurst (void)
 		_spawn_translation	(PLUG_INFO_INDEX(_spawn_translation), Vector3(0.0F,0.0F,0.0F)),
 		_max_lifetime	(PLUG_INFO_INDEX(_max_lifetime), 3.0F),
 		_active			(PLUG_INFO_INDEX(_active), false),
+        _active_e       (EVENT_INFO_INDEX(_active_e)),
 		_last_active	(false),
 		_max_num		(32),
-		_out			(PLUG_INFO_INDEX(_out)),
-        _active_e       (EVENT_INFO_INDEX(_active_e))
+        _out			(PLUG_INFO_INDEX(_out))
 
 {  
 
@@ -101,10 +101,10 @@ ScriptingParticleEmitterBurst::ScriptingParticleEmitterBurst (const ScriptingPar
 		_spawn_translation	(rhs._spawn_translation),
 		_max_lifetime	(rhs._max_lifetime),
 		_active			(rhs._active),
+        _active_e       (rhs._active_e),
 		_last_active	(rhs._last_active),
 		_max_num		(rhs._max_num),
-		_out			(rhs._out),
-        _active_e       (rhs._active_e)
+        _out			(rhs._out)
 {   
 
 }

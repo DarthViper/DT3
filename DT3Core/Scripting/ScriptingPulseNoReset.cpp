@@ -56,10 +56,10 @@ END_IMPLEMENT_PLUGS
 
 ScriptingPulseNoReset::ScriptingPulseNoReset (void)
     :   _time		(0.0F),
-		_in			(PLUG_INFO_INDEX(_in), false),
 		_pulse_time	(1.0F),
         _event_in   (false),
-		_out		(PLUG_INFO_INDEX(_out), false),
+        _in			(PLUG_INFO_INDEX(_in), false),
+        _out		(PLUG_INFO_INDEX(_out), false),
 		_in_e		(EVENT_INFO_INDEX(_in_e))
 {  
 
@@ -68,9 +68,9 @@ ScriptingPulseNoReset::ScriptingPulseNoReset (void)
 ScriptingPulseNoReset::ScriptingPulseNoReset (const ScriptingPulseNoReset &rhs)
     :   ScriptingBase	(rhs),
 		_time			(rhs._time),
-		_in				(rhs._in),
-		_pulse_time		(rhs._pulse_time),
+        _pulse_time		(rhs._pulse_time),
         _event_in       (rhs._event_in),
+		_in				(rhs._in),
 		_out			(rhs._out),
 		_in_e           (EVENT_INFO_INDEX(_in_e))
 {   

@@ -28,8 +28,8 @@ MonkeyTest::MonkeyTest (void)
     :   _state          (STATE_START_TAP),
         _time           (0.0F),
         _time_remaining (0.0F),
-        _position_1     (0.0F,0.0F),
-        _position_2     (0.0F,0.0F)
+        _position_1     {0.0F,0.0F},
+        _position_2     {0.0F,0.0F}
 {
     _event.clear();
     new_event();
@@ -66,15 +66,15 @@ void MonkeyTest::run (void)
         case STATE_START_TAP: {
                 _time_remaining = _time = MoreMath::random_float() * 0.05F;
                 
-                _position_1 = _position_2 = Vector2(MoreMath::random_float() * width, MoreMath::random_float() * height);
+                _position_1 = _position_2 = Vector2{MoreMath::random_float() * width, MoreMath::random_float() * height};
                             
                 _event.touches[0].state = DT3::TouchEvent::STATE_PRESSED;
                 _event.touches[0].pos = _position_1;
                 _event.touches[0].previous_pos = _position_1;
                 _event.touches[0].first_pos = _position_1;
-                _event.touches[0].delta = DT3::Vector2(0.0F,0.0F);
+                _event.touches[0].delta = {0.0F,0.0F};
                 _event.touches[0].dt = 0.0F;
-                _event.touches[0].velocity = DT3::Vector2(0.0F,0.0F);
+                _event.touches[0].velocity = {0.0F,0.0F};
                 _event.touches[0].timer.delta_time();
 
                 GameMainThread::touch_event(_event);
@@ -91,9 +91,9 @@ void MonkeyTest::run (void)
                 _event.touches[0].state = DT3::TouchEvent::STATE_RELEASED;
                 _event.touches[0].pos = _position_1;
                 _event.touches[0].previous_pos = _position_1;
-                _event.touches[0].delta = DT3::Vector2(0.0F,0.0F);
+                _event.touches[0].delta = {0.0F,0.0F};
                 _event.touches[0].dt = static_cast<DTfloat>(_event.touches[0].timer.delta_time());
-                _event.touches[0].velocity = DT3::Vector2(0.0F,0.0F);
+                _event.touches[0].velocity = {0.0F,0.0F};
 
                 GameMainThread::touch_event(_event);
                 
@@ -105,16 +105,16 @@ void MonkeyTest::run (void)
         case STATE_START_DRAG: {
                 _time_remaining = _time = MoreMath::random_float() * 0.05F;
                 
-                _position_1 = Vector2(MoreMath::random_float() * width, MoreMath::random_float() * height);
-                _position_2 = Vector2(MoreMath::random_float() * width, MoreMath::random_float() * height);
+                _position_1 = {MoreMath::random_float() * width, MoreMath::random_float() * height};
+                _position_2 = {MoreMath::random_float() * width, MoreMath::random_float() * height};
                             
                 _event.touches[0].state = DT3::TouchEvent::STATE_PRESSED;
                 _event.touches[0].pos = _position_1;
                 _event.touches[0].previous_pos = _position_1;
                 _event.touches[0].first_pos = _position_1;
-                _event.touches[0].delta = DT3::Vector2(0.0F,0.0F);
+                _event.touches[0].delta = {0.0F,0.0F};
                 _event.touches[0].dt = 0.0F;
-                _event.touches[0].velocity = DT3::Vector2(0.0F,0.0F);
+                _event.touches[0].velocity = {0.0F,0.0F};
                 _event.touches[0].timer.delta_time();
 
                 GameMainThread::touch_event(_event);

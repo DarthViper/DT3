@@ -290,7 +290,7 @@ Vector2 GUIObject::position_to_object_coord  (Vector2 pixel_pos)
     DTfloat x = (DTfloat) pixel_pos.x / System::renderer()->screen_width();
     DTfloat y = 1.0F - (DTfloat) pixel_pos.y / System::renderer()->screen_height();
 
-    Vector2 pos = draw_transform().inversed() * Vector2(x,y);
+    Vector2 pos = draw_transform().inversed() * Vector2 {x,y};
     return pos;
 }
 
@@ -300,7 +300,7 @@ Vector2 GUIObject::velocity_to_object_coord  (Vector2 pixel_velocity)
     DTfloat dx = (DTfloat) pixel_velocity.x / System::renderer()->screen_width();
     DTfloat dy = -(DTfloat) pixel_velocity.y / System::renderer()->screen_height();
 
-    Vector2 vel = draw_transform().orientation().inversed() * Vector2(dx,dy);
+    Vector2 vel = draw_transform().orientation().inversed() * Vector2 {dx,dy};
     return vel;
 }
 
@@ -322,10 +322,10 @@ Rectangle GUIObject::screen_rectangle (void) const
     Rectangle rect = rectangle();
     Matrix4 transform = draw_transform();
 
-    Vector2 p0 = transform * Vector2(rect.minus_x(), rect.minus_y());
-    Vector2 p1 = transform * Vector2(rect.plus_x(), rect.minus_y());
-    Vector2 p2 = transform * Vector2(rect.minus_x(), rect.plus_y());
-    Vector2 p3 = transform * Vector2(rect.plus_x(), rect.plus_y());
+    Vector2 p0 = transform * Vector2{rect.minus_x(), rect.minus_y()};
+    Vector2 p1 = transform * Vector2{rect.plus_x(), rect.minus_y()};
+    Vector2 p2 = transform * Vector2{rect.minus_x(), rect.plus_y()};
+    Vector2 p3 = transform * Vector2{rect.plus_x(), rect.plus_y()};
 
     Rectangle bounds;
     bounds.set_minus_x( MoreMath::min(p0.x, p1.x, p2.x, p3.x) );
@@ -458,10 +458,10 @@ Rectangle GUIObject::children_content_rectangle (void) const
             Matrix4 gui_transform = transform * gui->draw_transform();
 
             // 4 corners
-            Vector2 p0 = Vector2( gui_transform * Vector3(child_rect.minus_x(), child_rect.plus_y(), 0.0F));
-            Vector2 p1 = Vector2( gui_transform * Vector3(child_rect.plus_x(), child_rect.plus_y(), 0.0F));
-            Vector2 p2 = Vector2( gui_transform * Vector3(child_rect.minus_x(), child_rect.minus_y(), 0.0F));
-            Vector2 p3 = Vector2( gui_transform * Vector3(child_rect.plus_x(), child_rect.minus_y(), 0.0F));
+            Vector2 p0 = Vector2::fromVector3( gui_transform * Vector3(child_rect.minus_x(), child_rect.plus_y(), 0.0F));
+            Vector2 p1 = Vector2::fromVector3( gui_transform * Vector3(child_rect.plus_x(), child_rect.plus_y(), 0.0F));
+            Vector2 p2 = Vector2::fromVector3( gui_transform * Vector3(child_rect.minus_x(), child_rect.minus_y(), 0.0F));
+            Vector2 p3 = Vector2::fromVector3( gui_transform * Vector3(child_rect.plus_x(), child_rect.minus_y(), 0.0F));
 
             r = Rectangle::calc_union(r, p0);
             r = Rectangle::calc_union(r, p1);

@@ -80,12 +80,12 @@ CommandResult ModelTools_cmd::do_split_mesh (CommandContext &ctx, const CommandP
     const std::vector<std::shared_ptr<Mesh>> &meshes = geom->meshes();
     
     // Sort meshes into buckets
-    for (auto i : meshes) {
+    for (auto &i : meshes) {
         split_meshes[i->material()].push_back(i);
     }
     
     // Iterate through lists of meshes
-    for (auto i : split_meshes) {
+    for (auto &i : split_meshes) {
         std::string name;
         
         if (i.first.size() > 0)

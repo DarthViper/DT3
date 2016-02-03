@@ -1,6 +1,4 @@
 #pragma once
-#ifndef DT3_VECTOR2
-#define DT3_VECTOR2
 //==============================================================================
 ///
 ///	File: Vector.hpp
@@ -38,24 +36,22 @@ class Vector2 {
     public:
         DEFINE_TYPE_SIMPLE_BASE(Vector2)
 
-        inline				Vector2					(void)  :   x(0.0F), y(0.0F)    {}
+//        Vector2					(void) = default;
 
-                            Vector2					(const Vector2 &rhs)		{   x = rhs.x;
-                                                                                    y = rhs.y;  }
-        explicit			Vector2					(const Vector3 &rhs);
-        explicit			Vector2					(const Vector4 &rhs);
+//        explicit			Vector2					(const Vector3 &rhs);
+//        explicit			Vector2					(const Vector4 &rhs);
 
-        inline explicit     Vector2					(   const DTfloat x_,
-                                                        const DTfloat y_)		{   x = x_;
-                                                                                    y = y_;     }
-        inline explicit     Vector2					(const DTfloat v)           {   x = v;
-                                                                                    y = v;      }
-        Vector2 &			operator =              (const Vector2 &rhs)		{   x = rhs.x;
-                                                                                    y = rhs.y;
-                                                                                    return *this;	}
-        inline				~Vector2				(void)                      {}
-
+//        inline explicit     Vector2					(   const DTfloat x_,
+//                                                        const DTfloat y_)		{   x = x_;
+//                                                                                    y = y_;     }
+//        inline explicit     Vector2					(const DTfloat v)           {   x = v;
+//                                                                                    y = v;      }
+//        Vector2 &			operator =              (const Vector2 &rhs)		{   x = rhs.x;
+//                                                                                    y = rhs.y;
+//                                                                                    return *this;	}
     public:
+            static Vector2 fromVector3(Vector3 src);
+            static Vector2 fromVector4(Vector4 rhs);
         /// Description
         /// \param param description
         /// \return description
@@ -100,17 +96,17 @@ class Vector2 {
 
         /// Returns a normalized copy of the vector
         /// \return normalized vector
-        Vector2				normalized				(void) const				{	DTfloat absv = abs();   ASSERT(absv != 0.0F);   return Vector2(x/absv,y/absv);      }
+        Vector2				normalized				(void) const				{	DTfloat absv = abs();   ASSERT(absv != 0.0F);   return {x/absv,y/absv};      }
 
         /// Normalizes the vector in place
-        void                normalize				(void)						{	DTfloat absv = abs();   ASSERT(absv != 0.0F);   (*this) = Vector2(x/absv,y/absv);   }
+        void                normalize				(void)						{	DTfloat absv = abs();   ASSERT(absv != 0.0F);   (*this) = {x/absv,y/absv};   }
 
         /// Return perped copy of the vector
         /// \return perped copy of the vector
-        inline Vector2      perped					(void) const							{   return Vector2(-y,x);			}
+        inline Vector2      perped					(void) const        {   return {-y,x};			}
 
         ///  Perp the vector in place
-        inline void         perp					(void)									{   (*this) = Vector2(-y,x);        }
+        inline void         perp					(void)						{   (*this) = {-y,x};        }
 
 
         /// Dot product of two vectors
@@ -126,18 +122,10 @@ class Vector2 {
         static DTfloat		perp_dot                (const Vector2& a, const Vector2& b)    {	return a.x * b.y - a.y * b.x;	}
 
     public:
-        union {
             DTfloat x;
-            DTfloat u;
-        };
-
-        union {
             DTfloat y;
-            DTfloat v;
-        };
-
 };
-
+static_assert(std::is_pod<Vector2>(),"w");
 //==============================================================================
 /// Streaming operators
 //==============================================================================
@@ -150,37 +138,37 @@ Stream& operator >>(Stream &s, Vector2&v);
 
 inline Vector2 operator + (const Vector2 &a, const Vector2 &b)
 {
-    return Vector2(a.x + b.x, a.y + b.y);
+    return {a.x + b.x, a.y + b.y};
 }
 
 inline Vector2 operator - (const Vector2 &a, const Vector2 &b)
 {
-    return Vector2(a.x - b.x, a.y - b.y);
+    return {a.x - b.x, a.y - b.y};
 }
 
 inline Vector2 operator - (const Vector2 &a)
 {
-    return Vector2(-a.x, -a.y);
+    return {-a.x, -a.y};
 }
 
 inline Vector2 operator * (const DTfloat a, const Vector2 &b)
 {
-    return Vector2(b.x * a, b.y * a);
+    return {b.x * a, b.y * a};
 }
 
 inline Vector2 operator * (const Vector2 &a, const DTfloat b)
 {
-    return Vector2(a.x * b, a.y * b);
+    return {a.x * b, a.y * b};
 }
 
 inline Vector2 operator * (const Vector2 &a, const Vector2 &b)
 {
-    return Vector2(a.x * b.x, a.y * b.y);
+    return {a.x * b.x, a.y * b.y};
 }
 
 inline Vector2 operator / (const Vector2 &a, const DTfloat b)
 {
-    return Vector2(a.x / b, a.y / b);
+    return {a.x / b, a.y / b};
 }
 
 //==============================================================================
@@ -190,7 +178,7 @@ inline Vector2 operator / (const Vector2 &a, const DTfloat b)
 namespace TypeTraitsInfo {
 
 template <> struct Info<Vector2> {
-    static Vector2				default_value(void)	{	return Vector2(0.0F,0.0F);			}
+    static Vector2				default_value(void)	{	return {0.0F,0.0F};			}
     static const DTcharacter*	name(void)          {	return "Vector2";}
     static const DTcharacter*	name_caps(void)     {	return "Vector2";}
     enum { isFundamental = 0 };
@@ -202,4 +190,3 @@ template <> struct Info<Vector2> {
 //==============================================================================
 
 } // DT3
-#endif

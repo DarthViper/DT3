@@ -20,7 +20,6 @@
 //==============================================================================
 
 namespace DT3 {
-
 //==============================================================================
 /// Register with object factory
 //==============================================================================
@@ -58,82 +57,83 @@ IMPLEMENT_PLUG_INFO_INDEX(_counting_up)
 
 BEGIN_IMPLEMENT_PLUGS(ScriptingTimerSuper)
 
-	PLUG_INIT(_when_activated,"When_Activated")
-		.set_input(true)
-		.affects(PLUG_INFO_INDEX(_time))
+    PLUG_INIT(_when_activated,"When_Activated")
+        .set_input(true)
+        .affects(PLUG_INFO_INDEX(_time))
         .affects(PLUG_INFO_INDEX(_t));
 
-	PLUG_INIT(_when_deactivated,"When_Deactivated")
-		.set_input(true)
-		.affects(PLUG_INFO_INDEX(_time))
+    PLUG_INIT(_when_deactivated,"When_Deactivated")
+        .set_input(true)
+        .affects(PLUG_INFO_INDEX(_time))
         .affects(PLUG_INFO_INDEX(_t));
 
-	PLUG_INIT(_when_reach_upper,"When_Reach_Upper")
-		.set_input(true)
-		.affects(PLUG_INFO_INDEX(_time))
+    PLUG_INIT(_when_reach_upper,"When_Reach_Upper")
+        .set_input(true)
+        .affects(PLUG_INFO_INDEX(_time))
         .affects(PLUG_INFO_INDEX(_t));
 
-	PLUG_INIT(_when_reach_lower,"When_Reach_Lower")
-		.set_input(true)
-		.affects(PLUG_INFO_INDEX(_time))
+    PLUG_INIT(_when_reach_lower,"When_Reach_Lower")
+        .set_input(true)
+        .affects(PLUG_INFO_INDEX(_time))
         .affects(PLUG_INFO_INDEX(_t));
 
-	PLUG_INIT(_upper_range,"Upper_Range")
-		.set_input(true)
-		.affects(PLUG_INFO_INDEX(_time))
+    PLUG_INIT(_upper_range,"Upper_Range")
+        .set_input(true)
+        .affects(PLUG_INFO_INDEX(_time))
         .affects(PLUG_INFO_INDEX(_t));
 
-	PLUG_INIT(_lower_range,"Lower_Range")
-		.set_input(true)
-		.affects(PLUG_INFO_INDEX(_time))
+    PLUG_INIT(_lower_range,"Lower_Range")
+        .set_input(true)
+        .affects(PLUG_INFO_INDEX(_time))
         .affects(PLUG_INFO_INDEX(_t));
 
-	PLUG_INIT(_counting_up_speed,"Counting_Up_Speed")
-		.set_input(true)
-		.affects(PLUG_INFO_INDEX(_time))
+    PLUG_INIT(_counting_up_speed,"Counting_Up_Speed")
+        .set_input(true)
+        .affects(PLUG_INFO_INDEX(_time))
         .affects(PLUG_INFO_INDEX(_t));
 
-	PLUG_INIT(_counting_down_speed,"Counting_Down_Speed")
-		.set_input(true)
-		.affects(PLUG_INFO_INDEX(_time))
+    PLUG_INIT(_counting_down_speed,"Counting_Down_Speed")
+        .set_input(true)
+        .affects(PLUG_INFO_INDEX(_time))
         .affects(PLUG_INFO_INDEX(_t));
 
-	PLUG_INIT(_current_speed,"Current_Speed")
-		.set_input(true)
-		.set_output(true)
-		.affects(PLUG_INFO_INDEX(_time))
+    PLUG_INIT(_current_speed,"Current_Speed")
+        .set_input(true)
+        .set_output(true)
+        .affects(PLUG_INFO_INDEX(_time))
         .affects(PLUG_INFO_INDEX(_t));
 
-	PLUG_INIT(_active,"Active")
-		.set_input(true)
-		.affects(PLUG_INFO_INDEX(_time))
+    PLUG_INIT(_active,"Active")
+        .set_input(true)
+        .affects(PLUG_INFO_INDEX(_time))
         .affects(PLUG_INFO_INDEX(_t));
 
-	PLUG_INIT(_last_active,"Last_Active")
-		.set_input(true)
-		.affects(PLUG_INFO_INDEX(_time))
+    PLUG_INIT(_last_active,"Last_Active")
+        .set_input(true)
+        .affects(PLUG_INFO_INDEX(_time))
         .affects(PLUG_INFO_INDEX(_t));
 
-	PLUG_INIT(_time,"Time")
-		.set_output(true);
+    PLUG_INIT(_time,"Time")
+        .set_output(true);
 
-	PLUG_INIT(_t,"t")
-		.set_output(true);
-    
+    PLUG_INIT(_t,"t")
+        .set_output(true);
+
     EVENT_INIT(_upper_reached,"Upper_Reached")
         .set_output(true);
-    
+
     EVENT_INIT(_lower_reached,"Lower_Reached")
         .set_output(true);
 
-	PLUG_INIT(_counting_down,"Counting_Down")
-		.set_output(true);
+    PLUG_INIT(_counting_down,"Counting_Down")
+        .set_output(true);
 
-	PLUG_INIT(_counting_up,"Counting_Up")
-		.set_output(true);
-    
+    PLUG_INIT(_counting_up,"Counting_Up")
+        .set_output(true);
+
 END_IMPLEMENT_PLUGS
-
+} // DT3
+using namespace DT3;
 //==============================================================================
 /// Standard class constructors/destructors
 //==============================================================================
@@ -148,21 +148,21 @@ ScriptingTimerSuper::ScriptingTimerSuper (void)
         _counting_up_speed  (PLUG_INFO_INDEX(_counting_up_speed), 1.0F),
         _counting_down_speed(PLUG_INFO_INDEX(_counting_down_speed), 1.0F),
         _current_speed      (PLUG_INFO_INDEX(_current_speed), 0.0F),
-        _active             (PLUG_INFO_INDEX(_active), false),
         _last_active        (PLUG_INFO_INDEX(_last_active), false),
-		_time               (PLUG_INFO_INDEX(_time), 0.0F),
-		_t                  (PLUG_INFO_INDEX(_t), 0.0F),
-        _counting_down      (PLUG_INFO_INDEX(_counting_down), false),
-        _counting_up        (PLUG_INFO_INDEX(_counting_up), false),
+        _active             (PLUG_INFO_INDEX(_active), false),
+        _time               (PLUG_INFO_INDEX(_time), 0.0F),
+        _t                  (PLUG_INFO_INDEX(_t), 0.0F),
         _upper_reached      (EVENT_INFO_INDEX(_upper_reached)),
-        _lower_reached      (EVENT_INFO_INDEX(_lower_reached))
+        _lower_reached      (EVENT_INFO_INDEX(_lower_reached)),
+      _counting_down      (PLUG_INFO_INDEX(_counting_down), false),
+      _counting_up        (PLUG_INFO_INDEX(_counting_up), false)
 {  
 
 }
-		
+
 ScriptingTimerSuper::ScriptingTimerSuper (const ScriptingTimerSuper &rhs)
     :   ScriptingBase       (rhs),
-		_when_activated     (rhs._when_activated),
+        _when_activated     (rhs._when_activated),
         _when_deactivated	(rhs._when_deactivated),
         _when_reach_upper   (rhs._when_reach_upper),
         _when_reach_lower	(rhs._when_reach_lower),
@@ -171,14 +171,14 @@ ScriptingTimerSuper::ScriptingTimerSuper (const ScriptingTimerSuper &rhs)
         _counting_up_speed  (rhs._counting_up_speed),
         _counting_down_speed(rhs._counting_down_speed),
         _current_speed      (rhs._current_speed),
-        _active             (rhs._active),
         _last_active        (rhs._last_active),
-		_time               (rhs._time),
-		_t                  (rhs._t),
-        _counting_down      (rhs._counting_down),
-        _counting_up        (rhs._counting_up),
+        _active             (rhs._active),
+        _time               (rhs._time),
+        _t                  (rhs._t),
         _upper_reached      (rhs._upper_reached),
-        _lower_reached      (rhs._lower_reached)
+        _lower_reached      (rhs._lower_reached),
+      _counting_down      (rhs._counting_down),
+      _counting_up        (rhs._counting_up)
 {   
 
 }
@@ -186,10 +186,10 @@ ScriptingTimerSuper::ScriptingTimerSuper (const ScriptingTimerSuper &rhs)
 ScriptingTimerSuper & ScriptingTimerSuper::operator = (const ScriptingTimerSuper &rhs)
 {
     // Make sure we are not assigning the class to itself
-    if (&rhs != this) {        
-		ScriptingBase::operator = (rhs);
+    if (&rhs != this) {
+        ScriptingBase::operator = (rhs);
 
-		_when_activated     = rhs._when_activated;
+        _when_activated     = rhs._when_activated;
         _when_deactivated	= rhs._when_deactivated;
         _when_reach_upper   = rhs._when_reach_upper;
         _when_reach_lower	= rhs._when_reach_lower;
@@ -200,14 +200,14 @@ ScriptingTimerSuper & ScriptingTimerSuper::operator = (const ScriptingTimerSuper
         _current_speed      = rhs._current_speed;
         _active             = rhs._active;
         _last_active        = rhs._last_active;
-		_time               = rhs._time;
-		_t                  = rhs._t;
+        _time               = rhs._time;
+        _t                  = rhs._t;
         _counting_down      = rhs._counting_down;
         _counting_up        = rhs._counting_up;
-	}
+    }
     return (*this);
 }
-			
+
 ScriptingTimerSuper::~ScriptingTimerSuper (void)
 {
 
@@ -222,7 +222,7 @@ void ScriptingTimerSuper::archive (const std::shared_ptr<Archive> &archive)
 
     archive->push_domain (class_id ());
 
-	*archive << ARCHIVE_PLUG(_when_activated, DATA_PERSISTENT | DATA_SETTABLE)
+    *archive << ARCHIVE_PLUG(_when_activated, DATA_PERSISTENT | DATA_SETTABLE)
         .add_enum("Count Up")
         .add_enum("Count Up From Lower")
         .add_enum("Count Down")
@@ -231,7 +231,7 @@ void ScriptingTimerSuper::archive (const std::shared_ptr<Archive> &archive)
         .add_enum("Stop and Reset To Lower")
         .add_enum("Stop and Reset To Upper");
 
-	*archive << ARCHIVE_PLUG(_when_deactivated, DATA_PERSISTENT | DATA_SETTABLE)
+    *archive << ARCHIVE_PLUG(_when_deactivated, DATA_PERSISTENT | DATA_SETTABLE)
         .add_enum("Count Up")
         .add_enum("Count Up From Lower")
         .add_enum("Count Down")
@@ -240,31 +240,31 @@ void ScriptingTimerSuper::archive (const std::shared_ptr<Archive> &archive)
         .add_enum("Stop and Reset To Lower")
         .add_enum("Stop and Reset To Upper");
 
-	*archive << ARCHIVE_PLUG(_when_reach_upper, DATA_PERSISTENT | DATA_SETTABLE)
+    *archive << ARCHIVE_PLUG(_when_reach_upper, DATA_PERSISTENT | DATA_SETTABLE)
         .add_enum("Continue")
         .add_enum("Stop")
         .add_enum("Reverse")
         .add_enum("Wrap");
     
-	*archive << ARCHIVE_PLUG(_when_reach_lower, DATA_PERSISTENT | DATA_SETTABLE)
+    *archive << ARCHIVE_PLUG(_when_reach_lower, DATA_PERSISTENT | DATA_SETTABLE)
         .add_enum("Continue")
         .add_enum("Stop")
         .add_enum("Reverse")
         .add_enum("Wrap");
 
-	*archive << ARCHIVE_PLUG(_upper_range, DATA_PERSISTENT | DATA_SETTABLE);
-	*archive << ARCHIVE_PLUG(_lower_range, DATA_PERSISTENT | DATA_SETTABLE);
+    *archive << ARCHIVE_PLUG(_upper_range, DATA_PERSISTENT | DATA_SETTABLE);
+    *archive << ARCHIVE_PLUG(_lower_range, DATA_PERSISTENT | DATA_SETTABLE);
 
-	*archive << ARCHIVE_PLUG(_counting_up_speed, DATA_PERSISTENT | DATA_SETTABLE);
-	*archive << ARCHIVE_PLUG(_counting_down_speed, DATA_PERSISTENT | DATA_SETTABLE);
-	*archive << ARCHIVE_PLUG(_current_speed, DATA_PERSISTENT | DATA_SETTABLE);
+    *archive << ARCHIVE_PLUG(_counting_up_speed, DATA_PERSISTENT | DATA_SETTABLE);
+    *archive << ARCHIVE_PLUG(_counting_down_speed, DATA_PERSISTENT | DATA_SETTABLE);
+    *archive << ARCHIVE_PLUG(_current_speed, DATA_PERSISTENT | DATA_SETTABLE);
 
-	*archive << ARCHIVE_PLUG(_active, DATA_PERSISTENT | DATA_SETTABLE);
-	*archive << ARCHIVE_PLUG(_last_active, DATA_PERSISTENT | DATA_SETTABLE);
+    *archive << ARCHIVE_PLUG(_active, DATA_PERSISTENT | DATA_SETTABLE);
+    *archive << ARCHIVE_PLUG(_last_active, DATA_PERSISTENT | DATA_SETTABLE);
 
-	*archive << ARCHIVE_PLUG(_time, DATA_PERSISTENT | DATA_SETTABLE);
-	*archive << ARCHIVE_PLUG(_t, DATA_PERSISTENT | DATA_SETTABLE);
-	
+    *archive << ARCHIVE_PLUG(_time, DATA_PERSISTENT | DATA_SETTABLE);
+    *archive << ARCHIVE_PLUG(_t, DATA_PERSISTENT | DATA_SETTABLE);
+
     archive->pop_domain ();
 }
 
@@ -273,38 +273,38 @@ void ScriptingTimerSuper::archive (const std::shared_ptr<Archive> &archive)
 
 void ScriptingTimerSuper::tick (const DTfloat dt)
 {
-	PROFILER(SCRIPTING);
+    PROFILER(SCRIPTING);
 
     DTfloat time = _time.value_without_compute();
     
     if (_active != _last_active) {
-    
+
         DTint action = _active ? _when_activated : _when_deactivated;
-    
+
         switch(action) {
         
             case STATE_CHANGE_BEHAVIOUR_COUNT_UP:
                 _current_speed = _counting_up_speed;
                 break;
-                
+
             case STATE_CHANGE_BEHAVIOUR_COUNT_UP_FROM_LOWER:
                 time = _lower_range;
                 _current_speed = _counting_up_speed;
                 break;
-                
+
             case STATE_CHANGE_BEHAVIOUR_COUNT_DOWN:
                 _current_speed = -_counting_down_speed;
                 break;
-                
+
             case STATE_CHANGE_BEHAVIOUR_COUNT_DOWN_FROM_UPPER:
                 time = _upper_range;
                 _current_speed = -_counting_down_speed;
                 break;
-                
+
             case STATE_CHANGE_BEHAVIOUR_COUNT_STOP:
                 _current_speed = 0.0F;
                 break;
-                
+
             case STATE_CHANGE_BEHAVIOUR_COUNT_STOP_RESET_LOWER:
                 time = _lower_range;
                 _current_speed = 0.0F;
@@ -314,7 +314,7 @@ void ScriptingTimerSuper::tick (const DTfloat dt)
                 _current_speed = 0.0F;
                 break;
         };
-            
+
         _last_active = _active;
     }
     
@@ -341,10 +341,10 @@ void ScriptingTimerSuper::tick (const DTfloat dt)
                 break;
         };
 
-    } 
+    }
 
     if (_current_speed <= 0.0F && time <= _lower_range) {
-    
+
         _lower_reached.send(this);
         
         switch (_when_reach_lower) {
@@ -392,6 +392,3 @@ void ScriptingTimerSuper::remove_from_world (void)
 
 //==============================================================================
 //==============================================================================
-
-} // DT3
-

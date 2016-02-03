@@ -78,7 +78,8 @@ BEGIN_IMPLEMENT_PLUGS(ScriptingFloatSwitcher)
 		.set_output(true);
         
 END_IMPLEMENT_PLUGS
-
+}
+using namespace DT3;
 //==============================================================================
 /// Standard class constructors/destructors
 //==============================================================================
@@ -92,8 +93,8 @@ ScriptingFloatSwitcher::ScriptingFloatSwitcher (void)
 		_in_float3		(PLUG_INFO_INDEX(_in_float3), 0.0F),
 		_in4			(PLUG_INFO_INDEX(_in4), false),
 		_in_float4		(PLUG_INFO_INDEX(_in_float4), 0.0F),
-        _buffer_output  (false),
-		_out			(PLUG_INFO_INDEX(_out), 0.0F)
+        _out			(PLUG_INFO_INDEX(_out), 0.0F),
+        _buffer_output  (false)
 {  
 
 }
@@ -108,8 +109,8 @@ ScriptingFloatSwitcher::ScriptingFloatSwitcher (const ScriptingFloatSwitcher &rh
 		_in_float3		(rhs._in_float3),
 		_in4			(rhs._in4),
 		_in_float4		(rhs._in_float4),
-        _buffer_output  (rhs._buffer_output),
-		_out			(rhs._out)
+        _out			(rhs._out),
+        _buffer_output  (rhs._buffer_output)
 {   
 
 }
@@ -193,6 +194,3 @@ DTboolean ScriptingFloatSwitcher::compute (const PlugBase *plug)
 
 //==============================================================================
 //==============================================================================
-
-} // DT3
-

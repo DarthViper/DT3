@@ -169,8 +169,8 @@ void GeometryResource_cmd::write_mesh_uvs(BinaryFileStream &file, std::shared_pt
 	LOG_MESSAGE << "Writing uvs: " << (DTsize) uvs.size();
 
 	for (DTuint i = 0; i < uvs.size(); ++i) {
-		file << static_cast<DTfloat>(uvs[i].u);
-		file << static_cast<DTfloat>(uvs[i].v);
+        file << static_cast<DTfloat>(uvs[i].x);
+        file << static_cast<DTfloat>(uvs[i].y);
 	}
 	
 	END_EXPORT_SECTION;

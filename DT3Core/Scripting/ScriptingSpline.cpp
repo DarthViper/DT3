@@ -55,7 +55,8 @@ BEGIN_IMPLEMENT_PLUGS(ScriptingSpline)
 		.set_output(true);
 
 END_IMPLEMENT_PLUGS
-
+}
+using namespace DT3;
 //==============================================================================
 /// Standard class constructors/destructors
 //==============================================================================
@@ -66,8 +67,8 @@ ScriptingSpline::ScriptingSpline (void)
 		_transform      (PLUG_INFO_INDEX(_transform), Matrix4::identity()),
 		_orientation    (PLUG_INFO_INDEX(_orientation), Matrix3::identity()),
 		_translation    (PLUG_INFO_INDEX(_translation), Vector3(0.0F,0.0F,0.0F)),
-        _dirty          (true),
-		_keyframe_cache	(0)
+        _keyframe_cache	(0),
+        _dirty          (true)
 {  
 
 }
@@ -79,8 +80,8 @@ ScriptingSpline::ScriptingSpline (const ScriptingSpline &rhs)
         _transform          (rhs._transform),
         _orientation        (rhs._orientation),
         _translation        (rhs._translation),
-        _dirty              (true),
-		_keyframe_cache		(0)
+        _keyframe_cache		(0),
+        _dirty              (true)
 {   
 
 }
@@ -456,6 +457,3 @@ DTboolean ScriptingSpline::compute (const PlugBase *plug)
 }
 //==============================================================================
 //==============================================================================
-
-} // DT3
-

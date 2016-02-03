@@ -48,7 +48,8 @@ BEGIN_IMPLEMENT_PLUGS(ScriptingComponentsToVector2)
 		.set_output(true);
         
 END_IMPLEMENT_PLUGS
-
+}
+using namespace DT3;
 //==============================================================================
 /// Standard class constructors/destructors
 //==============================================================================
@@ -56,7 +57,7 @@ END_IMPLEMENT_PLUGS
 ScriptingComponentsToVector2::ScriptingComponentsToVector2 (void)
     :   _in_x			(PLUG_INFO_INDEX(_in_x), 0.0F),
 		_in_y			(PLUG_INFO_INDEX(_in_y), 0.0F),
-		_out			(PLUG_INFO_INDEX(_out), Vector2(0.0F,0.0F))
+        _out			(PLUG_INFO_INDEX(_out), {0.0F,0.0F})
 {  
 
 }
@@ -114,7 +115,7 @@ DTboolean ScriptingComponentsToVector2::compute (const PlugBase *plug)
     if (super_type::compute(plug))  return true;
 
 	if (plug == &_out) {
-		_out = Vector2(_in_x, _in_y);
+        _out = {_in_x, _in_y};
 		_out.set_clean();
 		
 		return true;
@@ -125,6 +126,3 @@ DTboolean ScriptingComponentsToVector2::compute (const PlugBase *plug)
 
 //==============================================================================
 //==============================================================================
-
-} // DT3
-

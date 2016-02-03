@@ -130,9 +130,9 @@ Rectangle TextRenderer::render_lines (  std::shared_ptr<TextureResource2D>  &des
             Vector2 p;
 
             if (direction == TextCharacter::DIR_HORZ_RIGHT_TO_LEFT) {
-                p = ct.glyph_entry()->transform() * Vector2(x_pos - ct.extent() + ct.outline_size(),y_pos + ct.outline_size());
+                p = ct.glyph_entry()->transform() * Vector2 {x_pos - ct.extent() + ct.outline_size(),y_pos + ct.outline_size()};
             } else {
-                p = ct.glyph_entry()->transform() * Vector2(x_pos + ct.outline_size(),y_pos + ct.outline_size());
+                p = ct.glyph_entry()->transform() * Vector2 {x_pos + ct.outline_size(),y_pos + ct.outline_size()};
             }
                     
             FT_Glyph glyph = ct.glyph_entry()->glyph();

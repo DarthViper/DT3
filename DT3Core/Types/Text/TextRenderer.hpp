@@ -56,7 +56,7 @@ class TextRenderer {
         /// \return rectangle rendered to
         static Rectangle        render_lines                (   std::shared_ptr<TextureResource2D>  &destination,
                                                                 TextLines                           &lines,
-                                                                const Vector2                       &offset = Vector2(0.0F,0.0F));
+                                                                const Vector2                       &offset = {0.0F,0.0F});
 
         /// Begin rendering to a texture. Clears it to transparent
         /// \param destination destination texture

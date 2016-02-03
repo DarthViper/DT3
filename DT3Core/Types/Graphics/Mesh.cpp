@@ -205,10 +205,10 @@ void Mesh::generate_tangents	(void)
 		DTfloat z1 = v2.z - v1.z;
 		DTfloat z2 = v3.z - v1.z; 
 
-		DTfloat s1 = w2.u - w1.u;
-		DTfloat s2 = w3.u - w1.u;
-		DTfloat t1 = w2.v - w1.v;
-		DTfloat t2 = w3.v - w1.v; 
+        DTfloat s1 = w2.x - w1.x;
+        DTfloat s2 = w3.x - w1.x;
+        DTfloat t1 = w2.y - w1.y;
+        DTfloat t2 = w3.y - w1.y;
 
 		Vector3 sdir, tdir;
 
@@ -276,13 +276,13 @@ DTuint Mesh::hash_vertex (DTuint i, DTboolean vertex_only)
 
     if (!vertex_only) {
         if (_uvs_stream_0.size() > 0) {
-            h = hashlittle( (unsigned char *) &_uvs_stream_0[i].u, (unsigned int) sizeof(_uvs_stream_0[i].u), h);
-            h = hashlittle( (unsigned char *) &_uvs_stream_0[i].v, (unsigned int) sizeof(_uvs_stream_0[i].v), h);
+            h = hashlittle( (unsigned char *) &_uvs_stream_0[i].x, (unsigned int) sizeof(_uvs_stream_0[i].x), h);
+            h = hashlittle( (unsigned char *) &_uvs_stream_0[i].y, (unsigned int) sizeof(_uvs_stream_0[i].y), h);
         }
 
         if (_uvs_stream_1.size() > 0) {
-            h = hashlittle( (unsigned char *) &_uvs_stream_1[i].u, (unsigned int) sizeof(_uvs_stream_1[i].u), h);
-            h = hashlittle( (unsigned char *) &_uvs_stream_1[i].v, (unsigned int) sizeof(_uvs_stream_1[i].v), h);
+            h = hashlittle( (unsigned char *) &_uvs_stream_1[i].x, (unsigned int) sizeof(_uvs_stream_1[i].x), h);
+            h = hashlittle( (unsigned char *) &_uvs_stream_1[i].y, (unsigned int) sizeof(_uvs_stream_1[i].y), h);
         }
 
         if (_normals_stream.size() > 0) {

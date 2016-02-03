@@ -129,7 +129,7 @@ void Box::clear (void)
 
 void Box::offset (const Vector3 &offset)
 {
-    Rectangle::offset(Vector2(offset));
+    Rectangle::offset(Vector2::fromVector3(offset));
     
     _minus_z += offset.z;
     _plus_z += offset.z;

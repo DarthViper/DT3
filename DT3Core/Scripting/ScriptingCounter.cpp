@@ -18,12 +18,10 @@
 //==============================================================================
 //==============================================================================
 
-namespace DT3 {
-
 //==============================================================================
 /// Register with object factory
 //==============================================================================
-
+namespace DT3 {
 IMPLEMENT_FACTORY_CREATION_SCRIPT(ScriptingCounter,"Counters",NULL)
 IMPLEMENT_PLUG_NODE(ScriptingCounter)
 
@@ -70,7 +68,8 @@ BEGIN_IMPLEMENT_PLUGS(ScriptingCounter)
         .set_event(&ScriptingCounter::event_reset);
         
 END_IMPLEMENT_PLUGS
-
+}
+using namespace DT3;
 //==============================================================================
 /// Standard class constructors/destructors
 //==============================================================================
@@ -79,10 +78,10 @@ ScriptingCounter::ScriptingCounter (void)
     :   _min			(PLUG_INFO_INDEX(_min), 0),
 		_max			(PLUG_INFO_INDEX(_max), 3),
 		_wrap			(PLUG_INFO_INDEX(_wrap), 1),
-		_out            (PLUG_INFO_INDEX(_out), 0),
         _incr_e         (EVENT_INFO_INDEX(_incr_e)),
         _decr_e         (EVENT_INFO_INDEX(_decr_e)),
-        _reset_e        (EVENT_INFO_INDEX(_reset_e))
+        _reset_e        (EVENT_INFO_INDEX(_reset_e)),
+        _out            (PLUG_INFO_INDEX(_out), 0)
 {  
 
 }
@@ -92,10 +91,10 @@ ScriptingCounter::ScriptingCounter (const ScriptingCounter &rhs)
 		_min			(rhs._min),
 		_max			(rhs._max),
 		_wrap			(rhs._wrap),
-		_out            (rhs._out),
         _incr_e         (rhs._incr_e),
         _decr_e         (rhs._decr_e),
-        _reset_e        (rhs._reset_e)
+        _reset_e        (rhs._reset_e),
+        _out            (rhs._out)
 {   
 
 }
@@ -192,6 +191,3 @@ DTboolean ScriptingCounter::compute (const PlugBase *plug)
 
 //==============================================================================
 //==============================================================================
-
-} // DT3
-

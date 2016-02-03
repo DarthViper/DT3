@@ -60,12 +60,12 @@ void TouchEvent::clear (void)
     
     for (DTuint i = 0; i < MAX_NUM_TOUCHES; ++i) {
         touches[i].state = STATE_NONE;
-        touches[i].pos = Vector2(0.0F,0.0F);
-        touches[i].previous_pos = Vector2(0.0F,0.0F);
-        touches[i].first_pos = Vector2(0.0F,0.0F);
+        touches[i].pos = {0.0F,0.0F};
+        touches[i].previous_pos = {0.0F,0.0F};
+        touches[i].first_pos = {0.0F,0.0F};
 
-        touches[i].delta = Vector2(0.0F,0.0F);
-        touches[i].velocity = Vector2(0.0F,0.0F);
+        touches[i].delta = {0.0F,0.0F};
+        touches[i].velocity = {0.0F,0.0F};
     }
     
 }
@@ -78,7 +78,7 @@ Vector2 TouchEvent::normalize_input (Vector2 pos)
     DTfloat width = System::renderer()->screen_width();
     DTfloat height = System::renderer()->screen_height();
 
-    return Vector2( pos.x / width, 1.0F - pos.y / height);
+    return {pos.x / width, 1.0F - pos.y / height};
 }
 
 Vector2 TouchEvent::normalize_input_vel (Vector2 pos)
@@ -86,7 +86,7 @@ Vector2 TouchEvent::normalize_input_vel (Vector2 pos)
     DTfloat width = System::renderer()->screen_width();
     DTfloat height = System::renderer()->screen_height();
 
-    return Vector2( pos.x / width, -pos.y / height);
+    return {pos.x / width, -pos.y / height};
 }
 
 Vector2 TouchEvent::normalize_input_ndc (Vector2 pos)

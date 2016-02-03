@@ -22,10 +22,10 @@ namespace DT3 {
 
 GUITouchEvent::GUITouchEvent (void)
     :   _focused            (NULL),
-        _initial_position   (0.0F,0.0F),
-        _previous_position  (0.0F,0.0F),
-        _position           (0.0F,0.0F),
-        _velocity           (0.0F,0.0F),
+      _initial_position   {0.0F,0.0F},
+      _previous_position  {0.0F,0.0F},
+      _position           {0.0F,0.0F},
+      _velocity           {0.0F,0.0F},
         _state              (TouchEvent::STATE_NONE)
 {
 

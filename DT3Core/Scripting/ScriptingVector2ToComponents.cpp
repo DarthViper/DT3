@@ -54,7 +54,7 @@ END_IMPLEMENT_PLUGS
 //==============================================================================
 
 ScriptingVector2ToComponents::ScriptingVector2ToComponents (void)
-    :   _in				(PLUG_INFO_INDEX(_in), Vector2(0.0F,0.0F)),
+    :   _in				(PLUG_INFO_INDEX(_in), {0.0F,0.0F}),
 		_out_x			(PLUG_INFO_INDEX(_out_x), 0.0F),
 		_out_y			(PLUG_INFO_INDEX(_out_y), 0.0F)
 {  

@@ -52,7 +52,7 @@ END_IMPLEMENT_PLUGS
 ScriptingKeyframesVector2::ScriptingKeyframesVector2 (void)
 	:	_interpolated	(true),
 		_t				(PLUG_INFO_INDEX(_t), 0.0F),
-		_out			(PLUG_INFO_INDEX(_out), Vector2(0.0F,0.0F)),
+		_out			(PLUG_INFO_INDEX(_out), {0.0F,0.0F}),
 		_id				(0),
 		_keyframe_cache	(0)
 {  
@@ -169,7 +169,7 @@ void ScriptingKeyframesVector2::set_key (void)
 		keyframe k;
 		k._time = _t;
 		k._value = val;
-		k._tangent = Vector2(0.0F,0.0F);
+		k._tangent = {0.0F,0.0F};
 		k._id = _id++;
 		_keyframes.push_back(k);
 		

@@ -93,7 +93,7 @@ void GridImageData::clear (void)
 {
     if (_grid.size() != _num_x * _num_y) {
         _grid.clear();
-        _grid.resize(_num_x * _num_y, Vector2(0.0F,0.0F));
+        _grid.resize(_num_x * _num_y, {0.0F,0.0F});
     }
 
     // Init array
@@ -102,7 +102,7 @@ void GridImageData::clear (void)
             DTfloat xpos = static_cast<DTfloat>(x) / (_num_x - 1) * 2.0F - 1.0F;
             DTfloat ypos = static_cast<DTfloat>(y) / (_num_y - 1) * 2.0F - 1.0F;
         
-            set_point (x, y, Vector2(xpos, ypos));
+            set_point (x, y, {xpos, ypos});
         }
     }
 }

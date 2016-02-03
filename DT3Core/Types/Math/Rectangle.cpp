@@ -238,7 +238,7 @@ DTfloat Rectangle::distance_to_point (const Vector2 &pt) const
     else if (pt.y < _minus_y)	ydist = _minus_y - pt.y;
     else                        ydist = 0.0F;
     
-    DTfloat abs = Vector2(xdist,ydist).abs();
+    DTfloat abs = (Vector2 {xdist,ydist}).abs();
     
     return abs;
 }
@@ -258,7 +258,7 @@ const Vector2 Rectangle::closest_point (const Vector2 &pt) const
     else if (pt.y < _minus_y)	y = _minus_y;
     else                        y = pt.y;
         
-    return Vector2(x,y);
+    return {x,y};
 }
 
 //==============================================================================

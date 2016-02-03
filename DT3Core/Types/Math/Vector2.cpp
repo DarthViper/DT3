@@ -22,16 +22,14 @@ namespace DT3 {
 //==============================================================================
 //==============================================================================
 
-Vector2::Vector2 (const Vector3 &rhs)		
+Vector2 Vector2::fromVector3(Vector3 rhs)
 {   
-	x = rhs.x; 
-	y = rhs.y;		
+    return {rhs.x,rhs.y};
 }
 
-Vector2::Vector2 (const Vector4 &rhs)		
+Vector2 Vector2::fromVector4 (Vector4 rhs)
 {   
-	x = rhs.x; 
-	y = rhs.y;		
+    return {rhs.x,rhs.y};
 }
 
 //==============================================================================

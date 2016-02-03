@@ -54,7 +54,8 @@ BEGIN_IMPLEMENT_PLUGS(ComponentGUIDrawText)
 		.set_input(true);
 
 END_IMPLEMENT_PLUGS
-
+}
+using namespace DT3;
 //==============================================================================
 /// Standard class constructors/destructors
 //==============================================================================
@@ -181,10 +182,10 @@ void ComponentGUIDrawText::draw (const std::shared_ptr<CameraObject> &camera, co
     //
     Matrix4 transform = gui->draw_transform();
 
-    Vector2 p0 = transform * Vector2(local_rect.minus_x(), local_rect.minus_y());
-    Vector2 p1 = transform * Vector2(local_rect.plus_x(), local_rect.minus_y());
-    Vector2 p2 = transform * Vector2(local_rect.minus_x(), local_rect.plus_y());
-    Vector2 p3 = transform * Vector2(local_rect.plus_x(), local_rect.plus_y());
+    Vector2 p0 = transform * Vector2 {local_rect.minus_x(), local_rect.minus_y()};
+    Vector2 p1 = transform * Vector2 {local_rect.plus_x(), local_rect.minus_y()};
+    Vector2 p2 = transform * Vector2 {local_rect.minus_x(), local_rect.plus_y()};
+    Vector2 p3 = transform * Vector2 {local_rect.plus_x(), local_rect.plus_y()};
 
     Rectangle bounds;
     bounds.set_minus_x( MoreMath::min(p0.x, p1.x, p2.x, p3.x) );
@@ -300,6 +301,3 @@ void ComponentGUIDrawText::remove_from_owner (void)
 
 //==============================================================================
 //==============================================================================
-
-} // DT3
-

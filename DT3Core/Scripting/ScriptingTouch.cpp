@@ -90,17 +90,17 @@ END_IMPLEMENT_PLUGS
 //==============================================================================
 
 ScriptingTouch::ScriptingTouch (void)
-    :	_touch_pos_1	(PLUG_INFO_INDEX(_touch_pos_1), Vector2(0.0F,0.0F)),
-        _touch_vel_1	(PLUG_INFO_INDEX(_touch_vel_1), Vector2(0.0F,0.0F)),
-        _touch_initial_1(PLUG_INFO_INDEX(_touch_initial_1), Vector2(0.0F,0.0F)),
+    :	_touch_pos_1	(PLUG_INFO_INDEX(_touch_pos_1), {0.0F,0.0F}),
+        _touch_vel_1	(PLUG_INFO_INDEX(_touch_vel_1), {0.0F,0.0F}),
+        _touch_initial_1(PLUG_INFO_INDEX(_touch_initial_1), {0.0F,0.0F}),
 		_touch_active_1	(PLUG_INFO_INDEX(_touch_active_1), false),
-		_touch_pos_2	(PLUG_INFO_INDEX(_touch_pos_2), Vector2(0.0F,0.0F)),
-		_touch_vel_2	(PLUG_INFO_INDEX(_touch_vel_2), Vector2(0.0F,0.0F)),
-        _touch_initial_2(PLUG_INFO_INDEX(_touch_initial_2), Vector2(0.0F,0.0F)),
+		_touch_pos_2	(PLUG_INFO_INDEX(_touch_pos_2), {0.0F,0.0F}),
+		_touch_vel_2	(PLUG_INFO_INDEX(_touch_vel_2), {0.0F,0.0F}),
+        _touch_initial_2(PLUG_INFO_INDEX(_touch_initial_2), {0.0F,0.0F}),
 		_touch_active_2	(PLUG_INFO_INDEX(_touch_active_2), false),
-		_touch_pos_3	(PLUG_INFO_INDEX(_touch_pos_3), Vector2(0.0F,0.0F)),
-		_touch_vel_3	(PLUG_INFO_INDEX(_touch_vel_3), Vector2(0.0F,0.0F)),
-        _touch_initial_3(PLUG_INFO_INDEX(_touch_initial_3), Vector2(0.0F,0.0F)),
+		_touch_pos_3	(PLUG_INFO_INDEX(_touch_pos_3), {0.0F,0.0F}),
+		_touch_vel_3	(PLUG_INFO_INDEX(_touch_vel_3), {0.0F,0.0F}),
+        _touch_initial_3(PLUG_INFO_INDEX(_touch_initial_3), {0.0F,0.0F}),
 		_touch_active_3	(PLUG_INFO_INDEX(_touch_active_3), false),
         _clear_vel_1    (false),
         _clear_vel_2    (false),
@@ -225,9 +225,9 @@ void ScriptingTouch::draw (const std::shared_ptr<CameraObject> &camera, const DT
 {
 	PROFILER(SCRIPTING);
 
-    _touch_vel_1 = Vector2(0.0F,0.0F);
-    _touch_vel_2 = Vector2(0.0F,0.0F);
-    _touch_vel_3 = Vector2(0.0F,0.0F);
+    _touch_vel_1 = {0.0F,0.0F};
+    _touch_vel_2 = {0.0F,0.0F};
+    _touch_vel_3 = {0.0F,0.0F};
 }
 
 //==============================================================================

@@ -56,8 +56,8 @@ END_IMPLEMENT_PLUGS
 
 ScriptingPulse::ScriptingPulse (void)
     :   _time		(0.0F),
+        _pulse_time	(1.0F),
 		_in			(PLUG_INFO_INDEX(_in), false),
-		_pulse_time	(1.0F),
 		_out		(PLUG_INFO_INDEX(_out), false),
 		_in_e		(EVENT_INFO_INDEX(_in_e))
 {  
@@ -67,8 +67,8 @@ ScriptingPulse::ScriptingPulse (void)
 ScriptingPulse::ScriptingPulse (const ScriptingPulse &rhs)
     :   ScriptingBase	(rhs),
 		_time			(rhs._time),
+        _pulse_time		(rhs._pulse_time),
 		_in				(rhs._in),
-		_pulse_time		(rhs._pulse_time),
 		_out			(rhs._out),
 		_in_e           (EVENT_INFO_INDEX(_in_e))
 {   

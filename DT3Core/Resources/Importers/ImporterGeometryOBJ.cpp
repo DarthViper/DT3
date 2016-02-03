@@ -74,7 +74,7 @@ DTerr	ImporterGeometryOBJ::import(GeometryResource *target, std::string args)
 		} else if (command == "vt") {
 			DTfloat u,v,w;
 			ss >> u >> v >> w;
-			_texcoords.push_back(Vector2(u,v));
+            _texcoords.push_back({u,v});
 		} else if (command == "vn") {
 			DTfloat x,y,z;
 			ss >> x >> y >> z;

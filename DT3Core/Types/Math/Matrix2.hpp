@@ -96,12 +96,12 @@ class Matrix2 {
         /// Description
         /// \param param description
         /// \return description
-        Vector2                 x_axis                      (void) const    {	return Vector2(_m11, _m21);		}
+        Vector2                 x_axis                      (void) const    {	return {_m11, _m21};		}
 
         /// Description
         /// \param param description
         /// \return description
-        Vector2                 y_axis                      (void) const    {	return Vector2(_m12, _m22);		}
+        Vector2                 y_axis                      (void) const    {	return {_m12, _m22};		}
 
         /// Description
         /// \param param description

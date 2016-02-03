@@ -300,7 +300,7 @@ void HAL::launch_browser (const URL &url)
 
 void HAL::launch_editor (const FilePath &path)
 {
-    QDesktopServices::openUrl(QUrl(QString("file::///%1").arg(path.full_path().c_str()), QUrl::TolerantMode));
+    QDesktopServices::openUrl(QUrl(QStringLiteral("file::///")+path.full_path().c_str(), QUrl::TolerantMode));
 }
 
 //==============================================================================

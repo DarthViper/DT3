@@ -20,7 +20,7 @@
 //==============================================================================
 //==============================================================================
 
-namespace DT3 {
+using namespace DT3;
 
 //==============================================================================
 /// Register with object factory
@@ -56,8 +56,8 @@ END_IMPLEMENT_PLUGS
 //==============================================================================
 
 ScriptingVector3Unproject::ScriptingVector3Unproject (void)
-    :   _in             (PLUG_INFO_INDEX(_in), Vector3(0.0F,0.0F,0.0F)),
-		_camera         (PLUG_INFO_INDEX(_camera), NULL),
+    :   _camera         (PLUG_INFO_INDEX(_camera), NULL),
+        _in             (PLUG_INFO_INDEX(_in), Vector3(0.0F,0.0F,0.0F)),
 		_out			(PLUG_INFO_INDEX(_out), Vector3(0.0F,0.0F,0.0F))
 {  
 
@@ -65,8 +65,8 @@ ScriptingVector3Unproject::ScriptingVector3Unproject (void)
 		
 ScriptingVector3Unproject::ScriptingVector3Unproject (const ScriptingVector3Unproject &rhs)
     :   ScriptingBase	(rhs),
+        _camera         (rhs._camera),
 		_in             (rhs._in),
-		_camera         (rhs._camera),
 		_out			(rhs._out)
 {   
 
@@ -133,6 +133,3 @@ DTboolean ScriptingVector3Unproject::compute (const PlugBase *plug)
 
 //==============================================================================
 //==============================================================================
-
-} // DT3
-

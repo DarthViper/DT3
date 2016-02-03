@@ -118,7 +118,8 @@ BEGIN_IMPLEMENT_PLUGS(ScriptingBoolSwitcher)
 		.set_output(true);
         
 END_IMPLEMENT_PLUGS
-
+}
+using namespace DT3;
 //==============================================================================
 /// Standard class constructors/destructors
 //==============================================================================
@@ -140,8 +141,8 @@ ScriptingBoolSwitcher::ScriptingBoolSwitcher (void)
 		_in_bool7		(PLUG_INFO_INDEX(_in_bool7), false),
 		_in8			(PLUG_INFO_INDEX(_in8), false),
 		_in_bool8		(PLUG_INFO_INDEX(_in_bool8), false),
-        _buffer_output  (false),
-		_out			(PLUG_INFO_INDEX(_out))
+        _out			(PLUG_INFO_INDEX(_out)),
+        _buffer_output  (false)
 {  
 
 }
@@ -164,8 +165,8 @@ ScriptingBoolSwitcher::ScriptingBoolSwitcher (const ScriptingBoolSwitcher &rhs)
 		_in_bool7		(rhs._in_bool7),
 		_in8			(rhs._in8),
 		_in_bool8		(rhs._in_bool8),
-        _buffer_output  (rhs._buffer_output),
-		_out			(rhs._out)
+        _out			(rhs._out),
+        _buffer_output  (rhs._buffer_output)
 {   
 
 }
@@ -275,6 +276,3 @@ DTboolean ScriptingBoolSwitcher::compute (const PlugBase *plug)
 
 //==============================================================================
 //==============================================================================
-
-} // DT3
-

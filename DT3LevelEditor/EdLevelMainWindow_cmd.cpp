@@ -159,7 +159,7 @@ CommandResult EdLevelMainWindow_cmd::do_paste (CommandContext &ctx, const Comman
 
     center /= items_world.size();
 
-    Vector2 delta = ctx.selection_rectangle().center() - Vector2(center);
+    Vector2 delta = ctx.selection_rectangle().center() - Vector2::fromVector3(center);
 
     // Add nodes to world with an offset
     for(std::shared_ptr<WorldNode> &n : items_world) {

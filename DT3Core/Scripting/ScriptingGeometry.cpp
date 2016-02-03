@@ -19,12 +19,12 @@
 //==============================================================================
 //==============================================================================
 
-namespace DT3 {
+using namespace DT3;
 
 //==============================================================================
 /// Register with object factory
 //==============================================================================
-
+namespace DT3 {
 IMPLEMENT_FACTORY_CREATION_SCRIPT(ScriptingGeometry,"Resources",NULL)
 IMPLEMENT_PLUG_NODE(ScriptingGeometry)
 
@@ -39,7 +39,7 @@ BEGIN_IMPLEMENT_PLUGS(ScriptingGeometry)
 		.set_output(true);
         
 END_IMPLEMENT_PLUGS
-
+}
 //==============================================================================
 /// Standard class constructors/destructors
 //==============================================================================
@@ -53,8 +53,8 @@ ScriptingGeometry::ScriptingGeometry (void)
 		
 ScriptingGeometry::ScriptingGeometry (const ScriptingGeometry &rhs)
     :   ScriptingBase	(rhs),
-		_out_geometry	(rhs._out_geometry),
-		_geometry		(NULL)
+        _geometry		(NULL),
+        _out_geometry	(rhs._out_geometry)
 {   
 	_geometry = rhs._geometry;
 	_out_geometry = rhs._out_geometry;
@@ -121,6 +121,3 @@ DTboolean ScriptingGeometry::compute (const PlugBase *plug)
 
 //==============================================================================
 //==============================================================================
-
-} // DT3
-

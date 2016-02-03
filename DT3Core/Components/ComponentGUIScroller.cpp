@@ -71,7 +71,8 @@ BEGIN_IMPLEMENT_PLUGS(ComponentGUIScroller)
         .set_output(true);
 
 END_IMPLEMENT_PLUGS
-
+}
+using namespace DT3;
 //==============================================================================
 /// Standard class constructors/destructors
 //==============================================================================
@@ -269,7 +270,7 @@ void ComponentGUIScroller::tick (DTfloat dt)
     if (_vel_x != 0.0F || _vel_y != 0.0F) {
 
         gui->scroll_contents (_vel_x * dt, _vel_y * dt);
-        _contents.offset(Vector2(_vel_x * dt, _vel_y * dt));
+        _contents.offset({_vel_x * dt, _vel_y * dt});
 
         _vel_x *= _velocity_decay;
         _vel_y *= _velocity_decay;
@@ -286,7 +287,7 @@ void ComponentGUIScroller::tick (DTfloat dt)
 
                 DTfloat delta = (rect.plus_y() - _pad_vert) - _contents.plus_y();
                 gui->scroll_contents (0, delta * BORDER_BOUNCE);
-                _contents.offset(Vector2(0, delta * BORDER_BOUNCE));
+                _contents.offset({0, delta * BORDER_BOUNCE});
 
                 //LOG_MESSAGE << "Top Bound hit " << contents.plus_y() << " " << rect.plus_y();
 
@@ -294,7 +295,7 @@ void ComponentGUIScroller::tick (DTfloat dt)
 
                 DTfloat delta = (rect.minus_y() + _pad_vert) - _contents.minus_y();
                 gui->scroll_contents (0, delta * BORDER_BOUNCE);
-                _contents.offset(Vector2(0, delta * BORDER_BOUNCE));
+                _contents.offset({0, delta * BORDER_BOUNCE});
 
                 //LOG_MESSAGE << "Bottom Bound hit " << contents.minus_y() << " " << rect.minus_y();
 
@@ -303,12 +304,12 @@ void ComponentGUIScroller::tick (DTfloat dt)
             if (_scroll_to_top) {
                 DTfloat delta = rect.plus_y() - _contents.plus_y();
                 gui->scroll_contents (0, delta);
-                _contents.offset(Vector2(0, delta));
+                _contents.offset({0, delta});
             }
             if (_scroll_to_bottom) {
                 DTfloat delta = rect.minus_y() - _contents.minus_y();
                 gui->scroll_contents (0, delta);
-                _contents.offset(Vector2(0, delta));
+                _contents.offset({0, delta});
             }
 
         } else {
@@ -316,11 +317,11 @@ void ComponentGUIScroller::tick (DTfloat dt)
             if (_auto_center_vert) {
                 DTfloat delta = ( (rect.plus_y() + rect.minus_y())*0.5F - (_contents.plus_y() + _contents.minus_y())*0.5F );
                 gui->scroll_contents (0, delta * BORDER_BOUNCE);
-                _contents.offset(Vector2(0, delta * BORDER_BOUNCE));
+                _contents.offset({0, delta * BORDER_BOUNCE});
             } else {
                 DTfloat delta = rect.plus_y() - _contents.plus_y();
                 gui->scroll_contents (0, delta * BORDER_BOUNCE);
-                _contents.offset(Vector2(0, delta * BORDER_BOUNCE));
+                _contents.offset({0, delta * BORDER_BOUNCE});
             }
 
         }
@@ -336,7 +337,7 @@ void ComponentGUIScroller::tick (DTfloat dt)
 
                 DTfloat delta = (rect.plus_x() - _pad_horz) - _contents.plus_x();
                 gui->scroll_contents (delta * BORDER_BOUNCE,0);
-                _contents.offset(Vector2(delta * BORDER_BOUNCE,0));
+                _contents.offset({delta * BORDER_BOUNCE,0});
 
                 //LOG_MESSAGE << "Right Bound hit " << contents.plus_x() << " " << rect.plus_x();
 
@@ -344,7 +345,7 @@ void ComponentGUIScroller::tick (DTfloat dt)
 
                 DTfloat delta = (rect.minus_x() + _pad_horz) -  _contents.minus_x();
                 gui->scroll_contents (delta * BORDER_BOUNCE,0);
-                _contents.offset(Vector2(delta * BORDER_BOUNCE,0));
+                _contents.offset({delta * BORDER_BOUNCE,0});
 
                 //LOG_MESSAGE << "Left Bound hit " << contents.getMinusX() << " " << rect.getMinusX();
 
@@ -353,12 +354,12 @@ void ComponentGUIScroller::tick (DTfloat dt)
             if (_scroll_to_left) {
                 DTfloat delta = rect.minus_x() - _contents.minus_x();
                 gui->scroll_contents (delta,0);
-                _contents.offset(Vector2(delta,0));
+                _contents.offset({delta,0});
             }
             if (_scroll_to_right) {
                 DTfloat delta = rect.plus_x() - _contents.plus_x();
                 gui->scroll_contents (delta,0);
-                _contents.offset(Vector2(delta,0));
+                _contents.offset({delta,0});
             }
 
         } else {
@@ -366,11 +367,11 @@ void ComponentGUIScroller::tick (DTfloat dt)
             if (_auto_center_horz) {
                 DTfloat delta = ( (rect.plus_x() + rect.minus_x())*0.5F - (_contents.plus_x() + _contents.minus_x())*0.5F );
                 gui->scroll_contents (delta * BORDER_BOUNCE, 0);
-                _contents.offset(Vector2(delta * BORDER_BOUNCE,0));
+                _contents.offset({delta * BORDER_BOUNCE,0});
             } else {
                 DTfloat delta = rect.minus_x() - _contents.minus_x();
                 gui->scroll_contents (delta * BORDER_BOUNCE, 0);
-                _contents.offset(Vector2(delta * BORDER_BOUNCE,0));
+                _contents.offset({delta * BORDER_BOUNCE,0});
             }
 
         }
@@ -564,7 +565,7 @@ void ComponentGUIScroller::touches_moved (GUITouchEvent *event)
             // Transform touches into widget coordinates
             Vector2 delta = gui->velocity_to_object_coord(event->position() - event->previous_position());
             gui->scroll_contents (delta.x * _scroll_horz, delta.y * _scroll_vert);
-            _contents.offset(Vector2(delta.x * _scroll_horz, delta.y * _scroll_vert));
+            _contents.offset({delta.x * _scroll_horz, delta.y * _scroll_vert});
 
             _focused = NULL;
         }
@@ -607,6 +608,3 @@ void ComponentGUIScroller::touches_cancelled (GUITouchEvent *event)
 
 //==============================================================================
 //==============================================================================
-
-} // DT3
-

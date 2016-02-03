@@ -49,14 +49,15 @@ BEGIN_IMPLEMENT_PLUGS(ScriptingRandom)
         .set_event(&ScriptingRandom::eventGenerate);
         
 END_IMPLEMENT_PLUGS
-
+}
+using namespace DT3;
 //==============================================================================
 /// Standard class constructors/destructors
 //==============================================================================
 
 ScriptingRandom::ScriptingRandom (void)
-    :   _continuous		(PLUG_INFO_INDEX(_continuous), true),
-		_out			(PLUG_INFO_INDEX(_out), 0.0F),
+    :   _out			(PLUG_INFO_INDEX(_out), 0.0F),
+        _continuous		(PLUG_INFO_INDEX(_continuous), true),
 		_generate_e     (EVENT_INFO_INDEX(_generate_e))
 {  
 
@@ -64,8 +65,8 @@ ScriptingRandom::ScriptingRandom (void)
 		
 ScriptingRandom::ScriptingRandom (const ScriptingRandom &rhs)
     :   ScriptingBase	(rhs),
+        _out			(rhs._out),
         _continuous     (rhs._continuous),
-		_out			(rhs._out),
 		_generate_e     (EVENT_INFO_INDEX(_generate_e))
 {   
 
@@ -144,6 +145,3 @@ void ScriptingRandom::remove_from_world (void)
 
 //==============================================================================
 //==============================================================================
-
-} // DT3
-

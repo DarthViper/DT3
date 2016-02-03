@@ -74,7 +74,7 @@ ScriptingParticleStamFluids::ScriptingParticleStamFluids (void)
         _visc           (1.0F),
         _particle_drag  (0.5F),
         _rectangle      (0.0F,1024.0F,0.0F,768.0F),
-		_turbulence	(PLUG_INFO_INDEX(_turbulence), Vector2(0.0F,0.0F)),
+		_turbulence	(PLUG_INFO_INDEX(_turbulence), {0.0F,0.0F}),
         _turbulence_timer(0.0F),
 		_in				(PLUG_INFO_INDEX(_in)),
 		_out			(PLUG_INFO_INDEX(_out))

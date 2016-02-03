@@ -56,8 +56,8 @@ END_IMPLEMENT_PLUGS
 //==============================================================================
 
 ScriptingVector3Project::ScriptingVector3Project (void)
-    :   _in             (PLUG_INFO_INDEX(_in), Vector3(0.0F,0.0F,0.0F)),
-		_camera         (PLUG_INFO_INDEX(_camera), NULL),
+    :   _camera         (PLUG_INFO_INDEX(_camera), NULL),
+        _in             (PLUG_INFO_INDEX(_in), Vector3(0.0F,0.0F,0.0F)),
 		_out			(PLUG_INFO_INDEX(_out), Vector3(0.0F,0.0F,0.0F))
 {
 
@@ -65,8 +65,8 @@ ScriptingVector3Project::ScriptingVector3Project (void)
 		
 ScriptingVector3Project::ScriptingVector3Project (const ScriptingVector3Project &rhs)
     :   ScriptingBase	(rhs),
+        _camera         (rhs._camera),
 		_in             (rhs._in),
-		_camera         (rhs._camera),
 		_out			(rhs._out)
 {
 

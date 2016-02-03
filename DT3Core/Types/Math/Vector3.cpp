@@ -29,11 +29,9 @@ Vector3::Vector3 (const Vector2 &rhs, DTfloat z_)
 	z = z_;		
 }
 
-Vector3::Vector3 (const Vector4 &rhs)		
+Vector3 Vector3::fromVec4(const Vector4 &rhs)
 {   
-	x = rhs.x; 
-	y = rhs.y;		
-	z = rhs.z;		
+    return Vector3(rhs.x,rhs.y,rhs.z);
 }
 
 //==============================================================================

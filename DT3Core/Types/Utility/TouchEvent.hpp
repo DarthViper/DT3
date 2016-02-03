@@ -72,11 +72,11 @@ class TouchEvent {
         struct Touch {
             Touch   (void)
                 :   state       (STATE_NONE),
-                    pos         (0.0F,0.0F),
-                    previous_pos(0.0F,0.0F),
-                    first_pos   (0.0F,0.0F),
-                    delta       (0.0F,0.0F),
-                    velocity    (0.0F,0.0F),
+                    pos         {0.0F,0.0F},
+                    previous_pos{0.0F,0.0F},
+                    first_pos   {0.0F,0.0F},
+                    delta       {0.0F,0.0F},
+                    velocity    {0.0F,0.0F},
                     dt          (0.0F)
             {}
 

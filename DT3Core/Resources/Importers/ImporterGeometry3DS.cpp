@@ -318,11 +318,11 @@ DTuint	ImporterGeometry3DS::parse_tri_mapping_coords(BinaryFileStream &in, DTuin
         size_read += read(in,u);
         size_read += read(in,v);
         
-		_uvs_stream_0[_base_vertex + i].u = u;
-		_uvs_stream_0[_base_vertex + i].v = v;
+        _uvs_stream_0[_base_vertex + i].x = u;
+        _uvs_stream_0[_base_vertex + i].y = v;
 
-		_uvs_stream_1[_base_vertex + i].u = u;
-		_uvs_stream_1[_base_vertex + i].v = v;
+        _uvs_stream_1[_base_vertex + i].x = u;
+        _uvs_stream_1[_base_vertex + i].y = v;
     }
     return size_read;	
 }

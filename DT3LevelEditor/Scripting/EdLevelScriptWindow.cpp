@@ -222,7 +222,7 @@ void EdLevelScriptWindow::dropEvent (QDropEvent *event)
         return;
 
     QPointF mouse = mapToScene (event->pos());
-    group->set_nodes_center(Vector2(mouse.x(), mouse.y()));
+    group->set_nodes_center({float(mouse.x()), float(mouse.y())});
 
     const std::list<std::shared_ptr<WorldNode>> &items_world = group->nodes();
 

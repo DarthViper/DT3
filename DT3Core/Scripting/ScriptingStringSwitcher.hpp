@@ -61,41 +61,40 @@ class ScriptingStringSwitcher: public ScriptingBase {
 
     private:
         Plug<DTboolean>				_in1;
-        Plug<DTboolean>				_in2;
-        Plug<DTboolean>				_in3;
-        Plug<DTboolean>				_in4;
-        Plug<DTboolean>				_in5;
-        Plug<DTboolean>				_in6;
-        Plug<DTboolean>				_in7;
-        Plug<DTboolean>				_in8;
-        Plug<DTboolean>				_in9;
-        Plug<DTboolean>				_in10;
-        Plug<DTboolean>				_in11;
-        Plug<DTboolean>				_in12;
-        Plug<DTboolean>				_in13;
-        Plug<DTboolean>				_in14;
-        Plug<DTboolean>				_in15;
-        Plug<DTboolean>				_in16;
-
         Plug<std::string>			_in_string1;
+        Plug<DTboolean>				_in2;
         Plug<std::string>			_in_string2;
+        Plug<DTboolean>				_in3;
         Plug<std::string>			_in_string3;
+        Plug<DTboolean>				_in4;
         Plug<std::string>			_in_string4;
+        Plug<DTboolean>				_in5;
         Plug<std::string>			_in_string5;
+        Plug<DTboolean>				_in6;
         Plug<std::string>			_in_string6;
+        Plug<DTboolean>				_in7;
         Plug<std::string>			_in_string7;
+        Plug<DTboolean>				_in8;
         Plug<std::string>			_in_string8;
+        Plug<DTboolean>				_in9;
         Plug<std::string>			_in_string9;
+        Plug<DTboolean>				_in10;
         Plug<std::string>			_in_string10;
+        Plug<DTboolean>				_in11;
         Plug<std::string>			_in_string11;
+        Plug<DTboolean>				_in12;
         Plug<std::string>			_in_string12;
+        Plug<DTboolean>				_in13;
         Plug<std::string>			_in_string13;
+        Plug<DTboolean>				_in14;
         Plug<std::string>			_in_string14;
+        Plug<DTboolean>				_in15;
         Plug<std::string>			_in_string15;
+        Plug<DTboolean>				_in16;
         Plug<std::string>			_in_string16;
 
-        Plug<std::string>			_out;
         DTboolean                   _buffer_output;
+        Plug<std::string>			_out;
 
 };
 

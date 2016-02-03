@@ -155,8 +155,10 @@ Matrix2 operator * (const Matrix2 &a, const Matrix2 &b)
 
 Vector2 operator * (const Matrix2 &a, const Vector2 &b)
 {    
-	return Vector2(	a._m11 * b.x + a._m12 * b.y,
-					a._m21 * b.x + a._m22 * b.y);
+    return {
+        a._m11 * b.x + a._m12 * b.y,
+                a._m21 * b.x + a._m22 * b.y
+    };
 }
 
 Matrix2 operator / (const Matrix2 &a, const DTfloat b)

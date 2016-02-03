@@ -370,7 +370,7 @@ void TextureResource2D::set_pixel (DTint x, DTint y, const Color4b &pixel)
     Color4b *c = (Color4b*) (buffer + ((_width * y) + x) * sizeof(Color4b));
     *c = pixel;
 
-    _dirty_rectangle = Rectangle::calc_union(_dirty_rectangle, Vector2(x,y));
+    _dirty_rectangle = Rectangle::calc_union(_dirty_rectangle, Vector2 {float(x),float(y)});
 }
 
 //==============================================================================

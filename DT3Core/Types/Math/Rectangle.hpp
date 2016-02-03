@@ -104,7 +104,7 @@ class Rectangle {
 
         /// Returns the center of the rectangle
         /// \return center
-        Vector2                 center              (void) const    {   return Vector2( 0.5F*(_minus_x + _plus_x), 0.5F*(_minus_y + _plus_y) );   }
+        Vector2                 center              (void) const    {   return { 0.5F*(_minus_x + _plus_x), 0.5F*(_minus_y + _plus_y) };   }
 
 
         //
