@@ -54,9 +54,9 @@ END_IMPLEMENT_PLUGS
 //==============================================================================
 
 ScriptingVector3Normalize::ScriptingVector3Normalize (void)
-    :   _in				(PLUG_INFO_INDEX(_in), Vector3(0.0F,0.0F,0.0F)),
+    :   _in				(PLUG_INFO_INDEX(_in), {0.0F,0.0F,0.0F}),
 		_length			(PLUG_INFO_INDEX(_length), 1.0F),
-		_out			(PLUG_INFO_INDEX(_out), Vector3(0.0F,0.0F,0.0F))
+        _out			(PLUG_INFO_INDEX(_out), {0.0F,0.0F,0.0F})
 {  
 
 }
@@ -117,7 +117,7 @@ bool ScriptingVector3Normalize::compute (const PlugBase *plug)
 		if (_in->abs2() > 0.0F) {
 			_out = _in->normalized() * _length;
 		} else {
-			_out = Vector3(0.0F,0.0F,0.0F);
+            _out = {0.0F,0.0F,0.0F};
 		}
 		_out.set_clean();
 		return true;

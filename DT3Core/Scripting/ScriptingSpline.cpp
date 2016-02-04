@@ -66,7 +66,7 @@ ScriptingSpline::ScriptingSpline (void)
         _d				(PLUG_INFO_INDEX(_d), 0.0F),
 		_transform      (PLUG_INFO_INDEX(_transform), Matrix4::identity()),
 		_orientation    (PLUG_INFO_INDEX(_orientation), Matrix3::identity()),
-		_translation    (PLUG_INFO_INDEX(_translation), Vector3(0.0F,0.0F,0.0F)),
+        _translation    (PLUG_INFO_INDEX(_translation), {0.0F,0.0F,0.0F}),
         _keyframe_cache	(0),
         _dirty          (true)
 {  

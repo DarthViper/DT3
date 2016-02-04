@@ -65,7 +65,7 @@ END_IMPLEMENT_PLUGS
 //==============================================================================
 
 ScriptingParticlePointAttractor::ScriptingParticlePointAttractor (void)
-    :   _target			(PLUG_INFO_INDEX(_target), Vector3(0.0F,0.0F,0.0F)),
+    :   _target			(PLUG_INFO_INDEX(_target), {0.0F,0.0F,0.0F}),
 		_strength		(PLUG_INFO_INDEX(_strength), 10.0F),
 		_converge_time	(PLUG_INFO_INDEX(_converge_time), 1.0F),
 		_in				(PLUG_INFO_INDEX(_in)),

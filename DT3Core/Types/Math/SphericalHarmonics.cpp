@@ -184,10 +184,10 @@ void SphericalHarmonics::build_spherical_samples(int32_t num_bands, int32_t num_
 			
 			// Angle representation
 			ASSERT(i>= 0 && i < _num_samples);
-			_samples[i]._sph = Vector3(theta,phi,1.0F);
+            _samples[i]._sph = {theta,phi,1.0F};
 			
 			// Unit vector representation
-			Vector3 vec(std::sin(theta) * std::cos(phi), std::sin(theta) * std::sin(phi), std::cos(theta));
+            Vector3 vec {std::sin(theta) * std::cos(phi), std::sin(theta) * std::sin(phi), std::cos(theta)};
 			_samples[i]._vec = vec;
 			
 			// precompute all sH coefficients for this sample

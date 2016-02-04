@@ -36,19 +36,6 @@ class Vector2 {
     public:
         DEFINE_TYPE_SIMPLE_BASE(Vector2)
 
-//        Vector2					(void) = default;
-
-//        explicit			Vector2					(const Vector3 &rhs);
-//        explicit			Vector2					(const Vector4 &rhs);
-
-//        inline explicit     Vector2					(   const DTfloat x_,
-//                                                        const DTfloat y_)		{   x = x_;
-//                                                                                    y = y_;     }
-//        inline explicit     Vector2					(const DTfloat v)           {   x = v;
-//                                                                                    y = v;      }
-//        Vector2 &			operator =              (const Vector2 &rhs)		{   x = rhs.x;
-//                                                                                    y = rhs.y;
-//                                                                                    return *this;	}
     public:
             static Vector2 fromVector3(Vector3 src);
             static Vector2 fromVector4(Vector4 rhs);
@@ -125,7 +112,7 @@ class Vector2 {
             DTfloat x;
             DTfloat y;
 };
-static_assert(std::is_pod<Vector2>(),"w");
+
 //==============================================================================
 /// Streaming operators
 //==============================================================================

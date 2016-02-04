@@ -64,7 +64,7 @@ void EdLevelManipScale::draw (const std::shared_ptr<CameraObject> &camera, float
     axis = Matrix4(     Matrix3(    1.0F, 0.0F, 0.0F,
                                     0.0F, 1.0F, 0.0F,
                                     0.0F, 0.0F, 1.0F),
-                        Vector3(0.0F,0.0F,0.0F),
+    {0.0F,0.0F,0.0F},
                         1.0F);
 
     DrawUtils::draw_cube (  b,
@@ -82,7 +82,7 @@ void EdLevelManipScale::draw (const std::shared_ptr<CameraObject> &camera, float
     axis = Matrix4(     Matrix3(    0.0F, 1.0F, 0.0F,
                                     1.0F, 0.0F, 0.0F,
                                     0.0F, 0.0F, -1.0F),
-                        Vector3(1.0F,0.0F,0.0F),
+    {1.0F,0.0F,0.0F},
                         1.0F);
 
     DrawUtils::draw_cube (  b,
@@ -99,7 +99,7 @@ void EdLevelManipScale::draw (const std::shared_ptr<CameraObject> &camera, float
     axis = Matrix4(     Matrix3(    1.0F, 0.0F, 0.0F,
                                     0.0F, 1.0F, 0.0F,
                                     0.0F, 0.0F, 1.0F),
-                        Vector3(0.0F,1.0F,0.0F),
+    {0.0F,1.0F,0.0F},
                         1.0F);
 
     DrawUtils::draw_cube (  b,
@@ -116,7 +116,7 @@ void EdLevelManipScale::draw (const std::shared_ptr<CameraObject> &camera, float
     axis = Matrix4(     Matrix3(    1.0F, 0.0F, 0.0F,
                                     0.0F, 0.0F, -1.0F,
                                     0.0F, 1.0F, 0.0F),
-                        Vector3(0.0F,0.0F,1.0F),
+    {0.0F,0.0F,1.0F},
                         1.0F);
 
     DrawUtils::draw_cube (  b,

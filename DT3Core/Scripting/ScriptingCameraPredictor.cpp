@@ -67,14 +67,14 @@ END_IMPLEMENT_PLUGS
 //==============================================================================
 
 ScriptingCameraPredictor::ScriptingCameraPredictor (void)
-    :   _object_translation	(PLUG_INFO_INDEX(_object_translation), Vector3(0.0F,0.0F,0.0F)),
-		_object_velocity	(PLUG_INFO_INDEX(_object_velocity), Vector3(0.0F,0.0F,0.0F)),
-		_offset				(PLUG_INFO_INDEX(_offset), Vector3(0.0F,0.0F,75.0F)),
-		_out_translation		(PLUG_INFO_INDEX(_out_translation), Vector3(0.0F,0.0F,0.0F)),
-		_out_velocity		(PLUG_INFO_INDEX(_out_velocity), Vector3(0.0F,0.0F,0.0F)),
+    :   _object_translation	(PLUG_INFO_INDEX(_object_translation), {0.0F,0.0F,0.0F}),
+        _object_velocity	(PLUG_INFO_INDEX(_object_velocity), {0.0F,0.0F,0.0F}),
+        _offset				(PLUG_INFO_INDEX(_offset), {0.0F,0.0F,75.0F}),
+        _out_translation		(PLUG_INFO_INDEX(_out_translation), {0.0F,0.0F,0.0F}),
+        _out_velocity		(PLUG_INFO_INDEX(_out_velocity), {0.0F,0.0F,0.0F}),
 		_prediction_strength(0.5F),
 		_prediction_smooth	(0.98F),
-		_prediction			(Vector3(0.0F,0.0F,0.0F))
+        _prediction			({0.0F,0.0F,0.0F})
 {  
 
 }
@@ -152,7 +152,7 @@ void ScriptingCameraPredictor::tick (const DTfloat dt)
     if (dt > 0.0F)
         _out_velocity = (new_translation - (_out_translation.value_without_compute())) / dt;
     else
-        _out_velocity = Vector3(0.0F,0.0F,0.0F);
+        _out_velocity = {0.0F,0.0F,0.0F};
         
     _out_translation = new_translation;
 

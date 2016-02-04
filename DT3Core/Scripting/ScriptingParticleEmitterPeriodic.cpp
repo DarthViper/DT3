@@ -75,7 +75,7 @@ ScriptingParticleEmitterPeriodic::ScriptingParticleEmitterPeriodic (void)
     :   _period			(PLUG_INFO_INDEX(_period), 1.0F),
 		_variation		(PLUG_INFO_INDEX(_variation), 0.0F),
 		_batch_size		(1),
-		_spawn_translation	(PLUG_INFO_INDEX(_spawn_translation), Vector3(0.0F,0.0F,0.0F)),
+        _spawn_translation	(PLUG_INFO_INDEX(_spawn_translation), {0.0F,0.0F,0.0F}),
 		_max_lifetime	(PLUG_INFO_INDEX(_max_lifetime), 3.0F),
 		_active			(PLUG_INFO_INDEX(_active), true),
 		_max_num		(32),

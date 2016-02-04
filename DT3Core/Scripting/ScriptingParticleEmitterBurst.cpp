@@ -83,7 +83,7 @@ END_IMPLEMENT_PLUGS
 ScriptingParticleEmitterBurst::ScriptingParticleEmitterBurst (void)
     :   _num			(PLUG_INFO_INDEX(_num), 5),
 		_num_variation	(PLUG_INFO_INDEX(_num_variation), 2),
-		_spawn_translation	(PLUG_INFO_INDEX(_spawn_translation), Vector3(0.0F,0.0F,0.0F)),
+        _spawn_translation	(PLUG_INFO_INDEX(_spawn_translation), {0.0F,0.0F,0.0F}),
 		_max_lifetime	(PLUG_INFO_INDEX(_max_lifetime), 3.0F),
 		_active			(PLUG_INFO_INDEX(_active), false),
         _active_e       (EVENT_INFO_INDEX(_active_e)),
@@ -297,7 +297,7 @@ void ScriptingParticleEmitterBurst::dump_code(const std::string &object_name, St
     s << object_name << "->set_max_num(" << _max_num << ");\n";
     s << object_name << "->set_num(" << _num << ");\n";
     s << object_name << "->set_num_variation(" << _num_variation << ");\n";
-    s << object_name << "->set_spawn_translation(Vector3(" << _spawn_translation->x << "," << _spawn_translation->y << "," << _spawn_translation->z << "));\n";
+    s << object_name << "->set_spawn_translation({" << _spawn_translation->x << "," << _spawn_translation->y << "," << _spawn_translation->z << "));\n";
     s << object_name << "->set_max_lifetime(" << _max_lifetime << ");\n";
     s << object_name << "->set_active(" << _active << ");\n";
 }

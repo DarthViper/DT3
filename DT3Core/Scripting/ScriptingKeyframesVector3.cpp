@@ -53,7 +53,7 @@ ScriptingKeyframesVector3::ScriptingKeyframesVector3 (void)
 	:	_interpolated	(true),
         _linear         (false),
 		_t				(PLUG_INFO_INDEX(_t), 0.0F),
-		_out			(PLUG_INFO_INDEX(_out), Vector3(0.0F,0.0F,0.0F)),
+        _out			(PLUG_INFO_INDEX(_out), {0.0F,0.0F,0.0F}),
 		_id				(0),
 		_keyframe_cache	(0)
 {  
@@ -173,7 +173,7 @@ void ScriptingKeyframesVector3::set_key (void)
 		keyframe k;
 		k._time = _t;
 		k._value = val;
-		k._tangent = Vector3(0.0F,0.0F,0.0F);
+        k._tangent = {0.0F,0.0F,0.0F};
 		k._id = _id++;
 		_keyframes.push_back(k);
 		

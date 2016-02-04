@@ -71,7 +71,7 @@ END_IMPLEMENT_PLUGS
 //==============================================================================
 
 ScriptingParticleCollisionPlane::ScriptingParticleCollisionPlane (void)
-    :   _normal				(PLUG_INFO_INDEX(_normal), Vector3(0.0F,1.0F,0.0F)),
+    :   _normal				(PLUG_INFO_INDEX(_normal), {0.0F,1.0F,0.0F}),
 		_d					(PLUG_INFO_INDEX(_d), 0.0F),
 		_restitution		(PLUG_INFO_INDEX(_restitution), 0.1F),
 		_friction_damping	(PLUG_INFO_INDEX(_friction_damping), 0.9F),

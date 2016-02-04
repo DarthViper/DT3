@@ -35,7 +35,7 @@ GlyphCacheEntry::GlyphCacheEntry (void)
                                 0.0F, 1.0F, 0.0F, 0.0F,
                                 0.0F, 0.0F, 1.0F, 0.0F,
                                 0.0F, 0.0F, 0.0F, 1.0F),
-        _scale              (1.0F,1.0F,1.0F),
+        _scale              ({1.0F,1.0F,1.0F}),
         _advance_x          (0),
         _advance_y          (0),
         _glyph              (NULL)

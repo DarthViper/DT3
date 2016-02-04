@@ -132,15 +132,15 @@ ScriptingVector3Switcher::ScriptingVector3Switcher (void)
         _in6            (PLUG_INFO_INDEX(_in6), false),
         _in7            (PLUG_INFO_INDEX(_in7), false),
         _in8            (PLUG_INFO_INDEX(_in8), false),
-        _in_vector1     (PLUG_INFO_INDEX(_in_vector1), Vector3(0.0F,0.0F,0.0F)),
-        _in_vector2     (PLUG_INFO_INDEX(_in_vector2), Vector3(0.0F,0.0F,0.0F)),
-        _in_vector3     (PLUG_INFO_INDEX(_in_vector3), Vector3(0.0F,0.0F,0.0F)),
-        _in_vector4     (PLUG_INFO_INDEX(_in_vector4), Vector3(0.0F,0.0F,0.0F)),
-        _in_vector5     (PLUG_INFO_INDEX(_in_vector5), Vector3(0.0F,0.0F,0.0F)),
-        _in_vector6     (PLUG_INFO_INDEX(_in_vector6), Vector3(0.0F,0.0F,0.0F)),
-        _in_vector7     (PLUG_INFO_INDEX(_in_vector7), Vector3(0.0F,0.0F,0.0F)),
-        _in_vector8     (PLUG_INFO_INDEX(_in_vector8), Vector3(0.0F,0.0F,0.0F)),
-        _out            (PLUG_INFO_INDEX(_out), Vector3(0.0F,0.0F,0.0F)),
+        _in_vector1     (PLUG_INFO_INDEX(_in_vector1), {0.0F,0.0F,0.0F}),
+        _in_vector2     (PLUG_INFO_INDEX(_in_vector2), {0.0F,0.0F,0.0F}),
+        _in_vector3     (PLUG_INFO_INDEX(_in_vector3), {0.0F,0.0F,0.0F}),
+        _in_vector4     (PLUG_INFO_INDEX(_in_vector4), {0.0F,0.0F,0.0F}),
+        _in_vector5     (PLUG_INFO_INDEX(_in_vector5), {0.0F,0.0F,0.0F}),
+        _in_vector6     (PLUG_INFO_INDEX(_in_vector6), {0.0F,0.0F,0.0F}),
+        _in_vector7     (PLUG_INFO_INDEX(_in_vector7), {0.0F,0.0F,0.0F}),
+        _in_vector8     (PLUG_INFO_INDEX(_in_vector8), {0.0F,0.0F,0.0F}),
+        _out            (PLUG_INFO_INDEX(_out), {0.0F,0.0F,0.0F}),
         _buffer_output  (false)
 {  
 
@@ -264,7 +264,7 @@ bool ScriptingVector3Switcher::compute (const PlugBase *plug)
         else if (_in1)
             _out = _in_vector1;
         else if (!_buffer_output)
-            _out = Vector3(0.0F,0.0F,0.0F);
+            _out = {0.0F,0.0F,0.0F};
 
         _out.set_clean();
         return true;

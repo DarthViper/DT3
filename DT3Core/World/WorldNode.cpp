@@ -51,7 +51,7 @@ using namespace DT3;
 WorldNode::WorldNode (void)
     :   _self                   (PLUG_INFO_INDEX(_self), this),
         _node_collapsed         (false),
-        _node_position			(0.0F,0.0F,0.0F),
+        _node_position			({0.0F,0.0F,0.0F}),
         _node_color             ((uint8_t)150,(uint8_t)150,(uint8_t)150,(uint8_t)255),
         _group                  (NULL),
         _world                  (NULL)

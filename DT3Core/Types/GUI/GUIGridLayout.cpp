@@ -279,7 +279,7 @@ void GUIGridLayout::animate (const Rectangle &size_target, DTfloat time, bool sp
 
                 if (time <= 0.0F) {
 
-                    object->set_translation_local(Vector3(column_pos + column_width*0.5F, row_pos + row_height*0.5F, 0.0F));
+                    object->set_translation_local({column_pos + column_width*0.5F, row_pos + row_height*0.5F, 0.0F});
 
                     if (resize_mode == GUIGridLayoutItem::RESIZE_MODE_RESIZE) {
                         object->set_width(column_width);
@@ -313,7 +313,7 @@ void GUIGridLayout::animate (const Rectangle &size_target, DTfloat time, bool sp
                         object->add_anim_key()
                             .set_spline(spline)
                             .set_duration(time)
-                            .set_translation_local(Vector3(column_pos + column_width*0.5F, row_pos + row_height*0.5F, 0.0F))
+                            .set_translation_local({column_pos + column_width*0.5F, row_pos + row_height*0.5F, 0.0F})
                             .set_width(column_width)
                             .set_height(row_height);
 
@@ -329,7 +329,7 @@ void GUIGridLayout::animate (const Rectangle &size_target, DTfloat time, bool sp
                             object->add_anim_key()
                                 .set_spline(spline)
                                 .set_duration(time)
-                                .set_translation_local(Vector3(column_pos + column_width*0.5F, row_pos + row_height*0.5F, 0.0F))
+                                .set_translation_local({column_pos + column_width*0.5F, row_pos + row_height*0.5F, 0.0F})
                                 .set_width(object->width() * scale)
                                 .set_height(object->height() * scale);
 
@@ -340,7 +340,7 @@ void GUIGridLayout::animate (const Rectangle &size_target, DTfloat time, bool sp
                             object->add_anim_key()
                                 .set_spline(spline)
                                 .set_duration(time)
-                                .set_translation_local(Vector3(column_pos + column_width*0.5F, row_pos + row_height*0.5F, 0.0F))
+                                .set_translation_local({column_pos + column_width*0.5F, row_pos + row_height*0.5F, 0.0F})
                                 .set_width(object->width() * scale)
                                 .set_height(object->height() * scale);
                         }
@@ -352,7 +352,7 @@ void GUIGridLayout::animate (const Rectangle &size_target, DTfloat time, bool sp
                         object->add_anim_key()
                             .set_spline(spline)
                             .set_duration(time)
-                            .set_translation_local(Vector3(column_pos + column_width*0.5F, row_pos + row_height*0.5F, 0.0F))
+                            .set_translation_local({column_pos + column_width*0.5F, row_pos + row_height*0.5F, 0.0F})
                             .set_width(object->width() * scale)
                             .set_height(object->height() * scale);
 
@@ -360,7 +360,7 @@ void GUIGridLayout::animate (const Rectangle &size_target, DTfloat time, bool sp
                         object->add_anim_key()
                             .set_spline(spline)
                             .set_duration(time)
-                            .set_translation_local(Vector3(column_pos + column_width*0.5F, row_pos + row_height*0.5F, 0.0F));
+                            .set_translation_local({column_pos + column_width*0.5F, row_pos + row_height*0.5F, 0.0F});
                     }
                 }
 
@@ -411,14 +411,14 @@ void GUIGridLayout::animate (const Rectangle &size_target, DTfloat time, bool sp
         border.set_plus_y(border.plus_y() + _border_pad_v);
 
         if (time <= 0.0F) {
-            _border_item->set_translation_local(Vector3(border.minus_x() + border.width()*0.5F, border.minus_y() + border.height()*0.5F, 0.0F));
+            _border_item->set_translation_local({border.minus_x() + border.width()*0.5F, border.minus_y() + border.height()*0.5F, 0.0F});
             _border_item->set_width(border.width());
             _border_item->set_height(border.height());
         } else {
             _border_item->add_anim_key()
                 .set_spline(spline)
                 .set_duration(time)
-                .set_translation_local(Vector3(border.minus_x() + border.width()*0.5F, border.minus_y() + border.height()*0.5F, 0.0F))
+                .set_translation_local({border.minus_x() + border.width()*0.5F, border.minus_y() + border.height()*0.5F, 0.0F})
                 .set_width(border.width())
                 .set_height(border.height());
         }

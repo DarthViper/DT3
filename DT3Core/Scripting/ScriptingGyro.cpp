@@ -53,9 +53,9 @@ END_IMPLEMENT_PLUGS
 //==============================================================================
 
 ScriptingGyro::ScriptingGyro (void)
-    :	_out                    (PLUG_INFO_INDEX(_out), Vector3(0.0F,-1.0F,0.0F)),
-		_out_low_freq           (PLUG_INFO_INDEX(_out_low_freq), Vector3(0.0F,-1.0F,0.0F)),
-		_out_high_freq          (PLUG_INFO_INDEX(_out_high_freq), Vector3(0.0F,0.0F,0.0F))
+    :	_out                    (PLUG_INFO_INDEX(_out), {0.0F,-1.0F,0.0F}),
+        _out_low_freq           (PLUG_INFO_INDEX(_out_low_freq), {0.0F,-1.0F,0.0F}),
+        _out_high_freq          (PLUG_INFO_INDEX(_out_high_freq), {0.0F,0.0F,0.0F})
 {  
 
 }

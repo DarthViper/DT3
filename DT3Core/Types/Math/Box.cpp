@@ -324,7 +324,7 @@ DTfloat Box::distance_to_point (const Vector3 &point) const
     else if (point.z < _minus_z)    zdist = _minus_z - point.z;
     else                            zdist = 0.0F;
     
-    DTfloat abs = Vector3(xdist,ydist,zdist).abs();
+    DTfloat abs = (Vector3 {xdist,ydist,zdist}).abs();
     
     return abs;
 }
@@ -348,7 +348,7 @@ const Vector3 Box::closest_point (const Vector3 &pt) const
     else if (pt.z < _minus_z)	z = _minus_z;
     else                        z = pt.z;
     
-    return Vector3(x,y,z);
+    return {x,y,z};
 }
 
 //==============================================================================

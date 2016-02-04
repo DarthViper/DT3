@@ -25,7 +25,7 @@ namespace DT3 {
 //==============================================================================
 
 Plane::Plane (void)
-    :	n(0.0F,1.0F,0.0F),
+    :	n({0.0F,1.0F,0.0F}),
 		d(0.0F)
 {
 
@@ -50,13 +50,13 @@ Plane::Plane (const Vector3 &a, const Vector3 &b, const Vector3 &c)
 
 Plane::Plane (const DTfloat &a, const DTfloat &b, const DTfloat &c, const DTfloat &d_)
 {
-    n = Vector3(a,b,c);
+    n = {a,b,c};
     d = d_;
 }
 
 Plane::Plane (const Vector4 &a)
 {
-    n = Vector3(a.x, a.y, a.z);
+    n = {a.x, a.y, a.z};
     d = a.w;
 }
 
@@ -85,7 +85,7 @@ Stream& operator <<(Stream &s, const Plane&p)
 
 Stream& operator >>(Stream &s, Plane&p)
 {
-    Vector3 normal(0.0F,1.0F,0.0F);
+    Vector3 normal {0.0F,1.0F,0.0F};
     DTfloat d(0.0F);
     
 	s >> normal.x >> normal.y >> normal.z >> d;
@@ -139,27 +139,27 @@ DTfloat Plane::distance_to_box (const Box &box) const
     // find positive and negative points farthest from the plane
     if (n.x > 0.0F) {                                                                               // +x
         if (n.y > 0.0F) {                                                                           // +x,+y
-            if (n.z > 0.0F)	{	far_pos = Vector3(box.plus_x(), box.plus_y(), box.plus_z());		// +x,+y,+z
-                                far_neg = Vector3(box.minus_x(), box.minus_y(), box.minus_z());}
-            else            {	far_pos = Vector3(box.plus_x(), box.plus_y(), box.minus_z());		// +x,+y,-z
-                                far_neg = Vector3(box.minus_x(), box.minus_y(), box.plus_z());	}
+            if (n.z > 0.0F)	{	far_pos = {box.plus_x(), box.plus_y(), box.plus_z()};		// +x,+y,+z
+                                far_neg = {box.minus_x(), box.minus_y(), box.minus_z()};}
+            else            {	far_pos = {box.plus_x(), box.plus_y(), box.minus_z()};		// +x,+y,-z
+                                far_neg = {box.minus_x(), box.minus_y(), box.plus_z()};	}
         } else {																					// +x,-y
-            if (n.z > 0.0F)	{	far_pos = Vector3(box.plus_x(), box.minus_y(), box.plus_z());		// +x,-y,+z
-                                far_neg = Vector3(box.minus_x(), box.plus_y(), box.minus_z());	}
-            else            {	far_pos = Vector3(box.plus_x(), box.minus_y(), box.minus_z());		// +x,-y,-z
-                                far_neg = Vector3(box.minus_x(), box.plus_y(), box.plus_z());	}
+            if (n.z > 0.0F)	{	far_pos = {box.plus_x(), box.minus_y(), box.plus_z()};		// +x,-y,+z
+                                far_neg = {box.minus_x(), box.plus_y(), box.minus_z()};	}
+            else            {	far_pos = {box.plus_x(), box.minus_y(), box.minus_z()};		// +x,-y,-z
+                                far_neg = {box.minus_x(), box.plus_y(), box.plus_z()};	}
         }
     } else {																						// -x
         if (n.y > 0.0F) {																			// -x,+y
-            if (n.z > 0.0F)	{	far_pos = Vector3(box.minus_x(), box.plus_y(), box.plus_z());		// -x,+y,+z
-                                far_neg = Vector3(box.plus_x(), box.minus_y(), box.minus_z());	}
-            else            {	far_pos = Vector3(box.minus_x(), box.plus_y(), box.minus_z());		// -x,+y,-z
-                                far_neg = Vector3(box.plus_x(), box.minus_y(), box.plus_z());	}
+            if (n.z > 0.0F)	{	far_pos = {box.minus_x(), box.plus_y(), box.plus_z()};		// -x,+y,+z
+                                far_neg = {box.plus_x(), box.minus_y(), box.minus_z()};	}
+            else            {	far_pos = {box.minus_x(), box.plus_y(), box.minus_z()};		// -x,+y,-z
+                                far_neg = {box.plus_x(), box.minus_y(), box.plus_z()};	}
         } else {																						// -x,-y
-            if (n.z > 0.0F)	{	far_pos = Vector3(box.minus_x(), box.minus_y(), box.plus_z());		// -x,-y,+z
-                                far_neg = Vector3(box.plus_x(), box.plus_y(), box.minus_z());	}
-            else            {	far_pos = Vector3(box.minus_x(), box.minus_y(), box.minus_z());		// -x,-y,-z
-                                far_neg = Vector3(box.plus_x(), box.plus_y(), box.plus_z());	}
+            if (n.z > 0.0F)	{	far_pos = {box.minus_x(), box.minus_y(), box.plus_z()};		// -x,-y,+z
+                                far_neg = {box.plus_x(), box.plus_y(), box.minus_z()};	}
+            else            {	far_pos = {box.minus_x(), box.minus_y(), box.minus_z()};		// -x,-y,-z
+                                far_neg = {box.plus_x(), box.plus_y(), box.plus_z()};	}
         }
     }
     

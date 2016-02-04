@@ -80,8 +80,8 @@ END_IMPLEMENT_PLUGS
 
 SoundSource::SoundSource (void)
 	:	_sound_packet   (PLUG_INFO_INDEX(_sound_packet)),
-		_translation    (PLUG_INFO_INDEX(_translation), Vector3(0.0F,0.0F,0.0F)),
-		_velocity       (PLUG_INFO_INDEX(_velocity), Vector3(0.0F,0.0F,0.0F)),
+        _translation    (PLUG_INFO_INDEX(_translation), {0.0F,0.0F,0.0F}),
+        _velocity       (PLUG_INFO_INDEX(_velocity), {0.0F,0.0F,0.0F}),
 		_pitch          (PLUG_INFO_INDEX(_pitch), 1.0F),
 		_gain           (PLUG_INFO_INDEX(_gain), 1.0F),
 		_rolloff        (PLUG_INFO_INDEX(_rolloff), 0.0F),

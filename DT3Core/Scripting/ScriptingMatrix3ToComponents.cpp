@@ -62,9 +62,9 @@ ScriptingMatrix3ToComponents::ScriptingMatrix3ToComponents (void)
     :   _in				(PLUG_INFO_INDEX(_in), Matrix3(   1.0F,0.0F,0.0F,
                                                     0.0F,1.0F,0.0F,
                                                     0.0F,0.0F,1.0F)),
-		_out_x_axis		(PLUG_INFO_INDEX(_out_x_axis), Vector3(1.0F,0.0F,0.0F)),
-		_out_y_axis		(PLUG_INFO_INDEX(_out_y_axis), Vector3(0.0F,1.0F,0.0F)),
-		_out_z_axis		(PLUG_INFO_INDEX(_out_z_axis), Vector3(0.0F,0.0F,1.0F))
+        _out_x_axis		(PLUG_INFO_INDEX(_out_x_axis), {1.0F,0.0F,0.0F}),
+        _out_y_axis		(PLUG_INFO_INDEX(_out_y_axis), {0.0F,1.0F,0.0F}),
+        _out_z_axis		(PLUG_INFO_INDEX(_out_z_axis), {0.0F,0.0F,1.0F})
 {  
 
 }

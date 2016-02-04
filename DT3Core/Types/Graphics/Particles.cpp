@@ -30,7 +30,7 @@ IMPLEMENT_FACTORY_CREATION(Particles)
 //==============================================================================
 
 Particles::Particles (void)
-	:   _default_velocity	(0.0F,0.0F,0.0F),
+    :   _default_velocity	({0.0F,0.0F,0.0F}),
 		_default_size		(1.0F),
 		_default_lifetime	(0.0F),
 		_default_rotation	(0.0F),
@@ -110,7 +110,7 @@ void Particles::resize (uint32_t size)
 {
 	if (_translations.size() != size) {
     
-		_translations.resize(size, Vector3(0.0F,0.0F,0.0F));
+        _translations.resize(size, {0.0F,0.0F,0.0F});
 	
 		// Build optional streams
 		if (_velocities.size() > 0)     build_velocity_stream();
@@ -152,7 +152,7 @@ void Particles::draw (const std::shared_ptr<CameraObject> &camera, int32_t first
 //    
 //    // Fill in the streams
 //    for (int32_t i = 0; i < num_particles; ++i) {
-//        const Vector3 translation = Vector3(_translations[i]);
+//        const Vector3 translation = _translations[i];
 //
 //        // Default texcoords
 //        Vector2 tc0(0.0F,0.0F);

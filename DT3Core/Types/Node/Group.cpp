@@ -160,7 +160,7 @@ void Group::remove_from_world (void)
 void Group::set_nodes_center (const Vector2 &center)
 {
     // Find center
-    Vector3 avg(0.0F,0.0F,0.0F);
+    Vector3 avg({0.0F,0.0F,0.0F});
 
     FOR_EACH (i,_nodes) {
         avg += (*i)->node_position();
@@ -172,7 +172,7 @@ void Group::set_nodes_center (const Vector2 &center)
 
     // Add an offset
     FOR_EACH (i,_nodes) {
-        (*i)->set_node_position( (*i)->node_position() + Vector3(delta) );
+        (*i)->set_node_position( (*i)->node_position() + Vector3::fromVec2(delta) );
     }
 
 }

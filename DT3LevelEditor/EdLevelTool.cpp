@@ -42,11 +42,11 @@ using namespace DT3;
 Matrix4 EdLevelTool::getCombinedTransform (void) const
 {
     int count = 0;
-    Vector3 translation(0.0F,0.0F,0.0F);
+    Vector3 translation({0.0F,0.0F,0.0F});
     Matrix3 orientation(Matrix3::identity());
-    Vector3 x_axis(0.0F,0.0F,0.0F);
-    Vector3 y_axis(0.0F,0.0F,0.0F);
-    Vector3 z_axis(0.0F,0.0F,0.0F);
+    Vector3 x_axis({0.0F,0.0F,0.0F});
+    Vector3 y_axis({0.0F,0.0F,0.0F});
+    Vector3 z_axis({0.0F,0.0F,0.0F});
 
     if (!_selection.empty()) {
 

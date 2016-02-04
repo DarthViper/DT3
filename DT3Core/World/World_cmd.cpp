@@ -121,7 +121,7 @@ CommandResult World_cmd::doAdd (CommandContext &ctx, const CommandParams &p)
     }
     
     // Position
-    new_object->set_node_position(Vector3(ctx.selection_rectangle().center().x, ctx.selection_rectangle().center().y, 0.0F));
+    new_object->set_node_position({ctx.selection_rectangle().center().x, ctx.selection_rectangle().center().y, 0.0F});
     
     // Set the name of the object
     std::string default_name;
@@ -365,7 +365,7 @@ CommandResult World_cmd::doDuplicate(CommandContext &ctx, const CommandParams &p
     FOR_EACH (i,new_selection) {
         std::shared_ptr<WorldNode> world_node = checked_static_cast<WorldNode>(*i);
         
-        world_node->set_node_position(world_node->node_position() + Vector3(10.0F,10.0F,0.0F));
+        world_node->set_node_position(world_node->node_position() + Vector3 {10.0F,10.0F,0.0F});
         
         ctx.world()->add_node_unique_name(world_node);
     }
@@ -452,7 +452,7 @@ CommandResult World_cmd::doDuplicateHierarchy(CommandContext &ctx, const Command
     FOR_EACH (i,new_selection) {
         std::shared_ptr<WorldNode> world_node = checked_static_cast<WorldNode>(*i);
         
-        world_node->set_node_position(world_node->node_position() + Vector3(10.0F,10.0F,0.0F));
+        world_node->set_node_position(world_node->node_position() + Vector3 {10.0F,10.0F,0.0F});
         
         ctx.world()->add_node_unique_name(world_node);
     }

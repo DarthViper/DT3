@@ -276,7 +276,7 @@ void GUIObject::post_draw_gui (const std::shared_ptr<CameraObject> &camera, cons
 
 void GUIObject::set_bounds (DTfloat left, DTfloat bottom, DTfloat width, DTfloat height, DTfloat z)
 {
-    set_translation_local(Vector3(left + width/2.0F, bottom + height/2.0F, z));
+    set_translation_local({left + width/2.0F, bottom + height/2.0F, z});
     set_width(width);
     set_height(height);
 }
@@ -351,16 +351,16 @@ Matrix4 GUIObject::draw_transform (void) const
     Matrix4 offset;
     switch (_pivot) {
         case PIVOT_TOP_LEFT:
-            offset = Matrix4(Vector3(half_width,-half_height,0.0F));
+            offset = Matrix4(Vector3 {half_width,-half_height,0.0F});
             break;
         case PIVOT_TOP_RIGHT:
-            offset = Matrix4(Vector3(-half_width,-half_height,0.0F));
+            offset = Matrix4(Vector3 {-half_width,-half_height,0.0F});
             break;
         case PIVOT_BOTTOM_LEFT:
-            offset = Matrix4(Vector3(half_width,half_height,0.0F));
+            offset = Matrix4(Vector3 {half_width,half_height,0.0F});
             break;
         case PIVOT_BOTTOM_RIGHT:
-            offset = Matrix4(Vector3(-half_width,half_height,0.0F));
+            offset = Matrix4(Vector3 {-half_width,half_height,0.0F});
             break;
         default:
             offset = Matrix4::identity();
@@ -458,10 +458,10 @@ Rectangle GUIObject::children_content_rectangle (void) const
             Matrix4 gui_transform = transform * gui->draw_transform();
 
             // 4 corners
-            Vector2 p0 = Vector2::fromVector3( gui_transform * Vector3(child_rect.minus_x(), child_rect.plus_y(), 0.0F));
-            Vector2 p1 = Vector2::fromVector3( gui_transform * Vector3(child_rect.plus_x(), child_rect.plus_y(), 0.0F));
-            Vector2 p2 = Vector2::fromVector3( gui_transform * Vector3(child_rect.minus_x(), child_rect.minus_y(), 0.0F));
-            Vector2 p3 = Vector2::fromVector3( gui_transform * Vector3(child_rect.plus_x(), child_rect.minus_y(), 0.0F));
+            Vector2 p0 = Vector2::fromVector3( gui_transform * Vector3 {child_rect.minus_x(), child_rect.plus_y(), 0.0F});
+            Vector2 p1 = Vector2::fromVector3( gui_transform * Vector3 {child_rect.plus_x(), child_rect.plus_y(), 0.0F});
+            Vector2 p2 = Vector2::fromVector3( gui_transform * Vector3 {child_rect.minus_x(), child_rect.minus_y(), 0.0F});
+            Vector2 p3 = Vector2::fromVector3( gui_transform * Vector3 {child_rect.plus_x(), child_rect.minus_y(), 0.0F});
 
             r = Rectangle::calc_union(r, p0);
             r = Rectangle::calc_union(r, p1);
@@ -487,7 +487,7 @@ void GUIObject::scroll_contents (DTfloat dx, DTfloat dy)
     std::list<PlaceableObject*> c = children();
 
     for (auto &i : c)
-        i->set_translation( i->translation() + Vector3(dx, dy, 0.0F) );
+        i->set_translation( i->translation() + Vector3 {dx, dy, 0.0F} );
 }
 
 bool GUIObject::is_contents_animating (void) const

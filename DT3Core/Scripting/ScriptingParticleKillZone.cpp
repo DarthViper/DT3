@@ -64,7 +64,7 @@ END_IMPLEMENT_PLUGS
 //==============================================================================
 
 ScriptingParticleKillZone::ScriptingParticleKillZone (void)
-    :   _translation		(PLUG_INFO_INDEX(_translation), Vector3(0.0F,0.0F,0.0F)),
+    :   _translation		(PLUG_INFO_INDEX(_translation), {0.0F,0.0F,0.0F}),
 		_radius				(PLUG_INFO_INDEX(_radius), 1.0F),
 		_num_killed         (PLUG_INFO_INDEX(_num_killed), 0),
 		_in					(PLUG_INFO_INDEX(_in)),

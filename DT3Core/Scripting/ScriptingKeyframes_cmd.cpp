@@ -118,9 +118,9 @@ CommandResult ScriptingKeyframes_cmd::do_set_keyframe (CommandContext &ctx, cons
             // Position the node
             std::shared_ptr<PlugNode> owner = checked_static_cast<PlugNode>(plug->owner()->shared_from_this());
             if (owner->isa(ComponentBase::kind())) {
-                key_node->set_node_position( checked_static_cast<ComponentBase>(owner)->owner()->node_position() + Vector3(-200.0F,0.0F,0.0F));
+                key_node->set_node_position( checked_static_cast<ComponentBase>(owner)->owner()->node_position() +Vector3  {-200.0F,0.0F,0.0F});
             } else {
-                key_node->set_node_position( checked_static_cast<WorldNode>(owner)->node_position() + Vector3(-200.0F,0.0F,0.0F));
+                key_node->set_node_position( checked_static_cast<WorldNode>(owner)->node_position() +Vector3  {-200.0F,0.0F,0.0F});
             }
             
             /*// Connect up selected timer
@@ -169,9 +169,9 @@ CommandResult ScriptingKeyframes_cmd::do_set_keyframe (CommandContext &ctx, cons
             // Position the node
             std::shared_ptr<PlugNode> o = checked_static_cast<PlugNode>(event->owner()->shared_from_this());
             if (o->isa(ComponentBase::kind())) {
-                key_node->set_node_position( checked_static_cast<ComponentBase>(o)->owner()->node_position() + Vector3(-200.0F,0.0F,0.0F));
+                key_node->set_node_position( checked_static_cast<ComponentBase>(o)->owner()->node_position() + Vector3 {-200.0F,0.0F,0.0F});
             } else {
-                key_node->set_node_position( checked_static_cast<WorldNode>(o)->node_position() + Vector3(-200.0F,0.0F,0.0F));
+                key_node->set_node_position( checked_static_cast<WorldNode>(o)->node_position() + Vector3 {-200.0F,0.0F,0.0F});
             }
 
         }

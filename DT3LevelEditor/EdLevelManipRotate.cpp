@@ -64,7 +64,7 @@ void EdLevelManipRotate::draw (const std::shared_ptr<CameraObject> &camera, floa
     axis = Matrix4(     Matrix3(    0.0F, 1.0F, 0.0F,
                                     1.0F, 0.0F, 0.0F,
                                     0.0F, 0.0F, -1.0F),
-                        Vector3(0.0F,0.0F,0.0F),
+                               {0.0F,0.0F,0.0F},
                         1.0F);
 
     DrawUtils::draw_ring (  b,
@@ -81,7 +81,7 @@ void EdLevelManipRotate::draw (const std::shared_ptr<CameraObject> &camera, floa
     axis = Matrix4(     Matrix3(    1.0F, 0.0F, 0.0F,
                                     0.0F, 1.0F, 0.0F,
                                     0.0F, 0.0F, 1.0F),
-                        Vector3(0.0F,0.0F,0.0F),
+    {0.0F,0.0F,0.0F},
                         1.0F);
 
     DrawUtils::draw_ring (  b,
@@ -98,7 +98,7 @@ void EdLevelManipRotate::draw (const std::shared_ptr<CameraObject> &camera, floa
     axis = Matrix4(     Matrix3(    1.0F, 0.0F, 0.0F,
                                     0.0F, 0.0F, -1.0F,
                                     0.0F, 1.0F, 0.0F),
-                        Vector3(0.0F,0.0F,0.0F),
+    {0.0F,0.0F,0.0F},
                         1.0F);
 
     DrawUtils::draw_ring (  b,
@@ -117,7 +117,7 @@ void EdLevelManipRotate::draw (const std::shared_ptr<CameraObject> &camera, floa
                         Matrix3(    1.0F, 0.0F, 0.0F,
                                     0.0F, 0.0F, -1.0F,
                                     0.0F, 1.0F, 0.0F),
-                        Vector3(0.0F,0.0F,0.0F),
+    {0.0F,0.0F,0.0F},
                         1.2F * scale);
 
     DrawUtils::draw_ring (  b,
@@ -170,9 +170,9 @@ void EdLevelManipRotate::doEvent (const EdLevelToolEvent &event)
 
         Vector3 axis;
         switch (_starting_axis) {
-            case ROTATE_X:      axis = Vector3(1.0F,0.0F,0.0F);         break;
-            case ROTATE_Y:      axis = Vector3(0.0F,1.0F,0.0F);         break;
-            case ROTATE_Z:      axis = Vector3(0.0F,0.0F,1.0F);         break;
+            case ROTATE_X:      axis = {1.0F,0.0F,0.0F};         break;
+            case ROTATE_Y:      axis = {0.0F,1.0F,0.0F};         break;
+            case ROTATE_Z:      axis = {0.0F,0.0F,1.0F};         break;
             case ROTATE_SCREEN: axis = orientation.inversed() * (transform.translation() - event.getCamera()->translation());   break;
         };
 
@@ -191,7 +191,7 @@ void EdLevelManipRotate::doEvent (const EdLevelToolEvent &event)
         // Rotate the object
         Matrix3 rotation = Matrix3::set_rotation_around (axis.normalized(), (dy+dx) * 0.05F);
 
-        applyCombinedTransform (Matrix4(rotation, Vector3(0.0F,0.0F,0.0F)));
+        applyCombinedTransform (Matrix4(rotation, {0.0F,0.0F,0.0F}));
     }
 }
 

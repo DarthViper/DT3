@@ -92,7 +92,7 @@ class ScriptingParticlePath: public ScriptingBase {
         Plug<DTfloat>                                       _bias;
 
         struct keyframe {
-            keyframe(void)  {   value = tangent = Vector3(0.0F,0.0F,0.0F);  }
+            keyframe(void)  {   value = tangent = {0.0F,0.0F,0.0F};  }
 
             Vector3	value;
             Vector3	tangent;

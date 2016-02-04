@@ -126,9 +126,9 @@ bool Scripting##FROMTYPE##To##TOTYPE::compute (const PlugBase *plug)           \
         BUILD_CONVERSION_BACK(FROMTYPE,FT,TOTYPE,TT,DEFAULTFT,DEFAULTTT)                        
 
 #define BUILD_CONVERSION_TO_VECTOR3(FROMTYPE,FT,DEFAULTFT)                                      \
-        BUILD_CONVERSION_FRONT(FROMTYPE,FT,Vector3,Vector3,DEFAULTFT,Vector3(0.0F,0.0F,0.0F))   \
-		_out = Vector3(*_in);                                                                   \
-        BUILD_CONVERSION_BACK(FROMTYPE,FT,Vector3,Vector3,DEFAULTFT,Vector3(0.0F,0.0F,0.0F))                        
+        BUILD_CONVERSION_FRONT(FROMTYPE,FT,Vector3,Vector3,DEFAULTFT,{0.0F,0.0F,0.0F})   \
+        _out = {*_in);                                                                   \
+        BUILD_CONVERSION_BACK(FROMTYPE,FT,Vector3,Vector3,DEFAULTFT,{0.0F,0.0F,0.0F})
 
 #define BUILD_CONVERSION_TO_STRING(FROMTYPE,FT,DEFAULTFT)                                       \
         BUILD_CONVERSION_FRONT(FROMTYPE,FT,String,std::string,DEFAULTFT,"")                     \
@@ -192,7 +192,12 @@ BUILD_CONVERSION_NUMBER (Double,DTdouble,Int,int32_t,0.0,0L)
 BUILD_CONVERSION_NUMBER (Double,DTdouble,UInt,uint32_t,0.0,0UL)
 BUILD_CONVERSION_NUMBER (Double,DTdouble,Float,DTfloat,0.0,0.0F)
 
-BUILD_CONVERSION_TO_VECTOR3(Float,DTfloat,0.0F)
+//BUILD_CONVERSION_TO_VECTOR3(Float,DTfloat,0.0f)
+
+BUILD_CONVERSION_FRONT(Float,DTfloat,Vector3,Vector3,0.0f,(Vector3 {0.0F,0.0F,0.0F}))
+_out = Vector3::fromFloat(*_in);
+BUILD_CONVERSION_BACK(Float,DTfloat,Vector3,Vector3,0.0f,(Vector3 {0.0F,0.0F,0.0F}))
+
 
 BUILD_CONVERSION_TO_STRING(Bool,bool,false)
 BUILD_CONVERSION_TO_STRING(Short,int16_t,0)
@@ -202,7 +207,7 @@ BUILD_CONVERSION_TO_STRING(UInt,uint32_t,0UL)
 BUILD_CONVERSION_TO_STRING(Float,DTfloat,0.0F)
 BUILD_CONVERSION_TO_STRING(Double,DTdouble,0.0)
 BUILD_CONVERSION_TO_STRING(Vector2,Vector2,(Vector2{0.0F,0.0F}))
-BUILD_CONVERSION_TO_STRING(Vector3,Vector3,Vector3(0.0F,0.0F,0.0F))
+BUILD_CONVERSION_TO_STRING(Vector3,Vector3,(Vector3 {0.0F,0.0F,0.0F}))
 BUILD_CONVERSION_TO_STRING(Matrix2,Matrix2,Matrix2(Matrix2::identity()))
 BUILD_CONVERSION_TO_STRING(Matrix3,Matrix3,Matrix3(Matrix3::identity()))
 BUILD_CONVERSION_TO_STRING(Matrix4,Matrix4,Matrix4(Matrix4::identity()))
@@ -216,7 +221,7 @@ BUILD_CONVERSION_FROM_STRING(UInt,uint32_t,0UL)
 BUILD_CONVERSION_FROM_STRING(Float,DTfloat,0.0F)
 BUILD_CONVERSION_FROM_STRING(Double,DTdouble,0.0)
 BUILD_CONVERSION_FROM_STRING(Vector2,Vector2,(Vector2{0.0F,0.0F}))
-BUILD_CONVERSION_FROM_STRING(Vector3,Vector3,Vector3(0.0F,0.0F,0.0F))
+BUILD_CONVERSION_FROM_STRING(Vector3,Vector3,(Vector3{0.0F,0.0F,0.0F}))
 BUILD_CONVERSION_FROM_STRING(Matrix2,Matrix2,Matrix2(Matrix2::identity()))
 BUILD_CONVERSION_FROM_STRING(Matrix3,Matrix3,Matrix3(Matrix3::identity()))
 BUILD_CONVERSION_FROM_STRING(Matrix4,Matrix4,Matrix4(Matrix4::identity()))

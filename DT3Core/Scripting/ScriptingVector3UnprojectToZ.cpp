@@ -55,9 +55,9 @@ END_IMPLEMENT_PLUGS
 //==============================================================================
 
 ScriptingVector3UnprojectToZ::ScriptingVector3UnprojectToZ (void)
-    :   _in             (PLUG_INFO_INDEX(_in), Vector3(0.0F,0.0F,0.0F)),
+    :   _in             (PLUG_INFO_INDEX(_in), {0.0F,0.0F,0.0F}),
         _camera         (PLUG_INFO_INDEX(_camera)),
-        _out            (PLUG_INFO_INDEX(_out), Vector3(0.0F,0.0F,0.0F)),
+        _out            (PLUG_INFO_INDEX(_out), {0.0F,0.0F,0.0F}),
         _z              (0.0F)
 {  
 
@@ -122,15 +122,15 @@ bool ScriptingVector3UnprojectToZ::compute (const PlugBase *plug)
         if ( *_camera && _camera.has_incoming_connection() && (**_camera).isa(CameraObject::kind()) ) {
             std::shared_ptr<CameraObject> camera = checked_static_cast<CameraObject>(*_camera);
         
-            Vector3 ray_src = camera->unproject_point( Vector3(_in->x,_in->y,-1.0F) );
-            Vector3 ray_dest = camera->unproject_point( Vector3(_in->x,_in->y,1.0F) );
+            Vector3 ray_src = camera->unproject_point( {_in->x,_in->y,-1.0F} );
+            Vector3 ray_dest = camera->unproject_point( {_in->x,_in->y,1.0F} );
 
             DTfloat t = (_z - ray_src.z) / (ray_dest.z - ray_src.z);
             
             _out = (ray_dest - ray_src) * t + ray_src;
 
         } else {
-            _out = Vector3(0.0F,0.0F,0.0F);
+            _out = {0.0F,0.0F,0.0F};
         }
 
         _out.set_clean();

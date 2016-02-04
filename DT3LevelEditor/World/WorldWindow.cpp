@@ -560,8 +560,8 @@ void WorldWindow::pickGL(QPointF pos, EdLevelToolEvent &tool_event)
     float y = static_cast<float>(height() - pos.y()) / static_cast<float>(height()) * 2.0F - 1.0F;  // -1.0 to 1.0
 
     tool_event._camera = _camera;
-    tool_event._ray_src = _camera->unproject_point( Vector3(x,y,-1.0F) );
-    tool_event._ray_dest = _camera->unproject_point( Vector3(x,y,1.0F) );
+    tool_event._ray_src = _camera->unproject_point( {x,y,-1.0F} );
+    tool_event._ray_dest = _camera->unproject_point( {x,y,1.0F} );
     tool_event._control_id = 0;
 
     std::cout << x << " " << y << std::endl;

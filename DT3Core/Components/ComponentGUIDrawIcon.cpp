@@ -139,7 +139,7 @@ void ComponentGUIDrawIcon::draw (const std::shared_ptr<CameraObject> &camera, co
     if (gui->color().a_as_float() * parent_color.a_as_float() <= 0.0F)
         return;
     
-    if (gui->scale() == Vector3(0.0F,0.0F,0.0F))
+    if (gui->scale() == Vector3 {0.0F,0.0F,0.0F})
         return;
 
     // Get Alternate materials

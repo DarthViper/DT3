@@ -36,8 +36,8 @@ const int EdLevelToolEvent::MODIFIER_META = 1 << 3;
 
 EdLevelToolEvent::EdLevelToolEvent (void)
     :   _event_type     (NONE),
-        _ray_src        (0.0F,0.0F,0.0F),
-        _ray_dest       (0.0F,0.0F,0.0F),
+      _ray_src        ({0.0F,0.0F,0.0F}),
+      _ray_dest       ({0.0F,0.0F,0.0F}),
         _control_id     (0),
         _mouse_x        (0),
         _mouse_y        (0),

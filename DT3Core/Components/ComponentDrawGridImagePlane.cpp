@@ -209,8 +209,8 @@ void ComponentDrawGridImagePlane::draw (const std::shared_ptr<CameraObject> &cam
 
             DTfloat y0 = y / (DTfloat)(num_y-1);
 
-            _b.add().v(Vector3(p1)).t0(x1, y0).c(c);
-            _b.add().v(Vector3(p0)).t0(x0, y0).c(c);
+            _b.add().v(Vector3::fromVec2(p1)).t0(x1, y0).c(c);
+            _b.add().v(Vector3::fromVec2(p0)).t0(x0, y0).c(c);
         }
 
         _b.batch_end();

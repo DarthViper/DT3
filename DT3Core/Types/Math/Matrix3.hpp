@@ -97,17 +97,17 @@ class Matrix3 {
         /// Description
         /// \param param description
         /// \return description
-        Vector3                 x_axis                      (void) const    {	return Vector3(_m11, _m21, _m31);		}
+        Vector3                 x_axis                      (void) const    {	return {_m11, _m21, _m31};		}
 
         /// Description
         /// \param param description
         /// \return description
-        Vector3                 y_axis                      (void) const    {	return Vector3(_m12, _m22, _m32);		}
+        Vector3                 y_axis                      (void) const    {	return {_m12, _m22, _m32};		}
 
         /// Description
         /// \param param description
         /// \return description
-        Vector3                 z_axis                      (void) const    {	return Vector3(_m13, _m23, _m33);		}
+        Vector3                 z_axis                      (void) const    {	return {_m13, _m23, _m33};		}
 
         /// Description
         /// \param param description

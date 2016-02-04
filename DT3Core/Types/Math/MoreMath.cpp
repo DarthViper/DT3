@@ -262,9 +262,9 @@ Vector3 MoreMath::random_vector (void)
     DTfloat phi = 2.0F * PI * ey;
     
     DTfloat sin_theta = std::sin(theta);
-    return Vector3( sin_theta * std::cos(phi),
+    return { sin_theta * std::cos(phi),
                     sin_theta * std::sin(phi),
-                    std::cos(theta) );
+                    std::cos(theta) };
                     
 }
 

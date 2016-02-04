@@ -54,8 +54,8 @@ END_IMPLEMENT_PLUGS
 //==============================================================================
 
 ScriptingOrientTowards::ScriptingOrientTowards (void)
-    :   _direction      (PLUG_INFO_INDEX(_direction), Vector3(0.0F,0.0F,-1.0F)),
-		_up             (PLUG_INFO_INDEX(_up), Vector3(0.0F,1.0F,0.0F)),
+    :   _direction      (PLUG_INFO_INDEX(_direction), {0.0F,0.0F,-1.0F}),
+        _up             (PLUG_INFO_INDEX(_up), {0.0F,1.0F,0.0F}),
 		_out			(PLUG_INFO_INDEX(_out), Matrix3::identity())
 {  
 

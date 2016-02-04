@@ -253,7 +253,7 @@ uint32_t	ImporterGeometry3DS::parse_tri_vertex(BinaryFileStream &in, uint32_t ow
         size_read += read(in,y);
         size_read += read(in,z);
 		
-		_vertices_stream[_base_vertex + i] = Vector3(x,y,z);
+        _vertices_stream[_base_vertex + i] = {x,y,z};
 
 		left_to_right_handed( _vertices_stream[_base_vertex + i], _vertices_stream[_base_vertex + i] );
 		
@@ -372,7 +372,7 @@ uint32_t	ImporterGeometry3DS::parse_tri_local(BinaryFileStream &in, uint32_t own
     size_read += read(in,oy);
     size_read += read(in,oz);
     
-    Vector3 translation(ox,oy,oz);
+    Vector3 translation {ox,oy,oz};
     left_to_right_handed(translation,translation);
 	
 	Matrix4 transform(Matrix3::identity(), translation);

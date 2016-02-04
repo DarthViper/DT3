@@ -50,8 +50,8 @@ END_IMPLEMENT_PLUGS
 //==============================================================================
 
 ScriptingVector3Filter2Pole::ScriptingVector3Filter2Pole (void)
-    :   _in				(PLUG_INFO_INDEX(_in), Vector3(0.0F,0.0F,0.0F)),
-		_out			(PLUG_INFO_INDEX(_out), Vector3(0.0F,0.0F,0.0F)),
+    :   _in				(PLUG_INFO_INDEX(_in), {0.0F,0.0F,0.0F}),
+        _out			(PLUG_INFO_INDEX(_out), {0.0F,0.0F,0.0F}),
 		_type			(Filters::FILTER_BUTTERWORTH_LOW_PASS),
 		_num_passes		(1),
 		_freq_3db		(1.0F),

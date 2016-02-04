@@ -65,8 +65,8 @@ END_IMPLEMENT_PLUGS
 ScriptingARTracker::ScriptingARTracker (void)
     : _begin_auto_calibration         (EVENT_INFO_INDEX(_begin_auto_calibration)),
       _gyro_orientation               (Matrix3::identity()),
-      _accelerometer                  (0.0F,0.0F,0.0F),
-      _magnetometer                   (0.0F,0.0F,0.0F),
+      _accelerometer                  ({0.0F,0.0F,0.0F}),
+      _magnetometer                   ({0.0F,0.0F,0.0F}),
       _orientation                    (PLUG_INFO_INDEX(_orientation), Matrix3::identity()),
       _correction_mix_factor          (0.02F),
       _correction_mode                (CORRECTION_ACCELEROMETER_AND_MAGNETOMETER),
@@ -74,7 +74,7 @@ ScriptingARTracker::ScriptingARTracker (void)
       _is_calibrated                  (PLUG_INFO_INDEX(_is_calibrated), false),
       _calibration_directions         (0),
       _num_calibration_samples        (0),
-      _calibration                    (Vector3(0.0F,0.0F,0.0F))
+      _calibration                    ({0.0F,0.0F,0.0F})
 {
 
 }
@@ -92,7 +92,7 @@ ScriptingARTracker::ScriptingARTracker (const ScriptingARTracker &rhs)
       _is_calibrated                  (PLUG_INFO_INDEX(_is_calibrated), false),
       _calibration_directions         (0),
       _num_calibration_samples        (0),
-      _calibration                    (Vector3(0.0F,0.0F,0.0F))
+      _calibration                    ({0.0F,0.0F,0.0F})
 {
 
 }
@@ -118,7 +118,7 @@ ScriptingARTracker & ScriptingARTracker::operator = (const ScriptingARTracker &r
         _is_calibrated = false;
         _calibration_directions = 0;
         _num_calibration_samples = 0;
-        _calibration = Vector3(0.0F,0.0F,0.0F);
+        _calibration = {0.0F,0.0F,0.0F};
     }
     return (*this);
 }
@@ -318,12 +318,12 @@ bool ScriptingARTracker::process_calibration_samples (void)
     // http://www.freescale.com/files/sensors/doc/app_note/AN4246.pdf
 
     // Sample data from freescale docs
-    //    _calibration_samples[0] = Vector3(167.4F, -242.4F, 91.7F);
-    //    _calibration_samples[1] = Vector3(140.3F, -221.9F, 86.8F);
-    //    _calibration_samples[2] = Vector3(152.4F, -230.4F, -0.6F);
-    //    _calibration_samples[3] = Vector3(180.3F, -270.6F, 71.0F);
-    //    _calibration_samples[4] = Vector3(190.9F, -212.4F, 62.7F);
-    //    _calibration_samples[5] = Vector3(192.9F, -242.4F, 17.1F);
+    //    _calibration_samples[0] = {167.4F, -242.4F, 91.7F};
+    //    _calibration_samples[1] = {140.3F, -221.9F, 86.8F};
+    //    _calibration_samples[2] = {152.4F, -230.4F, -0.6F};
+    //    _calibration_samples[3] = {180.3F, -270.6F, 71.0F};
+    //    _calibration_samples[4] = {190.9F, -212.4F, 62.7F};
+    //    _calibration_samples[5] = {192.9F, -242.4F, 17.1F};
 
 
     // Calculate Y

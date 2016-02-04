@@ -70,7 +70,7 @@ DTerr	ImporterGeometryOBJ::import(GeometryResource *target, std::string args)
 		if (command == "v") {
 			DTfloat x,y,z;
 			ss >> x >> y >> z;
-			_vertices.push_back(Vector3(x,y,z));
+            _vertices.push_back({x,y,z});
 		} else if (command == "vt") {
 			DTfloat u,v,w;
 			ss >> u >> v >> w;
@@ -78,7 +78,7 @@ DTerr	ImporterGeometryOBJ::import(GeometryResource *target, std::string args)
 		} else if (command == "vn") {
 			DTfloat x,y,z;
 			ss >> x >> y >> z;
-			_normals.push_back(Vector3(x,y,z));
+            _normals.push_back({x,y,z});
 		} else if (command == "f") {
 			
 			Face face;

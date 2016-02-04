@@ -72,7 +72,7 @@ END_IMPLEMENT_PLUGS
 
 ScriptingParticleRepel::ScriptingParticleRepel (void)
     :   _force          (PLUG_INFO_INDEX(_force), 1.0F),
-		_translation       (PLUG_INFO_INDEX(_translation), Vector3(0.0F,0.0F,0.0F)),
+        _translation       (PLUG_INFO_INDEX(_translation), {0.0F,0.0F,0.0F}),
 		_distance       (PLUG_INFO_INDEX(_distance), 1.0F),
 		_active         (PLUG_INFO_INDEX(_active), true),
 		_in				(PLUG_INFO_INDEX(_in)),

@@ -54,9 +54,9 @@ END_IMPLEMENT_PLUGS
 //==============================================================================
 
 ScriptingVector3Passthrough::ScriptingVector3Passthrough (void)
-    :   _in			(PLUG_INFO_INDEX(_in), Vector3(0.0F,0.0F,0.0F)),
+    :   _in			(PLUG_INFO_INDEX(_in), {0.0F,0.0F,0.0F}),
 		_enable		(PLUG_INFO_INDEX(_enable), true),
-		_out		(PLUG_INFO_INDEX(_out), Vector3(0.0F,0.0F,0.0F))
+        _out		(PLUG_INFO_INDEX(_out), {0.0F,0.0F,0.0F})
 {  
 
 }

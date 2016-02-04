@@ -54,9 +54,9 @@ END_IMPLEMENT_PLUGS
 //==============================================================================
 
 ScriptingVector3Add::ScriptingVector3Add (void)
-    :   _in1			(PLUG_INFO_INDEX(_in1), Vector3(0.0F,0.0F,0.0F)),
-		_in2			(PLUG_INFO_INDEX(_in2), Vector3(0.0F,0.0F,0.0F)),
-		_out			(PLUG_INFO_INDEX(_out), Vector3(0.0F,0.0F,0.0F))
+    :   _in1			(PLUG_INFO_INDEX(_in1), {0.0F,0.0F,0.0F}),
+        _in2			(PLUG_INFO_INDEX(_in2), {0.0F,0.0F,0.0F}),
+        _out			(PLUG_INFO_INDEX(_out), {0.0F,0.0F,0.0F})
 {  
 
 }

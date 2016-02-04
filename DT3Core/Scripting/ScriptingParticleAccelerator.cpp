@@ -56,7 +56,7 @@ END_IMPLEMENT_PLUGS
 //==============================================================================
 
 ScriptingParticleAccelerator::ScriptingParticleAccelerator (void)
-    :   _acceleration	(PLUG_INFO_INDEX(_acceleration), Vector3(0.0F,0.0F,0.0F)),
+    :   _acceleration	(PLUG_INFO_INDEX(_acceleration),  {0.0F,0.0F,0.0F}),
 		_in				(PLUG_INFO_INDEX(_in)),
 		_out			(PLUG_INFO_INDEX(_out))
 {  

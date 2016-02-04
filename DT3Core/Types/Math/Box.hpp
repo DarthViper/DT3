@@ -95,9 +95,9 @@ class Box: public Rectangle {
 
         /// Returns the center of the rectangle
         /// \return center
-        Vector3                 center              (void) const    {   return Vector3( 0.5F*(_minus_x + _plus_x),
+        Vector3                 center              (void) const    {   return { 0.5F*(_minus_x + _plus_x),
                                                                                         0.5F*(_minus_y + _plus_y),
-                                                                                        0.5F*(_minus_z + _plus_z) );   }
+                                                                                        0.5F*(_minus_z + _plus_z) };   }
 
         //
         // Computation

@@ -56,7 +56,7 @@ END_IMPLEMENT_PLUGS
 //==============================================================================
 
 ScriptingParticleVelocityRing::ScriptingParticleVelocityRing (void)
-    :   _normal			(PLUG_INFO_INDEX(_normal), Vector3(0.0F,1.0F,0.0F)),
+    :   _normal			(PLUG_INFO_INDEX(_normal), {0.0F,1.0F,0.0F}),
 		_velocity		(1.0F),
         _variation		(0.0F),
         _in				(PLUG_INFO_INDEX(_in)),
@@ -169,7 +169,7 @@ void ScriptingParticleVelocityRing::dump_code(const std::string &object_name, St
 {
 	PROFILER(PARTICLES);
 
-    s << object_name << "->set_normal(Vector3(" << _normal->x << "," << _normal->y << "," << _normal->z << "));\n";
+    s << object_name << "->set_normal({" << _normal->x << "," << _normal->y << "," << _normal->z << "});\n";
     s << object_name << "->set_velocity(" << _velocity << ");\n";
     s << object_name << "->set_velocity_variation(" << _variation << ");\n";
 }

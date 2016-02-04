@@ -170,7 +170,7 @@ void ComponentGUIDrawText::draw (const std::shared_ptr<CameraObject> &camera, co
     if (gui->color().a_as_float() * parent_color.a_as_float() <= 0.0F)
         return;
     
-    if (gui->scale() == Vector3(0.0F,0.0F,0.0F))
+    if (gui->scale() == Vector3{0.0F,0.0F,0.0F})
         return;
 
     Rectangle local_rect = gui->rectangle();
@@ -225,7 +225,7 @@ void ComponentGUIDrawText::draw (const std::shared_ptr<CameraObject> &camera, co
         
         // Build local transform for bounds rectangle
         Matrix4 tex_transform = gui->transform();
-        tex_transform.set_scale(Vector3(1.0F,1.0F,1.0F));
+        tex_transform.set_scale(Vector3{1.0F,1.0F,1.0F});
         tex_transform._m14 = 0.0F;
         tex_transform._m24 = 0.0F;
 

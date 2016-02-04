@@ -55,12 +55,12 @@ END_IMPLEMENT_PLUGS
 //==============================================================================
 
 ScriptingVector3Smooth::ScriptingVector3Smooth (void)
-    :   _in				(PLUG_INFO_INDEX(_in), Vector3(0.0F,0.0F,0.0F)),
-		_out			(PLUG_INFO_INDEX(_out), Vector3(0.0F,0.0F,0.0F)),
+    :   _in				(PLUG_INFO_INDEX(_in), {0.0F,0.0F,0.0F}),
+        _out			(PLUG_INFO_INDEX(_out), {0.0F,0.0F,0.0F}),
 		_reset			(PLUG_INFO_INDEX(_reset), false),
 		_local_reset	(true),
 		_history_index	(0),
-		_sum			(0.0F,0.0F,0.0F)
+        _sum({0.0F,0.0F,0.0F})
 {  
 
 }
@@ -130,7 +130,7 @@ void ScriptingVector3Smooth::tick (const DTfloat dt)
     } else {
         // If resetting
         if (_reset || _local_reset) {
-            _sum = Vector3(0.0F,0.0F,0.0F);
+            _sum = {0.0F,0.0F,0.0F};
             for (uint32_t i = 0; i < _history.size(); ++i) {
                 _sum += _in;
                 _history[i] = _in;

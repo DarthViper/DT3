@@ -369,7 +369,7 @@ void CameraObject::calculate_frustum()
 	clip = _projection * _modelview;
     
     // Far plane
-    _frustum[0].set_normal(Vector3 ( clip._mi[3] - clip._mi[2], clip._mi[7] - clip._mi[6], clip._mi[11] - clip._mi[10] ));
+    _frustum[0].set_normal({clip._mi[3] - clip._mi[2], clip._mi[7] - clip._mi[6], clip._mi[11] - clip._mi[10]});
     _frustum[0].set_d(clip._mi[15] - clip._mi[14]);
     
     mag = _frustum[0].normal().abs();
@@ -379,7 +379,7 @@ void CameraObject::calculate_frustum()
     
     
     // Near plane
-    _frustum[1].set_normal(Vector3 (clip._mi[3] + clip._mi[2],clip._mi[7] + clip._mi[6],clip._mi[11] + clip._mi[10]));
+    _frustum[1].set_normal({clip._mi[3] + clip._mi[2],clip._mi[7] + clip._mi[6],clip._mi[11] + clip._mi[10]});
     _frustum[1].set_d(clip._mi[15] + clip._mi[14]);
     
     mag = _frustum[1].normal().abs();
@@ -389,7 +389,7 @@ void CameraObject::calculate_frustum()
     
     
     // Right plane
-    _frustum[2].set_normal(Vector3 (clip._mi[3] - clip._mi[0],clip._mi[7] - clip._mi[4],clip._mi[11] - clip._mi[8]));
+    _frustum[2].set_normal({clip._mi[3] - clip._mi[0],clip._mi[7] - clip._mi[4],clip._mi[11] - clip._mi[8]});
     _frustum[2].set_d(clip._mi[15] - clip._mi[12]);
     
     mag = _frustum[2].normal().abs();
@@ -399,7 +399,7 @@ void CameraObject::calculate_frustum()
     
     
     // Left plane
-    _frustum[3].set_normal(Vector3 (clip._mi[3] + clip._mi[0],clip._mi[7] + clip._mi[4],clip._mi[11] + clip._mi[8]));
+    _frustum[3].set_normal({clip._mi[3] + clip._mi[0],clip._mi[7] + clip._mi[4],clip._mi[11] + clip._mi[8]});
     _frustum[3].set_d(clip._mi[15] + clip._mi[12]);
     
     mag = _frustum[3].normal().abs();
@@ -409,7 +409,7 @@ void CameraObject::calculate_frustum()
             
             
     // Bottom plane
-    _frustum[4].set_normal(Vector3 (clip._mi[3] + clip._mi[1],clip._mi[7] + clip._mi[5],clip._mi[11] + clip._mi[9]));
+    _frustum[4].set_normal({clip._mi[3] + clip._mi[1],clip._mi[7] + clip._mi[5],clip._mi[11] + clip._mi[9]});
     _frustum[4].set_d(clip._mi[15] + clip._mi[13]);
     
     mag = _frustum[4].normal().abs();
@@ -419,7 +419,7 @@ void CameraObject::calculate_frustum()
     
     
     // top plane
-    _frustum[5].set_normal(Vector3 (clip._mi[3] - clip._mi[1],clip._mi[7] - clip._mi[5],clip._mi[11] - clip._mi[9]));
+    _frustum[5].set_normal({clip._mi[3] - clip._mi[1],clip._mi[7] - clip._mi[5],clip._mi[11] - clip._mi[9]});
     _frustum[5].set_d(clip._mi[15] - clip._mi[13]);
     
     mag = _frustum[5].normal().abs();

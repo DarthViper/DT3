@@ -198,8 +198,8 @@ CommandResult PlugNode_cmd::do_connect_plugs (CommandContext &ctx, const Command
         std::shared_ptr<PlugNode> plug_owner1 = checked_static_cast<PlugNode>(plug1->owner()->shared_from_this());
         std::shared_ptr<PlugNode> plug_owner2 = checked_static_cast<PlugNode>(plug2->owner()->shared_from_this());
         
-        Vector3 pos1(0.0F,0.0F,0.0F);
-        Vector3 pos2(0.0F,0.0F,0.0F);
+        Vector3 pos1({0.0F,0.0F,0.0F});
+        Vector3 pos2({0.0F,0.0F,0.0F});
         
         if (plug_owner1->isa(WorldNode::kind()))
             pos1 += checked_static_cast<WorldNode>(plug_owner1)->node_position();

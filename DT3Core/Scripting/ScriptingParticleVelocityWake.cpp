@@ -65,8 +65,8 @@ END_IMPLEMENT_PLUGS
 //==============================================================================
 
 ScriptingParticleVelocityWake::ScriptingParticleVelocityWake (void)
-    :   _up				(PLUG_INFO_INDEX(_up), Vector3(0.0F,1.0F,0.0F)),
-		_in_velocity	(PLUG_INFO_INDEX(_in_velocity), Vector3(0.0F,0.0F,0.0F)),
+    :   _up				(PLUG_INFO_INDEX(_up), {0.0F,1.0F,0.0F}),
+        _in_velocity	(PLUG_INFO_INDEX(_in_velocity), {0.0F,0.0F,0.0F}),
 		_scale			(PLUG_INFO_INDEX(_scale), 1.0F),
 		_in				(PLUG_INFO_INDEX(_in)),
 		_out			(PLUG_INFO_INDEX(_out))

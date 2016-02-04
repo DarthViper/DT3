@@ -257,8 +257,8 @@ void ImporterMaterialMAT::parse_tex_block (MaterialResource *target)
                                                                             DTfloat scale_x = _tokenizer.next_token_number();
                                                                             DTfloat scale_y = _tokenizer.next_token_number();
                                                                             
-                                                                            target->set_translation(Vector3(x,y,0.0F));
-                                                                            target->set_scale(Vector3(scale_x,scale_y,1.0F));
+                                                                            target->set_translation({x,y,0.0F});
+                                                                            target->set_scale({scale_x,scale_y,1.0F});
                                                                             continue;   }
         
 		_tokenizer.syntax_error("Unknown Token " + token);

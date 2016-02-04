@@ -54,9 +54,9 @@ END_IMPLEMENT_PLUGS
 //==============================================================================
 
 ScriptingVector3Clip::ScriptingVector3Clip (void)
-    :   _in				(PLUG_INFO_INDEX(_in), Vector3(0.0F,0.0F,0.0F)),
+    :   _in				(PLUG_INFO_INDEX(_in), {0.0F,0.0F,0.0F}),
 		_in_plane		(PLUG_INFO_INDEX(_in_plane), Plane(1.0F,0.0F,0.0F,0.0F)),
-		_out			(PLUG_INFO_INDEX(_out), Vector3(0.0F,0.0F,0.0F))
+        _out			(PLUG_INFO_INDEX(_out), {0.0F,0.0F,0.0F})
 {  
 
 }
@@ -118,7 +118,7 @@ bool ScriptingVector3Clip::compute (const PlugBase *plug)
 		// Solve plane equation for x
 		DTfloat xpos = (-_in_plane->D() - _in_plane->normal().y * _in->y - _in_plane->normal().z * _in->z) / _in_plane->normal().x;
 	
-		_out = Vector3(xpos, _in->y, _in->z);
+        _out = {xpos, _in->y, _in->z};
 		_out.set_clean();
 		return true;
 	}

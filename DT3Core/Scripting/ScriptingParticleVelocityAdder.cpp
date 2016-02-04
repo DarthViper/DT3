@@ -56,7 +56,7 @@ END_IMPLEMENT_PLUGS
 
 ScriptingParticleVelocityAdder::ScriptingParticleVelocityAdder (void)
     :   _continuous		(false),
-		_velocity		(PLUG_INFO_INDEX(_velocity), Vector3(0.0F,0.0F,0.0F)),
+        _velocity		(PLUG_INFO_INDEX(_velocity), {0.0F,0.0F,0.0F}),
 		_in				(PLUG_INFO_INDEX(_in)),
 		_out			(PLUG_INFO_INDEX(_out))
 {  
@@ -159,7 +159,7 @@ void ScriptingParticleVelocityAdder::dump_code(const std::string &object_name, S
 	PROFILER(PARTICLES);
 
     s << object_name << "->set_continuous(" << _continuous << ");\n";
-    s << object_name << "->set_velocity(Vector3(" << _velocity->x << "," << _velocity->y << "," << _velocity->z << "));\n";
+    s << object_name << "->set_velocity({" << _velocity->x << "," << _velocity->y << "," << _velocity->z << "});\n";
 }
 
 #endif

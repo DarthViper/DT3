@@ -113,10 +113,10 @@ class DrawBatcher {
         DrawBatcher&    add (void)                                          {   ++_cur_index;   return *this;   }
 
         DrawBatcher&    v   (const Vector3 &v)                              {   ASSERT(_format & FMT_V);  ASSERT(_cur_index < _size_hint); BATCH_V[_cur_index] = v;                return *this;    }
-        DrawBatcher&    v   (DTfloat x, DTfloat y, DTfloat z)               {   ASSERT(_format & FMT_V);  ASSERT(_cur_index < _size_hint); BATCH_V[_cur_index] = Vector3(x,y,z);   return *this;    }
+        DrawBatcher&    v   (DTfloat x, DTfloat y, DTfloat z)               {   ASSERT(_format & FMT_V);  ASSERT(_cur_index < _size_hint); BATCH_V[_cur_index] = {x,y,z};   return *this;    }
 
         DrawBatcher&    n   (const Vector3 &n)                              {   ASSERT(_format & FMT_N);  ASSERT(_cur_index < _size_hint); BATCH_N[_cur_index] = n;                return *this;    }
-        DrawBatcher&    n   (DTfloat x, DTfloat y, DTfloat z)               {   ASSERT(_format & FMT_N);  ASSERT(_cur_index < _size_hint); BATCH_N[_cur_index] = Vector3(x,y,z);   return *this;    }
+        DrawBatcher&    n   (DTfloat x, DTfloat y, DTfloat z)               {   ASSERT(_format & FMT_N);  ASSERT(_cur_index < _size_hint); BATCH_N[_cur_index] = {x,y,z};   return *this;    }
 
         DrawBatcher&    t0  (Vector2 t0)                                    {   ASSERT(_format & FMT_T0); ASSERT(_cur_index < _size_hint); BATCH_T0[_cur_index] = t0;              return *this;    }
         DrawBatcher&    t0  (DTfloat s, DTfloat t)                          {   ASSERT(_format & FMT_T0); ASSERT(_cur_index < _size_hint); BATCH_T0[_cur_index] = {s,t};    return *this;    }

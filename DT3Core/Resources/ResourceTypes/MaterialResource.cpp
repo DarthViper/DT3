@@ -236,10 +236,10 @@ void MaterialResource::reset (void)
 
 void MaterialResource::set_rectangle (const Rectangle &rectangle)
 {
-    _textures[_unit]._transform.set_translation(Vector3(rectangle.minus_x(), rectangle.minus_y(), 0.0F));
-    _textures[_unit]._transform.set_scale(Vector3(  rectangle.plus_x() - rectangle.minus_x(),
+    _textures[_unit]._transform.set_translation({rectangle.minus_x(), rectangle.minus_y(), 0.0F});
+    _textures[_unit]._transform.set_scale({  rectangle.plus_x() - rectangle.minus_x(),
                                                     rectangle.plus_y() - rectangle.minus_y(),
-                                                    1.0F));
+                                                    1.0F});
 }
 
 void MaterialResource::set_translation (const Vector3 &translation)

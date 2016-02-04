@@ -60,9 +60,9 @@ END_IMPLEMENT_PLUGS
 
 ScriptingAccelerometer::ScriptingAccelerometer (void)
     :	_enable                 (PLUG_INFO_INDEX(_enable), true),
-		_out                    (PLUG_INFO_INDEX(_out), Vector3(0.0F,-1.0F,0.0F)),
-		_out_low_freq           (PLUG_INFO_INDEX(_out_low_freq), Vector3(0.0F,-1.0F,0.0F)),
-		_out_high_freq          (PLUG_INFO_INDEX(_out_high_freq), Vector3(0.0F,0.0F,0.0F)),
+        _out                    (PLUG_INFO_INDEX(_out), {0.0F,-1.0F,0.0F}),
+        _out_low_freq           (PLUG_INFO_INDEX(_out_low_freq), {0.0F,-1.0F,0.0F}),
+        _out_high_freq          (PLUG_INFO_INDEX(_out_high_freq), {0.0F,0.0F,0.0F}),
         _warmup_time            (3.0F),
         _current_warmup_time    (0.0F)
 {  
@@ -141,10 +141,10 @@ void ScriptingAccelerometer::key (uint32_t modifiers, uint16_t key)
 {
 	PROFILER(SCRIPTING);
 
-    if (key == DeviceInput::INPUT_KP4)   accelerate (Vector3(-1.0F,0.0F,0.0F));
-    if (key == DeviceInput::INPUT_KP6)   accelerate (Vector3(1.0F,0.0F,0.0F));
-    if (key == DeviceInput::INPUT_KP8)   accelerate (Vector3(0.0F,1.0F,0.0F));
-    if (key == DeviceInput::INPUT_KP2)   accelerate (Vector3(0.0F,-1.0F,0.0F));
+    if (key == DeviceInput::INPUT_KP4)   accelerate ({-1.0F,0.0F,0.0F});
+    if (key == DeviceInput::INPUT_KP6)   accelerate ({1.0F,0.0F,0.0F});
+    if (key == DeviceInput::INPUT_KP8)   accelerate ({0.0F,1.0F,0.0F});
+    if (key == DeviceInput::INPUT_KP2)   accelerate ({0.0F,-1.0F,0.0F});
 }
 
 #endif
@@ -171,9 +171,9 @@ void ScriptingAccelerometer::accelerate (const Vector3 &a)
                 
         DTfloat t = _current_warmup_time / _warmup_time;
         
-        _out = t * _out + (1.0F - t) * Vector3(0.0F,-1.0F,0.0F);
-        _out_low_freq = t * _out_low_freq + (1.0F - t) * Vector3(0.0F,-1.0F,0.0F);
-        _out_high_freq = t * _out_high_freq + (1.0F - t) * Vector3(0.0F,0.0F,0.0F);
+        _out = t * _out + (1.0F - t) * Vector3 {0.0F,-1.0F,0.0F};
+        _out_low_freq = t * _out_low_freq + (1.0F - t) * Vector3 {0.0F,-1.0F,0.0F};
+        _out_high_freq = t * _out_high_freq + (1.0F - t) * Vector3 {0.0F,0.0F,0.0F};
         
     } else {
         _out = out;

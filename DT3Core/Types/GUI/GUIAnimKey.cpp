@@ -218,7 +218,7 @@ GUIAnimKey& GUIAnimKey::set_label (const std::string &label)
 
 GUIAnimKey& GUIAnimKey::set_bounds (DTfloat left, DTfloat bottom, DTfloat width, DTfloat height)
 {
-    set_translation_local(Vector3(left + width/2.0F, bottom + height/2.0F,0.0F));
+    set_translation_local({left + width/2.0F, bottom + height/2.0F,0.0F});
     set_width(width);
     set_height(height);
 

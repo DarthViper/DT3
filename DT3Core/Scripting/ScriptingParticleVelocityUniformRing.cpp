@@ -57,7 +57,7 @@ END_IMPLEMENT_PLUGS
 //==============================================================================
 
 ScriptingParticleVelocityUniformRing::ScriptingParticleVelocityUniformRing (void)
-    :   _normal			(PLUG_INFO_INDEX(_normal), Vector3(0.0F,1.0F,0.0F)),
+    :   _normal			(PLUG_INFO_INDEX(_normal), {0.0F,1.0F,0.0F}),
         _velocity		(1.0F),
 		_in				(PLUG_INFO_INDEX(_in)),
         _out			(PLUG_INFO_INDEX(_out))
@@ -138,7 +138,7 @@ bool ScriptingParticleVelocityUniformRing::compute (const PlugBase *plug)
 			if (lifetimes[i] == 0.0F) {
 				Matrix3 rot;
 				
-				Vector3 v(0.0F,1.0F,0.0F);
+                Vector3 v {0.0F,1.0F,0.0F};
 				v = Vector3::cross(v,_normal);
 				v.normalize();
 				

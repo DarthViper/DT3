@@ -61,10 +61,10 @@ END_IMPLEMENT_PLUGS
 //==============================================================================
 
 ScriptingCameraShake::ScriptingCameraShake (void)
-    :   _in				(PLUG_INFO_INDEX(_in), Vector3(0.0F,0.0F,0.0F)),
+    :   _in				(PLUG_INFO_INDEX(_in), {0.0F,0.0F,0.0F}),
 		_magnitude		(PLUG_INFO_INDEX(_magnitude), 0.5F),
 		_on				(PLUG_INFO_INDEX(_on), false),
-		_out			(PLUG_INFO_INDEX(_out), Vector3(0.0F,0.0F,0.0F))
+        _out			(PLUG_INFO_INDEX(_out), {0.0F,0.0F,0.0F})
 {  
 
 }
@@ -144,7 +144,7 @@ bool ScriptingCameraShake::compute (const PlugBase *plug)
         
             DTfloat sin_theta = std::sin(theta);
             
-            _out = (_in) + Vector3(sin_theta * std::cos(phi), sin_theta * std::sin(phi), std::cos(theta)) * (_magnitude);
+            _out = (_in) + Vector3 {sin_theta * std::cos(phi), sin_theta * std::sin(phi), std::cos(theta)} * (_magnitude);
         } else {
             _out = _in;
         }

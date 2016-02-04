@@ -111,12 +111,12 @@ ScriptingSlerp::ScriptingSlerp (void)
     :   _in_orientation_0	(PLUG_INFO_INDEX(_in_orientation_0),    Matrix3::identity()),
         _in_orientation_1	(PLUG_INFO_INDEX(_in_orientation_1),    Matrix3::identity()),
         _out_orientation	(PLUG_INFO_INDEX(_out_orientation),     Matrix3::identity()),
-		_in_translation_0	(PLUG_INFO_INDEX(_in_translation_0),    Vector3(0.0F,0.0F,0.0F)),
-        _in_translation_1	(PLUG_INFO_INDEX(_in_translation_1),    Vector3(0.0F,0.0F,0.0F)),
-        _out_translation	(PLUG_INFO_INDEX(_out_translation),     Vector3(0.0F,0.0F,0.0F)),
-		_in_scale_0			(PLUG_INFO_INDEX(_in_scale_0),          Vector3(1.0F,1.0F,1.0F)),
-		_in_scale_1			(PLUG_INFO_INDEX(_in_scale_1),          Vector3(1.0F,1.0F,1.0F)),
-		_out_scale			(PLUG_INFO_INDEX(_out_scale),           Vector3(1.0F,1.0F,1.0F)),
+        _in_translation_0	(PLUG_INFO_INDEX(_in_translation_0),    {0.0F,0.0F,0.0F}),
+        _in_translation_1	(PLUG_INFO_INDEX(_in_translation_1),    {0.0F,0.0F,0.0F}),
+        _out_translation	(PLUG_INFO_INDEX(_out_translation),     {0.0F,0.0F,0.0F}),
+        _in_scale_0			(PLUG_INFO_INDEX(_in_scale_0),          {1.0F,1.0F,1.0F}),
+        _in_scale_1			(PLUG_INFO_INDEX(_in_scale_1),          {1.0F,1.0F,1.0F}),
+        _out_scale			(PLUG_INFO_INDEX(_out_scale),           {1.0F,1.0F,1.0F}),
 		_t                  (PLUG_INFO_INDEX(_t), 0.0F)
 {  
 

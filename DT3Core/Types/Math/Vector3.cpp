@@ -22,17 +22,12 @@ namespace DT3 {
 //==============================================================================
 //==============================================================================
 
-Vector3::Vector3 (const Vector2 &rhs, DTfloat z_)
-{  
-	x = rhs.x; 
-	y = rhs.y;		
-	z = z_;		
-}
-
 Vector3 Vector3::fromVec4(const Vector4 &rhs)
 {   
-    return Vector3(rhs.x,rhs.y,rhs.z);
+    return {rhs.x,rhs.y,rhs.z};
 }
+
+Vector3 Vector3::fromVec2(Vector2 rhs, float z_) { return Vector3 {rhs.x,rhs.y,z_}; }
 
 //==============================================================================
 //==============================================================================
@@ -60,11 +55,11 @@ Stream& operator >>(Stream &s, Vector3&v)
 
 Vector3 Vector3::cross (const Vector3& a, const Vector3& b)
 {
-	return Vector3(
+    return {
 		a.y * b.z - a.z * b.y,
 		a.z * b.x - a.x * b.z,
 		a.x * b.y - a.y * b.x
-	);
+    };
     
 }
 		

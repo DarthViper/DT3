@@ -112,7 +112,8 @@ BEGIN_IMPLEMENT_PLUGS(ComponentDrawCamera)
         .set_output(true);
 
 END_IMPLEMENT_PLUGS
-
+}
+using namespace DT3;
 //==============================================================================
 /// Standard class constructors/destructors
 //==============================================================================
@@ -261,15 +262,15 @@ void ComponentDrawCamera::draw (const std::shared_ptr<CameraObject> &camera, con
     Vector3 near_p0, near_p1, near_p2, near_p3;
     Vector3 far_p0, far_p1, far_p2, far_p3;
 
-    near_p0 = MoreMath::transform_4h(projection_inv, Vector3(-1.0F,-1.0F,-1.0F));
-    near_p1 = MoreMath::transform_4h(projection_inv, Vector3(1.0F,-1.0F,-1.0F));
-    near_p2 = MoreMath::transform_4h(projection_inv, Vector3(1.0F,1.0F,-1.0F));
-    near_p3 = MoreMath::transform_4h(projection_inv, Vector3(-1.0F,1.0F,-1.0F));
+    near_p0 = MoreMath::transform_4h(projection_inv, {-1.0F,-1.0F,-1.0F});
+    near_p1 = MoreMath::transform_4h(projection_inv, {1.0F,-1.0F,-1.0F});
+    near_p2 = MoreMath::transform_4h(projection_inv, {1.0F,1.0F,-1.0F});
+    near_p3 = MoreMath::transform_4h(projection_inv, {-1.0F,1.0F,-1.0F});
 
-    far_p0 = MoreMath::transform_4h(projection_inv, Vector3(-1.0F,-1.0F,1.0F));
-    far_p1 = MoreMath::transform_4h(projection_inv, Vector3(1.0F,-1.0F,1.0F));
-    far_p2 = MoreMath::transform_4h(projection_inv, Vector3(1.0F,1.0F,1.0F));
-    far_p3 = MoreMath::transform_4h(projection_inv, Vector3(-1.0F,1.0F,1.0F));
+    far_p0 = MoreMath::transform_4h(projection_inv, {-1.0F,-1.0F,1.0F});
+    far_p1 = MoreMath::transform_4h(projection_inv, {1.0F,-1.0F,1.0F});
+    far_p2 = MoreMath::transform_4h(projection_inv, {1.0F,1.0F,1.0F});
+    far_p3 = MoreMath::transform_4h(projection_inv, {-1.0F,1.0F,1.0F});
 
     b.batch_begin(  camera,
                     _material,
@@ -354,6 +355,3 @@ void ComponentDrawCamera::remove_from_owner (void)
 
 //==============================================================================
 //==============================================================================
-
-} // DT3
-

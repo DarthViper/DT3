@@ -96,17 +96,17 @@ namespace {
                 Vector3 v;
                 
                 switch (side) {
-                    case PLUS_X:    v = Vector3(0.5F, t, s);
+                    case PLUS_X:    v = {0.5F, t, s};
                                     break;
-                    case MINUS_X:   v = Vector3(-0.5F, t, -s);
+                case MINUS_X:   v = {-0.5F, t, -s};
                                     break;
-                    case PLUS_Y:    v = Vector3(-s, 0.5F, -t);
+                case PLUS_Y:    v = {-s, 0.5F, -t};
                                     break;
-                    case MINUS_Y:   v = Vector3(-s, -0.5F, t);
+                case MINUS_Y:   v = {-s, -0.5F, t};
                                     break;
-                    case PLUS_Z:    v = Vector3(-s, t, 0.5F);
+                case PLUS_Z:    v = {-s, t, 0.5F};
                                     break;
-                    case MINUS_Z:   v = Vector3(s, t, -0.5F);
+                case MINUS_Z:   v = {s, t, -0.5F};
                                     break;
                 };
                 

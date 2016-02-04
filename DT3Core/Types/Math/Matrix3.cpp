@@ -225,9 +225,9 @@ Matrix3 operator * (const Matrix3 &a, const Matrix3 &b)
 
 Vector3 operator * (const Matrix3 &a, const Vector3 &b)
 {
-	return Vector3(	a._m11 * b.x + a._m12 * b.y + a._m13 * b.z,
+	return {	a._m11 * b.x + a._m12 * b.y + a._m13 * b.z,
 					a._m21 * b.x + a._m22 * b.y + a._m23 * b.z,
-					a._m31 * b.x + a._m32 * b.y + a._m33 * b.z);
+                    a._m31 * b.x + a._m32 * b.y + a._m33 * b.z};
 }
 
 Vector2 operator * (const Matrix3 &a, const Vector2 &b)
@@ -498,7 +498,7 @@ Matrix3 Matrix3::set_orientation (const Vector3 &back,  const Vector3 &up)
     z = back.normalized();
     x = Vector3::cross(up,z);
 	
-	if (x == Vector3(0.0F,0.0F,0.0F)) {
+    if (x == Vector3 {0.0F,0.0F,0.0F}) {
 		return Matrix3::identity(); 
 	}
     

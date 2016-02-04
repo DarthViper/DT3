@@ -96,7 +96,7 @@ class ScriptingSpline: public ScriptingBase {
         struct Pt {
             Pt (void)
                 :   _transform  (Matrix4::identity()),
-                    _tangent    (0.0F,0.0F,0.0F),
+                  _tangent    ({0.0F,0.0F,0.0F}),
                     _length     (0.0F),
                     _distance   (0.0F),
                     //_a0         (0.0F),

@@ -63,7 +63,7 @@ void EdLevelManipPan::draw (const std::shared_ptr<CameraObject> &camera, float s
     axis = Matrix4(     Matrix3(    1.0F, 0.0F, 0.0F,
                                     0.0F, 1.0F, 0.0F,
                                     0.0F, 0.0F, 1.0F),
-                        Vector3(0.0F,0.0F,0.0F),
+    {0.0F,0.0F,0.0F},
                         1.0F);
 
     DrawUtils::draw_cube (  b,
@@ -75,9 +75,9 @@ void EdLevelManipPan::draw (const std::shared_ptr<CameraObject> &camera, float s
                             0.05F);
     b.draw();
 
-    bool draw_x =  std::abs( Vector3::dot( Vector3(1.0F,0.0F,0.0F),camera->orientation().z_axis()) ) < 0.97F;
-    bool draw_y =  std::abs( Vector3::dot( Vector3(0.0F,1.0F,0.0F),camera->orientation().z_axis()) ) < 0.97F;
-    bool draw_z =  std::abs( Vector3::dot( Vector3(0.0F,0.0F,1.0F),camera->orientation().z_axis()) ) < 0.97F;
+    bool draw_x =  std::abs( Vector3::dot( {1.0F,0.0F,0.0F},camera->orientation().z_axis()) ) < 0.97F;
+    bool draw_y =  std::abs( Vector3::dot( {0.0F,1.0F,0.0F},camera->orientation().z_axis()) ) < 0.97F;
+    bool draw_z =  std::abs( Vector3::dot( {0.0F,0.0F,1.0F},camera->orientation().z_axis()) ) < 0.97F;
 
 
     if (draw_x) {
@@ -86,7 +86,7 @@ void EdLevelManipPan::draw (const std::shared_ptr<CameraObject> &camera, float s
         axis = Matrix4(     Matrix3(    0.0F, 1.0F, 0.0F,
                                         1.0F, 0.0F, 0.0F,
                                         0.0F, 0.0F, -1.0F),
-                            Vector3(1.0F,0.0F,0.0F),
+        {1.0F,0.0F,0.0F},
                             1.0F);
 
         DrawUtils::draw_cone(   b,
@@ -106,7 +106,7 @@ void EdLevelManipPan::draw (const std::shared_ptr<CameraObject> &camera, float s
         axis = Matrix4(     Matrix3(    1.0F, 0.0F, 0.0F,
                                         0.0F, 1.0F, 0.0F,
                                         0.0F, 0.0F, 1.0F),
-                            Vector3(0.0F,1.0F,0.0F),
+        {0.0F,1.0F,0.0F},
                             1.0F);
 
         DrawUtils::draw_cone(   b,
@@ -126,7 +126,7 @@ void EdLevelManipPan::draw (const std::shared_ptr<CameraObject> &camera, float s
         axis = Matrix4(     Matrix3(    1.0F, 0.0F, 0.0F,
                                         0.0F, 0.0F, -1.0F,
                                         0.0F, 1.0F, 0.0F),
-                            Vector3(0.0F,0.0F,1.0F),
+        {0.0F,0.0F,1.0F},
                             1.0F);
 
         DrawUtils::draw_cone(   b,

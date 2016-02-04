@@ -105,15 +105,15 @@ class Matrix4 {
 
         /// X Axis from the transform
         /// \return X Axis
-        Vector3                 x_axis					(void) const		{	return Vector3(_m11, _m21, _m31);		}
+        Vector3                 x_axis					(void) const		{	return {_m11, _m21, _m31};		}
 
         /// Y Axis from the transform
         /// \return Y Axis
-        Vector3                 y_axis					(void) const		{	return Vector3(_m12, _m22, _m32);		}
+        Vector3                 y_axis					(void) const		{	return {_m12, _m22, _m32};		}
 
         /// Z Axis from the transform
         /// \return Z Axis
-        Vector3                 z_axis					(void) const		{	return Vector3(_m13, _m23, _m33);		}
+        Vector3                 z_axis					(void) const		{	return {_m13, _m23, _m33};		}
 
         /// Return the orthogonalized matrix
         /// \return Orthogonalized Matrix
@@ -137,7 +137,7 @@ class Matrix4 {
         /// Description
         /// \param param description
         /// \return description
-        Vector3                 scale                   (void) const        {   return Vector3(x_axis().abs(),y_axis().abs(),z_axis().abs());       }
+        Vector3                 scale                   (void) const        {   return {x_axis().abs(),y_axis().abs(),z_axis().abs()};       }
 
         /// Description
         /// \param param description
@@ -150,7 +150,7 @@ class Matrix4 {
         /// Description
         /// \param param description
         /// \return description
-        Vector3                 translation             (void) const        {   return Vector3(_m14, _m24, _m34); }
+        Vector3                 translation             (void) const        {   return {_m14, _m24, _m34}; }
 
         /// Description
         /// \param param description

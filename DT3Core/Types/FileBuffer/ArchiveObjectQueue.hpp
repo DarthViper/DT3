@@ -1,6 +1,4 @@
 #pragma once
-#ifndef DT3_ARCHIVEOBJECTQUEUE
-#define DT3_ARCHIVEOBJECTQUEUE
 //==============================================================================
 ///
 ///	File: ArchiveObjectQueue.hpp
@@ -60,5 +58,3 @@ class ArchiveObjectQueue {
 //==============================================================================
 
 } // DT3
-
-#endif

@@ -64,11 +64,11 @@ END_IMPLEMENT_PLUGS
 //==============================================================================
 
 ScriptingVector3Mul3::ScriptingVector3Mul3 (void)
-    :   _in1			(PLUG_INFO_INDEX(_in1), Vector3(0.0F,0.0F,0.0F)),
+    :   _in1			(PLUG_INFO_INDEX(_in1), {0.0F,0.0F,0.0F}),
 		_in_mul_x		(PLUG_INFO_INDEX(_in_mul_x), 1.0F),
 		_in_mul_y		(PLUG_INFO_INDEX(_in_mul_y), 1.0F),
 		_in_mul_z		(PLUG_INFO_INDEX(_in_mul_z), 1.0F),
-		_out			(PLUG_INFO_INDEX(_out), Vector3(0.0F,0.0F,0.0F))
+        _out			(PLUG_INFO_INDEX(_out), {0.0F,0.0F,0.0F})
 {  
 
 }
@@ -133,7 +133,7 @@ bool ScriptingVector3Mul3::compute (const PlugBase *plug)
 	if (plug == &_out) {
         Vector3 in1 = _in1;
     
-		_out = Vector3(in1.x * _in_mul_x, in1.y * _in_mul_y, in1.z * _in_mul_z);
+        _out = {in1.x * _in_mul_x, in1.y * _in_mul_y, in1.z * _in_mul_z};
 		_out.set_clean();
 		return true;
 	}

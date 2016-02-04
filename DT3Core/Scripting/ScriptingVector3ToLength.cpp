@@ -49,7 +49,7 @@ END_IMPLEMENT_PLUGS
 //==============================================================================
 
 ScriptingVector3ToLength::ScriptingVector3ToLength (void)
-    :   _in				(PLUG_INFO_INDEX(_in), Vector3(0.0F,0.0F,0.0F)),
+    :   _in				(PLUG_INFO_INDEX(_in), {0.0F,0.0F,0.0F}),
 		_out			(PLUG_INFO_INDEX(_out), 0.0F)
 {  
 

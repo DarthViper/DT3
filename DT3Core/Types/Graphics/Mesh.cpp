@@ -111,7 +111,7 @@ void Mesh::generate_normals (void)
     const uint32_t HASH_TABLE_SIZE = 1021;
 
     _normals_stream.clear();
-    _normals_stream.resize(_vertex_stream.size(), Vector3(0.0F,0.0F,0.0F));
+    _normals_stream.resize(_vertex_stream.size(), {0.0F,0.0F,0.0F});
     
     // Fill hash table
     std::list<uint32_t> vert_hashes[HASH_TABLE_SIZE];
@@ -165,7 +165,7 @@ void Mesh::generate_normals (void)
 	}
 	
     for (uint32_t i = 0; i < _vertex_stream.size(); ++i)
-		if (_normals_stream[i] != Vector3(0.0F,0.0F,0.0F))
+        if (_normals_stream[i] != Vector3 {0.0F,0.0F,0.0F})
 			_normals_stream[i].normalize();
 		
 }
@@ -178,8 +178,8 @@ void Mesh::generate_tangents	(void)
     std::vector<Vector3> tan1;
     std::vector<Vector3> tan2;
     
-    tan1.resize(_vertex_stream.size(), Vector3(0.0F,0.0F,0.0F));
-    tan2.resize(_vertex_stream.size(), Vector3(0.0F,0.0F,0.0F));
+    tan1.resize(_vertex_stream.size(), {0.0F,0.0F,0.0F});
+    tan2.resize(_vertex_stream.size(), {0.0F,0.0F,0.0F});
 
     for (uint32_t face_index = 0; face_index < _index_stream.size(); ++face_index) {
         uint32_t i1 = _index_stream[face_index].v[0];
@@ -215,11 +215,11 @@ void Mesh::generate_tangents	(void)
 		DTfloat r = s1 * t2 - s2 * t1;
 		if (r != 0.0F) {
 			r = 1.0F / r;
-			sdir = Vector3 ((t2 * x1 - t1 * x2) * r, (t2 * y1 - t1 * y2) * r, (t2 * z1 - t1 * z2) * r);
-			tdir = Vector3 ((s1 * x2 - s2 * x1) * r, (s1 * y2 - s2 * y1) * r, (s1 * z2 - s2 * z1) * r); 
+            sdir = {(t2 * x1 - t1 * x2) * r, (t2 * y1 - t1 * y2) * r, (t2 * z1 - t1 * z2) * r};
+            tdir = {(s1 * x2 - s2 * x1) * r, (s1 * y2 - s2 * y1) * r, (s1 * z2 - s2 * z1) * r};
 		} else {
-			sdir = Vector3 (0.0F,0.0F,0.0F);
-			tdir = Vector3 (0.0F,0.0F,0.0F);		
+            sdir = {0.0F,0.0F,0.0F};
+            tdir = {0.0F,0.0F,0.0F};
 		}
 		
 

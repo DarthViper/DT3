@@ -57,8 +57,8 @@ END_IMPLEMENT_PLUGS
 
 ScriptingVector3Project::ScriptingVector3Project (void)
     :   _camera         (PLUG_INFO_INDEX(_camera), NULL),
-        _in             (PLUG_INFO_INDEX(_in), Vector3(0.0F,0.0F,0.0F)),
-		_out			(PLUG_INFO_INDEX(_out), Vector3(0.0F,0.0F,0.0F))
+        _in             (PLUG_INFO_INDEX(_in), {0.0F,0.0F,0.0F}),
+        _out			(PLUG_INFO_INDEX(_out), {0.0F,0.0F,0.0F})
 {
 
 }
@@ -121,7 +121,7 @@ bool ScriptingVector3Project::compute (const PlugBase *plug)
         
             _out = camera->project_point(_in);
         } else {
-            _out = Vector3(0.0F,0.0F,0.0F);
+            _out = {0.0F,0.0F,0.0F};
         }
 
 		_out.set_clean();

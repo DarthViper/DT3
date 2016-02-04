@@ -199,7 +199,7 @@ void GUIController::draw_gui_recursive (PlaceableObject *root, const std::shared
             return;
 
         // Check for no scale
-        if (gui->scale() == Vector3(0.0F,0.0F,0.0F))
+        if (gui->scale() == Vector3 {0.0F,0.0F,0.0F})
             return;
 
         // Get Rectangle

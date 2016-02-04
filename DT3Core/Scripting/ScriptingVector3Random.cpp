@@ -52,7 +52,7 @@ END_IMPLEMENT_PLUGS
 
 ScriptingVector3Random::ScriptingVector3Random (void)
     :   _length			(PLUG_INFO_INDEX(_length), 1.0F),
-		_out			(PLUG_INFO_INDEX(_out), Vector3(0.0F,0.0F,0.0F))
+        _out			(PLUG_INFO_INDEX(_out), {0.0F,0.0F,0.0F})
 {  
 
 }
@@ -107,7 +107,7 @@ void ScriptingVector3Random::tick (const DTfloat dt)
     DTfloat theta = 2.0F * std::acos(std::sqrt( MoreMath::random_float() ));
     DTfloat phi = TWO_PI * MoreMath::random_float();
     
-    _out = Vector3(std::sin(theta) * std::cos(phi), std::sin(theta) * std::sin(phi), std::cos(theta)) * (_length);
+    _out = Vector3 {std::sin(theta) * std::cos(phi), std::sin(theta) * std::sin(phi), std::cos(theta)} * (_length);
 }
 
 //==============================================================================

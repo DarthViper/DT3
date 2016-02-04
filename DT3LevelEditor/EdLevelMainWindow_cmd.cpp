@@ -151,7 +151,7 @@ CommandResult EdLevelMainWindow_cmd::do_paste (CommandContext &ctx, const Comman
     std::list<std::shared_ptr<WorldNode>> items_world = group->nodes();
 
     // Find center
-    Vector3 center(0.0F,0.0F,0.0F);
+    Vector3 center({0.0F,0.0F,0.0F});
 
     for(const std::shared_ptr<const WorldNode> &n : items_world) {
         center += n->node_position();
@@ -163,7 +163,7 @@ CommandResult EdLevelMainWindow_cmd::do_paste (CommandContext &ctx, const Comman
 
     // Add nodes to world with an offset
     for(std::shared_ptr<WorldNode> &n : items_world) {
-        n->set_node_position( n->node_position() + Vector3(delta) );
+        n->set_node_position( n->node_position() + Vector3::fromVec2(delta) );
         ctx.world()->add_node_unique_name(n);
     }
 

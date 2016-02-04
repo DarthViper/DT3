@@ -216,7 +216,7 @@ void ComponentGUIDrawButton::draw (const std::shared_ptr<CameraObject> &camera, 
     if (gui->color().a_as_float() * parent_color.a_as_float() <= 0.0F)
         return;
     
-    if (gui->scale() == Vector3(0.0F,0.0F,0.0F))
+    if (gui->scale() == Vector3 {0.0F,0.0F,0.0F})
         return;
        
     Rectangle local_rect = gui->rectangle();
@@ -270,7 +270,7 @@ void ComponentGUIDrawButton::draw (const std::shared_ptr<CameraObject> &camera, 
         
         // Build local transform for _bounds rectangle
         Matrix4 tex_transform = gui->transform();
-        tex_transform.set_scale(Vector3(1.0F,1.0F,1.0F));
+        tex_transform.set_scale(Vector3{1.0F,1.0F,1.0F});
         tex_transform._m14 = _offset_x;
         tex_transform._m24 = _offset_y;
         

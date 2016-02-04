@@ -62,7 +62,7 @@ ScriptingComponentsToVector3::ScriptingComponentsToVector3 (void)
     :   _in_x			(PLUG_INFO_INDEX(_in_x), 0.0F),
 		_in_y			(PLUG_INFO_INDEX(_in_y), 0.0F),
 		_in_z			(PLUG_INFO_INDEX(_in_z), 0.0F),
-		_out			(PLUG_INFO_INDEX(_out), Vector3(0.0F,0.0F,0.0F))
+        _out			(PLUG_INFO_INDEX(_out), {0.0F,0.0F,0.0F})
 {  
 
 }
@@ -123,7 +123,7 @@ bool ScriptingComponentsToVector3::compute (const PlugBase *plug)
     if (super_type::compute(plug))  return true;
 
 	if (plug == &_out) {
-		_out = Vector3(_in_x, _in_y, _in_z);
+        _out = {_in_x, _in_y, _in_z};
 		_out.set_clean();
 		
 		return true;

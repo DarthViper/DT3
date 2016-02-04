@@ -65,13 +65,13 @@ END_IMPLEMENT_PLUGS
 //==============================================================================
 
 ScriptingVector3Transform::ScriptingVector3Transform (void)
-    :   _in             (PLUG_INFO_INDEX(_in), Vector3(0.0F,0.0F,0.0F)),
-		_translation	(PLUG_INFO_INDEX(_translation), Vector3(0.0F,0.0F,0.0F)),
+    :   _in             (PLUG_INFO_INDEX(_in), {0.0F,0.0F,0.0F}),
+        _translation	(PLUG_INFO_INDEX(_translation), {0.0F,0.0F,0.0F}),
 		_orientation	(PLUG_INFO_INDEX(_orientation), Matrix3   (1.0F,  0.0F,   0.0F,
                                                              0.0F,  1.0F,   0.0F,
                                                              0.0F,  0.0F,   1.0F)),
 		_scale			(PLUG_INFO_INDEX(_scale), 1.0F),
-		_out			(PLUG_INFO_INDEX(_out), Vector3(0.0F,0.0F,0.0F))
+        _out			(PLUG_INFO_INDEX(_out), {0.0F,0.0F,0.0F})
 {  
 
 }
