@@ -10,6 +10,7 @@
 //==============================================================================
 
 #include "DT3Core/Types/Network/AssetDownloader.hpp"
+
 #include "DT3Core/Types/Network/NetworkSocket.hpp"
 #include "DT3Core/Types/Network/NetworkAddress.hpp"
 #include "DT3Core/Types/Network/NetworkPacket.hpp"
@@ -24,8 +25,9 @@
 #include "DT3Core/Devices/DeviceNetwork.hpp"
 #include "DT3Core/System/System.hpp"
 #include "DT3Core/System/FileManager.hpp"
+#include "DT3Core/Platform/HalSelector.h"
+
 #include <map>
-#include DT3_HAL_INCLUDE_PATH
 
 //==============================================================================
 //==============================================================================

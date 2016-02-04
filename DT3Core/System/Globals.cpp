@@ -14,7 +14,8 @@
 #include "DT3Core/Types/Utility/MoreStrings.hpp"
 #include "DT3Core/Types/Utility/Error.hpp"
 #include "DT3Core/Types/Utility/ConsoleStream.hpp"
-#include DT3_HAL_INCLUDE_PATH
+#include "DT3Core/Platform/HalSelector.h"
+
 
 //==============================================================================
 //==============================================================================

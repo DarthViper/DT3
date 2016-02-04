@@ -115,91 +115,27 @@ class PlugNode: public BaseClass {
     public:
         DEFINE_ACCESSORS_REF(name, set_name, std::string, _name)
 
-        /// Returns the full name of object that uniquely identifies it
-        /// \return full name of object
         virtual std::string             full_name                           (void) const;
-
-        /// Returns the preferred name of the object for when it is created
-        /// \return preferred name of object
         virtual std::string             preferred_name                      (void) const;
-
-        /// Returns a plug with matching name
-        /// \return matching plug
         PlugBase*						plug_by_name                        (const std::string &name);
-
-        /// Builds a list of all of the plugs
-        /// \param plugs all plugs in the node
         void							all_plugs                           (std::list<PlugBase*> &plugs);
-
-        /// Returns an event with matching name
-        /// \return matching event
         Event*                          event_by_name                       (const std::string &name);
-
-        /// Builds a list of all of the events
-        /// \param events all events in the node
         void							all_events                          (std::list<Event*> &events);
-
-
-        /// Compute function called when a plug value needs to be calculated
-        /// \param plug plug to compute
-        /// \return Compute successful
-        virtual bool				compute                             (const PlugBase *plug);
-
-
-        /// Disconnect all of the plugs
+        virtual bool                    compute                             (const PlugBase *plug);
         void							disconnect_all_plugs                (void);
-
-        /// Disconnect all of the events
         void							disconnect_all_events               (void);
 
-
-        /// Called when an outgoing plug is disconnected
-        /// \param outgoing outgoing plug
-        /// \param incoming other incoming plug
         virtual void					outgoing_plug_was_disconnected      (PlugBase *outgoing, PlugBase *incoming);
-
-        /// Called when an outgoing plug is attached
-        /// \param outgoing outgoing plug
-        /// \param incoming other incoming plug
         virtual void					outgoing_plug_was_attached          (PlugBase *outgoing, PlugBase *incoming);
-
-        /// Called when an incoming plug is disconnected
-        /// \param outgoing other outgoing plug
-        /// \param incoming incoming plug
         virtual void					incoming_plug_was_disconnected      (PlugBase *outgoing, PlugBase *incoming);
-
-        /// Called when an outgoing plug is attached
-        /// \param outgoing other outgoing plug
-        /// \param incoming incoming plug
         virtual void					incoming_plug_was_attached          (PlugBase *outgoing, PlugBase *incoming);
-
-
-        /// Called when an outgoing event is disconnected
-        /// \param outgoing outgoing event
-        /// \param incoming other incoming event
         virtual void					outgoing_event_was_disconnected     (Event *outgoing, Event *incoming);
-
-        /// Called when an outgoing event is attached
-        /// \param outgoing outgoing event
-        /// \param incoming other incoming event
         virtual void					outgoing_event_was_attached         (Event *outgoing, Event *incoming);
-
-        /// Called when an incoming event is disconnected
-        /// \param outgoing other outgoing event
-        /// \param incoming incoming event
         virtual void					incoming_event_was_disconnected     (Event *outgoing, Event *incoming);
-
-        /// Called when an outgoing event is attached
-        /// \param outgoing other outgoing event
-        /// \param incoming incoming event
         virtual void					incoming_event_was_attached         (Event *outgoing, Event *incoming);
-
-
         /// Returns a mutex for computing this plug
         /// \return mutex
         std::recursive_mutex&           lock                                (void)  {   return _lock;   }
-
-
         /// This is a known plug pointer that is created for use in the unit tests for testing the compute
         /// chain. It doesn't get actually used anywhere.
         /// \return standard pointer

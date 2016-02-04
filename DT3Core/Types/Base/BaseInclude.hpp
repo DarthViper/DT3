@@ -245,19 +245,6 @@ namespace DT3 {
 #endif
 
 //==============================================================================
-//==============================================================================
-
-#if DT3_OS == DT3_IOS || DT3_OS == DT3_MACOSX
-    #define DT3_HAL_INCLUDE_PATH "DT3Apple/HAL.hpp"
-#elif DT3_OS == DT3_ANDROID
-    #define DT3_HAL_INCLUDE_PATH "DT3Android/HAL.hpp"
-#elif DT3_OS == DT3_WINDOWS
-    #define DT3_HAL_INCLUDE_PATH "DT3Windows8/HAL.hpp"
-#elif DT3_OS == DT3_LINUX
-    #define DT3_HAL_INCLUDE_PATH "DT3Linux/HAL.hpp"
-#endif
-
-//==============================================================================
 // Thread local storage
 //==============================================================================
 

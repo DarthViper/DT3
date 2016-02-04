@@ -1,6 +1,4 @@
 #pragma once
-#ifndef DT3_COMPONENTDRAWCAMERA
-#define DT3_COMPONENTDRAWCAMERA
 //==============================================================================
 ///
 ///	File: ComponentDrawCamera.hpp
@@ -82,5 +80,3 @@ class ComponentDrawCamera: public ComponentBase {
 //==============================================================================
 
 } // DT3
-
-#endif

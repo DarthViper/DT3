@@ -37,7 +37,7 @@ class Vector3 {
         DEFINE_TYPE_SIMPLE_BASE(Vector3)
         static Vector3      fromVec4(const Vector4 &rhs);
         static Vector3      fromVec2(Vector2 rhs,float z_=0.0f);
-        static Vector3      fromFloat(float v) { return Vector3 {v,v,v}; }
+        static Vector3      fromFloat(float v) { return {v,v,v}; }
 
 
     public:
@@ -94,7 +94,7 @@ class Vector3 {
             DTfloat y;
             DTfloat z;
 };
-static_assert(std::is_pod<Vector3>(),"w");
+
 //==============================================================================
 /// Streaming operators
 //==============================================================================

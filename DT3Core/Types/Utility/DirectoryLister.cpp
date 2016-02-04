@@ -12,7 +12,7 @@
 #include "DT3Core/Types/Utility/DirectoryLister.hpp"
 #include "DT3Core/Types/Utility/Assert.hpp"
 #include "DT3Core/Types/FileBuffer/FilePath.hpp"
-#include DT3_HAL_INCLUDE_PATH
+#include "DT3Core/Platform/HalSelector.h"
 
 //==============================================================================
 //==============================================================================

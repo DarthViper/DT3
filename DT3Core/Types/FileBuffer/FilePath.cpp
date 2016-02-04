@@ -16,7 +16,8 @@
 #include "DT3Core/Types/Utility/MoreStrings.hpp"
 #include "DT3Core/System/Globals.hpp"
 #include "DT3Core/System/FileManager.hpp"
-#include DT3_HAL_INCLUDE_PATH
+#include "DT3Core/Platform/HalSelector.h"
+
 #include <fstream>
 
 #include <QtCore/QCryptographicHash>

@@ -33,7 +33,7 @@
 #include "DT3Core/Types/FileBuffer/FilePath.hpp"
 #include "DT3Core/World/World.hpp"
 #include "DT3Core/World/WorldNode.hpp"
-#include DT3_HAL_INCLUDE_PATH
+#include "DT3Core/Platform/HalSelector.h"
 
 
 //==============================================================================

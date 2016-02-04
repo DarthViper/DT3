@@ -27,7 +27,7 @@
 #include "DT3Core/Components/ComponentBase.hpp"
 #include "DT3Core/Objects/ObjectBase.hpp"
 #include "DT3Core/Objects/PlaceableObject.hpp"
-#include DT3_HAL_INCLUDE_PATH
+#include "DT3Core/Platform/HalSelector.h"
 #include <map>
 #include <set>
 

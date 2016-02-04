@@ -154,6 +154,8 @@ void PlugNode::archive_done (const std::shared_ptr<Archive> &archive)
 //==============================================================================
 //==============================================================================
 
+/// Returns the full name of object that uniquely identifies it
+/// \return full name of object
 std::string PlugNode::full_name (void) const
 {
     std::unique_lock<std::recursive_mutex> lock(_lock);
@@ -161,6 +163,8 @@ std::string PlugNode::full_name (void) const
     return name();
 }
 
+/// Returns the preferred name of the object for when it is created
+/// \return preferred name of object
 std::string PlugNode::preferred_name (void) const
 {
     std::unique_lock<std::recursive_mutex> lock(_lock);
@@ -171,6 +175,8 @@ std::string PlugNode::preferred_name (void) const
 //==============================================================================
 //==============================================================================
 
+/// Returns a plug with matching name
+/// \return matching plug
 PlugBase* PlugNode::plug_by_name (const std::string &name)
 {	
     std::unique_lock<std::recursive_mutex> lock(_lock);
@@ -183,6 +189,8 @@ PlugBase* PlugNode::plug_by_name (const std::string &name)
 	return NULL;
 }
 
+/// Builds a list of all of the plugs
+/// \param plugs all plugs in the node
 void PlugNode::all_plugs (std::list<PlugBase*> &plugs)
 {
     std::unique_lock<std::recursive_mutex> lock(_lock);
@@ -197,6 +205,8 @@ void PlugNode::all_plugs (std::list<PlugBase*> &plugs)
 //==============================================================================
 //==============================================================================
 
+/// Returns an event with matching name
+/// \return matching event
 Event* PlugNode::event_by_name (const std::string &name)
 {	
     std::unique_lock<std::recursive_mutex> lock(_lock);
@@ -209,6 +219,8 @@ Event* PlugNode::event_by_name (const std::string &name)
 	return NULL;
 }
 
+/// Builds a list of all of the events
+/// \param events all events in the node
 void PlugNode::all_events (std::list<Event*> &events)
 {
     std::unique_lock<std::recursive_mutex> lock(_lock);
@@ -223,6 +235,7 @@ void PlugNode::all_events (std::list<Event*> &events)
 //==============================================================================
 //==============================================================================
 
+/// Disconnect all of the plugs
 void PlugNode::disconnect_all_plugs	(void)
 {
     std::unique_lock<std::recursive_mutex> lock(_lock);
@@ -237,6 +250,7 @@ void PlugNode::disconnect_all_plugs	(void)
 //==============================================================================
 //==============================================================================
 
+/// Disconnect all of the events
 void PlugNode::disconnect_all_events	(void)
 {
     std::unique_lock<std::recursive_mutex> lock(_lock);
@@ -251,22 +265,34 @@ void PlugNode::disconnect_all_events	(void)
 //==============================================================================
 //==============================================================================
 
+/// Called when an outgoing plug is disconnected
+/// \param outgoing outgoing plug
+/// \param incoming other incoming plug
 void PlugNode::outgoing_plug_was_disconnected (PlugBase *outgoing, PlugBase *incoming)
 {
 	SystemCallbacks::disconnect_plug_cb().fire(outgoing, incoming);
 }
 
+/// Called when an outgoing plug is attached
+/// \param outgoing outgoing plug
+/// \param incoming other incoming plug
 void PlugNode::outgoing_plug_was_attached (PlugBase *outgoing, PlugBase *incoming)
 {
     SystemCallbacks::connect_plug_cb().fire(outgoing,incoming);
 }
 
+/// Called when an incoming plug is disconnected
+/// \param outgoing other outgoing plug
+/// \param incoming incoming plug
 void PlugNode::incoming_plug_was_disconnected (PlugBase *outgoing, PlugBase *incoming)
 {
     // Messages sent by outgoing plugs above
 	//callDisconnectPlugCB (outgoing, incoming);
 }
 
+/// Called when an outgoing plug is attached
+/// \param outgoing other outgoing plug
+/// \param incoming incoming plug
 void PlugNode::incoming_plug_was_attached (PlugBase *outgoing, PlugBase *incoming)
 {
     // Messages sent by outgoing plugs above
@@ -274,22 +300,34 @@ void PlugNode::incoming_plug_was_attached (PlugBase *outgoing, PlugBase *incomin
 }
 
 
+/// Called when an outgoing event is disconnected
+/// \param outgoing outgoing event
+/// \param incoming other incoming event
 void PlugNode::outgoing_event_was_disconnected (Event *outgoing, Event *incoming)
 {
 	SystemCallbacks::disconnect_event_cb().fire(outgoing, incoming);
 }
 
+/// Called when an outgoing event is attached
+/// \param outgoing outgoing event
+/// \param incoming other incoming event
 void PlugNode::outgoing_event_was_attached (Event *outgoing, Event *incoming)
 {
     SystemCallbacks::connect_event_cb().fire(outgoing,incoming);
 }
 
+/// Called when an incoming event is disconnected
+/// \param outgoing other outgoing event
+/// \param incoming incoming event
 void PlugNode::incoming_event_was_disconnected (Event *outgoing, Event *incoming)
 {
     // Messages sent by outgoing events above
 	//getDisconnectEventCB().fire(outgoing, incoming);
 }
 
+/// Called when an outgoing event is attached
+/// \param outgoing other outgoing event
+/// \param incoming incoming event
 void PlugNode::incoming_event_was_attached (Event *outgoing, Event *incoming)
 {
     // Messages sent by outgoing events above
@@ -299,6 +337,9 @@ void PlugNode::incoming_event_was_attached (Event *outgoing, Event *incoming)
 //==============================================================================
 //==============================================================================
 
+/// Compute function called when a plug value needs to be calculated
+/// \param plug plug to compute
+/// \return Compute successful
 bool PlugNode::compute (const PlugBase *plug)
 {
     if (plug == test_compute_chain_plug())

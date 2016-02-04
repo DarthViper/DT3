@@ -58,7 +58,7 @@
 #include "DT3Core/Types/FileBuffer/ArchiveObjectQueue.hpp"
 #include "DT3Core/Components/ComponentBase.hpp"
 #include "DT3Core/Objects/ObjectBase.hpp"
-#include DT3_HAL_INCLUDE_PATH
+#include "DT3Core/Platform/HalSelector.h"
 #include <limits>
 #include <set>
 

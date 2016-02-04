@@ -16,7 +16,8 @@
 #include "DT3Core/Types/FileBuffer/ArchiveData.hpp"
 #include "DT3Core/Types/FileBuffer/Archive.hpp"
 #include "DT3Core/Types/Network/URL.hpp"
-#include DT3_HAL_INCLUDE_PATH
+#include "DT3Core/Platform/HalSelector.h"
+
 
 //==============================================================================
 //==============================================================================

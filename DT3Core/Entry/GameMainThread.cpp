@@ -36,7 +36,8 @@
     #include "DT3DX11/DT3GLDX11.hpp"
 #endif
 
-#include DT3_HAL_INCLUDE_PATH
+#include "DT3Core/Platform/HalSelector.h"
+
 
 #if DTP_USE_PORTAL
     #include "DTPortalSDK.hpp"
