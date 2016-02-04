@@ -1,15 +1,17 @@
 //==============================================================================
-///	
+///
 ///	File: DrawUtils.cpp
-///	
+///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
 /// This file is subject to the terms and conditions defined in
 /// file 'LICENSE.txt', which is part of this source code package.
-///	
+///
 //==============================================================================
 
 #include "DT3Core/Types/Graphics/DrawUtils.hpp"
+
+#include "DT3Core/Types/Graphics/DrawBatcher.hpp"
 #include "DT3Core/Types/Graphics/BitFont.hpp"
 #include "DT3Core/Types/Utility/ConsoleStream.hpp"
 #include "DT3Core/Types/Math/MoreMath.hpp"
@@ -25,6 +27,17 @@ namespace DT3 {
 //==============================================================================
 //==============================================================================
 
+/// Draw a stretched quad split into 9 parts
+/// \param draw_batcher Draw batcher to use
+/// \param material Material to use
+/// \param color Color to use
+/// \param transform Transform to use
+/// \param xpos xpos of quad
+/// \param ypos ypos of quad
+/// \param xsize xsize of quad
+/// \param ysize ysize of quad
+/// \param corner_width width of the corner
+/// \param corner_height height of the corner
 void DrawUtils::draw_quad_stretch_center_3x3 (  DrawBatcher &draw_batcher,
                                             const std::shared_ptr<CameraObject> &camera,
                                             const std::shared_ptr<MaterialResource> &material,
@@ -38,38 +51,38 @@ void DrawUtils::draw_quad_stretch_center_3x3 (  DrawBatcher &draw_batcher,
                                             DTfloat corner_width,
                                             DTfloat corner_height)
 {
-	
-	// Adjust corner width
-	if (corner_width > xsize * 0.5F)
-		corner_width = xsize * 0.5F;
-		
-	if (corner_height > ysize * 0.5F)
-		corner_height = ysize * 0.5F;
-	
-		
-	// Makes the corners of the image. This means we have to draw nine rectangles.
-	DTfloat one_third_x = 1.0F / 3.0F;
-	DTfloat two_thirds_x = 1.0F - one_third_x;
-	DTfloat one_third_y = 1.0F / 3.0F;
-	DTfloat two_thirds_y = 1.0F - one_third_y;
-	
-	const DTfloat minus_x = xpos;
-	const DTfloat plus_x = xpos + xsize;
 
-	const DTfloat minus_y = ypos;
-	const DTfloat plus_y = ypos + ysize;
-	
-	DTfloat inner_left = minus_x + corner_width;
-	DTfloat inner_right = plus_x - corner_width;
+    // Adjust corner width
+    if (corner_width > xsize * 0.5F)
+        corner_width = xsize * 0.5F;
 
-	DTfloat inner_top = plus_y - corner_height;
-	DTfloat inner_bottom = minus_y + corner_height;
-		
-	if (inner_left > inner_right)	inner_left = inner_right = (minus_x + plus_x) * 0.5F;
-	if (inner_bottom > inner_top)	inner_bottom = inner_top = (minus_y + plus_y) * 0.5F;
-					
-	draw_batcher.batch_begin(camera, material, shader, transform, DT3GL_PRIM_TRI_STRIP, DrawBatcher::FMT_V | DrawBatcher::FMT_T0 | DrawBatcher::FMT_C);
-    
+    if (corner_height > ysize * 0.5F)
+        corner_height = ysize * 0.5F;
+
+
+    // Makes the corners of the image. This means we have to draw nine rectangles.
+    DTfloat one_third_x = 1.0F / 3.0F;
+    DTfloat two_thirds_x = 1.0F - one_third_x;
+    DTfloat one_third_y = 1.0F / 3.0F;
+    DTfloat two_thirds_y = 1.0F - one_third_y;
+
+    const DTfloat minus_x = xpos;
+    const DTfloat plus_x = xpos + xsize;
+
+    const DTfloat minus_y = ypos;
+    const DTfloat plus_y = ypos + ysize;
+
+    DTfloat inner_left = minus_x + corner_width;
+    DTfloat inner_right = plus_x - corner_width;
+
+    DTfloat inner_top = plus_y - corner_height;
+    DTfloat inner_bottom = minus_y + corner_height;
+
+    if (inner_left > inner_right)	inner_left = inner_right = (minus_x + plus_x) * 0.5F;
+    if (inner_bottom > inner_top)	inner_bottom = inner_top = (minus_y + plus_y) * 0.5F;
+
+    draw_batcher.batch_begin(camera, material, shader, transform, DT3GL_PRIM_TRI_STRIP, DrawBatcher::FMT_V | DrawBatcher::FMT_T0 | DrawBatcher::FMT_C);
+
     // Bottom row
     draw_batcher.add().v(minus_x,		inner_bottom,	0.0F)   .t0(0.0F,			one_third_y)    .c(color);
     draw_batcher.add().v(minus_x,       minus_y,        0.0F)   .t0(0.0F,           0.0F)           .c(color);
@@ -77,42 +90,53 @@ void DrawUtils::draw_quad_stretch_center_3x3 (  DrawBatcher &draw_batcher,
     draw_batcher.add().v(inner_left,    minus_y,		0.0F)   .t0(one_third_x,    0.0F)           .c(color);
     draw_batcher.add().v(inner_right,	inner_bottom,	0.0F)   .t0(two_thirds_x,	one_third_y)    .c(color);
     draw_batcher.add().v(inner_right,	minus_y,		0.0F)   .t0(two_thirds_x,	0.0F)           .c(color);
-	draw_batcher.add().v(plus_x,		inner_bottom,	0.0F)   .t0(1.0F,			one_third_y)    .c(color);
-	draw_batcher.add().v(plus_x,		minus_y,		0.0F)   .t0(1.0F,			0.0F)           .c(color);
-    
-	draw_batcher.add().v(plus_x,		minus_y,		0.0F)   .t0(1.0F,			0.0F)           .c(color);  // Degenerate
-	draw_batcher.add().v(plus_x,		minus_y,		0.0F)   .t0(1.0F,			0.0F)           .c(color);  // Degenerate
-    
-    // Middle row
-	draw_batcher.add().v(minus_x,		inner_top,		0.0F)   .t0(0.0F,			two_thirds_y)   .c(color);
-	draw_batcher.add().v(minus_x,		inner_bottom,	0.0F)   .t0(0.0F,			one_third_y)    .c(color);
-	draw_batcher.add().v(inner_left,	inner_top,		0.0F)   .t0(one_third_x,	two_thirds_y)   .c(color);
-	draw_batcher.add().v(inner_left,	inner_bottom,	0.0F)   .t0(one_third_x,	one_third_y)    .c(color);
-    draw_batcher.add().v(inner_right,	inner_top,		0.0F)   .t0(two_thirds_x,	two_thirds_y)   .c(color);
-	draw_batcher.add().v(inner_right,	inner_bottom,	0.0F)   .t0(two_thirds_x,	one_third_y)    .c(color);
-    draw_batcher.add().v(plus_x,		inner_top,		0.0F)   .t0(1.0F,			two_thirds_y)   .c(color);
-	draw_batcher.add().v(plus_x,		inner_bottom,	0.0F)   .t0(1.0F,			one_third_y)    .c(color);
-    
-	draw_batcher.add().v(plus_x,		inner_bottom,	0.0F)   .t0(1.0F,			one_third_y)    .c(color);  // Degenerate
-	draw_batcher.add().v(plus_x,		inner_bottom,	0.0F)   .t0(1.0F,			one_third_y)    .c(color);  // Degenerate
-	
-    // Top row
-	draw_batcher.add().v(minus_x,		plus_y,			0.0F)   .t0(0.0F,			1.0F)           .c(color);
-	draw_batcher.add().v(minus_x,		inner_top,		0.0F)   .t0(0.0F,			two_thirds_y)   .c(color);
-	draw_batcher.add().v(inner_left,	plus_y,			0.0F)   .t0(one_third_x,	1.0F)           .c(color);
-	draw_batcher.add().v(inner_left,	inner_top,		0.0F)   .t0(one_third_x,	two_thirds_y)   .c(color);
-    draw_batcher.add().v(inner_right,	plus_y,			0.0F)   .t0(two_thirds_x,	1.0F)           .c(color);
-	draw_batcher.add().v(inner_right,	inner_top,		0.0F)   .t0(two_thirds_x,	two_thirds_y)   .c(color);
-	draw_batcher.add().v(plus_x,		plus_y,			0.0F)   .t0(1.0F,			1.0F)           .c(color);
-	draw_batcher.add().v(plus_x,		inner_top,		0.0F)   .t0(1.0F,			two_thirds_y)   .c(color);
+    draw_batcher.add().v(plus_x,		inner_bottom,	0.0F)   .t0(1.0F,			one_third_y)    .c(color);
+    draw_batcher.add().v(plus_x,		minus_y,		0.0F)   .t0(1.0F,			0.0F)           .c(color);
 
-	draw_batcher.batch_end();
+    draw_batcher.add().v(plus_x,		minus_y,		0.0F)   .t0(1.0F,			0.0F)           .c(color);  // Degenerate
+    draw_batcher.add().v(plus_x,		minus_y,		0.0F)   .t0(1.0F,			0.0F)           .c(color);  // Degenerate
+
+    // Middle row
+    draw_batcher.add().v(minus_x,		inner_top,		0.0F)   .t0(0.0F,			two_thirds_y)   .c(color);
+    draw_batcher.add().v(minus_x,		inner_bottom,	0.0F)   .t0(0.0F,			one_third_y)    .c(color);
+    draw_batcher.add().v(inner_left,	inner_top,		0.0F)   .t0(one_third_x,	two_thirds_y)   .c(color);
+    draw_batcher.add().v(inner_left,	inner_bottom,	0.0F)   .t0(one_third_x,	one_third_y)    .c(color);
+    draw_batcher.add().v(inner_right,	inner_top,		0.0F)   .t0(two_thirds_x,	two_thirds_y)   .c(color);
+    draw_batcher.add().v(inner_right,	inner_bottom,	0.0F)   .t0(two_thirds_x,	one_third_y)    .c(color);
+    draw_batcher.add().v(plus_x,		inner_top,		0.0F)   .t0(1.0F,			two_thirds_y)   .c(color);
+    draw_batcher.add().v(plus_x,		inner_bottom,	0.0F)   .t0(1.0F,			one_third_y)    .c(color);
+
+    draw_batcher.add().v(plus_x,		inner_bottom,	0.0F)   .t0(1.0F,			one_third_y)    .c(color);  // Degenerate
+    draw_batcher.add().v(plus_x,		inner_bottom,	0.0F)   .t0(1.0F,			one_third_y)    .c(color);  // Degenerate
+
+    // Top row
+    draw_batcher.add().v(minus_x,		plus_y,			0.0F)   .t0(0.0F,			1.0F)           .c(color);
+    draw_batcher.add().v(minus_x,		inner_top,		0.0F)   .t0(0.0F,			two_thirds_y)   .c(color);
+    draw_batcher.add().v(inner_left,	plus_y,			0.0F)   .t0(one_third_x,	1.0F)           .c(color);
+    draw_batcher.add().v(inner_left,	inner_top,		0.0F)   .t0(one_third_x,	two_thirds_y)   .c(color);
+    draw_batcher.add().v(inner_right,	plus_y,			0.0F)   .t0(two_thirds_x,	1.0F)           .c(color);
+    draw_batcher.add().v(inner_right,	inner_top,		0.0F)   .t0(two_thirds_x,	two_thirds_y)   .c(color);
+    draw_batcher.add().v(plus_x,		plus_y,			0.0F)   .t0(1.0F,			1.0F)           .c(color);
+    draw_batcher.add().v(plus_x,		inner_top,		0.0F)   .t0(1.0F,			two_thirds_y)   .c(color);
+
+    draw_batcher.batch_end();
     draw_batcher.draw();
 }
 
 //==============================================================================
 //==============================================================================
 
+/// Draw a stretched quad split into 4 parts
+/// \param draw_batcher Draw batcher to use
+/// \param material Material to use
+/// \param color Color to use
+/// \param transform Transform to use
+/// \param xpos xpos of quad
+/// \param ypos ypos of quad
+/// \param xsize xsize of quad
+/// \param ysize ysize of quad
+/// \param corner_width width of the corner
+/// \param corner_height height of the corner
 void DrawUtils::draw_quad_stretch_center_2x2 (  DrawBatcher &draw_batcher,
                                             const std::shared_ptr<CameraObject> &camera,
                                             const std::shared_ptr<MaterialResource> &material,
@@ -126,31 +150,31 @@ void DrawUtils::draw_quad_stretch_center_2x2 (  DrawBatcher &draw_batcher,
                                             DTfloat corner_width,
                                             DTfloat corner_height)
 {
-	
-	// Adjust corner width
-	if (corner_width > xsize * 0.5F)
-		corner_width = xsize * 0.5F;
-		
-	if (corner_height > ysize * 0.5F)
-		corner_height = ysize * 0.5F;
-	
-	const DTfloat minus_x = xpos;
-	const DTfloat plus_x = xpos + xsize;
 
-	const DTfloat minus_y = ypos;
-	const DTfloat plus_y = ypos + ysize;
-	
-	DTfloat inner_left = minus_x + corner_width;
-	DTfloat inner_right = plus_x - corner_width;
+    // Adjust corner width
+    if (corner_width > xsize * 0.5F)
+        corner_width = xsize * 0.5F;
 
-	DTfloat inner_top = plus_y - corner_height;
-	DTfloat inner_bottom = minus_y + corner_height;
-		
-	if (inner_left > inner_right)	inner_left = inner_right = (minus_x + plus_x) * 0.5F;
-	if (inner_bottom > inner_top)	inner_bottom = inner_top = (minus_y + plus_y) * 0.5F;
-					
-	draw_batcher.batch_begin(camera, material, shader, transform, DT3GL_PRIM_TRI_STRIP, DrawBatcher::FMT_V | DrawBatcher::FMT_T0 | DrawBatcher::FMT_C);
-    
+    if (corner_height > ysize * 0.5F)
+        corner_height = ysize * 0.5F;
+
+    const DTfloat minus_x = xpos;
+    const DTfloat plus_x = xpos + xsize;
+
+    const DTfloat minus_y = ypos;
+    const DTfloat plus_y = ypos + ysize;
+
+    DTfloat inner_left = minus_x + corner_width;
+    DTfloat inner_right = plus_x - corner_width;
+
+    DTfloat inner_top = plus_y - corner_height;
+    DTfloat inner_bottom = minus_y + corner_height;
+
+    if (inner_left > inner_right)	inner_left = inner_right = (minus_x + plus_x) * 0.5F;
+    if (inner_bottom > inner_top)	inner_bottom = inner_top = (minus_y + plus_y) * 0.5F;
+
+    draw_batcher.batch_begin(camera, material, shader, transform, DT3GL_PRIM_TRI_STRIP, DrawBatcher::FMT_V | DrawBatcher::FMT_T0 | DrawBatcher::FMT_C);
+
     // Bottom row
     draw_batcher.add().v(minus_x,		inner_bottom,	0.0F)   .t0(0.0F,   0.5F)   .c(color);
     draw_batcher.add().v(minus_x,       minus_y,        0.0F)   .t0(0.0F,   0.0F)   .c(color);
@@ -158,42 +182,50 @@ void DrawUtils::draw_quad_stretch_center_2x2 (  DrawBatcher &draw_batcher,
     draw_batcher.add().v(inner_left,    minus_y,		0.0F)   .t0(0.5F,   0.0F)   .c(color);
     draw_batcher.add().v(inner_right,	inner_bottom,	0.0F)   .t0(0.5F,	0.5F)   .c(color);
     draw_batcher.add().v(inner_right,	minus_y,		0.0F)   .t0(0.5F,	0.0F)   .c(color);
-	draw_batcher.add().v(plus_x,		inner_bottom,	0.0F)   .t0(1.0F,   0.5F)   .c(color);
-	draw_batcher.add().v(plus_x,		minus_y,		0.0F)   .t0(1.0F,   0.0F)   .c(color);
-    
-	draw_batcher.add().v(plus_x,		minus_y,		0.0F)   .t0(1.0F,   0.0F)   .c(color);  // Degenerate
-	draw_batcher.add().v(plus_x,		minus_y,		0.0F)   .t0(1.0F,   0.0F)   .c(color);  // Degenerate
-    
-    // Middle row
-	draw_batcher.add().v(minus_x,		inner_top,		0.0F)   .t0(0.0F,   0.5F)   .c(color);
-	draw_batcher.add().v(minus_x,		inner_bottom,	0.0F)   .t0(0.0F,   0.5F)   .c(color);
-	draw_batcher.add().v(inner_left,	inner_top,		0.0F)   .t0(0.5F,	0.5F)   .c(color);
-	draw_batcher.add().v(inner_left,	inner_bottom,	0.0F)   .t0(0.5F,	0.5F)   .c(color);
-    draw_batcher.add().v(inner_right,	inner_top,		0.0F)   .t0(0.5F,	0.5F)   .c(color);
-	draw_batcher.add().v(inner_right,	inner_bottom,	0.0F)   .t0(0.5F,	0.5F)   .c(color);
-    draw_batcher.add().v(plus_x,		inner_top,		0.0F)   .t0(1.0F,   0.5F)   .c(color);
-	draw_batcher.add().v(plus_x,		inner_bottom,	0.0F)   .t0(1.0F,   0.5F)   .c(color);
-    
-	draw_batcher.add().v(plus_x,		inner_bottom,	0.0F)   .t0(1.0F,   0.5F)   .c(color);  // Degenerate
-	draw_batcher.add().v(plus_x,		inner_bottom,	0.0F)   .t0(1.0F,   0.5F)   .c(color);  // Degenerate
-	
-    // Top row
-	draw_batcher.add().v(minus_x,		plus_y,			0.0F)   .t0(0.0F,   1.0F)   .c(color);
-	draw_batcher.add().v(minus_x,		inner_top,		0.0F)   .t0(0.0F,   0.5F)   .c(color);
-	draw_batcher.add().v(inner_left,	plus_y,			0.0F)   .t0(0.5F,	1.0F)   .c(color);
-	draw_batcher.add().v(inner_left,	inner_top,		0.0F)   .t0(0.5F,	0.5F)   .c(color);
-    draw_batcher.add().v(inner_right,	plus_y,			0.0F)   .t0(0.5F,	1.0F)   .c(color);
-	draw_batcher.add().v(inner_right,	inner_top,		0.0F)   .t0(0.5F,	0.5F)   .c(color);
-	draw_batcher.add().v(plus_x,		plus_y,			0.0F)   .t0(1.0F,   1.0F)   .c(color);
-	draw_batcher.add().v(plus_x,		inner_top,		0.0F)   .t0(1.0F,   0.5F)   .c(color);
+    draw_batcher.add().v(plus_x,		inner_bottom,	0.0F)   .t0(1.0F,   0.5F)   .c(color);
+    draw_batcher.add().v(plus_x,		minus_y,		0.0F)   .t0(1.0F,   0.0F)   .c(color);
 
-	draw_batcher.batch_end();
+    draw_batcher.add().v(plus_x,		minus_y,		0.0F)   .t0(1.0F,   0.0F)   .c(color);  // Degenerate
+    draw_batcher.add().v(plus_x,		minus_y,		0.0F)   .t0(1.0F,   0.0F)   .c(color);  // Degenerate
+
+    // Middle row
+    draw_batcher.add().v(minus_x,		inner_top,		0.0F)   .t0(0.0F,   0.5F)   .c(color);
+    draw_batcher.add().v(minus_x,		inner_bottom,	0.0F)   .t0(0.0F,   0.5F)   .c(color);
+    draw_batcher.add().v(inner_left,	inner_top,		0.0F)   .t0(0.5F,	0.5F)   .c(color);
+    draw_batcher.add().v(inner_left,	inner_bottom,	0.0F)   .t0(0.5F,	0.5F)   .c(color);
+    draw_batcher.add().v(inner_right,	inner_top,		0.0F)   .t0(0.5F,	0.5F)   .c(color);
+    draw_batcher.add().v(inner_right,	inner_bottom,	0.0F)   .t0(0.5F,	0.5F)   .c(color);
+    draw_batcher.add().v(plus_x,		inner_top,		0.0F)   .t0(1.0F,   0.5F)   .c(color);
+    draw_batcher.add().v(plus_x,		inner_bottom,	0.0F)   .t0(1.0F,   0.5F)   .c(color);
+
+    draw_batcher.add().v(plus_x,		inner_bottom,	0.0F)   .t0(1.0F,   0.5F)   .c(color);  // Degenerate
+    draw_batcher.add().v(plus_x,		inner_bottom,	0.0F)   .t0(1.0F,   0.5F)   .c(color);  // Degenerate
+
+    // Top row
+    draw_batcher.add().v(minus_x,		plus_y,			0.0F)   .t0(0.0F,   1.0F)   .c(color);
+    draw_batcher.add().v(minus_x,		inner_top,		0.0F)   .t0(0.0F,   0.5F)   .c(color);
+    draw_batcher.add().v(inner_left,	plus_y,			0.0F)   .t0(0.5F,	1.0F)   .c(color);
+    draw_batcher.add().v(inner_left,	inner_top,		0.0F)   .t0(0.5F,	0.5F)   .c(color);
+    draw_batcher.add().v(inner_right,	plus_y,			0.0F)   .t0(0.5F,	1.0F)   .c(color);
+    draw_batcher.add().v(inner_right,	inner_top,		0.0F)   .t0(0.5F,	0.5F)   .c(color);
+    draw_batcher.add().v(plus_x,		plus_y,			0.0F)   .t0(1.0F,   1.0F)   .c(color);
+    draw_batcher.add().v(plus_x,		inner_top,		0.0F)   .t0(1.0F,   0.5F)   .c(color);
+
+    draw_batcher.batch_end();
     draw_batcher.draw();
 }
 
 //==============================================================================
 //==============================================================================
 
+/// Draw a selection box
+/// \param draw_batcher Draw batcher to use
+/// \param camera Camera to use
+/// \param material Material to use
+/// \param shader Shader to use
+/// \param transform Transform to use
+/// \param color Color for drawing
+/// \param radius Radius of selection box
 void DrawUtils::draw_selection (    DrawBatcher &draw_batcher,
                                     const std::shared_ptr<CameraObject> &camera,
                                     const std::shared_ptr<MaterialResource> &material,
@@ -206,7 +238,7 @@ void DrawUtils::draw_selection (    DrawBatcher &draw_batcher,
 
     // Draw box around object
     draw_batcher.batch_begin(camera, material, shader, transform, DT3GL_PRIM_LINES, DrawBatcher::FMT_V | DrawBatcher::FMT_C);
-    
+
     // - - -
     draw_batcher.add().v(-radius,-radius,-radius)           .c(color);
     draw_batcher.add().v(-radius+SEL_size,-radius,-radius)  .c(color);
@@ -214,7 +246,7 @@ void DrawUtils::draw_selection (    DrawBatcher &draw_batcher,
     draw_batcher.add().v(-radius,-radius+SEL_size,-radius)  .c(color);
     draw_batcher.add().v(-radius,-radius,-radius)           .c(color);
     draw_batcher.add().v(-radius,-radius,-radius+SEL_size)  .c(color);
-    
+
     // - - +
     draw_batcher.add().v(-radius,-radius,+radius)           .c(color);
     draw_batcher.add().v(-radius+SEL_size,-radius,+radius)  .c(color);
@@ -278,6 +310,14 @@ void DrawUtils::draw_selection (    DrawBatcher &draw_batcher,
 //==============================================================================
 //==============================================================================
 
+/// Draw a box
+/// \param draw_batcher Draw batcher to use
+/// \param camera Camera to use
+/// \param material Material to use
+/// \param shader Shader to use
+/// \param transform Transform to use
+/// \param color Color for drawing
+/// \param size Size of selection box
 void DrawUtils::draw_cube ( DrawBatcher &draw_batcher,
                             const std::shared_ptr<CameraObject> &camera,
                             const std::shared_ptr<MaterialResource> &material,
@@ -287,7 +327,7 @@ void DrawUtils::draw_cube ( DrawBatcher &draw_batcher,
                             DTfloat size)
 {
     draw_batcher.batch_begin(camera, material, shader, transform, DT3GL_PRIM_TRI_STRIP, DrawBatcher::FMT_V | DrawBatcher::FMT_C);
-    
+
     // Sized
     draw_batcher.add().v(-size,size,-size).c(color);
     draw_batcher.add().v(-size,-size,-size).c(color);
@@ -319,11 +359,18 @@ void DrawUtils::draw_cube ( DrawBatcher &draw_batcher,
     draw_batcher.add().v(-size,-size,-size).c(color);
     draw_batcher.add().v(size,-size,size).c(color);
     draw_batcher.add().v(size,-size,-size).c(color);
-    
+
     draw_batcher.batch_end();
     draw_batcher.draw();
 }
 
+/// Draw a box
+/// \param draw_batcher Draw batcher to use
+/// \param camera Camera to use
+/// \param material Material to use
+/// \param shader Shader to use
+/// \param transform Transform to use
+/// \param size Size of selection box
 void DrawUtils::draw_cube ( DrawBatcher &draw_batcher,
                             const std::shared_ptr<CameraObject> &camera,
                             const std::shared_ptr<MaterialResource> &material,
@@ -332,7 +379,7 @@ void DrawUtils::draw_cube ( DrawBatcher &draw_batcher,
                             DTfloat size)
 {
     draw_batcher.batch_begin(camera, material, shader, transform, DT3GL_PRIM_TRI_STRIP, DrawBatcher::FMT_V);
-    
+
     // Sized
     draw_batcher.add().v(-size,-size,size);
     draw_batcher.add().v(size,-size,size);
@@ -379,7 +426,7 @@ void DrawUtils::draw_cube ( DrawBatcher &draw_batcher,
 //    draw_batcher.add().v(-size,-size,-size);
 //    draw_batcher.add().v(size,-size,size);
 //    draw_batcher.add().v(size,-size,-size);
-    
+
     draw_batcher.batch_end();
     draw_batcher.draw();
 }
@@ -387,6 +434,15 @@ void DrawUtils::draw_cube ( DrawBatcher &draw_batcher,
 //==============================================================================
 //==============================================================================
 
+/// Draw a cone
+/// \param draw_batcher Draw batcher to use
+/// \param camera Camera to use
+/// \param material Material to use
+/// \param shader Shader to use
+/// \param transform Transform to use
+/// \param color Color for drawing
+/// \param radius Radius of cone
+/// \param length Length of cone
 void DrawUtils::draw_cone(  DrawBatcher &draw_batcher,
                             const std::shared_ptr<CameraObject> &camera,
                             const std::shared_ptr<MaterialResource> &material,
@@ -397,17 +453,17 @@ void DrawUtils::draw_cone(  DrawBatcher &draw_batcher,
                             DTfloat length)
 {
     draw_batcher.batch_begin(camera, material, shader, transform, DT3GL_PRIM_TRI_STRIP, DrawBatcher::FMT_V | DrawBatcher::FMT_C);
-    
+
     const int32_t MAX_SEGMENTS = 16;
     for (int32_t i = 0; i < MAX_SEGMENTS; ++i) {
         DTfloat angle = static_cast<DTfloat>(i) / MAX_SEGMENTS * 2.0F * PI;
         DTfloat angle_plus_1 = static_cast<DTfloat>(i+1) / MAX_SEGMENTS * 2.0F * PI;
-        
+
         draw_batcher.add().v(radius * std::cos(angle), -length, radius * std::sin(angle)).c(color);
         draw_batcher.add().v(radius * std::cos(angle_plus_1), -length, radius * std::sin(angle_plus_1)).c(color);
         draw_batcher.add().v(0.0F,length,0.0F).c(color);
     }
-    
+
     draw_batcher.batch_end();
     draw_batcher.draw();
 }
@@ -415,6 +471,14 @@ void DrawUtils::draw_cone(  DrawBatcher &draw_batcher,
 //==============================================================================
 //==============================================================================
 
+/// Draw a ring
+/// \param draw_batcher Draw batcher to use
+/// \param camera Camera to use
+/// \param material Material to use
+/// \param shader Shader to use
+/// \param transform Transform to use
+/// \param color Color for drawing
+/// \param size Size of selection box
 void DrawUtils::draw_ring ( DrawBatcher &draw_batcher,
                             const std::shared_ptr<CameraObject> &camera,
                             const std::shared_ptr<MaterialResource> &material,
@@ -424,13 +488,13 @@ void DrawUtils::draw_ring ( DrawBatcher &draw_batcher,
                             DTfloat size)
 {
     draw_batcher.batch_begin(camera, material, shader, transform, DT3GL_PRIM_LINE_LOOP, DrawBatcher::FMT_V | DrawBatcher::FMT_C);
-    
+
     const DTfloat MAX_SEGMENTS = 64.0F;
     for (uint32_t i = 0; i <= MAX_SEGMENTS; ++i) {
         DTfloat angle = static_cast<DTfloat>(i) / MAX_SEGMENTS * 2.0F * PI;
         draw_batcher.add().v(size * std::cos(angle), 0.0F, size * std::sin(angle)).c(color);
     }
-    
+
     draw_batcher.batch_end();
     draw_batcher.draw();
 }
@@ -438,6 +502,10 @@ void DrawUtils::draw_ring ( DrawBatcher &draw_batcher,
 //==============================================================================
 //==============================================================================
 
+/// Draw a message with a bit font
+/// \param material Material to use
+/// \param transform Transform to use
+/// \param text Text to draw
 void DrawUtils::draw_bit_font ( const std::shared_ptr<CameraObject> &camera,
                                 const std::shared_ptr<MaterialResource> &material,
                                 const std::shared_ptr<ShaderResource> &shader,
@@ -445,13 +513,13 @@ void DrawUtils::draw_bit_font ( const std::shared_ptr<CameraObject> &camera,
                                 const std::string &text)
 {
     DTfloat x = translation.x;
-    
+
     for (std::string::size_type i = 0; i < text.size(); ++i) {
 //        DTcharacter c = text[i];
-        
+
 //        const uint8_t* bytes = BitFont::character_bitmap(c);
 //        System::renderer()->draw_bitmap(material, Vector2(x, translation.y), 8, 8, bytes);
-        
+
         x += 8;
     }
 
@@ -460,6 +528,10 @@ void DrawUtils::draw_bit_font ( const std::shared_ptr<CameraObject> &camera,
 //==============================================================================
 //==============================================================================
 
+/// Activate a render state fo all of the builtin drawing
+/// \param camera current camera
+/// \param material material to activate
+/// \param shader shader to use for drawing
 void DrawUtils::activate_state (    const std::shared_ptr<CameraObject> &camera,
                                     const std::shared_ptr<MaterialResource> &material,
                                     const std::shared_ptr<ShaderResource> &shader,
@@ -467,12 +539,12 @@ void DrawUtils::activate_state (    const std::shared_ptr<CameraObject> &camera,
 {
     if (camera) {
         camera->calculate_frustum();
-        
+
         shader->set_uniform_value(  shader->uniform_slot(DT3GL_UNIFORM_MODELVIEW), camera->modelview() * transform );
         shader->set_uniform_value(  shader->uniform_slot(DT3GL_UNIFORM_PROJECTION), camera->projection());
     }
-    
-    
+
+
     // Set some shader parameters that were set in the material
     for (uint32_t i = 0; i < 16; ++i) {
         material->set_current_unit(i);

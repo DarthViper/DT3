@@ -22,17 +22,17 @@ namespace DT3 {
 /// Class
 //==============================================================================
 
-class Framebuffer: public BaseClass {
+class Framebuffer : public BaseClass {
     public:
         DEFINE_TYPE_BASE(Framebuffer)
-        DEFINE_CREATE
+        DEFINE_CREATE_T(Framebuffer)
 
-                                                    Framebuffer                 (void);
+                                                    Framebuffer                 (void) = default;
     private:
                                                     Framebuffer                 (const Framebuffer &rhs);
         Framebuffer &                               operator =                  (const Framebuffer &rhs);
     public:
-        virtual                                     ~Framebuffer                (void);
+        virtual                                     ~Framebuffer                (void) = default;
 
     public:
 

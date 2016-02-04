@@ -1,6 +1,4 @@
 #pragma once
-#ifndef DT3_GROUP
-#define DT3_GROUP
 //==============================================================================
 ///
 ///	File: Group.hpp
@@ -45,27 +43,15 @@ class Group: public PlugNode {
         virtual void                            archive             (const std::shared_ptr<Archive> &archive);
 
     public:
-        /// Add node to group
-        /// \param node node to add
         void                                    add_node            (const std::shared_ptr<WorldNode> &node);
-
-        /// Add a list of nodes to the group
-        /// \param nodes nodes to add
         void                                    add_nodes           (const std::list<std::shared_ptr<WorldNode>> &nodes);
-
-        /// Remove the node from the group
-        /// \param node node to remove
         void                                    remove_node         (const std::shared_ptr<WorldNode> &node);
 
         /// Returns a list of nodes that the group contains
         /// \return list of nodes
         std::list<std::shared_ptr<WorldNode>>&  nodes               (void)                          {	return _nodes;                  }
 
-        /// Removes all the nodes from the group
         void                                    remove_all_nodes    (void);
-
-        /// Recenters the positions of the nodes at a point
-        /// \param center new center of nodes
         void                                    set_nodes_center    (const Vector2 &center);
 
         /// Sets the color of the group
@@ -81,16 +67,11 @@ class Group: public PlugNode {
         /// Returns the world that the group belongs to.
         /// \return world
         World*                                  world               (void) const                    {   return _world;                  }
-
-        /// Called when this group is added to the world
-        /// \world world
         virtual void                            add_to_world        (World *world);
-
-        /// Called when this group is removed from the world
         virtual void                            remove_from_world   (void);
 
 
-        DEFINE_ACCESSORS(description, set_description, std::string, _description);
+        DEFINE_ACCESSORS_REF(description, set_description, std::string, _description);
 
     private:
         World                                   *_world;         // weak reference - no ref count
@@ -104,5 +85,3 @@ class Group: public PlugNode {
 //==============================================================================
 
 } // DT3
-
-#endif

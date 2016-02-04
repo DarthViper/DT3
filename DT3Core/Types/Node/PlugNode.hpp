@@ -226,11 +226,11 @@ class PlugIter {
         virtual						~PlugIter					(void)			{}
 
         // Increment the iterator to the next item
-        inline PlugIter&			operator ++					(void);
+        PlugIter&			operator ++					(void);
 
         // Return the current item
-        inline PlugBase*			operator ->					(void) const;
-        inline PlugBase*			operator ()					(void) const;
+        PlugBase*			operator ->					(void) const;
+        PlugBase*			operator ()					(void) const;
 
         // Returns non-zero value if the iterator is valid
         inline 						operator const void *		(void) const	{	return (void*) (_info != NULL);	}
@@ -256,11 +256,11 @@ class EventIter {
         virtual						~EventIter					(void) = default;
 
         // Increment the iterator to the next item
-        inline EventIter&			operator ++					(void);
+        EventIter&			operator ++					(void);
 
         // Return the current item
-        inline Event*               operator ->					(void) const;
-        inline Event*               operator ()					(void) const;
+        Event*               operator ->					(void) const;
+        Event*               operator ()					(void) const;
 
         // Returns non-zero value if the iterator is valid
         inline 						operator const void *		(void) const	{	return (void*) (_info != NULL);	}

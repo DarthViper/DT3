@@ -1,12 +1,12 @@
 //==============================================================================
-///	
+///
 ///	File: Group.cpp
-///	
+///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
 /// This file is subject to the terms and conditions defined in
 /// file 'LICENSE.txt', which is part of this source code package.
-///	
+///
 //==============================================================================
 
 #include "DT3Core/Types/Node/Group.hpp"
@@ -36,32 +36,32 @@ IMPLEMENT_FACTORY_CREATION(Group)
 Group::Group (void)
     :   _description("Description"),
         _group_color((uint8_t)80,(uint8_t)80,(uint8_t)80,(uint8_t)255)
-{  
+{
 
 }
-		
+
 Group::Group (const Group &rhs)
     :   PlugNode    (rhs),
         _description(rhs._description),
         _group_color(rhs._group_color)
-{   
+{
 
 }
 
 Group & Group::operator = (const Group &rhs)
 {
     // Make sure we are not assigning the class to itself
-    if (&rhs != this) {        
-		PlugNode::operator = (rhs);
-        
+    if (&rhs != this) {
+        PlugNode::operator = (rhs);
+
         _description = rhs._description;
         _group_color = rhs._group_color;
-        
+
         remove_all_nodes();
     }
     return (*this);
 }
-			
+
 Group::~Group (void)
 {
     remove_all_nodes();
@@ -74,25 +74,27 @@ void Group::archive (const std::shared_ptr<Archive> &archive)
 {
     PlugNode::archive(archive);
 
-	archive->push_domain (class_id ());
-    
+    archive->push_domain (class_id ());
+
     *archive << ARCHIVE_DATA(_description, DATA_PERSISTENT | DATA_SETTABLE);
     *archive << ARCHIVE_DATA_ACCESSORS("Group_Color", Group::group_color, Group::set_group_color, DATA_PERSISTENT);
 
     DTsize node_count = _nodes.size();;
     *archive << ARCHIVE_DATA(node_count,DATA_PERSISTENT);
     _nodes.resize(node_count, NULL);
-    
+
     FOR_EACH (i,_nodes) {
         archive->add_post_process(ARCHIVE_PROCESS_POINTERS(archive,*i));
     }
-    
+
     archive->pop_domain ();
 }
 
 //==============================================================================
 //==============================================================================
 
+/// Add node to group
+/// \param node node to add
 void Group::add_node (const std::shared_ptr<WorldNode> &node)
 {
     auto i = std::find(_nodes.begin(), _nodes.end(), node);
@@ -102,23 +104,28 @@ void Group::add_node (const std::shared_ptr<WorldNode> &node)
     }
 }
 
+/// Add a list of nodes to the group
+/// \param nodes nodes to add
 void Group::add_nodes (const std::list<std::shared_ptr<WorldNode>> &nodes)
 {
     FOR_EACH (i,nodes) {
         add_node(*i);
     }
 }
-        
+
+/// Remove the node from the group
+/// \param node node to remove
 void Group::remove_node (const std::shared_ptr<WorldNode> &node)
-{    
+{
     auto i = std::find(_nodes.begin(), _nodes.end(), node);
     if (i != _nodes.end()) {
         _nodes.erase(i);
-        
+
         node->add_to_group(NULL);
     }
 }
 
+/// Removes all the nodes from the group
 void Group::remove_all_nodes (void)
 {
     FOR_EACH(i, _nodes) {
@@ -130,12 +137,16 @@ void Group::remove_all_nodes (void)
 //==============================================================================
 //==============================================================================
 
+/// Called when this group is added to the world
+/// \world world
 void Group::add_to_world(World *world)
 {
     _world = world;
     SystemCallbacks::add_group_cb().fire(world,this);
 }
 
+
+/// Called when this group is removed from the world
 void Group::remove_from_world (void)
 {
     SystemCallbacks::remove_group_cb().fire(_world,this);
@@ -144,19 +155,21 @@ void Group::remove_from_world (void)
 //==============================================================================
 //==============================================================================
 
+/// Recenters the positions of the nodes at a point
+/// \param center new center of nodes
 void Group::set_nodes_center (const Vector2 &center)
 {
     // Find center
     Vector3 avg(0.0F,0.0F,0.0F);
-    
+
     FOR_EACH (i,_nodes) {
         avg += (*i)->node_position();
     }
-    
+
     avg /= _nodes.size();
-    
+
     Vector2 delta = center - Vector2::fromVector3(avg);
-    
+
     // Add an offset
     FOR_EACH (i,_nodes) {
         (*i)->set_node_position( (*i)->node_position() + Vector3(delta) );

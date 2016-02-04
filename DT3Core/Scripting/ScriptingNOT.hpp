@@ -1,6 +1,4 @@
 #pragma once
-#ifndef DT3_SCRIPTINGNOT
-#define DT3_SCRIPTINGNOT
 //==============================================================================
 ///
 ///	File: ScriptingNOT.hpp
@@ -36,14 +34,14 @@ class ScriptingNOT: public ScriptingBase {
                                     ScriptingNOT			(void);
                                     ScriptingNOT			(const ScriptingNOT &rhs);
         ScriptingNOT &				operator =				(const ScriptingNOT &rhs);
-        virtual                     ~ScriptingNOT			(void);
+        virtual                     ~ScriptingNOT			(void) = default;
 
         virtual void                archive                 (const std::shared_ptr<Archive> &archive);
 
     public:
         /// Computes the value of the node
         /// \param plug plug to compute
-        bool					compute					(const PlugBase *plug);
+        bool					compute					(const PlugBase *plug) override;
 
     private:
         Plug<bool>				_in;
@@ -55,5 +53,3 @@ class ScriptingNOT: public ScriptingBase {
 //==============================================================================
 
 } // DT3
-
-#endif

@@ -32,14 +32,10 @@ class ImporterAnimation: public BaseClass {
     public:
         DEFINE_TYPE(ImporterAnimation,BaseClass)
 
-                                    ImporterAnimation		(void);
-
-    private:
-                                    ImporterAnimation		(const ImporterAnimation &rhs);
-        ImporterAnimation &			operator =				(const ImporterAnimation &rhs);
-
-    public:
-        virtual						~ImporterAnimation		(void);
+                                    ImporterAnimation		(void) = default;
+        virtual						~ImporterAnimation		(void) = default;
+                                    ImporterAnimation		(const ImporterAnimation &rhs) = delete;
+        ImporterAnimation &			operator =				(const ImporterAnimation &rhs) = delete;
 
     public:
         /// Imports an animation into an AnimationResource

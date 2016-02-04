@@ -1,6 +1,4 @@
 #pragma once
-#ifndef DT3_SCRIPTINGATAN2
-#define DT3_SCRIPTINGATAN2
 //==============================================================================
 ///
 ///	File: ScriptingATAN2.hpp
@@ -43,7 +41,7 @@ class ScriptingATAN2: public ScriptingBase {
     public:
         /// Computes the value of the node
         /// \param plug plug to compute
-        bool					compute					(const PlugBase *plug);
+        bool					compute					(const PlugBase *plug) override;
 
     private:
         Plug<DTfloat>				_in_y;
@@ -56,5 +54,3 @@ class ScriptingATAN2: public ScriptingBase {
 //==============================================================================
 
 } // DT3
-
-#endif
