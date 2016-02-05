@@ -7,7 +7,7 @@ IF(CMAKE_BUILD_TOOL MATCHES "(msdev|devenv|nmake)")
     ADD_DEFINITIONS(-D_CRT_SECURE_NO_WARNINGS -D__UNIX__ -D_CRT_NONSTDC_NO_DEPRECATE)
     ADD_DEFINITIONS(/W4)
 ELSE()
-    SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wno-unused-parameter -Wno-unknown-pragmas -Wno-comment -Wno-reorder -std=c++14") #-pedantic -Wextra
+    SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Xclang -plugin-arg-clang-lazy -Xclang level2,-non-pod-global-static -Wall -Wno-unused-parameter -Wno-unknown-pragmas -Wno-comment -Wno-reorder -std=c++14") #-pedantic -Wextra
     SET(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wall -Wextra -pedantic -std=c99")
     SET(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} "  ) #--coverage
 ENDIF()

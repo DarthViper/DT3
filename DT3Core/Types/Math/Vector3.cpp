@@ -53,7 +53,11 @@ Stream& operator >>(Stream &s, Vector3&v)
 //==============================================================================
 //==============================================================================
 
-Vector3 Vector3::cross (const Vector3& a, const Vector3& b)
+/// Cross product of two vectors
+/// \param a Vector 1
+/// \param b Vector 2
+/// \return Cross product
+Vector3 Vector3::cross (Vector3 a, Vector3 b)
 {
     return {
 		a.y * b.z - a.z * b.y,
@@ -62,10 +66,16 @@ Vector3 Vector3::cross (const Vector3& a, const Vector3& b)
     };
     
 }
-		
+Vector3 testMe(Vector3 x) {
+    return Vector3::cross(x,Vector3::cross(x,{0,1,1}));
+}
 //==============================================================================
 //==============================================================================
 
+/// Displaces a position along a normal by and amount of the 3rd param
+/// \param a position
+/// \param b normal
+/// \param c amount
 void Vector3::displace (const Vector3 &a, const Vector3 &n, DTfloat d, Vector3 &r)
 {
     DTfloat x = a.x + n.x * d;
@@ -80,6 +90,7 @@ void Vector3::displace (const Vector3 &a, const Vector3 &n, DTfloat d, Vector3 &
 //==============================================================================
 //==============================================================================
 
+/// Reflects a vector around a normal with a certain restitution
 void Vector3::reflect (const Vector3 &dir, const Vector3 &n, const DTfloat restitution, Vector3 &r)
 {
     Vector3 delta;

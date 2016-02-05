@@ -1,6 +1,4 @@
 #pragma once
-#ifndef DT3_DEVICEINPUT
-#define DT3_DEVICEINPUT
 //==============================================================================
 ///
 ///	File: DeviceInput.hpp
@@ -318,45 +316,21 @@ class DeviceInput: public DeviceBase {
             MOD_RESERVED        = 0x8000
         };
 
-        /// Sets the current touch state
-        /// \param event Touch state
         virtual void				set_touch_event             (TouchEvent *event);
 
-        /// Sets the current keybaord state
-        /// \param modifiers Bitmask of modifier keys
-        /// \param key Key code
         virtual void                set_key_down_event          (uint32_t modifiers, uint16_t key);
 
-        /// Sets the current keybaord state
-        /// \param modifiers Bitmask of modifier keys
-        /// \param key Key code
         virtual void                set_key_up_event            (uint32_t modifiers, uint16_t key);
 
-        /// Fires a back button event (Android only)
         virtual void				do_back_button              (void);
-
-        /// Fires a menu button event (Android only)
         virtual void				do_menu_button              (void);
 
 
-        /// Sets the current accelerometer state
-        /// \param a Acceleration
         virtual void				set_acceleration_event      (const Vector3 &a);
-
-        /// Sets the current gyro state
-        /// \param a Rotational acceleration
         virtual void				set_gyro_event              (const Vector3 &w);
-
-        /// Sets the current magnetometer state
-        /// \param a Rotational acceleration
         virtual void				set_magnetometer_event      (const Vector3 &m);
 
-
-
-        /// Call to begin mouse capture
         virtual void                begin_capture_mouse         (void);
-
-        /// Call to begin mouse capture
         virtual void                end_capture_mouse           (void);
 };
 
@@ -365,5 +339,3 @@ class DeviceInput: public DeviceBase {
 
 
 } // DT3
-
-#endif

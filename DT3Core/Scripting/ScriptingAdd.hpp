@@ -1,6 +1,4 @@
 #pragma once
-#ifndef DT3_SCRIPTINGADD
-#define DT3_SCRIPTINGADD
 //==============================================================================
 ///
 ///	File: ScriptingAdd.hpp
@@ -55,5 +53,3 @@ class ScriptingAdd: public ScriptingBase {
 //==============================================================================
 
 } // DT3
-
-#endif

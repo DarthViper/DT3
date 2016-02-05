@@ -1,6 +1,4 @@
 #pragma once
-#ifndef DT3_DEVICEGRAPHICS
-#define DT3_DEVICEGRAPHICS
 //==============================================================================
 ///
 ///	File: DeviceGraphics.hpp
@@ -684,5 +682,3 @@ namespace TypeTraitsInfo {
 //==============================================================================
 
 } // DT3
-
-#endif

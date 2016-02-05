@@ -1,12 +1,12 @@
 //==============================================================================
-///	
-///	File: CameraObject.cpp
-///	
+///
+///    File: CameraObject.cpp
+///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
 /// This file is subject to the terms and conditions defined in
 /// file 'LICENSE.txt', which is part of this source code package.
-///	
+///
 ///
 /// NOTE: Plane normals point inwards
 ///
@@ -37,61 +37,61 @@ IMPLEMENT_FACTORY_CREATION_PLACEABLE(CameraObject,"Camera","EdCameraObjectAdapte
 //==============================================================================
 
 CameraObject::CameraObject (void)
-    :	_picking				(false),
-		_perspective			(true),
+    :    _picking                (false),
+        _perspective            (true),
         _perspective_fill_width (false),
-		_near_plane				(1.0F),
-        _far_plane				(10000.0F),
-        _angle					(60.0F),
-		_aspect_ratio_mul       (1.0F),
-		_left					(-1.0F),
-		_right					(1.0F),
-		_bottom					(-1.0F),
-		_top					(1.0F),
-		_near					(-100.0F),
-		_far					(100.0F),
-		_x						(0),
-		_y						(0),
-		_deltax					(10),
-		_deltay					(10),
-		_modelview				(Matrix4::identity()),
-		_projection				(Matrix4::identity()),
+        _near_plane                (1.0F),
+        _far_plane                (10000.0F),
+        _angle                    (60.0F),
+        _aspect_ratio_mul       (1.0F),
+        _left                    (-1.0F),
+        _right                    (1.0F),
+        _bottom                    (-1.0F),
+        _top                    (1.0F),
+        _near                    (-100.0F),
+        _far                    (100.0F),
+        _x                        (0),
+        _y                        (0),
+        _deltax                    (10),
+        _deltay                    (10),
+        _modelview                (Matrix4::identity()),
+        _projection                (Matrix4::identity()),
         _post_projection        (Matrix4::identity())
-										
+
 {
-	_viewport[0] = 0;
-	_viewport[1] = 0;
-	_viewport[2] = 1;
-	_viewport[3] = 1;
+    _viewport[0] = 0;
+    _viewport[1] = 0;
+    _viewport[2] = 1;
+    _viewport[3] = 1;
 }
 
 CameraObject::CameraObject (const CameraObject &rhs)
-    :	PlaceableObject         (rhs),
-		_picking                (rhs._picking),
-		_perspective            (rhs._perspective),
+    :    PlaceableObject         (rhs),
+        _picking                (rhs._picking),
+        _perspective            (rhs._perspective),
         _perspective_fill_width (rhs._perspective_fill_width),
-		_near_plane             (rhs._near_plane),
-		_far_plane              (rhs._far_plane),
-		_angle                  (rhs._angle),
-		_aspect_ratio_mul       (rhs._aspect_ratio_mul),
-		_left                   (rhs._left),
-		_right                  (rhs._right),
-		_bottom                 (rhs._bottom),
-		_top                    (rhs._top),
-		_near                   (rhs._near),
-		_far                    (rhs._far),
-		_x                      (rhs._x),
-		_y                      (rhs._y),
-		_deltax                 (rhs._deltax),
-		_deltay                 (rhs._deltay),
+        _near_plane             (rhs._near_plane),
+        _far_plane              (rhs._far_plane),
+        _angle                  (rhs._angle),
+        _aspect_ratio_mul       (rhs._aspect_ratio_mul),
+        _left                   (rhs._left),
+        _right                  (rhs._right),
+        _bottom                 (rhs._bottom),
+        _top                    (rhs._top),
+        _near                   (rhs._near),
+        _far                    (rhs._far),
+        _x                      (rhs._x),
+        _y                      (rhs._y),
+        _deltax                 (rhs._deltax),
+        _deltay                 (rhs._deltay),
         _modelview              (rhs._modelview),
         _projection             (rhs._projection),
         _post_projection        (rhs._post_projection)
-		
+
 {
-    for (int32_t i = 0; i < 6; ++i)	
+    for (int32_t i = 0; i < 6; ++i)
         _frustum[i] = rhs._frustum[i];
-    for (int32_t i = 0; i < 4; ++i)	
+    for (int32_t i = 0; i < 4; ++i)
         _viewport[i] = rhs._viewport[i];
 
 }
@@ -101,41 +101,41 @@ CameraObject & CameraObject::operator = (const CameraObject& rhs)
     // Make sure we are not assigning the class to itself
     if (&rhs != this) {
         PlaceableObject::operator = (rhs);
-		
-		_picking = rhs._picking;
-		_perspective = rhs._perspective;
-		_perspective_fill_width = rhs._perspective_fill_width;
-		
-		_near_plane = rhs._near_plane;
-		_far_plane = rhs._far_plane;
-		_angle = rhs._angle;
-		_aspect_ratio_mul = rhs._aspect_ratio_mul;
 
-		_left = rhs._left;
-		_right = rhs._right;
-		_bottom = rhs._bottom;
-		_top = rhs._top;
-		_near = rhs._near;
-		_far = rhs._far;
+        _picking = rhs._picking;
+        _perspective = rhs._perspective;
+        _perspective_fill_width = rhs._perspective_fill_width;
 
-		_x = rhs._x;
-		_y = rhs._y;
-		_deltax = rhs._deltax;
-		_deltay = rhs._deltay;
+        _near_plane = rhs._near_plane;
+        _far_plane = rhs._far_plane;
+        _angle = rhs._angle;
+        _aspect_ratio_mul = rhs._aspect_ratio_mul;
+
+        _left = rhs._left;
+        _right = rhs._right;
+        _bottom = rhs._bottom;
+        _top = rhs._top;
+        _near = rhs._near;
+        _far = rhs._far;
+
+        _x = rhs._x;
+        _y = rhs._y;
+        _deltax = rhs._deltax;
+        _deltay = rhs._deltay;
         
         _modelview = rhs._modelview;
         _projection = rhs._projection;
         _post_projection = rhs._post_projection;
-	
-		for (int32_t i = 0; i < 6; ++i)	
-			_frustum[i] = rhs._frustum[i];
-		for (int32_t i = 0; i < 4; ++i)	
-			_viewport[i] = rhs._viewport[i];
+
+        for (int32_t i = 0; i < 6; ++i)
+            _frustum[i] = rhs._frustum[i];
+        for (int32_t i = 0; i < 4; ++i)
+            _viewport[i] = rhs._viewport[i];
         
 
     }
     return (*this);
-}	
+}
 
 CameraObject::~CameraObject (void)
 {
@@ -161,9 +161,9 @@ void CameraObject::archive (const std::shared_ptr<Archive> &archive)
     *archive << ARCHIVE_DATA(_far, DATA_PERSISTENT | DATA_SETTABLE);
     *archive << ARCHIVE_DATA(_post_projection, DATA_PERSISTENT | DATA_SETTABLE);
 
-	*archive << ARCHIVE_DATA_ACCESSORS("Far_Plane", CameraObject::far_plane, CameraObject::set_far_plane, DATA_PERSISTENT | DATA_SETTABLE);
-	*archive << ARCHIVE_DATA_ACCESSORS("Near_Plane", CameraObject::near_plane, CameraObject::set_near_plane, DATA_PERSISTENT | DATA_SETTABLE);
-	*archive << ARCHIVE_DATA_ACCESSORS("Angle", CameraObject::angle, CameraObject::set_angle, DATA_PERSISTENT | DATA_SETTABLE)
+    *archive << ARCHIVE_DATA_ACCESSORS("Far_Plane", CameraObject::far_plane, CameraObject::set_far_plane, DATA_PERSISTENT | DATA_SETTABLE);
+    *archive << ARCHIVE_DATA_ACCESSORS("Near_Plane", CameraObject::near_plane, CameraObject::set_near_plane, DATA_PERSISTENT | DATA_SETTABLE);
+    *archive << ARCHIVE_DATA_ACCESSORS("Angle", CameraObject::angle, CameraObject::set_angle, DATA_PERSISTENT | DATA_SETTABLE)
         .add_range(0.0F,180.0F);
     *archive << ARCHIVE_DATA_ACCESSORS("Aspect_Ratio_Mul", CameraObject::aspect_ratio_mul, CameraObject::set_aspect_ratio_mul, DATA_PERSISTENT | DATA_SETTABLE);
 
@@ -185,14 +185,14 @@ bool CameraObject::point_in_frustum(const Vector3  &point) const
 
 DTfloat CameraObject::distance_to_frustum (const Vector3 &point) const
 {
-	DTfloat dist = 0.0F;
-	
+    DTfloat dist = 0.0F;
+
     for (int32_t plane = 0; plane < 6; ++plane) {
-		DTfloat distance = _frustum[plane].distance_to_point(point);
-		dist = MoreMath::min(distance, dist);
-	}
-		
-	return -dist;
+        DTfloat distance = _frustum[plane].distance_to_point(point);
+        dist = MoreMath::min(distance, dist);
+    }
+
+    return -dist;
 }
 
 //==============================================================================
@@ -202,15 +202,15 @@ DTfloat CameraObject::distance_to_frustum (const Vector3 &point) const
 bool CameraObject::sphere_in_frustum(const Vector3 &translation, const Sphere &sphere) const
 {
 
-    for (int32_t plane = 0; plane < 6; ++plane) {            
-        if (_frustum[plane].is_sphere_completely_in_back(translation, sphere))
+    for (const Plane &p : _frustum) {
+        if (p.is_sphere_completely_in_back(translation, sphere))
             return false;
     }
                     
     return true;
 }
 
-bool CameraObject::sphere_in_frustum_no_front_back	(const Vector3 &translation, const Sphere &sphere) const
+bool CameraObject::sphere_in_frustum_no_front_back    (const Vector3 &translation, const Sphere &sphere) const
 {
     for (int32_t plane = 2; plane < 6; ++plane) {            
         if (_frustum[plane].is_sphere_completely_in_back(translation, sphere))
@@ -226,9 +226,9 @@ bool CameraObject::sphere_in_frustum_no_front_back	(const Vector3 &translation, 
 
 bool CameraObject::box_in_frustum(const Box &box) const {
     for (int32_t plane = 0; plane < 6; ++plane) {
-		DTfloat dist = _frustum[plane].distance_to_box(box);
-        if (dist < 0.0F)	return false;
-		else if (dist == 0.0F)  return true;
+        DTfloat dist = _frustum[plane].distance_to_box(box);
+        if (dist < 0.0F)    return false;
+        else if (dist == 0.0F)  return true;
     }
                     
     return true;
@@ -240,7 +240,7 @@ bool CameraObject::box_in_frustum(const Box &box) const {
 
 void CameraObject::look_at (const Vector3 &to, const Vector3 &up)
 {
-    Matrix3 m;	
+    Matrix3 m;
     Vector3 delta;
     
     delta = translation() - to;
@@ -279,35 +279,35 @@ void CameraObject::set_frustum (const DTfloat near_plane, const DTfloat far_plan
     _angle = angle;
     _aspect_ratio_mul = aspect_ratio_mul;
 
-	_perspective = true;
+    _perspective = true;
 }
 
 
 void CameraObject::set_ortho (const DTfloat left, const DTfloat right, const DTfloat bottom, const DTfloat top, const DTfloat near, const DTfloat far)
 {
-	_left = left;
-	_right = right;
-	_bottom = bottom;
-	_top = top;
-	_near = near;
-	_far = far;
-	
-	_perspective = false;
+    _left = left;
+    _right = right;
+    _bottom = bottom;
+    _top = top;
+    _near = near;
+    _far = far;
+
+    _perspective = false;
 }
 
 void CameraObject::set_picking (const DTfloat x, const DTfloat y, const DTfloat deltax, const DTfloat deltay, int32_t viewport[4])
 {
-	_x = x;
-	_y = y;
-	_deltax = deltax;
-	_deltay = deltay;
-	
-	_viewport[0] = viewport[0];
-	_viewport[1] = viewport[1];
-	_viewport[2] = viewport[2];
-	_viewport[3] = viewport[3];
+    _x = x;
+    _y = y;
+    _deltax = deltax;
+    _deltay = deltay;
 
-	_picking = true;
+    _viewport[0] = viewport[0];
+    _viewport[1] = viewport[1];
+    _viewport[2] = viewport[2];
+    _viewport[3] = viewport[3];
+
+    _picking = true;
 }
 
 //==============================================================================
@@ -319,54 +319,54 @@ void CameraObject::calculate_frustum()
 {
     // Build modelview matrix
     _modelview = transform().inversed();
-	
-	if (_perspective) {
 
-		DTfloat radians = _angle * 0.5F * PI / 180.0F;
-		DTfloat d = _near_plane - _far_plane;
-		DTfloat f = std::cos(radians) / std::sin(radians);
+    if (_perspective) {
+
+        DTfloat radians = _angle * 0.5F * PI / 180.0F;
+        DTfloat d = _near_plane - _far_plane;
+        DTfloat f = std::cos(radians) / std::sin(radians);
         
         DTfloat aspect_ratio = System::renderer()->screen_aspect() * _aspect_ratio_mul;
         
-		if (_perspective_fill_width && aspect_ratio > 1.0F) {
-            _projection._m11 = f*aspect_ratio;         _projection._m12 = 0.0F;                            _projection._m13 = 0.0F;						_projection._m14 = 0.0F;
-            _projection._m21 = 0.0F;					_projection._m22 = f*aspect_ratio*aspect_ratio;   _projection._m23 = 0.0F;						_projection._m24 = 0.0F;
-            _projection._m31 = 0.0F;					_projection._m32 = 0.0F;                            _projection._m33 = (_far_plane+_near_plane)/d;	_projection._m34 = 2.0F*_far_plane*_near_plane/d;
-            _projection._m41 = 0.0F;					_projection._m42 = 0.0F;                            _projection._m43 = -1.0F;                       _projection._m44 = 0.0F;
+        if (_perspective_fill_width && aspect_ratio > 1.0F) {
+            _projection._m11 = f*aspect_ratio;      _projection._m12 = 0.0F;                            _projection._m13 = 0.0F;                        _projection._m14 = 0.0F;
+            _projection._m21 = 0.0F;                _projection._m22 = f*aspect_ratio*aspect_ratio;   _projection._m23 = 0.0F;                        _projection._m24 = 0.0F;
+            _projection._m31 = 0.0F;                _projection._m32 = 0.0F;                            _projection._m33 = (_far_plane+_near_plane)/d;    _projection._m34 = 2.0F*_far_plane*_near_plane/d;
+            _projection._m41 = 0.0F;                _projection._m42 = 0.0F;                            _projection._m43 = -1.0F;                       _projection._m44 = 0.0F;
         } else {
-            _projection._m11 = f/aspect_ratio;			_projection._m12 = 0.0F;				_projection._m13 = 0.0F;						_projection._m14 = 0.0F;
-            _projection._m21 = 0.0F;					_projection._m22 = f;					_projection._m23 = 0.0F;						_projection._m24 = 0.0F;
-            _projection._m31 = 0.0F;					_projection._m32 = 0.0F;				_projection._m33 = (_far_plane+_near_plane)/d;	_projection._m34 = 2.0F*_far_plane*_near_plane/d;
-            _projection._m41 = 0.0F;					_projection._m42 = 0.0F;				_projection._m43 = -1.0F;                       _projection._m44 = 0.0F;
+            _projection._m11 = f/aspect_ratio;      _projection._m12 = 0.0F;                _projection._m13 = 0.0F;                        _projection._m14 = 0.0F;
+            _projection._m21 = 0.0F;                _projection._m22 = f;                   _projection._m23 = 0.0F;                        _projection._m24 = 0.0F;
+            _projection._m31 = 0.0F;                _projection._m32 = 0.0F;                _projection._m33 = (_far_plane+_near_plane)/d;  _projection._m34 = 2.0F*_far_plane*_near_plane/d;
+            _projection._m41 = 0.0F;                _projection._m42 = 0.0F;                _projection._m43 = -1.0F;                       _projection._m44 = 0.0F;
         }
     
     } else {
-		_projection._m11 = 2.0F/(_right-_left);		_projection._m12 = 0.0F;				_projection._m13 = 0.0F;				_projection._m14 = -(_right+_left)/(_right-_left);
-		_projection._m21 = 0.0F;					_projection._m22 = 2.0F/(_top-_bottom);	_projection._m23 = 0.0F;				_projection._m24 = -(_top+_bottom)/(_top-_bottom);
-		_projection._m31 = 0.0F;					_projection._m32 = 0.0F;				_projection._m33 = -2.0F/(_far-_near);	_projection._m34 = -(_far+_near)/(_far-_near);
-		_projection._m41 = 0.0F;					_projection._m42 = 0.0F;				_projection._m43 = 0.0F;				_projection._m44 = 1.0F;
-	}
+        _projection._m11 = 2.0F/(_right-_left);        _projection._m12 = 0.0F;                _projection._m13 = 0.0F;                _projection._m14 = -(_right+_left)/(_right-_left);
+        _projection._m21 = 0.0F;                    _projection._m22 = 2.0F/(_top-_bottom);    _projection._m23 = 0.0F;                _projection._m24 = -(_top+_bottom)/(_top-_bottom);
+        _projection._m31 = 0.0F;                    _projection._m32 = 0.0F;                _projection._m33 = -2.0F/(_far-_near);    _projection._m34 = -(_far+_near)/(_far-_near);
+        _projection._m41 = 0.0F;                    _projection._m42 = 0.0F;                _projection._m43 = 0.0F;                _projection._m44 = 1.0F;
+    }
 
-	// If picking then multiply the matrix
-	if (_picking) {
-		Matrix4 picking;
+    // If picking then multiply the matrix
+    if (_picking) {
+        Matrix4 picking;
 
-		picking._m11 = _viewport[2] / _deltax;	picking._m12 = 0.0F;					picking._m13 = 0.0F;		picking._m14 = (_viewport[2] - 2 * (_x - _viewport[0])) / _deltax;
-		picking._m21 = 0.0F;					picking._m22 = _viewport[3] / _deltay;	picking._m23 = 0.0F;		picking._m24 = (_viewport[3] - 2 * (_y - _viewport[1])) / _deltay;
-		picking._m31 = 0.0F;					picking._m32 = 0.0F;					picking._m33 = 1.0F;		picking._m34 = 0.0F;
-		picking._m41 = 0.0F;					picking._m42 = 0.0F;					picking._m43 = 0.0F;		picking._m44 = 1.0F;
-		
-		_projection = picking * _projection;
-	}
-	
+        picking._m11 = _viewport[2] / _deltax;    picking._m12 = 0.0F;                    picking._m13 = 0.0F;        picking._m14 = (_viewport[2] - 2 * (_x - _viewport[0])) / _deltax;
+        picking._m21 = 0.0F;                    picking._m22 = _viewport[3] / _deltay;    picking._m23 = 0.0F;        picking._m24 = (_viewport[3] - 2 * (_y - _viewport[1])) / _deltay;
+        picking._m31 = 0.0F;                    picking._m32 = 0.0F;                    picking._m33 = 1.0F;        picking._m34 = 0.0F;
+        picking._m41 = 0.0F;                    picking._m42 = 0.0F;                    picking._m43 = 0.0F;        picking._m44 = 1.0F;
+
+        _projection = picking * _projection;
+    }
+
     // Apply post projection matrix
     _projection = _post_projection * _projection;
-		
+
     Matrix4 clip;
     DTfloat mag;
     Vector3 vec;
-	
-	clip = _projection * _modelview;
+
+    clip = _projection * _modelview;
     
     // Far plane
     _frustum[0].set_normal({clip._mi[3] - clip._mi[2], clip._mi[7] - clip._mi[6], clip._mi[11] - clip._mi[10]});
@@ -434,12 +434,12 @@ void CameraObject::calculate_frustum()
 
 DTfloat CameraObject::fraction_screen_size (const DTfloat distance)
 {
-	if (_perspective) {
-		if (distance == 0.0F) return 1.0F;
-		return 1.0F / (distance * std::tan(_angle * DEG_TO_RAD * 0.5F) * 2.0F);
-	} else {
-		return 1.0F / (_right - _left);
-	}
+    if (_perspective) {
+        if (distance == 0.0F) return 1.0F;
+        return 1.0F / (distance * std::tan(_angle * DEG_TO_RAD * 0.5F) * 2.0F);
+    } else {
+        return 1.0F / (_right - _left);
+    }
 }
 
 //==============================================================================
@@ -448,7 +448,7 @@ DTfloat CameraObject::fraction_screen_size (const DTfloat distance)
 
 Vector3 CameraObject::project_point(const Vector3 &point) const
 {
-	Vector3 result = _modelview * point;
+    Vector3 result = _modelview * point;
     return MoreMath::transform_4h(_projection, result);
 }
 
@@ -471,8 +471,8 @@ Vector3 CameraObject::unproject_point(const Vector3 &point) const
 {
     Matrix4 m = _projection * _modelview;
     
-	Vector3 result; 
-		
+    Vector3 result;
+
     return MoreMath::transform_4h(m.inversed(), point);
 }
 

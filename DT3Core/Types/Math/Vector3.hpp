@@ -42,13 +42,13 @@ class Vector3 {
 
     public:
 
-        inline bool	operator ==				(const Vector3& rhs) const	{	return x == rhs.x && y == rhs.y && z == rhs.z;		}
-        inline bool	operator !=				(const Vector3& rhs) const	{	return x != rhs.x || y != rhs.y || z != rhs.z;		}
+        inline bool	operator ==				(Vector3 rhs) const	{	return x == rhs.x && y == rhs.y && z == rhs.z;		}
+        inline bool	operator !=				(Vector3 rhs) const	{	return x != rhs.x || y != rhs.y || z != rhs.z;		}
 
         Vector3 &			operator *=				(const DTfloat rhs)			{	x*=rhs;		y*=rhs;		z*=rhs;		return *this;	}
         Vector3 &			operator /=				(const DTfloat rhs)			{	ASSERT(rhs != 0.0F);    x/=rhs;		y/=rhs;		z/=rhs;		return *this;	}
-        Vector3 &			operator +=				(const Vector3& rhs)		{	x+=rhs.x;	y+=rhs.y;	z+=rhs.z;	return *this;	}
-        Vector3 &			operator -=				(const Vector3& rhs)		{	x-=rhs.x;	y-=rhs.y;	z-=rhs.z;	return *this;	}
+        Vector3 &			operator +=				(Vector3 rhs)		{	x+=rhs.x;	y+=rhs.y;	z+=rhs.z;	return *this;	}
+        Vector3 &			operator -=				(Vector3 rhs)		{	x-=rhs.x;	y-=rhs.y;	z-=rhs.z;	return *this;	}
 
         /// Set each of the components to zero
         void				clear					(void)						{	x = y = z = 0.0F;                                       }
@@ -72,21 +72,12 @@ class Vector3 {
         /// \param a Vector 1
         /// \param b Vector 2
         /// \return Dot product
-        static DTfloat		dot						(const Vector3& a, const Vector3& b)	{	return a.x*b.x + a.y*b.y + a.z*b.z;	}
+        static DTfloat		dot						(Vector3 a, Vector3 b)	{	return a.x*b.x + a.y*b.y + a.z*b.z;	}
 
-        /// Cross product of two vectors
-        /// \param a Vector 1
-        /// \param b Vector 2
-        /// \return Cross product
-        static Vector3		cross					(const Vector3& a, const Vector3& b);
+        static Vector3		cross					(Vector3 a, Vector3 b);
 
-        /// Displaces a position along a normal by and amount of the 3rd param
-        /// \param a position
-        /// \param b normal
-        /// \param c amount
         static void         displace                (const Vector3 &a, const Vector3 &n, DTfloat d, Vector3 &r);
 
-        /// Reflects a vector around a normal with a certain restitution
         static void         reflect                 (const Vector3 &a, const Vector3 &n, const DTfloat restitution, Vector3 &r);
 
     public:
@@ -110,7 +101,7 @@ inline Vector3 operator + (const Vector3 &a, const Vector3 &b)
     return {a.x + b.x, a.y + b.y, a.z + b.z};
 }
 
-inline Vector3 operator - (const Vector3 &a, const Vector3 &b)
+inline Vector3 operator - (Vector3 a, Vector3 b)
 {
     return {a.x - b.x, a.y - b.y, a.z - b.z};
 }
