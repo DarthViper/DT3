@@ -13,7 +13,7 @@
 #include "DT3Core/Types/Base/BaseInclude.hpp"
 #include <memory>
 #include <atomic>
-
+#include <cassert>
 //==============================================================================
 //==============================================================================
 
@@ -40,7 +40,7 @@ class BaseClass: public std::enable_shared_from_this<BaseClass> {
 
         virtual void                archive                         (const std::shared_ptr<Archive> &archive);
         virtual void                archive_done                    (const std::shared_ptr<Archive> &UNUSED(archive))  {}
-
+        virtual std::shared_ptr<BaseClass>   clone(void) const      { assert(false); return nullptr; }
     public:
 
         //

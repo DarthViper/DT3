@@ -39,7 +39,7 @@ class ComponentGUIDrawIcon: public ComponentBase {
         ComponentGUIDrawIcon &      operator =              (const ComponentGUIDrawIcon &rhs);
         virtual                     ~ComponentGUIDrawIcon   (void);
 
-        virtual void                archive                 (const std::shared_ptr<Archive> &archive);
+        virtual void                archive                 (const std::shared_ptr<Archive> &archive) override;
 
     public:
         /// Returns the component type. This defines which slot the component is

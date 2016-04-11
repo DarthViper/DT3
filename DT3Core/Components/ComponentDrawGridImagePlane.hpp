@@ -41,13 +41,13 @@ class ComponentDrawGridImagePlane: public ComponentBase {
         ComponentDrawGridImagePlane &	operator =                  (const ComponentDrawGridImagePlane &rhs);
         virtual                         ~ComponentDrawGridImagePlane(void);
 
-        virtual void                    archive                     (const std::shared_ptr<Archive> &archive);
+        virtual void                    archive                     (const std::shared_ptr<Archive> &archive) override;
 
     public:
         /// Returns the component type. This defines which slot the component is
         /// put into on the object.
         /// \return Component type
-        virtual ComponentType       component_type      (void)  {   return COMPONENT_DRAW;  }
+        virtual ComponentType       component_type      (void) override  {   return COMPONENT_DRAW;  }
 
         /// Draw Callback for component
         /// \param camera Camera used for drawing

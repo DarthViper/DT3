@@ -321,20 +321,20 @@ class ArchiveDataEvent: public ArchiveData {
 
         /// Writes the value to a stream
         /// \param s stream
-        virtual void                value                   (Stream &/*s*/) const {
+        virtual void                value                   (Stream &/*s*/) const override {
         }
 
         /// Reads the value from a stream
         /// \param s stream
-        virtual void                set_value				(Stream &/*s*/) const {
+        virtual void                set_value				(Stream &/*s*/) const override {
         }
 
         /// Returns event
         /// \return event
-        virtual Event*              event                   (void) const		{	return _event;	}
+        virtual Event*              event                   (void) const override	{	return _event;	}
 
         /// Returns data kind
-        virtual const DTcharacter*  data_kind               (void) const        {	return "Event";	}
+        virtual const DTcharacter*  data_kind               (void) const override   {	return "Event";	}
 
     private:
         Event		*_event;

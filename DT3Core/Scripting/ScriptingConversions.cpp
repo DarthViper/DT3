@@ -43,9 +43,9 @@ class Scripting##FROMTYPE##To##TOTYPE: public ScriptingBase {                   
                                             Scripting##FROMTYPE##To##TOTYPE     (void);                                             \
                                             Scripting##FROMTYPE##To##TOTYPE     (const Scripting##FROMTYPE##To##TOTYPE &rhs);       \
         Scripting##FROMTYPE##To##TOTYPE&    operator =                          (const Scripting##FROMTYPE##To##TOTYPE &rhs);       \
-        virtual                             ~Scripting##FROMTYPE##To##TOTYPE    (void) {}                                           \
+        virtual                             ~Scripting##FROMTYPE##To##TOTYPE    (void)  override {}                                 \
                                                                                     \
-        virtual void                archive             (const std::shared_ptr<Archive> &archive); \
+        virtual void                archive             (const std::shared_ptr<Archive> &archive) override; \
                                                                                     \
 	public:                                                                         \
         bool					compute					(const PlugBase *plug); \

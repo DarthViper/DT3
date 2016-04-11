@@ -338,19 +338,19 @@ struct DTclasskind {
         typedef cid type;                                                                                                                           \
         typedef sid super_type;                                                                                                                     \
         inline static DTcharacter*          class_id_static (void)         	{   return (DTcharacter*) #cid;                                     }   \
-        inline virtual DTcharacter*         class_id_child (void) const		{   return class_id_static();                                       }   \
+        inline virtual DTcharacter*         class_id_child (void) const	override	{   return class_id_static();                                       }   \
         inline DTcharacter*                 class_id (void) const         	{   return class_id_static();                                       }   \
         inline static DTclasskind*          kind (void)						{	static DTclasskind kind(super_type::kind(), class_id_static());     \
                                                                             return &kind;                                                   }	\
-        inline virtual bool            isa (DTclasskind* k) const		{	DTclasskind *cur = kind();                                          \
+        inline virtual bool            isa (DTclasskind* k) const override {	DTclasskind *cur = kind();                                          \
                                                                             while (cur) {                                                       \
                                                                                 if (cur == k)	return true;                                    \
                                                                                 cur = cur->super;                                               \
                                                                             }                                                                   \
                                                                             return false;                                                       \
                                                                         }                                                                       \
-    inline virtual const DTcharacter*   file (void)                     {   return __FILE__;                                                }   \
-    inline virtual DTsize               class_size (void) const         {   return static_cast<DTsize>(sizeof(type));                       }
+    inline virtual const DTcharacter*   file (void) override             {   return __FILE__;                                                }   \
+    inline virtual DTsize               class_size (void) const override {   return static_cast<DTsize>(sizeof(type));                       }
 
 #define DEFINE_TYPE_SIMPLE_BASE(cid) \
         typedef cid type;                                                                                                                           \
@@ -371,7 +371,7 @@ struct DTclasskind {
 
 
 #define DEFINE_CLONE\
-        inline virtual std::shared_ptr<BaseClass>   clone(void) const		{	return std::make_shared<type>(*this); }
+        inline virtual std::shared_ptr<BaseClass>   clone(void) const  override {	return std::make_shared<type>(*this); }
 
 #define DEFINE_CREATE\
         inline static std::shared_ptr<type>         create(void)            {	return std::make_shared<type>(); }

@@ -50,7 +50,7 @@ struct DTnodekind {
         static DTnodekind plug_info(super_type::plug_info_static(), &type::initialize_plugs);       \
         return &plug_info;																			\
     }																								\
-    virtual DTnodekind*			plug_info_child     (void) const {									\
+    virtual DTnodekind*			plug_info_child     (void) const override {  						\
         return plug_info_static();                                                                  \
     }																								\
     DTnodekind*					plug_info           (void) const {									\
@@ -109,8 +109,8 @@ class PlugNode: public BaseClass {
         PlugNode &						operator =                  (const PlugNode &rhs);
         virtual							~PlugNode                   (void);
 
-        virtual void					archive                     (const std::shared_ptr<Archive> &archive);
-        virtual void					archive_done                (const std::shared_ptr<Archive> &archive);
+        virtual void					archive                     (const std::shared_ptr<Archive> &archive)  override;
+        virtual void					archive_done                (const std::shared_ptr<Archive> &archive)  override;
 
     public:
         DEFINE_ACCESSORS_REF(name, set_name, std::string, _name)

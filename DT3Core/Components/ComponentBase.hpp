@@ -42,12 +42,12 @@ class ComponentBase: public PlugNode {
         ComponentBase &				operator =			(const ComponentBase &rhs);
         virtual                     ~ComponentBase		(void);
 
-        virtual void                archive             (const std::shared_ptr<Archive> &archive);
+        virtual void                archive             (const std::shared_ptr<Archive> &archive) override;
 
     public:
         /// Returns the full name of the component that uniquely identifies it
         /// \return full name of the component
-        virtual std::string         full_name           (void) const;
+        virtual std::string         full_name           (void) const override;
 
         /// Returns the component type. This defines which slot the component is
         /// put into on the object.
