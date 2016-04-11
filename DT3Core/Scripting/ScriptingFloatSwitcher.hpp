@@ -38,13 +38,13 @@ class ScriptingFloatSwitcher: public ScriptingBase {
         ScriptingFloatSwitcher &    operator =                (const ScriptingFloatSwitcher &rhs);
         virtual                     ~ScriptingFloatSwitcher    (void);
 
-        virtual void                archive                 (const std::shared_ptr<Archive> &archive);
+        virtual void archive(const std::shared_ptr<Archive> &archive) override;
 
     public:
 
         /// Computes the value of the node
         /// \param plug plug to compute
-        bool                    compute                    (const PlugBase *plug);
+        bool compute(const PlugBase *plug) override;
 
         DEFINE_ACCESSORS(float1, set_float1, DTfloat, _in_float1);
         DEFINE_ACCESSORS(float2, set_float2, DTfloat, _in_float2);

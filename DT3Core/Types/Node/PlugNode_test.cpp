@@ -33,10 +33,10 @@ namespace DT3 {
 
 class PlugNode_test: public UnitTest {
     public:
-        DEFINE_TYPE(PlugNode_test,UnitTest);
+        DEFINE_TYPE(PlugNode_test,UnitTest)
         DEFINE_CREATE
         
-        virtual void run_test (void);
+        virtual void run_test (void) override;
 };
 
 //==============================================================================
@@ -79,7 +79,7 @@ struct A: public PlugNode {
 
     }
     
-    virtual bool compute (const PlugBase *plug)
+    virtual bool compute (const PlugBase *plug) override
     {
         if (plug == &_a_int_out_1) {
             LOG_MESSAGE << "_a_int_out_1: Computing " << (_a_int_1) << " + " << (_a_int_2);
@@ -130,7 +130,7 @@ struct B: public PlugNode {
 
     }
         
-    virtual bool compute (const PlugBase *plug)
+    virtual bool compute (const PlugBase *plug) override
     {
         if (plug == &_b_int_out_1) {
             LOG_MESSAGE << "_b_int_out_1: Computing " << (_b_int_1) << " + " << (_b_int_2);
@@ -181,7 +181,7 @@ struct C: public PlugNode {
 
     }
     
-    virtual bool compute (const PlugBase *plug)
+    virtual bool compute (const PlugBase *plug) override
     {
         if (plug == &_c_int_out_1) {
             LOG_MESSAGE << "_c_int_out_1: Computing " << (_c_int_1) << " + " << (_c_int_2);

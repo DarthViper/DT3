@@ -40,15 +40,15 @@ class ScriptingSound: public ScriptingSoundBase {
         ScriptingSound &            operator =                (const ScriptingSound &rhs);
         virtual                     ~ScriptingSound         (void);
 
-        virtual void                archive                 (const std::shared_ptr<Archive> &archive);
+        virtual void                archive                 (const std::shared_ptr<Archive> &archive) override;
 
     public:
         /// Computes the value of the node
         /// \param plug plug to compute
-        bool                               compute                    (const PlugBase *plug);
+        bool                        compute                 (const PlugBase *plug) override;
 
         /// Reset Event
-        void                                    event_reset             (PlugNode *sender);
+        void                        event_reset             (PlugNode *sender);
 
         /// Sets the sound
         /// \param attr sound attribute

@@ -34,7 +34,7 @@ class ScriptingComponentsToColor: public ScriptingBase {
         ScriptingComponentsToColor &    operator =                        (const ScriptingComponentsToColor &rhs);
         virtual                            ~ScriptingComponentsToColor     (void);
 
-        virtual void                    archive                         (const std::shared_ptr<Archive> &archive);
+        virtual void archive(const std::shared_ptr<Archive> &archive) override;
 
     public:
 //        /// Called to initialize the object
@@ -42,7 +42,7 @@ class ScriptingComponentsToColor: public ScriptingBase {
 
         /// Computes the value of the node
         /// \param plug plug to compute
-        bool                        compute                         (const PlugBase *plug);
+        bool compute(const PlugBase *plug) override;
 
     private:
         Plug<DTfloat>                   _in_r;

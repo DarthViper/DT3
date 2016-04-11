@@ -40,14 +40,14 @@ class ScriptingParticleAccelerator: public ScriptingBase {
         ScriptingParticleAccelerator &    operator =                      (const ScriptingParticleAccelerator &rhs);
         virtual                         ~ScriptingParticleAccelerator    (void);
 
-        virtual void                    archive                         (const std::shared_ptr<Archive> &archive);
+        virtual void archive(const std::shared_ptr<Archive> &archive) override;
 
         /// Object was added to a world
         /// world world that object was added to
-        virtual void                    add_to_world                    (World *world);
+        virtual void add_to_world(World *world) override;
 
         /// Object was removed from a world
-        virtual void                    remove_from_world               (void);
+        virtual void remove_from_world(void) override;
 
     public:
         /// Registered with world to tick this node
@@ -56,7 +56,7 @@ class ScriptingParticleAccelerator: public ScriptingBase {
 
         /// Computes the value of the node
         /// \param plug plug to compute
-        bool                       compute                         (const PlugBase *plug);
+        bool compute(const PlugBase *plug) override;
 
         DEFINE_ACCESSORS (acceleration, set_acceleration, Vector3, _acceleration);
 

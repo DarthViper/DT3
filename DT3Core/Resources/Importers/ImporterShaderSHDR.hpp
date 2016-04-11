@@ -49,7 +49,7 @@ class ImporterShaderSHDR: public ImporterShader {
         /// \param target object to import sound into
         /// \param args arguments to importer
         /// \return error code
-        virtual DTerr                    import                          (ShaderResource *target, std::string args);
+        virtual DTerr                    import                          (ShaderResource *target, std::string args) override;
 
     private:
         void                            parse_fragment_shader_implementation_block  (ShaderResource *target);

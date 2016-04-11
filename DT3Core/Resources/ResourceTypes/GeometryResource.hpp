@@ -57,7 +57,7 @@ class GeometryResource: public Resource {
         /// \param pathname path to resource
         /// \param args importer args
         /// \return error code
-        virtual DTerr                   import                    (const FilePath &pathname, std::string args);
+        virtual DTerr                   import                    (const FilePath &pathname, std::string args) override;
 
         /// Adds a mesh to the geometry
         /// \param m Mesh to add

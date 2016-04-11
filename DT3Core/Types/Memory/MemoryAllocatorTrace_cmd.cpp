@@ -32,7 +32,7 @@ class MemoryAllocatorTrace_cmd: public Command {
         DEFINE_TYPE(MemoryAllocatorTrace_cmd,Command);
         DEFINE_CREATE
         
-        void register_commands (void) {
+        void register_commands (void) override {
             CommandRegistry::register_command("CheckMemory", &MemoryAllocatorTrace_cmd::do_check_memory);
             CommandRegistry::register_command("EnableCheckMemory", &MemoryAllocatorTrace_cmd::do_enable_check_memory);
             CommandRegistry::register_command("DisableCheckMemory", &MemoryAllocatorTrace_cmd::do_disable_check_memory);

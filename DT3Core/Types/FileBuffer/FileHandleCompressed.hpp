@@ -57,55 +57,55 @@ class FileHandleCompressed: public FileHandle {
         virtual DTerr           open_file               (const FilePath &pathname, DTsize start, DTsize length, DTsize uncompressed_length);
 
         /// Close the file handle
-        virtual void            close                   (void);
+        virtual void            close                   (void) override;
 
         /// Returns the length of the file
         /// \return Length of the file
-        virtual DTsize          length                  (void) const    {    return _data.size();            }
+        virtual DTsize          length                  (void) const  override {    return _data.size();            }
 
 
         /// Return write position
         /// \return write position
-        virtual DTsize          p                       (void)    {    return 0;    }
+        virtual DTsize          p                       (void)  override {    return 0;    }
 
         /// Return read position
         /// \return read position
-        virtual DTsize          g                       (void)    {    return _file_g;    }
+        virtual DTsize          g                       (void)  override {    return _file_g;    }
 
         /// Change write position
         /// \param p position
         /// \param r relative
-        virtual void            seek_p                  (DToffset p, Relative r);
+        virtual void            seek_p                  (DToffset p, Relative r) override;
 
         /// Change read position
         /// \param p position
         /// \param r relative
-        virtual void            seek_g                  (DToffset g, Relative r);
+        virtual void            seek_g                  (DToffset g, Relative r) override;
 
 
         /// Peeks ahead at the next byte
         /// \return next byte
-        virtual DTcharacter     peek                    (void)    {    return _data[_file_g];    }
+        virtual DTcharacter     peek                    (void)  override {    return _data[_file_g];    }
 
         /// Ignores the next byte
-        virtual void            ignore                  (void)    {    uint8_t b; read(&b, 1);    }
+        virtual void            ignore                  (void)  override {    uint8_t b; read(&b, 1);    }
 
 
         /// Checks for end of file
         /// \return End of file
-        virtual bool       is_eof                  (void)    {    return _eof;        }
+        virtual bool       is_eof                  (void)  override {    return _eof;        }
 
 
         /// Reads a chunk of raw binary data
         /// \param buffer raw buffer
         /// \param size size of raw buffer
         /// \return actual number of bytes read
-        virtual DTsize          read                    (uint8_t *buffer, DTsize size);
+        virtual DTsize          read                    (uint8_t *buffer, DTsize size) override;
 
         /// Writes a chunk of raw binary data
         /// \param buffer raw buffer
         /// \param size size of raw buffer
-        virtual void            write                   (const uint8_t *buffer, DTsize size);
+        virtual void            write                   (const uint8_t *buffer, DTsize size) override;
 
 
     private:

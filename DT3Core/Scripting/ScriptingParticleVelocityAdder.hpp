@@ -40,12 +40,12 @@ class ScriptingParticleVelocityAdder: public ScriptingBase {
         ScriptingParticleVelocityAdder &        operator =                      (const ScriptingParticleVelocityAdder &rhs);
         virtual                                    ~ScriptingParticleVelocityAdder (void);
 
-        virtual void                archive                 (const std::shared_ptr<Archive> &archive);
+        virtual void archive(const std::shared_ptr<Archive> &archive) override;
 
     public:
         /// Computes the value of the node
         /// \param plug plug to compute
-        bool                    compute                    (const PlugBase *plug);
+        bool compute(const PlugBase *plug) override;
 
         DEFINE_ACCESSORS(continuous, set_continuous, bool, _continuous);
         DEFINE_ACCESSORS(velocity, set_velocity, Vector3, _velocity);

@@ -40,31 +40,31 @@ class ScriptingParticleEmitterPeriodic: public ScriptingParticleEmitter {
         ScriptingParticleEmitterPeriodic &    operator =                            (const ScriptingParticleEmitterPeriodic &rhs);
         virtual                                ~ScriptingParticleEmitterPeriodic    (void);
 
-        virtual void                archive                 (const std::shared_ptr<Archive> &archive);
+        virtual void                archive                 (const std::shared_ptr<Archive> &archive) override;
 
         /// Object was added to a world
         /// world world that object was added to
-        virtual void                add_to_world            (World *world);
+        virtual void                add_to_world            (World *world) override;
 
         /// Object was removed from a world
-        virtual void                remove_from_world       (void);
+        virtual void                remove_from_world       (void) override;
 
     public:
         /// Registered with world to tick this node
         /// \param dt delta time
-        virtual void                tick                    (const DTfloat dt);
+        virtual void                tick                    (const DTfloat dt) override;
 
         /// Emits a particle
         void                        emitParticle            (void);
 
 
-        DEFINE_ACCESSORS(period, set_period, DTfloat, _period);
-        DEFINE_ACCESSORS(variation, set_variation, DTfloat, _variation);
-        DEFINE_ACCESSORS(spawn_translation, set_spawn_translation, Vector3, _spawn_translation);
-        DEFINE_ACCESSORS(max_lifetime, set_max_lifetime, DTfloat, _max_lifetime);
-        DEFINE_ACCESSORS(active, set_active, bool, _active);
-        DEFINE_ACCESSORS(max_num, set_max_num, int32_t, _max_num);
-        DEFINE_ACCESSORS(batch_size, set_batch_size, int32_t, _batch_size);
+        DEFINE_ACCESSORS(period, set_period, DTfloat, _period)
+        DEFINE_ACCESSORS(variation, set_variation, DTfloat, _variation)
+        DEFINE_ACCESSORS(spawn_translation, set_spawn_translation, Vector3, _spawn_translation)
+        DEFINE_ACCESSORS(max_lifetime, set_max_lifetime, DTfloat, _max_lifetime)
+        DEFINE_ACCESSORS(active, set_active, bool, _active)
+        DEFINE_ACCESSORS(max_num, set_max_num, int32_t, _max_num)
+        DEFINE_ACCESSORS(batch_size, set_batch_size, int32_t, _batch_size)
 
     private:
         Plug<DTfloat>                                _period;

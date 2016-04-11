@@ -35,7 +35,7 @@ class ModelTools_cmd: public Command {
         DEFINE_TYPE(ModelTools_cmd,Command);
         DEFINE_CREATE
         
-        void register_commands (void) {
+        void register_commands (void) override {
             CommandRegistry::register_command("TestLoadMesh", &ModelTools_cmd::do_test_load_mesh);
             CommandRegistry::register_command("SplitMesh", &ModelTools_cmd::do_split_mesh);
         }

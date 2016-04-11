@@ -38,7 +38,7 @@ class ScriptingEventGate: public ScriptingBase {
         ScriptingEventGate &        operator =                (const ScriptingEventGate &rhs);
         virtual                     ~ScriptingEventGate        (void);
 
-        virtual void                archive                 (const std::shared_ptr<Archive> &archive);
+        virtual void                archive                 (const std::shared_ptr<Archive> &archive) override;
 
     public:
         /// Toggle Event

@@ -40,12 +40,12 @@ class ScriptingParticlePointAttractor: public ScriptingBase {
         ScriptingParticlePointAttractor &    operator =                            (const ScriptingParticlePointAttractor &rhs);
         virtual                                ~ScriptingParticlePointAttractor    (void);
 
-        virtual void                archive                 (const std::shared_ptr<Archive> &archive);
+        virtual void archive(const std::shared_ptr<Archive> &archive) override;
 
     public:
         /// Computes the value of the node
         /// \param plug plug to compute
-        bool                    compute                    (const PlugBase *plug);
+        bool compute(const PlugBase *plug) override;
 
         DEFINE_ACCESSORS(target, set_target, Vector3, _target);
         DEFINE_ACCESSORS(strength, set_strength, DTfloat, _strength);

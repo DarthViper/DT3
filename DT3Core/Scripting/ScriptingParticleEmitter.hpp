@@ -40,7 +40,7 @@ class ScriptingParticleEmitter: public ScriptingBase {
         ScriptingParticleEmitter &        operator =                    (const ScriptingParticleEmitter &rhs);
         virtual                            ~ScriptingParticleEmitter    (void);
 
-        virtual void                archive                 (const std::shared_ptr<Archive> &archive);
+        virtual void                archive                 (const std::shared_ptr<Archive> &archive) override;
 
     public:
         /// Registered with world to tick this node

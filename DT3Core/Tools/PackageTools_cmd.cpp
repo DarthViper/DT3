@@ -37,7 +37,7 @@ class PackageTools_cmd: public Command {
         DEFINE_TYPE(PackageTools_cmd,Command);
         DEFINE_CREATE
         
-        void register_commands (void) {
+        void register_commands (void) override {
             CommandRegistry::register_command("MakePackage", &PackageTools_cmd::do_make_package);
         }
 

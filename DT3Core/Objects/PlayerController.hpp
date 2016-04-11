@@ -39,7 +39,7 @@ class PlayerController: public ObjectBase {
         PlayerController &            operator =          (const PlayerController &rhs);
         virtual                     ~PlayerController    (void);
 
-        virtual void                archive             (const std::shared_ptr<Archive> &archive);
+        virtual void                archive             (const std::shared_ptr<Archive> &archive) override;
 
     public:
 };

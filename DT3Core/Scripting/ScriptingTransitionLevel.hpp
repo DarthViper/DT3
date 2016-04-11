@@ -39,7 +39,7 @@ class ScriptingTransitionLevel: public ScriptingBase {
         ScriptingTransitionLevel &    operator =                  (const ScriptingTransitionLevel &rhs);
         virtual                     ~ScriptingTransitionLevel    (void);
 
-        virtual void                archive                     (const std::shared_ptr<Archive> &archive);
+        virtual void                archive                     (const std::shared_ptr<Archive> &archive) override;
 
     public:
 

@@ -45,10 +45,10 @@ class ScriptingTouch: public ScriptingBase {
         ScriptingTouch &            operator =                (const ScriptingTouch &rhs);
         virtual                     ~ScriptingTouch         (void);
 
-        virtual void                archive                 (const std::shared_ptr<Archive> &archive);
+        virtual void archive(const std::shared_ptr<Archive> &archive) override;
 
-        virtual void                add_to_world            (World *world);
-        virtual void                remove_from_world       (void);
+        virtual void                add_to_world            (World *world) override;
+        virtual void                remove_from_world       (void) override;
 
     public:
 

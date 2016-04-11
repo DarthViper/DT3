@@ -42,12 +42,12 @@ class ScriptingSoundBusIn: public ScriptingSoundBase {
         ScriptingSoundBusIn &        operator =                (const ScriptingSoundBusIn &rhs);
         virtual                     ~ScriptingSoundBusIn    (void);
 
-        virtual void                archive                 (const std::shared_ptr<Archive> &archive);
+        virtual void                archive                 (const std::shared_ptr<Archive> &archive) override;
 
     public:
         /// Computes the value of the node
         /// \param plug plug to compute
-        bool                    compute                    (const PlugBase *plug);
+        bool                    compute                    (const PlugBase *plug) override;
 
         /// Adds a bus sound source
         /// \param source bus sound source

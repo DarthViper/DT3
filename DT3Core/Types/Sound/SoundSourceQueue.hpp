@@ -55,7 +55,7 @@ class SoundSourceQueue: public SoundSource {
         DTsize                      num_packets         (void)  {   return _packet_count;   }
 
         /// Returns the next sound packet for playing from this source.
-        virtual const SoundPacket&  next_sound_packet   (void);
+        virtual const SoundPacket&  next_sound_packet   (void) override;
 
     private:
         std::mutex                  _lock;

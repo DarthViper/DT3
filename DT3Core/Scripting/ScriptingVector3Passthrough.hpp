@@ -38,12 +38,12 @@ class ScriptingVector3Passthrough: public ScriptingBase {
         ScriptingVector3Passthrough &    operator =                      (const ScriptingVector3Passthrough &rhs);
         virtual                            ~ScriptingVector3Passthrough    (void);
 
-        virtual void                archive                 (const std::shared_ptr<Archive> &archive);
+        virtual void archive(const std::shared_ptr<Archive> &archive) override;
 
     public:
         /// Computes the value of the node
         /// \param plug plug to compute
-        bool                    compute                    (const PlugBase *plug);
+        bool compute(const PlugBase *plug) override;
 
     private:
         Plug<Vector3>                _in;

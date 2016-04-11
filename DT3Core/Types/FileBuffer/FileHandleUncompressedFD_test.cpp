@@ -39,10 +39,10 @@ namespace DT3 {
 
 class FileHandleUncompressedFD_test: public UnitTest {
     public:
-        DEFINE_TYPE(FileHandleUncompressedFD_test,UnitTest);
+        DEFINE_TYPE(FileHandleUncompressedFD_test,UnitTest)
         DEFINE_CREATE
         
-        virtual void    run_test       (void);
+        virtual void    run_test       (void) override;
         static void     file_open_cb   (const FilePath &path, std::shared_ptr<FileHandle> &file_handle, DTsize &start, DTsize &length, void *data);
 };
 

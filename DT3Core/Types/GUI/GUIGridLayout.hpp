@@ -107,24 +107,24 @@ class GUIGridLayout: public GUILayout {
 
         /// Perform layout
         /// \param size_target Rectangle to fit widgets into
-        virtual void                layout                  (const Rectangle &size_target);
+        virtual void                layout                  (const Rectangle &size_target) override;
 
         /// Animate layout
         /// \param size_target Rectangle to fit widgets into
         /// \param time Animation time
         /// \param spline Use spline interpolation
-        virtual void                animate                 (const Rectangle &size_target, DTfloat time, bool spline = false);
+        virtual void                animate                 (const Rectangle &size_target, DTfloat time, bool spline = false) override;
 
         /// Add an animation key
         /// \param key animation key to add
-        virtual void                add_anim_key            (const GUIAnimKey &key);
+        virtual void                add_anim_key            (const GUIAnimKey &key) override;
 
         /// Clear all animations
-        virtual void                clear_anims             (void);
+        virtual void                clear_anims             (void) override;
 
         /// Content rectangle
         /// \return Content rectangle
-        virtual Rectangle           get_content_rect        (void) const;
+        virtual Rectangle           get_content_rect        (void) const override;
 
         /// Returns the height of the row
         /// \param i row index
@@ -138,7 +138,7 @@ class GUIGridLayout: public GUILayout {
 
         /// Returns all objects managed by the layout
         /// \return all objects
-        virtual std::list<std::shared_ptr<GUIObject>>  all_objects (void);
+        virtual std::list<std::shared_ptr<GUIObject>>  all_objects (void) override;
 
     private:
 

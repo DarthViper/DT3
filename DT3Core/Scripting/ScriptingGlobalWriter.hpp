@@ -38,7 +38,7 @@ class ScriptingGlobalWriter: public ScriptingBase {
         ScriptingGlobalWriter &        operator =                (const ScriptingGlobalWriter &rhs);
         virtual                     ~ScriptingGlobalWriter    (void);
 
-        virtual void                archive                 (const std::shared_ptr<Archive> &archive);
+        virtual void archive(const std::shared_ptr<Archive> &archive) override;
 
     public:
         /// Write Event

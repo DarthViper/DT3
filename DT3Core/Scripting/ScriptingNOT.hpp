@@ -36,7 +36,7 @@ class ScriptingNOT: public ScriptingBase {
         ScriptingNOT &                operator =                (const ScriptingNOT &rhs);
         virtual                     ~ScriptingNOT            (void) = default;
 
-        virtual void                archive                 (const std::shared_ptr<Archive> &archive);
+        virtual void archive(const std::shared_ptr<Archive> &archive) override;
 
     public:
         /// Computes the value of the node

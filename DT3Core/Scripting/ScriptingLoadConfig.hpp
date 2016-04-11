@@ -40,7 +40,7 @@ class ScriptingLoadConfig: public ScriptingBase {
         ScriptingLoadConfig &       operator =                  (const ScriptingLoadConfig &rhs);
         virtual                     ~ScriptingLoadConfig        (void);
 
-        virtual void                archive                     (const std::shared_ptr<Archive> &archive);
+        virtual void archive(const std::shared_ptr<Archive> &archive) override;
 
     public:
         /// Load Event

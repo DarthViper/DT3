@@ -1,7 +1,7 @@
 #pragma once
 //==============================================================================
 ///
-///	File: ScriptingATAN2.hpp
+///    File: ScriptingATAN2.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -31,22 +31,22 @@ class ScriptingATAN2: public ScriptingBase {
         DEFINE_CREATE_AND_CLONE
         DEFINE_PLUG_NODE
 
-                                    ScriptingATAN2			(void);
-                                    ScriptingATAN2			(const ScriptingATAN2 &rhs);
-        ScriptingATAN2 &			operator =				(const ScriptingATAN2 &rhs);
-        virtual                     ~ScriptingATAN2			(void);
+                                    ScriptingATAN2            (void);
+                                    ScriptingATAN2            (const ScriptingATAN2 &rhs);
+        ScriptingATAN2 &            operator =                (const ScriptingATAN2 &rhs);
+        virtual                     ~ScriptingATAN2            (void);
 
-        virtual void                archive                 (const std::shared_ptr<Archive> &archive);
+        virtual void                archive                 (const std::shared_ptr<Archive> &archive) override;
 
     public:
         /// Computes the value of the node
         /// \param plug plug to compute
-        bool					compute					(const PlugBase *plug) override;
+        bool                    compute                    (const PlugBase *plug) override;
 
     private:
-        Plug<DTfloat>				_in_y;
-        Plug<DTfloat>				_in_x;
-        Plug<DTfloat>				_out;
+        Plug<DTfloat>                _in_y;
+        Plug<DTfloat>                _in_x;
+        Plug<DTfloat>                _out;
 
 };
 

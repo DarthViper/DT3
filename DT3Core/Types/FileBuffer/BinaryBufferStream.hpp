@@ -41,64 +41,64 @@ class BinaryBufferStream: public BinaryStream {
 
         public:
 
-                Stream&                     operator<<              (const Stream::FS)    {    return *this;    }
-                Stream&                     operator<<              (const bool n);
-                Stream&                     operator<<              (const int8_t n);
-                Stream&                     operator<<              (const int16_t n);
-                Stream&                     operator<<              (const int32_t n);
-                Stream&                     operator<<              (const uint8_t n);
-                Stream&                     operator<<              (const uint16_t n);
-                Stream&                     operator<<              (const uint32_t n);
-                Stream&                     operator<<              (const int64_t n);
-                Stream&                     operator<<              (const uint64_t n);
+                Stream&                     operator<<              (const Stream::FS) override {    return *this;    }
+                Stream&                     operator<<              (const bool n) override;
+                Stream&                     operator<<              (const int8_t n) override;
+                Stream&                     operator<<              (const int16_t n) override;
+                Stream&                     operator<<              (const int32_t n) override;
+                Stream&                     operator<<              (const uint8_t n) override;
+                Stream&                     operator<<              (const uint16_t n) override;
+                Stream&                     operator<<              (const uint32_t n) override;
+                Stream&                     operator<<              (const int64_t n) override;
+                Stream&                     operator<<              (const uint64_t n) override;
 #if DT3_SIZES_ARE_DISTINCT_TYPES
-                Stream&                     operator<<              (const DTsize n);
+                Stream&                     operator<<              (const DTsize n) override;
 #endif
-                Stream&                     operator<<              (const DTfloat n);
-                Stream&                     operator<<              (const DTdouble n);
-                Stream&                     operator<<              (const DTlonglong n);
-                Stream&                     operator<<              (const DTcharacter n);
-                Stream&                     operator<<              (const char* n);
-                Stream&                     operator<<              (const std::string &n);
+                Stream&                     operator<<              (const DTfloat n) override;
+                Stream&                     operator<<              (const DTdouble n) override;
+                Stream&                     operator<<              (const DTlonglong n) override;
+                Stream&                     operator<<              (const DTcharacter n) override;
+                Stream&                     operator<<              (const char* n) override;
+                Stream&                     operator<<              (const std::string &n) override;
                 Stream&                     operator<<              (const BinaryBufferStream& n);
 
 
-                Stream&                     operator>>              (bool &n);
-                Stream&                     operator>>              (int8_t &n);
-                Stream&                     operator>>              (int16_t &n);
-                Stream&                     operator>>              (int32_t &n);
-                Stream&                     operator>>              (uint8_t &n);
-                Stream&                     operator>>              (uint16_t &n);
-                Stream&                     operator>>              (uint32_t &n);
-                Stream&                     operator>>              (int64_t &n);
-                Stream&                     operator>>              (uint64_t &n);
+                Stream&                     operator>>              (bool &n) override;
+                Stream&                     operator>>              (int8_t &n) override;
+                Stream&                     operator>>              (int16_t &n) override;
+                Stream&                     operator>>              (int32_t &n) override;
+                Stream&                     operator>>              (uint8_t &n) override;
+                Stream&                     operator>>              (uint16_t &n) override;
+                Stream&                     operator>>              (uint32_t &n) override;
+                Stream&                     operator>>              (int64_t &n) override;
+                Stream&                     operator>>              (uint64_t &n) override;
 #if DT3_SIZES_ARE_DISTINCT_TYPES
-                Stream&                     operator>>              (DTsize &n);
+                Stream&                     operator>>              (DTsize &n) override;
 #endif
-                Stream&                     operator>>              (DTfloat &n);
-                Stream&                     operator>>              (DTdouble &n);
-                Stream&                     operator>>              (DTlonglong &n);
-                Stream&                     operator>>              (DTcharacter &n);
-                Stream&                     operator>>              (std::string &n);
+                Stream&                     operator>>              (DTfloat &n) override;
+                Stream&                     operator>>              (DTdouble &n) override;
+                Stream&                     operator>>              (DTlonglong &n) override;
+                Stream&                     operator>>              (DTcharacter &n) override;
+                Stream&                     operator>>              (std::string &n) override;
 
 
                 /// Return write position
                 /// \return write position
-                DTsize                        p                       (void);
+                DTsize                        p                       (void) override;
 
                 /// Return read position
                 /// \return read position
-                DTsize                        g                       (void);
+                DTsize                        g                       (void) override;
 
                 /// Change write position
                 /// \param p position
                 /// \param r relative
-                void                        seek_p                  (DToffset p, Relative r);
+                void                        seek_p                  (DToffset p, Relative r) override;
 
                 /// Change read position
                 /// \param p position
                 /// \param r relative
-                void                        seek_g                  (DToffset g, Relative r);
+                void                        seek_g                  (DToffset g, Relative r) override;
 
 
                 /// Return raw pointer to the buffer

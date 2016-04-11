@@ -3,7 +3,7 @@
 #define DT3_TEXTSTREAM
 //==============================================================================
 ///
-///	File: TextStream.hpp
+///    File: TextStream.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -33,12 +33,12 @@ class TextStream: public Stream {
         DEFINE_TYPE(TextStream,Stream)
         //DEFINE_CREATE_AND_CLONE
 
-                                    TextStream		(void);
+                                    TextStream        (void);
     private:
-                                    TextStream		(const TextStream &rhs);
-        TextStream &				operator =		(const TextStream &rhs);
+                                    TextStream        (const TextStream &rhs);
+        TextStream &                operator =        (const TextStream &rhs);
     public:
-        virtual						~TextStream		(void);
+        virtual                        ~TextStream        (void);
 };
 
 //==============================================================================

@@ -36,7 +36,7 @@ class SoundSourceObject: public PlaceableObject {
         SoundSourceObject &            operator =                        (const SoundSourceObject &rhs);
         virtual                     ~SoundSourceObject                (void);
 
-        virtual void                archive                         (const std::shared_ptr<Archive> &archive);
+        virtual void                archive                         (const std::shared_ptr<Archive> &archive) override;
 
         /// Play the sound
         /// \param sender node (if any) that caused this event
@@ -56,10 +56,10 @@ class SoundSourceObject: public PlaceableObject {
 
         /// Object was added to a world
         /// world world that object was added to
-        virtual void                add_to_world                    (World *world);
+        virtual void                add_to_world                    (World *world) override;
 
         /// Object was removed from a world
-        virtual void                remove_from_world               (void);
+        virtual void                remove_from_world               (void) override;
 
     private:
         Plug<SoundPacket>               _sound_packet;

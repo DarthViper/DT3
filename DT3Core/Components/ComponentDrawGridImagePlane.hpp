@@ -1,7 +1,7 @@
 #pragma once
 //==============================================================================
 ///
-///	File: ComponentDrawGridImagePlane.hpp
+///    File: ComponentDrawGridImagePlane.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -36,9 +36,9 @@ class ComponentDrawGridImagePlane: public ComponentBase {
         DEFINE_CREATE_AND_CLONE
         DEFINE_PLUG_NODE
 
-                                        ComponentDrawGridImagePlane	(void);
-                                        ComponentDrawGridImagePlane	(const ComponentDrawGridImagePlane &rhs);
-        ComponentDrawGridImagePlane &	operator =                  (const ComponentDrawGridImagePlane &rhs);
+                                        ComponentDrawGridImagePlane    (void);
+                                        ComponentDrawGridImagePlane    (const ComponentDrawGridImagePlane &rhs);
+        ComponentDrawGridImagePlane &    operator =                  (const ComponentDrawGridImagePlane &rhs);
         virtual                         ~ComponentDrawGridImagePlane(void);
 
         virtual void                    archive                     (const std::shared_ptr<Archive> &archive) override;
@@ -64,25 +64,25 @@ class ComponentDrawGridImagePlane: public ComponentBase {
 
         /// Returns the number of grid points in the X direction
         /// \return Number of grid points in X
-        uint32_t				num_x				(void) const;
+        uint32_t                num_x                (void) const;
 
         /// Sets the number of grid points in the Y direction
         /// \param num_y Number of grid points
-        void                        set_num_y			(const uint32_t num_y);
+        void                        set_num_y            (const uint32_t num_y);
 
         /// Returns the number of grid points in the Y direction
         /// \return Number of grid points in Y
-        uint32_t				num_y				(void) const;
+        uint32_t                num_y                (void) const;
 
 
         /// Called when this component is added to the owner. Note that this will
         /// only be called if the owner is added to a world already. If not it
         /// will be called when it is added to the World.
         /// \param owner Pointer to the owner
-        virtual void                add_to_owner        (ObjectBase *owner);
+        virtual void                add_to_owner        (ObjectBase *owner) override;
 
         /// Called when this component is removed from its owner.
-        virtual void                remove_from_owner   (void);
+        virtual void                remove_from_owner   (void) override;
 
         /// Get and retrieve the color for this image
         DEFINE_ACCESSORS (color, set_color, Color4f, _color);

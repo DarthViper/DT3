@@ -40,13 +40,13 @@ class ComponentDrawMesh: public ComponentBase {
         ComponentDrawMesh &                 operator =          (const ComponentDrawMesh &rhs);
         virtual                             ~ComponentDrawMesh  (void);
 
-        virtual void                        archive             (const std::shared_ptr<Archive> &archive);
+        virtual void                        archive             (const std::shared_ptr<Archive> &archive) override;
 
     public:
         /// Returns the component type. This defines which slot the component is
         /// put into on the object.
         /// \return Component type
-        virtual ComponentType               component_type      (void)  {   return COMPONENT_DRAW;  }
+        virtual ComponentType               component_type      (void) override  {   return COMPONENT_DRAW;  }
 
         /// Draw Callback for component
         /// \param camera Camera used for drawing
@@ -57,10 +57,10 @@ class ComponentDrawMesh: public ComponentBase {
         /// only be called if the owner is added to a world already. If not it
         /// will be called when it is added to the World.
         /// \param owner Pointer to the owner
-        virtual void                        add_to_owner        (ObjectBase *owner);
+        virtual void                        add_to_owner        (ObjectBase *owner) override;
 
         /// Called when this component is removed from its owner.
-        virtual void                        remove_from_owner   (void);
+        virtual void                        remove_from_owner   (void) override;
 
         /// Returns the material for the Image Plane
         /// \return The material for the image plane

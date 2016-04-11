@@ -40,7 +40,7 @@ class Group: public PlugNode {
         Group &                                 operator =            (const Group &rhs);
         virtual                                 ~Group              (void);
 
-        virtual void                            archive             (const std::shared_ptr<Archive> &archive);
+        virtual void                            archive             (const std::shared_ptr<Archive> &archive) override;
 
     public:
         void                                    add_node            (const std::shared_ptr<WorldNode> &node);
@@ -67,11 +67,11 @@ class Group: public PlugNode {
         /// Returns the world that the group belongs to.
         /// \return world
         World*                                  world               (void) const                    {   return _world;                  }
-        virtual void                            add_to_world        (World *world);
-        virtual void                            remove_from_world   (void);
+        virtual void add_to_world(World *world);
+        virtual void remove_from_world(void);
 
 
-        DEFINE_ACCESSORS_REF(description, set_description, std::string, _description);
+        DEFINE_ACCESSORS_REF(description, set_description, std::string, _description)
 
     private:
         World                                   *_world;         // weak reference - no ref count

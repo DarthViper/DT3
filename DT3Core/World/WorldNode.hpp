@@ -43,7 +43,7 @@ class WorldNode: public PlugNode {
         WorldNode &                 operator =            (const WorldNode &rhs);
         virtual                     ~WorldNode            (void) = default;
 
-        virtual void                archive             (const std::shared_ptr<Archive> &archive);
+        virtual void                archive             (const std::shared_ptr<Archive> &archive) override;
 
     public:
         // Setting the database
@@ -55,10 +55,10 @@ class WorldNode: public PlugNode {
 
         /// Object was added to a world
         /// world world that object was added to
-        virtual void                add_to_world        (World *world);
+        virtual void                add_to_world(World *world);
 
         /// Object was removed from a world
-        virtual void                remove_from_world   (void);
+        virtual void                remove_from_world(void);
 
 
         /// Gets the group.

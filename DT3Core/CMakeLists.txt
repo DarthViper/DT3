@@ -381,7 +381,7 @@ add_library(DT3Core SHARED ${PROJECT_SOURCE})
 
 
 qt5_use_modules(DT3Core Core Gui)
-
+target_compile_features(DT3Core PUBLIC cxx_override)
 
 
 

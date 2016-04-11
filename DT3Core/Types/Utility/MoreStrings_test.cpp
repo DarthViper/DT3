@@ -30,7 +30,7 @@ class MoreStrings_test: public UnitTest {
         DEFINE_TYPE(MoreStrings_test,UnitTest);
         DEFINE_CREATE
         
-        virtual void run_test (void);
+        virtual void run_test (void) override;
 };
 
 //==============================================================================

@@ -3,7 +3,7 @@
 #define DT3_TEXTBUFFERSTREAM
 //==============================================================================
 ///
-///	File: TextBufferStream.hpp
+///    File: TextBufferStream.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -37,56 +37,56 @@ class TextBufferStream: public TextStream {
         DEFINE_TYPE(TextBufferStream,TextStream)
         DEFINE_CREATE
 
-                                TextBufferStream		(void);
-        explicit                TextBufferStream		(const std::string &s)  {	set_buffer(s);	}
-        explicit                TextBufferStream		(const DTcharacter *s)	{	set_buffer(s);	}
+                                TextBufferStream        (void);
+        explicit                TextBufferStream        (const std::string &s)  {    set_buffer(s);    }
+        explicit                TextBufferStream        (const DTcharacter *s)    {    set_buffer(s);    }
         private:
-                                TextBufferStream		(const TextBufferStream &rhs);
-        TextBufferStream &		operator =				(const TextBufferStream &rhs);
+                                TextBufferStream        (const TextBufferStream &rhs);
+        TextBufferStream &        operator =                (const TextBufferStream &rhs);
         public:
-        virtual					~TextBufferStream		(void);
+        virtual                    ~TextBufferStream        (void);
 
         public:
 
-                Stream&				operator<<          (const Stream::FS) override	 {	*this << " ";	return *this;	}
-                Stream&				operator<<			(const bool n) override;
-                Stream&				operator<<			(const int8_t n) override;
-                Stream&				operator<<			(const int16_t n) override;
-                Stream&				operator<<			(const int32_t n) override;
-                Stream&				operator<<			(const uint8_t n) override;
-                Stream&				operator<<			(const uint16_t n) override;
-                Stream&				operator<<			(const uint32_t n) override;
-                Stream&				operator<<			(const int64_t n) override;
-                Stream&				operator<<			(const uint64_t n) override;
+                Stream&                operator<<          (const Stream::FS) override     {    *this << " ";    return *this;    }
+                Stream&                operator<<            (const bool n) override;
+                Stream&                operator<<            (const int8_t n) override;
+                Stream&                operator<<            (const int16_t n) override;
+                Stream&                operator<<            (const int32_t n) override;
+                Stream&                operator<<            (const uint8_t n) override;
+                Stream&                operator<<            (const uint16_t n) override;
+                Stream&                operator<<            (const uint32_t n) override;
+                Stream&                operator<<            (const int64_t n) override;
+                Stream&                operator<<            (const uint64_t n) override;
 #if DT3_SIZES_ARE_DISTINCT_TYPES
-                Stream&				operator<<			(const DTsize n) override;
+                Stream&                operator<<            (const DTsize n) override;
 #endif
-                Stream&				operator<<			(const DTfloat n) override;
-                Stream&				operator<<			(const DTdouble n) override;
-                Stream&				operator<<			(const DTlonglong n) override;
-                Stream&				operator<<			(const DTcharacter n) override;
-                Stream&				operator<<			(const char* n) override;
-                Stream&				operator<<			(const std::string &n) override;
-                Stream&				operator<<			(const TextBufferStream& n);
+                Stream&                operator<<            (const DTfloat n) override;
+                Stream&                operator<<            (const DTdouble n) override;
+                Stream&                operator<<            (const DTlonglong n) override;
+                Stream&                operator<<            (const DTcharacter n) override;
+                Stream&                operator<<            (const char* n) override;
+                Stream&                operator<<            (const std::string &n) override;
+                Stream&                operator<<            (const TextBufferStream& n);
 
 
-                Stream&				operator>>			(bool &n) override;
-                Stream&				operator>>			(int8_t &n) override;
-                Stream&				operator>>			(int16_t &n) override;
-                Stream&				operator>>			(int32_t &n) override;
-                Stream&				operator>>			(uint8_t &n) override;
-                Stream&				operator>>			(uint16_t &n) override;
-                Stream&				operator>>			(uint32_t &n) override;
-                Stream&				operator>>			(int64_t &n) override;
-                Stream&				operator>>			(uint64_t &n) override;
+                Stream&                operator>>            (bool &n) override;
+                Stream&                operator>>            (int8_t &n) override;
+                Stream&                operator>>            (int16_t &n) override;
+                Stream&                operator>>            (int32_t &n) override;
+                Stream&                operator>>            (uint8_t &n) override;
+                Stream&                operator>>            (uint16_t &n) override;
+                Stream&                operator>>            (uint32_t &n) override;
+                Stream&                operator>>            (int64_t &n) override;
+                Stream&                operator>>            (uint64_t &n) override;
 #if DT3_SIZES_ARE_DISTINCT_TYPES
-                Stream&				operator>>			(DTsize &n) override;
+                Stream&                operator>>            (DTsize &n) override;
 #endif
-                Stream&				operator>>			(DTfloat &n) override;
-                Stream&				operator>>			(DTdouble &n) override;
-                Stream&				operator>>			(DTlonglong &n) override;
-                Stream&				operator>>			(DTcharacter &n) override;
-                Stream&				operator>>			(std::string &n) override;
+                Stream&                operator>>            (DTfloat &n) override;
+                Stream&                operator>>            (DTdouble &n) override;
+                Stream&                operator>>            (DTlonglong &n) override;
+                Stream&                operator>>            (DTcharacter &n) override;
+                Stream&                operator>>            (std::string &n) override;
 
 
                 /// Return write position
@@ -122,11 +122,11 @@ class TextBufferStream: public TextStream {
 
                 /// Returns the buffer
                 /// \return buffer
-                std::string						buffer              (void)                              {	return std::string(_buffer.str());		}
+                std::string                        buffer              (void)                              {    return std::string(_buffer.str());        }
 
                 /// Sets the buffer contents
                 /// \param buffer new buffer contents
-                void							set_buffer			(std::string buffer);
+                void                            set_buffer            (std::string buffer);
 
                 /// Sets the ignore whitespace flag. This ignores spaces when reading strings
                 /// \param ignore_whitepace ignore whitepace flag

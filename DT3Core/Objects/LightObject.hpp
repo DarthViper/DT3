@@ -40,29 +40,29 @@ class LightObject: public PlaceableObject {
         LightObject &                operator =                        (const LightObject &rhs);
         virtual                     ~LightObject                    (void);
 
-        virtual void                archive                         (const std::shared_ptr<Archive> &archive);
+        virtual void                archive                         (const std::shared_ptr<Archive> &archive) override;
 
     public:
         /// Accessors for Red gain
-        DEFINE_ACCESSORS(gain_r, set_gain_r, DTfloat, _gain_r);
+        DEFINE_ACCESSORS(gain_r, set_gain_r, DTfloat, _gain_r)
 
         /// Accessors for Green gain
-        DEFINE_ACCESSORS(gain_g, set_gain_g, DTfloat, _gain_g);
+        DEFINE_ACCESSORS(gain_g, set_gain_g, DTfloat, _gain_g)
 
         /// Accessors for Blue gain
-        DEFINE_ACCESSORS(gain_b, set_gain_b, DTfloat, _gain_b);
+        DEFINE_ACCESSORS(gain_b, set_gain_b, DTfloat, _gain_b)
 
         /// Accessors for Alpha gain
-        DEFINE_ACCESSORS(gain_a, set_gain_a, DTfloat, _gain_a);
+        DEFINE_ACCESSORS(gain_a, set_gain_a, DTfloat, _gain_a)
 
         /// Accessors for Color
-        DEFINE_ACCESSORS(color, set_color, Color4f, _color);
+        DEFINE_ACCESSORS(color, set_color, Color4f, _color)
 
         /// Accessors for Specular Color
-        DEFINE_ACCESSORS(specular_color, set_specular_color, Color4f, _specular_color);
+        DEFINE_ACCESSORS(specular_color, set_specular_color, Color4f, _specular_color)
 
         /// Accessors for Specular Exponent
-        DEFINE_ACCESSORS(specular_exponent_gain, set_specular_exponent_gain, DTfloat, _specular_gain);
+        DEFINE_ACCESSORS(specular_exponent_gain, set_specular_exponent_gain, DTfloat, _specular_gain)
 
     private:
         Plug<DTfloat>                _gain_r;

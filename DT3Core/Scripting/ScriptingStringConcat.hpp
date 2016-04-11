@@ -39,12 +39,12 @@ class ScriptingStringConcat: public ScriptingBase {
         ScriptingStringConcat &     operator =                (const ScriptingStringConcat &rhs);
         virtual                        ~ScriptingStringConcat  (void);
 
-        virtual void                archive                 (const std::shared_ptr<Archive> &archive);
+        virtual void archive(const std::shared_ptr<Archive> &archive) override;
 
     public:
         /// Computes the value of the node
         /// \param plug plug to compute
-        bool                    compute                    (const PlugBase *plug);
+        bool compute(const PlugBase *plug) override;
 
     private:
         Plug<std::string>           _in1;

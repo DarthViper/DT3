@@ -36,13 +36,13 @@ class ScriptingSpline: public ScriptingBase {
         ScriptingSpline &           operator =              (const ScriptingSpline &rhs);
         virtual                        ~ScriptingSpline        (void);
 
-        virtual void                archive                 (const std::shared_ptr<Archive> &archive);
-        virtual void                archive_done            (const std::shared_ptr<Archive> &archive);
+        virtual void                archive                 (const std::shared_ptr<Archive> &archive) override;
+        virtual void                archive_done            (const std::shared_ptr<Archive> &archive) override;
 
     public:
         /// Computes the value of the node
         /// \param plug plug to compute
-        bool                    compute                    (const PlugBase *plug);
+        bool                    compute                    (const PlugBase *plug) override;
 
         /// Sets number of points along the path
         /// \param s number of points

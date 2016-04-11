@@ -57,7 +57,7 @@ class ShaderResource: public Resource {
         /// \param pathname path to resource
         /// \param args importer args
         /// \return error code
-        DTerr                                   import                    (const FilePath &pathname, std::string args);
+        DTerr                                   import                    (const FilePath &pathname, std::string args) override;
 
 
         /// Sets the fragment shader

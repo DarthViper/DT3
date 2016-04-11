@@ -38,12 +38,12 @@ class ScriptingEqual: public ScriptingBase {
         ScriptingEqual &            operator =                (const ScriptingEqual &rhs);
         virtual                        ~ScriptingEqual         (void);
 
-        virtual void                archive                 (const std::shared_ptr<Archive> &archive);
+        virtual void archive(const std::shared_ptr<Archive> &archive) override;
 
     public:
         /// Computes the value of the node
         /// \param plug plug to compute
-        bool                    compute                    (const PlugBase *plug);
+        bool compute(const PlugBase *plug) override;
 
     private:
         Plug<DTfloat>                _in1;

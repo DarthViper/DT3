@@ -46,10 +46,10 @@ namespace DT3 {
 
 class EdLevelMainWindow_cmd: public Command {
     public:
-        DEFINE_TYPE(EdLevelMainWindow_cmd,Command);
+        DEFINE_TYPE(EdLevelMainWindow_cmd,Command)
         DEFINE_CREATE
 
-        void register_commands (void) {
+        void register_commands (void) override {
             CommandRegistry::register_command("Cut", &EdLevelMainWindow_cmd::do_cut);
             CommandRegistry::register_command("Copy", &EdLevelMainWindow_cmd::do_copy);
             CommandRegistry::register_command("Paste", &EdLevelMainWindow_cmd::do_paste);

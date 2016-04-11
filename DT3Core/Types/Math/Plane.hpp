@@ -36,13 +36,13 @@ class Plane {
     public:
         DEFINE_TYPE_SIMPLE_BASE(Plane)
 
-                                    Plane                           (void);
-                                    Plane                           (const Vector3 &n, const DTfloat &d);
-                                    Plane                           (const Vector3 &n, const Vector3 &p);
-                                    Plane                           (const Vector3 &a, const Vector3 &b, const Vector3 &c);
-                                    Plane                           (const Vector4 &a);
-                                    Plane                           (const DTfloat &a, const DTfloat &b, const DTfloat &c, const DTfloat &d);
-                                    Plane                           (const Plane &rhs);
+                                        Plane                           (void);
+                                        Plane                           (const Vector3 &n, const DTfloat &d);
+                                        Plane                           (const Vector3 &n, const Vector3 &p);
+                                        Plane                           (const Vector3 &a, const Vector3 &b, const Vector3 &c);
+                                        Plane                           (const Vector4 &a);
+                                        Plane                           (const DTfloat &a, const DTfloat &b, const DTfloat &c, const DTfloat &d);
+                                        Plane                           (const Plane &rhs);
 
 
         Plane &                        operator =                      (const Plane &rhs);

@@ -32,7 +32,7 @@ class Application_cmd: public Command {
         DEFINE_TYPE(Application_cmd,Command);
         DEFINE_CREATE
         
-        void register_commands (void) {
+        void register_commands (void)  override{
             CommandRegistry::register_command("Quit", &Application_cmd::do_quit);
         }
 

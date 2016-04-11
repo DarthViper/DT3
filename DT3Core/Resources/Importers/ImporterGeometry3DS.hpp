@@ -52,7 +52,7 @@ class ImporterGeometry3DS: public ImporterGeometry {
         /// \param target object to import geometry into
         /// \param args arguments to importer
         /// \retrun error code
-        virtual DTerr                    import                (GeometryResource *target, std::string args);
+        virtual DTerr                    import                (GeometryResource *target, std::string args) override;
 
     private:
 

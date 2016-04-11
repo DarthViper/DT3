@@ -1,6 +1,6 @@
 //==============================================================================
 ///
-///	File: DT3GL.cpp
+///    File: DT3GL.cpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -262,7 +262,7 @@ void DT3OpenGL::clear_viewport (bool depth, bool color, bool stencil)
 {
     ASSERT(::glGetError() == GL_NO_ERROR);
 
-    GLenum flags =	(GL_DEPTH_BUFFER_BIT * (depth ? 1:0)) |
+    GLenum flags =    (GL_DEPTH_BUFFER_BIT * (depth ? 1:0)) |
                     (GL_COLOR_BUFFER_BIT * (color ? 1:0)) |
                     (GL_STENCIL_BUFFER_BIT * (stencil ? 1:0));
 
@@ -539,7 +539,7 @@ std::shared_ptr<DT3GLTexture2DResource> DT3OpenGL::create_texture_2D (int32_t wi
     // Create OpenGL2 Texture
     ::glGenTextures(1,&r->name);
 
-    ::glBindTexture(GL_TEXTURE_2D, r->name);          //	bind the texture
+    ::glBindTexture(GL_TEXTURE_2D, r->name);          //    bind the texture
     ::glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
 
 //    if (flags & DT3GL_ACCESS_CPU_WRITE) {
@@ -670,7 +670,7 @@ void DT3OpenGL::update_texture_2D (const std::shared_ptr<DT3GLTexture2DResource>
     DT3OpenGLTexture2DResource *r = static_cast<DT3OpenGLTexture2DResource*>(res.get());
 
     // Create OpenGLES2 Texture
-    ::glBindTexture(GL_TEXTURE_2D, r->name);          //	bind the texture
+    ::glBindTexture(GL_TEXTURE_2D, r->name);          //    bind the texture
 
     ::glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
 
@@ -831,7 +831,7 @@ std::shared_ptr<DT3GLTexture3DResource> DT3OpenGL::create_texture_3D (int32_t wi
     ::glGenTextures(1,&r->name);
 
     // Create OpenGL2 Texture
-    ::glBindTexture(GL_TEXTURE_3D, r->name);          //	bind the texture
+    ::glBindTexture(GL_TEXTURE_3D, r->name);          //    bind the texture
 
     ::glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
 
@@ -913,7 +913,7 @@ void DT3OpenGL::update_texture_3D (const std::shared_ptr<DT3GLTexture3DResource>
     DT3OpenGLTexture3DResource *r = static_cast<DT3OpenGLTexture3DResource*>(res.get());
 
     // Create OpenGLES2 Texture
-    ::glBindTexture(GL_TEXTURE_2D, r->name);          //	bind the texture
+    ::glBindTexture(GL_TEXTURE_2D, r->name);          //    bind the texture
 
     ::glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
 
@@ -1016,7 +1016,7 @@ std::shared_ptr<DT3GLTextureCubeResource> DT3OpenGL::create_texture_cube (  int3
     ::glGenTextures(1,&r->name);
 
     // Create OpenGL2 Texture
-    ::glBindTexture(GL_TEXTURE_CUBE_MAPM, r->name);          //	bind the texture
+    ::glBindTexture(GL_TEXTURE_CUBE_MAPM, r->name);          //    bind the texture
 
     ::glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
 
@@ -1096,7 +1096,7 @@ void DT3OpenGL::update_texture_cube (   const std::shared_ptr<DT3GLTextureCubeRe
     DT3OpenGLTextureCubeResource *r = new DT3OpenGLTextureCubeResource();
 
     // Create OpenGLES2 Texture
-    ::glBindTexture(GL_TEXTURE_2D, r->name);          //	bind the texture
+    ::glBindTexture(GL_TEXTURE_2D, r->name);          //    bind the texture
 
     ::glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
 
@@ -1538,7 +1538,7 @@ std::shared_ptr<DT3GLVertexShaderResource> DT3OpenGL::create_vertex_shader (cons
     ::glCompileShader(r->name);
 
     // Check the compile status
-    GLint	compiled;
+    GLint    compiled;
     ::glGetShaderiv(r->name, GL_COMPILE_STATUS, &compiled);
 
     if (!compiled) {
@@ -1587,7 +1587,7 @@ std::shared_ptr<DT3GLGeometryShaderResource> DT3OpenGL::create_geometry_shader (
     ::glCompileShader(r->name);
 
     // Check the compile status
-    GLint	compiled;
+    GLint    compiled;
     ::glGetShaderiv(r->name, GL_COMPILE_STATUS, &compiled);
 
     if (!compiled) {
@@ -1637,7 +1637,7 @@ std::shared_ptr<DT3GLFragmentShaderResource> DT3OpenGL::create_fragment_shader (
     ::glCompileShader(r->name);
 
     // Check the compile status
-    GLint	compiled;
+    GLint    compiled;
     ::glGetShaderiv(r->name, GL_COMPILE_STATUS, &compiled);
 
     if (!compiled) {

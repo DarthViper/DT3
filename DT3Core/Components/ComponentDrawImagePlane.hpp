@@ -3,7 +3,7 @@
 #define DT3_COMPONENTDRAWIMAGEPLANE
 //==============================================================================
 ///
-///	File: ComponentDrawImagePlane.hpp
+///    File: ComponentDrawImagePlane.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -38,16 +38,16 @@ class ComponentDrawImagePlane: public ComponentBase {
 
                                     ComponentDrawImagePlane     (void);
                                     ComponentDrawImagePlane     (const ComponentDrawImagePlane &rhs);
-        ComponentDrawImagePlane &	operator =                  (const ComponentDrawImagePlane &rhs);
+        ComponentDrawImagePlane &    operator =                  (const ComponentDrawImagePlane &rhs);
         virtual                     ~ComponentDrawImagePlane    (void);
 
-        virtual void                archive                     (const std::shared_ptr<Archive> &archive);
+        virtual void                archive                     (const std::shared_ptr<Archive> &archive) override;
 
     public:
         /// Returns the component type. This defines which slot the component is
         /// put into on the object.
         /// \return Component type
-        virtual ComponentType               component_type      (void)  {   return COMPONENT_DRAW;  }
+        virtual ComponentType               component_type      (void)  override  {   return COMPONENT_DRAW;  }
 
         /// Draw Callback for component
         /// \param camera Camera used for drawing
@@ -58,20 +58,20 @@ class ComponentDrawImagePlane: public ComponentBase {
         /// only be called if the owner is added to a world already. If not it
         /// will be called when it is added to the World.
         /// \param owner Pointer to the owner
-        virtual void                        add_to_owner        (ObjectBase *owner);
+        virtual void                        add_to_owner        (ObjectBase *owner) override;
 
         /// Called when this component is removed from its owner.
-        virtual void                        remove_from_owner   (void);
+        virtual void                        remove_from_owner   (void) override;
 
         /// Defines standard accessors for the color of the image plane
-        DEFINE_ACCESSORS (color, set_color, Color4f, _color);
+        DEFINE_ACCESSORS (color, set_color, Color4f, _color)
 
         /// Defines standard accessors for the aspect ratio
-        DEFINE_ACCESSORS (aspect, set_aspect, DTfloat, _aspect);
+        DEFINE_ACCESSORS (aspect, set_aspect, DTfloat, _aspect)
 
         /// Defines standard accessors for flip flags
-        DEFINE_ACCESSORS (flip_horz, set_flip_horz, bool, _flip_horz);
-        DEFINE_ACCESSORS (flip_vert, set_flip_vert, bool, _flip_vert);
+        DEFINE_ACCESSORS (flip_horz, set_flip_horz, bool, _flip_horz)
+        DEFINE_ACCESSORS (flip_vert, set_flip_vert, bool, _flip_vert)
 
         /// Returns the material for the Image Plane
         /// \return The material for the image plane

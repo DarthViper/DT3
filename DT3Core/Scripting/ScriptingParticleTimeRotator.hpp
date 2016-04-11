@@ -40,15 +40,15 @@ class ScriptingParticleTimeRotator: public ScriptingBase {
         ScriptingParticleTimeRotator &    operator =                        (const ScriptingParticleTimeRotator &rhs);
         virtual                            ~ScriptingParticleTimeRotator    (void);
 
-        virtual void                archive                 (const std::shared_ptr<Archive> &archive);
+        virtual void                archive                 (const std::shared_ptr<Archive> &archive) override;
 
     public:
         /// Computes the value of the node
         /// \param plug plug to compute
-        bool                    compute                    (const PlugBase *plug);
+        bool                    compute                    (const PlugBase *plug) override;
 
-        DEFINE_ACCESSORS(rotation_speed_mul, set_rotation_speed_mul, DTfloat, _rotation_speed_mul);
-        DEFINE_ACCESSORS(rotation_phase_mul, set_rotation_phase_mul, DTfloat, _rotation_phase_mul);
+        DEFINE_ACCESSORS(rotation_speed_mul, set_rotation_speed_mul, DTfloat, _rotation_speed_mul)
+        DEFINE_ACCESSORS(rotation_phase_mul, set_rotation_phase_mul, DTfloat, _rotation_phase_mul)
 
 #ifdef DT3_EDITOR
         /// Dumps the C++ code that can be used to initialize an object of this type.

@@ -40,12 +40,12 @@ class ScriptingParticleFriction: public ScriptingBase {
         ScriptingParticleFriction &    operator =                    (const ScriptingParticleFriction &rhs);
         virtual                        ~ScriptingParticleFriction    (void);
 
-        virtual void                archive                 (const std::shared_ptr<Archive> &archive);
+        virtual void archive(const std::shared_ptr<Archive> &archive) override;
 
     public:
         /// Computes the value of the node
         /// \param plug plug to compute
-        bool                    compute                    (const PlugBase *plug);
+        bool compute(const PlugBase *plug) override;
 
         DEFINE_ACCESSORS(drag, set_drag, DTfloat, _drag);
 

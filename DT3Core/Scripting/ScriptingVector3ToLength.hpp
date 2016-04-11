@@ -38,12 +38,12 @@ class ScriptingVector3ToLength: public ScriptingBase {
         ScriptingVector3ToLength &    operator =                    (const ScriptingVector3ToLength &rhs);
         virtual                        ~ScriptingVector3ToLength    (void);
 
-        virtual void                archive                 (const std::shared_ptr<Archive> &archive);
+        virtual void archive(const std::shared_ptr<Archive> &archive) override;
 
     public:
         /// Computes the value of the node
         /// \param plug plug to compute
-        bool                    compute                    (const PlugBase *plug);
+        bool compute(const PlugBase *plug) override;
 
     private:
         Plug<Vector3>                _in;

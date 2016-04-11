@@ -49,10 +49,10 @@ namespace DT3 {
 
 class World_cmd: public Command {
     public:
-        DEFINE_TYPE(World_cmd,Command);
+        DEFINE_TYPE(World_cmd,Command)
         DEFINE_CREATE
         
-        void register_commands (void) {
+        void register_commands (void)  override {
             CommandRegistry::register_command("Add", &World_cmd::doAdd);
             CommandRegistry::register_command("AddArchive", &World_cmd::doAddArchive);
             CommandRegistry::register_command("Remove", &World_cmd::doRemove);

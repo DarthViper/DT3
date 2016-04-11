@@ -34,7 +34,7 @@ class PlaceableObject_cmd: public Command {
         DEFINE_TYPE(PlaceableObject_cmd,Command);
         DEFINE_CREATE
         
-        void register_commands (void) {
+        void register_commands (void) override {
             CommandRegistry::register_command("Parent", &PlaceableObject_cmd::do_parent);
             CommandRegistry::register_command("Unparent", &PlaceableObject_cmd::do_unparent);
             CommandRegistry::register_command("setTransform", &PlaceableObject_cmd::do_set_transform);

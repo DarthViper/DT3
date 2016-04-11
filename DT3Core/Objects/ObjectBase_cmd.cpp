@@ -35,10 +35,10 @@ namespace DT3 {
 
 class ObjectBase_cmd: public Command {
     public:
-        DEFINE_TYPE(ObjectBase_cmd,Command);
+        DEFINE_TYPE(ObjectBase_cmd,Command)
         DEFINE_CREATE
         
-        void register_commands (void) {
+        void register_commands (void) override {
             CommandRegistry::register_command("AddComponent", &ObjectBase_cmd::do_add_component);
             CommandRegistry::register_command("RemoveComponent", &ObjectBase_cmd::do_remove_component);
         }

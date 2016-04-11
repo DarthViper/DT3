@@ -38,7 +38,7 @@ class ScriptingAnalytics: public ScriptingBase {
         ScriptingAnalytics &        operator =                  (const ScriptingAnalytics &rhs);
         virtual                     ~ScriptingAnalytics         (void);
 
-        virtual void                archive                     (const std::shared_ptr<Archive> &archive);
+        virtual void archive(const std::shared_ptr<Archive> &archive) override;
 
     public:
         /// Play Event

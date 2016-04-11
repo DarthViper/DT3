@@ -38,12 +38,12 @@ class ScriptingBase: public WorldNode {
         ScriptingBase &                operator =                (const ScriptingBase &rhs);
         virtual                     ~ScriptingBase            (void);
 
-        virtual void                archive                 (const std::shared_ptr<Archive> &archive);
+        virtual void                archive                 (const std::shared_ptr<Archive> &archive) override;
 
     public:
         /// Returns the preferred name of the object for when it is created
         /// \return preferred name of object
-        std::string                 preferred_name          (void) const;
+        std::string                 preferred_name          (void) const override;
 };
 
 //==============================================================================

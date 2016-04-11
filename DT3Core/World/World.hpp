@@ -46,8 +46,8 @@ class World: public PlugNode {
     public:
         virtual                        ~World                  (void);
 
-        virtual void                archive                 (const std::shared_ptr<Archive> &archive);
-        virtual void                archive_done            (const std::shared_ptr<Archive> &archive);
+        virtual void                archive                 (const std::shared_ptr<Archive> &archive) override;
+        virtual void                archive_done            (const std::shared_ptr<Archive> &archive) override;
 
     public:
         /// Called to uninitialize the object

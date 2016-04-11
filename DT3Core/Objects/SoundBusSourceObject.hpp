@@ -37,7 +37,7 @@ class SoundBusSourceObject: public PlaceableObject {
         SoundBusSourceObject &      operator =                        (const SoundBusSourceObject &rhs);
         virtual                     ~SoundBusSourceObject            (void);
 
-        virtual void                archive                         (const std::shared_ptr<Archive> &archive);
+        virtual void                archive                         (const std::shared_ptr<Archive> &archive) override;
 
         /// Play the bus
         /// \param sender node (if any) that caused this event
@@ -49,10 +49,10 @@ class SoundBusSourceObject: public PlaceableObject {
 
         /// Object was added to a world
         /// world world that object was added to
-        virtual void                add_to_world                    (World *world);
+        virtual void                add_to_world                    (World *world) override;
 
         /// Object was removed from a world
-        virtual void                remove_from_world               (void);
+        virtual void                remove_from_world               (void) override;
 
         /// Accessors for the bus name
         DEFINE_ACCESSORS(bus_name, set_bus_name, std::string, _bus_name)

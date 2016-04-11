@@ -41,19 +41,19 @@ class ScriptingParticleStamFluids: public ScriptingBase {
         ScriptingParticleStamFluids &    operator =                      (const ScriptingParticleStamFluids &rhs);
         virtual                         ~ScriptingParticleStamFluids    (void);
 
-        virtual void                    archive                 (const std::shared_ptr<Archive> &archive);
+        virtual void archive(const std::shared_ptr<Archive> &archive) override;
 
         /// Object was added to a world
         /// world world that object was added to
-        virtual void                    add_to_world            (World *world);
+        virtual void                    add_to_world            (World *world) override;
 
         /// Object was removed from a world
-        virtual void                    remove_from_world       (void);
+        virtual void                    remove_from_world       (void) override;
 
     public:
         /// Computes the value of the node
         /// \param plug plug to compute
-        bool                       compute                    (const PlugBase *plug);
+        bool compute(const PlugBase *plug) override;
 
         /// Sets number of cells
         /// \param n number of cells

@@ -48,32 +48,32 @@ class TransitionFadeOutIn: public TransitionBase {
         /// Description
         /// \param param description
         /// \return description
-        virtual bool        begin_new_world             (void);
+        virtual bool        begin_new_world             (void) override;
 
         /// Description
         /// \param param description
         /// \return description
-        virtual void            end_new_world               (void);
+        virtual void            end_new_world               (void) override;
 
         /// Description
         /// \param param description
         /// \return description
-        virtual bool        begin_old_world             (void);
+        virtual bool        begin_old_world             (void) override;
 
         /// Description
         /// \param param description
         /// \return description
-        virtual void            end_old_world                (void);
+        virtual void            end_old_world                (void) override;
 
         /// Description
         /// \param param description
         /// \return description
-        virtual void            transition                (const DTfloat transition);
+        virtual void            transition                (const DTfloat transition) override;
 
         /// Description
         /// \param param description
         /// \return description
-        virtual void            draw                    (void);
+        virtual void            draw                    (void) override;
 
     private:
         std::shared_ptr<MaterialResource>   _material;

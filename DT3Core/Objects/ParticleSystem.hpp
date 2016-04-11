@@ -41,12 +41,12 @@ class ParticleSystem: public PlaceableObject {
         ParticleSystem &            operator =                        (const ParticleSystem &rhs);
         virtual                     ~ParticleSystem                    (void);
 
-        virtual void                archive                         (const std::shared_ptr<Archive> &archive);
+        virtual void                archive                         (const std::shared_ptr<Archive> &archive) override;
 
     public:
-        DEFINE_ACCESSORS(material_property, set_material_property, std::shared_ptr<MaterialResource>, _material);
-        DEFINE_ACCESSORS(particles_property, set_particles_property, std::shared_ptr<Particles>, _particles);
-        DEFINE_ACCESSORS(run_up, set_run_up, DTfloat, _run_up);
+        DEFINE_ACCESSORS(material_property, set_material_property, std::shared_ptr<MaterialResource>, _material)
+        DEFINE_ACCESSORS(particles_property, set_particles_property, std::shared_ptr<Particles>, _particles)
+        DEFINE_ACCESSORS(run_up, set_run_up, DTfloat, _run_up)
 
         /// Draw Callback for object
         /// \param camera Camera used for drawing
@@ -58,10 +58,10 @@ class ParticleSystem: public PlaceableObject {
 
         /// Object was added to a world
         /// world world that object was added to
-        virtual void                add_to_world                    (World *world);
+        virtual void                add_to_world                    (World *world) override;
 
         /// Object was removed from a world
-        virtual void                remove_from_world               (void);
+        virtual void                remove_from_world               (void) override;
 
 #ifdef DT3_EDITOR
         /// Dumps the C++ code that can be used to initialize an object of this type.

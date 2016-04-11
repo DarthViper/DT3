@@ -3,7 +3,7 @@
 #define DT3_COMPONENTGUIDRAWICON
 //==============================================================================
 ///
-///	File: ComponentGUIDrawIcon.hpp
+///    File: ComponentGUIDrawIcon.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -34,8 +34,8 @@ class ComponentGUIDrawIcon: public ComponentBase {
         DEFINE_CREATE_AND_CLONE
         DEFINE_PLUG_NODE
 
-                                    ComponentGUIDrawIcon	(void);
-                                    ComponentGUIDrawIcon	(const ComponentGUIDrawIcon &rhs);
+                                    ComponentGUIDrawIcon    (void);
+                                    ComponentGUIDrawIcon    (const ComponentGUIDrawIcon &rhs);
         ComponentGUIDrawIcon &      operator =              (const ComponentGUIDrawIcon &rhs);
         virtual                     ~ComponentGUIDrawIcon   (void);
 
@@ -45,7 +45,7 @@ class ComponentGUIDrawIcon: public ComponentBase {
         /// Returns the component type. This defines which slot the component is
         /// put into on the object.
         /// \return Component type
-        virtual ComponentType       component_type          (void)  {   return COMPONENT_DRAW;  }
+        virtual ComponentType       component_type          (void) override {   return COMPONENT_DRAW;  }
 
         /// Draw Callback for component
         /// \param camera Camera used for drawing
@@ -55,10 +55,10 @@ class ComponentGUIDrawIcon: public ComponentBase {
         /// only be called if the owner is added to a world already. If not it
         /// will be called when it is added to the World.
         /// \param owner Pointer to the owner
-        virtual void                add_to_owner            (ObjectBase *owner);
+        virtual void                add_to_owner            (ObjectBase *owner) override;
 
         /// Called when this component is removed from its owner.
-        virtual void                remove_from_owner       (void);
+        virtual void                remove_from_owner       (void) override;
 
         /// Defines standard accessors for the material
         DEFINE_ACCESSORS (material, set_material, std::shared_ptr<MaterialResource>, _material);

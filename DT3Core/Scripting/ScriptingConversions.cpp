@@ -1,12 +1,12 @@
 //==============================================================================
-///	
-///	File: ScriptingConversions.cpp
-///	
+///
+///    File: ScriptingConversions.cpp
+///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
 /// This file is subject to the terms and conditions defined in
 /// file 'LICENSE.txt', which is part of this source code package.
-///	
+///
 //==============================================================================
 
 #include "DT3Core/Scripting/ScriptingConversions.hpp"
@@ -37,8 +37,8 @@ namespace {                                                                     
 class Scripting##FROMTYPE##To##TOTYPE: public ScriptingBase {                       \
     public:                                                                         \
         DEFINE_TYPE(Scripting##FROMTYPE##To##TOTYPE,ScriptingBase)                  \
-		DEFINE_CREATE_AND_CLONE                                                     \
-		DEFINE_PLUG_NODE                                                            \
+        DEFINE_CREATE_AND_CLONE                                                     \
+        DEFINE_PLUG_NODE                                                            \
                                                                                     \
                                             Scripting##FROMTYPE##To##TOTYPE     (void);                                             \
                                             Scripting##FROMTYPE##To##TOTYPE     (const Scripting##FROMTYPE##To##TOTYPE &rhs);       \
@@ -47,11 +47,11 @@ class Scripting##FROMTYPE##To##TOTYPE: public ScriptingBase {                   
                                                                                     \
         virtual void                archive             (const std::shared_ptr<Archive> &archive) override; \
                                                                                     \
-	public:                                                                         \
-        bool					compute					(const PlugBase *plug); \
-	private:                                                                        \
-		Plug<FT>                    _in;                                            \
-		Plug<TT>                    _out;                                           \
+    public:                                                                         \
+        bool compute(const PlugBase *plug) override; \
+    private:                                                                        \
+        Plug<FT>                    _in;                                            \
+        Plug<TT>                    _out;                                           \
         static uint16_t             _inIndex;                                       \
         static uint16_t             _outIndex;                                      \
 };                                                                                  \
@@ -63,57 +63,57 @@ uint16_t Scripting##FROMTYPE##To##TOTYPE::_inIndex = PlugInfo::get_free_index();
 uint16_t Scripting##FROMTYPE##To##TOTYPE::_outIndex = PlugInfo::get_free_index();   \
                                                                                     \
 BEGIN_IMPLEMENT_PLUGS(Scripting##FROMTYPE##To##TOTYPE)                              \
-	PLUG_INIT(_in,"In")                                                             \
-		.set_input(true)                                                            \
-		.affects(_outIndex);                                                        \
-	PLUG_INIT(_out,"Out")                                                           \
-		.set_output(true);                                                          \
+    PLUG_INIT(_in,"In")                                                             \
+        .set_input(true)                                                            \
+        .affects(_outIndex);                                                        \
+    PLUG_INIT(_out,"Out")                                                           \
+        .set_output(true);                                                          \
 END_IMPLEMENT_PLUGS                                                                 \
                                                                                     \
 Scripting##FROMTYPE##To##TOTYPE::Scripting##FROMTYPE##To##TOTYPE (void)             \
-    :   _in			(_inIndex, DEFAULTFT),                                          \
-		_out		(_outIndex, DEFAULTTT)                                          \
+    :   _in            (_inIndex, DEFAULTFT),                                          \
+        _out        (_outIndex, DEFAULTTT)                                          \
 {}                                                                                  \
                                                                                     \
 Scripting##FROMTYPE##To##TOTYPE::Scripting##FROMTYPE##To##TOTYPE                    \
     (const Scripting##FROMTYPE##To##TOTYPE &rhs)                                    \
-    :   ScriptingBase	(rhs),                                                      \
-		_in				(rhs._in),                                                  \
-		_out			(rhs._out)                                                  \
+    :   ScriptingBase    (rhs),                                                      \
+        _in                (rhs._in),                                                  \
+        _out            (rhs._out)                                                  \
 {}                                                                                  \
                                                                                     \
 Scripting##FROMTYPE##To##TOTYPE & Scripting##FROMTYPE##To##TOTYPE::                 \
     operator = (const Scripting##FROMTYPE##To##TOTYPE &rhs)                         \
 {                                                                                   \
     if (&rhs != this) {                                                             \
-		ScriptingBase::operator = (rhs);                                            \
-		_in = rhs._in;                                                              \
-		_out = rhs._out;                                                            \
-	}                                                                               \
+        ScriptingBase::operator = (rhs);                                            \
+        _in = rhs._in;                                                              \
+        _out = rhs._out;                                                            \
+    }                                                                               \
     return (*this);                                                                 \
 }                                                                                   \
                                                                                     \
 void Scripting##FROMTYPE##To##TOTYPE::archive (const std::shared_ptr<Archive> &archive)    \
 {                                                                                   \
     ScriptingBase::archive(archive);                                           \
-	archive->push_domain (class_id ());                                             \
-	*archive << ARCHIVE_PLUG(_in, DATA_PERSISTENT | DATA_SETTABLE);                 \
-	*archive << ARCHIVE_PLUG(_out, DATA_PERSISTENT);                                \
+    archive->push_domain (class_id ());                                             \
+    *archive << ARCHIVE_PLUG(_in, DATA_PERSISTENT | DATA_SETTABLE);                 \
+    *archive << ARCHIVE_PLUG(_out, DATA_PERSISTENT);                                \
     archive->pop_domain ();                                                         \
 }                                                                                   \
                                                                                     \
 bool Scripting##FROMTYPE##To##TOTYPE::compute (const PlugBase *plug)           \
 {                                                                                   \
-	PROFILER(SCRIPTING);                                                            \
+    PROFILER(SCRIPTING);                                                            \
     if (super_type::compute(plug))  return true;                                    \
-	if (plug == &_out) {                                                            
+    if (plug == &_out) {
 
 
 #define BUILD_CONVERSION_BACK(FROMTYPE,FT,TOTYPE,TT,DEFAULTFT,DEFAULTTT)            \
-		_out.set_clean();                                                           \
-		return true;                                                                \
-	}                                                                               \
-	return false;                                                                   \
+        _out.set_clean();                                                           \
+        return true;                                                                \
+    }                                                                               \
+    return false;                                                                   \
 }                                                                                   \
 }   // namespace
 
@@ -122,7 +122,7 @@ bool Scripting##FROMTYPE##To##TOTYPE::compute (const PlugBase *plug)           \
 
 #define BUILD_CONVERSION_NUMBER(FROMTYPE,FT,TOTYPE,TT,DEFAULTFT,DEFAULTTT)                      \
         BUILD_CONVERSION_FRONT(FROMTYPE,FT,TOTYPE,TT,DEFAULTFT,DEFAULTTT)                       \
-		_out = static_cast<TT>(_in);                                                            \
+        _out = static_cast<TT>(_in);                                                            \
         BUILD_CONVERSION_BACK(FROMTYPE,FT,TOTYPE,TT,DEFAULTFT,DEFAULTTT)                        
 
 #define BUILD_CONVERSION_TO_VECTOR3(FROMTYPE,FT,DEFAULTFT)                                      \
@@ -132,12 +132,12 @@ bool Scripting##FROMTYPE##To##TOTYPE::compute (const PlugBase *plug)           \
 
 #define BUILD_CONVERSION_TO_STRING(FROMTYPE,FT,DEFAULTFT)                                       \
         BUILD_CONVERSION_FRONT(FROMTYPE,FT,String,std::string,DEFAULTFT,"")                     \
-		_out = MoreStrings::cast_to_string(*_in);                                               \
+        _out = MoreStrings::cast_to_string(*_in);                                               \
         BUILD_CONVERSION_BACK(FROMTYPE,FT,String,std::string,DEFAULTFT,"")
     
 #define BUILD_CONVERSION_FROM_STRING(TOTYPE,TT,DEFAULTTT)                                       \
         BUILD_CONVERSION_FRONT(String,std::string,TOTYPE,TT,"",DEFAULTTT)                       \
-		_out = MoreStrings::cast_from_string<TT>(*_in);                                         \
+        _out = MoreStrings::cast_from_string<TT>(*_in);                                         \
         BUILD_CONVERSION_BACK(String,std::string,TOTYPE,TT,"",DEFAULTTT)                        
 
 //==============================================================================

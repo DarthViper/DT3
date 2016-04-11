@@ -31,7 +31,7 @@ class Globals_cmd: public Command {
         DEFINE_TYPE(Globals_cmd,Command);
         DEFINE_CREATE
         
-        void register_commands (void) {
+        void register_commands (void)  override {
             CommandRegistry::register_command("SetGlobal", &Globals_cmd::do_set_global);
             CommandRegistry::register_command("GetGlobal", &Globals_cmd::do_get_global);
         }

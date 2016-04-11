@@ -41,7 +41,7 @@ class PlugNode_cmd: public Command {
         DEFINE_TYPE(PlugNode_cmd,Command);
         DEFINE_CREATE
         
-        void register_commands (void) {
+        void register_commands (void) override {
             CommandRegistry::register_command("ListPlugs", &PlugNode_cmd::do_list_plugs);
             CommandRegistry::register_command("ListEvents", &PlugNode_cmd::do_list_events);
             CommandRegistry::register_command("ConnectPlugs", &PlugNode_cmd::do_connect_plugs);

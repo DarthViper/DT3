@@ -47,7 +47,7 @@ class SoundSourceCallback: public SoundSource {
         void                        set_next_sound_packet_callback  (std::shared_ptr<Callback<SoundPacket&>> callback_sound_packet);
 
         /// Returns the next sound packet for playing from this source
-        virtual const SoundPacket&  next_sound_packet               (void);
+        virtual const SoundPacket&  next_sound_packet               (void) override;
 
     private:
         std::shared_ptr<Callback<SoundPacket&>>   _callback_sound_packet;

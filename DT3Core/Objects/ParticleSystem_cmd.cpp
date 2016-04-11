@@ -38,7 +38,7 @@ class ParticleSystem_cmd: public Command {
         DEFINE_TYPE(ParticleSystem_cmd,Command);
         DEFINE_CREATE
         
-        void register_commands (void) {
+        void register_commands (void) override {
 #ifdef DT3_EDITOR
             CommandRegistry::register_command("ParticlesToCode", &ParticleSystem_cmd::do_particles_to_code);
 #endif

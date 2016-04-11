@@ -43,13 +43,13 @@ class ComponentGUIDrawButton: public ComponentBase {
         ComponentGUIDrawButton &    operator =              (const ComponentGUIDrawButton &rhs);
         virtual                     ~ComponentGUIDrawButton (void);
 
-        virtual void                archive                 (const std::shared_ptr<Archive> &archive);
+        virtual void                archive                 (const std::shared_ptr<Archive> &archive) override;
 
     public:
         /// Returns the component type. This defines which slot the component is
         /// put into on the object.
         /// \return Component type
-        virtual ComponentType       component_type          (void)  {   return COMPONENT_DRAW;  }
+        virtual ComponentType       component_type          (void) override  {   return COMPONENT_DRAW;  }
 
         /// Draw Callback for component
         /// \param camera Camera used for drawing
@@ -59,10 +59,10 @@ class ComponentGUIDrawButton: public ComponentBase {
         /// only be called if the owner is added to a world already. If not it
         /// will be called when it is added to the World.
         /// \param owner Pointer to the owner
-        virtual void                add_to_owner            (ObjectBase *owner);
+        virtual void                add_to_owner            (ObjectBase *owner) override;
 
         /// Called when this component is removed from its owner.
-        virtual void                remove_from_owner       (void);
+        virtual void                remove_from_owner       (void) override;
 
         /// Screen created callback.
         void                        screen_opened           (uint32_t width, uint32_t height);
@@ -71,31 +71,31 @@ class ComponentGUIDrawButton: public ComponentBase {
         void                        screen_closed           (void);
 
         /// Defines standard accessors for the material
-        DEFINE_ACCESSORS (material, set_material, std::shared_ptr<MaterialResource>, _material);
+        DEFINE_ACCESSORS (material, set_material, std::shared_ptr<MaterialResource>, _material)
 
         /// Defines standard accessors for the pressed material
-        DEFINE_ACCESSORS (pressed_material, set_pressed_material, std::shared_ptr<MaterialResource>, _pressed_material);
+        DEFINE_ACCESSORS (pressed_material, set_pressed_material, std::shared_ptr<MaterialResource>, _pressed_material)
 
         /// Defines standard accessors for the disabled material
-        DEFINE_ACCESSORS (disabled_material, set_disabled_material, std::shared_ptr<MaterialResource>, _disabled_material);
+        DEFINE_ACCESSORS (disabled_material, set_disabled_material, std::shared_ptr<MaterialResource>, _disabled_material)
 
         /// Defines standard accessors for the font material
-        DEFINE_ACCESSORS (font_material, set_font_material, std::shared_ptr<MaterialResource>, _font_material);
+        DEFINE_ACCESSORS (font_material, set_font_material, std::shared_ptr<MaterialResource>, _font_material)
 
         /// Get and retrieve the shader for this image
-        DEFINE_ACCESSORS (shader, set_shader, std::shared_ptr<ShaderResource>, _shader);
+        DEFINE_ACCESSORS (shader, set_shader, std::shared_ptr<ShaderResource>, _shader)
 
         /// Defines standard accessors for the corner width
-        DEFINE_ACCESSORS_RANGED (corner_width, set_corner_width, DTfloat, _corner_width, 0.0F, 1.0F);
+        DEFINE_ACCESSORS_RANGED (corner_width, set_corner_width, DTfloat, _corner_width, 0.0F, 1.0F)
 
         /// Defines standard accessors for the corner height
-        DEFINE_ACCESSORS_RANGED (corner_height, set_corner_height, DTfloat, _corner_height, 0.0F, 1.0F);
+        DEFINE_ACCESSORS_RANGED (corner_height, set_corner_height, DTfloat, _corner_height, 0.0F, 1.0F)
 
         /// Defines standard accessors for the x offset
-        DEFINE_ACCESSORS (offset_x, set_offset_x, DTfloat, _offset_x);
+        DEFINE_ACCESSORS (offset_x, set_offset_x, DTfloat, _offset_x)
 
         /// Defines standard accessors for the y offset
-        DEFINE_ACCESSORS (offset_y, set_offset_y, DTfloat, _offset_y);
+        DEFINE_ACCESSORS (offset_y, set_offset_y, DTfloat, _offset_y)
 
         enum {
             DRAW_STYLE_STRETCH_CENTER_3X3 = 0,

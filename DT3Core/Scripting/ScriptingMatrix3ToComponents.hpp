@@ -40,12 +40,12 @@ class ScriptingMatrix3ToComponents: public ScriptingBase {
         ScriptingMatrix3ToComponents &    operator =                        (const ScriptingMatrix3ToComponents &rhs);
         virtual                            ~ScriptingMatrix3ToComponents    (void);
 
-        virtual void                    archive             (const std::shared_ptr<Archive> &archive);
+        virtual void archive(const std::shared_ptr<Archive> &archive) override;
 
     public:
         /// Computes the value of the node
         /// \param plug plug to compute
-        bool                    compute                    (const PlugBase *plug);
+        bool compute(const PlugBase *plug) override;
 
     private:
         Plug<Matrix3>                _in;

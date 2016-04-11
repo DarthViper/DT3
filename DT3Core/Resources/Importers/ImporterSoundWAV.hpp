@@ -49,17 +49,17 @@ class ImporterSoundWAV: public ImporterSound {
         /// \param target object to import sound into
         /// \param args arguments to importer
         /// \return error code
-        virtual DTerr                    import                    (SoundResource *target, std::string args);
+        virtual DTerr                    import                    (SoundResource *target, std::string args) override;
 
         /// Loads sound data from the file
         /// \param data pointer to buffer
         /// \param start start of sound data (doesn't include header)
         /// \param length length of sound data in bytes
-        virtual DTsize                    stream                    (uint8_t *data, DTsize start, DTsize length);
+        virtual DTsize                    stream                    (uint8_t *data, DTsize start, DTsize length) override;
 
         /// Returns length of sound data
         /// \return length of sound data in bytes
-        virtual DTsize                    length                  (void);
+        virtual DTsize                    length                  (void) override;
 
     private:
 

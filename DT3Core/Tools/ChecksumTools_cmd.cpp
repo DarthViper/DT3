@@ -31,7 +31,7 @@ class ChecksumTools_cmd: public Command {
         DEFINE_TYPE(ChecksumTools_cmd,Command);
         DEFINE_CREATE
         
-        void register_commands (void) {
+        void register_commands (void)  override{
             CommandRegistry::register_command("Checksum", &ChecksumTools_cmd::do_checksum);
         }
 

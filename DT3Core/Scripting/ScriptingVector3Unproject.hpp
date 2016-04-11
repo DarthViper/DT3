@@ -43,12 +43,12 @@ class ScriptingVector3Unproject: public ScriptingBase {
         ScriptingVector3Unproject &    operator =                  (const ScriptingVector3Unproject &rhs);
         virtual                        ~ScriptingVector3Unproject  (void);
 
-        virtual void                archive                 (const std::shared_ptr<Archive> &archive);
+        virtual void archive(const std::shared_ptr<Archive> &archive) override;
 
     public:
         /// Computes the value of the node
         /// \param plug plug to compute
-        bool                    compute                    (const PlugBase *plug);
+        bool compute(const PlugBase *plug) override;
 
     private:
         Plug<std::shared_ptr<WorldNode>>   _camera;

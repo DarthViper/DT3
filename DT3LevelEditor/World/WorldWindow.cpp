@@ -1,6 +1,6 @@
 //==============================================================================
 ///
-///	File: EdLevelWorldWindow.cpp
+///    File: EdLevelWorldWindow.cpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -143,7 +143,7 @@ WorldWindow::WorldWindow(QWidget *parent, QToolBar *toolbar, EdLevelDocument *do
     _camera_selection = new QComboBox(toolbar);
     _camera_selection->setMinimumWidth(150);
 
-    connect(_camera_selection, combo_activated_int, this, &WorldWindow::onChangeCamera	);
+    connect(_camera_selection, combo_activated_int, this, &WorldWindow::onChangeCamera    );
 
     toolbar->addWidget(_camera_selection);
 
@@ -185,8 +185,8 @@ WorldWindow::WorldWindow(QWidget *parent, QToolBar *toolbar, EdLevelDocument *do
     _grid_visible->setCheckState(Qt::Checked);
     toolbar->addWidget(_grid_visible);
 
-    connect(	_grid_visible,  SIGNAL(stateChanged(int)),
-                this,           SLOT(onChangeGrid(int))	);
+    connect(    _grid_visible,  SIGNAL(stateChanged(int)),
+                this,           SLOT(onChangeGrid(int))    );
 
 
     _grid_selection = new QComboBox(toolbar);
@@ -580,8 +580,8 @@ void WorldWindow::pickGL(QPointF pos, EdLevelToolEvent &tool_event)
 
     for (int i = 0; i < hits; ++i) {
         GLuint num_ids = *ptr;  ++ptr;
-        float zmin = (float) ((double) (*ptr) / 0x7FFFFFFF);	++ptr;
-        float zmax = (float) ((double) (*ptr) / 0x7FFFFFFF);	++ptr;
+        float zmin = (float) ((double) (*ptr) / 0x7FFFFFFF);    ++ptr;
+        float zmax = (float) ((double) (*ptr) / 0x7FFFFFFF);    ++ptr;
 
         LOG_MESSAGE << "zmin :" << zmin << "  " << "zmax: " << zmax;
 
@@ -881,7 +881,7 @@ void WorldWindow::mouseMoveEvent(QMouseEvent *event)
 
 }
 
-void WorldWindow::mouseReleaseEvent	(QMouseEvent *event)
+void WorldWindow::mouseReleaseEvent    (QMouseEvent *event)
 {
     // Do picking
     EdLevelToolEvent tool_event;

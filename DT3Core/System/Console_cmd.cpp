@@ -31,7 +31,7 @@ class Console_cmd: public Command {
         DEFINE_TYPE(Console_cmd,Command);
         DEFINE_CREATE
         
-        void register_commands (void) {
+        void register_commands (void)  override{
             CommandRegistry::register_command("ListCommands", &Console_cmd::do_list_commands);
         }
 

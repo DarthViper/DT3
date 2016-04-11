@@ -37,7 +37,7 @@ class ScriptingKeyframes: public ScriptingBase {
         ScriptingKeyframes &        operator =                (const ScriptingKeyframes &rhs);
         virtual                        ~ScriptingKeyframes        (void);
 
-        virtual void                archive                 (const std::shared_ptr<Archive> &archive);
+        virtual void                archive                 (const std::shared_ptr<Archive> &archive) override;
 
     public:
         /// Set a key at the current time

@@ -32,7 +32,7 @@ class Command_cmd: public Command {
         DEFINE_TYPE(Command_cmd,Command);
         DEFINE_CREATE
         
-        void register_commands (void) {
+        void register_commands (void)  override{
             CommandRegistry::register_command("Echo", &Command_cmd::do_echo);
             CommandRegistry::register_command("Date", &Command_cmd::do_date);
         }

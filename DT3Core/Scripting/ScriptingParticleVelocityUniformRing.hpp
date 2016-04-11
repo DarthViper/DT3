@@ -40,12 +40,12 @@ class ScriptingParticleVelocityUniformRing: public ScriptingBase {
         ScriptingParticleVelocityUniformRing &        operator =                        (const ScriptingParticleVelocityUniformRing &rhs);
         virtual                                ~ScriptingParticleVelocityUniformRing    (void);
 
-        virtual void                archive                 (const std::shared_ptr<Archive> &archive);
+        virtual void archive(const std::shared_ptr<Archive> &archive) override;
 
     public:
         /// Computes the value of the node
         /// \param plug plug to compute
-        bool                    compute                    (const PlugBase *plug);
+        bool compute(const PlugBase *plug) override;
 
 
         DEFINE_ACCESSORS(normal, set_normal, Vector3, _normal);

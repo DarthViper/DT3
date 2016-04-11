@@ -47,7 +47,7 @@ class AnimationTrack: public BaseClass {
         AnimationTrack &                operator =                (AnimationTrack &&rhs);
                                         ~AnimationTrack            (void);
 
-        void                            archive                 (const std::shared_ptr<Archive> &archive);
+        void                            archive                 (const std::shared_ptr<Archive> &archive) override;
 
     public:
         /// Sets the keyframes for the track

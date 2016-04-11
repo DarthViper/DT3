@@ -35,7 +35,7 @@ class Factory_test: public UnitTest {
         DEFINE_TYPE(Factory_test,UnitTest);
         DEFINE_CREATE
         
-        virtual void run_test (void);
+        virtual void run_test (void) override;
 };
 
 //==============================================================================

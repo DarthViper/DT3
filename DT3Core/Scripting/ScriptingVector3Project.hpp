@@ -41,7 +41,7 @@ class ScriptingVector3Project: public ScriptingBase {
         ScriptingVector3Project &    operator =                (const ScriptingVector3Project &rhs);
         virtual                        ~ScriptingVector3Project(void);
 
-        virtual void                archive                 (const std::shared_ptr<Archive> &archive);
+        virtual void archive(const std::shared_ptr<Archive> &archive) override;
 
     public:
         /// Registered with world to tick this node
@@ -50,14 +50,14 @@ class ScriptingVector3Project: public ScriptingBase {
 
         /// Computes the value of the node
         /// \param plug plug to compute
-        bool                    compute                    (const PlugBase *plug);
+        bool compute(const PlugBase *plug) override;
 
         /// Object was added to a world
         /// world world that object was added to
-        virtual void                add_to_world            (World *world);
+        virtual void add_to_world(World *world) override;
 
         /// Object was removed from a world
-        virtual void                remove_from_world       (void);
+        virtual void remove_from_world(void) override;
 
     private:
         Plug<std::shared_ptr<WorldNode>>   _camera;

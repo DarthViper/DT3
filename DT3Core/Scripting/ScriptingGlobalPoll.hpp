@@ -39,14 +39,14 @@ class ScriptingGlobalPoll: public ScriptingBase {
         ScriptingGlobalPoll &        operator =                (const ScriptingGlobalPoll &rhs);
         virtual                     ~ScriptingGlobalPoll    (void);
 
-        virtual void                archive                 (const std::shared_ptr<Archive> &archive);
+        virtual void archive(const std::shared_ptr<Archive> &archive) override;
 
         /// Object was added to a world
         /// world world that object was added to
-        virtual void                add_to_world            (World *world);
+        virtual void add_to_world(World *world) override;
 
         /// Object was removed from a world
-        virtual void                remove_from_world       (void);
+        virtual void remove_from_world(void) override;
 
     public:
         /// Play Event

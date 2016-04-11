@@ -65,13 +65,13 @@ class ComponentGUIDrawText: public ComponentBase {
         ComponentGUIDrawText &      operator =              (const ComponentGUIDrawText &rhs);
         virtual                     ~ComponentGUIDrawText   (void);
 
-        virtual void                archive                 (const std::shared_ptr<Archive> &archive);
+        virtual void                archive                 (const std::shared_ptr<Archive> &archive) override;
 
     public:
         /// Returns the component type. This defines which slot the component is
         /// put into on the object.
         /// \return Component type
-        virtual ComponentType       component_type          (void)  {   return COMPONENT_DRAW;  }
+        virtual ComponentType       component_type          (void) override {   return COMPONENT_DRAW;  }
 
         /// Draw Callback for component
         /// \param camera Camera used for drawing
@@ -82,10 +82,10 @@ class ComponentGUIDrawText: public ComponentBase {
         /// only be called if the owner is added to a world already. If not it
         /// will be called when it is added to the World.
         /// \param owner Pointer to the owner
-        virtual void                add_to_owner            (ObjectBase *owner);
+        virtual void                add_to_owner            (ObjectBase *owner) override;
 
         /// Called when this component is removed from its owner.
-        virtual void                remove_from_owner       (void);
+        virtual void                remove_from_owner       (void) override;
 
         /// Screen created callback.
         void                        screen_opened           (uint32_t width, uint32_t height);
@@ -94,17 +94,17 @@ class ComponentGUIDrawText: public ComponentBase {
         void                        screen_closed           (void);
 
         /// Defines standard accessors for the font material
-        DEFINE_ACCESSORS (font_material, set_font_material, std::shared_ptr<MaterialResource>, _font_material);
+        DEFINE_ACCESSORS (font_material, set_font_material, std::shared_ptr<MaterialResource>, _font_material)
 
         /// Get and retrieve the shader for this image
-        DEFINE_ACCESSORS (shader, set_shader, std::shared_ptr<ShaderResource>, _shader);
+        DEFINE_ACCESSORS (shader, set_shader, std::shared_ptr<ShaderResource>, _shader)
 
         /// Defines standard accessors for the vertical centering flag
-        DEFINE_ACCESSORS (center_vertically, set_center_vertically, bool, _center_vertically);
+        DEFINE_ACCESSORS (center_vertically, set_center_vertically, bool, _center_vertically)
 
         /// Defines standard accessors for state colors
-        DEFINE_ACCESSORS (normal_color, set_normal_color, Color4f, _normal_color);
-        DEFINE_ACCESSORS (pressed_color, set_pressed_color, Color4f, _pressed_color);
+        DEFINE_ACCESSORS (normal_color, set_normal_color, Color4f, _normal_color)
+        DEFINE_ACCESSORS (pressed_color, set_pressed_color, Color4f, _pressed_color)
 
     private:
         DrawBatcher                                 _b;

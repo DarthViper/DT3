@@ -30,7 +30,7 @@ class FilePath_test: public UnitTest {
         DEFINE_TYPE(FilePath_test,UnitTest);
         DEFINE_CREATE
         
-        virtual void run_test (void);
+        virtual void run_test (void) override;
 };
 
 //==============================================================================

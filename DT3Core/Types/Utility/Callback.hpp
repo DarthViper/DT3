@@ -47,12 +47,12 @@ class CallbackImpl: public Callback<T...> {
             _fn = fn;
         }
 
-        virtual void operator ()(T... t)
+        virtual void operator ()(T... t) override
         {
             (_obj->*_fn)(t...);
         }
 
-        virtual bool operator == (const CBT& rhs) const
+        virtual bool operator == (const CBT& rhs) const override
         {
             const CallbackImpl<CLASS,T...> *rhs_type = checked_cast<const CallbackImpl<CLASS,T...> *>(&rhs);
             return rhs_type && (_obj == rhs_type->_obj) && (_fn == rhs_type->_fn);
@@ -74,13 +74,13 @@ class CallbackStaticImpl: public Callback<T...> {
             _fn = fn;
         }
 
-        virtual void operator ()(T... t)
+        virtual void operator ()(T... t) override
         {
             if (_fn)
                 (*_fn)(t...);
         }
 
-        virtual bool operator == (const CBT& rhs) const
+        virtual bool operator == (const CBT& rhs) const override
         {
             const CallbackStaticImpl<T...> *rhs_type = checked_cast<const CallbackStaticImpl<T...> *>(&rhs);
             return rhs_type && (_fn == rhs_type->_fn);

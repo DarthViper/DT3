@@ -37,7 +37,7 @@ class SimpleSoundSourceObject: public PlaceableObject {
         SimpleSoundSourceObject &               operator =              (const SimpleSoundSourceObject &rhs);
         virtual                                 ~SimpleSoundSourceObject(void);
 
-        virtual void                            archive                 (const std::shared_ptr<Archive> &archive);
+        virtual void                            archive                 (const std::shared_ptr<Archive> &archive) override;
 
         /// Called to initialize the object
         virtual void                            initialize              (void)  noexcept(true);
@@ -48,7 +48,7 @@ class SimpleSoundSourceObject: public PlaceableObject {
 
         /// Gets the souund associated with this source.
         /// \return attr sound
-        const std::shared_ptr<SoundResource>&   sound_property          (void) const                {   return _sound;    }
+        const std::shared_ptr<SoundResource>&   sound_property          (void) const {   return _sound;    }
 
 
         /// Play the sound
@@ -69,10 +69,10 @@ class SimpleSoundSourceObject: public PlaceableObject {
 
         /// Object was added to a world
         /// world world that object was added to
-        virtual void                            add_to_world            (World *world);
+        virtual void                            add_to_world            (World *world) override;
 
         /// Object was removed from a world
-        virtual void                            remove_from_world       (void);
+        virtual void                            remove_from_world       (void) override;
 
 
     private:

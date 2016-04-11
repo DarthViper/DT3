@@ -40,16 +40,16 @@ class ScriptingParticleCollisionPlane: public ScriptingBase {
         ScriptingParticleCollisionPlane &    operator =                        (const ScriptingParticleCollisionPlane &rhs);
         virtual                                ~ScriptingParticleCollisionPlane(void);
 
-        virtual void                archive                 (const std::shared_ptr<Archive> &archive);
+        virtual void                archive                 (const std::shared_ptr<Archive> &archive) override;
 
     public:
         /// Computes the value of the node
         /// \param plug plug to compute
-        bool                    compute                    (const PlugBase *plug);
+        bool                    compute                    (const PlugBase *plug) override;
 
-        DEFINE_ACCESSORS(normal, set_normal, Vector3, _normal);
-        DEFINE_ACCESSORS(d, set_d, DTfloat, _d);
-        DEFINE_ACCESSORS(restitution, set_restitution, DTfloat, _restitution);
+        DEFINE_ACCESSORS(normal, set_normal, Vector3, _normal)
+        DEFINE_ACCESSORS(d, set_d, DTfloat, _d)
+        DEFINE_ACCESSORS(restitution, set_restitution, DTfloat, _restitution)
 
     private:
         Plug<Vector3>                                _normal;

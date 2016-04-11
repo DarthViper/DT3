@@ -51,7 +51,7 @@ public:
     /// \param target object to import animation into
     /// \param args arguments to importer
     /// \return error code
-    virtual DTerr import(AnimationResource *target, std::string args);
+    virtual DTerr import(AnimationResource *target, std::string args) override;
 
 private:
     enum

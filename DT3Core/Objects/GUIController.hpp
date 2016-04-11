@@ -40,7 +40,7 @@ class GUIController: public PlaceableObject {
         GUIController &                 operator =                  (const GUIController &rhs);
         virtual                         ~GUIController              (void);
 
-        virtual void                    archive                     (const std::shared_ptr<Archive> &archive);
+        virtual void                    archive                     (const std::shared_ptr<Archive> &archive) override;
 
     public:
         /// Callback called when the component is getting a touch event
@@ -55,10 +55,10 @@ class GUIController: public PlaceableObject {
 
         /// Object was added to a world
         /// world world that object was added to
-        virtual void                    add_to_world                (World *world);
+        virtual void                    add_to_world                (World *world) override;
 
         /// Object was removed from a world
-        virtual void                    remove_from_world           (void);
+        virtual void                    remove_from_world           (void) override;
 
         /// Set the focused object
         /// \param new_focus focused object

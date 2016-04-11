@@ -40,18 +40,18 @@ class ScriptingParticleColorRandomizer: public ScriptingBase {
         ScriptingParticleColorRandomizer&    operator =                            (const ScriptingParticleColorRandomizer &rhs);
         virtual                                ~ScriptingParticleColorRandomizer    (void);
 
-        virtual void                archive                 (const std::shared_ptr<Archive> &archive);
+        virtual void                archive                 (const std::shared_ptr<Archive> &archive) override;
 
     public:
         /// Computes the value of the node
         /// \param plug plug to compute
-        bool                    compute                    (const PlugBase *plug);
+        bool                    compute                    (const PlugBase *plug) override;
 
 
-        DEFINE_ACCESSORS(r_mag, set_r_mag, DTfloat, _r_mag);
-        DEFINE_ACCESSORS(g_mag, set_g_mag, DTfloat, _g_mag);
-        DEFINE_ACCESSORS(b_mag, set_b_mag, DTfloat, _b_mag);
-        DEFINE_ACCESSORS(a_mag, set_a_mag, DTfloat, _a_mag);
+        DEFINE_ACCESSORS(r_mag, set_r_mag, DTfloat, _r_mag)
+        DEFINE_ACCESSORS(g_mag, set_g_mag, DTfloat, _g_mag)
+        DEFINE_ACCESSORS(b_mag, set_b_mag, DTfloat, _b_mag)
+        DEFINE_ACCESSORS(a_mag, set_a_mag, DTfloat, _a_mag)
 
     private:
         static const int32_t NUM_ENTRIES = 8;

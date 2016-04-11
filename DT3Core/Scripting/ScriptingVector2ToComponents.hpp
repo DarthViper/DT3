@@ -39,12 +39,12 @@ class ScriptingVector2ToComponents: public ScriptingBase {
         ScriptingVector2ToComponents &    operator =                        (const ScriptingVector2ToComponents &rhs);
         virtual                            ~ScriptingVector2ToComponents    (void);
 
-        virtual void                    archive             (const std::shared_ptr<Archive> &archive);
+        virtual void archive(const std::shared_ptr<Archive> &archive) override;
 
     public:
         /// Computes the value of the node
         /// \param plug plug to compute
-        bool                    compute                    (const PlugBase *plug);
+        bool compute(const PlugBase *plug) override;
 
     private:
         Plug<Vector2>                _in;

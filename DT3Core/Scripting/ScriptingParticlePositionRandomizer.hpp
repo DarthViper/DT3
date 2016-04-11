@@ -40,20 +40,20 @@ class ScriptingParticlePositionRandomizer: public ScriptingBase {
         ScriptingParticlePositionRandomizer &    operator =                            (const ScriptingParticlePositionRandomizer &rhs);
         virtual                                    ~ScriptingParticlePositionRandomizer(void);
 
-        virtual void                archive                 (const std::shared_ptr<Archive> &archive);
+        virtual void                archive                 (const std::shared_ptr<Archive> &archive) override;
 
     public:
         /// Computes the value of the node
         /// \param plug plug to compute
-        bool                    compute                    (const PlugBase *plug);
+        bool                    compute                    (const PlugBase *plug) override;
 
-        DEFINE_ACCESSORS(continuous, set_continuous, bool, _continuous);
-        DEFINE_ACCESSORS(min_x, set_min_x, DTfloat, _min_x);
-        DEFINE_ACCESSORS(max_x, set_max_x, DTfloat, _max_x);
-        DEFINE_ACCESSORS(min_y, set_min_y, DTfloat, _min_y);
-        DEFINE_ACCESSORS(max_y, set_max_y, DTfloat, _max_y);
-        DEFINE_ACCESSORS(min_z, set_min_z, DTfloat, _min_z);
-        DEFINE_ACCESSORS(max_z, set_max_z, DTfloat, _max_z);
+        DEFINE_ACCESSORS(continuous, set_continuous, bool, _continuous)
+        DEFINE_ACCESSORS(min_x, set_min_x, DTfloat, _min_x)
+        DEFINE_ACCESSORS(max_x, set_max_x, DTfloat, _max_x)
+        DEFINE_ACCESSORS(min_y, set_min_y, DTfloat, _min_y)
+        DEFINE_ACCESSORS(max_y, set_max_y, DTfloat, _max_y)
+        DEFINE_ACCESSORS(min_z, set_min_z, DTfloat, _min_z)
+        DEFINE_ACCESSORS(max_z, set_max_z, DTfloat, _max_z)
 
     private:
         bool                                    _continuous;

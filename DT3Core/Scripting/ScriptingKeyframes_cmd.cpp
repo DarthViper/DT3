@@ -38,7 +38,7 @@ class ScriptingKeyframes_cmd: public Command {
         DEFINE_TYPE(ScriptingKeyframes_cmd,Command);
         DEFINE_CREATE
         
-        void register_commands (void) {
+        void register_commands (void) override {
             CommandRegistry::register_command("SetKeyframe", &ScriptingKeyframes_cmd::do_set_keyframe);
             CommandRegistry::register_command("ClearAllKeyframes", &ScriptingKeyframes_cmd::do_clear_all_keyframes);
             CommandRegistry::register_command("GetNumKeyframes", &ScriptingKeyframes_cmd::do_get_num_keyframes);

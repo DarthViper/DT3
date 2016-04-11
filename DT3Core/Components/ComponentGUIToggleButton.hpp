@@ -41,22 +41,22 @@ class ComponentGUIToggleButton: public ComponentBase {
         ComponentGUIToggleButton &  operator =                  (const ComponentGUIToggleButton &rhs);
         virtual                     ~ComponentGUIToggleButton    (void);
 
-        virtual void                archive                     (const std::shared_ptr<Archive> &archive);
+        virtual void                archive                     (const std::shared_ptr<Archive> &archive) override;
 
     public:
         /// Returns the component type. This defines which slot the component is
         /// put into on the object.
         /// \return Component type
-        virtual ComponentType       component_type              (void)  {   return COMPONENT_TOUCH;  }
+        virtual ComponentType       component_type              (void)  override {   return COMPONENT_TOUCH;  }
 
         /// Called when this component is added to the owner. Note that this will
         /// only be called if the owner is added to a world already. If not it
         /// will be called when it is added to the World.
         /// \param owner Pointer to the owner
-        virtual void                add_to_owner                (ObjectBase *owner);
+        virtual void                add_to_owner                (ObjectBase *owner) override;
 
         /// Called when this component is removed from its owner.
-        virtual void                remove_from_owner           (void);
+        virtual void                remove_from_owner           (void) override;
 
 
         /// Callback called when the component is getting a touch begin event
@@ -85,10 +85,10 @@ class ComponentGUIToggleButton: public ComponentBase {
         void                        force_click_off             (PlugNode *sender);
 
         /// Defines standard accessors for the sound that is played when clicked on
-        DEFINE_ACCESSORS (sound_on, set_sound_on, std::shared_ptr<SoundResource>, _sound_on);
+        DEFINE_ACCESSORS (sound_on, set_sound_on, std::shared_ptr<SoundResource>, _sound_on)
 
         /// Defines standard accessors for the sound that is played when clicked off
-        DEFINE_ACCESSORS (sound_off, set_sound_off, std::shared_ptr<SoundResource>, _sound_off);
+        DEFINE_ACCESSORS (sound_off, set_sound_off, std::shared_ptr<SoundResource>, _sound_off)
 
         /// Defines standard accessors for the optional callback when this button is clicked
         DEFINE_ACCESSORS (button_pressed_latent_call,set_button_pressed_latent_call,std::shared_ptr<LatentCall>, _button_pressed_latent_call)

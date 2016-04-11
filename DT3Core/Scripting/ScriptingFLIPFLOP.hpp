@@ -37,12 +37,12 @@ class ScriptingFLIPFLOP: public ScriptingBase {
         ScriptingFLIPFLOP &            operator =                (const ScriptingFLIPFLOP &rhs);
         virtual                     ~ScriptingFLIPFLOP        (void);
 
-        virtual void                archive                 (const std::shared_ptr<Archive> &archive);
+        virtual void archive(const std::shared_ptr<Archive> &archive) override;
 
     public:
         /// Computes the value of the node
         /// \param plug plug to compute
-        bool                    compute                    (const PlugBase *plug);
+        bool compute(const PlugBase *plug) override;
 
         /// Set Event
         void                        event_set               (PlugNode *sender);

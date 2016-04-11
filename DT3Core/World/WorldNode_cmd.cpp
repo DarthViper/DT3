@@ -37,10 +37,10 @@ namespace DT3 {
 
 class WorldNode_cmd: public Command {
     public:
-        DEFINE_TYPE(WorldNode_cmd,Command);
+        DEFINE_TYPE(WorldNode_cmd,Command)
         DEFINE_CREATE
         
-        void register_commands (void) {
+        void register_commands (void)  override {
             CommandRegistry::register_command("MoveNode", &WorldNode_cmd::do_move_node);
             CommandRegistry::register_command("AlignNodes", &WorldNode_cmd::do_align_nodes);
             CommandRegistry::register_command("ColorNodes", &WorldNode_cmd::do_color_nodes);

@@ -38,12 +38,12 @@ class ScriptingVector3Mul: public ScriptingBase {
         ScriptingVector3Mul &        operator =                (const ScriptingVector3Mul &rhs);
         virtual                        ~ScriptingVector3Mul    (void);
 
-        virtual void                archive                 (const std::shared_ptr<Archive> &archive);
+        virtual void                archive                 (const std::shared_ptr<Archive> &archive) override;
 
     public:
         /// Computes the value of the node
         /// \param plug plug to compute
-        bool                    compute                    (const PlugBase *plug);
+        bool                    compute                    (const PlugBase *plug) override;
 
     private:
         Plug<Vector3>                _in1;

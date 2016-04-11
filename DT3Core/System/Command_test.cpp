@@ -30,7 +30,7 @@ class Command_test: public UnitTest {
         DEFINE_TYPE(Command_test,UnitTest);
         DEFINE_CREATE
         
-        virtual void run_test (void);
+        virtual void run_test (void) override;
 };
 
 //==============================================================================
@@ -47,7 +47,7 @@ class CommandStub: public Command {
         DEFINE_TYPE(CommandStub,Command);
         DEFINE_CREATE
         
-        void register_commands (void) {
+        void register_commands (void)  override{
         }
 };
 

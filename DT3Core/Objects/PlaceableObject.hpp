@@ -38,7 +38,7 @@ class PlaceableObject: public ObjectBase {
         PlaceableObject &           operator =                (const PlaceableObject &rhs);
         virtual                     ~PlaceableObject        (void);
 
-        virtual void                archive                 (const std::shared_ptr<Archive> &archive);
+        virtual void                archive                 (const std::shared_ptr<Archive> &archive) override;
 
     public:
         /// Returns whether there is a parent
@@ -288,7 +288,7 @@ class PlaceableObject: public ObjectBase {
 
         /// Computes the value of the node
         /// \param plug plug to compute
-        bool                    compute                 (const PlugBase *plug);
+        bool                    compute                 (const PlugBase *plug) override;
 
     private:
         bool                    _pickable;

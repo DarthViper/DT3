@@ -33,10 +33,10 @@ namespace DT3 {
 
 class GeometryResource_cmd: public Command {
     public:
-        DEFINE_TYPE(GeometryResource_cmd,Command);
+        DEFINE_TYPE(GeometryResource_cmd,Command)
         DEFINE_CREATE
         
-        void register_commands (void) {
+        void register_commands (void)  override {
             CommandRegistry::register_command("MeshToTWM", &GeometryResource_cmd::do_mesh_to_TWM);
         }
 

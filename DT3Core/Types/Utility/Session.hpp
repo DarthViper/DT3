@@ -33,7 +33,7 @@ class Session: public BaseClass {
         Session &            operator =                (const Session &rhs);
         virtual                ~Session                (void);
 
-        virtual void        archive                 (const std::shared_ptr<Archive> &archive);
+        virtual void        archive                 (const std::shared_ptr<Archive> &archive) override;
 
 };
 

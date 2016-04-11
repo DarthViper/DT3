@@ -49,7 +49,7 @@ class ImporterMaterialMAT: public ImporterMaterial {
         /// \param target object to import material into
         /// \param args arguments to importer
         /// \return error code
-        virtual DTerr                    import                      (MaterialResource *target, std::string args);
+        virtual DTerr                    import                      (MaterialResource *target, std::string args) override;
 
 
     private:

@@ -29,10 +29,10 @@ namespace DT3 {
 
 class FileManager_cmd: public Command {
     public:
-        DEFINE_TYPE(FileManager_cmd,Command);
+        DEFINE_TYPE(FileManager_cmd,Command)
         DEFINE_CREATE
         
-        void register_commands (void) {
+        void register_commands (void) override {
             CommandRegistry::register_command("RescanFiles", &FileManager_cmd::do_rescan_files);
             CommandRegistry::register_command("RegisterPackage", &FileManager_cmd::do_register_package);
         }

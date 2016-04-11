@@ -38,7 +38,7 @@ class ScriptingOpenURL: public ScriptingBase {
         ScriptingOpenURL &          operator =                (const ScriptingOpenURL &rhs);
         virtual                     ~ScriptingOpenURL       (void);
 
-        virtual void                archive                 (const std::shared_ptr<Archive> &archive);
+        virtual void archive(const std::shared_ptr<Archive> &archive) override;
 
     public:
 

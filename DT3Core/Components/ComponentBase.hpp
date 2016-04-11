@@ -1,7 +1,7 @@
 #pragma once
 //==============================================================================
 ///
-///	File: ComponentBase.hpp
+///    File: ComponentBase.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -37,10 +37,10 @@ class ComponentBase: public PlugNode {
     public:
         DEFINE_TYPE(ComponentBase,PlugNode)
 
-                                    ComponentBase		(void);
-                                    ComponentBase		(const ComponentBase &rhs);
-        ComponentBase &				operator =			(const ComponentBase &rhs);
-        virtual                     ~ComponentBase		(void);
+                                    ComponentBase        (void);
+                                    ComponentBase        (const ComponentBase &rhs);
+        ComponentBase &                operator =            (const ComponentBase &rhs);
+        virtual                     ~ComponentBase        (void);
 
         virtual void                archive             (const std::shared_ptr<Archive> &archive) override;
 

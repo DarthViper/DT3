@@ -38,12 +38,12 @@ class ScriptingKeyframesRoot: public ScriptingBase {
         ScriptingKeyframesRoot &    operator =                (const ScriptingKeyframesRoot &rhs);
         virtual                     ~ScriptingKeyframesRoot (void);
 
-        virtual void                archive                 (const std::shared_ptr<Archive> &archive);
+        virtual void archive(const std::shared_ptr<Archive> &archive) override;
 
     public:
         /// Computes the value of the node
         /// \param plug plug to compute
-        bool                    compute                    (const PlugBase *plug);
+        bool compute(const PlugBase *plug) override;
 
         /// Sets the output time
         /// \param time time to set

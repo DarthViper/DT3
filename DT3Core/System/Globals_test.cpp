@@ -34,7 +34,7 @@ class Globals_test: public UnitTest {
         DEFINE_TYPE(Globals_test,UnitTest);
         DEFINE_CREATE
         
-        virtual void run_test (void);
+        virtual void run_test (void) override ;
 };
 
 //==============================================================================

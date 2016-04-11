@@ -40,31 +40,31 @@ class ScriptingParticleSizeSequencer: public ScriptingBase {
         ScriptingParticleSizeSequencer&        operator =                        (const ScriptingParticleSizeSequencer &rhs);
         virtual                                ~ScriptingParticleSizeSequencer    (void);
 
-        virtual void                archive                 (const std::shared_ptr<Archive> &archive);
+        virtual void                archive                 (const std::shared_ptr<Archive> &archive) override;
 
     public:
 
         /// Computes the value of the node
         /// \param plug plug to compute
-        bool                    compute                    (const PlugBase *plug);
+        bool                    compute                    (const PlugBase *plug) override;
 
 
-        DEFINE_ACCESSORS(time_0, set_time_0, DTfloat, _t[0]);
-        DEFINE_ACCESSORS(size_0, set_size_0, DTfloat, _s[0]);
-        DEFINE_ACCESSORS(time_1, set_time_1, DTfloat, _t[1]);
-        DEFINE_ACCESSORS(size_1, set_size_1, DTfloat, _s[1]);
-        DEFINE_ACCESSORS(time_2, set_time_2, DTfloat, _t[2]);
-        DEFINE_ACCESSORS(size_2, set_size_2, DTfloat, _s[2]);
-        DEFINE_ACCESSORS(time_3, set_time_3, DTfloat, _t[3]);
-        DEFINE_ACCESSORS(size_3, set_size_3, DTfloat, _s[3]);
-        DEFINE_ACCESSORS(time_4, set_time_4, DTfloat, _t[4]);
-        DEFINE_ACCESSORS(size_4, set_size_4, DTfloat, _s[4]);
-        DEFINE_ACCESSORS(time_5, set_time_5, DTfloat, _t[5]);
-        DEFINE_ACCESSORS(size_5, set_size_5, DTfloat, _s[5]);
-        DEFINE_ACCESSORS(time_6, set_time_6, DTfloat, _t[6]);
-        DEFINE_ACCESSORS(size_6, set_size_6, DTfloat, _s[6]);
-        DEFINE_ACCESSORS(time_7, set_time_7, DTfloat, _t[7]);
-        DEFINE_ACCESSORS(size_7, set_size_7, DTfloat, _s[7]);
+        DEFINE_ACCESSORS(time_0, set_time_0, DTfloat, _t[0])
+        DEFINE_ACCESSORS(size_0, set_size_0, DTfloat, _s[0])
+        DEFINE_ACCESSORS(time_1, set_time_1, DTfloat, _t[1])
+        DEFINE_ACCESSORS(size_1, set_size_1, DTfloat, _s[1])
+        DEFINE_ACCESSORS(time_2, set_time_2, DTfloat, _t[2])
+        DEFINE_ACCESSORS(size_2, set_size_2, DTfloat, _s[2])
+        DEFINE_ACCESSORS(time_3, set_time_3, DTfloat, _t[3])
+        DEFINE_ACCESSORS(size_3, set_size_3, DTfloat, _s[3])
+        DEFINE_ACCESSORS(time_4, set_time_4, DTfloat, _t[4])
+        DEFINE_ACCESSORS(size_4, set_size_4, DTfloat, _s[4])
+        DEFINE_ACCESSORS(time_5, set_time_5, DTfloat, _t[5])
+        DEFINE_ACCESSORS(size_5, set_size_5, DTfloat, _s[5])
+        DEFINE_ACCESSORS(time_6, set_time_6, DTfloat, _t[6])
+        DEFINE_ACCESSORS(size_6, set_size_6, DTfloat, _s[6])
+        DEFINE_ACCESSORS(time_7, set_time_7, DTfloat, _t[7])
+        DEFINE_ACCESSORS(size_7, set_size_7, DTfloat, _s[7])
 
     private:
         static const int32_t NUM_ENTRIES = 8;

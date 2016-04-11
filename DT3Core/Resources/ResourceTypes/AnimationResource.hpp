@@ -56,7 +56,7 @@ class AnimationResource: public Resource {
         /// \param pathname path to resource
         /// \param args importer args
         /// \return error code
-        DTerr                                   import                (const FilePath &pathname, std::string args);
+        DTerr                                   import                (const FilePath &pathname, std::string args) override;
 
         /// Add an animation track
         /// \param track animation track to add

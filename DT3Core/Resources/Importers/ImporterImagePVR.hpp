@@ -50,19 +50,19 @@ class ImporterImagePVR: public ImporterImage {
         /// \param target object to import texture into
         /// \param args arguments to importer
         /// \return error code
-        virtual DTerr                import                (TextureResource2D *target, std::string args);
+        virtual DTerr                import                (TextureResource2D *target, std::string args) override;
 
         /// Imports an image into a TextureResource3D
         /// \param target object to import texture into
         /// \param args arguments to importer
         /// \return error code
-        virtual DTerr                import                (TextureResource3D *target, std::string args);
+        virtual DTerr                import                (TextureResource3D *target, std::string args) override;
 
         /// Imports an image into a TextureResourceCube
         /// \param target object to import texture into
         /// \param args arguments to importer
         /// \return error code
-        virtual DTerr                import                (TextureResourceCube *target, std::string args);
+        virtual DTerr                import                (TextureResourceCube *target, std::string args) override;
 
     private:
         DTerr                       import              (   const FilePath &pathname,

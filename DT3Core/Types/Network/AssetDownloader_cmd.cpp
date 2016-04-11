@@ -37,7 +37,7 @@ class AssetDownloader_cmd: public Command {
         DEFINE_TYPE(AssetDownloader_cmd,Command);
         DEFINE_CREATE
         
-        void register_commands (void) {
+        void register_commands (void) override {
             CommandRegistry::register_command("DownloadAsset", &AssetDownloader_cmd::do_download_asset);
         }
 

@@ -1,7 +1,7 @@
 #pragma once
 //==============================================================================
 ///
-///	File: ArchiveData.hpp
+///    File: ArchiveData.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -52,34 +52,34 @@ class ArchiveData: public BaseClass {
         DEFINE_TYPE(ArchiveData,BaseClass)
         DEFINE_CLONE
 
-                                        ArchiveData				(void);
-                                        ArchiveData				(const ArchiveData &rhs);
+                                        ArchiveData                (void);
+                                        ArchiveData                (const ArchiveData &rhs);
         ArchiveData &                   operator =              (const ArchiveData &rhs);
-        virtual                         ~ArchiveData			(void);
+        virtual                         ~ArchiveData            (void);
 
     public:
         /// Writes the value to a stream
         /// \param s stream
-        virtual void                    value                   (Stream &/*s*/) const	{					}
+        virtual void                    value                   (Stream &/*s*/) const    {                    }
 
         /// Reads the value from a stream
         /// \param s stream
-        virtual void                    set_value				(Stream &/*s*/) const	{					}
+        virtual void                    set_value                (Stream &/*s*/) const    {                    }
 
 
 
         /// Returns plug
         /// \return plug
-        virtual PlugBase*               plug                    (void) const			{	return NULL;	}
+        virtual PlugBase*               plug                    (void) const            {    return NULL;    }
 
         /// Returns event
         /// \return event
-        virtual Event*                  event                   (void) const			{	return NULL;	}
+        virtual Event*                  event                   (void) const            {    return NULL;    }
 
 
         /// Returns kind of data as a string
         /// \return data kind
-        virtual const DTcharacter*      data_kind               (void) const			{	return NULL;	}
+        virtual const DTcharacter*      data_kind               (void) const            {    return NULL;    }
 
 
         //
@@ -93,7 +93,7 @@ class ArchiveData: public BaseClass {
 
         /// Returns if this item is an enum
         /// \return is title
-        virtual bool               is_enum                 (void) const			{	return _enums.size() > 0;	}
+        virtual bool               is_enum                 (void) const            {    return _enums.size() > 0;    }
 
         /// Returns enums
         const std::vector<std::string>& enums                   (void)                  {   return _enums;  }
@@ -107,7 +107,7 @@ class ArchiveData: public BaseClass {
 
         /// Returns if this item is an enum
         /// \return is title
-        virtual bool               is_range                (void) const			{	return (_range_max > _range_min);	}
+        virtual bool               is_range                (void) const            {    return (_range_max > _range_min);    }
 
         /// Returns minimum range
         DTfloat                         range_min               (void) const            {   return _range_min;  }
@@ -123,7 +123,7 @@ class ArchiveData: public BaseClass {
 
         /// Returns if this item is an enum
         /// \return is title
-        virtual bool               is_bitfield             (void) const			{	return _bitfield;	}
+        virtual bool               is_bitfield             (void) const            {    return _bitfield;    }
 
 
         /// Add a flag
@@ -133,18 +133,18 @@ class ArchiveData: public BaseClass {
 
         /// Returns the flags for this data
         /// \return flags
-        uint32_t                          flags                   (void) const			{	return _flags;	}
+        uint32_t                          flags                   (void) const            {    return _flags;    }
 
 
 
         /// Sets the title of this data
         /// \param s title
         /// \return this data
-        ArchiveData&                    set_title				(const std::string &s);
+        ArchiveData&                    set_title                (const std::string &s);
 
         /// Returns the title of this data
         /// \return title
-        std::string                     title                   (void) const			{	return _title;	}
+        std::string                     title                   (void) const            {    return _title;    }
 
 
     protected:
@@ -169,7 +169,7 @@ class ArchiveDataVariable: public ArchiveData {
         DEFINE_CLONE
 
         ArchiveDataVariable (const ArchiveDataVariable& rhs)
-            :	ArchiveData	(rhs),
+            :    ArchiveData    (rhs),
                 _data(rhs._data)
         {
 
@@ -180,7 +180,7 @@ class ArchiveDataVariable: public ArchiveData {
         /// \param data reference to data
         /// \param flags flags for data
         ArchiveDataVariable (const std::string &title, T &data, uint32_t flags)
-            :	_data(&data)
+            :    _data(&data)
         {
             set_title(title);
             add_flags(flags);
@@ -194,19 +194,19 @@ class ArchiveDataVariable: public ArchiveData {
 
         /// Writes the value to a stream
         /// \param s stream
-        virtual void                value                   (Stream &s) const {
+        virtual void                value                   (Stream &s) const override {
             T &data = *_data;
             s << data;
         }
 
         /// Reads the value from a stream
         /// \param s stream
-        virtual void                set_value				(Stream &s) const {
+        virtual void                set_value                (Stream &s) const override {
             s >> *_data;
         }
 
         /// Returns data kind
-        virtual const DTcharacter*  data_kind               (void) const        {	return TypeTraits<T>::name();	}
+        virtual const DTcharacter*  data_kind               (void) const  override {    return TypeTraits<T>::name();    }
 
     private:
         T       *_data;
@@ -216,7 +216,7 @@ class ArchiveDataVariable: public ArchiveData {
 // or consts.
 
 template <typename T>
-class ArchiveDataVariable<T*> {};	// Does not handle reference counting properly
+class ArchiveDataVariable<T*> {};    // Does not handle reference counting properly
 
 template <typename T>
 class ArchiveDataVariable<T&> {};
@@ -238,7 +238,7 @@ class ArchiveDataPlug: public ArchiveData {
         DEFINE_CLONE
 
         ArchiveDataPlug (const ArchiveDataPlug& rhs)
-            :	ArchiveData	(rhs),
+            :    ArchiveData    (rhs),
                 _plug(rhs._plug)
         {
 
@@ -249,7 +249,7 @@ class ArchiveDataPlug: public ArchiveData {
         /// \param data reference to data
         /// \param flags flags for data
         ArchiveDataPlug (Plug<T> &plug, uint32_t flags)
-            :	_plug(&plug)
+            :    _plug(&plug)
         {
             set_title(_plug->name());
             add_flags(flags);
@@ -262,14 +262,14 @@ class ArchiveDataPlug: public ArchiveData {
 
         /// Writes the value to a stream
         /// \param s stream
-        virtual void                value                   (Stream &s) const {
+        virtual void                value                   (Stream &s) const  override{
             T val = *_plug;
             s << val;
         }
 
         /// Reads the value from a stream
         /// \param s stream
-        virtual void                set_value				(Stream &s) const {
+        virtual void                set_value                (Stream &s) const override {
             T val = TypeTraits<typename TypeTraits<T>::BaseType>::default_value();
             s >> val;
             *_plug = val;
@@ -277,11 +277,11 @@ class ArchiveDataPlug: public ArchiveData {
 
         /// Returns plug
         /// \return plug
-        virtual PlugBase*           plug                    (void) const			{	return _plug;	}
+        virtual PlugBase*           plug                    (void) const  override         {    return _plug;    }
 
 
         /// Returns data kind
-        virtual const DTcharacter*  data_kind               (void) const			{	return TypeTraits<T>::name();	}
+        virtual const DTcharacter*  data_kind               (void) const  override         {    return TypeTraits<T>::name();    }
 
     private:
         Plug<T>   *_plug;
@@ -297,7 +297,7 @@ class ArchiveDataEvent: public ArchiveData {
         DEFINE_CLONE
 
         ArchiveDataEvent (const ArchiveDataEvent& rhs)
-            :	ArchiveData	(rhs),
+            :    ArchiveData    (rhs),
                 _event(rhs._event)
         {
 
@@ -308,7 +308,7 @@ class ArchiveDataEvent: public ArchiveData {
         /// \param data reference to data
         /// \param flags flags for data
         ArchiveDataEvent (Event &event, uint32_t flags)
-            :	_event  (&event)
+            :    _event  (&event)
         {
             set_title(_event->name());
             add_flags(flags);
@@ -326,18 +326,18 @@ class ArchiveDataEvent: public ArchiveData {
 
         /// Reads the value from a stream
         /// \param s stream
-        virtual void                set_value				(Stream &/*s*/) const override {
+        virtual void                set_value                (Stream &/*s*/) const override {
         }
 
         /// Returns event
         /// \return event
-        virtual Event*              event                   (void) const override	{	return _event;	}
+        virtual Event*              event                   (void) const override    {    return _event;    }
 
         /// Returns data kind
-        virtual const DTcharacter*  data_kind               (void) const override   {	return "Event";	}
+        virtual const DTcharacter*  data_kind               (void) const override   {    return "Event";    }
 
     private:
-        Event		*_event;
+        Event        *_event;
 };
 
 //==============================================================================
@@ -358,7 +358,7 @@ class ArchiveDataVariableAccessors: public ArchiveData {
     public:
 
         ArchiveDataVariableAccessors (const ArchiveDataVariableAccessors& rhs)
-            :	ArchiveData	(rhs),
+            :    ArchiveData    (rhs),
                 _object(rhs._object),
                 _get(rhs._get),
                 _set(rhs._set)
@@ -389,21 +389,21 @@ class ArchiveDataVariableAccessors: public ArchiveData {
 
         /// Writes the value to a stream
         /// \param s stream
-        virtual void                    value				(Stream &s) const {
+        virtual void                    value                (Stream &s) const override {
             typename TypeTraits<V>::BaseType val = (U)(_object->*_get)();
             s << val;
         }
 
         /// Reads the value from a stream
         /// \param s stream
-        virtual void                    set_value				(Stream &s) const {
+        virtual void                    set_value                (Stream &s) const override {
             typename TypeTraits<V>::BaseType val = TypeTraits<typename TypeTraits<V>::BaseType>::default_value();
             s >> val;
             (_object->*_set)(val);
         }
 
         /// Returns data kind
-        virtual const DTcharacter*      data_kind        (void) const			{	return TypeTraits<U>::name();	}
+        virtual const DTcharacter*      data_kind        (void) const  override  {    return TypeTraits<U>::name();    }
 
     private:
         T           *_object;
@@ -422,7 +422,7 @@ class ArchiveDataIgnore: public ArchiveData {
         DEFINE_CLONE
 
         ArchiveDataIgnore (const ArchiveDataIgnore& rhs)
-            :	ArchiveData	(rhs)
+            :    ArchiveData    (rhs)
         {
 
         }
@@ -442,7 +442,7 @@ class ArchiveDataIgnore: public ArchiveData {
 
     public:
         /// Returns data kind
-        virtual const DTcharacter*      data_kind        (void) const			{	return NULL;	}
+        virtual const DTcharacter*      data_kind        (void) const  override {    return NULL;    }
 
 };
 

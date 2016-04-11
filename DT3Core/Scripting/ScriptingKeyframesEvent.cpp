@@ -132,6 +132,10 @@ void ScriptingKeyframesEvent::archive (const std::shared_ptr<Archive> &archive)
 //==============================================================================
 //==============================================================================
 
+/// Set the time for the key
+/// \param k key index
+/// \param time key time
+/// \return new index
 int32_t  ScriptingKeyframesEvent::set_key_time (int32_t k, DTfloat time)
 {
     PROFILER(SCRIPTING);

@@ -42,11 +42,11 @@ class CameraObject: public PlaceableObject {
         CameraObject &                operator =                  (const CameraObject &rhs);
         virtual                     ~CameraObject               (void);
 
-        virtual void                archive                     (const std::shared_ptr<Archive> &archive);
+        virtual void                archive                     (const std::shared_ptr<Archive> &archive) override;
 
     public:
         /// Accessors for the far plane of the camera (Perspective Camera)
-        DEFINE_ACCESSORS        (far_plane, set_far_plane, DTfloat, _far_plane);
+        DEFINE_ACCESSORS        (far_plane, set_far_plane, DTfloat, _far_plane)
 
         /// Accessors for the near plane of the camera (Perspective Camera)
         DEFINE_ACCESSORS        (near_plane, set_near_plane, DTfloat, _near_plane);

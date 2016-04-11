@@ -40,7 +40,7 @@ class ScriptingSoundBase: public ScriptingBase {
         ScriptingSoundBase &        operator =                (const ScriptingSoundBase &rhs);
         virtual                     ~ScriptingSoundBase     (void);
 
-        virtual void                archive                 (const std::shared_ptr<Archive> &archive);
+        virtual void                archive                 (const std::shared_ptr<Archive> &archive) override;
 };
 
 //==============================================================================

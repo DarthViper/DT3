@@ -43,8 +43,8 @@ class ScriptingScreen: public ScriptingBase {
         ScriptingScreen &            operator =                (const ScriptingScreen &rhs);
         virtual                     ~ScriptingScreen        (void);
 
-        virtual void                archive                 (const std::shared_ptr<Archive> &archive);
-        virtual void                archive_done            (const std::shared_ptr<Archive> &archive);
+        virtual void archive(const std::shared_ptr<Archive> &archive) override;
+        virtual void                archive_done            (const std::shared_ptr<Archive> &archive) override;
 
     public:
 

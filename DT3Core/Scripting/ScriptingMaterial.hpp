@@ -40,12 +40,12 @@ class ScriptingMaterial: public ScriptingBase {
         ScriptingMaterial &            operator =                (const ScriptingMaterial &rhs);
         virtual                     ~ScriptingMaterial        (void);
 
-        virtual void                archive                 (const std::shared_ptr<Archive> &archive);
+        virtual void archive(const std::shared_ptr<Archive> &archive) override;
 
     public:
         /// Computes the value of the node
         /// \param plug plug to compute
-        bool                                   compute                    (const PlugBase *plug);
+        bool compute(const PlugBase *plug) override;
 
 
         /// Sets the material property

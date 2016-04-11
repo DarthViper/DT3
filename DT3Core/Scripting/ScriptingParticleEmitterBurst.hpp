@@ -38,31 +38,31 @@ class ScriptingParticleEmitterBurst: public ScriptingParticleEmitter {
         ScriptingParticleEmitterBurst &        operator =                        (const ScriptingParticleEmitterBurst &rhs);
         virtual                                ~ScriptingParticleEmitterBurst    (void);
 
-        virtual void                archive                 (const std::shared_ptr<Archive> &archive);
+        virtual void                archive                 (const std::shared_ptr<Archive> &archive) override;
 
         /// Object was added to a world
         /// world world that object was added to
-        virtual void                add_to_world            (World *world);
+        virtual void                add_to_world            (World *world) override;
 
         /// Object was removed from a world
-        virtual void                remove_from_world       (void);
+        virtual void                remove_from_world       (void) override;
 
     public:
 
         /// Registered with world to tick this node
         /// \param dt delta time
-        virtual void                tick                    (const DTfloat dt);
+        virtual void                tick                    (const DTfloat dt) override;
 
         /// Emits a particle
         void                        eventActive             (PlugNode *sender);
 
 
-        DEFINE_ACCESSORS(max_num, set_max_num, int32_t, _max_num);
-        DEFINE_ACCESSORS(num, set_num, int32_t, _num);
-        DEFINE_ACCESSORS(num_variation, set_num_variation, int32_t, _num_variation);
-        DEFINE_ACCESSORS(spawn_translation, set_spawn_translation, Vector3, _spawn_translation);
-        DEFINE_ACCESSORS(max_lifetime, set_max_lifetime, DTfloat, _max_lifetime);
-        DEFINE_ACCESSORS(active, set_active, bool, _active);
+        DEFINE_ACCESSORS(max_num, set_max_num, int32_t, _max_num)
+        DEFINE_ACCESSORS(num, set_num, int32_t, _num)
+        DEFINE_ACCESSORS(num_variation, set_num_variation, int32_t, _num_variation)
+        DEFINE_ACCESSORS(spawn_translation, set_spawn_translation, Vector3, _spawn_translation)
+        DEFINE_ACCESSORS(max_lifetime, set_max_lifetime, DTfloat, _max_lifetime)
+        DEFINE_ACCESSORS(active, set_active, bool, _active)
 
 #ifdef DT3_EDITOR
         /// Dumps the C++ code that can be used to initialize an object of this type.

@@ -37,14 +37,14 @@ class ScriptingKeyframesEvent: public ScriptingKeyframes {
         ScriptingKeyframesEvent &    operator =                (const ScriptingKeyframesEvent &rhs);
         virtual                        ~ScriptingKeyframesEvent(void);
 
-        virtual void                archive                 (const std::shared_ptr<Archive> &archive);
+        virtual void                archive                 (const std::shared_ptr<Archive> &archive) override;
 
         /// Object was added to a world
         /// world world that object was added to
-        virtual void                add_to_world            (World *world);
+        virtual void                add_to_world            (World *world) override;
 
         /// Object was removed from a world
-        virtual void                remove_from_world       (void);
+        virtual void                remove_from_world       (void) override;
 
     public:
         /// Registered with world to tick this node
@@ -52,34 +52,30 @@ class ScriptingKeyframesEvent: public ScriptingKeyframes {
         void                        tick                    (const DTfloat dt);
 
         /// Set a key at the current time
-        virtual void                set_key                    (void);
+        virtual void                set_key                    (void) override;
 
         /// Clear a key at the current time
-        virtual void                clear_key                (void);
+        virtual void                clear_key                (void) override;
 
         /// Clear a key with index
         /// \param k key index
-        virtual void                clear_key                (int32_t k);
+        virtual void                clear_key                (int32_t k) override;
 
         /// Get the number of keys
         /// \return number of keys
-        virtual DTsize                num_keys                (void) const            {    return _keyframes.size();        }
+        virtual DTsize                num_keys                (void) const override            {    return _keyframes.size();        }
 
         /// Returns a unique ID for this key
         /// \param k key index
         /// \return ID
-        virtual int32_t               key_id                  (int32_t k) const        {   return _keyframes[k]._id;        }
+        virtual int32_t               key_id                  (int32_t k) const override        {   return _keyframes[k]._id;        }
 
         /// Get the time for the key
         /// \param k key index
         /// \return time
-        virtual DTfloat                key_time                (int32_t k) const        {    return _keyframes[k]._time;        }
+        virtual DTfloat                key_time                (int32_t k) const  override       {    return _keyframes[k]._time;        }
 
-        /// Set the time for the key
-        /// \param k key index
-        /// \param time key time
-        /// \return new index
-        virtual int32_t                set_key_time            (int32_t k, DTfloat time);
+        virtual int32_t                set_key_time            (int32_t k, DTfloat time) override;
 
     private:
         Plug<DTfloat>                _t;

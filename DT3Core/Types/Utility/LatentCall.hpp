@@ -67,7 +67,7 @@ class LatentCallImpl: public LatentCall {
         {
         }
 
-        void fire (void) {
+        void fire (void) override {
             call_func(typename gens<sizeof...(T)>::type());
         }
 

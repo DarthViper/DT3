@@ -55,7 +55,7 @@ class ImporterFontTTF: public ImporterFont {
         /// \param target object to import sound into
         /// \param args arguments to importer
         /// \return error code
-        virtual DTerr                    import                    (FontResource *target, std::string args);
+        virtual DTerr                    import                    (FontResource *target, std::string args) override;
 
 
         static unsigned long            ft_io_func   (  FT_Stream       stream,
