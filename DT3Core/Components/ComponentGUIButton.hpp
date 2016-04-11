@@ -3,7 +3,7 @@
 #define DT3_COMPONENTGUICLICKBUTTON
 //==============================================================================
 ///
-///	File: ComponentGUIButton.hpp
+///    File: ComponentGUIButton.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///

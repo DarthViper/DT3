@@ -1,7 +1,7 @@
 
 //==============================================================================
 ///
-///	File: GUIObject.cpp
+///    File: GUIObject.cpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey, Inc. All rights reserved.
 ///
@@ -81,7 +81,7 @@ GUIObject::GUIObject (void)
 }
 
 GUIObject::GUIObject (const GUIObject &rhs)
-    :	PlaceableObject      (rhs),
+    :    PlaceableObject      (rhs),
         _width          (rhs._width),
         _height         (rhs._height),
         _color          (rhs._color),

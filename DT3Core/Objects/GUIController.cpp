@@ -1,12 +1,12 @@
 //==============================================================================
-///	
-///	File: GUIController.cpp
-///	
+///    
+///    File: GUIController.cpp
+///    
 /// Copyright (C) 2000-2014 by Smells Like Donkey, Inc. All rights reserved.
 ///
 /// This file is subject to the terms and conditions defined in
 /// file 'LICENSE.txt', which is part of this source code package.
-///	
+///    
 //==============================================================================
 
 #include "DT3Core/Objects/GUIController.hpp"
@@ -53,7 +53,7 @@ GUIController::GUIController (void)
     _gui_camera->set_ortho(0.0F,1.0F,0.0F,1.0F,1000.0F,-1000.0F);
 
 }
-		
+        
 GUIController::GUIController (const GUIController &rhs)
     :   PlaceableObject (rhs),
         _use_stencil    (rhs._use_stencil)
@@ -67,11 +67,11 @@ GUIController & GUIController::operator = (const GUIController &rhs)
 {
     // Make sure we are not assigning the class to itself
     if (&rhs != this) {
-		PlaceableObject::operator = (rhs);
+        PlaceableObject::operator = (rhs);
     }
     return (*this);
 }
-			
+            
 GUIController::~GUIController (void)
 {
 

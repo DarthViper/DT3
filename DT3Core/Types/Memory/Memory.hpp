@@ -1,7 +1,7 @@
 #pragma once
 //==============================================================================
 ///
-///	File: Memory.hpp
+///    File: Memory.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -17,17 +17,17 @@
 // Override new and delete
 //==============================================================================
 
-void*	operator new		(size_t size);
-void*	operator new		(size_t size, const char *name);
+void*    operator new        (size_t size);
+void*    operator new        (size_t size, const char *name);
 
-void*	operator new[]		(size_t size);
-void*	operator new[]		(size_t size, const char *name);
+void*    operator new[]        (size_t size);
+void*    operator new[]        (size_t size, const char *name);
 
-void	operator delete		(void *p) noexcept (true);
-void	operator delete		(void *p, const char *name) noexcept (true);
+void    operator delete        (void *p) noexcept (true);
+void    operator delete        (void *p, const char *name) noexcept (true);
 
-void	operator delete[]	(void *p) noexcept (true);
-void	operator delete[]	(void *p, const char *name) noexcept (true);
+void    operator delete[]    (void *p) noexcept (true);
+void    operator delete[]    (void *p, const char *name) noexcept (true);
 
 //==============================================================================
 //==============================================================================

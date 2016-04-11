@@ -1,12 +1,12 @@
 //==============================================================================
-///	
-///	File: ScriptingDelayOn.cpp
-///	
+///    
+///    File: ScriptingDelayOn.cpp
+///    
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
 /// This file is subject to the terms and conditions defined in
 /// file 'LICENSE.txt', which is part of this source code package.
-///	
+///    
 //==============================================================================
 
 #include "DT3Core/Scripting/ScriptingDelayOn.hpp"
@@ -29,18 +29,18 @@ IMPLEMENT_PLUG_NODE(ScriptingDelayOn)
 
 IMPLEMENT_PLUG_INFO_INDEX(_in)
 IMPLEMENT_PLUG_INFO_INDEX(_out)
-		
+        
 //==============================================================================
 //==============================================================================
 
 BEGIN_IMPLEMENT_PLUGS(ScriptingDelayOn)
 
-	PLUG_INIT(_in,"In")
-		.set_input(true)
-		.affects(PLUG_INFO_INDEX(_out));
+    PLUG_INIT(_in,"In")
+        .set_input(true)
+        .affects(PLUG_INFO_INDEX(_out));
 
-	PLUG_INIT(_out,"Out")
-		.set_output(true);
+    PLUG_INIT(_out,"Out")
+        .set_output(true);
         
 END_IMPLEMENT_PLUGS
 }
@@ -50,20 +50,20 @@ using namespace DT3;
 //==============================================================================
 
 ScriptingDelayOn::ScriptingDelayOn (void)
-    :   _time		(0.0F),
-        _delay		(1.0F),
-		_in			(PLUG_INFO_INDEX(_in), false),
-		_out		(PLUG_INFO_INDEX(_out), false)
+    :   _time        (0.0F),
+        _delay        (1.0F),
+        _in            (PLUG_INFO_INDEX(_in), false),
+        _out        (PLUG_INFO_INDEX(_out), false)
 {  
 
 }
-		
+        
 ScriptingDelayOn::ScriptingDelayOn (const ScriptingDelayOn &rhs)
-    :   ScriptingBase	(rhs),
-		_time			(rhs._time),
-        _delay			(rhs._delay),
-		_in				(rhs._in),
-		_out			(rhs._out)
+    :   ScriptingBase    (rhs),
+        _time            (rhs._time),
+        _delay            (rhs._delay),
+        _in                (rhs._in),
+        _out            (rhs._out)
 {   
 
 }
@@ -72,15 +72,15 @@ ScriptingDelayOn & ScriptingDelayOn::operator = (const ScriptingDelayOn &rhs)
 {
     // Make sure we are not assigning the class to itself
     if (&rhs != this) {        
-		ScriptingBase::operator = (rhs);
+        ScriptingBase::operator = (rhs);
 
-		_in = rhs._in;
-		_delay = rhs._delay;
-		_out = rhs._out;
-	}
+        _in = rhs._in;
+        _delay = rhs._delay;
+        _out = rhs._out;
+    }
     return (*this);
 }
-			
+            
 ScriptingDelayOn::~ScriptingDelayOn (void)
 {
 
@@ -93,13 +93,13 @@ void ScriptingDelayOn::archive (const std::shared_ptr<Archive> &archive)
 {
     ScriptingBase::archive(archive);
 
-	archive->push_domain (class_id ());
-	
-	*archive << ARCHIVE_DATA(_time, DATA_PERSISTENT | DATA_SETTABLE);
-	*archive << ARCHIVE_PLUG(_in, DATA_PERSISTENT | DATA_SETTABLE);
-	*archive << ARCHIVE_DATA(_delay, DATA_PERSISTENT | DATA_SETTABLE);
-	*archive << ARCHIVE_PLUG(_out, DATA_PERSISTENT);
-	        					
+    archive->push_domain (class_id ());
+    
+    *archive << ARCHIVE_DATA(_time, DATA_PERSISTENT | DATA_SETTABLE);
+    *archive << ARCHIVE_PLUG(_in, DATA_PERSISTENT | DATA_SETTABLE);
+    *archive << ARCHIVE_DATA(_delay, DATA_PERSISTENT | DATA_SETTABLE);
+    *archive << ARCHIVE_PLUG(_out, DATA_PERSISTENT);
+                                
     archive->pop_domain ();
 }
 
@@ -108,7 +108,7 @@ void ScriptingDelayOn::archive (const std::shared_ptr<Archive> &archive)
 
 void ScriptingDelayOn::tick (const DTfloat dt)
 {
-	PROFILER(SCRIPTING);
+    PROFILER(SCRIPTING);
 
     _time += dt;
     
@@ -116,8 +116,8 @@ void ScriptingDelayOn::tick (const DTfloat dt)
         _time = 0.0F;
         _out = false;
     } else {
-        if (_time >= _delay)	_out = true;
-        else					_out = false;
+        if (_time >= _delay)    _out = true;
+        else                    _out = false;
     }
 
 }

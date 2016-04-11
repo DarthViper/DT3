@@ -3,7 +3,7 @@
 #define DT3_ARCHIVEPROCESSPLUGS
 //==============================================================================
 ///
-///	File: ArchiveProcessPlugs.hpp
+///    File: ArchiveProcessPlugs.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -39,16 +39,16 @@ class ArchiveProcessPlugs: public ArchiveProcess {
     public:
         //DEFINE_TYPE(ArchiveProcessPlugs,ArchiveProcess)
 
-                                    ArchiveProcessPlugs		(const std::shared_ptr<Archive> &archive, T dst_plug);
-                                    ArchiveProcessPlugs		(const ArchiveProcessPlugs &rhs);
-        ArchiveProcessPlugs &		operator =				(const ArchiveProcessPlugs &rhs);
-        virtual						~ArchiveProcessPlugs	(void);
+                                    ArchiveProcessPlugs        (const std::shared_ptr<Archive> &archive, T dst_plug);
+                                    ArchiveProcessPlugs        (const ArchiveProcessPlugs &rhs);
+        ArchiveProcessPlugs &        operator =                (const ArchiveProcessPlugs &rhs);
+        virtual                        ~ArchiveProcessPlugs    (void);
 
     public:
         /// Post process for archiving
         /// \param archive Archive that owns the post process
         /// \param archive Objects Map of objects that have been archived
-        virtual void				process                 (const std::shared_ptr<Archive> &archive, std::map<uint64_t, std::shared_ptr<BaseClass>> &objects);
+        virtual void                process                 (const std::shared_ptr<Archive> &archive, std::map<uint64_t, std::shared_ptr<BaseClass>> &objects);
 
     private:
         uint32_t                      _src_node_id;
@@ -66,7 +66,7 @@ std::shared_ptr<ArchiveProcess> archive_process_plugs_creator (const std::shared
     return std::shared_ptr<ArchiveProcess> (new ("archive_process_plugs_creator") ArchiveProcessPlugs<T>(archive, dst_plug));
 }
 
-#define ARCHIVE_PROCESS_PLUGS(A,V)			archive_process_plugs_creator(A, V)
+#define ARCHIVE_PROCESS_PLUGS(A,V)            archive_process_plugs_creator(A, V)
 
 //==============================================================================
 //==============================================================================
@@ -76,12 +76,12 @@ ArchiveProcessPlugs<T>::ArchiveProcessPlugs(const std::shared_ptr<Archive> &arch
 {
     // Writing out pointer immediately
     if (archive->is_writing()) {
-        T	src_plug = dst_plug->incoming_connection();
+        T    src_plug = dst_plug->incoming_connection();
 
         if (src_plug) {
-            uint32_t	src_node_id = src_plug->owner()->unique_id();
-            uint32_t	dst_node_id = dst_plug->owner()->unique_id();
-            std::string	src_name = src_plug->name();
+            uint32_t    src_node_id = src_plug->owner()->unique_id();
+            uint32_t    dst_node_id = dst_plug->owner()->unique_id();
+            std::string    src_name = src_plug->name();
             std::string dst_name = dst_plug->name();
 
             archive->push_domain ("PlugConnection");
@@ -93,13 +93,13 @@ ArchiveProcessPlugs<T>::ArchiveProcessPlugs(const std::shared_ptr<Archive> &arch
 
         // No Plug
         } else {
-            _src_node_id = _dst_node_id = 0;	// Shouldn't ever hit this anyway
+            _src_node_id = _dst_node_id = 0;    // Shouldn't ever hit this anyway
         }
 
     // Reading in pointer reference immediately
     } else {
-        uint32_t		src_node_id;
-        uint32_t		dst_node_id;
+        uint32_t        src_node_id;
+        uint32_t        dst_node_id;
         std::string      src_name;
         std::string      dst_name;
 

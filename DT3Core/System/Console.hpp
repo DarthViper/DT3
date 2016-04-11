@@ -3,7 +3,7 @@
 #define DT3_CONSOLE
 //==============================================================================
 ///
-///	File: Console.hpp
+///    File: Console.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -49,9 +49,9 @@ class Console {
 
         /// Methods used to print messages
         /// \param log message to print
-        static void                             log_error			(const std::string &error);
-        static void                             log_message			(const std::string &message);
-        static void                             log_debug			(const std::string &debug);
+        static void                             log_error            (const std::string &error);
+        static void                             log_message            (const std::string &message);
+        static void                             log_debug            (const std::string &debug);
 
         /// Interface to command system. Commands are send through here.
         /// \param ctx Command context

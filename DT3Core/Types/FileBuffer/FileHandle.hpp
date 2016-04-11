@@ -3,7 +3,7 @@
 #define DT3_FILEHANDLE
 //==============================================================================
 ///
-///	File: FileHandle.hpp
+///    File: FileHandle.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -33,12 +33,12 @@ class FileHandle: public BaseClass {
         //DEFINE_CREATE_AND_CLONE
         //DEFINE_CREATE
 
-                            FileHandle			(void)  {}
+                            FileHandle            (void)  {}
     private:
-                            FileHandle			(const FileHandle &rhs);
-        FileHandle &		operator =			(const FileHandle &rhs);
+                            FileHandle            (const FileHandle &rhs);
+        FileHandle &        operator =            (const FileHandle &rhs);
     public:
-        virtual				~FileHandle			(void)  {}
+        virtual                ~FileHandle            (void)  {}
 
     public:
         enum Relative {
@@ -52,7 +52,7 @@ class FileHandle: public BaseClass {
         //
 
         /// Close the file handle
-        virtual void            close				(void) = 0;
+        virtual void            close                (void) = 0;
 
         /// Returns the length of the file
         /// \return Length of the file
@@ -80,27 +80,27 @@ class FileHandle: public BaseClass {
 
         /// Peeks ahead at the next byte
         /// \return next byte
-        virtual DTcharacter     peek				(void) = 0;
+        virtual DTcharacter     peek                (void) = 0;
 
         /// Ignores the next byte
-        virtual void            ignore				(void) = 0;
+        virtual void            ignore                (void) = 0;
 
 
         /// Checks for end of file
         /// \return End of file
-        virtual bool       is_eof				(void) = 0;
+        virtual bool       is_eof                (void) = 0;
 
 
         /// Reads a chunk of raw binary data
         /// \param buffer raw buffer
         /// \param size size of raw buffer
         /// \return actual number of bytes read
-        virtual DTsize          read				(uint8_t *buffer, DTsize size) = 0;
+        virtual DTsize          read                (uint8_t *buffer, DTsize size) = 0;
 
         /// Writes a chunk of raw binary data
         /// \param buffer raw buffer
         /// \param size size of raw buffer
-        virtual void            write				(const uint8_t *buffer, DTsize size) = 0;
+        virtual void            write                (const uint8_t *buffer, DTsize size) = 0;
 };
 
 //==============================================================================

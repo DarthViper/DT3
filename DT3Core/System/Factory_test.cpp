@@ -1,12 +1,12 @@
 //==============================================================================
-///	
-///	File: Factory_test.cpp
-///	
+///    
+///    File: Factory_test.cpp
+///    
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
 /// This file is subject to the terms and conditions defined in
 /// file 'LICENSE.txt', which is part of this source code package.
-///	
+///    
 //==============================================================================
 
 #include "DT3Core/System/UnitTest.hpp"
@@ -47,7 +47,7 @@ IMPLEMENT_FACTORY_UNIT_TEST (Factory_test)
 // Implement the test
 //==============================================================================
 
-extern std::map<std::string, std::shared_ptr<CreatorBase>>&	factory_map	(void);
+extern std::map<std::string, std::shared_ptr<CreatorBase>>&    factory_map    (void);
 
 void Factory_test::run_test (void)
 {    

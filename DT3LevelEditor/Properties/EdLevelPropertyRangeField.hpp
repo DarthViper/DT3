@@ -3,7 +3,7 @@
 #define EDLEVELPROPERTYRANGEFIELD
 //==============================================================================
 ///
-///	File: EdLevelPropertyRangeField.hpp
+///    File: EdLevelPropertyRangeField.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -49,7 +49,7 @@ class EdLevelPropertyRangeField : public EdLevelPropertyBase
     Q_OBJECT
 
     public:
-                                        EdLevelPropertyRangeField		(EdLevelPropertiesWindow *parent, std::shared_ptr<PlugNode> node, std::shared_ptr<ArchiveData> data);
+                                        EdLevelPropertyRangeField        (EdLevelPropertiesWindow *parent, std::shared_ptr<PlugNode> node, std::shared_ptr<ArchiveData> data);
                                         ~EdLevelPropertyRangeField      (void);
 
         /// Gets the value of the field

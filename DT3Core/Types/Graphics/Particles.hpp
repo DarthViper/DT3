@@ -3,7 +3,7 @@
 #define DT3_PARTICLES
 //==============================================================================
 ///
-///	File: Particles.hpp
+///    File: Particles.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -70,15 +70,15 @@ class Particles: public BaseClass {
         /// \param param description
         /// \return description
         void                                        build_velocity_stream   (void);
-        void                                        build_sizes_stream		(void);
+        void                                        build_sizes_stream        (void);
         void                                        build_lifetimes_stream  (void);
-        void                                        build_colors_stream		(void);
-        void                                        build_rotations_stream	(void);
+        void                                        build_colors_stream        (void);
+        void                                        build_rotations_stream    (void);
 
         /// Description
         /// \param param description
         /// \return description
-        void                                        resize					(uint32_t size);
+        void                                        resize                    (uint32_t size);
 
 
         /// Draws the resource

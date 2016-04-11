@@ -3,7 +3,7 @@
 #define DT3_SCRIPTINGVECTOR3PROJECT
 //==============================================================================
 ///
-///	File: ScriptingVector3Project.hpp
+///    File: ScriptingVector3Project.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -36,12 +36,12 @@ class ScriptingVector3Project: public ScriptingBase {
         DEFINE_CREATE_AND_CLONE
         DEFINE_PLUG_NODE
 
-                                    ScriptingVector3Project	(void);
-                                    ScriptingVector3Project	(const ScriptingVector3Project &rhs);
-        ScriptingVector3Project &	operator =				(const ScriptingVector3Project &rhs);
-        virtual						~ScriptingVector3Project(void);
+                                    ScriptingVector3Project    (void);
+                                    ScriptingVector3Project    (const ScriptingVector3Project &rhs);
+        ScriptingVector3Project &    operator =                (const ScriptingVector3Project &rhs);
+        virtual                        ~ScriptingVector3Project(void);
 
-        virtual void				archive                 (const std::shared_ptr<Archive> &archive);
+        virtual void                archive                 (const std::shared_ptr<Archive> &archive);
 
     public:
         /// Registered with world to tick this node
@@ -50,7 +50,7 @@ class ScriptingVector3Project: public ScriptingBase {
 
         /// Computes the value of the node
         /// \param plug plug to compute
-        bool					compute					(const PlugBase *plug);
+        bool                    compute                    (const PlugBase *plug);
 
         /// Object was added to a world
         /// world world that object was added to

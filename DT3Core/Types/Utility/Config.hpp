@@ -3,7 +3,7 @@
 #define DT3_CONFIG
 //==============================================================================
 ///
-///	File: Config.hpp
+///    File: Config.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -25,16 +25,16 @@ namespace DT3 {
 
 class Config {
     public:
-                                    Config				(void);
-                                    Config				(const Config &rhs);
-        Config &                    operator =			(const Config &rhs);
-        virtual                     ~Config				(void);
+                                    Config                (void);
+                                    Config                (const Config &rhs);
+        Config &                    operator =            (const Config &rhs);
+        virtual                     ~Config                (void);
 
     public:
 
         /// Returns the engine version
         /// \return engine version
-        static uint32_t				engine_version      (void);
+        static uint32_t                engine_version      (void);
 
 };
 

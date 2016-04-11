@@ -1,7 +1,7 @@
 #pragma once
 //==============================================================================
 ///
-///	File: ArchiveBinaryBufferReader.hpp
+///    File: ArchiveBinaryBufferReader.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -38,10 +38,10 @@ class ArchiveBinaryBufferReader: public Archive {
 
     private:
                                     ArchiveBinaryBufferReader   (const ArchiveBinaryBufferReader &rhs);
-        ArchiveBinaryBufferReader &	operator =                  (const ArchiveBinaryBufferReader &rhs);
+        ArchiveBinaryBufferReader &    operator =                  (const ArchiveBinaryBufferReader &rhs);
 
     public:
-        virtual                     ~ArchiveBinaryBufferReader	(void);
+        virtual                     ~ArchiveBinaryBufferReader    (void);
 
     public:
 
@@ -67,7 +67,7 @@ class ArchiveBinaryBufferReader: public Archive {
 
         /// Returns the stream
         /// \return stream
-        BinaryBufferStream&         stream                      (void)		{	return _buffer;	}
+        BinaryBufferStream&         stream                      (void)        {    return _buffer;    }
 
     private:
         BinaryBufferStream          _buffer;

@@ -3,7 +3,7 @@
 #define DT3_SCRIPTINGVECTOR3TRANSFORM
 //==============================================================================
 ///
-///	File: ScriptingVector3Transform.hpp
+///    File: ScriptingVector3Transform.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -34,24 +34,24 @@ class ScriptingVector3Transform: public ScriptingBase {
         DEFINE_CREATE_AND_CLONE
         DEFINE_PLUG_NODE
 
-                                    ScriptingVector3Transform	(void);
-                                    ScriptingVector3Transform	(const ScriptingVector3Transform &rhs);
-        ScriptingVector3Transform &	operator =					(const ScriptingVector3Transform &rhs);
-        virtual						~ScriptingVector3Transform	(void);
+                                    ScriptingVector3Transform    (void);
+                                    ScriptingVector3Transform    (const ScriptingVector3Transform &rhs);
+        ScriptingVector3Transform &    operator =                    (const ScriptingVector3Transform &rhs);
+        virtual                        ~ScriptingVector3Transform    (void);
 
-        virtual void				archive                 (const std::shared_ptr<Archive> &archive);
+        virtual void                archive                 (const std::shared_ptr<Archive> &archive);
 
     public:
         /// Computes the value of the node
         /// \param plug plug to compute
-        bool					compute					(const PlugBase *plug);
+        bool                    compute                    (const PlugBase *plug);
 
     private:
-        Plug<Vector3>				_in;
-        Plug<Vector3>				_translation;
-        Plug<Matrix3>				_orientation;
-        Plug<DTfloat>				_scale;
-        Plug<Vector3>				_out;
+        Plug<Vector3>                _in;
+        Plug<Vector3>                _translation;
+        Plug<Matrix3>                _orientation;
+        Plug<DTfloat>                _scale;
+        Plug<Vector3>                _out;
 };
 
 //==============================================================================

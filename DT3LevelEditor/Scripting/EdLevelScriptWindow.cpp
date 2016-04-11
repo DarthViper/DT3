@@ -1,6 +1,6 @@
 //==============================================================================
 ///
-///	File: EdLevelScriptWindow.cpp
+///    File: EdLevelScriptWindow.cpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -381,8 +381,8 @@ void EdLevelScriptWindow::drawBackground(QPainter *painter, const QRectF &rect)
     painter->setBrush(Qt::NoBrush);
 
     while (x_start <= intersected.right()) {
-        if (x_start_num % 10)	painter->setPen(QPen(QColor(90,90,90,255)));
-        else					painter->setPen(QPen(QColor(75,75,75,255)));
+        if (x_start_num % 10)    painter->setPen(QPen(QColor(90,90,90,255)));
+        else                    painter->setPen(QPen(QColor(75,75,75,255)));
 
         painter->drawLine(  x_start,
                             (int) intersected.top(),
@@ -394,8 +394,8 @@ void EdLevelScriptWindow::drawBackground(QPainter *painter, const QRectF &rect)
     }
 
     while (y_start <= intersected.bottom()) {
-        if (y_start_num % 10)	painter->setPen(QPen(QColor(90,90,90,255)));
-        else					painter->setPen(QPen(QColor(75,75,75,255)));
+        if (y_start_num % 10)    painter->setPen(QPen(QColor(90,90,90,255)));
+        else                    painter->setPen(QPen(QColor(75,75,75,255)));
 
         painter->drawLine(  (int) intersected.left(),
                             y_start,
@@ -410,7 +410,7 @@ void EdLevelScriptWindow::drawBackground(QPainter *painter, const QRectF &rect)
 //==============================================================================
 //==============================================================================
 
-void EdLevelScriptWindow::readjustSceneRect	(void)
+void EdLevelScriptWindow::readjustSceneRect    (void)
 {
     //setSceneRect(QRectF(-1000.0F,-1000.0F,1000.0F,1000.0F));
 
@@ -427,22 +427,22 @@ void EdLevelScriptWindow::readjustSceneRect	(void)
 void EdLevelScriptWindow::setMode (Mode mode)
 {
     switch (_mode) {
-    case MODE_NONE:													break;
-    case MODE_DRAG_SELECTING:	_selection_rubber_band->hide();		break;
-    case MODE_CLICKING:												break;
-    case MODE_DRAGGING:												break;
-    case MODE_CONNECTING:		_connection_rubber_band->hide();	break;
-    case MODE_PANNING:												break;
+    case MODE_NONE:                                                    break;
+    case MODE_DRAG_SELECTING:    _selection_rubber_band->hide();        break;
+    case MODE_CLICKING:                                                break;
+    case MODE_DRAGGING:                                                break;
+    case MODE_CONNECTING:        _connection_rubber_band->hide();    break;
+    case MODE_PANNING:                                                break;
     default:                                                        break;
     };
 
     switch (mode) {
-    case MODE_NONE:													break;
-    case MODE_DRAG_SELECTING:	_selection_rubber_band->show();		break;
-    case MODE_CLICKING:												break;
-    case MODE_DRAGGING:												break;
-    case MODE_CONNECTING:		_connection_rubber_band->show();	break;
-    case MODE_PANNING:												break;
+    case MODE_NONE:                                                    break;
+    case MODE_DRAG_SELECTING:    _selection_rubber_band->show();        break;
+    case MODE_CLICKING:                                                break;
+    case MODE_DRAGGING:                                                break;
+    case MODE_CONNECTING:        _connection_rubber_band->show();    break;
+    case MODE_PANNING:                                                break;
     default:                                                        break;
     };
 
@@ -614,7 +614,7 @@ void EdLevelScriptWindow::mouseMoveEvent (QMouseEvent *event)
         _selection_rubber_band->setEndpoints(mapFromScene(_start_point_scene), _end_point);
         break;
 
-    case MODE_DRAGGING:	{
+    case MODE_DRAGGING:    {
         QPointF delta_scene = mapToScene(_end_point - _last_point) - mapToScene(QPoint(0, 0));
 
         for(QGraphicsItem *i : _scene.selectedItems()) {
@@ -647,8 +647,8 @@ void EdLevelScriptWindow::mouseMoveEvent (QMouseEvent *event)
 
     case MODE_ZOOMING: {
         _scale *= 1.0F + (delta.x() + delta.y()) / -100.0F;
-        if (_scale < 0.2F)		_scale = 0.2F;
-        else if (_scale > 1.5F)	_scale = 1.5F;
+        if (_scale < 0.2F)        _scale = 0.2F;
+        else if (_scale > 1.5F)    _scale = 1.5F;
 
         resetMatrix();
         scale(_scale,_scale);
@@ -661,7 +661,7 @@ void EdLevelScriptWindow::mouseMoveEvent (QMouseEvent *event)
     event->accept();
 }
 
-void EdLevelScriptWindow::mouseReleaseEvent	(QMouseEvent *event)
+void EdLevelScriptWindow::mouseReleaseEvent    (QMouseEvent *event)
 {
     _end_point = event->pos();
     _end_point_scene = mapToScene(event->pos());
@@ -672,15 +672,15 @@ void EdLevelScriptWindow::mouseReleaseEvent	(QMouseEvent *event)
     case MODE_NONE:
         break;
 
-    case MODE_CLICKING:	{
+    case MODE_CLICKING:    {
 
         QGraphicsItem *item = itemAt (_start_point);
         if (item) {
             item->setZValue(++_z);
 
             if ((event->modifiers() & Qt::CTRL) || (event->modifiers() & Qt::SHIFT)) {
-                if (item->isSelected())	item->setSelected(false);
-                else					item->setSelected(true);
+                if (item->isSelected())    item->setSelected(false);
+                else                    item->setSelected(true);
             } else {
                 _scene.clearSelection ();
                 item->setSelected(true);

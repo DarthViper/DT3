@@ -1,12 +1,12 @@
 //==============================================================================
-///	
-///	File: ScriptingBase.cpp
-///	
+///    
+///    File: ScriptingBase.cpp
+///    
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
 /// This file is subject to the terms and conditions defined in
 /// file 'LICENSE.txt', which is part of this source code package.
-///	
+///    
 //==============================================================================
 
 #include "DT3Core/Scripting/ScriptingBase.hpp"
@@ -42,9 +42,9 @@ ScriptingBase::ScriptingBase (void)
 {  
     
 }
-		
+        
 ScriptingBase::ScriptingBase (const ScriptingBase &rhs)
-    :   WorldNode		(rhs)
+    :   WorldNode        (rhs)
 {   
 
 }
@@ -53,11 +53,11 @@ ScriptingBase & ScriptingBase::operator = (const ScriptingBase &rhs)
 {
     // Make sure we are not assigning the class to itself
     if (&rhs != this) {        
-		WorldNode::operator = (rhs);
-	}
+        WorldNode::operator = (rhs);
+    }
     return (*this);
 }
-			
+            
 ScriptingBase::~ScriptingBase (void)
 {
 
@@ -70,7 +70,7 @@ void ScriptingBase::archive (const std::shared_ptr<Archive> &archive)
 {
     WorldNode::archive(archive);
 
-	archive->push_domain (class_id ());
+    archive->push_domain (class_id ());
     
     archive->pop_domain ();
 }

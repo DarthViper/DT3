@@ -1,12 +1,12 @@
 //==============================================================================
-///	
-///	File: FilePath_test.cpp
-///	
+///    
+///    File: FilePath_test.cpp
+///    
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
 /// This file is subject to the terms and conditions defined in
 /// file 'LICENSE.txt', which is part of this source code package.
-///	
+///    
 //==============================================================================
 
 #include "DT3Core/System/UnitTest.hpp"
@@ -44,30 +44,30 @@ IMPLEMENT_FACTORY_UNIT_TEST (FilePath_test)
 
 void FilePath_test::run_test (void)
 {
-	FilePath path1("/a/b/c/package.pack:file.ext");
-	LOG_MESSAGE << path1.package();
-	LOG_MESSAGE << path1.file_name();
+    FilePath path1("/a/b/c/package.pack:file.ext");
+    LOG_MESSAGE << path1.package();
+    LOG_MESSAGE << path1.file_name();
     TEST_ASSERTION(path1.package() == "package.pack");
     TEST_ASSERTION(path1.file_name() == "file.ext");
     TEST_ASSERTION(path1.file_ext() == "ext");
 
-	FilePath path2("/a/b/c/file.ext");
-	LOG_MESSAGE << path2.package();
-	LOG_MESSAGE << path2.file_name();
+    FilePath path2("/a/b/c/file.ext");
+    LOG_MESSAGE << path2.package();
+    LOG_MESSAGE << path2.file_name();
     TEST_ASSERTION(path2.package() == "");
     TEST_ASSERTION(path2.file_name() == "file.ext");
     TEST_ASSERTION(path2.file_ext() == "ext");
 
-	FilePath path3("package.pack:file.ext");
-	LOG_MESSAGE << path3.package();
-	LOG_MESSAGE << path3.file_name();
+    FilePath path3("package.pack:file.ext");
+    LOG_MESSAGE << path3.package();
+    LOG_MESSAGE << path3.file_name();
     TEST_ASSERTION(path3.package() == "package.pack");
     TEST_ASSERTION(path3.file_name() == "file.ext");
     TEST_ASSERTION(path3.file_ext() == "ext");
 
-	FilePath path4("{file.ext}");
-	LOG_MESSAGE << path4.package();
-	LOG_MESSAGE << path4.file_name();
+    FilePath path4("{file.ext}");
+    LOG_MESSAGE << path4.package();
+    LOG_MESSAGE << path4.file_name();
     TEST_ASSERTION(path4.package() == "");
     TEST_ASSERTION(path4.file_name() == "file.ext");
     TEST_ASSERTION(path4.file_ext() == "ext");

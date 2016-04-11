@@ -1,12 +1,12 @@
 //==============================================================================
-///	
-///	File: StaticInitializer.cpp
-///	
+///    
+///    File: StaticInitializer.cpp
+///    
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
 /// This file is subject to the terms and conditions defined in
 /// file 'LICENSE.txt', which is part of this source code package.
-///	
+///    
 //==============================================================================
 
 #include "DT3Core/System/StaticInitializer.hpp"
@@ -20,87 +20,87 @@ namespace DT3 {
 //==============================================================================
 //==============================================================================
 
-std::list<StaticInitializerCallback*>&	initializer_callbacks_list	(void)
+std::list<StaticInitializerCallback*>&    initializer_callbacks_list    (void)
 {
-	static std::list<StaticInitializerCallback*>	callbacks;
-	return callbacks;
+    static std::list<StaticInitializerCallback*>    callbacks;
+    return callbacks;
 }
 
 //==============================================================================
 //==============================================================================
 
-void	StaticInitializer::register_initializer (StaticInitializerCallback *initializer)
+void    StaticInitializer::register_initializer (StaticInitializerCallback *initializer)
 {
-	std::list<StaticInitializerCallback*>& callbacks = initializer_callbacks_list();
-	callbacks.push_back(initializer);
+    std::list<StaticInitializerCallback*>& callbacks = initializer_callbacks_list();
+    callbacks.push_back(initializer);
 }
 
-void	StaticInitializer::initialize (void)
+void    StaticInitializer::initialize (void)
 {
-	std::list<StaticInitializerCallback*> callbacks = initializer_callbacks_list();
-	
-	// Keep iterating through list until all initializers are called
-	uint32_t current_priority = 0;
-	
-	while (callbacks.size() > 0) {
+    std::list<StaticInitializerCallback*> callbacks = initializer_callbacks_list();
     
-		uint32_t pending_priority = DTUINT_MAX;
+    // Keep iterating through list until all initializers are called
+    uint32_t current_priority = 0;
+    
+    while (callbacks.size() > 0) {
+    
+        uint32_t pending_priority = DTUINT_MAX;
 
-		for (auto iter = callbacks.begin(); iter != callbacks.end();) {
-			StaticInitializerCallback *cb = *iter;
-			
-			// initialize if priority matches
-			if (cb->priority() == current_priority) {
-				cb->initialize();
-				iter = callbacks.erase(iter);
-				continue;	// Skip the "++iter" below
-			}
-			
-			// update pending priority
-			if (cb->priority() > current_priority && cb->priority() < pending_priority) {
-				pending_priority = cb->priority();	// We'll get you next round
-			}
-			
-			++iter;
-		}
-		
-		current_priority = pending_priority;
-	}
-	
+        for (auto iter = callbacks.begin(); iter != callbacks.end();) {
+            StaticInitializerCallback *cb = *iter;
+            
+            // initialize if priority matches
+            if (cb->priority() == current_priority) {
+                cb->initialize();
+                iter = callbacks.erase(iter);
+                continue;    // Skip the "++iter" below
+            }
+            
+            // update pending priority
+            if (cb->priority() > current_priority && cb->priority() < pending_priority) {
+                pending_priority = cb->priority();    // We'll get you next round
+            }
+            
+            ++iter;
+        }
+        
+        current_priority = pending_priority;
+    }
+    
 }
 
-void	StaticInitializer::destroy (void)
+void    StaticInitializer::destroy (void)
 {
-	std::list<StaticInitializerCallback*> callbacks = initializer_callbacks_list();
-	
-	// Keep iterating through list until all initializers are called
-	uint32_t current_priority = 0;
-	
-	while (callbacks.size() > 0) {
+    std::list<StaticInitializerCallback*> callbacks = initializer_callbacks_list();
     
-		uint32_t pending_priority = DTUINT_MAX;
+    // Keep iterating through list until all initializers are called
+    uint32_t current_priority = 0;
+    
+    while (callbacks.size() > 0) {
+    
+        uint32_t pending_priority = DTUINT_MAX;
 
-		for (auto iter = callbacks.begin(); iter != callbacks.end();) {
-			StaticInitializerCallback *cb = *iter;
-			
-			// initialize if priority matches
-			if (cb->priority() == current_priority) {
-				cb->destroy();
-				iter = callbacks.erase(iter);
-				continue;	// Skip the "++iter" below
-			}
-			
-			// update pending priority
-			if (cb->priority() > current_priority && cb->priority() < pending_priority) {
-				pending_priority = cb->priority();	// We'll get you next round
-			}
-			
-			++iter;
-		}
-		
-		current_priority = pending_priority;
-	}
-	
+        for (auto iter = callbacks.begin(); iter != callbacks.end();) {
+            StaticInitializerCallback *cb = *iter;
+            
+            // initialize if priority matches
+            if (cb->priority() == current_priority) {
+                cb->destroy();
+                iter = callbacks.erase(iter);
+                continue;    // Skip the "++iter" below
+            }
+            
+            // update pending priority
+            if (cb->priority() > current_priority && cb->priority() < pending_priority) {
+                pending_priority = cb->priority();    // We'll get you next round
+            }
+            
+            ++iter;
+        }
+        
+        current_priority = pending_priority;
+    }
+    
 }
 
 //==============================================================================

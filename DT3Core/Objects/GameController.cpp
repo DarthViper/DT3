@@ -1,12 +1,12 @@
 //==============================================================================
-///	
-///	File: GameController.cpp
-///	
+///    
+///    File: GameController.cpp
+///    
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
 /// This file is subject to the terms and conditions defined in
 /// file 'LICENSE.txt', which is part of this source code package.
-///	
+///    
 //==============================================================================
 
 #include "DT3Core/Objects/GameController.hpp"
@@ -34,7 +34,7 @@ GameController::GameController (void)
 {  
 
 }
-	
+    
 GameController::GameController (const GameController &rhs)
     :   ObjectBase(rhs)
 {
@@ -45,11 +45,11 @@ GameController & GameController::operator = (const GameController &rhs)
 {
     // Make sure we are not assigning the class to itself
     if (&rhs != this) {
-		ObjectBase::operator = (rhs);
+        ObjectBase::operator = (rhs);
     }
     return (*this);
 }
-		
+        
 GameController::~GameController (void)
 {
 

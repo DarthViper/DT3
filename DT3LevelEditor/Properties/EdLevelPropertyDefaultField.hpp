@@ -3,7 +3,7 @@
 #define EDLEVELPROPERTYDEFAULTFIELD
 //==============================================================================
 ///
-///	File: EdLevelPropertyDefaultField.hpp
+///    File: EdLevelPropertyDefaultField.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -47,8 +47,8 @@ class EdLevelPropertyDefaultField : public EdLevelPropertyBase
     Q_OBJECT
 
     public:
-                                        EdLevelPropertyDefaultField		(EdLevelPropertiesWindow *parent, std::shared_ptr<PlugNode> node, std::shared_ptr<ArchiveData> data);
-                                        ~EdLevelPropertyDefaultField	(void);
+                                        EdLevelPropertyDefaultField        (EdLevelPropertiesWindow *parent, std::shared_ptr<PlugNode> node, std::shared_ptr<ArchiveData> data);
+                                        ~EdLevelPropertyDefaultField    (void);
 
         /// Gets the value of the field
         /// \return value of field

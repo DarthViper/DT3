@@ -1,7 +1,7 @@
 #pragma once
 //==============================================================================
 ///
-///	File: Debug.hpp
+///    File: Debug.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -27,9 +27,9 @@ inline void dt3_debug_break() {
         #elif DT3_COMPILER == DT3_VISUALC
             asm { int 3 };
         #else
-        #endif	// DT3_COMPILER
+        #endif    // DT3_COMPILER
     #endif
-#endif	// DT3_DEBUG
+#endif    // DT3_DEBUG
 }
 
 //==============================================================================

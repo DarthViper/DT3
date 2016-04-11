@@ -3,7 +3,7 @@
 #define DT3_SCRIPTINGCLAMP
 //==============================================================================
 ///
-///	File: ScriptingClamp.hpp
+///    File: ScriptingClamp.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -29,24 +29,24 @@ class ScriptingClamp: public ScriptingBase {
         DEFINE_CREATE_AND_CLONE
         DEFINE_PLUG_NODE
 
-                                    ScriptingClamp			(void);
-                                    ScriptingClamp			(const ScriptingClamp &rhs);
-        ScriptingClamp &			operator =				(const ScriptingClamp &rhs);
-        virtual                     ~ScriptingClamp			(void);
+                                    ScriptingClamp            (void);
+                                    ScriptingClamp            (const ScriptingClamp &rhs);
+        ScriptingClamp &            operator =                (const ScriptingClamp &rhs);
+        virtual                     ~ScriptingClamp            (void);
 
         virtual void                archive                 (const std::shared_ptr<Archive> &archive);
 
     public:
         /// Computes the value of the node
         /// \param plug plug to compute
-        bool					compute					(const PlugBase *plug);
+        bool                    compute                    (const PlugBase *plug);
 
     private:
-        Plug<DTfloat>				_in;
-        Plug<DTfloat>				_min;
-        Plug<DTfloat>				_max;
+        Plug<DTfloat>                _in;
+        Plug<DTfloat>                _min;
+        Plug<DTfloat>                _max;
 
-        Plug<DTfloat>				_out;
+        Plug<DTfloat>                _out;
 
 };
 

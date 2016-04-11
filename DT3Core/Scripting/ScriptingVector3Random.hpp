@@ -3,7 +3,7 @@
 #define DT3_SCRIPTINGVECTOR3RANDOM
 //==============================================================================
 ///
-///	File: ScriptingVector3Random.hpp
+///    File: ScriptingVector3Random.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -29,12 +29,12 @@ class ScriptingVector3Random: public ScriptingBase {
         DEFINE_CREATE_AND_CLONE
         DEFINE_PLUG_NODE
 
-                                    ScriptingVector3Random	(void);
-                                    ScriptingVector3Random	(const ScriptingVector3Random &rhs);
-        ScriptingVector3Random &    operator =				(const ScriptingVector3Random &rhs);
-        virtual						~ScriptingVector3Random	(void);
+                                    ScriptingVector3Random    (void);
+                                    ScriptingVector3Random    (const ScriptingVector3Random &rhs);
+        ScriptingVector3Random &    operator =                (const ScriptingVector3Random &rhs);
+        virtual                        ~ScriptingVector3Random    (void);
 
-        virtual void				archive                 (const std::shared_ptr<Archive> &archive);
+        virtual void                archive                 (const std::shared_ptr<Archive> &archive);
 
         /// Object was added to a world
         /// world world that object was added to
@@ -50,8 +50,8 @@ class ScriptingVector3Random: public ScriptingBase {
         void                        tick                    (const DTfloat dt);
 
     private:
-        Plug<DTfloat>				_length;
-        Plug<Vector3>				_out;
+        Plug<DTfloat>                _length;
+        Plug<Vector3>                _out;
 };
 
 //==============================================================================

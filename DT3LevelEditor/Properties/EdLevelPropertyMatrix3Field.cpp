@@ -1,6 +1,6 @@
 //==============================================================================
 ///
-///	File: EdLevelPropertyMatrix3Field.cpp
+///    File: EdLevelPropertyMatrix3Field.cpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -65,27 +65,27 @@ EdLevelPropertyMatrix3Field::EdLevelPropertyMatrix3Field (EdLevelPropertiesWindo
     _value_33->setObjectName("prop");
 
 
-    connect(	_value_11,      SIGNAL(editingFinished()),
-                this,           SLOT(doWriteParams())	);
-    connect(	_value_12,      SIGNAL(editingFinished()),
-                this,           SLOT(doWriteParams())	);
-    connect(	_value_13,      SIGNAL(editingFinished()),
-                this,           SLOT(doWriteParams())	);
-    connect(	_value_21,      SIGNAL(editingFinished()),
-                this,           SLOT(doWriteParams())	);
-    connect(	_value_22,      SIGNAL(editingFinished()),
-                this,           SLOT(doWriteParams())	);
-    connect(	_value_23,      SIGNAL(editingFinished()),
-                this,           SLOT(doWriteParams())	);
-    connect(	_value_31,      SIGNAL(editingFinished()),
-                this,           SLOT(doWriteParams())	);
-    connect(	_value_32,      SIGNAL(editingFinished()),
-                this,           SLOT(doWriteParams())	);
-    connect(	_value_33,      SIGNAL(editingFinished()),
-                this,           SLOT(doWriteParams())	);
+    connect(    _value_11,      SIGNAL(editingFinished()),
+                this,           SLOT(doWriteParams())    );
+    connect(    _value_12,      SIGNAL(editingFinished()),
+                this,           SLOT(doWriteParams())    );
+    connect(    _value_13,      SIGNAL(editingFinished()),
+                this,           SLOT(doWriteParams())    );
+    connect(    _value_21,      SIGNAL(editingFinished()),
+                this,           SLOT(doWriteParams())    );
+    connect(    _value_22,      SIGNAL(editingFinished()),
+                this,           SLOT(doWriteParams())    );
+    connect(    _value_23,      SIGNAL(editingFinished()),
+                this,           SLOT(doWriteParams())    );
+    connect(    _value_31,      SIGNAL(editingFinished()),
+                this,           SLOT(doWriteParams())    );
+    connect(    _value_32,      SIGNAL(editingFinished()),
+                this,           SLOT(doWriteParams())    );
+    connect(    _value_33,      SIGNAL(editingFinished()),
+                this,           SLOT(doWriteParams())    );
 
-    connect(	this,           SIGNAL(doCommand(QString, bool)),
-                parent,         SLOT(onCommand(QString, bool))	);
+    connect(    this,           SIGNAL(doCommand(QString, bool)),
+                parent,         SLOT(onCommand(QString, bool))    );
 
     QGridLayout *layout = new QGridLayout;
     layout->setContentsMargins(0,0,0,0);

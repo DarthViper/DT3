@@ -1,6 +1,6 @@
 //==============================================================================
 ///
-///	File: TWMWriter.cpp
+///    File: TWMWriter.cpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -42,7 +42,7 @@ void TWMWriter::end_export_section (BinaryFileStream &file, DTsize size_location
 void TWMWriter::write (const FilePath &pathname, const std::list<std::shared_ptr<Mesh>> &meshes)
 {
     // Open the file
-    BinaryFileStream	file;
+    BinaryFileStream    file;
     FileManager::open(file, pathname, false);
 
     //
@@ -52,7 +52,7 @@ void TWMWriter::write (const FilePath &pathname, const std::list<std::shared_ptr
     uint32_t magic = MAGIC;
     file << magic;
 
-    uint32_t version = (1 << 24) | (0 << 16) | (0 << 8) | (0 << 0);	   // 1.0.0.0
+    uint32_t version = (1 << 24) | (0 << 16) | (0 << 8) | (0 << 0);       // 1.0.0.0
     file << version;
 
     //

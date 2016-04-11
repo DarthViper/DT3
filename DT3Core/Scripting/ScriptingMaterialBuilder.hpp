@@ -3,7 +3,7 @@
 #define DT3_SCRIPTINGMATERIALBUILDER
 //==============================================================================
 ///
-///	File: ScriptingMaterialBuilder.hpp
+///    File: ScriptingMaterialBuilder.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -86,17 +86,17 @@ class ScriptingMaterialBuilder: public ScriptingBase {
         DEFINE_CREATE_AND_CLONE
         DEFINE_PLUG_NODE
 
-                                    ScriptingMaterialBuilder	(void);
-                                    ScriptingMaterialBuilder	(const ScriptingMaterialBuilder &rhs);
-        ScriptingMaterialBuilder &	operator =                  (const ScriptingMaterialBuilder &rhs);
-        virtual                     ~ScriptingMaterialBuilder	(void);
+                                    ScriptingMaterialBuilder    (void);
+                                    ScriptingMaterialBuilder    (const ScriptingMaterialBuilder &rhs);
+        ScriptingMaterialBuilder &    operator =                  (const ScriptingMaterialBuilder &rhs);
+        virtual                     ~ScriptingMaterialBuilder    (void);
 
         virtual void                archive                 (const std::shared_ptr<Archive> &archive);
 
     public:
         /// Computes the value of the node
         /// \param plug plug to compute
-        bool					compute					(const PlugBase *plug);
+        bool                    compute                    (const PlugBase *plug);
 
         //
         // Depth Stencil State
@@ -158,41 +158,41 @@ class ScriptingMaterialBuilder: public ScriptingBase {
         FORWARD_UNITS_SETTERS(set_rectangle, Rectangle)
 
     private:
-        Plug<std::shared_ptr<MaterialResource>>	_out_material;
+        Plug<std::shared_ptr<MaterialResource>>    _out_material;
 
-        Plug<std::shared_ptr<TextureResource2D>>		_tex_0;
-        Plug<std::shared_ptr<TextureResource2D>>		_tex_1;
-        Plug<std::shared_ptr<TextureResource2D>>		_tex_2;
-        Plug<std::shared_ptr<TextureResource2D>>		_tex_3;
-        Plug<std::shared_ptr<TextureResource2D>>		_tex_4;
-        Plug<std::shared_ptr<TextureResource2D>>		_tex_5;
-        Plug<std::shared_ptr<TextureResource2D>>		_tex_6;
-        Plug<std::shared_ptr<TextureResource2D>>		_tex_7;
-        Plug<std::shared_ptr<TextureResource2D>>		_tex_8;
-        Plug<std::shared_ptr<TextureResource2D>>		_tex_9;
-        Plug<std::shared_ptr<TextureResource2D>>		_tex_10;
-        Plug<std::shared_ptr<TextureResource2D>>		_tex_11;
-        Plug<std::shared_ptr<TextureResource2D>>		_tex_12;
-        Plug<std::shared_ptr<TextureResource2D>>		_tex_13;
-        Plug<std::shared_ptr<TextureResource2D>>		_tex_14;
-        Plug<std::shared_ptr<TextureResource2D>>		_tex_15;
+        Plug<std::shared_ptr<TextureResource2D>>        _tex_0;
+        Plug<std::shared_ptr<TextureResource2D>>        _tex_1;
+        Plug<std::shared_ptr<TextureResource2D>>        _tex_2;
+        Plug<std::shared_ptr<TextureResource2D>>        _tex_3;
+        Plug<std::shared_ptr<TextureResource2D>>        _tex_4;
+        Plug<std::shared_ptr<TextureResource2D>>        _tex_5;
+        Plug<std::shared_ptr<TextureResource2D>>        _tex_6;
+        Plug<std::shared_ptr<TextureResource2D>>        _tex_7;
+        Plug<std::shared_ptr<TextureResource2D>>        _tex_8;
+        Plug<std::shared_ptr<TextureResource2D>>        _tex_9;
+        Plug<std::shared_ptr<TextureResource2D>>        _tex_10;
+        Plug<std::shared_ptr<TextureResource2D>>        _tex_11;
+        Plug<std::shared_ptr<TextureResource2D>>        _tex_12;
+        Plug<std::shared_ptr<TextureResource2D>>        _tex_13;
+        Plug<std::shared_ptr<TextureResource2D>>        _tex_14;
+        Plug<std::shared_ptr<TextureResource2D>>        _tex_15;
 
-        Plug<Rectangle>		_rect_0;
-        Plug<Rectangle>		_rect_1;
-        Plug<Rectangle>		_rect_2;
-        Plug<Rectangle>		_rect_3;
-        Plug<Rectangle>		_rect_4;
-        Plug<Rectangle>		_rect_5;
-        Plug<Rectangle>		_rect_6;
-        Plug<Rectangle>		_rect_7;
-        Plug<Rectangle>		_rect_8;
-        Plug<Rectangle>		_rect_9;
-        Plug<Rectangle>		_rect_10;
-        Plug<Rectangle>		_rect_11;
-        Plug<Rectangle>		_rect_12;
-        Plug<Rectangle>		_rect_13;
-        Plug<Rectangle>		_rect_14;
-        Plug<Rectangle>		_rect_15;
+        Plug<Rectangle>        _rect_0;
+        Plug<Rectangle>        _rect_1;
+        Plug<Rectangle>        _rect_2;
+        Plug<Rectangle>        _rect_3;
+        Plug<Rectangle>        _rect_4;
+        Plug<Rectangle>        _rect_5;
+        Plug<Rectangle>        _rect_6;
+        Plug<Rectangle>        _rect_7;
+        Plug<Rectangle>        _rect_8;
+        Plug<Rectangle>        _rect_9;
+        Plug<Rectangle>        _rect_10;
+        Plug<Rectangle>        _rect_11;
+        Plug<Rectangle>        _rect_12;
+        Plug<Rectangle>        _rect_13;
+        Plug<Rectangle>        _rect_14;
+        Plug<Rectangle>        _rect_15;
 };
 
 //==============================================================================

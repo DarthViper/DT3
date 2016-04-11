@@ -1,12 +1,12 @@
 //==============================================================================
-///	
-///	File: ArchiveBinaryWriter.cpp
+///    
+///    File: ArchiveBinaryWriter.cpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
 /// This file is subject to the terms and conditions defined in
 /// file 'LICENSE.txt', which is part of this source code package.
-///	
+///    
 //==============================================================================
 
 #include "DT3Core/Types/Utility/Config.hpp"
@@ -29,7 +29,7 @@ ArchiveBinaryWriter::ArchiveBinaryWriter (void)
 {    
 
 }
-			
+            
 ArchiveBinaryWriter::~ArchiveBinaryWriter (void)
 {
 
@@ -39,19 +39,19 @@ ArchiveBinaryWriter::~ArchiveBinaryWriter (void)
 //==============================================================================
 
 DTerr ArchiveBinaryWriter::open (const FilePath &pathname)
-{	
+{    
     // open the file
-	DTerr error = FileManager::open(_outfile, pathname, false);
-	if (error != DT3_ERR_NONE)
-		return error;
+    DTerr error = FileManager::open(_outfile, pathname, false);
+    if (error != DT3_ERR_NONE)
+        return error;
    
-	// write out some header information
-	_outfile << static_cast<uint32_t>(DT3_BINARY_TOKEN);
+    // write out some header information
+    _outfile << static_cast<uint32_t>(DT3_BINARY_TOKEN);
     
-	_outfile << Config::engine_version();
-	_outfile << AppConfig::app_version();
-		
-	return DT3_ERR_NONE;
+    _outfile << Config::engine_version();
+    _outfile << AppConfig::app_version();
+        
+    return DT3_ERR_NONE;
 }
 
 void ArchiveBinaryWriter::close (void)
@@ -64,11 +64,11 @@ void ArchiveBinaryWriter::close (void)
 
 Archive& ArchiveBinaryWriter::operator << (const ArchiveData& data)
 {
-	if (data.flags() & DATA_PERSISTENT) {
-		data.value(_outfile);
-	}
-	
-	return *this;
+    if (data.flags() & DATA_PERSISTENT) {
+        data.value(_outfile);
+    }
+    
+    return *this;
 }
 
 //==============================================================================
@@ -76,14 +76,14 @@ Archive& ArchiveBinaryWriter::operator << (const ArchiveData& data)
 
 void ArchiveBinaryWriter::push_domain (const std::string &domain)
 {
-	uint8_t marker = 0xFF;
-	_outfile << marker;
+    uint8_t marker = 0xFF;
+    _outfile << marker;
 }
 
 void ArchiveBinaryWriter::pop_domain (void)
 {
-	uint8_t marker = 0xAA;
-	_outfile << marker;
+    uint8_t marker = 0xAA;
+    _outfile << marker;
 }
 
 //==============================================================================
@@ -91,12 +91,12 @@ void ArchiveBinaryWriter::pop_domain (void)
 
 bool ArchiveBinaryWriter::is_reading (void) const
 {
-	return false;
+    return false;
 }
 
 bool ArchiveBinaryWriter::is_writing (void) const
 {
-	return true;
+    return true;
 }
 
 //==============================================================================

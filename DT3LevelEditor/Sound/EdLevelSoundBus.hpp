@@ -3,7 +3,7 @@
 #define EDLEVELSOUNDBUS
 //==============================================================================
 ///
-///	File: EdLevelSoundBus.hpp
+///    File: EdLevelSoundBus.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -48,8 +48,8 @@ class EdLevelSoundBus : public QWidget
     public:
                                     EdLevelSoundBus         (QWidget *parent, std::shared_ptr<ScriptingSoundBusOut> bus);
 
-        void						draw                    (QPainter *painter);
-        void						paintEvent              (QPaintEvent *event);
+        void                        draw                    (QPainter *painter);
+        void                        paintEvent              (QPaintEvent *event);
         void                        resizeEvent             (QResizeEvent *event);
 
         void                        updateBus               (void);

@@ -3,7 +3,7 @@
 #define DT3_APPLICATION
 //==============================================================================
 ///
-///	File: Application.hpp
+///    File: Application.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -36,12 +36,12 @@ class Application: public BaseClass {
         DEFINE_TYPE(Application,BaseClass)
         DEFINE_CREATE
 
-                                        Application					(void);
+                                        Application                    (void);
     private:
-                                        Application					(const Application &rhs);
-        Application &                   operator =					(const Application &rhs);
+                                        Application                    (const Application &rhs);
+        Application &                   operator =                    (const Application &rhs);
     public:
-        virtual                         ~Application				(void);
+        virtual                         ~Application                (void);
 
 
     public:
@@ -78,12 +78,12 @@ class Application: public BaseClass {
         /// Description
         /// \param param description
         /// \return description
-        const FilePath &                current_world_path          (void) const	{	return _current_pathname;	}
+        const FilePath &                current_world_path          (void) const    {    return _current_pathname;    }
 
         /// Description
         /// \param param description
         /// \return description
-        const FilePath &                pending_world_path          (void) const     {	return _pending_pathname;	}
+        const FilePath &                pending_world_path          (void) const     {    return _pending_pathname;    }
 
 
         /// Description
@@ -99,7 +99,7 @@ class Application: public BaseClass {
         /// Description
         /// \param param description
         /// \return description
-        bool                       is_transitioning            (void) const	{	return _transition != NULL;	}
+        bool                       is_transitioning            (void) const    {    return _transition != NULL;    }
 
         /// Description
         /// \param param description
@@ -115,12 +115,12 @@ class Application: public BaseClass {
         /// Description
         /// \param param description
         /// \return description
-        virtual void                    tick_game					(const DTfloat dt);
+        virtual void                    tick_game                    (const DTfloat dt);
 
         /// Description
         /// \param param description
         /// \return description
-        virtual void                    draw_game					(const DTfloat lag);
+        virtual void                    draw_game                    (const DTfloat lag);
 
         /// Description
         /// \param param description
@@ -131,37 +131,37 @@ class Application: public BaseClass {
         /// Description
         /// \param param description
         /// \return description
-        virtual void                    clear						(void);
+        virtual void                    clear                        (void);
 
         /// Description
         /// \param param description
         /// \return description
-        void                            quit						(void);
+        void                            quit                        (void);
 
     private:
         // Virtual function forwarding so the callbacks follow virtual inheritance rules
         void                            forward_touch_gui           (const TouchEvent *event)   {   touch_gui(event);    }
 
-        bool						_done;
+        bool                        _done;
 
-        TimerHires						_game_time;
+        TimerHires                        _game_time;
 
-        bool						_show_console;
-        bool						_show_profiler;
+        bool                        _show_console;
+        bool                        _show_profiler;
 
         std::shared_ptr<World>          _obj_world;
         std::shared_ptr<World>          _obj_pending_world;
         std::shared_ptr<TransitionBase> _transition;
 
-        FilePath						_current_pathname;
+        FilePath                        _current_pathname;
 
-        FilePath						_pending_pathname;
+        FilePath                        _pending_pathname;
         std::shared_ptr<Session>        _pending_session;
         std::shared_ptr<Progress>       _pending_progress;
         std::string                     _pending_args;
 
-        DTfloat							_transition_time;
-        DTfloat							_transition_timer;
+        DTfloat                            _transition_time;
+        DTfloat                            _transition_timer;
 };
 
 //==============================================================================

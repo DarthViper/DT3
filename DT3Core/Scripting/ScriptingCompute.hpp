@@ -3,7 +3,7 @@
 #define DT3_SCRIPTINGCOMPUTE
 //==============================================================================
 ///
-///	File: ScriptingCompute.hpp
+///    File: ScriptingCompute.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -34,17 +34,17 @@ class ScriptingCompute: public ScriptingBase {
         DEFINE_CREATE_AND_CLONE
         DEFINE_PLUG_NODE
 
-                                    ScriptingCompute		(void);
-                                    ScriptingCompute		(const ScriptingCompute &rhs);
-        ScriptingCompute &			operator =				(const ScriptingCompute &rhs);
-        virtual                     ~ScriptingCompute		(void);
+                                    ScriptingCompute        (void);
+                                    ScriptingCompute        (const ScriptingCompute &rhs);
+        ScriptingCompute &            operator =                (const ScriptingCompute &rhs);
+        virtual                     ~ScriptingCompute        (void);
 
         virtual void                archive                 (const std::shared_ptr<Archive> &archive);
 
     public:
         /// Computes the value of the node
         /// \param plug plug to compute
-        bool					compute					(const PlugBase *plug);
+        bool                    compute                    (const PlugBase *plug);
 
 
         /// Set the equation
@@ -152,36 +152,36 @@ class ScriptingCompute: public ScriptingBase {
         void                        dirty_outs              (void);
         void                        set_variables           (ExpressionParser &p);
 
-        Plug<DTfloat>				_in_a1;
-        Plug<DTfloat>				_in_a2;
-        Plug<DTfloat>				_in_a3;
-        Plug<DTfloat>				_in_a4;
+        Plug<DTfloat>                _in_a1;
+        Plug<DTfloat>                _in_a2;
+        Plug<DTfloat>                _in_a3;
+        Plug<DTfloat>                _in_a4;
 
-        Plug<DTfloat>				_in_b1;
-        Plug<DTfloat>				_in_b2;
-        Plug<DTfloat>				_in_b3;
-        Plug<DTfloat>				_in_b4;
+        Plug<DTfloat>                _in_b1;
+        Plug<DTfloat>                _in_b2;
+        Plug<DTfloat>                _in_b3;
+        Plug<DTfloat>                _in_b4;
 
-        Plug<DTfloat>				_in_c1;
-        Plug<DTfloat>				_in_c2;
-        Plug<DTfloat>				_in_c3;
-        Plug<DTfloat>				_in_c4;
+        Plug<DTfloat>                _in_c1;
+        Plug<DTfloat>                _in_c2;
+        Plug<DTfloat>                _in_c3;
+        Plug<DTfloat>                _in_c4;
 
 
-        Plug<DTfloat>				_out_a1;
-        Plug<DTfloat>				_out_a2;
-        Plug<DTfloat>				_out_a3;
-        Plug<DTfloat>				_out_a4;
+        Plug<DTfloat>                _out_a1;
+        Plug<DTfloat>                _out_a2;
+        Plug<DTfloat>                _out_a3;
+        Plug<DTfloat>                _out_a4;
 
-        Plug<DTfloat>				_out_b1;
-        Plug<DTfloat>				_out_b2;
-        Plug<DTfloat>				_out_b3;
-        Plug<DTfloat>				_out_b4;
+        Plug<DTfloat>                _out_b1;
+        Plug<DTfloat>                _out_b2;
+        Plug<DTfloat>                _out_b3;
+        Plug<DTfloat>                _out_b4;
 
-        Plug<DTfloat>				_out_c1;
-        Plug<DTfloat>				_out_c2;
-        Plug<DTfloat>				_out_c3;
-        Plug<DTfloat>				_out_c4;
+        Plug<DTfloat>                _out_c1;
+        Plug<DTfloat>                _out_c2;
+        Plug<DTfloat>                _out_c3;
+        Plug<DTfloat>                _out_c4;
 
 
         std::string                 _eq_a1;

@@ -1,6 +1,6 @@
 //==============================================================================
 ///
-///	File: ScriptingTimer.cpp
+///    File: ScriptingTimer.cpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -68,11 +68,11 @@ ScriptingTimer::ScriptingTimer (void)
 }
 
 ScriptingTimer::ScriptingTimer (const ScriptingTimer &rhs)
-    :   ScriptingBase	(rhs),
-        _speed			(rhs._speed),
-        _count_up		(rhs._count_up),
-        _count_down		(rhs._count_down),
-        _time			(rhs._time)
+    :   ScriptingBase    (rhs),
+        _speed            (rhs._speed),
+        _count_up        (rhs._count_up),
+        _count_down        (rhs._count_down),
+        _time            (rhs._time)
 {
 
 }

@@ -3,7 +3,7 @@
 #define DT3_FILTERS
 //==============================================================================
 ///
-///	File: Filters.hpp
+///    File: Filters.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -53,7 +53,7 @@ class Filters {
         /// \param f0 3db frequency
         /// \param fs sampling frequency
         /// \param default_val initialization value
-        void            initialize			(	FilterType type,
+        void            initialize            (    FilterType type,
                                                 uint32_t n,
                                                 DTfloat f0,
                                                 DTfloat fs,
@@ -87,16 +87,16 @@ Stream& operator >>(Stream &s, Filters &f);
 namespace TypeTraitsInfo {
 
 template <> struct Info<Filters> {
-    static Filters				default_value(void)	{	return Filters();   }
-    static const DTcharacter*	name(void)          {	return "Filters";   }
-    static const DTcharacter*	name_caps(void)     {	return "Filters";   }
+    static Filters                default_value(void)    {    return Filters();   }
+    static const DTcharacter*    name(void)          {    return "Filters";   }
+    static const DTcharacter*    name_caps(void)     {    return "Filters";   }
     enum { isFundamental = 0 };
 };
 
 template <> struct Info<Filters::FilterType> {
-    static Filters::FilterType  default_value(void)	{	return Filters::FILTER_BUTTERWORTH_LOW_PASS;   }
-    static const DTcharacter*	name(void)          {	return "FilterType";   }
-    static const DTcharacter*	name_caps(void)     {	return "FilterType";   }
+    static Filters::FilterType  default_value(void)    {    return Filters::FILTER_BUTTERWORTH_LOW_PASS;   }
+    static const DTcharacter*    name(void)          {    return "FilterType";   }
+    static const DTcharacter*    name_caps(void)     {    return "FilterType";   }
     enum { isFundamental = 0 };
 };
 

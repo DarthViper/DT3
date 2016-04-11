@@ -1,12 +1,12 @@
 //==============================================================================
-///	
-///	File: ScriptingParticlePath.cpp
-///	
+///    
+///    File: ScriptingParticlePath.cpp
+///    
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
 /// This file is subject to the terms and conditions defined in
 /// file 'LICENSE.txt', which is part of this source code package.
-///	
+///    
 //==============================================================================
 
 #include "DT3Core/Scripting/ScriptingParticlePath.hpp"
@@ -38,20 +38,20 @@ IMPLEMENT_PLUG_INFO_INDEX(_bias)
 
 BEGIN_IMPLEMENT_PLUGS(ScriptingParticlePath)
 
-	PLUG_INIT(_in,"In")
-		.set_input(true)
-		.affects(PLUG_INFO_INDEX(_out));
+    PLUG_INIT(_in,"In")
+        .set_input(true)
+        .affects(PLUG_INFO_INDEX(_out));
 
-	PLUG_INIT(_speed,"Speed")
-		.set_input(true)
-		.affects(PLUG_INFO_INDEX(_out));
+    PLUG_INIT(_speed,"Speed")
+        .set_input(true)
+        .affects(PLUG_INFO_INDEX(_out));
 
-	PLUG_INIT(_bias,"Bias")
-		.set_input(true)
-		.affects(PLUG_INFO_INDEX(_out));
+    PLUG_INIT(_bias,"Bias")
+        .set_input(true)
+        .affects(PLUG_INFO_INDEX(_out));
 
-	PLUG_INIT(_out,"Out")
-		.set_output(true);
+    PLUG_INIT(_out,"Out")
+        .set_output(true);
         
 END_IMPLEMENT_PLUGS
 
@@ -60,20 +60,20 @@ END_IMPLEMENT_PLUGS
 //==============================================================================
 
 ScriptingParticlePath::ScriptingParticlePath (void)
-	:	_in				(PLUG_INFO_INDEX(_in)),
-		_out			(PLUG_INFO_INDEX(_out)),
-		_speed			(PLUG_INFO_INDEX(_speed),1.0F),
-		_bias			(PLUG_INFO_INDEX(_bias),0.0F)
+    :    _in                (PLUG_INFO_INDEX(_in)),
+        _out            (PLUG_INFO_INDEX(_out)),
+        _speed            (PLUG_INFO_INDEX(_speed),1.0F),
+        _bias            (PLUG_INFO_INDEX(_bias),0.0F)
 {  
 
 }
-		
+        
 ScriptingParticlePath::ScriptingParticlePath (const ScriptingParticlePath &rhs)
     :   ScriptingBase       (rhs),
-		_in					(rhs._in),
-		_out				(rhs._out),
-		_speed				(rhs._speed),
-		_bias				(rhs._bias),
+        _in                    (rhs._in),
+        _out                (rhs._out),
+        _speed                (rhs._speed),
+        _bias                (rhs._bias),
         _points             (rhs._points)
 {   
 
@@ -83,17 +83,17 @@ ScriptingParticlePath & ScriptingParticlePath::operator = (const ScriptingPartic
 {
     // Make sure we are not assigning the class to itself
     if (&rhs != this) {        
-		ScriptingBase::operator = (rhs);	
-		
-		_in = rhs._in;
-		_out = rhs._out;
-		_speed = rhs._speed;
-		_bias = rhs._bias;
+        ScriptingBase::operator = (rhs);    
+        
+        _in = rhs._in;
+        _out = rhs._out;
+        _speed = rhs._speed;
+        _bias = rhs._bias;
         _points = rhs._points;
-	}
+    }
     return (*this);
 }
-			
+            
 ScriptingParticlePath::~ScriptingParticlePath (void)
 {
 
@@ -106,7 +106,7 @@ void ScriptingParticlePath::archive (const std::shared_ptr<Archive> &archive)
 {
     ScriptingBase::archive(archive);
 
-	archive->push_domain (class_id ());
+    archive->push_domain (class_id ());
     
     *archive << ARCHIVE_PLUG(_speed, DATA_PERSISTENT | DATA_SETTABLE);
     *archive << ARCHIVE_PLUG(_bias, DATA_PERSISTENT | DATA_SETTABLE);
@@ -130,24 +130,24 @@ void ScriptingParticlePath::archive (const std::shared_ptr<Archive> &archive)
 
 void ScriptingParticlePath::interpolate (DTfloat t, Vector3 &translation) const
 {
-	PROFILER(PARTICLES);
+    PROFILER(PARTICLES);
 
-	// Special cases
-	if (_points.size() == 0)	{
-		return;
-	}
-	
-	if (_points.size() == 1)	{
-		translation = _points[0].value;
-		return;
-	}
+    // Special cases
+    if (_points.size() == 0)    {
+        return;
+    }
+    
+    if (_points.size() == 1)    {
+        translation = _points[0].value;
+        return;
+    }
     
     DTfloat index_float = t;
     int32_t index = (int32_t)(index_float);
     
     if (index < 0)                                      return;
     if (index > static_cast<int32_t>(_points.size()-2))   return;
-	
+    
     DTfloat t1 = index_float - index;
     DTfloat t2 = t1 * t1;
     DTfloat t3 = t1 * t2;
@@ -169,39 +169,39 @@ void ScriptingParticlePath::interpolate (DTfloat t, Vector3 &translation) const
 
 bool ScriptingParticlePath::compute (const PlugBase *plug)
 {
-	PROFILER(PARTICLES);
+    PROFILER(PARTICLES);
 
     if (super_type::compute(plug))  return true;
 
-	if (plug == &_out) {
-		
-		// Make sure there are input particles
-		std::shared_ptr<Particles> particles = _in;
-		if (!particles || particles->translations_stream().size() <= 0) {
-			_out.set_clean();
+    if (plug == &_out) {
+        
+        // Make sure there are input particles
+        std::shared_ptr<Particles> particles = _in;
+        if (!particles || particles->translations_stream().size() <= 0) {
+            _out.set_clean();
             return true;
-		}
-			
-		// Build the velocities stream
-		if (particles->velocity_stream().size() <= 0) {
-			particles->build_velocity_stream();
-		}
-		
-		// Do processing
+        }
+            
+        // Build the velocities stream
+        if (particles->velocity_stream().size() <= 0) {
+            particles->build_velocity_stream();
+        }
+        
+        // Do processing
         std::vector<Vector3> &translations = particles->translations_stream();
-		std::vector<DTfloat> &lifetimes = particles->lifetimes_stream();
+        std::vector<DTfloat> &lifetimes = particles->lifetimes_stream();
 
-		for (int32_t i = particles->active_start(); i != particles->active_end(); i = (i + 1) % particles->translations_stream().size()) {
+        for (int32_t i = particles->active_start(); i != particles->active_end(); i = (i + 1) % particles->translations_stream().size()) {
             interpolate (lifetimes[i] * _speed + _bias, translations[i]);
-		}
+        }
 
-		_out = particles;
-		_out.set_clean();
-		
-		return true;
-	}
-	
-	return false;
+        _out = particles;
+        _out.set_clean();
+        
+        return true;
+    }
+    
+    return false;
 }
 
 //==============================================================================

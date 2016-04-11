@@ -1,12 +1,12 @@
 //==============================================================================
-///	
-///	File: ScriptingABS.cpp
-///	
+///    
+///    File: ScriptingABS.cpp
+///    
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
 /// This file is subject to the terms and conditions defined in
 /// file 'LICENSE.txt', which is part of this source code package.
-///	
+///    
 //==============================================================================
 
 #include "DT3Core/Scripting/ScriptingABS.hpp"
@@ -36,12 +36,12 @@ IMPLEMENT_PLUG_INFO_INDEX(_out);
 
 BEGIN_IMPLEMENT_PLUGS(ScriptingABS)
 
-	PLUG_INIT(_in,"In")
-		.set_input(true)
-		.affects(PLUG_INFO_INDEX(_out));
+    PLUG_INIT(_in,"In")
+        .set_input(true)
+        .affects(PLUG_INFO_INDEX(_out));
 
-	PLUG_INIT(_out,"Out")
-		.set_output(true);
+    PLUG_INIT(_out,"Out")
+        .set_output(true);
         
 END_IMPLEMENT_PLUGS
 
@@ -50,16 +50,16 @@ END_IMPLEMENT_PLUGS
 //==============================================================================
 
 ScriptingABS::ScriptingABS (void)
-    :   _in			(PLUG_INFO_INDEX(_in), 0.0F),
-		_out		(PLUG_INFO_INDEX(_out), 0.0F)
+    :   _in            (PLUG_INFO_INDEX(_in), 0.0F),
+        _out        (PLUG_INFO_INDEX(_out), 0.0F)
 {  
 
 }
-		
+        
 ScriptingABS::ScriptingABS (const ScriptingABS &rhs)
-    :   ScriptingBase	(rhs),
-		_in				(rhs._in),
-		_out			(rhs._out)
+    :   ScriptingBase    (rhs),
+        _in                (rhs._in),
+        _out            (rhs._out)
 {   
 
 }
@@ -68,14 +68,14 @@ ScriptingABS & ScriptingABS::operator = (const ScriptingABS &rhs)
 {
     // Make sure we are not assigning the class to itself
     if (&rhs != this) {        
-		ScriptingBase::operator = (rhs);
+        ScriptingBase::operator = (rhs);
 
-		_in = rhs._in;
-		_out = rhs._out;
-	}
+        _in = rhs._in;
+        _out = rhs._out;
+    }
     return (*this);
 }
-			
+            
 ScriptingABS::~ScriptingABS (void)
 {
 
@@ -88,11 +88,11 @@ void ScriptingABS::archive (const std::shared_ptr<Archive> &archive)
 {
     ScriptingBase::archive(archive);
 
-	archive->push_domain (class_id ());
-	        
-	*archive << ARCHIVE_PLUG(_in, DATA_PERSISTENT | DATA_SETTABLE);
-	*archive << ARCHIVE_PLUG(_out, DATA_PERSISTENT);
-													
+    archive->push_domain (class_id ());
+            
+    *archive << ARCHIVE_PLUG(_in, DATA_PERSISTENT | DATA_SETTABLE);
+    *archive << ARCHIVE_PLUG(_out, DATA_PERSISTENT);
+                                                    
     archive->pop_domain ();
 }
 
@@ -101,18 +101,18 @@ void ScriptingABS::archive (const std::shared_ptr<Archive> &archive)
 
 bool ScriptingABS::compute (const PlugBase *plug)
 {
-	PROFILER(SCRIPTING);
+    PROFILER(SCRIPTING);
 
     if (super_type::compute(plug))  return true;
 
-	if (plug == &_out) {
-		_out = std::abs(_in);
-		_out.set_clean();
-		
-		return true;
-	}
-	
-	return false;
+    if (plug == &_out) {
+        _out = std::abs(_in);
+        _out.set_clean();
+        
+        return true;
+    }
+    
+    return false;
 }
 
 //==============================================================================

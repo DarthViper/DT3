@@ -1,7 +1,7 @@
 #pragma once
 //==============================================================================
 ///
-///	File: ScriptingSoundRandomizer.hpp
+///    File: ScriptingSoundRandomizer.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -45,7 +45,7 @@ class ScriptingSoundRandomizer: public ScriptingSoundBase {
     public:
         /// Computes the value of the node
         /// \param plug plug to compute
-        bool					compute                     (const PlugBase *plug);
+        bool                    compute                     (const PlugBase *plug);
 
         /// Toggle Event
         void                        randomizeInputs             (PlugNode *sender);

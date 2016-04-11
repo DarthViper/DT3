@@ -1,7 +1,7 @@
 #pragma once
 //==============================================================================
 ///
-///	File: ScriptingRandom.hpp
+///    File: ScriptingRandom.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -28,12 +28,12 @@ class ScriptingRandom: public ScriptingBase {
         DEFINE_CREATE_AND_CLONE
         DEFINE_PLUG_NODE
 
-                                    ScriptingRandom			(void);
-                                    ScriptingRandom			(const ScriptingRandom &rhs);
-        ScriptingRandom &			operator =				(const ScriptingRandom &rhs);
-        virtual						~ScriptingRandom		(void);
+                                    ScriptingRandom            (void);
+                                    ScriptingRandom            (const ScriptingRandom &rhs);
+        ScriptingRandom &            operator =                (const ScriptingRandom &rhs);
+        virtual                        ~ScriptingRandom        (void);
 
-        virtual void				archive                 (const std::shared_ptr<Archive> &archive);
+        virtual void                archive                 (const std::shared_ptr<Archive> &archive);
 
         /// Object was added to a world
         /// world world that object was added to
@@ -51,9 +51,9 @@ class ScriptingRandom: public ScriptingBase {
         void                        eventGenerate           (PlugNode *sender);
 
     private:
-        Plug<DTfloat>					_out;
+        Plug<DTfloat>                    _out;
 
-        Plug<bool>					_continuous;
+        Plug<bool>                    _continuous;
         Event                           _generate_e;
 };
 

@@ -3,7 +3,7 @@
 #define DT3_SCRIPTINGVECTOR3RANDOM
 //==============================================================================
 ///
-///	File: ScriptingCameraShake.hpp
+///    File: ScriptingCameraShake.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -33,12 +33,12 @@ class ScriptingCameraShake: public ScriptingBase {
         DEFINE_CREATE_AND_CLONE
         DEFINE_PLUG_NODE
 
-                                    ScriptingCameraShake	(void);
-                                    ScriptingCameraShake	(const ScriptingCameraShake &rhs);
-        ScriptingCameraShake &		operator =				(const ScriptingCameraShake &rhs);
-        virtual						~ScriptingCameraShake	(void);
+                                    ScriptingCameraShake    (void);
+                                    ScriptingCameraShake    (const ScriptingCameraShake &rhs);
+        ScriptingCameraShake &        operator =                (const ScriptingCameraShake &rhs);
+        virtual                        ~ScriptingCameraShake    (void);
 
-        virtual void				archive                 (const std::shared_ptr<Archive> &archive);
+        virtual void                archive                 (const std::shared_ptr<Archive> &archive);
 
         /// Object was added to a world
         /// world world that object was added to
@@ -54,13 +54,13 @@ class ScriptingCameraShake: public ScriptingBase {
 
         /// Computes the value of the node
         /// \param plug plug to compute
-        bool					compute					(const PlugBase *plug);
+        bool                    compute                    (const PlugBase *plug);
 
     private:
-        Plug<Vector3>				_in;
-        Plug<DTfloat>				_magnitude;
-        Plug<bool>				_on;
-        Plug<Vector3>				_out;
+        Plug<Vector3>                _in;
+        Plug<DTfloat>                _magnitude;
+        Plug<bool>                _on;
+        Plug<Vector3>                _out;
 };
 
 //==============================================================================

@@ -3,7 +3,7 @@
 #define DT3_SCRIPTINGPARTICLESIZERANDOMIZER
 //==============================================================================
 ///
-///	File: ScriptingParticleSizeRandomizer.hpp
+///    File: ScriptingParticleSizeRandomizer.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -35,17 +35,17 @@ class ScriptingParticleSizeRandomizer: public ScriptingBase {
         DEFINE_CREATE_AND_CLONE
         DEFINE_PLUG_NODE
 
-                                            ScriptingParticleSizeRandomizer	(void);
-                                            ScriptingParticleSizeRandomizer	(const ScriptingParticleSizeRandomizer &rhs);
-        ScriptingParticleSizeRandomizer&    operator =						(const ScriptingParticleSizeRandomizer &rhs);
-        virtual								~ScriptingParticleSizeRandomizer(void);
+                                            ScriptingParticleSizeRandomizer    (void);
+                                            ScriptingParticleSizeRandomizer    (const ScriptingParticleSizeRandomizer &rhs);
+        ScriptingParticleSizeRandomizer&    operator =                        (const ScriptingParticleSizeRandomizer &rhs);
+        virtual                                ~ScriptingParticleSizeRandomizer(void);
 
         virtual void                archive                 (const std::shared_ptr<Archive> &archive);
 
     public:
         /// Computes the value of the node
         /// \param plug plug to compute
-        bool					compute					(const PlugBase *plug);
+        bool                    compute                    (const PlugBase *plug);
 
     private:
         bool                                           _continuous;
@@ -53,8 +53,8 @@ class ScriptingParticleSizeRandomizer: public ScriptingBase {
         DTfloat                                             _min_size;
         DTfloat                                             _max_size;
 
-        Plug<std::shared_ptr<Particles>>		_in;
-        Plug<std::shared_ptr<Particles>>		_out;
+        Plug<std::shared_ptr<Particles>>        _in;
+        Plug<std::shared_ptr<Particles>>        _out;
 
 };
 

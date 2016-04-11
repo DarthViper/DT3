@@ -1,12 +1,12 @@
 //==============================================================================
-///	
-///	File: GeometryResource_cmd.cpp
-///	
+///    
+///    File: GeometryResource_cmd.cpp
+///    
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
 /// This file is subject to the terms and conditions defined in
 /// file 'LICENSE.txt', which is part of this source code package.
-///	
+///    
 //==============================================================================
 
 #include "DT3Core/System/Command.hpp"
@@ -66,8 +66,8 @@ IMPLEMENT_FACTORY_COMMAND(GeometryResource_cmd)
 //==============================================================================
 
 namespace {
-    const int32_t MAGIC = 0x5E11E70D;								// Smellytoad
-    const int32_t VERSION = (1 << 24) | (0 << 16) | (0 << 16);		// 1.0.0
+    const int32_t MAGIC = 0x5E11E70D;                                // Smellytoad
+    const int32_t VERSION = (1 << 24) | (0 << 16) | (0 << 16);        // 1.0.0
 
     const int32_t FILE = 0;
         const int32_t MESHES = 1;
@@ -89,29 +89,29 @@ namespace {
 // Useful macros for writing out sections
 //==============================================================================
 
-#define BEGIN_EXPORT_SECTION(S)											\
-    file << (int32_t) S;													\
-	DTsize size_location = file.p();                                 \
+#define BEGIN_EXPORT_SECTION(S)                                            \
+    file << (int32_t) S;                                                    \
+    DTsize size_location = file.p();                                 \
     file << (int32_t) 0;
-	
-#define END_EXPORT_SECTION												\
-	DTsize save_location = file.p();                                 \
-	file.seek_p(size_location, BinaryFileStream::FROM_BEGINNING);		\
-    file << (int32_t) (save_location - size_location - sizeof(int32_t));	\
-	file.seek_p(save_location, BinaryFileStream::FROM_BEGINNING);
+    
+#define END_EXPORT_SECTION                                                \
+    DTsize save_location = file.p();                                 \
+    file.seek_p(size_location, BinaryFileStream::FROM_BEGINNING);        \
+    file << (int32_t) (save_location - size_location - sizeof(int32_t));    \
+    file.seek_p(save_location, BinaryFileStream::FROM_BEGINNING);
 
 //==============================================================================
 //==============================================================================
 
 void GeometryResource_cmd::write_mesh_name(BinaryFileStream &file, std::shared_ptr<Mesh> mesh)
 {
-	BEGIN_EXPORT_SECTION(MESHES_MESH_NAME);
-	
-	// Write string
-	LOG_MESSAGE << "Writing name: " << mesh->name();
-	file << mesh->name();
-	
-	END_EXPORT_SECTION;
+    BEGIN_EXPORT_SECTION(MESHES_MESH_NAME);
+    
+    // Write string
+    LOG_MESSAGE << "Writing name: " << mesh->name();
+    file << mesh->name();
+    
+    END_EXPORT_SECTION;
 }
 
 //==============================================================================
@@ -119,40 +119,40 @@ void GeometryResource_cmd::write_mesh_name(BinaryFileStream &file, std::shared_p
 
 void GeometryResource_cmd::write_mesh_positions(BinaryFileStream &file, std::shared_ptr<Mesh> mesh)
 {
-	BEGIN_EXPORT_SECTION(MESHES_MESH_POSITIONS);
+    BEGIN_EXPORT_SECTION(MESHES_MESH_POSITIONS);
     
     std::vector<Vector3> vertices = mesh->vertex_stream();
-	
-	// Write vertices
+    
+    // Write vertices
     file << static_cast<uint32_t>(vertices.size());
-	LOG_MESSAGE << "Writing positions: " << (DTsize) vertices.size();
-	
+    LOG_MESSAGE << "Writing positions: " << (DTsize) vertices.size();
+    
     for (uint32_t i = 0; i < vertices.size(); ++i) {
-		file << static_cast<DTfloat>(vertices[i].x);
-		file << static_cast<DTfloat>(vertices[i].y);
-		file << static_cast<DTfloat>(vertices[i].z);
-	}
+        file << static_cast<DTfloat>(vertices[i].x);
+        file << static_cast<DTfloat>(vertices[i].y);
+        file << static_cast<DTfloat>(vertices[i].z);
+    }
 
-	END_EXPORT_SECTION;
+    END_EXPORT_SECTION;
 }
 
 void GeometryResource_cmd::write_mesh_normals(BinaryFileStream &file, std::shared_ptr<Mesh> mesh)
 {
-	BEGIN_EXPORT_SECTION(MESHES_MESH_NORMALS);
+    BEGIN_EXPORT_SECTION(MESHES_MESH_NORMALS);
 
     std::vector<Vector3> normals = mesh->normals_stream();
 
-	// Write normals
+    // Write normals
     file << static_cast<uint32_t>(normals.size());
-	LOG_MESSAGE << "Writing normals: " << (DTsize) normals.size();
+    LOG_MESSAGE << "Writing normals: " << (DTsize) normals.size();
 
     for (uint32_t i = 0; i < normals.size(); ++i) {
-		file << static_cast<DTfloat>(normals[i].x);
-		file << static_cast<DTfloat>(normals[i].y);
-		file << static_cast<DTfloat>(normals[i].z);
+        file << static_cast<DTfloat>(normals[i].x);
+        file << static_cast<DTfloat>(normals[i].y);
+        file << static_cast<DTfloat>(normals[i].z);
     }
-	
-	END_EXPORT_SECTION;
+    
+    END_EXPORT_SECTION;
 }
 
 //==============================================================================
@@ -160,33 +160,33 @@ void GeometryResource_cmd::write_mesh_normals(BinaryFileStream &file, std::share
 
 void GeometryResource_cmd::write_mesh_uvs(BinaryFileStream &file, std::shared_ptr<Mesh> mesh)
 {
-	BEGIN_EXPORT_SECTION(MESHES_MESH_UVS);
+    BEGIN_EXPORT_SECTION(MESHES_MESH_UVS);
     
     std::vector<Vector2> uvs = mesh->uv_stream0();
-	
-	// Write uvs
+    
+    // Write uvs
     file << static_cast<uint32_t>(uvs.size());
-	LOG_MESSAGE << "Writing uvs: " << (DTsize) uvs.size();
+    LOG_MESSAGE << "Writing uvs: " << (DTsize) uvs.size();
 
     for (uint32_t i = 0; i < uvs.size(); ++i) {
         file << static_cast<DTfloat>(uvs[i].x);
         file << static_cast<DTfloat>(uvs[i].y);
-	}
-	
-	END_EXPORT_SECTION;
+    }
+    
+    END_EXPORT_SECTION;
 }
 
 void GeometryResource_cmd::write_mesh_uv_sets(BinaryFileStream &file, std::shared_ptr<Mesh> mesh)
 {
-	BEGIN_EXPORT_SECTION(MESHES_MESH_UV_SETS);
-	
-	// Write uvs
+    BEGIN_EXPORT_SECTION(MESHES_MESH_UV_SETS);
+    
+    // Write uvs
     file << static_cast<uint32_t>(1);
-	LOG_MESSAGE << "Writing uv sets: " << 1;
-	
+    LOG_MESSAGE << "Writing uv sets: " << 1;
+    
     write_mesh_uvs(file, mesh);
-	
-	END_EXPORT_SECTION;
+    
+    END_EXPORT_SECTION;
 }
 
 //==============================================================================
@@ -194,21 +194,21 @@ void GeometryResource_cmd::write_mesh_uv_sets(BinaryFileStream &file, std::share
 
 void GeometryResource_cmd::write_mesh_indices(BinaryFileStream &file, std::shared_ptr<Mesh> mesh)
 {
-	BEGIN_EXPORT_SECTION(MESHES_MESH_INDICES);
+    BEGIN_EXPORT_SECTION(MESHES_MESH_INDICES);
     
     std::vector<Triangle> indices = mesh->index_stream();
 
-	// Write triangle indices
+    // Write triangle indices
     file << static_cast<uint32_t>(indices.size());
-	LOG_MESSAGE << "Writing indices: " << (DTsize) indices.size();
-	
+    LOG_MESSAGE << "Writing indices: " << (DTsize) indices.size();
+    
     for (uint32_t i = 0; i < indices.size(); ++i) {
-		file << indices[i].v[0];
-		file << indices[i].v[1];
-		file << indices[i].v[2];
+        file << indices[i].v[0];
+        file << indices[i].v[1];
+        file << indices[i].v[2];
     }
-	
-	END_EXPORT_SECTION;
+    
+    END_EXPORT_SECTION;
 }
 
 //==============================================================================
@@ -216,19 +216,19 @@ void GeometryResource_cmd::write_mesh_indices(BinaryFileStream &file, std::share
 
 void GeometryResource_cmd::write_mesh(BinaryFileStream &file, std::shared_ptr<Mesh> mesh)
 {
-	BEGIN_EXPORT_SECTION(MESHES_MESH);
-	
-	//
-	// Write out mesh parts
-	//
-	
-	write_mesh_name(file, mesh);
-	write_mesh_positions(file, mesh);
-	write_mesh_normals(file, mesh);
-	write_mesh_uv_sets(file, mesh);
-	write_mesh_indices(file, mesh);
-	
-	END_EXPORT_SECTION;
+    BEGIN_EXPORT_SECTION(MESHES_MESH);
+    
+    //
+    // Write out mesh parts
+    //
+    
+    write_mesh_name(file, mesh);
+    write_mesh_positions(file, mesh);
+    write_mesh_normals(file, mesh);
+    write_mesh_uv_sets(file, mesh);
+    write_mesh_indices(file, mesh);
+    
+    END_EXPORT_SECTION;
 }
 
 //==============================================================================
@@ -236,11 +236,11 @@ void GeometryResource_cmd::write_mesh(BinaryFileStream &file, std::shared_ptr<Me
 
 void GeometryResource_cmd::write_meshes(BinaryFileStream &file, const std::shared_ptr<GeometryResource> &geo)
 {
-	BEGIN_EXPORT_SECTION(MESHES);
-	
-	//
-	// Meshes header
-	//
+    BEGIN_EXPORT_SECTION(MESHES);
+    
+    //
+    // Meshes header
+    //
     
     const std::vector<std::shared_ptr<Mesh>>& meshes = geo->meshes ();
     
@@ -249,8 +249,8 @@ void GeometryResource_cmd::write_meshes(BinaryFileStream &file, const std::share
     for (uint32_t i = 0; i < meshes.size(); ++i) {
         write_mesh(file, meshes[i]);
     }
-	
-	END_EXPORT_SECTION;
+    
+    END_EXPORT_SECTION;
 }
 
 //==============================================================================
@@ -273,26 +273,26 @@ CommandResult GeometryResource_cmd::do_mesh_to_TWM (CommandContext &ctx, const C
     }
         
     //
-	// Open a binary file
-	//
-	
-	BinaryFileStream file;
+    // Open a binary file
+    //
+    
+    BinaryFileStream file;
     FileManager::open(file, FilePath(p[2]), false);
-	
-	//
-	// Write header
-	//
-		
-	file << MAGIC;
-	file << VERSION;
-	
-	BEGIN_EXPORT_SECTION(FILE);
+    
+    //
+    // Write header
+    //
+        
+    file << MAGIC;
+    file << VERSION;
+    
+    BEGIN_EXPORT_SECTION(FILE);
 
-	write_meshes(file, geo);
-	
-	END_EXPORT_SECTION;
+    write_meshes(file, geo);
+    
+    END_EXPORT_SECTION;
 
-	file.close();
+    file.close();
     
     
     CommandResult cr;

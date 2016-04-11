@@ -3,7 +3,7 @@
 #define DT3_FILEHANDLECOMPRESSEDFD
 //==============================================================================
 ///
-///	File: FileHandleCompressedFD.hpp
+///    File: FileHandleCompressedFD.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -66,16 +66,16 @@ class FileHandleCompressedFD: public FileHandle {
 
         /// Returns the length of the file
         /// \return Length of the file
-        virtual DTsize          length                  (void) const	{	return _data.size();			}
+        virtual DTsize          length                  (void) const    {    return _data.size();            }
 
 
         /// Return write position
         /// \return write position
-        virtual DTsize          p                       (void)	{	return 0;	}
+        virtual DTsize          p                       (void)    {    return 0;    }
 
         /// Return read position
         /// \return read position
-        virtual DTsize          g                       (void)	{	return _file_g;	}
+        virtual DTsize          g                       (void)    {    return _file_g;    }
 
         /// Change write position
         /// \param p position
@@ -90,15 +90,15 @@ class FileHandleCompressedFD: public FileHandle {
 
         /// Peeks ahead at the next byte
         /// \return next byte
-        virtual DTcharacter     peek                    (void)	{	return _data[_file_g];	}
+        virtual DTcharacter     peek                    (void)    {    return _data[_file_g];    }
 
         /// Ignores the next byte
-        virtual void            ignore                  (void)	{	uint8_t b; read(&b, 1);	}
+        virtual void            ignore                  (void)    {    uint8_t b; read(&b, 1);    }
 
 
         /// Checks for end of file
         /// \return End of file
-        virtual bool       is_eof                  (void)	{	return _eof;		}
+        virtual bool       is_eof                  (void)    {    return _eof;        }
 
 
         /// Reads a chunk of raw binary data

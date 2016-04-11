@@ -1,7 +1,7 @@
 #pragma once
 //==============================================================================
 ///
-///	File: ScriptingSound.hpp
+///    File: ScriptingSound.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -37,7 +37,7 @@ class ScriptingSound: public ScriptingSoundBase {
 
                                     ScriptingSound          (void);
                                     ScriptingSound          (const ScriptingSound &rhs);
-        ScriptingSound &			operator =				(const ScriptingSound &rhs);
+        ScriptingSound &            operator =                (const ScriptingSound &rhs);
         virtual                     ~ScriptingSound         (void);
 
         virtual void                archive                 (const std::shared_ptr<Archive> &archive);
@@ -45,7 +45,7 @@ class ScriptingSound: public ScriptingSoundBase {
     public:
         /// Computes the value of the node
         /// \param plug plug to compute
-        bool                               compute					(const PlugBase *plug);
+        bool                               compute                    (const PlugBase *plug);
 
         /// Reset Event
         void                                    event_reset             (PlugNode *sender);
@@ -56,7 +56,7 @@ class ScriptingSound: public ScriptingSoundBase {
 
         /// Gets the sound
         /// \return sound attribute
-        const std::shared_ptr<SoundResource>&   sound_property          (void) const				{   return _sound;	}
+        const std::shared_ptr<SoundResource>&   sound_property          (void) const                {   return _sound;    }
 
     private:
         std::shared_ptr<SoundResource>              _sound;

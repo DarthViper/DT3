@@ -1,6 +1,6 @@
 //==============================================================================
 ///
-///	File: ImporterAnimationTWA.cpp
+///    File: ImporterAnimationTWA.cpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -68,8 +68,8 @@ DTerr ImporterAnimationTWA::import(AnimationResource *target, std::string args)
     int32_t section,size;
     file >> section >> size;
     switch(section) {
-        case FILE:	read_file(file, size);			break;
-        default:	WARNINGMSG("Invalid section");	break;
+        case FILE:    read_file(file, size);            break;
+        default:    WARNINGMSG("Invalid section");    break;
     };
 
     //
@@ -175,8 +175,8 @@ void ImporterAnimationTWA::read_animation_tracks (BinaryFileStream &file, uint32
         file >> section >> section_size;
 
         switch(section) {
-            case ANIMATION_TRACK:	read_animation_keyframes(file, section_size, track._keyframes);		break;
-            default:				WARNINGMSG("Invalid section");										break;
+            case ANIMATION_TRACK:    read_animation_keyframes(file, section_size, track._keyframes);        break;
+            default:                WARNINGMSG("Invalid section");                                        break;
         };
 
         // add the track to the map
@@ -233,8 +233,8 @@ void ImporterAnimationTWA::read_file (BinaryFileStream &file, uint32_t remaining
         file >> section >> size;
 
         switch(section) {
-            case ANIMATION:		read_animation(file, size, _animation);		break;
-            default:			WARNINGMSG("Invalid section");				break;
+            case ANIMATION:        read_animation(file, size, _animation);        break;
+            default:            WARNINGMSG("Invalid section");                break;
         };
     }
 }

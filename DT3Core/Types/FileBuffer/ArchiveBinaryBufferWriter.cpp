@@ -1,12 +1,12 @@
 //==============================================================================
-///	
-///	File: ArchiveBinaryBufferWriter.cpp
+///    
+///    File: ArchiveBinaryBufferWriter.cpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
 /// This file is subject to the terms and conditions defined in
 /// file 'LICENSE.txt', which is part of this source code package.
-///	
+///    
 //==============================================================================
 
 #include "DT3Core/Types/FileBuffer/ArchiveBinaryBufferWriter.hpp"
@@ -26,7 +26,7 @@ ArchiveBinaryBufferWriter::ArchiveBinaryBufferWriter (void)
 {    
 
 }
-			
+            
 ArchiveBinaryBufferWriter::~ArchiveBinaryBufferWriter (void)
 {
 
@@ -35,13 +35,13 @@ ArchiveBinaryBufferWriter::~ArchiveBinaryBufferWriter (void)
 //==============================================================================
 //==============================================================================
 
-Archive &	ArchiveBinaryBufferWriter::operator << (const ArchiveData& data)
+Archive &    ArchiveBinaryBufferWriter::operator << (const ArchiveData& data)
 {
-	if (data.flags() & DATA_PERSISTENT) {
-		data.value(_buffer);
-	}
-	
-	return *this;
+    if (data.flags() & DATA_PERSISTENT) {
+        data.value(_buffer);
+    }
+    
+    return *this;
 }
 
 //==============================================================================
@@ -49,14 +49,14 @@ Archive &	ArchiveBinaryBufferWriter::operator << (const ArchiveData& data)
 
 void ArchiveBinaryBufferWriter::push_domain (const std::string &domain)
 {
-	uint8_t marker = 0xFF;
-	_buffer << marker;
+    uint8_t marker = 0xFF;
+    _buffer << marker;
 }
 
 void ArchiveBinaryBufferWriter::pop_domain (void)
 {
-	uint8_t marker = 0xAA;
-	_buffer << marker;
+    uint8_t marker = 0xAA;
+    _buffer << marker;
 }
 
 //==============================================================================
@@ -64,12 +64,12 @@ void ArchiveBinaryBufferWriter::pop_domain (void)
 
 bool ArchiveBinaryBufferWriter::is_reading (void) const
 {
-	return false;
+    return false;
 }
 
 bool ArchiveBinaryBufferWriter::is_writing (void) const
 {
-	return true;
+    return true;
 }
 
 //==============================================================================

@@ -1,12 +1,12 @@
 //==============================================================================
-///	
-///	File: TimerHires.cpp
-///	
+///    
+///    File: TimerHires.cpp
+///    
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
 /// This file is subject to the terms and conditions defined in
 /// file 'LICENSE.txt', which is part of this source code package.
-///	
+///    
 //==============================================================================
 
 #include "DT3Core/Types/Utility/TimerHires.hpp"
@@ -29,18 +29,18 @@ TimerHires::TimerHires (void)
 }
 
 TimerHires::TimerHires (const TimerHires &rhs)
-	:	_last_time	(rhs._last_time),
-		_first_time	(rhs._first_time)
+    :    _last_time    (rhs._last_time),
+        _first_time    (rhs._first_time)
 {
 
 }
-		
+        
 TimerHires& TimerHires::operator = (const TimerHires &rhs)
-{	
-	_last_time = rhs._last_time;
-	_first_time = rhs._first_time;
+{    
+    _last_time = rhs._last_time;
+    _first_time = rhs._first_time;
     return (*this);
-}	
+}    
 
 TimerHires::~TimerHires (void)
 {

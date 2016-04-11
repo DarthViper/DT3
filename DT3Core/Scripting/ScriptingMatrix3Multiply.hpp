@@ -3,7 +3,7 @@
 #define DT3_SCRIPTINGMATRIX3MULTIPLY
 //==============================================================================
 ///
-///	File: ScriptingMatrix3Multiply.hpp
+///    File: ScriptingMatrix3Multiply.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -37,19 +37,19 @@ class ScriptingMatrix3Multiply: public ScriptingBase {
                                     ScriptingMatrix3Multiply    (void);
                                     ScriptingMatrix3Multiply    (const ScriptingMatrix3Multiply &rhs);
         ScriptingMatrix3Multiply &  operator =                  (const ScriptingMatrix3Multiply &rhs);
-        virtual						~ScriptingMatrix3Multiply   (void);
+        virtual                        ~ScriptingMatrix3Multiply   (void);
 
-        virtual void				archive                 (const std::shared_ptr<Archive> &archive);
+        virtual void                archive                 (const std::shared_ptr<Archive> &archive);
 
     public:
         /// Computes the value of the node
         /// \param plug plug to compute
-        bool					compute					(const PlugBase *plug);
+        bool                    compute                    (const PlugBase *plug);
 
     private:
-        Plug<Matrix3>				_in1;
-        Plug<Matrix3>				_in2;
-        Plug<Matrix3>				_out;
+        Plug<Matrix3>                _in1;
+        Plug<Matrix3>                _in2;
+        Plug<Matrix3>                _out;
 };
 
 //==============================================================================

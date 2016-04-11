@@ -3,7 +3,7 @@
 #define DT3_DIRECTORYLISTER
 //==============================================================================
 ///
-///	File: DirectoryLister.hpp
+///    File: DirectoryLister.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -36,26 +36,26 @@ class DirectoryLister: public BaseClass {
         DEFINE_TYPE(DirectoryLister,BaseClass)
         DEFINE_CREATE_AND_CLONE
 
-                                    DirectoryLister			(void);
-        explicit					DirectoryLister			(const FilePath &pathname, bool recursive = true);
-                                    DirectoryLister			(const DirectoryLister &rhs);
-                                    DirectoryLister			(DirectoryLister &&rhs);
-        DirectoryLister &			operator =				(const DirectoryLister &rhs);
-        DirectoryLister &			operator =				(DirectoryLister &&rhs);
-        virtual						~DirectoryLister		(void);
+                                    DirectoryLister            (void);
+        explicit                    DirectoryLister            (const FilePath &pathname, bool recursive = true);
+                                    DirectoryLister            (const DirectoryLister &rhs);
+                                    DirectoryLister            (DirectoryLister &&rhs);
+        DirectoryLister &            operator =                (const DirectoryLister &rhs);
+        DirectoryLister &            operator =                (DirectoryLister &&rhs);
+        virtual                        ~DirectoryLister        (void);
 
     public:
         /// Scan a directory at a path
         /// \param pathname path to directory
         /// \param recursive scan recursively
-        void						scan_path				(const FilePath &pathname, bool recursive = true);
+        void                        scan_path                (const FilePath &pathname, bool recursive = true);
 
         /// Clear all of the files that have been found
-        void						clear_files             (void)					{	_paths.clear();		}
+        void                        clear_files             (void)                    {    _paths.clear();        }
 
         /// Return number of files that have been found
         /// \return number of files
-        uint32_t						num_files               (void);
+        uint32_t                        num_files               (void);
 
         /// Retrieve file name
         /// \param index Index to entry
@@ -70,12 +70,12 @@ class DirectoryLister: public BaseClass {
         /// Retrieve file path
         /// \param index Index to entry
         /// \return path to file
-        FilePath					file_path               (uint32_t index);
+        FilePath                    file_path               (uint32_t index);
 
         /// Returns wehter index is a directory
         /// \param index Index to entry
         /// \return is a directory
-        bool					is_directory            (uint32_t index) const;
+        bool                    is_directory            (uint32_t index) const;
 
     private:
         std::vector<FilePath>       _paths;

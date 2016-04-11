@@ -3,7 +3,7 @@
 #define DT3_SCRIPTINGSTRINGSWITCHER
 //==============================================================================
 ///
-///	File: ScriptingStringSwitcher.hpp
+///    File: ScriptingStringSwitcher.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -30,17 +30,17 @@ class ScriptingStringSwitcher: public ScriptingBase {
         DEFINE_CREATE_AND_CLONE
         DEFINE_PLUG_NODE
 
-                                    ScriptingStringSwitcher				(void);
-                                    ScriptingStringSwitcher				(const ScriptingStringSwitcher &rhs);
-        ScriptingStringSwitcher &				operator =				(const ScriptingStringSwitcher &rhs);
-        virtual                     ~ScriptingStringSwitcher			(void);
+                                    ScriptingStringSwitcher                (void);
+                                    ScriptingStringSwitcher                (const ScriptingStringSwitcher &rhs);
+        ScriptingStringSwitcher &                operator =                (const ScriptingStringSwitcher &rhs);
+        virtual                     ~ScriptingStringSwitcher            (void);
 
         virtual void                archive                 (const std::shared_ptr<Archive> &archive);
 
     public:
         /// Computes the value of the node
         /// \param plug plug to compute
-        bool					compute					(const PlugBase *plug);
+        bool                    compute                    (const PlugBase *plug);
 
         DEFINE_ACCESSORS_REF(string1, set_string1, std::string, _in_string1);
         DEFINE_ACCESSORS_REF(string2, set_string2, std::string, _in_string2);
@@ -60,41 +60,41 @@ class ScriptingStringSwitcher: public ScriptingBase {
         DEFINE_ACCESSORS_REF(string16, set_string16, std::string, _in_string16);
 
     private:
-        Plug<bool>				_in1;
-        Plug<std::string>			_in_string1;
-        Plug<bool>				_in2;
-        Plug<std::string>			_in_string2;
-        Plug<bool>				_in3;
-        Plug<std::string>			_in_string3;
-        Plug<bool>				_in4;
-        Plug<std::string>			_in_string4;
-        Plug<bool>				_in5;
-        Plug<std::string>			_in_string5;
-        Plug<bool>				_in6;
-        Plug<std::string>			_in_string6;
-        Plug<bool>				_in7;
-        Plug<std::string>			_in_string7;
-        Plug<bool>				_in8;
-        Plug<std::string>			_in_string8;
-        Plug<bool>				_in9;
-        Plug<std::string>			_in_string9;
-        Plug<bool>				_in10;
-        Plug<std::string>			_in_string10;
-        Plug<bool>				_in11;
-        Plug<std::string>			_in_string11;
-        Plug<bool>				_in12;
-        Plug<std::string>			_in_string12;
-        Plug<bool>				_in13;
-        Plug<std::string>			_in_string13;
-        Plug<bool>				_in14;
-        Plug<std::string>			_in_string14;
-        Plug<bool>				_in15;
-        Plug<std::string>			_in_string15;
-        Plug<bool>				_in16;
-        Plug<std::string>			_in_string16;
+        Plug<bool>                _in1;
+        Plug<std::string>            _in_string1;
+        Plug<bool>                _in2;
+        Plug<std::string>            _in_string2;
+        Plug<bool>                _in3;
+        Plug<std::string>            _in_string3;
+        Plug<bool>                _in4;
+        Plug<std::string>            _in_string4;
+        Plug<bool>                _in5;
+        Plug<std::string>            _in_string5;
+        Plug<bool>                _in6;
+        Plug<std::string>            _in_string6;
+        Plug<bool>                _in7;
+        Plug<std::string>            _in_string7;
+        Plug<bool>                _in8;
+        Plug<std::string>            _in_string8;
+        Plug<bool>                _in9;
+        Plug<std::string>            _in_string9;
+        Plug<bool>                _in10;
+        Plug<std::string>            _in_string10;
+        Plug<bool>                _in11;
+        Plug<std::string>            _in_string11;
+        Plug<bool>                _in12;
+        Plug<std::string>            _in_string12;
+        Plug<bool>                _in13;
+        Plug<std::string>            _in_string13;
+        Plug<bool>                _in14;
+        Plug<std::string>            _in_string14;
+        Plug<bool>                _in15;
+        Plug<std::string>            _in_string15;
+        Plug<bool>                _in16;
+        Plug<std::string>            _in_string16;
 
         bool                   _buffer_output;
-        Plug<std::string>			_out;
+        Plug<std::string>            _out;
 
 };
 

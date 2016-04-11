@@ -1,12 +1,12 @@
 //==============================================================================
-///	
-///	File: ScriptingEventGate.cpp
-///	
+///    
+///    File: ScriptingEventGate.cpp
+///    
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
 /// This file is subject to the terms and conditions defined in
 /// file 'LICENSE.txt', which is part of this source code package.
-///	
+///    
 //==============================================================================
 
 #include "DT3Core/Scripting/ScriptingEventGate.hpp"
@@ -38,14 +38,14 @@ IMPLEMENT_EVENT_INFO_INDEX(_event_out)
 
 BEGIN_IMPLEMENT_PLUGS(ScriptingEventGate)
 
-	PLUG_INIT(_enable,"enable")
-		.set_input(true);
+    PLUG_INIT(_enable,"enable")
+        .set_input(true);
 
-	EVENT_INIT(_event_in,"Event_In")
+    EVENT_INIT(_event_in,"Event_In")
         .set_input(true)
         .set_event(&ScriptingEventGate::event_in);
 
-	EVENT_INIT(_event_out,"Event_Out")
+    EVENT_INIT(_event_out,"Event_Out")
         .set_output(true);
         
 END_IMPLEMENT_PLUGS
@@ -55,18 +55,18 @@ END_IMPLEMENT_PLUGS
 //==============================================================================
 
 ScriptingEventGate::ScriptingEventGate (void)
-    :   _enable			(PLUG_INFO_INDEX(_enable), true),
+    :   _enable            (PLUG_INFO_INDEX(_enable), true),
         _event_in       (EVENT_INFO_INDEX(_event_in)),
         _event_out      (EVENT_INFO_INDEX(_event_out))
 {  
 
 }
-		
+        
 ScriptingEventGate::ScriptingEventGate (const ScriptingEventGate &rhs)
-    :   ScriptingBase	(rhs),
-		_enable			(rhs._enable),
-		_event_in       (rhs._event_in),
-		_event_out      (rhs._event_out)
+    :   ScriptingBase    (rhs),
+        _enable            (rhs._enable),
+        _event_in       (rhs._event_in),
+        _event_out      (rhs._event_out)
 {   
 
 }
@@ -75,13 +75,13 @@ ScriptingEventGate & ScriptingEventGate::operator = (const ScriptingEventGate &r
 {
     // Make sure we are not assigning the class to itself
     if (&rhs != this) {        
-		ScriptingBase::operator = (rhs);
+        ScriptingBase::operator = (rhs);
 
-		_enable = rhs._enable;
-	}
+        _enable = rhs._enable;
+    }
     return (*this);
 }
-			
+            
 ScriptingEventGate::~ScriptingEventGate (void)
 {
 
@@ -94,9 +94,9 @@ void ScriptingEventGate::archive (const std::shared_ptr<Archive> &archive)
 {
     ScriptingBase::archive(archive);
 
-	archive->push_domain (class_id ());
-	
-	*archive << ARCHIVE_PLUG(_enable, DATA_PERSISTENT | DATA_SETTABLE);
+    archive->push_domain (class_id ());
+    
+    *archive << ARCHIVE_PLUG(_enable, DATA_PERSISTENT | DATA_SETTABLE);
 
     archive->pop_domain ();
 }
@@ -106,7 +106,7 @@ void ScriptingEventGate::archive (const std::shared_ptr<Archive> &archive)
 
 void ScriptingEventGate::event_in (PlugNode *sender)
 {
-	PROFILER(SCRIPTING);
+    PROFILER(SCRIPTING);
 
     if (_enable)
         _event_out.send(sender);

@@ -1,6 +1,6 @@
 //==============================================================================
 ///
-///	File: BinaryBufferStream.cpp
+///    File: BinaryBufferStream.cpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -24,9 +24,9 @@ namespace DT3 {
 //==============================================================================
 
 BinaryBufferStream::BinaryBufferStream (void)
-        :	_logical_size	(0),
-                _pos_p			(0),
-                _pos_g			(0)
+        :    _logical_size    (0),
+                _pos_p            (0),
+                _pos_g            (0)
 {
 
 }

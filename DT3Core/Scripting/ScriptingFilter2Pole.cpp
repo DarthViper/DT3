@@ -1,12 +1,12 @@
 //==============================================================================
-///	
-///	File: ScriptingFilter2Pole.cpp
-///	
+///    
+///    File: ScriptingFilter2Pole.cpp
+///    
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
 /// This file is subject to the terms and conditions defined in
 /// file 'LICENSE.txt', which is part of this source code package.
-///	
+///    
 //==============================================================================
 
 #include "DT3Core/Scripting/ScriptingFilter2Pole.hpp"
@@ -36,12 +36,12 @@ IMPLEMENT_PLUG_INFO_INDEX(_out)
 
 BEGIN_IMPLEMENT_PLUGS(ScriptingFilter2Pole)
 
-	PLUG_INIT(_in,"In")
-		.set_input(true)
-		.affects(PLUG_INFO_INDEX(_out));
+    PLUG_INIT(_in,"In")
+        .set_input(true)
+        .affects(PLUG_INFO_INDEX(_out));
 
-	PLUG_INIT(_out,"Out")
-		.set_output(true);
+    PLUG_INIT(_out,"Out")
+        .set_output(true);
         
 END_IMPLEMENT_PLUGS
 
@@ -50,12 +50,12 @@ END_IMPLEMENT_PLUGS
 //==============================================================================
 
 ScriptingFilter2Pole::ScriptingFilter2Pole (void)
-    :   _in				(PLUG_INFO_INDEX(_in), 0.0F),
-		_out			(PLUG_INFO_INDEX(_out), 0.0F),
-		_type			(Filters::FILTER_BUTTERWORTH_LOW_PASS),
-		_num_passes		(1),
-		_freq_3db		(1.0F),
-		_freq_sampling	(30.0F),
+    :   _in                (PLUG_INFO_INDEX(_in), 0.0F),
+        _out            (PLUG_INFO_INDEX(_out), 0.0F),
+        _type            (Filters::FILTER_BUTTERWORTH_LOW_PASS),
+        _num_passes        (1),
+        _freq_3db        (1.0F),
+        _freq_sampling    (30.0F),
         _initialized    (false)
 {  
     _passes.resize(_num_passes);
@@ -64,15 +64,15 @@ ScriptingFilter2Pole::ScriptingFilter2Pole (void)
     }
 
 }
-		
+        
 ScriptingFilter2Pole::ScriptingFilter2Pole (const ScriptingFilter2Pole &rhs)
-    :   ScriptingBase	(rhs),
-		_in				(rhs._in),
-		_out			(rhs._out),
-		_type			(rhs._type),
-		_num_passes		(rhs._num_passes),
-		_freq_3db		(rhs._freq_3db),
-		_freq_sampling	(rhs._freq_sampling),
+    :   ScriptingBase    (rhs),
+        _in                (rhs._in),
+        _out            (rhs._out),
+        _type            (rhs._type),
+        _num_passes        (rhs._num_passes),
+        _freq_3db        (rhs._freq_3db),
+        _freq_sampling    (rhs._freq_sampling),
         _initialized    (false)
 {   
     _passes.resize(_num_passes);
@@ -85,21 +85,21 @@ ScriptingFilter2Pole & ScriptingFilter2Pole::operator = (const ScriptingFilter2P
 {
     // Make sure we are not assigning the class to itself
     if (&rhs != this) {        
-		ScriptingBase::operator = (rhs);
+        ScriptingBase::operator = (rhs);
 
-		_in = rhs._in;
-		_out = rhs._out;
+        _in = rhs._in;
+        _out = rhs._out;
 
-		_type = rhs._type;
-		_num_passes = rhs._num_passes;
-		_freq_3db = rhs._freq_3db;
-		_freq_sampling = rhs._freq_sampling;
+        _type = rhs._type;
+        _num_passes = rhs._num_passes;
+        _freq_3db = rhs._freq_3db;
+        _freq_sampling = rhs._freq_sampling;
 
         _initialized = false;   
-	}
+    }
     return (*this);
 }
-			
+            
 ScriptingFilter2Pole::~ScriptingFilter2Pole (void)
 {
 
@@ -112,7 +112,7 @@ void ScriptingFilter2Pole::archive (const std::shared_ptr<Archive> &archive)
 {
     ScriptingBase::archive(archive);
 
-	archive->push_domain (class_id ());
+    archive->push_domain (class_id ());
     
     *archive << ARCHIVE_PLUG(_in, DATA_PERSISTENT | DATA_SETTABLE);
     *archive << ARCHIVE_PLUG(_out, DATA_PERSISTENT);
@@ -138,7 +138,7 @@ void ScriptingFilter2Pole::archive (const std::shared_ptr<Archive> &archive)
 
 void ScriptingFilter2Pole::tick (const DTfloat dt)
 {
-	PROFILER(SCRIPTING);
+    PROFILER(SCRIPTING);
 
     if (!_initialized) {
         _passes.resize(_num_passes);

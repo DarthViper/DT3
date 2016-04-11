@@ -1,7 +1,7 @@
 #pragma once
 //==============================================================================
 ///
-///	File: ScriptingAnalytics.hpp
+///    File: ScriptingAnalytics.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -48,7 +48,7 @@ class ScriptingAnalytics: public ScriptingBase {
 
         Plug<std::string>           _context;
         Plug<std::string>           _event_id;
-        Plug<std::string>			_data;
+        Plug<std::string>            _data;
 
         Event                       _register_e;
 };

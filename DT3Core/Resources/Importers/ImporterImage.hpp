@@ -3,7 +3,7 @@
 #define DT3_IMPORTERIMAGE
 //==============================================================================
 ///
-///	File: ImporterImage.hpp
+///    File: ImporterImage.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -36,33 +36,33 @@ class ImporterImage: public BaseClass {
     public:
         DEFINE_TYPE(ImporterImage,BaseClass)
 
-                                    ImporterImage		(void);
+                                    ImporterImage        (void);
 
     private:
-                                    ImporterImage		(const ImporterImage &rhs);
-        ImporterImage &				operator =			(const ImporterImage &rhs);
+                                    ImporterImage        (const ImporterImage &rhs);
+        ImporterImage &                operator =            (const ImporterImage &rhs);
 
     public:
-        virtual						~ImporterImage		(void);
+        virtual                        ~ImporterImage        (void);
 
     public:
         /// Imports an image into a TextureResource2D
         /// \param target object to import texture into
         /// \param args arguments to importer
         /// \return error code
-        virtual DTerr				import				(TextureResource2D *target, std::string args) = 0;
+        virtual DTerr                import                (TextureResource2D *target, std::string args) = 0;
 
         /// Imports an image into a TextureResource3D
         /// \param target object to import texture into
         /// \param args arguments to importer
         /// \return error code
-        virtual DTerr				import				(TextureResource3D *target, std::string args) = 0;
+        virtual DTerr                import                (TextureResource3D *target, std::string args) = 0;
 
         /// Imports an image into a TextureResourceCube
         /// \param target object to import texture into
         /// \param args arguments to importer
         /// \return error code
-        virtual DTerr				import				(TextureResourceCube *target, std::string args) = 0;
+        virtual DTerr                import                (TextureResourceCube *target, std::string args) = 0;
 };
 
 //==============================================================================

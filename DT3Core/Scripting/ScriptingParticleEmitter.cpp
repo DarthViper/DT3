@@ -1,12 +1,12 @@
 //==============================================================================
-///	
-///	File: ScriptingParticleEmitter.cpp
-///	
+///    
+///    File: ScriptingParticleEmitter.cpp
+///    
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
 /// This file is subject to the terms and conditions defined in
 /// file 'LICENSE.txt', which is part of this source code package.
-///	
+///    
 //==============================================================================
 
 #include "DT3Core/Scripting/ScriptingParticleEmitter.hpp"
@@ -43,9 +43,9 @@ ScriptingParticleEmitter::ScriptingParticleEmitter (void)
 {  
 
 }
-		
+        
 ScriptingParticleEmitter::ScriptingParticleEmitter (const ScriptingParticleEmitter &rhs)
-    :   ScriptingBase	(rhs)
+    :   ScriptingBase    (rhs)
 {   
 
 }
@@ -54,11 +54,11 @@ ScriptingParticleEmitter & ScriptingParticleEmitter::operator = (const Scripting
 {
     // Make sure we are not assigning the class to itself
     if (&rhs != this) {        
-		ScriptingBase::operator = (rhs);
-	}
+        ScriptingBase::operator = (rhs);
+    }
     return (*this);
 }
-			
+            
 ScriptingParticleEmitter::~ScriptingParticleEmitter (void)
 {
 
@@ -71,7 +71,7 @@ void ScriptingParticleEmitter::archive (const std::shared_ptr<Archive> &archive)
 {
     ScriptingBase::archive(archive);
 
-	archive->push_domain (class_id ());	        					
+    archive->push_domain (class_id ());                                
     archive->pop_domain ();
 }
 

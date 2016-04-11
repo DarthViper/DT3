@@ -3,7 +3,7 @@
 #define DT3_ANIMATIONTRACK
 //==============================================================================
 ///
-///	File: AnimationTrack.hpp
+///    File: AnimationTrack.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -40,36 +40,36 @@ class AnimationTrack: public BaseClass {
         DEFINE_TYPE(AnimationTrack, BaseClass)
         DEFINE_CREATE_AND_CLONE
 
-                                        AnimationTrack			(void);
-                                        AnimationTrack			(const AnimationTrack &rhs);
-                                        AnimationTrack			(AnimationTrack &&rhs);
-        AnimationTrack &				operator =				(const AnimationTrack &rhs);
-        AnimationTrack &				operator =				(AnimationTrack &&rhs);
-                                        ~AnimationTrack			(void);
+                                        AnimationTrack            (void);
+                                        AnimationTrack            (const AnimationTrack &rhs);
+                                        AnimationTrack            (AnimationTrack &&rhs);
+        AnimationTrack &                operator =                (const AnimationTrack &rhs);
+        AnimationTrack &                operator =                (AnimationTrack &&rhs);
+                                        ~AnimationTrack            (void);
 
-        void							archive                 (const std::shared_ptr<Archive> &archive);
+        void                            archive                 (const std::shared_ptr<Archive> &archive);
 
     public:
         /// Sets the keyframes for the track
         /// \param keyframes array of keyframes
-        void                                    set_keyframes           (const std::vector<AnimationKeyframe> &keyframes)	{   _keyframes = keyframes;				}
+        void                                    set_keyframes           (const std::vector<AnimationKeyframe> &keyframes)    {   _keyframes = keyframes;                }
 
         /// Returns the keyframes for the track
         /// \return keyframes
-        const std::vector<AnimationKeyframe>&	keyframes               (void) const                {   return _keyframes;					}
+        const std::vector<AnimationKeyframe>&    keyframes               (void) const                {   return _keyframes;                    }
 
 
         /// Sets the name of the bone for the track
         /// \param name bone name
-        void                                    set_name                (const std::string &name)   {   _name_hash = MoreStrings::hash(name);	_name = name;	}
+        void                                    set_name                (const std::string &name)   {   _name_hash = MoreStrings::hash(name);    _name = name;    }
 
         /// Returns the name of the bone for the track
         /// \return bone name
-        const std::string &                     name                    (void) const                {   return _name;						}
+        const std::string &                     name                    (void) const                {   return _name;                        }
 
         /// Returns the hashed name of the object
         /// \return hashed bone name
-        uint32_t                                  name_hash               (void) const                {   return _name_hash;					}
+        uint32_t                                  name_hash               (void) const                {   return _name_hash;                    }
 
 
 
@@ -81,7 +81,7 @@ class AnimationTrack: public BaseClass {
     private:
         std::string                         _name;
         uint32_t                              _name_hash;
-        std::vector<AnimationKeyframe>		_keyframes;
+        std::vector<AnimationKeyframe>        _keyframes;
 
 };
 

@@ -3,7 +3,7 @@
 #define DT3_SCRIPTINGPARTICLEPATH
 //==============================================================================
 ///
-///	File: ScriptingParticlePath.hpp
+///    File: ScriptingParticlePath.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -35,48 +35,48 @@ class ScriptingParticlePath: public ScriptingBase {
         DEFINE_CREATE_AND_CLONE
         DEFINE_PLUG_NODE
 
-                                    ScriptingParticlePath	(void);
-                                    ScriptingParticlePath	(const ScriptingParticlePath &rhs);
-        ScriptingParticlePath &     operator =				(const ScriptingParticlePath &rhs);
-        virtual						~ScriptingParticlePath	(void);
+                                    ScriptingParticlePath    (void);
+                                    ScriptingParticlePath    (const ScriptingParticlePath &rhs);
+        ScriptingParticlePath &     operator =                (const ScriptingParticlePath &rhs);
+        virtual                        ~ScriptingParticlePath    (void);
 
-        virtual void				archive                 (const std::shared_ptr<Archive> &archive);
+        virtual void                archive                 (const std::shared_ptr<Archive> &archive);
 
     public:
         /// Computes the value of the node
         /// \param plug plug to compute
-        bool					compute					(const PlugBase *plug);
+        bool                    compute                    (const PlugBase *plug);
 
 
         /// Sets number of points along the path
         /// \param s number of points
-        virtual void				set_num_points			(const DTsize s)                    {	return _points.resize(s);	}
+        virtual void                set_num_points            (const DTsize s)                    {    return _points.resize(s);    }
 
         /// Gets number of points along the path
         /// \return number of points
-        virtual DTsize				num_points              (void) const                        {	return _points.size();		}
+        virtual DTsize                num_points              (void) const                        {    return _points.size();        }
 
 
 
         /// Sets the position of a point along the path
         /// \param k index of point
         /// \param point point
-        void						set_point               (int32_t k, const Vector3 &point)    {	_points[k].value = point;		_out.set_dirty();	}
+        void                        set_point               (int32_t k, const Vector3 &point)    {    _points[k].value = point;        _out.set_dirty();    }
 
         /// Gets the position of a point along the path
         /// \param k index of point
         /// \return point
-        const Vector3 &				point                   (int32_t k)	const                   {	return _points[k].value;        }
+        const Vector3 &                point                   (int32_t k)    const                   {    return _points[k].value;        }
 
         /// Sets the tangent of a point along the path
         /// \param k index of point
         /// \param tangent tangent
-        void						set_point_tangent       (int32_t k, const Vector3 &tangent)	{	_points[k].tangent = tangent;	_out.set_dirty();	}
+        void                        set_point_tangent       (int32_t k, const Vector3 &tangent)    {    _points[k].tangent = tangent;    _out.set_dirty();    }
 
         /// Gets the tangent of a point along the path
         /// \param k index of point
         /// \return tangent
-        const Vector3 &				point_tangent           (int32_t k)	const					{	return _points[k].tangent;		}
+        const Vector3 &                point_tangent           (int32_t k)    const                    {    return _points[k].tangent;        }
 
 
 
@@ -86,19 +86,19 @@ class ScriptingParticlePath: public ScriptingBase {
         void                        interpolate         (DTfloat t, Vector3 &translation) const;
 
 
-        Plug<std::shared_ptr<Particles>>		_in;
-        Plug<std::shared_ptr<Particles>>		_out;
+        Plug<std::shared_ptr<Particles>>        _in;
+        Plug<std::shared_ptr<Particles>>        _out;
         Plug<DTfloat>                                       _speed;
         Plug<DTfloat>                                       _bias;
 
         struct keyframe {
             keyframe(void)  {   value = tangent = {0.0F,0.0F,0.0F};  }
 
-            Vector3	value;
-            Vector3	tangent;
+            Vector3    value;
+            Vector3    tangent;
         };
 
-        std::vector<keyframe>		_points;
+        std::vector<keyframe>        _points;
 };
 
 //==============================================================================

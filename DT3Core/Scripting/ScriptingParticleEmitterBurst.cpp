@@ -1,12 +1,12 @@
 //==============================================================================
-///	
-///	File: ScriptingParticleEmitterBurst.cpp
-///	
+///    
+///    File: ScriptingParticleEmitterBurst.cpp
+///    
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
 /// This file is subject to the terms and conditions defined in
 /// file 'LICENSE.txt', which is part of this source code package.
-///	
+///    
 //==============================================================================
 
 #include "DT3Core/Scripting/ScriptingParticleEmitterBurst.hpp"
@@ -33,7 +33,7 @@ IMPLEMENT_FACTORY_CREATION_SCRIPT(ScriptingParticleEmitterBurst,"Particles",NULL
 IMPLEMENT_PLUG_NODE(ScriptingParticleEmitterBurst)
 
 IMPLEMENT_PLUG_INFO_INDEX(_num)
-IMPLEMENT_PLUG_INFO_INDEX(_num_variation)	
+IMPLEMENT_PLUG_INFO_INDEX(_num_variation)    
 IMPLEMENT_PLUG_INFO_INDEX(_spawn_translation)
 IMPLEMENT_PLUG_INFO_INDEX(_max_lifetime)
 IMPLEMENT_PLUG_INFO_INDEX(_active)
@@ -46,30 +46,30 @@ IMPLEMENT_EVENT_INFO_INDEX(_active_e)
 
 BEGIN_IMPLEMENT_PLUGS(ScriptingParticleEmitterBurst)
 
-	PLUG_INIT(_num,"Num")
-		.set_input(true)
-		.affects(PLUG_INFO_INDEX(_out));
+    PLUG_INIT(_num,"Num")
+        .set_input(true)
+        .affects(PLUG_INFO_INDEX(_out));
 
-	PLUG_INIT(_num_variation,"Num_Variation")
-		.set_input(true)
-		.affects(PLUG_INFO_INDEX(_out));
+    PLUG_INIT(_num_variation,"Num_Variation")
+        .set_input(true)
+        .affects(PLUG_INFO_INDEX(_out));
 
-	PLUG_INIT(_spawn_translation,"Spawn_Translation")
-		.set_input(true)
-		.affects(PLUG_INFO_INDEX(_out));
+    PLUG_INIT(_spawn_translation,"Spawn_Translation")
+        .set_input(true)
+        .affects(PLUG_INFO_INDEX(_out));
 
-	PLUG_INIT(_max_lifetime,"Max_Lifetime")
-		.set_input(true)
-		.affects(PLUG_INFO_INDEX(_out));
-		
-	PLUG_INIT(_active,"Active")
-		.set_input(true)
-		.affects(PLUG_INFO_INDEX(_out));
-
-	PLUG_INIT(_out,"Out")
-		.set_output(true);
+    PLUG_INIT(_max_lifetime,"Max_Lifetime")
+        .set_input(true)
+        .affects(PLUG_INFO_INDEX(_out));
         
-	EVENT_INIT(_active_e,"Active_Event")
+    PLUG_INIT(_active,"Active")
+        .set_input(true)
+        .affects(PLUG_INFO_INDEX(_out));
+
+    PLUG_INIT(_out,"Out")
+        .set_output(true);
+        
+    EVENT_INIT(_active_e,"Active_Event")
         .set_input(true)
         .set_event(&ScriptingParticleEmitterBurst::eventActive);
 
@@ -81,31 +81,31 @@ END_IMPLEMENT_PLUGS
 //==============================================================================
 
 ScriptingParticleEmitterBurst::ScriptingParticleEmitterBurst (void)
-    :   _num			(PLUG_INFO_INDEX(_num), 5),
-		_num_variation	(PLUG_INFO_INDEX(_num_variation), 2),
-        _spawn_translation	(PLUG_INFO_INDEX(_spawn_translation), {0.0F,0.0F,0.0F}),
-		_max_lifetime	(PLUG_INFO_INDEX(_max_lifetime), 3.0F),
-		_active			(PLUG_INFO_INDEX(_active), false),
+    :   _num            (PLUG_INFO_INDEX(_num), 5),
+        _num_variation    (PLUG_INFO_INDEX(_num_variation), 2),
+        _spawn_translation    (PLUG_INFO_INDEX(_spawn_translation), {0.0F,0.0F,0.0F}),
+        _max_lifetime    (PLUG_INFO_INDEX(_max_lifetime), 3.0F),
+        _active            (PLUG_INFO_INDEX(_active), false),
         _active_e       (EVENT_INFO_INDEX(_active_e)),
-		_last_active	(false),
-		_max_num		(32),
-        _out			(PLUG_INFO_INDEX(_out))
+        _last_active    (false),
+        _max_num        (32),
+        _out            (PLUG_INFO_INDEX(_out))
 
 {  
 
 }
-		
+        
 ScriptingParticleEmitterBurst::ScriptingParticleEmitterBurst (const ScriptingParticleEmitterBurst &rhs)
-    :   ScriptingParticleEmitter	(rhs),
-		_num			(rhs._num),
-		_num_variation	(rhs._num_variation),
-		_spawn_translation	(rhs._spawn_translation),
-		_max_lifetime	(rhs._max_lifetime),
-		_active			(rhs._active),
+    :   ScriptingParticleEmitter    (rhs),
+        _num            (rhs._num),
+        _num_variation    (rhs._num_variation),
+        _spawn_translation    (rhs._spawn_translation),
+        _max_lifetime    (rhs._max_lifetime),
+        _active            (rhs._active),
         _active_e       (rhs._active_e),
-		_last_active	(rhs._last_active),
-		_max_num		(rhs._max_num),
-        _out			(rhs._out)
+        _last_active    (rhs._last_active),
+        _max_num        (rhs._max_num),
+        _out            (rhs._out)
 {   
 
 }
@@ -114,20 +114,20 @@ ScriptingParticleEmitterBurst & ScriptingParticleEmitterBurst::operator = (const
 {
     // Make sure we are not assigning the class to itself
     if (&rhs != this) {        
-		ScriptingParticleEmitter::operator = (rhs);
+        ScriptingParticleEmitter::operator = (rhs);
 
-		_num = rhs._num;
-		_num_variation = rhs._num_variation;
-		_spawn_translation = rhs._spawn_translation;
-		_max_lifetime = rhs._max_lifetime;
-		_active = rhs._active;
-		_last_active = rhs._last_active;
-		_max_num = rhs._max_num;
-		_out = rhs._out;
-	}
+        _num = rhs._num;
+        _num_variation = rhs._num_variation;
+        _spawn_translation = rhs._spawn_translation;
+        _max_lifetime = rhs._max_lifetime;
+        _active = rhs._active;
+        _last_active = rhs._last_active;
+        _max_num = rhs._max_num;
+        _out = rhs._out;
+    }
     return (*this);
 }
-			
+            
 ScriptingParticleEmitterBurst::~ScriptingParticleEmitterBurst (void)
 {
 
@@ -140,19 +140,19 @@ void ScriptingParticleEmitterBurst::archive (const std::shared_ptr<Archive> &arc
 {
     ScriptingParticleEmitter::archive(archive);
 
-	archive->push_domain (class_id ());
-	
-	*archive << ARCHIVE_DATA(_max_num, DATA_PERSISTENT | DATA_SETTABLE);
+    archive->push_domain (class_id ());
+    
+    *archive << ARCHIVE_DATA(_max_num, DATA_PERSISTENT | DATA_SETTABLE);
 
-	*archive << ARCHIVE_PLUG(_num, DATA_PERSISTENT | DATA_SETTABLE);
-	*archive << ARCHIVE_PLUG(_num_variation, DATA_PERSISTENT | DATA_SETTABLE);
+    *archive << ARCHIVE_PLUG(_num, DATA_PERSISTENT | DATA_SETTABLE);
+    *archive << ARCHIVE_PLUG(_num_variation, DATA_PERSISTENT | DATA_SETTABLE);
 
-	*archive << ARCHIVE_PLUG(_spawn_translation, DATA_PERSISTENT | DATA_SETTABLE);
-	*archive << ARCHIVE_PLUG(_max_lifetime, DATA_PERSISTENT | DATA_SETTABLE);
-	
-	*archive << ARCHIVE_PLUG(_active, DATA_PERSISTENT | DATA_SETTABLE);
-	*archive << ARCHIVE_DATA(_last_active, DATA_PERSISTENT);
-	        					
+    *archive << ARCHIVE_PLUG(_spawn_translation, DATA_PERSISTENT | DATA_SETTABLE);
+    *archive << ARCHIVE_PLUG(_max_lifetime, DATA_PERSISTENT | DATA_SETTABLE);
+    
+    *archive << ARCHIVE_PLUG(_active, DATA_PERSISTENT | DATA_SETTABLE);
+    *archive << ARCHIVE_DATA(_last_active, DATA_PERSISTENT);
+                                
     archive->pop_domain ();
 }
 
@@ -161,18 +161,18 @@ void ScriptingParticleEmitterBurst::archive (const std::shared_ptr<Archive> &arc
 
 void ScriptingParticleEmitterBurst::emitParticle (void)
 {
-	PROFILER(PARTICLES);
+    PROFILER(PARTICLES);
 
     int32_t num = (int32_t) (_num + MoreMath::random_float() * _num_variation);
     for (int32_t i = 0; i < num; ++i) {
 
         std::shared_ptr<Particles> particles = _out;
         if (!particles || particles->translations_stream().size() <= 0) {
-			_out.set_clean();
+            _out.set_clean();
             return;
         }
             
-        ASSERT(	_max_num > 0 &&
+        ASSERT(    _max_num > 0 &&
                 static_cast<int32_t>(particles->translations_stream().size()) == _max_num &&
                 static_cast<int32_t>(particles->lifetimes_stream().size()) == _max_num);
         
@@ -211,7 +211,7 @@ void ScriptingParticleEmitterBurst::emitParticle (void)
 
 void ScriptingParticleEmitterBurst::eventActive (PlugNode *sender)
 {
-	PROFILER(PARTICLES);
+    PROFILER(PARTICLES);
 
     // Force emit on next tick
     _last_active = false;
@@ -223,14 +223,14 @@ void ScriptingParticleEmitterBurst::eventActive (PlugNode *sender)
 
 void ScriptingParticleEmitterBurst::tick (const DTfloat dt)
 {
-	PROFILER(PARTICLES);
+    PROFILER(PARTICLES);
 
     std::shared_ptr<Particles> particles = _out;
 
     // set up the particle system if we have to
     if (particles == NULL) {
         particles = std::shared_ptr<Particles>(Particles::create());
-        _out = particles;		// Increases ref count
+        _out = particles;        // Increases ref count
     }
 
     particles->resize (_max_num);
@@ -241,7 +241,7 @@ void ScriptingParticleEmitterBurst::tick (const DTfloat dt)
     }
     
     
-    ASSERT(	_max_num > 0 &&
+    ASSERT(    _max_num > 0 &&
             static_cast<int32_t>(particles->translations_stream().size()) == _max_num &&
             static_cast<int32_t>(particles->lifetimes_stream().size()) == _max_num);
     
@@ -292,7 +292,7 @@ void ScriptingParticleEmitterBurst::remove_from_world (void)
 
 void ScriptingParticleEmitterBurst::dump_code(const std::string &object_name, Stream &s)
 {
-	PROFILER(PARTICLES);
+    PROFILER(PARTICLES);
 
     s << object_name << "->set_max_num(" << _max_num << ");\n";
     s << object_name << "->set_num(" << _num << ");\n";

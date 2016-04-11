@@ -1,12 +1,12 @@
 //==============================================================================
-///	
-///	File: AnimationResource.cpp
+///    
+///    File: AnimationResource.cpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
 /// This file is subject to the terms and conditions defined in
 /// file 'LICENSE.txt', which is part of this source code package.
-///	
+///    
 //==============================================================================
 
 #include "DT3Core/Resources/ResourceTypes/AnimationResource.hpp"
@@ -45,16 +45,16 @@ std::map<std::string, std::shared_ptr<AnimationResource>>   AnimationResource::_
 //==============================================================================
 
 AnimationResource::AnimationResource (void)
-	:	_fps        (0.0F),
-		_start_time	(0.0F),
-		_end_time	(0.0F)
+    :    _fps        (0.0F),
+        _start_time    (0.0F),
+        _end_time    (0.0F)
 {    
 
 }
-					
+                    
 AnimationResource::~AnimationResource (void)
 { 
-	remove_all_tracks();
+    remove_all_tracks();
 }
 
 //==============================================================================
@@ -62,21 +62,21 @@ AnimationResource::~AnimationResource (void)
 
 Stream& operator <<(Stream &s, const std::shared_ptr<AnimationResource> &r)
 {
-	if (r) {
-		s << r->property_path();
-	} else {
-		s << "";
-	}
-	return s;
+    if (r) {
+        s << r->property_path();
+    } else {
+        s << "";
+    }
+    return s;
 }
 
 Stream& operator >>(Stream &s, std::shared_ptr<AnimationResource> &r)
 {
-	std::string path;
-	s >> path;
-	
-	r = AnimationResource::import_resource(FilePath(path));
-	return s;
+    std::string path;
+    s >> path;
+    
+    r = AnimationResource::import_resource(FilePath(path));
+    return s;
 }
 
 //==============================================================================
@@ -93,7 +93,7 @@ void AnimationResource::reload_if_changed (void)
 }
 
 std::shared_ptr<AnimationResource> AnimationResource::import_resource (const FilePath &pathname, std::string args)
-{	
+{    
     if (!pathname.exists() && !pathname.in_package()) {
         return NULL;
     }
@@ -136,24 +136,24 @@ void AnimationResource::uninitialize_static (void)
 
 DTerr AnimationResource::import (const FilePath &pathname, std::string args)
 {
-	DTerr err;
-	if ((err = Resource::import (pathname,args)) != DT3_ERR_NONE)
-		return err;
-			
-	FilePath original_path(path());
-	std::string extension = original_path.file_ext();
-	
-	// Build a generic importer for the file type
-	std::shared_ptr<BaseClass> generic_importer = Factory::create_importer(extension);
-	if (!generic_importer || !generic_importer->isa(ImporterAnimation::kind())) {
-		return DT3_ERR_FILE_WRONG_TYPE;
-	}
+    DTerr err;
+    if ((err = Resource::import (pathname,args)) != DT3_ERR_NONE)
+        return err;
+            
+    FilePath original_path(path());
+    std::string extension = original_path.file_ext();
+    
+    // Build a generic importer for the file type
+    std::shared_ptr<BaseClass> generic_importer = Factory::create_importer(extension);
+    if (!generic_importer || !generic_importer->isa(ImporterAnimation::kind())) {
+        return DT3_ERR_FILE_WRONG_TYPE;
+    }
 
-	// Attempt to convert the importer of an image importer
-	std::shared_ptr<ImporterAnimation> animation_importer = checked_static_cast<ImporterAnimation>(generic_importer);
+    // Attempt to convert the importer of an image importer
+    std::shared_ptr<ImporterAnimation> animation_importer = checked_static_cast<ImporterAnimation>(generic_importer);
     err = animation_importer->import(this, args);
-	
-	return err;
+    
+    return err;
 }
 
 //==============================================================================
@@ -161,7 +161,7 @@ DTerr AnimationResource::import (const FilePath &pathname, std::string args)
 
 void AnimationResource::add_track (const std::shared_ptr<AnimationTrack> &track)
 {
-	_tracks.push_back(track);
+    _tracks.push_back(track);
 }
 
 void AnimationResource::remove_track (const std::shared_ptr<AnimationTrack> &track)
@@ -170,9 +170,9 @@ void AnimationResource::remove_track (const std::shared_ptr<AnimationTrack> &tra
     _tracks.erase(i,_tracks.end());
 }
 
-void AnimationResource::remove_all_tracks	(void)
+void AnimationResource::remove_all_tracks    (void)
 {
-	_tracks.clear();
+    _tracks.clear();
 }
 
 //==============================================================================

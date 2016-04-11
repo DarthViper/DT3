@@ -1,6 +1,6 @@
 //==============================================================================
 ///
-///	File: GUIGridLayout.cpp
+///    File: GUIGridLayout.cpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey, Inc. All rights reserved.
 ///

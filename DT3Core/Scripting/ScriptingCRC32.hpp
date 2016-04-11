@@ -3,7 +3,7 @@
 #define DT3_SCRIPTINGCRC32
 //==============================================================================
 ///
-///	File: ScriptingCRC32.hpp
+///    File: ScriptingCRC32.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -34,21 +34,21 @@ class ScriptingCRC32: public ScriptingBase {
         DEFINE_CREATE_AND_CLONE
         DEFINE_PLUG_NODE
 
-                                    ScriptingCRC32			(void);
-                                    ScriptingCRC32			(const ScriptingCRC32 &rhs);
+                                    ScriptingCRC32            (void);
+                                    ScriptingCRC32            (const ScriptingCRC32 &rhs);
         ScriptingCRC32 &            operator =              (const ScriptingCRC32 &rhs);
-        virtual                     ~ScriptingCRC32			(void);
+        virtual                     ~ScriptingCRC32            (void);
 
         virtual void                archive                 (const std::shared_ptr<Archive> &archive);
 
     public:
         /// Computes the value of the node
         /// \param plug plug to compute
-        bool					compute					(const PlugBase *plug);
+        bool                    compute                    (const PlugBase *plug);
 
     private:
         Plug<std::string>           _in;
-        Plug<uint32_t>				_checksum;
+        Plug<uint32_t>                _checksum;
 
 };
 

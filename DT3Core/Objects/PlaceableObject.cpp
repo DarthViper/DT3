@@ -1,6 +1,6 @@
 //==============================================================================
 ///
-///	File: PlaceableObject.cpp
+///    File: PlaceableObject.cpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -136,42 +136,42 @@ END_IMPLEMENT_PLUGS
 //==============================================================================
 
 PlaceableObject::PlaceableObject (void)
-    :  	_pickable				(true),
-        _radius					(PLUG_INFO_INDEX(_radius), 1.0F),
-        _velocity				(PLUG_INFO_INDEX(_velocity), Vector3 {0.0F,0.0F,0.0F}),
-        _angular_velocity		(PLUG_INFO_INDEX(_angular_velocity), Vector3 {0.0F,0.0F,0.0F}),
-        _translation			(PLUG_INFO_INDEX(_translation), Vector3 {0.0F,0.0F,0.0F}),
-        _orientation			(PLUG_INFO_INDEX(_orientation), Matrix3::identity()),
+    :      _pickable                (true),
+        _radius                    (PLUG_INFO_INDEX(_radius), 1.0F),
+        _velocity                (PLUG_INFO_INDEX(_velocity), Vector3 {0.0F,0.0F,0.0F}),
+        _angular_velocity        (PLUG_INFO_INDEX(_angular_velocity), Vector3 {0.0F,0.0F,0.0F}),
+        _translation            (PLUG_INFO_INDEX(_translation), Vector3 {0.0F,0.0F,0.0F}),
+        _orientation            (PLUG_INFO_INDEX(_orientation), Matrix3::identity()),
         _scale                  (PLUG_INFO_INDEX(_scale), Vector3 {1.0F,1.0F,1.0F}),
         _transform              (PLUG_INFO_INDEX(_transform), Matrix4::identity()),
         _transform_inversed     (PLUG_INFO_INDEX(_transform_inversed), Matrix4::identity()),
-        _world_translation		(PLUG_INFO_INDEX(_world_translation), Vector3 {0.0F,0.0F,0.0F}),
-        _world_orientation		(PLUG_INFO_INDEX(_world_orientation), Matrix3::identity()),
-        _world_scale			(PLUG_INFO_INDEX(_world_scale), Vector3 {1.0F,1.0F,1.0F}),
-        _world_transform		(PLUG_INFO_INDEX(_world_transform), Matrix4::identity()),
+        _world_translation        (PLUG_INFO_INDEX(_world_translation), Vector3 {0.0F,0.0F,0.0F}),
+        _world_orientation        (PLUG_INFO_INDEX(_world_orientation), Matrix3::identity()),
+        _world_scale            (PLUG_INFO_INDEX(_world_scale), Vector3 {1.0F,1.0F,1.0F}),
+        _world_transform        (PLUG_INFO_INDEX(_world_transform), Matrix4::identity()),
         _world_transform_inversed(PLUG_INFO_INDEX(_world_transform_inversed), Matrix4::identity()),
-        _parent_transform		(PLUG_INFO_INDEX(_parent_transform), Matrix4::identity())
+        _parent_transform        (PLUG_INFO_INDEX(_parent_transform), Matrix4::identity())
 {
 
 }
 
 PlaceableObject::PlaceableObject (const PlaceableObject &rhs)
-    :   ObjectBase				(rhs),
-        _pickable				(rhs._pickable),
-        _radius					(rhs._radius),
-        _velocity				(rhs._velocity),
-        _angular_velocity		(rhs._angular_velocity),
-        _translation			(rhs._translation),
-        _orientation			(rhs._orientation),
+    :   ObjectBase                (rhs),
+        _pickable                (rhs._pickable),
+        _radius                    (rhs._radius),
+        _velocity                (rhs._velocity),
+        _angular_velocity        (rhs._angular_velocity),
+        _translation            (rhs._translation),
+        _orientation            (rhs._orientation),
         _scale                  (rhs._scale),
         _transform              (rhs._transform),
         _transform_inversed     (rhs._transform_inversed),
-        _world_translation		(PLUG_INFO_INDEX(_world_translation), Vector3 {0.0F,0.0F,0.0F}),
-        _world_orientation		(PLUG_INFO_INDEX(_world_orientation), Matrix3::identity()),
-        _world_scale			(PLUG_INFO_INDEX(_world_scale), Vector3 {1.0F,1.0F,1.0F} ),
-        _world_transform		(rhs._world_transform),
+        _world_translation        (PLUG_INFO_INDEX(_world_translation), Vector3 {0.0F,0.0F,0.0F}),
+        _world_orientation        (PLUG_INFO_INDEX(_world_orientation), Matrix3::identity()),
+        _world_scale            (PLUG_INFO_INDEX(_world_scale), Vector3 {1.0F,1.0F,1.0F} ),
+        _world_transform        (rhs._world_transform),
         _world_transform_inversed(rhs._world_transform_inversed),
-        _parent_transform		(PLUG_INFO_INDEX(_parent_transform), Matrix4::identity())
+        _parent_transform        (PLUG_INFO_INDEX(_parent_transform), Matrix4::identity())
 {
 
 }
@@ -504,7 +504,7 @@ Vector3 PlaceableObject::backwards   (void) const
     return z_axis;
 }
 
-Vector3 PlaceableObject::left_axis	(void) const
+Vector3 PlaceableObject::left_axis    (void) const
 {
     Vector3 x_axis = -transform().x_axis();
     return x_axis;
@@ -516,7 +516,7 @@ Vector3 PlaceableObject::right_axis       (void) const
     return x_axis;
 }
 
-Vector3 PlaceableObject::up_axis	(void) const
+Vector3 PlaceableObject::up_axis    (void) const
 {
     Vector3 y_axis = transform().y_axis();
     return y_axis;
@@ -531,12 +531,12 @@ Vector3 PlaceableObject::down_axis    (void) const
 //==============================================================================
 //==============================================================================
 
-void PlaceableObject::set_orientation_relative_angle_X	(PlaceableObject *obj1, DTfloat angle)
+void PlaceableObject::set_orientation_relative_angle_X    (PlaceableObject *obj1, DTfloat angle)
 {
-    Matrix3	body_orientation = obj1->orientation();
-    Vector3	body_x = body_orientation.x_axis();
+    Matrix3    body_orientation = obj1->orientation();
+    Vector3    body_x = body_orientation.x_axis();
 
-    Matrix3	rot = Matrix3::set_rotation_around(body_x, angle);
+    Matrix3    rot = Matrix3::set_rotation_around(body_x, angle);
 
     // Apply the rotation
     rot = rot * body_orientation;
@@ -546,12 +546,12 @@ void PlaceableObject::set_orientation_relative_angle_X	(PlaceableObject *obj1, D
 //==============================================================================
 //==============================================================================
 
-void PlaceableObject::set_orientation_relative_angle_Y	(PlaceableObject *obj1, DTfloat angle)
+void PlaceableObject::set_orientation_relative_angle_Y    (PlaceableObject *obj1, DTfloat angle)
 {
-    Matrix3	body_orientation = obj1->orientation();
-    Vector3	body_y = body_orientation.y_axis();
+    Matrix3    body_orientation = obj1->orientation();
+    Vector3    body_y = body_orientation.y_axis();
 
-    Matrix3	rot = Matrix3::set_rotation_around(body_y, angle);
+    Matrix3    rot = Matrix3::set_rotation_around(body_y, angle);
 
     // Apply the rotation
     rot = rot * body_orientation;
@@ -561,12 +561,12 @@ void PlaceableObject::set_orientation_relative_angle_Y	(PlaceableObject *obj1, D
 //==============================================================================
 //==============================================================================
 
-void PlaceableObject::set_orientation_relative_angle_Z	(PlaceableObject *obj1, DTfloat angle)
+void PlaceableObject::set_orientation_relative_angle_Z    (PlaceableObject *obj1, DTfloat angle)
 {
-    Matrix3	body_orientation = obj1->orientation();
-    Vector3	body_z = body_orientation.z_axis();
+    Matrix3    body_orientation = obj1->orientation();
+    Vector3    body_z = body_orientation.z_axis();
 
-    Matrix3	rot = Matrix3::set_rotation_around(body_z, angle);
+    Matrix3    rot = Matrix3::set_rotation_around(body_z, angle);
 
     // Apply the rotation
     rot = rot * body_orientation;

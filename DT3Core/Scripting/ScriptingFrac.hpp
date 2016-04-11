@@ -3,7 +3,7 @@
 #define DT3_SCRIPTINGFRAC
 //==============================================================================
 ///
-///	File: ScriptingFrac.hpp
+///    File: ScriptingFrac.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -29,21 +29,21 @@ class ScriptingFrac: public ScriptingBase {
         DEFINE_CREATE_AND_CLONE
         DEFINE_PLUG_NODE
 
-                                    ScriptingFrac			(void);
-                                    ScriptingFrac			(const ScriptingFrac &rhs);
-        ScriptingFrac &				operator =				(const ScriptingFrac &rhs);
-        virtual                     ~ScriptingFrac			(void);
+                                    ScriptingFrac            (void);
+                                    ScriptingFrac            (const ScriptingFrac &rhs);
+        ScriptingFrac &                operator =                (const ScriptingFrac &rhs);
+        virtual                     ~ScriptingFrac            (void);
 
         virtual void                archive                 (const std::shared_ptr<Archive> &archive);
 
     public:
         /// Computes the value of the node
         /// \param plug plug to compute
-        bool					compute					(const PlugBase *plug);
+        bool                    compute                    (const PlugBase *plug);
 
     private:
-        Plug<DTfloat>				_in;
-        Plug<DTfloat>				_out;
+        Plug<DTfloat>                _in;
+        Plug<DTfloat>                _out;
 
 };
 

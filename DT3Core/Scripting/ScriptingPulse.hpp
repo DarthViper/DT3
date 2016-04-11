@@ -1,7 +1,7 @@
 #pragma once
 //==============================================================================
 ///
-///	File: ScriptingPulse.hpp
+///    File: ScriptingPulse.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -32,10 +32,10 @@ class ScriptingPulse: public ScriptingBase {
         DEFINE_CREATE_AND_CLONE
         DEFINE_PLUG_NODE
 
-                                    ScriptingPulse			(void);
-                                    ScriptingPulse			(const ScriptingPulse &rhs);
-        ScriptingPulse &			operator =				(const ScriptingPulse &rhs);
-        virtual                     ~ScriptingPulse			(void);
+                                    ScriptingPulse            (void);
+                                    ScriptingPulse            (const ScriptingPulse &rhs);
+        ScriptingPulse &            operator =                (const ScriptingPulse &rhs);
+        virtual                     ~ScriptingPulse            (void);
 
         virtual void                archive                 (const std::shared_ptr<Archive> &archive);
 
@@ -55,11 +55,11 @@ class ScriptingPulse: public ScriptingBase {
         void                        eventIn                 (PlugNode *sender);
 
     private:
-        DTfloat						_time;
-        DTfloat						_pulse_time;
+        DTfloat                        _time;
+        DTfloat                        _pulse_time;
 
-        Plug<bool>				_in;
-        Plug<bool>				_out;
+        Plug<bool>                _in;
+        Plug<bool>                _out;
 
         Event                       _in_e;
 };

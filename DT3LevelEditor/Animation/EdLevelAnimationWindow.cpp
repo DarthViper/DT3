@@ -1,6 +1,6 @@
 //==============================================================================
 ///
-///	File: EdLevelAnimationWindow.cpp
+///    File: EdLevelAnimationWindow.cpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -90,10 +90,10 @@ EdLevelAnimationWindow::EdLevelAnimationWindow(QWidget *parent, QToolBar *toolba
     _time_max = new EdLevelLineEdit(this);
     _time_max->setText("30");
 
-    connect(	_time_min,      SIGNAL(editingFinished()),
-                this,           SLOT(onChangeTimeRange())	);
-    connect(	_time_max,      SIGNAL(editingFinished()),
-                this,           SLOT(onChangeTimeRange())	);
+    connect(    _time_min,      SIGNAL(editingFinished()),
+                this,           SLOT(onChangeTimeRange())    );
+    connect(    _time_max,      SIGNAL(editingFinished()),
+                this,           SLOT(onChangeTimeRange())    );
 
     _scroll_width = _vert_scrollbar->sizeHint().width();
     _scroll_height = _horz_scrollbar->sizeHint().height();
@@ -101,7 +101,7 @@ EdLevelAnimationWindow::EdLevelAnimationWindow(QWidget *parent, QToolBar *toolba
     setFocusPolicy(Qt::ClickFocus);
 }
 
-EdLevelAnimationWindow::~EdLevelAnimationWindow	(void)
+EdLevelAnimationWindow::~EdLevelAnimationWindow    (void)
 {
 
 }

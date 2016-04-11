@@ -1,12 +1,12 @@
 //==============================================================================
-///	
-///	File: ArchiveBinaryBufferReader.cpp
+///    
+///    File: ArchiveBinaryBufferReader.cpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
 /// This file is subject to the terms and conditions defined in
 /// file 'LICENSE.txt', which is part of this source code package.
-///	
+///    
 //==============================================================================
 
 #include "DT3Core/Types/FileBuffer/ArchiveBinaryBufferReader.hpp"
@@ -27,7 +27,7 @@ ArchiveBinaryBufferReader::ArchiveBinaryBufferReader (void)
 {    
 
 }
-			
+            
 ArchiveBinaryBufferReader::~ArchiveBinaryBufferReader (void)
 {
 
@@ -38,12 +38,12 @@ ArchiveBinaryBufferReader::~ArchiveBinaryBufferReader (void)
 
 Archive& ArchiveBinaryBufferReader::operator << (const ArchiveData& data)
 {
-	// Fill out the current domain with ArchiveData objects
-	if (data.flags() & DATA_PERSISTENT) {
-		data.set_value(_buffer);
-	}
-	
-	return *this;
+    // Fill out the current domain with ArchiveData objects
+    if (data.flags() & DATA_PERSISTENT) {
+        data.set_value(_buffer);
+    }
+    
+    return *this;
 }
 
 //==============================================================================
@@ -51,16 +51,16 @@ Archive& ArchiveBinaryBufferReader::operator << (const ArchiveData& data)
 
 void ArchiveBinaryBufferReader::push_domain (const std::string &domain)
 {
-	uint8_t marker;
-	_buffer >> marker;
-	ERROR(marker == 0xFF, "Error streaming buffer");
+    uint8_t marker;
+    _buffer >> marker;
+    ERROR(marker == 0xFF, "Error streaming buffer");
 }
 
 void ArchiveBinaryBufferReader::pop_domain (void)
 {
-	uint8_t marker;
-	_buffer >> marker;
-	ERROR(marker == 0xAA, "Error streaming buffer");
+    uint8_t marker;
+    _buffer >> marker;
+    ERROR(marker == 0xAA, "Error streaming buffer");
 }
 
 //==============================================================================
@@ -68,12 +68,12 @@ void ArchiveBinaryBufferReader::pop_domain (void)
 
 bool ArchiveBinaryBufferReader::is_reading (void) const
 {
-	return true;
+    return true;
 }
 
 bool ArchiveBinaryBufferReader::is_writing (void) const
 {
-	return false;
+    return false;
 }
 
 //==============================================================================

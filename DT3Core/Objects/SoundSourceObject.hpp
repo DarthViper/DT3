@@ -1,7 +1,7 @@
 #pragma once
 //==============================================================================
 ///
-///	File: SoundSourceObject.hpp
+///    File: SoundSourceObject.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -31,12 +31,12 @@ class SoundSourceObject: public PlaceableObject {
         DEFINE_CREATE_AND_CLONE
         DEFINE_PLUG_NODE
 
-                                    SoundSourceObject				(void);
-                                    SoundSourceObject				(const SoundSourceObject &rhs);
-        SoundSourceObject &			operator =						(const SoundSourceObject &rhs);
-        virtual                     ~SoundSourceObject				(void);
+                                    SoundSourceObject                (void);
+                                    SoundSourceObject                (const SoundSourceObject &rhs);
+        SoundSourceObject &            operator =                        (const SoundSourceObject &rhs);
+        virtual                     ~SoundSourceObject                (void);
 
-        virtual void				archive                         (const std::shared_ptr<Archive> &archive);
+        virtual void                archive                         (const std::shared_ptr<Archive> &archive);
 
         /// Play the sound
         /// \param sender node (if any) that caused this event

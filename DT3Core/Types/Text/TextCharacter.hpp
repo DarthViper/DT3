@@ -3,7 +3,7 @@
 #define DT3_TEXTCHARACTER
 //==============================================================================
 ///
-///	File: TextCharacter.hpp
+///    File: TextCharacter.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -31,8 +31,8 @@ class GlyphCacheEntry;
 
 class TextCharacter {
     public:
-                                TextCharacter			(void);
-                                TextCharacter			(const TextCharacter &rhs);
+                                TextCharacter            (void);
+                                TextCharacter            (const TextCharacter &rhs);
         TextCharacter &         operator =              (const TextCharacter &rhs);
                                 ~TextCharacter          (void);
 
@@ -143,8 +143,8 @@ class TextCharacter {
         const std::shared_ptr<GlyphCacheEntry>& glyph_entry     (void) const                {   return _glyph;   }
 
 
-        DEFINE_ACCESSORS		(advance_X, set_advance_X, DTfloat, _advance_x);
-        DEFINE_ACCESSORS		(advance_Y, set_advance_Y, DTfloat, _advance_y);
+        DEFINE_ACCESSORS        (advance_X, set_advance_X, DTfloat, _advance_x);
+        DEFINE_ACCESSORS        (advance_Y, set_advance_Y, DTfloat, _advance_y);
 
         /// The extent of the character. For left-right fonts this is width
         /// \return extent

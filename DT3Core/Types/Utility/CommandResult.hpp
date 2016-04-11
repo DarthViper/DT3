@@ -3,7 +3,7 @@
 #define DT3_COMMANDRESULT
 //==============================================================================
 ///
-///	File: CommandResult.hpp
+///    File: CommandResult.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -43,10 +43,10 @@ class CommandResult {
             UPDATE_NONE = 0
         };
 
-                                        CommandResult			(void);
+                                        CommandResult            (void);
                                         CommandResult           (bool result, const std::string &m, uint32_t h)   {   set_result(result); set_message(m); set_update_hint(h);    }
-                                        CommandResult			(const CommandResult &rhs);
-        CommandResult &                 operator =				(const CommandResult &rhs);
+                                        CommandResult            (const CommandResult &rhs);
+        CommandResult &                 operator =                (const CommandResult &rhs);
         virtual                         ~CommandResult          (void);
 
     public:

@@ -3,7 +3,7 @@
 #define DT3_SCRIPTINGPARTICLEVELOCITYROTATOR
 //==============================================================================
 ///
-///	File: ScriptingParticleVelocityRotator.hpp
+///    File: ScriptingParticleVelocityRotator.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -35,23 +35,23 @@ class ScriptingParticleVelocityRotator: public ScriptingBase {
         DEFINE_CREATE_AND_CLONE
         DEFINE_PLUG_NODE
 
-                                            ScriptingParticleVelocityRotator	(void);
-                                            ScriptingParticleVelocityRotator	(const ScriptingParticleVelocityRotator &rhs);
-        ScriptingParticleVelocityRotator &	operator =                          (const ScriptingParticleVelocityRotator &rhs);
-        virtual                             ~ScriptingParticleVelocityRotator	(void);
+                                            ScriptingParticleVelocityRotator    (void);
+                                            ScriptingParticleVelocityRotator    (const ScriptingParticleVelocityRotator &rhs);
+        ScriptingParticleVelocityRotator &    operator =                          (const ScriptingParticleVelocityRotator &rhs);
+        virtual                             ~ScriptingParticleVelocityRotator    (void);
 
         virtual void                archive                 (const std::shared_ptr<Archive> &archive);
 
     public:
         /// Computes the value of the node
         /// \param plug plug to compute
-        bool					compute					(const PlugBase *plug);
+        bool                    compute                    (const PlugBase *plug);
 
     private:
-        DTfloat						_add_angle;
+        DTfloat                        _add_angle;
 
-        Plug<std::shared_ptr<Particles>>		_in;
-        Plug<std::shared_ptr<Particles>>		_out;
+        Plug<std::shared_ptr<Particles>>        _in;
+        Plug<std::shared_ptr<Particles>>        _out;
 
 };
 

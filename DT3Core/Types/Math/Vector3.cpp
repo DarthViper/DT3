@@ -1,12 +1,12 @@
 //==============================================================================
-///	
-///	File: Vector3.cpp
-///	
+///    
+///    File: Vector3.cpp
+///    
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
 /// This file is subject to the terms and conditions defined in
 /// file 'LICENSE.txt', which is part of this source code package.
-///	
+///    
 //==============================================================================
 
 #include "DT3Core/Types/Math/Vector3.hpp"
@@ -34,20 +34,20 @@ Vector3 Vector3::fromVec2(Vector2 rhs, float z_) { return Vector3 {rhs.x,rhs.y,z
 
 Stream& operator <<(Stream &s, const Vector3&v)
 {
-	s << v.x << Stream::fs << v.y << Stream::fs << v.z;
-	return s;
+    s << v.x << Stream::fs << v.y << Stream::fs << v.z;
+    return s;
 }
 
 Stream& operator >>(Stream &s, Vector3&v)
 {
-	DTfloat x=v.x,y=v.y,z=v.z;
-	s >> x >> y >> z;
-	
-	v.x = (x);
-	v.y = (y);
-	v.z = (z);
-	
-	return s;
+    DTfloat x=v.x,y=v.y,z=v.z;
+    s >> x >> y >> z;
+    
+    v.x = (x);
+    v.y = (y);
+    v.z = (z);
+    
+    return s;
 }
 
 //==============================================================================
@@ -60,9 +60,9 @@ Stream& operator >>(Stream &s, Vector3&v)
 Vector3 Vector3::cross (Vector3 a, Vector3 b)
 {
     return {
-		a.y * b.z - a.z * b.y,
-		a.z * b.x - a.x * b.z,
-		a.x * b.y - a.y * b.x
+        a.y * b.z - a.z * b.y,
+        a.z * b.x - a.x * b.z,
+        a.x * b.y - a.y * b.x
     };
     
 }
@@ -102,6 +102,6 @@ void Vector3::reflect (const Vector3 &dir, const Vector3 &n, const DTfloat resti
 
 //==============================================================================
 //==============================================================================
-		
+        
 } // DT3
 

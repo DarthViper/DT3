@@ -3,7 +3,7 @@
 #define DT3_COLOR4B
 //==============================================================================
 ///
-///	File: Color4b.hpp
+///    File: Color4b.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -35,20 +35,20 @@ class Color4b {
     public:
         DEFINE_TYPE_SIMPLE_BASE(Color4b)
 
-                                                Color4b					(void);
-                                                Color4b					(const Color4b &rhs);
-                                                Color4b					(const DTfloat r_, const DTfloat g_, const DTfloat b_, const DTfloat a_ = 1.0F);
-                                                Color4b					(const uint8_t r_, const uint8_t g_, const uint8_t b_, const uint8_t a_ = DTUBYTE_MAX);
-        explicit                                Color4b					(const DTfloat rhs[]);
-        explicit								Color4b					(const uint8_t rhs[]);
+                                                Color4b                    (void);
+                                                Color4b                    (const Color4b &rhs);
+                                                Color4b                    (const DTfloat r_, const DTfloat g_, const DTfloat b_, const DTfloat a_ = 1.0F);
+                                                Color4b                    (const uint8_t r_, const uint8_t g_, const uint8_t b_, const uint8_t a_ = DTUBYTE_MAX);
+        explicit                                Color4b                    (const DTfloat rhs[]);
+        explicit                                Color4b                    (const uint8_t rhs[]);
         explicit                                Color4b                 (const Color4f& rhs);
-        Color4b &								operator =              (const Color4b& rhs);
-                                                ~Color4b				(void)  {}
+        Color4b &                                operator =              (const Color4b& rhs);
+                                                ~Color4b                (void)  {}
 
     public:
 
-        bool								operator ==				(const Color4b& rhs) const	{	return r == rhs.r && g == rhs.g && b == rhs.b && a == rhs.a;	}
-        bool								operator !=				(const Color4b& rhs) const	{	return r != rhs.r || g != rhs.g || b != rhs.b || a != rhs.a;	}
+        bool                                operator ==                (const Color4b& rhs) const    {    return r == rhs.r && g == rhs.g && b == rhs.b && a == rhs.a;    }
+        bool                                operator !=                (const Color4b& rhs) const    {    return r != rhs.r || g != rhs.g || b != rhs.b || a != rhs.a;    }
 
         //
         // Color4b setting routines
@@ -88,36 +88,36 @@ class Color4b {
         void                                    set_a                   (const DTfloat a_);
 
         /// Sets color components as bytes
-        void                                    set_r                   (const uint8_t r_)		{	r = r_;				}
-        void                                    set_g                   (const uint8_t g_)		{	g = g_;				}
-        void                                    set_b                   (const uint8_t b_)		{	b = b_;				}
-        void                                    set_a                   (const uint8_t a_)		{	a = a_;				}
+        void                                    set_r                   (const uint8_t r_)        {    r = r_;                }
+        void                                    set_g                   (const uint8_t g_)        {    g = g_;                }
+        void                                    set_b                   (const uint8_t b_)        {    b = b_;                }
+        void                                    set_a                   (const uint8_t a_)        {    a = a_;                }
 
 
         /// Returns color components as floats
         /// \return color components
-        DTfloat                                 r_as_float              (void) 	const;
-        DTfloat                                 g_as_float              (void)	const;
-        DTfloat                                 b_as_float              (void)	const;
-        DTfloat                                 a_as_float              (void)	const;
+        DTfloat                                 r_as_float              (void)     const;
+        DTfloat                                 g_as_float              (void)    const;
+        DTfloat                                 b_as_float              (void)    const;
+        DTfloat                                 a_as_float              (void)    const;
 
         /// Returns color components as bytes
         /// \return color components
-        inline uint8_t							r_as_byte               (void) 	const           {	return r;			}
-        inline uint8_t							g_as_byte               (void)	const           {	return g;			}
-        inline uint8_t							b_as_byte               (void)	const           {	return b;			}
-        inline uint8_t							a_as_byte               (void)	const           {	return a;			}
+        inline uint8_t                            r_as_byte               (void)     const           {    return r;            }
+        inline uint8_t                            g_as_byte               (void)    const           {    return g;            }
+        inline uint8_t                            b_as_byte               (void)    const           {    return b;            }
+        inline uint8_t                            a_as_byte               (void)    const           {    return a;            }
 
 
 
 
         /// Returns wether the color is black
         /// \return is black
-        bool								is_black                (void) const				{	return r == 0 && g == 0 && b == 0;		}
+        bool                                is_black                (void) const                {    return r == 0 && g == 0 && b == 0;        }
 
         /// Returns wether the color is white
         /// \return is white
-        bool								is_white                (void) const				{	return r == 255 && g == 255 && b == 255;	}
+        bool                                is_white                (void) const                {    return r == 255 && g == 255 && b == 255;    }
 
 
         /// Some standard colors
@@ -163,10 +163,10 @@ Stream& operator >>(Stream &s, Color4b&c);
 
 inline Color4b operator + (const Color4b &a, const Color4b &b)
 {
-    return Color4b(	a.r_as_float() + b.r_as_float(),
+    return Color4b(    a.r_as_float() + b.r_as_float(),
                     a.g_as_float() + b.g_as_float(),
                     a.b_as_float() + b.b_as_float(),
-                    a.a_as_float() + b.a_as_float()	);
+                    a.a_as_float() + b.a_as_float()    );
 }
 
 inline Color4b operator * (const Color4b &a, const Color4b &b)
@@ -176,26 +176,26 @@ inline Color4b operator * (const Color4b &a, const Color4b &b)
     else if (b.rgba == 0xFFFFFFFF)
         return a;
     else
-        return Color4b(	a.r_as_float() * b.r_as_float(),
+        return Color4b(    a.r_as_float() * b.r_as_float(),
                         a.g_as_float() * b.g_as_float(),
                         a.b_as_float() * b.b_as_float(),
-                        a.a_as_float() * b.a_as_float()	);
+                        a.a_as_float() * b.a_as_float()    );
 }
 
 inline Color4b operator * (const Color4b &a, DTfloat b)
 {
-    return Color4b(	a.r_as_float() * b,
+    return Color4b(    a.r_as_float() * b,
                     a.g_as_float() * b,
                     a.b_as_float() * b,
-                    a.a_as_float() * b	);
+                    a.a_as_float() * b    );
 }
 
 inline Color4b operator * (DTfloat a, const Color4b &b)
 {
-    return Color4b(	a * b.r_as_float(),
+    return Color4b(    a * b.r_as_float(),
                     a * b.g_as_float(),
                     a * b.b_as_float(),
-                    a * b.a_as_float()	);
+                    a * b.a_as_float()    );
 }
 
 //==============================================================================
@@ -205,9 +205,9 @@ inline Color4b operator * (DTfloat a, const Color4b &b)
 namespace TypeTraitsInfo {
 
 template <> struct Info<Color4b> {
-    static Color4b				default_value(void)	{	return Color4b(0.0F,0.0F,0.0F,0.0F);    }
-    static const DTcharacter*	name(void)          {	return "Color4b";}
-    static const DTcharacter*	name_caps(void)     {	return "Color4b";}
+    static Color4b                default_value(void)    {    return Color4b(0.0F,0.0F,0.0F,0.0F);    }
+    static const DTcharacter*    name(void)          {    return "Color4b";}
+    static const DTcharacter*    name_caps(void)     {    return "Color4b";}
     enum { isFundamental = 0 };
 };
 

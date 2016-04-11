@@ -3,7 +3,7 @@
 #define DT3_RESOURCE
 //==============================================================================
 ///
-///	File: Resource.hpp
+///    File: Resource.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -35,9 +35,9 @@ class Resource: public BaseClass {
                                     Resource            (void);
     private:
                                     Resource            (const Resource &rhs);
-        Resource &					operator =          (const Resource &rhs);
+        Resource &                    operator =          (const Resource &rhs);
     public:
-        virtual						~Resource           (void);
+        virtual                        ~Resource           (void);
 
     public:
 
@@ -45,11 +45,11 @@ class Resource: public BaseClass {
         /// \param pathname path to resource
         /// \param args importer args
         /// \return error code
-        virtual DTerr				import              (const FilePath &pathname, std::string args);
+        virtual DTerr                import              (const FilePath &pathname, std::string args);
 
         /// Reload the resource
         /// \return error code
-        virtual DTerr				reload              (void);
+        virtual DTerr                reload              (void);
 
         /// Checks if a reload is needed
         /// \return reload needed
@@ -61,11 +61,11 @@ class Resource: public BaseClass {
 
         /// Gets the path that was types into the properties panel
         /// \return property value
-        std::string                 property_path       (void) const                        {	return _file_path.original_path();      }
+        std::string                 property_path       (void) const                        {    return _file_path.original_path();      }
 
         /// Gets the path for the resource
         /// \return path
-        const FilePath&				path                (void) const                        {	return _file_path;						}
+        const FilePath&                path                (void) const                        {    return _file_path;                        }
 
         //
         // Args
@@ -73,7 +73,7 @@ class Resource: public BaseClass {
 
         /// Arguments that the resource was loaded with
         /// \return Arguments
-        const std::string &         args                (void) const                        {	return _args;							}
+        const std::string &         args                (void) const                        {    return _args;                            }
 
 
         //
@@ -82,7 +82,7 @@ class Resource: public BaseClass {
 
         /// Pass time in the resource if needed
         /// \param dt delta time
-        virtual void				tick                (const DTfloat /*dt*/)              {}
+        virtual void                tick                (const DTfloat /*dt*/)              {}
 
         /// Resource lock (used in multi threaded applications)
         void                        lock                (void)                              {   _lock.lock();   }
@@ -99,8 +99,8 @@ class Resource: public BaseClass {
         void                        add_dependencies    (const std::vector<FilePath> &paths);
 
     private:
-        uint64_t					_time_loaded;
-        FilePath					_file_path;
+        uint64_t                    _time_loaded;
+        FilePath                    _file_path;
         std::string                 _args;
 
         std::vector<FilePath>       _dependencies;

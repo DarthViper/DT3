@@ -1,12 +1,12 @@
 //==============================================================================
-///	
-///	File: ArchiveObjectQueue.cpp
+///    
+///    File: ArchiveObjectQueue.cpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
 /// This file is subject to the terms and conditions defined in
 /// file 'LICENSE.txt', which is part of this source code package.
-///	
+///    
 //==============================================================================
 
 #include "DT3Core/Types/FileBuffer/ArchiveObjectQueue.hpp"
@@ -28,61 +28,61 @@ namespace DT3 {
 std::shared_ptr<BaseClass> ArchiveObjectQueue::queue_in_tree (  const std::shared_ptr<Archive> &archive,
                                                                 std::shared_ptr<Callback<std::shared_ptr<BaseClass>>> obj_loaded_cb)
 {    
-	std::shared_ptr<BaseClass> first = NULL;
-	std::map<uint64_t, std::shared_ptr<BaseClass>>  newly_created_objects;
-		
-	std::string obj_type;
-	*archive << ARCHIVE_DATA(obj_type, DATA_PERSISTENT);
-	
-	while (obj_type != "end") {
+    std::shared_ptr<BaseClass> first = NULL;
+    std::map<uint64_t, std::shared_ptr<BaseClass>>  newly_created_objects;
+        
+    std::string obj_type;
+    *archive << ARCHIVE_DATA(obj_type, DATA_PERSISTENT);
+    
+    while (obj_type != "end") {
     
         archive->push_domain("obj");
     
-		LOG_MESSAGE << "queueInTree - Creating object of type: " << obj_type;
+        LOG_MESSAGE << "queueInTree - Creating object of type: " << obj_type;
 
-		// Create the object and stream in parameters
-		std::shared_ptr<BaseClass> obj = Factory::create_object(obj_type);
+        // Create the object and stream in parameters
+        std::shared_ptr<BaseClass> obj = Factory::create_object(obj_type);
         if (!obj) {
             LOG_MESSAGE << "Unable to create object of type: " << obj_type;
             break;
         }
-        			
-		// Remember the first object
-		if (!first) {
-			first = obj;
-		}
-	
-		obj->archive (archive);
+                    
+        // Remember the first object
+        if (!first) {
+            first = obj;
+        }
+    
+        obj->archive (archive);
         
         // Report that an object was created
         if (obj_loaded_cb) {
             (*obj_loaded_cb)(obj);
         }
 
-		// Store new object for reference
-		newly_created_objects[obj->unique_id()] = obj;
-	
+        // Store new object for reference
+        newly_created_objects[obj->unique_id()] = obj;
+    
         archive->pop_domain();
 
-		// get next type
-		*archive << ARCHIVE_DATA(obj_type, DATA_PERSISTENT);
+        // get next type
+        *archive << ARCHIVE_DATA(obj_type, DATA_PERSISTENT);
     }
-		
-	// run all post processes
-	std::shared_ptr<ArchiveProcess> process = archive->pop_post_process();
-	while (process != NULL) {
-		process->process(archive,newly_created_objects);
-		process = archive->pop_post_process();
-	}
-	
-	
-	// Finish up reading
-	for (auto o = newly_created_objects.rbegin(); o != newly_created_objects.rend(); ++o) {
-		o->second->new_unique_id();	// make sure ID is unique
-		o->second->archive_done(archive);
-	}
-	
-	return first;
+        
+    // run all post processes
+    std::shared_ptr<ArchiveProcess> process = archive->pop_post_process();
+    while (process != NULL) {
+        process->process(archive,newly_created_objects);
+        process = archive->pop_post_process();
+    }
+    
+    
+    // Finish up reading
+    for (auto o = newly_created_objects.rbegin(); o != newly_created_objects.rend(); ++o) {
+        o->second->new_unique_id();    // make sure ID is unique
+        o->second->archive_done(archive);
+    }
+    
+    return first;
 }
 
 //==============================================================================
@@ -91,30 +91,30 @@ std::shared_ptr<BaseClass> ArchiveObjectQueue::queue_in_tree (  const std::share
 void ArchiveObjectQueue::queue_out_tree (const std::shared_ptr<Archive> &archive, BaseClass *ptr)
 {
     std::map<uint64_t, std::shared_ptr<BaseClass>>  queued_objects;
-	
-	// Write out first object
-	std::string obj_type = ptr->class_id_child();
-	*archive << ARCHIVE_DATA(obj_type, DATA_PERSISTENT);
+    
+    // Write out first object
+    std::string obj_type = ptr->class_id_child();
+    *archive << ARCHIVE_DATA(obj_type, DATA_PERSISTENT);
     
     archive->push_domain("obj");
     ptr->archive(archive);
     archive->pop_domain();
 
-	// run all post processes which should write the remainder of the objects
+    // run all post processes which should write the remainder of the objects
     std::shared_ptr<ArchiveProcess> process(archive->pop_post_process());
-	while (process != NULL) {
-		process->process(archive,queued_objects);
-		process = archive->pop_post_process();
-	}
+    while (process != NULL) {
+        process->process(archive,queued_objects);
+        process = archive->pop_post_process();
+    }
  
-	// This denotes the end of the objects in the archive
-	obj_type = "end";
-	*archive << ARCHIVE_DATA(obj_type, DATA_PERSISTENT);
-	
-	//
+    // This denotes the end of the objects in the archive
+    obj_type = "end";
+    *archive << ARCHIVE_DATA(obj_type, DATA_PERSISTENT);
+    
+    //
     // Archive_Write_Done message
-	//
-	    
+    //
+        
     for (auto &i : queued_objects) {
         i.second->archive_done(archive);
     }

@@ -3,7 +3,7 @@
 #define DT3_ARCHIVETEXTBUFFERWRITER
 //==============================================================================
 ///
-///	File: ArchiveTextBufferWriter.hpp
+///    File: ArchiveTextBufferWriter.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -33,14 +33,14 @@ class ArchiveTextBufferWriter: public Archive {
         //DEFINE_TYPE(ArchiveTextBufferWriter,Archive)
         DEFINE_CREATE_T(ArchiveTextBufferWriter)
 
-                                    ArchiveTextBufferWriter		(void);
+                                    ArchiveTextBufferWriter        (void);
 
     private:
-                                    ArchiveTextBufferWriter		(const ArchiveTextBufferWriter &rhs);
+                                    ArchiveTextBufferWriter        (const ArchiveTextBufferWriter &rhs);
         ArchiveTextBufferWriter &   operator =                  (const ArchiveTextBufferWriter &rhs);
 
     public:
-        virtual                     ~ArchiveTextBufferWriter	(void);
+        virtual                     ~ArchiveTextBufferWriter    (void);
 
     public:
 
@@ -66,10 +66,10 @@ class ArchiveTextBufferWriter: public Archive {
 
         /// Returns the stream
         /// \return stream
-        TextBufferStream&           stream                      (void)		{	return _buffer;	}
+        TextBufferStream&           stream                      (void)        {    return _buffer;    }
 
     private:
-        std::string					indent                      (void) const;
+        std::string                    indent                      (void) const;
 
         int32_t                       _indent;
         TextBufferStream            _buffer;

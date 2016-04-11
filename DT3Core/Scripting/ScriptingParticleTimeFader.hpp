@@ -3,7 +3,7 @@
 #define DT3_SCRIPTINGPARTICLETIMEFADER
 //==============================================================================
 ///
-///	File: ScriptingParticleTimeFader.hpp
+///    File: ScriptingParticleTimeFader.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -35,24 +35,24 @@ class ScriptingParticleTimeFader: public ScriptingBase {
         DEFINE_CREATE_AND_CLONE
         DEFINE_PLUG_NODE
 
-                                    ScriptingParticleTimeFader	(void);
-                                    ScriptingParticleTimeFader	(const ScriptingParticleTimeFader &rhs);
-        ScriptingParticleTimeFader&	operator =					(const ScriptingParticleTimeFader &rhs);
-        virtual						~ScriptingParticleTimeFader	(void);
+                                    ScriptingParticleTimeFader    (void);
+                                    ScriptingParticleTimeFader    (const ScriptingParticleTimeFader &rhs);
+        ScriptingParticleTimeFader&    operator =                    (const ScriptingParticleTimeFader &rhs);
+        virtual                        ~ScriptingParticleTimeFader    (void);
 
         virtual void                archive                 (const std::shared_ptr<Archive> &archive);
 
     public:
         /// Computes the value of the node
         /// \param plug plug to compute
-        bool					compute					(const PlugBase *plug);
+        bool                    compute                    (const PlugBase *plug);
 
     private:
-        Plug<DTfloat>				_time_begin_fade;
-        Plug<DTfloat>				_time_end_fade;
+        Plug<DTfloat>                _time_begin_fade;
+        Plug<DTfloat>                _time_end_fade;
 
-        Plug<std::shared_ptr<Particles>>		_in;
-        Plug<std::shared_ptr<Particles>>		_out;
+        Plug<std::shared_ptr<Particles>>        _in;
+        Plug<std::shared_ptr<Particles>>        _out;
 
 };
 

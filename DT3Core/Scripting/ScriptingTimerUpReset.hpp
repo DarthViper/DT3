@@ -3,7 +3,7 @@
 #define DT3_SCRIPTINGTIMERUPRESET
 //==============================================================================
 ///
-///	File: ScriptingTimerUpReset.hpp
+///    File: ScriptingTimerUpReset.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -29,10 +29,10 @@ class ScriptingTimerUpReset: public ScriptingBase {
         DEFINE_CREATE_AND_CLONE
         DEFINE_PLUG_NODE
 
-                                    ScriptingTimerUpReset	(void);
-                                    ScriptingTimerUpReset	(const ScriptingTimerUpReset &rhs);
-        ScriptingTimerUpReset &		operator =				(const ScriptingTimerUpReset &rhs);
-        virtual                     ~ScriptingTimerUpReset	(void);
+                                    ScriptingTimerUpReset    (void);
+                                    ScriptingTimerUpReset    (const ScriptingTimerUpReset &rhs);
+        ScriptingTimerUpReset &        operator =                (const ScriptingTimerUpReset &rhs);
+        virtual                     ~ScriptingTimerUpReset    (void);
 
         virtual void                archive                 (const std::shared_ptr<Archive> &archive);
 
@@ -49,13 +49,13 @@ class ScriptingTimerUpReset: public ScriptingBase {
         void                        tick                    (const DTfloat dt);
 
     private:
-        DTfloat						_upper_range;
+        DTfloat                        _upper_range;
 
-        Plug<DTfloat>				_speed;
-        Plug<bool>				_active;
+        Plug<DTfloat>                _speed;
+        Plug<bool>                _active;
 
-        Plug<DTfloat>				_time;
-        Plug<DTfloat>				_t;
+        Plug<DTfloat>                _time;
+        Plug<DTfloat>                _t;
 
         bool                   _reset_when_inactive;
 };

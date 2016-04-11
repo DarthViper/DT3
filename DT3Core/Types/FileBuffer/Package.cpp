@@ -1,12 +1,12 @@
 //==============================================================================
-///	
-///	File: Package.cpp
-///	
+///    
+///    File: Package.cpp
+///    
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
 /// This file is subject to the terms and conditions defined in
 /// file 'LICENSE.txt', which is part of this source code package.
-///	
+///    
 //==============================================================================
 
 #include "DT3Core/Types/FileBuffer/Package.hpp"
@@ -29,7 +29,7 @@ Package::Package (void)
 {
 
 }
-		
+        
 Package::~Package (void)
 {
 
@@ -37,7 +37,7 @@ Package::~Package (void)
 
 //==============================================================================
 //==============================================================================
-		
+        
 DTerr Package::load_package (const FilePath &pathname)
 {
     LOG_MESSAGE << "Loading package: " << pathname.full_path();
@@ -59,32 +59,32 @@ DTerr Package::load_package (const FilePath &pathname)
     
     if (magic != 0x5041434B) // i.e. PACK
         return DT3_ERR_FILE_WRONG_TYPE;
-    	
-	// read the number of paths in the package
-	uint32_t num_paths;
-	file >> num_paths;
-	
-	// Info for all of the entries in the package
-	for (uint32_t i = 0; i < num_paths; ++i) {
-		Entry entry;		
-		file >> entry._name;
-		file >> entry._start;
-		file >> entry._length;
+        
+    // read the number of paths in the package
+    uint32_t num_paths;
+    file >> num_paths;
+    
+    // Info for all of the entries in the package
+    for (uint32_t i = 0; i < num_paths; ++i) {
+        Entry entry;        
+        file >> entry._name;
+        file >> entry._start;
+        file >> entry._length;
         file >> entry._uncompressed_length;
-		
-		_entries[entry._name] = entry;
+        
+        _entries[entry._name] = entry;
         
         //LOG_MESSAGE << "Package file: " << entry._name << "   " << (pathname.full_path() + ":" + entry._name);
         LOG_MESSAGE     << "Package file: "
                         << entry._name << "   "
                         << entry._length << "   "
                         << entry._start;
-		
-		// add the entry to the globals manager
-		Globals::set_global(entry._name, pathname.full_path() + ":" + entry._name, Globals::VOLATILE);
-	}
-    	
-	return DT3_ERR_NONE;
+        
+        // add the entry to the globals manager
+        Globals::set_global(entry._name, pathname.full_path() + ":" + entry._name, Globals::VOLATILE);
+    }
+        
+    return DT3_ERR_NONE;
 }
 
 //==============================================================================
@@ -92,9 +92,9 @@ DTerr Package::load_package (const FilePath &pathname)
 
 DTerr Package::start_and_length(const FilePath &pathname, DTsize &start, DTsize &length, DTsize &uncompressed_length) const
 {
-	std::map<std::string, Entry>::const_iterator entry = _entries.find(pathname.file_name());
-	if (entry == _entries.end())
-		return DT3_ERR_FILE_OPEN_FAILED;
+    std::map<std::string, Entry>::const_iterator entry = _entries.find(pathname.file_name());
+    if (entry == _entries.end())
+        return DT3_ERR_FILE_OPEN_FAILED;
 
     start = entry->second._start + _offset;
     length = entry->second._length;
@@ -102,7 +102,7 @@ DTerr Package::start_and_length(const FilePath &pathname, DTsize &start, DTsize 
     
     return DT3_ERR_NONE;
 }
-	
+    
 //==============================================================================
 //==============================================================================
 

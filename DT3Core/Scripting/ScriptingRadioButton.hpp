@@ -1,7 +1,7 @@
 #pragma once
 //==============================================================================
 ///
-///	File: ScriptingRadioButton.hpp
+///    File: ScriptingRadioButton.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -34,7 +34,7 @@ class ScriptingRadioButton: public ScriptingBase {
 
                                     ScriptingRadioButton    (void);
                                     ScriptingRadioButton    (const ScriptingRadioButton &rhs);
-        ScriptingRadioButton &		operator =				(const ScriptingRadioButton &rhs);
+        ScriptingRadioButton &        operator =                (const ScriptingRadioButton &rhs);
         virtual                     ~ScriptingRadioButton   (void);
 
         virtual void                archive                 (const std::shared_ptr<Archive> &archive);

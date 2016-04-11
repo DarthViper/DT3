@@ -1,7 +1,7 @@
 #pragma once
 //==============================================================================
 ///
-///	File: EdLevelLaunchDialog.hpp
+///    File: EdLevelLaunchDialog.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -34,7 +34,7 @@ class EdLevelLaunchDialog: public QDialog
     Q_OBJECT
 
     public:
-                                        EdLevelLaunchDialog		(void);
+                                        EdLevelLaunchDialog        (void);
                                         ~EdLevelLaunchDialog    (void);
 
     public slots:

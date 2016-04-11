@@ -3,7 +3,7 @@
 #define DT3_SCRIPTINGTIMERRANGED
 //==============================================================================
 ///
-///	File: ScriptingTimerRanged.hpp
+///    File: ScriptingTimerRanged.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -29,10 +29,10 @@ class ScriptingTimerRanged: public ScriptingBase {
         DEFINE_CREATE_AND_CLONE
         DEFINE_PLUG_NODE
 
-                                    ScriptingTimerRanged	(void);
-                                    ScriptingTimerRanged	(const ScriptingTimerRanged &rhs);
-        ScriptingTimerRanged &		operator =				(const ScriptingTimerRanged &rhs);
-        virtual                     ~ScriptingTimerRanged	(void);
+                                    ScriptingTimerRanged    (void);
+                                    ScriptingTimerRanged    (const ScriptingTimerRanged &rhs);
+        ScriptingTimerRanged &        operator =                (const ScriptingTimerRanged &rhs);
+        virtual                     ~ScriptingTimerRanged    (void);
 
         virtual void                archive                 (const std::shared_ptr<Archive> &archive);
 
@@ -48,15 +48,15 @@ class ScriptingTimerRanged: public ScriptingBase {
         /// \param dt delta time
         void                        tick                    (const DTfloat dt);
     private:
-        Plug<DTfloat>				_lower_bound;
-        Plug<DTfloat>				_upper_bound;
+        Plug<DTfloat>                _lower_bound;
+        Plug<DTfloat>                _upper_bound;
 
-        Plug<DTfloat>				_speed;
-        Plug<bool>				_count_up;
-        Plug<bool>				_count_down;
-        Plug<DTfloat>				_time;
-        Plug<DTfloat>				_t;
-        Plug<bool>				_counting;
+        Plug<DTfloat>                _speed;
+        Plug<bool>                _count_up;
+        Plug<bool>                _count_down;
+        Plug<DTfloat>                _time;
+        Plug<DTfloat>                _t;
+        Plug<bool>                _counting;
 };
 
 //==============================================================================

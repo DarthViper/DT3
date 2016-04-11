@@ -1,7 +1,7 @@
 #pragma once
 //==============================================================================
 ///
-///	File: ScriptingOpenURL.hpp
+///    File: ScriptingOpenURL.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -35,7 +35,7 @@ class ScriptingOpenURL: public ScriptingBase {
 
                                     ScriptingOpenURL        (void);
                                     ScriptingOpenURL        (const ScriptingOpenURL &rhs);
-        ScriptingOpenURL &          operator =				(const ScriptingOpenURL &rhs);
+        ScriptingOpenURL &          operator =                (const ScriptingOpenURL &rhs);
         virtual                     ~ScriptingOpenURL       (void);
 
         virtual void                archive                 (const std::shared_ptr<Archive> &archive);

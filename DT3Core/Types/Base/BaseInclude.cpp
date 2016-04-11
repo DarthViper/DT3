@@ -1,12 +1,12 @@
 //==============================================================================
-///	
-///	File: BaseInclude.cpp
-///	
+///    
+///    File: BaseInclude.cpp
+///    
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
 /// This file is subject to the terms and conditions defined in
 /// file 'LICENSE.txt', which is part of this source code package.
-///	
+///    
 //==============================================================================
 
 #include "DT3Core/Types/Base/BaseInclude.hpp"
@@ -38,8 +38,8 @@ const DTerr DT3_ERR_NET_UNKNOWN = 4001;
 
 const DTerr DT3_ERR_THREAD_FAIL = 5000;
 
-const DTerr	DT3_ERR_NAT_SUCCESS = 8000;
-const DTerr	DT3_ERR_NAT_FAIL = 8001;
+const DTerr    DT3_ERR_NAT_SUCCESS = 8000;
+const DTerr    DT3_ERR_NAT_FAIL = 8001;
 
 //==============================================================================
 //==============================================================================

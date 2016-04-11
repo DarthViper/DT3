@@ -3,7 +3,7 @@
 #define DT3_SCRIPTINGVECTOR3PASSTHROUGH
 //==============================================================================
 ///
-///	File: ScriptingVector3Passthrough.hpp
+///    File: ScriptingVector3Passthrough.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -35,20 +35,20 @@ class ScriptingVector3Passthrough: public ScriptingBase {
 
                                         ScriptingVector3Passthrough     (void);
                                         ScriptingVector3Passthrough     (const ScriptingVector3Passthrough &rhs);
-        ScriptingVector3Passthrough &	operator =                      (const ScriptingVector3Passthrough &rhs);
-        virtual							~ScriptingVector3Passthrough    (void);
+        ScriptingVector3Passthrough &    operator =                      (const ScriptingVector3Passthrough &rhs);
+        virtual                            ~ScriptingVector3Passthrough    (void);
 
-        virtual void				archive                 (const std::shared_ptr<Archive> &archive);
+        virtual void                archive                 (const std::shared_ptr<Archive> &archive);
 
     public:
         /// Computes the value of the node
         /// \param plug plug to compute
-        bool					compute					(const PlugBase *plug);
+        bool                    compute                    (const PlugBase *plug);
 
     private:
-        Plug<Vector3>				_in;
-        Plug<bool>				_enable;
-        Plug<Vector3>				_out;
+        Plug<Vector3>                _in;
+        Plug<bool>                _enable;
+        Plug<Vector3>                _out;
 };
 
 //==============================================================================

@@ -1,7 +1,7 @@
 #pragma once
 //==============================================================================
 ///
-///	File: ComponentDrawCamera.hpp
+///    File: ComponentDrawCamera.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -33,9 +33,9 @@ class ComponentDrawCamera: public ComponentBase {
         DEFINE_CREATE_AND_CLONE
         DEFINE_PLUG_NODE
 
-                                    ComponentDrawCamera	(void);
-                                    ComponentDrawCamera	(const ComponentDrawCamera &rhs);
-        ComponentDrawCamera &		operator =			(const ComponentDrawCamera &rhs);
+                                    ComponentDrawCamera    (void);
+                                    ComponentDrawCamera    (const ComponentDrawCamera &rhs);
+        ComponentDrawCamera &        operator =            (const ComponentDrawCamera &rhs);
         virtual                     ~ComponentDrawCamera(void);
 
         virtual void                archive             (const std::shared_ptr<Archive> &archive);

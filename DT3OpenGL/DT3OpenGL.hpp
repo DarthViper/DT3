@@ -3,7 +3,7 @@
 #define DT3_DT3OPENGL
 //==============================================================================
 ///
-///	File: DT3OpenGL.hpp
+///    File: DT3OpenGL.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///

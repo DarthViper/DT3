@@ -1,12 +1,12 @@
 //==============================================================================
-///	
-///	File: GUILayoutPolicy.cpp
-///	
+///    
+///    File: GUILayoutPolicy.cpp
+///    
 /// Copyright (C) 2000-2014 by Smells Like Donkey, Inc. All rights reserved.
 ///
 /// This file is subject to the terms and conditions defined in
 /// file 'LICENSE.txt', which is part of this source code package.
-///	
+///    
 //==============================================================================
 
 #include "DT3Core/Types/GUI/GUILayoutPolicy.hpp"
@@ -26,7 +26,7 @@ GUILayoutPolicy::GUILayoutPolicy (void)
 {  
 
 }
-	
+    
 GUILayoutPolicy::GUILayoutPolicy (const GUILayoutPolicy &rhs)
     :   _policy (rhs._policy),
         _value  (rhs._value)
@@ -39,14 +39,14 @@ GUILayoutPolicy& GUILayoutPolicy::operator = (const GUILayoutPolicy &rhs)
     _policy = rhs._policy;
     _value = rhs._value;
 
-	return *this;
+    return *this;
 }
-		
+        
 GUILayoutPolicy::~GUILayoutPolicy (void)
 {
 
 }
-	
+    
 //==============================================================================
 //==============================================================================
 

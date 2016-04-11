@@ -3,7 +3,7 @@
 #define EDLEVELPROPERTYENUMFIELD
 //==============================================================================
 ///
-///	File: EdLevelPropertyEnumField.hpp
+///    File: EdLevelPropertyEnumField.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -48,8 +48,8 @@ class EdLevelPropertyEnumField : public EdLevelPropertyBase
     Q_OBJECT
 
     public:
-                                        EdLevelPropertyEnumField		(EdLevelPropertiesWindow *parent, std::shared_ptr<PlugNode> node, std::shared_ptr<ArchiveData> data);
-                                        ~EdLevelPropertyEnumField	(void);
+                                        EdLevelPropertyEnumField        (EdLevelPropertiesWindow *parent, std::shared_ptr<PlugNode> node, std::shared_ptr<ArchiveData> data);
+                                        ~EdLevelPropertyEnumField    (void);
 
         /// Gets the value of the field
         /// \return value of field

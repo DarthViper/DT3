@@ -3,7 +3,7 @@
 #define DT3_SOUNDRESOURCE
 //==============================================================================
 ///
-///	File: SoundResource.hpp
+///    File: SoundResource.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -38,10 +38,10 @@ class SoundResource: public Resource {
         DEFINE_TYPE(SoundResource,Resource)
         DEFINE_CREATE
 
-                                        SoundResource		(void);
+                                        SoundResource        (void);
     private:
-                                        SoundResource		(const SoundResource &rhs);
-        SoundResource &                 operator =			(const SoundResource &rhs);
+                                        SoundResource        (const SoundResource &rhs);
+        SoundResource &                 operator =            (const SoundResource &rhs);
     public:
         virtual                         ~SoundResource      (void);
 
@@ -56,7 +56,7 @@ class SoundResource: public Resource {
         /// \param pathname path to resource
         /// \param args importer args
         /// \return error code
-        DTerr                           import				(const FilePath &pathname, std::string args);
+        DTerr                           import                (const FilePath &pathname, std::string args);
 
         enum Format {
             FORMAT_MONO16,
@@ -65,24 +65,24 @@ class SoundResource: public Resource {
 
         /// Sets the format of the sound file.
         /// \param format format of sound file
-        void                            set_format          (Format format)         {	_format = format;			}
+        void                            set_format          (Format format)         {    _format = format;            }
 
         /// Returns format of the sound file
         /// \return format of sound file
-        Format                          format              (void) const            {	return (Format) _format;	}
+        Format                          format              (void) const            {    return (Format) _format;    }
 
         /// Sets frequency of sound data
         /// \param frequency frequency of sound data
-        void                            set_frequency       (uint32_t frequency)		{	_frequency = frequency;		}
+        void                            set_frequency       (uint32_t frequency)        {    _frequency = frequency;        }
 
         /// Returns frequency of sound data
         /// \return frequency of sound data
-        uint32_t                          frequency           (void) const            {	return _frequency;			}
+        uint32_t                          frequency           (void) const            {    return _frequency;            }
 
         /// Returns the raw sound data of streaming sound
         /// \param packet sound packet
         /// \param chunk_index index of streaming chunk
-        void                            streamed_chunk		(SoundPacket &packet, DTsize chunk_index) const;
+        void                            streamed_chunk        (SoundPacket &packet, DTsize chunk_index) const;
 
         /// Returns the number of streaming chunks given chunk size
         /// \return number of streaming chunks

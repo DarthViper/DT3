@@ -3,7 +3,7 @@
 #define DT3_ANALYTICS
 //==============================================================================
 ///
-///	File: Analytics.hpp
+///    File: Analytics.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -26,10 +26,10 @@ namespace DT3 {
 
 class Analytics {
     private:
-        inline					Analytics			(void)  {}
-                                Analytics			(const Analytics &rhs);
-        Analytics &				operator =			(const Analytics &rhs);
-                                ~Analytics			(void);
+        inline                    Analytics            (void)  {}
+                                Analytics            (const Analytics &rhs);
+        Analytics &                operator =            (const Analytics &rhs);
+                                ~Analytics            (void);
 
     public:
 

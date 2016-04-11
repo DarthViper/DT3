@@ -1,12 +1,12 @@
 //==============================================================================
-///	
-///	File: ArchiveTextBufferReader.cpp
-///	
+///    
+///    File: ArchiveTextBufferReader.cpp
+///    
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
 /// This file is subject to the terms and conditions defined in
 /// file 'LICENSE.txt', which is part of this source code package.
-///	
+///    
 //==============================================================================
 
 #include "DT3Core/Types/FileBuffer/ArchiveTextBufferReader.hpp"
@@ -29,7 +29,7 @@ ArchiveTextBufferReader::ArchiveTextBufferReader (void)
 {    
 
 }
-			
+            
 ArchiveTextBufferReader::~ArchiveTextBufferReader (void)
 {
 
@@ -40,11 +40,11 @@ ArchiveTextBufferReader::~ArchiveTextBufferReader (void)
 
 void ArchiveTextBufferReader::eat_whitespace (void)
 {
-	DTcharacter c = _buffer.peek();
-	while (::isspace(c)) {
-		_buffer.ignore();
-		c = _buffer.peek();
-	}
+    DTcharacter c = _buffer.peek();
+    while (::isspace(c)) {
+        _buffer.ignore();
+        c = _buffer.peek();
+    }
 }
 
 //==============================================================================
@@ -52,18 +52,18 @@ void ArchiveTextBufferReader::eat_whitespace (void)
 
 Archive& ArchiveTextBufferReader::operator << (const ArchiveData& data)
 {
-	// Fill out the current domain with ArchiveData objects
-	if (data.flags() & DATA_PERSISTENT) {
-		eat_whitespace();
-		
-		// read in a line
-		DTcharacter line_buf[2048];
-		_buffer.line(line_buf, sizeof(line_buf));
-        		
-		// Parse the line out
-		std::string line(line_buf);
+    // Fill out the current domain with ArchiveData objects
+    if (data.flags() & DATA_PERSISTENT) {
+        eat_whitespace();
+        
+        // read in a line
+        DTcharacter line_buf[2048];
+        _buffer.line(line_buf, sizeof(line_buf));
+                
+        // Parse the line out
+        std::string line(line_buf);
         line = MoreStrings::trim(line);
-				
+                
         std::string::size_type sep = line.find_first_of('=');
         
         std::string parameter, value;
@@ -82,13 +82,13 @@ Archive& ArchiveTextBufferReader::operator << (const ArchiveData& data)
             }
 
         }
-		
-		TextBufferStream stream(value);
+        
+        TextBufferStream stream(value);
         stream.set_ignore_whitespace(true);
-		data.set_value(stream);
-	}
-	
-	return *this;
+        data.set_value(stream);
+    }
+    
+    return *this;
 }
 
 //==============================================================================
@@ -96,17 +96,17 @@ Archive& ArchiveTextBufferReader::operator << (const ArchiveData& data)
 
 void ArchiveTextBufferReader::push_domain (const std::string &domain)
 {
-	std::string d;
-	_buffer >> d;
-	
+    std::string d;
+    _buffer >> d;
+    
     if (domain != d) {
         ERRORMSG("push_domain: File cannot be read");
     }
         
-	std::string open_brace;
-	_buffer >> open_brace;
-	eat_whitespace();
-	
+    std::string open_brace;
+    _buffer >> open_brace;
+    eat_whitespace();
+    
     if (open_brace != "{") {
         ERRORMSG("push_domain: File cannot be read");
     }
@@ -115,9 +115,9 @@ void ArchiveTextBufferReader::push_domain (const std::string &domain)
 
 void ArchiveTextBufferReader::pop_domain (void)
 {
-	std::string close_brace;
-	_buffer >> close_brace;
-	eat_whitespace();
+    std::string close_brace;
+    _buffer >> close_brace;
+    eat_whitespace();
 
     if (close_brace != "}") {
         ERRORMSG("pop_domain: File cannot be read");
@@ -129,12 +129,12 @@ void ArchiveTextBufferReader::pop_domain (void)
 
 bool ArchiveTextBufferReader::is_reading (void) const
 {
-	return true;
+    return true;
 }
 
 bool ArchiveTextBufferReader::is_writing (void) const
 {
-	return false;
+    return false;
 }
 
 //==============================================================================

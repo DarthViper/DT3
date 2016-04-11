@@ -3,7 +3,7 @@
 #define DT3_SCRIPTINGSTRINGEQUALS
 //==============================================================================
 ///
-///	File: ScriptingStringEquals.hpp
+///    File: ScriptingStringEquals.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -33,22 +33,22 @@ class ScriptingStringEquals: public ScriptingBase {
         DEFINE_CREATE_AND_CLONE
         DEFINE_PLUG_NODE
 
-                                    ScriptingStringEquals		(void);
-                                    ScriptingStringEquals		(const ScriptingStringEquals &rhs);
-        ScriptingStringEquals &     operator =					(const ScriptingStringEquals &rhs);
-        virtual						~ScriptingStringEquals      (void);
+                                    ScriptingStringEquals        (void);
+                                    ScriptingStringEquals        (const ScriptingStringEquals &rhs);
+        ScriptingStringEquals &     operator =                    (const ScriptingStringEquals &rhs);
+        virtual                        ~ScriptingStringEquals      (void);
 
-        virtual void				archive                 (const std::shared_ptr<Archive> &archive);
+        virtual void                archive                 (const std::shared_ptr<Archive> &archive);
 
     public:
         /// Computes the value of the node
         /// \param plug plug to compute
-        bool					compute					(const PlugBase *plug);
+        bool                    compute                    (const PlugBase *plug);
 
     private:
         Plug<std::string>           _in1;
-        Plug<std::string>			_in2;
-        Plug<bool>				_out;
+        Plug<std::string>            _in2;
+        Plug<bool>                _out;
 };
 
 //==============================================================================

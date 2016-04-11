@@ -1,12 +1,12 @@
 //==============================================================================
-///	
-///	File: ScriptingPulse.cpp
-///	
+///    
+///    File: ScriptingPulse.cpp
+///    
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
 /// This file is subject to the terms and conditions defined in
 /// file 'LICENSE.txt', which is part of this source code package.
-///	
+///    
 //==============================================================================
 
 #include "DT3Core/Scripting/ScriptingPulse.hpp"
@@ -38,12 +38,12 @@ IMPLEMENT_EVENT_INFO_INDEX(_in_e)
 
 BEGIN_IMPLEMENT_PLUGS(ScriptingPulse)
 
-	PLUG_INIT(_in,"In")
-		.set_input(true)
-		.affects(PLUG_INFO_INDEX(_out));
+    PLUG_INIT(_in,"In")
+        .set_input(true)
+        .affects(PLUG_INFO_INDEX(_out));
 
-	PLUG_INIT(_out,"Out")
-		.set_output(true);
+    PLUG_INIT(_out,"Out")
+        .set_output(true);
         
     EVENT_INIT(_in_e, "In_Event")
         .set_input(true)
@@ -56,22 +56,22 @@ END_IMPLEMENT_PLUGS
 //==============================================================================
 
 ScriptingPulse::ScriptingPulse (void)
-    :   _time		(0.0F),
-        _pulse_time	(1.0F),
-		_in			(PLUG_INFO_INDEX(_in), false),
-		_out		(PLUG_INFO_INDEX(_out), false),
-		_in_e		(EVENT_INFO_INDEX(_in_e))
+    :   _time        (0.0F),
+        _pulse_time    (1.0F),
+        _in            (PLUG_INFO_INDEX(_in), false),
+        _out        (PLUG_INFO_INDEX(_out), false),
+        _in_e        (EVENT_INFO_INDEX(_in_e))
 {  
 
 }
-		
+        
 ScriptingPulse::ScriptingPulse (const ScriptingPulse &rhs)
-    :   ScriptingBase	(rhs),
-		_time			(rhs._time),
-        _pulse_time		(rhs._pulse_time),
-		_in				(rhs._in),
-		_out			(rhs._out),
-		_in_e           (EVENT_INFO_INDEX(_in_e))
+    :   ScriptingBase    (rhs),
+        _time            (rhs._time),
+        _pulse_time        (rhs._pulse_time),
+        _in                (rhs._in),
+        _out            (rhs._out),
+        _in_e           (EVENT_INFO_INDEX(_in_e))
 {   
 
 }
@@ -80,16 +80,16 @@ ScriptingPulse & ScriptingPulse::operator = (const ScriptingPulse &rhs)
 {
     // Make sure we are not assigning the class to itself
     if (&rhs != this) {        
-		ScriptingBase::operator = (rhs);
+        ScriptingBase::operator = (rhs);
 
-		_time = rhs._time;
-		_in = rhs._in;
-		_pulse_time = rhs._pulse_time;
-		_out = rhs._out;
-	}
+        _time = rhs._time;
+        _in = rhs._in;
+        _pulse_time = rhs._pulse_time;
+        _out = rhs._out;
+    }
     return (*this);
 }
-			
+            
 ScriptingPulse::~ScriptingPulse (void)
 {
 
@@ -102,13 +102,13 @@ void ScriptingPulse::archive (const std::shared_ptr<Archive> &archive)
 {
     ScriptingBase::archive(archive);
 
-	archive->push_domain (class_id ());
-	
-	*archive << ARCHIVE_PLUG(_in, DATA_PERSISTENT | DATA_SETTABLE);
+    archive->push_domain (class_id ());
+    
+    *archive << ARCHIVE_PLUG(_in, DATA_PERSISTENT | DATA_SETTABLE);
     *archive << ARCHIVE_DATA(_time, DATA_PERSISTENT);
-	*archive << ARCHIVE_DATA(_pulse_time, DATA_PERSISTENT | DATA_SETTABLE);
-	*archive << ARCHIVE_PLUG(_out, DATA_PERSISTENT);
-	        					
+    *archive << ARCHIVE_DATA(_pulse_time, DATA_PERSISTENT | DATA_SETTABLE);
+    *archive << ARCHIVE_PLUG(_out, DATA_PERSISTENT);
+                                
     archive->pop_domain ();
 }
 
@@ -126,7 +126,7 @@ void ScriptingPulse::eventIn (PlugNode *sender)
 
 void ScriptingPulse::tick (const DTfloat dt)
 {
-	PROFILER(SCRIPTING);
+    PROFILER(SCRIPTING);
 
     _time += dt;
     

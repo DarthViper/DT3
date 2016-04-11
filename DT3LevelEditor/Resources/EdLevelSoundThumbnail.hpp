@@ -3,7 +3,7 @@
 #define EDLEVELSOUNDTHUMBNAIL
 //==============================================================================
 ///
-///	File: EdLevelSoundThumbnail.hpp
+///    File: EdLevelSoundThumbnail.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -39,8 +39,8 @@ class EdLevelSoundThumbnail : public QPushButton
     Q_OBJECT
 
     public:
-                            EdLevelSoundThumbnail		(QWidget *parent);
-                            ~EdLevelSoundThumbnail		(void);
+                            EdLevelSoundThumbnail        (QWidget *parent);
+                            ~EdLevelSoundThumbnail        (void);
 
     public:
         void                setSound            (const FilePath &path);

@@ -3,7 +3,7 @@
 #define DT3_IMPORTERMATERIAL
 //==============================================================================
 ///
-///	File: ImporterMaterial.hpp
+///    File: ImporterMaterial.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -35,21 +35,21 @@ class ImporterMaterial: public BaseClass {
         DEFINE_TYPE(ImporterMaterial,BaseClass)
 
 
-                                    ImporterMaterial		(void);
+                                    ImporterMaterial        (void);
 
     private:
-                                    ImporterMaterial		(const ImporterMaterial &rhs);
-        ImporterMaterial &			operator =				(const ImporterMaterial &rhs);
+                                    ImporterMaterial        (const ImporterMaterial &rhs);
+        ImporterMaterial &            operator =                (const ImporterMaterial &rhs);
 
     public:
-        virtual						~ImporterMaterial		(void);
+        virtual                        ~ImporterMaterial        (void);
 
     public:
         /// Imports a material into an MaterialResource
         /// \param target object to import material into
         /// \param args arguments to importer
         /// \return error code
-        virtual DTerr				import					(MaterialResource *target, std::string args) = 0;
+        virtual DTerr                import                    (MaterialResource *target, std::string args) = 0;
 
 };
 

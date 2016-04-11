@@ -1,7 +1,7 @@
 #pragma once
 //==============================================================================
 ///
-///	File: AnimationKeyframe.hpp
+///    File: AnimationKeyframe.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -34,38 +34,38 @@ class AnimationKeyframe {
         DEFINE_TYPE_SIMPLE_BASE(AnimationKeyframe)
 
 
-                                AnimationKeyframe	(void);
-                                AnimationKeyframe	(const AnimationKeyframe &rhs);
-        AnimationKeyframe &		operator =			(const AnimationKeyframe &rhs);
-                                ~AnimationKeyframe	(void);
+                                AnimationKeyframe    (void);
+                                AnimationKeyframe    (const AnimationKeyframe &rhs);
+        AnimationKeyframe &        operator =            (const AnimationKeyframe &rhs);
+                                ~AnimationKeyframe    (void);
 
-        void					archive             (const std::shared_ptr<Archive> &archive);
+        void                    archive             (const std::shared_ptr<Archive> &archive);
 
     public:
 
         /// Sets transform of the key frame
         /// \param transform transform
-        void					set_transform		(const Matrix4 &transform);
+        void                    set_transform        (const Matrix4 &transform);
 
         /// Sets transform of the key frame
         /// \param transform transform
-        void					set_transform		(const Quaternion &orientation, const Vector3 &translation);
+        void                    set_transform        (const Quaternion &orientation, const Vector3 &translation);
 
 
         /// Returns transform of the key frame
         /// \return transform
-        const Quaternion &      orientation         (void) const				{	return _orientation;				}
+        const Quaternion &      orientation         (void) const                {    return _orientation;                }
 
         /// Returns transform of the key frame
         /// \return transform
-        const Vector3 &         translation         (void) const				{	return _translation;				}
+        const Vector3 &         translation         (void) const                {    return _translation;                }
 
         DEFINE_ACCESSORS(time, set_time, DTfloat, _time)
 
     public:
-        DTfloat					_time;
-        Quaternion				_orientation;
-        Vector3					_translation;
+        DTfloat                    _time;
+        Quaternion                _orientation;
+        Vector3                    _translation;
 };
 
 //==============================================================================

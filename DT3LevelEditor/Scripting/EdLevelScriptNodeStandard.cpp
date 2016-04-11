@@ -1,6 +1,6 @@
 //==============================================================================
 ///
-///	File: EdLevelScriptNodeStandard.cpp
+///    File: EdLevelScriptNodeStandard.cpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -50,7 +50,7 @@ const int EdLevelScriptNodeStandard::ICON_PAD = 5;
 //==============================================================================
 
 namespace DT3 {
-    extern std::map<std::string,std::set<std::string>>&	component_map	(void);
+    extern std::map<std::string,std::set<std::string>>&    component_map    (void);
 }
 
 using namespace DT3;
@@ -59,12 +59,12 @@ using namespace DT3;
 //==============================================================================
 
 EdLevelScriptNodeStandard::EdLevelScriptNodeStandard(std::shared_ptr<WorldNode> node)
-    :	_width			(WIDTH),
-        _height			(TITLE_HEIGHT),
-        _input_width	(0.0F),
-        _output_width	(0.0F),
-        _title_font		("Arial", 9),
-        _item_font		("Arial", 9)
+    :    _width            (WIDTH),
+        _height            (TITLE_HEIGHT),
+        _input_width    (0.0F),
+        _output_width    (0.0F),
+        _title_font        ("Arial", 9),
+        _item_font        ("Arial", 9)
 {
     _node = node;
 
@@ -330,13 +330,13 @@ void EdLevelScriptNodeStandard::addPlugsAndEvents(int &input_pos, int &output_po
 
         float title_width = (float) fm.width( MoreStrings::captialize_and_format( p->name() ).c_str());
 
-        if (p->is_input())	{
+        if (p->is_input())    {
             plug._plug = p;
             plug._input_position = input_pos++;
             _input_width = std::max(_input_width, title_width);
         }
 
-        if (p->is_output())	{
+        if (p->is_output())    {
             plug._plug = p;
             plug._output_position = output_pos++;
             _output_width = std::max(_output_width, title_width);
@@ -356,13 +356,13 @@ void EdLevelScriptNodeStandard::addPlugsAndEvents(int &input_pos, int &output_po
 
         float title_width = (float) fm.width( MoreStrings::captialize_and_format( e->name() ).c_str());
 
-        if ( e->is_input())	{
+        if ( e->is_input())    {
             event._event = e;
             event._input_position = input_pos++;
             _input_width = std::max(_input_width, title_width);
         }
 
-        if ( e->is_output())	{
+        if ( e->is_output())    {
             event._event = e;
             event._output_position = output_pos++;
             _output_width = std::max(_output_width, title_width);
@@ -555,7 +555,7 @@ void EdLevelScriptNodeStandard::paint(QPainter *painter, const QStyleOptionGraph
     // Plugs first
     for (QInputOutputPlug & plug :  _plugs) {
         if (plug._input_position >= 0) {
-            painter->drawText(	QRectF(	ITEM_PAD,
+            painter->drawText(    QRectF(    ITEM_PAD,
                                         plug._input_position * ITEM_HEIGHT + TITLE_HEIGHT,
                                         _input_width,
                                         ITEM_HEIGHT),
@@ -566,7 +566,7 @@ void EdLevelScriptNodeStandard::paint(QPainter *painter, const QStyleOptionGraph
         }
 
         if (plug._output_position >= 0) {
-            painter->drawText(	QRectF(	_width - ITEM_PAD - _output_width,
+            painter->drawText(    QRectF(    _width - ITEM_PAD - _output_width,
                                         plug._output_position * ITEM_HEIGHT + TITLE_HEIGHT,
                                         _output_width,
                                         ITEM_HEIGHT),
@@ -581,7 +581,7 @@ void EdLevelScriptNodeStandard::paint(QPainter *painter, const QStyleOptionGraph
     // Events second
     for (QInputOutputEvent &event : _events) {
         if (event._input_position >= 0) {
-            painter->drawText(	QRectF(	ITEM_PAD,
+            painter->drawText(    QRectF(    ITEM_PAD,
                                         event._input_position * ITEM_HEIGHT + TITLE_HEIGHT,
                                         _input_width,
                                         ITEM_HEIGHT),
@@ -592,7 +592,7 @@ void EdLevelScriptNodeStandard::paint(QPainter *painter, const QStyleOptionGraph
         }
 
         if (event._output_position >= 0) {
-            painter->drawText(	QRectF(	_width - ITEM_PAD - _output_width,
+            painter->drawText(    QRectF(    _width - ITEM_PAD - _output_width,
                                         event._output_position * ITEM_HEIGHT + TITLE_HEIGHT,
                                         _output_width,
                                         ITEM_HEIGHT),

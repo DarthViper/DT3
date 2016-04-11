@@ -3,7 +3,7 @@
 #define DT3_SCRIPTINGCOLORINTERPOLATOR
 //==============================================================================
 ///
-///	File: ScriptingColorInterpolator.hpp
+///    File: ScriptingColorInterpolator.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -29,10 +29,10 @@ class ScriptingColorInterpolator: public ScriptingBase {
         DEFINE_CREATE_AND_CLONE
         DEFINE_PLUG_NODE
 
-                                        ScriptingColorInterpolator	(void);
-                                        ScriptingColorInterpolator	(const ScriptingColorInterpolator &rhs);
+                                        ScriptingColorInterpolator    (void);
+                                        ScriptingColorInterpolator    (const ScriptingColorInterpolator &rhs);
         ScriptingColorInterpolator &    operator =                  (const ScriptingColorInterpolator &rhs);
-        virtual                         ~ScriptingColorInterpolator	(void);
+        virtual                         ~ScriptingColorInterpolator    (void);
 
         virtual void                    archive                     (const std::shared_ptr<Archive> &archive);
 

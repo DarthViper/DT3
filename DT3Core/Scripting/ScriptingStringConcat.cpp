@@ -1,12 +1,12 @@
 //==============================================================================
-///	
-///	File: ScriptingStringConcat.cpp
-///	
+///    
+///    File: ScriptingStringConcat.cpp
+///    
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
 /// This file is subject to the terms and conditions defined in
 /// file 'LICENSE.txt', which is part of this source code package.
-///	
+///    
 //==============================================================================
 
 #include "DT3Core/Scripting/ScriptingStringConcat.hpp"
@@ -37,20 +37,20 @@ IMPLEMENT_PLUG_INFO_INDEX(_out);
 
 BEGIN_IMPLEMENT_PLUGS(ScriptingStringConcat)
 
-	PLUG_INIT(_in1,"In_1")
-		.set_input(true)
-		.affects(PLUG_INFO_INDEX(_out));
-		
-	PLUG_INIT(_in2,"In_2")
-		.set_input(true)
-		.affects(PLUG_INFO_INDEX(_out));
+    PLUG_INIT(_in1,"In_1")
+        .set_input(true)
+        .affects(PLUG_INFO_INDEX(_out));
+        
+    PLUG_INIT(_in2,"In_2")
+        .set_input(true)
+        .affects(PLUG_INFO_INDEX(_out));
 
-	PLUG_INIT(_insert_space,"Insert_Space")
-		.set_input(true)
-		.affects(PLUG_INFO_INDEX(_out));
+    PLUG_INIT(_insert_space,"Insert_Space")
+        .set_input(true)
+        .affects(PLUG_INFO_INDEX(_out));
 
-	PLUG_INIT(_out,"Out")
-		.set_output(true);
+    PLUG_INIT(_out,"Out")
+        .set_output(true);
         
 END_IMPLEMENT_PLUGS
 
@@ -59,20 +59,20 @@ END_IMPLEMENT_PLUGS
 //==============================================================================
 
 ScriptingStringConcat::ScriptingStringConcat (void)
-    :   _in1			(PLUG_INFO_INDEX(_in1), ""),
-		_in2			(PLUG_INFO_INDEX(_in2), ""),
+    :   _in1            (PLUG_INFO_INDEX(_in1), ""),
+        _in2            (PLUG_INFO_INDEX(_in2), ""),
         _insert_space   (PLUG_INFO_INDEX(_insert_space), true),
-		_out			(PLUG_INFO_INDEX(_out), "")
+        _out            (PLUG_INFO_INDEX(_out), "")
 {  
 
 }
-		
+        
 ScriptingStringConcat::ScriptingStringConcat (const ScriptingStringConcat &rhs)
-    :   ScriptingBase	(rhs),
-		_in1			(rhs._in1),
-		_in2			(rhs._in2),
+    :   ScriptingBase    (rhs),
+        _in1            (rhs._in1),
+        _in2            (rhs._in2),
         _insert_space   (rhs._insert_space),
-		_out			(rhs._out)
+        _out            (rhs._out)
 {   
 
 }
@@ -81,16 +81,16 @@ ScriptingStringConcat & ScriptingStringConcat::operator = (const ScriptingString
 {
     // Make sure we are not assigning the class to itself
     if (&rhs != this) {        
-		ScriptingBase::operator = (rhs);
+        ScriptingBase::operator = (rhs);
 
-		_in1 = rhs._in1;
-		_in2 = rhs._in2;
+        _in1 = rhs._in1;
+        _in2 = rhs._in2;
         _insert_space = rhs._insert_space;
-		_out = rhs._out;
-	}
+        _out = rhs._out;
+    }
     return (*this);
 }
-			
+            
 ScriptingStringConcat::~ScriptingStringConcat (void)
 {
 
@@ -103,13 +103,13 @@ void ScriptingStringConcat::archive (const std::shared_ptr<Archive> &archive)
 {
     ScriptingBase::archive(archive);
 
-	archive->push_domain (class_id ());
-	   
-	*archive << ARCHIVE_PLUG(_in1, DATA_PERSISTENT | DATA_SETTABLE);
-	*archive << ARCHIVE_PLUG(_in2, DATA_PERSISTENT | DATA_SETTABLE);
-	*archive << ARCHIVE_PLUG(_insert_space, DATA_PERSISTENT | DATA_SETTABLE);
-	*archive << ARCHIVE_PLUG(_out, DATA_PERSISTENT);
-														     					
+    archive->push_domain (class_id ());
+       
+    *archive << ARCHIVE_PLUG(_in1, DATA_PERSISTENT | DATA_SETTABLE);
+    *archive << ARCHIVE_PLUG(_in2, DATA_PERSISTENT | DATA_SETTABLE);
+    *archive << ARCHIVE_PLUG(_insert_space, DATA_PERSISTENT | DATA_SETTABLE);
+    *archive << ARCHIVE_PLUG(_out, DATA_PERSISTENT);
+                                                                                 
     archive->pop_domain ();
 }
 
@@ -118,11 +118,11 @@ void ScriptingStringConcat::archive (const std::shared_ptr<Archive> &archive)
 
 bool ScriptingStringConcat::compute (const PlugBase *plug)
 {
-	PROFILER(SCRIPTING);
+    PROFILER(SCRIPTING);
 
     if (super_type::compute(plug))  return true;
 
-	if (plug == &_out) {
+    if (plug == &_out) {
         
         if (_insert_space) {
             _out = (*_in1) + " " + (*_in2);
@@ -130,11 +130,11 @@ bool ScriptingStringConcat::compute (const PlugBase *plug)
             _out = (*_in1) + (*_in2);
         }
     
-		_out.set_clean();
-		return true;
-	}
-	
-	return false;
+        _out.set_clean();
+        return true;
+    }
+    
+    return false;
 }
 
 //==============================================================================

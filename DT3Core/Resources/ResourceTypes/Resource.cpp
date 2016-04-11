@@ -1,12 +1,12 @@
 //==============================================================================
-///	
-///	File: Resource.cpp
-///	
+///    
+///    File: Resource.cpp
+///    
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
 /// This file is subject to the terms and conditions defined in
 /// file 'LICENSE.txt', which is part of this source code package.
-///	
+///    
 //==============================================================================
 
 #include "DT3Core/Resources/ResourceTypes/Resource.hpp"
@@ -23,11 +23,11 @@ namespace DT3 {
 //==============================================================================
 
 Resource::Resource (void)
-	:	_time_loaded        (0)
+    :    _time_loaded        (0)
 {    
 
 }
-			
+            
 Resource::~Resource (void)
 { 
 
@@ -38,14 +38,14 @@ Resource::~Resource (void)
 
 DTerr Resource::import (const FilePath &pathname, std::string args)
 {
-	_file_path = pathname;
-	_args = args;
-	
-	_time_loaded = Time::seconds();
+    _file_path = pathname;
+    _args = args;
+    
+    _time_loaded = Time::seconds();
 
-	// Spew to the log
+    // Spew to the log
     LOG_MESSAGE << "Loading " << _file_path.full_path() << " (UID = " << unique_id() << ")";
-	
+    
     return DT3_ERR_NONE;
 }
 
@@ -58,7 +58,7 @@ DTerr Resource::reload (void)
 //==============================================================================
 
 bool Resource::is_changed (void) const
-{	
+{    
     if (_time_loaded < _file_path.modification_date()) {
         return true;
     }

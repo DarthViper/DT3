@@ -3,7 +3,7 @@
 #define DT3_SCRIPTINGANIMATIONCYCLER
 //==============================================================================
 ///
-///	File: ScriptingAnimationCycler.hpp
+///    File: ScriptingAnimationCycler.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -38,22 +38,22 @@ class ScriptingAnimationCycler: public ScriptingBase {
                                     ScriptingAnimationCycler    (void);
                                     ScriptingAnimationCycler    (const ScriptingAnimationCycler &rhs);
         ScriptingAnimationCycler &  operator =                  (const ScriptingAnimationCycler &rhs);
-        virtual						~ScriptingAnimationCycler   (void);
+        virtual                        ~ScriptingAnimationCycler   (void);
 
-        virtual void				archive                     (const std::shared_ptr<Archive> &archive);
+        virtual void                archive                     (const std::shared_ptr<Archive> &archive);
 
     public:
         /// Computes the value of the node
         /// \param plug plug to compute
-        bool					compute                     (const PlugBase *plug);
+        bool                    compute                     (const PlugBase *plug);
 
     private:
 
-        Plug<DTfloat>				_in;
-        Plug<DTfloat>				_out;
+        Plug<DTfloat>                _in;
+        Plug<DTfloat>                _out;
 
-        Plug<DTfloat>				_min_time;
-        Plug<DTfloat>				_max_time;
+        Plug<DTfloat>                _min_time;
+        Plug<DTfloat>                _max_time;
 };
 
 //==============================================================================

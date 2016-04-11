@@ -1,12 +1,12 @@
 //==============================================================================
-///	
-///	File: ScriptingOpenURL.cpp
-///	
+///    
+///    File: ScriptingOpenURL.cpp
+///    
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
 /// This file is subject to the terms and conditions defined in
 /// file 'LICENSE.txt', which is part of this source code package.
-///	
+///    
 //==============================================================================
 
 #include "DT3Core/Scripting/ScriptingOpenURL.hpp"
@@ -31,7 +31,7 @@ namespace DT3 {
 IMPLEMENT_FACTORY_CREATION_SCRIPT(ScriptingOpenURL,"Internet",NULL)
 IMPLEMENT_PLUG_NODE(ScriptingOpenURL)
 
-IMPLEMENT_PLUG_INFO_INDEX(_url)		
+IMPLEMENT_PLUG_INFO_INDEX(_url)        
 IMPLEMENT_EVENT_INFO_INDEX(_go)
 
 //==============================================================================
@@ -39,10 +39,10 @@ IMPLEMENT_EVENT_INFO_INDEX(_go)
 
 BEGIN_IMPLEMENT_PLUGS(ScriptingOpenURL)
 
-	PLUG_INIT(_url,"URL")
-		.set_input(true);
+    PLUG_INIT(_url,"URL")
+        .set_input(true);
         
-	EVENT_INIT(_go,"Go")
+    EVENT_INIT(_go,"Go")
         .set_input(true)
         .set_event(&ScriptingOpenURL::go);
 
@@ -58,9 +58,9 @@ ScriptingOpenURL::ScriptingOpenURL (void)
 {  
 
 }
-		
+        
 ScriptingOpenURL::ScriptingOpenURL (const ScriptingOpenURL &rhs)
-    :   ScriptingBase	(rhs),
+    :   ScriptingBase    (rhs),
         _url            (rhs._url),
         _go             (rhs._go)
 {   
@@ -71,13 +71,13 @@ ScriptingOpenURL & ScriptingOpenURL::operator = (const ScriptingOpenURL &rhs)
 {
     // Make sure we are not assigning the class to itself
     if (&rhs != this) {        
-		ScriptingBase::operator = (rhs);
+        ScriptingBase::operator = (rhs);
 
         _url = rhs._url;
-	}
+    }
     return (*this);
 }
-			
+            
 ScriptingOpenURL::~ScriptingOpenURL (void)
 {
 
@@ -90,10 +90,10 @@ void ScriptingOpenURL::archive (const std::shared_ptr<Archive> &archive)
 {
     ScriptingBase::archive(archive);
 
-	archive->push_domain (class_id ());
+    archive->push_domain (class_id ());
 
-	*archive << ARCHIVE_PLUG(_url, DATA_PERSISTENT | DATA_SETTABLE);
-		        					
+    *archive << ARCHIVE_PLUG(_url, DATA_PERSISTENT | DATA_SETTABLE);
+                                    
     archive->pop_domain ();
 }
 
@@ -102,7 +102,7 @@ void ScriptingOpenURL::archive (const std::shared_ptr<Archive> &archive)
 
 void ScriptingOpenURL::go (PlugNode *sender)
 {
-	PROFILER(SCRIPTING);
+    PROFILER(SCRIPTING);
 
     HAL::launch_browser(URL(_url));
 }

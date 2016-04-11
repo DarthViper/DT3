@@ -3,7 +3,7 @@
 #define DT3_SYSTEM
 //==============================================================================
 ///
-///	File: System.hpp
+///    File: System.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -38,10 +38,10 @@ class Application;
 class System {
 
     private:
-                                        System						(void);
-                                        System						(const System &rhs);
-        System &						operator =					(const System &rhs);
-        virtual							~System						(void);
+                                        System                        (void);
+                                        System                        (const System &rhs);
+        System &                        operator =                    (const System &rhs);
+        virtual                            ~System                        (void);
 
     public:
 

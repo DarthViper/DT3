@@ -1,12 +1,12 @@
 //==============================================================================
-///	
-///	File: ScriptingSoundResample.cpp
-///	
+///    
+///    File: ScriptingSoundResample.cpp
+///    
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
 /// This file is subject to the terms and conditions defined in
 /// file 'LICENSE.txt', which is part of this source code package.
-///	
+///    
 //==============================================================================
 
 #include "DT3Core/Scripting/ScriptingSoundResample.hpp"
@@ -36,17 +36,17 @@ IMPLEMENT_PLUG_INFO_INDEX(_sampling_rate)
 
 BEGIN_IMPLEMENT_PLUGS(ScriptingSoundResample)
 
-	PLUG_INIT(_sound_packet_in,"Sound_Packet_In")
+    PLUG_INIT(_sound_packet_in,"Sound_Packet_In")
         .affects(PLUG_INFO_INDEX(_sound_packet_out))
-		.set_input(true)
+        .set_input(true)
         .set_always_dirty(true);
 
-	PLUG_INIT(_sound_packet_out,"Sound_Packet_Out")
+    PLUG_INIT(_sound_packet_out,"Sound_Packet_Out")
         .set_single_output(true)
-		.set_output(true)
+        .set_output(true)
         .set_always_dirty(true);
     
-	PLUG_INIT(_sampling_rate,"Sampling_Rate")
+    PLUG_INIT(_sampling_rate,"Sampling_Rate")
         .set_input(true);
     
 END_IMPLEMENT_PLUGS
@@ -57,37 +57,37 @@ END_IMPLEMENT_PLUGS
 
 ScriptingSoundResample::ScriptingSoundResample (void)
     :   _sound_packet_in    (PLUG_INFO_INDEX(_sound_packet_in)),
-		_sound_packet_out   (PLUG_INFO_INDEX(_sound_packet_out)),
-		_sampling_rate      (PLUG_INFO_INDEX(_sampling_rate), 44100),
+        _sound_packet_out   (PLUG_INFO_INDEX(_sound_packet_out)),
+        _sampling_rate      (PLUG_INFO_INDEX(_sampling_rate), 44100),
         _sample_in         (0.0F)
 {  
 
 }
-		
+        
 ScriptingSoundResample::ScriptingSoundResample (const ScriptingSoundResample &rhs)
     :   ScriptingSoundBase  (rhs),
-		_sound_packet_in	(rhs._sound_packet_in),
-		_sound_packet_out   (rhs._sound_packet_out),
+        _sound_packet_in    (rhs._sound_packet_in),
+        _sound_packet_out   (rhs._sound_packet_out),
         _sampling_rate      (rhs._sampling_rate),
         _sample_in          (rhs._sample_in)
 {   
 
-}	
+}    
 
 ScriptingSoundResample & ScriptingSoundResample::operator = (const ScriptingSoundResample &rhs)
 {
     // Make sure we are not assigning the class to itself
     if (&rhs != this) {        
-		ScriptingSoundBase::operator = (rhs);
+        ScriptingSoundBase::operator = (rhs);
 
-		_sound_packet_in = rhs._sound_packet_in;
-		_sound_packet_out = rhs._sound_packet_out;
+        _sound_packet_in = rhs._sound_packet_in;
+        _sound_packet_out = rhs._sound_packet_out;
         _sampling_rate = rhs._sampling_rate;
         _sample_in = rhs._sample_in;
-	}
+    }
     return (*this);
 }
-			
+            
 ScriptingSoundResample::~ScriptingSoundResample (void)
 {
 
@@ -100,10 +100,10 @@ void ScriptingSoundResample::archive (const std::shared_ptr<Archive> &archive)
 {
     ScriptingSoundBase::archive(archive);
 
-	archive->push_domain (class_id ());
-	        
-	*archive << ARCHIVE_PLUG(_sampling_rate, DATA_PERSISTENT | DATA_SETTABLE);
-                                                                			
+    archive->push_domain (class_id ());
+            
+    *archive << ARCHIVE_PLUG(_sampling_rate, DATA_PERSISTENT | DATA_SETTABLE);
+                                                                            
     archive->pop_domain ();
 }
 
@@ -112,11 +112,11 @@ void ScriptingSoundResample::archive (const std::shared_ptr<Archive> &archive)
 
 bool ScriptingSoundResample::compute (const PlugBase *plug)
 {
-	PROFILER(SOUND);
+    PROFILER(SOUND);
 
     if (super_type::compute(plug))  return true;
 
-	if (plug == &_sound_packet_out) {
+    if (plug == &_sound_packet_out) {
     
         SoundPacket &sound_packet_in = _sound_packet_in.as_ref_no_compute();
         SoundPacket &sound_packet_out = _sound_packet_out.as_ref_no_compute();
@@ -180,12 +180,12 @@ bool ScriptingSoundResample::compute (const PlugBase *plug)
             sound_packet_out = sound_packet_in;
         }
     
-		_sound_packet_out.set_clean();
-		
-		return true;
-	}
-	
-	return false;
+        _sound_packet_out.set_clean();
+        
+        return true;
+    }
+    
+    return false;
 }
 
 //==============================================================================

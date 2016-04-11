@@ -3,7 +3,7 @@
 #define DT3_SCRIPTINGGREATERTHAN
 //==============================================================================
 ///
-///	File: ScriptingInRange.hpp
+///    File: ScriptingInRange.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -29,23 +29,23 @@ class ScriptingInRange: public ScriptingBase {
         DEFINE_CREATE_AND_CLONE
         DEFINE_PLUG_NODE
 
-                                    ScriptingInRange		(void);
-                                    ScriptingInRange		(const ScriptingInRange &rhs);
-        ScriptingInRange &			operator =				(const ScriptingInRange &rhs);
-        virtual						~ScriptingInRange		(void);
+                                    ScriptingInRange        (void);
+                                    ScriptingInRange        (const ScriptingInRange &rhs);
+        ScriptingInRange &            operator =                (const ScriptingInRange &rhs);
+        virtual                        ~ScriptingInRange        (void);
 
-        virtual void				archive                 (const std::shared_ptr<Archive> &archive);
+        virtual void                archive                 (const std::shared_ptr<Archive> &archive);
 
     public:
         /// Computes the value of the node
         /// \param plug plug to compute
-        bool					compute					(const PlugBase *plug);
+        bool                    compute                    (const PlugBase *plug);
 
     private:
-        Plug<DTfloat>				_in;
-        Plug<DTfloat>				_lower;
-        Plug<DTfloat>				_upper;
-        Plug<bool>				_out;
+        Plug<DTfloat>                _in;
+        Plug<DTfloat>                _lower;
+        Plug<DTfloat>                _upper;
+        Plug<bool>                _out;
 };
 
 //==============================================================================

@@ -1,6 +1,6 @@
 //==============================================================================
 ///
-///	File: ScriptingARTracker.cpp
+///    File: ScriptingARTracker.cpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///

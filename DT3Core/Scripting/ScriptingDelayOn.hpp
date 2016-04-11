@@ -3,7 +3,7 @@
 #define DT3_SCRIPTINGDELAYON
 //==============================================================================
 ///
-///	File: ScriptingDelayOn.hpp
+///    File: ScriptingDelayOn.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -33,10 +33,10 @@ class ScriptingDelayOn: public ScriptingBase {
         DEFINE_CREATE_AND_CLONE
         DEFINE_PLUG_NODE
 
-                                    ScriptingDelayOn		(void);
-                                    ScriptingDelayOn		(const ScriptingDelayOn &rhs);
-        ScriptingDelayOn &			operator =				(const ScriptingDelayOn &rhs);
-        virtual                     ~ScriptingDelayOn		(void);
+                                    ScriptingDelayOn        (void);
+                                    ScriptingDelayOn        (const ScriptingDelayOn &rhs);
+        ScriptingDelayOn &            operator =                (const ScriptingDelayOn &rhs);
+        virtual                     ~ScriptingDelayOn        (void);
 
         virtual void                archive                 (const std::shared_ptr<Archive> &archive);
 
@@ -53,11 +53,11 @@ class ScriptingDelayOn: public ScriptingBase {
         void                        tick                    (const DTfloat dt);
 
     private:
-        DTfloat						_time;
-        DTfloat						_delay;
+        DTfloat                        _time;
+        DTfloat                        _delay;
 
-        Plug<bool>				_in;
-        Plug<bool>				_out;
+        Plug<bool>                _in;
+        Plug<bool>                _out;
 };
 
 //==============================================================================

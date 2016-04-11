@@ -1,12 +1,12 @@
 //==============================================================================
-///	
-///	File: ScriptingSoundLowPassFilter3db.cpp
-///	
+///    
+///    File: ScriptingSoundLowPassFilter3db.cpp
+///    
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
 /// This file is subject to the terms and conditions defined in
 /// file 'LICENSE.txt', which is part of this source code package.
-///	
+///    
 //==============================================================================
 
 #include "DT3Core/Scripting/ScriptingSoundLowPassFilter3db.hpp"
@@ -37,18 +37,18 @@ IMPLEMENT_PLUG_INFO_INDEX(_cutoff_frequency)
 
 BEGIN_IMPLEMENT_PLUGS(ScriptingSoundLowPassFilter3db)
 
-	PLUG_INIT(_sound_packet_in,"Sound_Packet_In")
+    PLUG_INIT(_sound_packet_in,"Sound_Packet_In")
         .affects(PLUG_INFO_INDEX(_sound_packet_out))
-		.set_input(true)
+        .set_input(true)
         .set_always_dirty(true);
 
-	PLUG_INIT(_sound_packet_out,"Sound_Packet_Out")
+    PLUG_INIT(_sound_packet_out,"Sound_Packet_Out")
         .set_single_output(true)
-		.set_output(true)
+        .set_output(true)
         .set_always_dirty(true);
 
-	PLUG_INIT(_cutoff_frequency,"Cutoff_Frequency")
-		.set_input(true);
+    PLUG_INIT(_cutoff_frequency,"Cutoff_Frequency")
+        .set_input(true);
 
     
 END_IMPLEMENT_PLUGS
@@ -59,40 +59,40 @@ END_IMPLEMENT_PLUGS
 
 ScriptingSoundLowPassFilter3db::ScriptingSoundLowPassFilter3db (void)
     :   _sound_packet_in    (PLUG_INFO_INDEX(_sound_packet_in)),
-		_sound_packet_out   (PLUG_INFO_INDEX(_sound_packet_out)),
-		_cutoff_frequency   (PLUG_INFO_INDEX(_cutoff_frequency), 8000.0F),
+        _sound_packet_out   (PLUG_INFO_INDEX(_sound_packet_out)),
+        _cutoff_frequency   (PLUG_INFO_INDEX(_cutoff_frequency), 8000.0F),
         _last_sample_left   (0),
         _last_sample_right  (0)
 {  
 
 }
-		
+        
 ScriptingSoundLowPassFilter3db::ScriptingSoundLowPassFilter3db (const ScriptingSoundLowPassFilter3db &rhs)
     :   ScriptingSoundBase  (rhs),
-		_sound_packet_in	(rhs._sound_packet_in),
-		_sound_packet_out   (rhs._sound_packet_out),
+        _sound_packet_in    (rhs._sound_packet_in),
+        _sound_packet_out   (rhs._sound_packet_out),
         _cutoff_frequency   (rhs._cutoff_frequency),
         _last_sample_left   (rhs._last_sample_left),
         _last_sample_right  (rhs._last_sample_right)
 {   
 
-}	
+}    
 
 ScriptingSoundLowPassFilter3db & ScriptingSoundLowPassFilter3db::operator = (const ScriptingSoundLowPassFilter3db &rhs)
 {
     // Make sure we are not assigning the class to itself
     if (&rhs != this) {        
-		ScriptingSoundBase::operator = (rhs);
+        ScriptingSoundBase::operator = (rhs);
 
-		_sound_packet_in = rhs._sound_packet_in;
-		_sound_packet_out = rhs._sound_packet_out;
+        _sound_packet_in = rhs._sound_packet_in;
+        _sound_packet_out = rhs._sound_packet_out;
         _cutoff_frequency = rhs._cutoff_frequency;
         _last_sample_left = rhs._last_sample_left;
         _last_sample_right = rhs._last_sample_right;
-	}
+    }
     return (*this);
 }
-			
+            
 ScriptingSoundLowPassFilter3db::~ScriptingSoundLowPassFilter3db (void)
 {
 
@@ -105,10 +105,10 @@ void ScriptingSoundLowPassFilter3db::archive (const std::shared_ptr<Archive> &ar
 {
     ScriptingSoundBase::archive(archive);
 
-	archive->push_domain (class_id ());
-	        
-	*archive << ARCHIVE_PLUG(_cutoff_frequency, DATA_PERSISTENT | DATA_SETTABLE);
-                                                                			
+    archive->push_domain (class_id ());
+            
+    *archive << ARCHIVE_PLUG(_cutoff_frequency, DATA_PERSISTENT | DATA_SETTABLE);
+                                                                            
     archive->pop_domain ();
 }
 
@@ -117,11 +117,11 @@ void ScriptingSoundLowPassFilter3db::archive (const std::shared_ptr<Archive> &ar
 
 bool ScriptingSoundLowPassFilter3db::compute (const PlugBase *plug)
 {
-	PROFILER(SOUND);
+    PROFILER(SOUND);
 
     if (super_type::compute(plug))  return true;
 
-	if (plug == &_sound_packet_out) {
+    if (plug == &_sound_packet_out) {
     
         SoundPacket &sound_packet_in = _sound_packet_in.as_ref_no_compute();
         SoundPacket &sound_packet_out = _sound_packet_out.as_ref_no_compute();
@@ -184,12 +184,12 @@ bool ScriptingSoundLowPassFilter3db::compute (const PlugBase *plug)
 
         }
     
-		_sound_packet_out.set_clean();
-		
-		return true;
-	}
-	
-	return false;
+        _sound_packet_out.set_clean();
+        
+        return true;
+    }
+    
+    return false;
 }
 
 //==============================================================================

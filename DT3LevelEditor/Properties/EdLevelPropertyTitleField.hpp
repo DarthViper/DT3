@@ -3,7 +3,7 @@
 #define EDLEVELPROPERTYTITLEFIELD
 //==============================================================================
 ///
-///	File: EdLevelPropertyTitleField.hpp
+///    File: EdLevelPropertyTitleField.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -45,7 +45,7 @@ class EdLevelPropertyTitleField : public EdLevelPropertyBase
     Q_OBJECT
 
     public:
-                                        EdLevelPropertyTitleField		(EdLevelPropertiesWindow *parent, std::shared_ptr<PlugNode> node, std::shared_ptr<ArchiveData> data);
+                                        EdLevelPropertyTitleField        (EdLevelPropertiesWindow *parent, std::shared_ptr<PlugNode> node, std::shared_ptr<ArchiveData> data);
                                         ~EdLevelPropertyTitleField      (void);
 
         /// Gets the value of the field

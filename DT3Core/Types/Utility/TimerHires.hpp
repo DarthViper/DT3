@@ -3,7 +3,7 @@
 #define DT3_TIMERHIRES
 //==============================================================================
 ///
-///	File: TimerHires.hpp
+///    File: TimerHires.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -27,9 +27,9 @@ class TimerHires {
     public:
         DEFINE_TYPE_SIMPLE_BASE(TimerHires)
 
-                                TimerHires				(void);
-                                TimerHires				(const TimerHires &rhs);
-        TimerHires &			operator =              (const TimerHires &rhs);
+                                TimerHires                (void);
+                                TimerHires                (const TimerHires &rhs);
+        TimerHires &            operator =              (const TimerHires &rhs);
                                 ~TimerHires             (void);
 
     public:
@@ -38,15 +38,15 @@ class TimerHires {
         DTdouble                delta_time              (void);
 
         /// Reset the absolute timer
-        void					reset_abs_time          (void);
+        void                    reset_abs_time          (void);
 
         /// Get the absolute timer
         /// \return time
         DTdouble                abs_time                (void) const;
 
     protected:
-        void					set_last_time           (DTdouble last_time)    {	_last_time = last_time;	}
-        DTdouble                last_time               (void)					{	return _last_time;		}
+        void                    set_last_time           (DTdouble last_time)    {    _last_time = last_time;    }
+        DTdouble                last_time               (void)                    {    return _last_time;        }
 
     private:
         DTdouble                _last_time;

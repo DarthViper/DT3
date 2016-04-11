@@ -1,7 +1,7 @@
 #pragma once
 //==============================================================================
 ///
-///	File: World.hpp
+///    File: World.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -44,14 +44,14 @@ class World: public PlugNode {
                                     World                   (const World &rhs);
         World &                     operator =              (const World &rhs);
     public:
-        virtual						~World                  (void);
+        virtual                        ~World                  (void);
 
-        virtual void				archive                 (const std::shared_ptr<Archive> &archive);
-        virtual void				archive_done            (const std::shared_ptr<Archive> &archive);
+        virtual void                archive                 (const std::shared_ptr<Archive> &archive);
+        virtual void                archive_done            (const std::shared_ptr<Archive> &archive);
 
     public:
         /// Called to uninitialize the object
-        virtual void				uninitialize            (void);
+        virtual void                uninitialize            (void);
 
         /// Called when everything is completely done loading
         virtual void                ready_to_go             (void)                      {}
@@ -67,7 +67,7 @@ class World: public PlugNode {
         /// Description
         /// \param param description
         /// \return description
-        virtual void				add_group               (const std::shared_ptr<Group> &group);
+        virtual void                add_group               (const std::shared_ptr<Group> &group);
 
         /// Description
         /// \param param description
@@ -77,7 +77,7 @@ class World: public PlugNode {
         /// Description
         /// \param param description
         /// \return description
-        void						remove_group            (const std::shared_ptr<Group> group);
+        void                        remove_group            (const std::shared_ptr<Group> group);
 
         /// Description
         /// \param param description
@@ -92,7 +92,7 @@ class World: public PlugNode {
         /// Description
         /// \param param description
         /// \return description
-        virtual void				add_node                (const std::shared_ptr<WorldNode> &node);
+        virtual void                add_node                (const std::shared_ptr<WorldNode> &node);
 
         /// Description
         /// \param param description
@@ -102,7 +102,7 @@ class World: public PlugNode {
         /// Description
         /// \param param description
         /// \return description
-        virtual void				remove_node             (const std::shared_ptr<WorldNode> node);
+        virtual void                remove_node             (const std::shared_ptr<WorldNode> node);
 
         /// Description
         /// \param param description
@@ -137,7 +137,7 @@ class World: public PlugNode {
         /// Description
         /// \param param description
         /// \return description
-        const std::list<std::shared_ptr<Group>>&    groups          (void)	{	return _groups;			}
+        const std::list<std::shared_ptr<Group>>&    groups          (void)    {    return _groups;            }
 
         /// Description
         /// \param param description
@@ -152,7 +152,7 @@ class World: public PlugNode {
         /// Description
         /// \param param description
         /// \return description
-        const std::shared_ptr<GameController>&      game_controller (void)  {	return _game_controller;	}
+        const std::shared_ptr<GameController>&      game_controller (void)  {    return _game_controller;    }
 
 
         //
@@ -186,7 +186,7 @@ class World: public PlugNode {
 
 
         //
-        //	draw
+        //    draw
         //
 
         /// Description

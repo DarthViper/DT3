@@ -1,12 +1,12 @@
 //==============================================================================
-///	
-///	File: Box.cpp
-///	
+///    
+///    File: Box.cpp
+///    
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
 /// This file is subject to the terms and conditions defined in
 /// file 'LICENSE.txt', which is part of this source code package.
-///	
+///    
 //==============================================================================
 
 #include "DT3Core/Types/Math/Box.hpp"
@@ -31,7 +31,7 @@ Box::Box (void)
 }
 
 Box::Box (const Box &rhs)
-    : 	Rectangle(rhs),
+    :     Rectangle(rhs),
         _minus_z    (rhs._minus_z),
         _plus_z     (rhs._plus_z)
 {
@@ -46,14 +46,14 @@ Box::Box (  const DTfloat mx, const DTfloat px,
 }
             
 Box& Box::operator = (const Box &rhs)
-{	
-	Rectangle::operator = (rhs);
+{    
+    Rectangle::operator = (rhs);
         
-	_minus_z = rhs._minus_z;
-	_plus_z = rhs._plus_z;
+    _minus_z = rhs._minus_z;
+    _plus_z = rhs._plus_z;
 
     return (*this);
-}	
+}    
 
 Box::~Box (void)
 {
@@ -65,25 +65,25 @@ Box::~Box (void)
 
 Stream& operator <<(Stream &s, const Box&v)
 {
-	s <<	v.minus_x() << Stream::fs << v.plus_x() << Stream::fs <<
-			v.minus_y() << Stream::fs << v.plus_y() << Stream::fs <<
-			v.minus_z() << Stream::fs << v.plus_z();
-	return s;
+    s <<    v.minus_x() << Stream::fs << v.plus_x() << Stream::fs <<
+            v.minus_y() << Stream::fs << v.plus_y() << Stream::fs <<
+            v.minus_z() << Stream::fs << v.plus_z();
+    return s;
 }
 
 Stream& operator >>(Stream &s, Box&v)
 {
-	DTfloat mx,my,mz,px,py,pz;
-	s >> mx >> px >> my >> py >> mz >> pz;
-	
-	v.set_minus_x(mx);
-	v.set_plus_x(px);
-	v.set_minus_y(my);
-	v.set_plus_y(py);
-	v.set_minus_z(mz);
-	v.set_plus_z(pz);
+    DTfloat mx,my,mz,px,py,pz;
+    s >> mx >> px >> my >> py >> mz >> pz;
+    
+    v.set_minus_x(mx);
+    v.set_plus_x(px);
+    v.set_minus_y(my);
+    v.set_plus_y(py);
+    v.set_minus_z(mz);
+    v.set_plus_z(pz);
 
-	return s;
+    return s;
 }
     
 //==============================================================================
@@ -95,7 +95,7 @@ bool Box::operator == (const Box& rhs) const
             (_minus_z == rhs._minus_z) &&
             (_plus_z == rhs._plus_z);
 }
-		
+        
 bool Box::operator != (const Box& rhs) const
 {
     return  Rectangle::operator!=(rhs) ||
@@ -106,7 +106,7 @@ bool Box::operator != (const Box& rhs) const
 //==============================================================================
 //==============================================================================
             
-void Box::set (	const DTfloat minus_x, const DTfloat plus_x, const DTfloat minus_y,
+void Box::set (    const DTfloat minus_x, const DTfloat plus_x, const DTfloat minus_y,
                 const DTfloat plus_y, const DTfloat minus_z, const DTfloat plus_z)
 {
     Rectangle::set(minus_x, plus_x, minus_y, plus_y);
@@ -213,7 +213,7 @@ bool Box::is_touching (const Vector3 &pt) const
         return true;
     else
         return false;
-	
+    
 }
 
 //==============================================================================
@@ -313,14 +313,14 @@ DTfloat Box::distance_to_point (const Vector3 &point) const
     DTfloat xdist, ydist, zdist;
     
     if (point.x > _plus_x)          xdist = point.x - _plus_x;
-    else if (point.x < _minus_x)	xdist = _minus_x - point.x;
+    else if (point.x < _minus_x)    xdist = _minus_x - point.x;
     else                            xdist = 0.0F;
 
     if (point.y > _plus_y)          ydist = point.y - _plus_y;
-    else if (point.y < _minus_y)	ydist = _minus_y - point.y;
+    else if (point.y < _minus_y)    ydist = _minus_y - point.y;
     else                            ydist = 0.0F;
 
-    if (point.z > _plus_z)			zdist = point.z - _plus_z;
+    if (point.z > _plus_z)            zdist = point.z - _plus_z;
     else if (point.z < _minus_z)    zdist = _minus_z - point.z;
     else                            zdist = 0.0F;
     
@@ -337,15 +337,15 @@ const Vector3 Box::closest_point (const Vector3 &pt) const
     DTfloat x, y, z;
     
     if (pt.x > _plus_x)         x = _plus_x;
-    else if (pt.x < _minus_x)	x = _minus_x;
+    else if (pt.x < _minus_x)    x = _minus_x;
     else                        x = pt.x;
 
     if (pt.y > _plus_y)         y = _plus_y;
-    else if (pt.y < _minus_y)	y = _minus_y;
+    else if (pt.y < _minus_y)    y = _minus_y;
     else                        y = pt.y;
 
     if (pt.z > _plus_z)         z = _plus_z;
-    else if (pt.z < _minus_z)	z = _minus_z;
+    else if (pt.z < _minus_z)    z = _minus_z;
     else                        z = pt.z;
     
     return {x,y,z};

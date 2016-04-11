@@ -1,7 +1,7 @@
 #pragma once
 //==============================================================================
 ///
-///	File: ImporterGeometry3DS.hpp
+///    File: ImporterGeometry3DS.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -38,73 +38,73 @@ class ImporterGeometry3DS: public ImporterGeometry {
         DEFINE_TYPE(ImporterGeometry3DS,ImporterGeometry)
         DEFINE_CREATE
 
-                                        ImporterGeometry3DS	(void);
+                                        ImporterGeometry3DS    (void);
 
     private:
-                                        ImporterGeometry3DS	(const ImporterGeometry3DS &rhs);
-        ImporterGeometry3DS &			operator =			(const ImporterGeometry3DS &rhs);
+                                        ImporterGeometry3DS    (const ImporterGeometry3DS &rhs);
+        ImporterGeometry3DS &            operator =            (const ImporterGeometry3DS &rhs);
 
     public:
-        virtual							~ImporterGeometry3DS(void);
+        virtual                            ~ImporterGeometry3DS(void);
 
     public:
         /// Imports an geometry into an GeometryResource
         /// \param target object to import geometry into
         /// \param args arguments to importer
         /// \retrun error code
-        virtual DTerr					import				(GeometryResource *target, std::string args);
+        virtual DTerr                    import                (GeometryResource *target, std::string args);
 
     private:
 
-        enum	{
-            CHUNK_MAIN3DS 			= 0x4D4D,
-            CHUNK_EDIT3DS 			= 0x3D3D,
-            CHUNK_EDITOBJECT		= 0x4000,
-            CHUNK_OBJ_TRIMESH		= 0x4100,
-            CHUNK_TRI_VERTEX		= 0x4110,
-            CHUNK_TRI_MAPPINGCOORDS	= 0x4140,
-            CHUNK_TRI_FACE			= 0x4120,
-            CHUNK_TRI_FACE_MAP		= 0x4130,
-            CHUNK_TRI_LOCAL			= 0x4160,
+        enum    {
+            CHUNK_MAIN3DS             = 0x4D4D,
+            CHUNK_EDIT3DS             = 0x3D3D,
+            CHUNK_EDITOBJECT        = 0x4000,
+            CHUNK_OBJ_TRIMESH        = 0x4100,
+            CHUNK_TRI_VERTEX        = 0x4110,
+            CHUNK_TRI_MAPPINGCOORDS    = 0x4140,
+            CHUNK_TRI_FACE            = 0x4120,
+            CHUNK_TRI_FACE_MAP        = 0x4130,
+            CHUNK_TRI_LOCAL            = 0x4160,
 
-            CHUNK_EDIT_MATERIAL		= 0xAFFF,
-            CHUNK_MAT_NAME01		= 0xA000,
-            //CHUNK_MAT_TEXTURE		= 0xA200,
-            //CHUNK_MAT_BUMPMAP		= 0xA230,
-            //CHUNK_MAT_MAPFILE		= 0xA300,
+            CHUNK_EDIT_MATERIAL        = 0xAFFF,
+            CHUNK_MAT_NAME01        = 0xA000,
+            //CHUNK_MAT_TEXTURE        = 0xA200,
+            //CHUNK_MAT_BUMPMAP        = 0xA230,
+            //CHUNK_MAT_MAPFILE        = 0xA300,
 
-            CHUNK_KEYF3DS			= 0xB000,
-            CHUNK_OBJDES			= 0xB002,
-            CHUNK_OBJHIERARCH		= 0xB010,
-            CHUNK_OBJPIVOT			= 0xB013
+            CHUNK_KEYF3DS            = 0xB000,
+            CHUNK_OBJDES            = 0xB002,
+            CHUNK_OBJHIERARCH        = 0xB010,
+            CHUNK_OBJPIVOT            = 0xB013
         };
 
-        uint32_t				read					(BinaryFileStream &in, uint8_t &v);
-        uint32_t				read					(BinaryFileStream &in, uint16_t &v);
-        uint32_t				read					(BinaryFileStream &in, int16_t &v);
-        uint32_t				read					(BinaryFileStream &in, uint32_t &v);
-        uint32_t				read					(BinaryFileStream &in, DTfloat &v);
-        uint32_t				read					(BinaryFileStream &in, std::string &v);
+        uint32_t                read                    (BinaryFileStream &in, uint8_t &v);
+        uint32_t                read                    (BinaryFileStream &in, uint16_t &v);
+        uint32_t                read                    (BinaryFileStream &in, int16_t &v);
+        uint32_t                read                    (BinaryFileStream &in, uint32_t &v);
+        uint32_t                read                    (BinaryFileStream &in, DTfloat &v);
+        uint32_t                read                    (BinaryFileStream &in, std::string &v);
 
-        uint32_t				parse_main_3DS			(BinaryFileStream &in, uint32_t owner_chunk_size);
-        uint32_t				parse_edit_3DS			(BinaryFileStream &in, uint32_t owner_chunk_size);
-        uint32_t				parse_edit_object       (BinaryFileStream &in, uint32_t owner_chunk_size);
-        uint32_t				parse_obj_trimesh       (BinaryFileStream &in, uint32_t owner_chunk_size);
+        uint32_t                parse_main_3DS            (BinaryFileStream &in, uint32_t owner_chunk_size);
+        uint32_t                parse_edit_3DS            (BinaryFileStream &in, uint32_t owner_chunk_size);
+        uint32_t                parse_edit_object       (BinaryFileStream &in, uint32_t owner_chunk_size);
+        uint32_t                parse_obj_trimesh       (BinaryFileStream &in, uint32_t owner_chunk_size);
 
-        uint32_t				parse_tri_vertex        (BinaryFileStream &in, uint32_t owner_chunk_size);
-        uint32_t				parse_tri_mapping_coords(BinaryFileStream &in, uint32_t owner_chunk_size);
-        uint32_t				parse_tri_face			(BinaryFileStream &in, uint32_t owner_chunk_size);
-        uint32_t				parse_tri_face_map      (BinaryFileStream &in, uint32_t owner_chunk_size);
-        uint32_t				parse_tri_local			(BinaryFileStream &in, uint32_t owner_chunk_size);
+        uint32_t                parse_tri_vertex        (BinaryFileStream &in, uint32_t owner_chunk_size);
+        uint32_t                parse_tri_mapping_coords(BinaryFileStream &in, uint32_t owner_chunk_size);
+        uint32_t                parse_tri_face            (BinaryFileStream &in, uint32_t owner_chunk_size);
+        uint32_t                parse_tri_face_map      (BinaryFileStream &in, uint32_t owner_chunk_size);
+        uint32_t                parse_tri_local            (BinaryFileStream &in, uint32_t owner_chunk_size);
 
-        uint32_t				parse_key_f3DS			(BinaryFileStream &in, uint32_t owner_chunk_size);
-        uint32_t				parse_obj_des           (BinaryFileStream &in, uint32_t owner_chunk_size);
-        uint32_t				parse_obj_hier			(BinaryFileStream &in, uint32_t owner_chunk_size);
+        uint32_t                parse_key_f3DS            (BinaryFileStream &in, uint32_t owner_chunk_size);
+        uint32_t                parse_obj_des           (BinaryFileStream &in, uint32_t owner_chunk_size);
+        uint32_t                parse_obj_hier            (BinaryFileStream &in, uint32_t owner_chunk_size);
 
-        uint32_t				parse_edit_material		(BinaryFileStream &in, uint32_t owner_chunk_size);
-        uint32_t				parse_mat_name_01       (BinaryFileStream &in, uint32_t owner_chunk_size);
+        uint32_t                parse_edit_material        (BinaryFileStream &in, uint32_t owner_chunk_size);
+        uint32_t                parse_mat_name_01       (BinaryFileStream &in, uint32_t owner_chunk_size);
 
-        uint32_t				parse_next_chunk        (BinaryFileStream &in, uint32_t owner_chunk_size);
+        uint32_t                parse_next_chunk        (BinaryFileStream &in, uint32_t owner_chunk_size);
 
 
     private:

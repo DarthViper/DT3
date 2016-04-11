@@ -1,7 +1,7 @@
 #pragma once
 //==============================================================================
 ///
-///	File: ScriptingCounter.hpp
+///    File: ScriptingCounter.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -32,17 +32,17 @@ class ScriptingCounter: public ScriptingBase {
         DEFINE_CREATE_AND_CLONE
         DEFINE_PLUG_NODE
 
-                                    ScriptingCounter		(void);
-                                    ScriptingCounter		(const ScriptingCounter &rhs);
-        ScriptingCounter &			operator =				(const ScriptingCounter &rhs);
-        virtual                     ~ScriptingCounter		(void);
+                                    ScriptingCounter        (void);
+                                    ScriptingCounter        (const ScriptingCounter &rhs);
+        ScriptingCounter &            operator =                (const ScriptingCounter &rhs);
+        virtual                     ~ScriptingCounter        (void);
 
         virtual void                archive                 (const std::shared_ptr<Archive> &archive);
 
     public:
         /// Computes the value of the node
         /// \param plug plug to compute
-        bool					compute					(const PlugBase *plug);
+        bool                    compute                    (const PlugBase *plug);
 
         /// Set Event
         void                        event_incr              (PlugNode *sender);
@@ -56,7 +56,7 @@ class ScriptingCounter: public ScriptingBase {
     private:
         Plug<int32_t>                 _min;
         Plug<int32_t>                 _max;
-        Plug<bool>				_wrap;
+        Plug<bool>                _wrap;
 
         Event                       _incr_e;
         Event                       _decr_e;

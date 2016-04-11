@@ -1,12 +1,12 @@
 //==============================================================================
-///	
-///	File: ScriptingVector3ToLengthSquared.cpp
-///	
+///    
+///    File: ScriptingVector3ToLengthSquared.cpp
+///    
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
 /// This file is subject to the terms and conditions defined in
 /// file 'LICENSE.txt', which is part of this source code package.
-///	
+///    
 //==============================================================================
 
 #include "DT3Core/Scripting/ScriptingVector3ToLengthSquared.hpp"
@@ -35,12 +35,12 @@ IMPLEMENT_PLUG_INFO_INDEX(_out)
 
 BEGIN_IMPLEMENT_PLUGS(ScriptingVector3ToLengthSquared)
 
-	PLUG_INIT(_in,"In")
-		.set_input(true)
-		.affects(PLUG_INFO_INDEX(_out));
+    PLUG_INIT(_in,"In")
+        .set_input(true)
+        .affects(PLUG_INFO_INDEX(_out));
 
-	PLUG_INIT(_out,"Out")
-		.set_output(true);
+    PLUG_INIT(_out,"Out")
+        .set_output(true);
         
 END_IMPLEMENT_PLUGS
 
@@ -49,16 +49,16 @@ END_IMPLEMENT_PLUGS
 //==============================================================================
 
 ScriptingVector3ToLengthSquared::ScriptingVector3ToLengthSquared (void)
-    :   _in				(PLUG_INFO_INDEX(_in), {0.0F,0.0F,0.0F}),
-		_out			(PLUG_INFO_INDEX(_out), 0.0F)
+    :   _in                (PLUG_INFO_INDEX(_in), {0.0F,0.0F,0.0F}),
+        _out            (PLUG_INFO_INDEX(_out), 0.0F)
 {  
 
 }
-		
+        
 ScriptingVector3ToLengthSquared::ScriptingVector3ToLengthSquared (const ScriptingVector3ToLengthSquared &rhs)
-    :   ScriptingBase	(rhs),
-		_in				(rhs._in),
-		_out			(rhs._out)
+    :   ScriptingBase    (rhs),
+        _in                (rhs._in),
+        _out            (rhs._out)
 {   
 
 }
@@ -67,14 +67,14 @@ ScriptingVector3ToLengthSquared & ScriptingVector3ToLengthSquared::operator = (c
 {
     // Make sure we are not assigning the class to itself
     if (&rhs != this) {        
-		ScriptingBase::operator = (rhs);
+        ScriptingBase::operator = (rhs);
 
-		_in = rhs._in;
-		_out = rhs._out;
-	}
+        _in = rhs._in;
+        _out = rhs._out;
+    }
     return (*this);
 }
-			
+            
 ScriptingVector3ToLengthSquared::~ScriptingVector3ToLengthSquared (void)
 {
 
@@ -87,11 +87,11 @@ void ScriptingVector3ToLengthSquared::archive (const std::shared_ptr<Archive> &a
 {
     ScriptingBase::archive(archive);
 
-	archive->push_domain (class_id ());
-	   
-	*archive << ARCHIVE_PLUG(_in, DATA_PERSISTENT | DATA_SETTABLE);
-	*archive << ARCHIVE_PLUG(_out, DATA_PERSISTENT);
-														     					
+    archive->push_domain (class_id ());
+       
+    *archive << ARCHIVE_PLUG(_in, DATA_PERSISTENT | DATA_SETTABLE);
+    *archive << ARCHIVE_PLUG(_out, DATA_PERSISTENT);
+                                                                                 
     archive->pop_domain ();
 }
 
@@ -100,17 +100,17 @@ void ScriptingVector3ToLengthSquared::archive (const std::shared_ptr<Archive> &a
 
 bool ScriptingVector3ToLengthSquared::compute (const PlugBase *plug)
 {
-	PROFILER(SCRIPTING);
+    PROFILER(SCRIPTING);
 
     if (super_type::compute(plug))  return true;
 
-	if (plug == &_out) {
-		_out = _in->abs2();
-		_out.set_clean();
-		return true;
-	}
-	
-	return false;
+    if (plug == &_out) {
+        _out = _in->abs2();
+        _out.set_clean();
+        return true;
+    }
+    
+    return false;
 }
 
 //==============================================================================

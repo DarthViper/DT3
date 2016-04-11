@@ -3,7 +3,7 @@
 #define DT3_SCRIPTINGMATRIXINVERSE
 //==============================================================================
 ///
-///	File: ScriptingMatrix3Inverse.hpp
+///    File: ScriptingMatrix3Inverse.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -36,19 +36,19 @@ class ScriptingMatrix3Inverse: public ScriptingBase {
 
                                     ScriptingMatrix3Inverse (void);
                                     ScriptingMatrix3Inverse (const ScriptingMatrix3Inverse &rhs);
-        ScriptingMatrix3Inverse &	operator =              (const ScriptingMatrix3Inverse &rhs);
-        virtual						~ScriptingMatrix3Inverse(void);
+        ScriptingMatrix3Inverse &    operator =              (const ScriptingMatrix3Inverse &rhs);
+        virtual                        ~ScriptingMatrix3Inverse(void);
 
-        virtual void				archive                 (const std::shared_ptr<Archive> &archive);
+        virtual void                archive                 (const std::shared_ptr<Archive> &archive);
 
     public:
         /// Computes the value of the node
         /// \param plug plug to compute
-        bool					compute					(const PlugBase *plug);
+        bool                    compute                    (const PlugBase *plug);
 
     private:
-        Plug<Matrix3>				_in;
-        Plug<Matrix3>				_out;
+        Plug<Matrix3>                _in;
+        Plug<Matrix3>                _out;
 };
 
 //==============================================================================

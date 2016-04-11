@@ -3,7 +3,7 @@
 #define DT3_CONTEXTSWITCHER
 //==============================================================================
 ///
-///	File: ContextSwitcher.hpp
+///    File: ContextSwitcher.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -29,7 +29,7 @@ struct mcontext {
 #if DT3_CPU == DT3_INTEL && DT3_POINTER_SIZE == DT3_32_BIT
     uint32_t      gregs[65];
 #elif DT3_CPU == DT3_INTEL && DT3_POINTER_SIZE == DT3_64_BIT
-    uint64_t	gregs[100]; // 8 bytes each on AMD64
+    uint64_t    gregs[100]; // 8 bytes each on AMD64
 #elif DT3_CPU == DT3_ARM
     uint32_t      gregs[16];
     DTdouble    fregs[32];

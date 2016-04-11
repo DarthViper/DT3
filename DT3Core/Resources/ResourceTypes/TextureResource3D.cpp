@@ -1,12 +1,12 @@
 //==============================================================================
-///	
-///	File: TextureResource3D.cpp
-///	
+///    
+///    File: TextureResource3D.cpp
+///    
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
 /// This file is subject to the terms and conditions defined in
 /// file 'LICENSE.txt', which is part of this source code package.
-///	
+///    
 //==============================================================================
 
 #include "DT3Core/Resources/ResourceTypes/TextureResource3D.hpp"
@@ -45,18 +45,18 @@ std::map<std::string, std::shared_ptr<TextureResource3D>>  TextureResource3D::_t
 //==============================================================================
 
 TextureResource3D::TextureResource3D (void)
-	:	_format				(DT3GL_FORMAT_RGBA),
-		_width				(0),
-		_height				(0),
+    :    _format                (DT3GL_FORMAT_RGBA),
+        _width                (0),
+        _height                (0),
         _depth              (0),
-		_mipmapped			(false),
+        _mipmapped            (false),
         _flags              (0)
 {
     SystemCallbacks::screen_opened_cb().add(make_callback(this, &type::screen_opened));
     SystemCallbacks::screen_closed_cb().add(make_callback(this, &type::screen_closed));
 
 }
-			
+            
 TextureResource3D::~TextureResource3D (void)
 { 
     SystemCallbacks::screen_opened_cb().remove(make_callback(this, &type::screen_opened));
@@ -68,21 +68,21 @@ TextureResource3D::~TextureResource3D (void)
 
 Stream& operator <<(Stream &s, const std::shared_ptr<TextureResource3D> &r)
 {
-	if (r) {
-		s << r->property_path();
-	} else {
-		s << "";
-	}
-	return s;
+    if (r) {
+        s << r->property_path();
+    } else {
+        s << "";
+    }
+    return s;
 }
 
 Stream& operator >>(Stream &s, std::shared_ptr<TextureResource3D> &r)
 {
-	std::string path;
-	s >> path;
-	
-	r = TextureResource3D::import_resource(FilePath(path));
-	return s;
+    std::string path;
+    s >> path;
+    
+    r = TextureResource3D::import_resource(FilePath(path));
+    return s;
 }
 
 //==============================================================================
@@ -164,24 +164,24 @@ void TextureResource3D::screen_closed (void)
 
 DTerr TextureResource3D::import (const FilePath &pathname, std::string args)
 {
-	DTerr err;
-	if ((err = Resource::import (pathname,args)) != DT3_ERR_NONE)
-		return err;
-			
-	FilePath original_path(path());
-	std::string extension = original_path.file_ext();
+    DTerr err;
+    if ((err = Resource::import (pathname,args)) != DT3_ERR_NONE)
+        return err;
+            
+    FilePath original_path(path());
+    std::string extension = original_path.file_ext();
     
-	// Build a generic importer for the file type
-	std::shared_ptr<BaseClass> generic_importer = Factory::create_importer(extension);
-	if (!generic_importer || !generic_importer->isa(ImporterImage::kind())) {
-		return DT3_ERR_FILE_WRONG_TYPE;
-	}
+    // Build a generic importer for the file type
+    std::shared_ptr<BaseClass> generic_importer = Factory::create_importer(extension);
+    if (!generic_importer || !generic_importer->isa(ImporterImage::kind())) {
+        return DT3_ERR_FILE_WRONG_TYPE;
+    }
 
-	// Attempt to convert the importer of an image importer
-	std::shared_ptr<ImporterImage> image_importer = checked_static_cast<ImporterImage>(generic_importer);
+    // Attempt to convert the importer of an image importer
+    std::shared_ptr<ImporterImage> image_importer = checked_static_cast<ImporterImage>(generic_importer);
     err = image_importer->import(this, args);
 
-	return err;
+    return err;
 }
 
 //==============================================================================
@@ -191,11 +191,11 @@ void TextureResource3D::set_textels (const int32_t width, const int32_t height, 
 {
     _textels = textels;
 
-	_format = format;
+    _format = format;
     
-	_width = width;
-	_height = height;
-	_depth = 0;
+    _width = width;
+    _height = height;
+    _depth = 0;
     
     _mipmapped = mipmapped;
     _flags = flags;

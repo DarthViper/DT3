@@ -1,7 +1,7 @@
 #pragma once
 //==============================================================================
 ///
-///	File: DeviceNetwork.hpp
+///    File: DeviceNetwork.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -40,7 +40,7 @@ class DeviceNetwork: public DeviceBase {
                                         DeviceNetwork   (void);
     private:
                                         DeviceNetwork   (const DeviceNetwork &rhs)  = default;
-        DeviceNetwork &                 operator =      (const DeviceNetwork &UNUSED(rhs))	{	return *this;	}
+        DeviceNetwork &                 operator =      (const DeviceNetwork &UNUSED(rhs))    {    return *this;    }
     public:
         virtual                         ~DeviceNetwork  (void);
 
@@ -65,7 +65,7 @@ class DeviceNetwork: public DeviceBase {
         /// \param socket Returned socket
         /// \param port Port
         /// \return Error Code
-        virtual DTerr					udp_open        (   NetworkSocket &socket,
+        virtual DTerr                    udp_open        (   NetworkSocket &socket,
                                                             uint16_t port)                  {   return DT3_ERR_NONE;    }
 
         /// Closes udp Socket

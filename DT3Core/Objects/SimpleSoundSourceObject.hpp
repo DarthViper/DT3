@@ -1,7 +1,7 @@
 #pragma once
 //==============================================================================
 ///
-///	File: SimpleSoundSourceObject.hpp
+///    File: SimpleSoundSourceObject.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -48,7 +48,7 @@ class SimpleSoundSourceObject: public PlaceableObject {
 
         /// Gets the souund associated with this source.
         /// \return attr sound
-        const std::shared_ptr<SoundResource>&   sound_property          (void) const				{   return _sound;	}
+        const std::shared_ptr<SoundResource>&   sound_property          (void) const                {   return _sound;    }
 
 
         /// Play the sound

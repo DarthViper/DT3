@@ -3,7 +3,7 @@
 #define DT3_SCRIPTINGPARTICLETIMESCALER
 //==============================================================================
 ///
-///	File: ScriptingParticleTimeScaler.hpp
+///    File: ScriptingParticleTimeScaler.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -35,17 +35,17 @@ class ScriptingParticleTimeScaler: public ScriptingBase {
         DEFINE_CREATE_AND_CLONE
         DEFINE_PLUG_NODE
 
-                                    ScriptingParticleTimeScaler	(void);
-                                    ScriptingParticleTimeScaler	(const ScriptingParticleTimeScaler &rhs);
-        ScriptingParticleTimeScaler &	operator =				(const ScriptingParticleTimeScaler &rhs);
-        virtual						~ScriptingParticleTimeScaler(void);
+                                    ScriptingParticleTimeScaler    (void);
+                                    ScriptingParticleTimeScaler    (const ScriptingParticleTimeScaler &rhs);
+        ScriptingParticleTimeScaler &    operator =                (const ScriptingParticleTimeScaler &rhs);
+        virtual                        ~ScriptingParticleTimeScaler(void);
 
         virtual void                archive                 (const std::shared_ptr<Archive> &archive);
 
     public:
         /// Computes the value of the node
         /// \param plug plug to compute
-        bool					compute					(const PlugBase *plug);
+        bool                    compute                    (const PlugBase *plug);
 
 
         DEFINE_ACCESSORS(constant_scale, set_constant_scale, DTfloat, _constant_scale);
@@ -59,12 +59,12 @@ class ScriptingParticleTimeScaler: public ScriptingBase {
 #endif
 
     private:
-        Plug<DTfloat>								_constant_scale;
-        Plug<DTfloat>								_linear_scale;
-        Plug<DTfloat>								_quadtratic_scale;
+        Plug<DTfloat>                                _constant_scale;
+        Plug<DTfloat>                                _linear_scale;
+        Plug<DTfloat>                                _quadtratic_scale;
 
-        Plug<std::shared_ptr<Particles>>		_in;
-        Plug<std::shared_ptr<Particles>>		_out;
+        Plug<std::shared_ptr<Particles>>        _in;
+        Plug<std::shared_ptr<Particles>>        _out;
 
 };
 

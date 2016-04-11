@@ -3,7 +3,7 @@
 #define DT3_GPSCOORD
 //==============================================================================
 ///
-///	File: GPSCoord.hpp
+///    File: GPSCoord.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -33,10 +33,10 @@ class GPSCoord {
     public:
         DEFINE_TYPE_SIMPLE_BASE(GPSCoord)
 
-                                GPSCoord			(void);
-                                GPSCoord			(const GPSCoord &rhs);
+                                GPSCoord            (void);
+                                GPSCoord            (const GPSCoord &rhs);
         GPSCoord &              operator =          (const GPSCoord &rhs);
-                                ~GPSCoord			(void);
+                                ~GPSCoord            (void);
 
     public:
         DEFINE_ACCESSORS (latitude, set_latitude, DTdouble, _latitude);

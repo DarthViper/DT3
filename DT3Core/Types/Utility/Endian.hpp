@@ -3,7 +3,7 @@
 #define DT3_ENDIAN
 //==============================================================================
 ///
-///	File: Endian.hpp
+///    File: Endian.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -87,7 +87,7 @@ class Endian {
     private:
                                 Endian                  (void);
                                 Endian                  (const Endian &rhs);
-        Endian &				operator =              (const Endian &rhs);
+        Endian &                operator =              (const Endian &rhs);
                                 ~Endian                 (void);
 
     public:

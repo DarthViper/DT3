@@ -1,12 +1,12 @@
 //==============================================================================
-///	
-///	File: TouchEvent.cpp
-///	
+///    
+///    File: TouchEvent.cpp
+///    
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
 /// This file is subject to the terms and conditions defined in
 /// file 'LICENSE.txt', which is part of this source code package.
-///	
+///    
 //==============================================================================
 
 #include "DT3Core/Types/Utility/TouchEvent.hpp"
@@ -35,9 +35,9 @@ TouchEvent::TouchEvent (const TouchEvent &rhs)
         touches[i] = rhs.touches[i];
     }
 }
-		
+        
 TouchEvent& TouchEvent::operator = (const TouchEvent &rhs)
-{	
+{    
     clear();
     
     for (uint32_t i = 0; i < ARRAY_SIZE(touches); ++i) {
@@ -45,7 +45,7 @@ TouchEvent& TouchEvent::operator = (const TouchEvent &rhs)
     }
 
     return (*this);
-}	
+}    
 
 TouchEvent::~TouchEvent (void)
 {

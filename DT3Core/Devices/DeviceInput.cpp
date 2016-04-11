@@ -1,12 +1,12 @@
 //==============================================================================
-///	
-///	File: DeviceInput.cpp
-///	
+///    
+///    File: DeviceInput.cpp
+///    
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
 /// This file is subject to the terms and conditions defined in
 /// file 'LICENSE.txt', which is part of this source code package.
-///	
+///    
 //==============================================================================
 
 #include "DT3Core/Devices/DeviceInput.hpp"
@@ -34,7 +34,7 @@ DeviceInput::DeviceInput (void)
 {
 
 }
-					
+                    
 DeviceInput::~DeviceInput (void)
 {
 
@@ -54,7 +54,7 @@ void DeviceInput::do_menu_button (void)
 {
     SystemCallbacks::menu_button_event_cb().fire();
 }
-		
+        
 //==============================================================================
 //==============================================================================
 
@@ -143,6 +143,6 @@ void DeviceInput::end_capture_mouse (void)
 
 //==============================================================================
 //==============================================================================
-		
+        
 
 } // DT3

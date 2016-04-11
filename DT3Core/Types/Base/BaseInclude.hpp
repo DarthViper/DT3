@@ -1,7 +1,7 @@
 #pragma once
 //==============================================================================
 ///
-///	File: BaseInclude.hpp
+///    File: BaseInclude.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -49,7 +49,7 @@ namespace DT3 {
 #define DT3_ARM 2
 
 #if (defined(__i386__) || defined(__i386) || defined(__x86_64__) || defined(__ia64__))
-        #define DT3_CPU	DT3_INTEL
+        #define DT3_CPU    DT3_INTEL
 #elif defined(__arm__) || defined(__arm)
         #define DT3_CPU DT3_ARM
 #endif
@@ -82,15 +82,15 @@ namespace DT3 {
 #define DT3_ANDROID 5
 
 #if defined(_WIN32) || defined(__WIN32__) || defined(WIN32)
-        #define DT3_OS	DT3_WINDOWS
+        #define DT3_OS    DT3_WINDOWS
 #elif (defined(__APPLE__) && (DT3_CPU == DT3_ARM)) || TARGET_IPHONE_SIMULATOR
-        #define DT3_OS	DT3_IOS
+        #define DT3_OS    DT3_IOS
 #elif defined(__APPLE__) && (DT3_CPU == DT3_INTEL)
-        #define DT3_OS	DT3_MACOSX
+        #define DT3_OS    DT3_MACOSX
 #elif defined(ANDROID)
-        #define DT3_OS	DT3_ANDROID
+        #define DT3_OS    DT3_ANDROID
 #elif defined(linux) || defined(__linux) || defined(__linux__)
-        #define DT3_OS	DT3_LINUX
+        #define DT3_OS    DT3_LINUX
 #else
         #error Platform not supported
 #endif
@@ -279,10 +279,10 @@ namespace DT3 {
 //==============================================================================
 //==============================================================================
 
-typedef float			DTfloat;
+typedef float            DTfloat;
 typedef double          DTdouble;
-typedef	char            DTcharacter;
-typedef	wchar_t         DTwcharacter;
+typedef char            DTcharacter;
+typedef wchar_t         DTwcharacter;
 typedef int             DTerr;
 typedef int64_t         DTsize;
 typedef int64_t         DToffset;
@@ -290,23 +290,23 @@ typedef long            DTlong;
 typedef long long       DTlonglong;
 typedef unsigned long   DTulong;
 
-#define DTBYTE_MAX		(127)
-#define DTBYTE_MIN		(-128)
+#define DTBYTE_MAX        (127)
+#define DTBYTE_MIN        (-128)
 
-#define DTSHORT_MAX		(32767)
-#define DTSHORT_MIN		(-32768)
+#define DTSHORT_MAX        (32767)
+#define DTSHORT_MIN        (-32768)
 
-#define DTINT_MAX		(2147483647)
-#define DTINT_MIN		(-2147483648)
+#define DTINT_MAX        (2147483647)
+#define DTINT_MIN        (-2147483648)
 
-#define DTUBYTE_MAX		(255)
-#define DTUBYTE_MIN		(0)
+#define DTUBYTE_MAX        (255)
+#define DTUBYTE_MIN        (0)
 
-#define DTUSHORT_MAX	(65535)
-#define DTUSHORT_MIN	(0)
+#define DTUSHORT_MAX    (65535)
+#define DTUSHORT_MIN    (0)
 
-#define DTUINT_MAX		(4294967295U)
-#define DTUINT_MIN		(0U)
+#define DTUINT_MAX        (4294967295U)
+#define DTUINT_MIN        (0U)
 
 //==============================================================================
 /// For class creation
@@ -314,37 +314,37 @@ typedef unsigned long   DTulong;
 
 // Class kind structure. Used for various class information
 struct DTclasskind {
-        DTclasskind(DTclasskind	*super_class, DTcharacter *class_name)
-        :	super	(super_class),
-                name	(class_name)
+        DTclasskind(DTclasskind    *super_class, DTcharacter *class_name)
+        :    super    (super_class),
+                name    (class_name)
         {}
 
-        DTclasskind	*super;
-        DTcharacter	*name;
+        DTclasskind    *super;
+        DTcharacter    *name;
 };
 
-#define DEFINE_TYPE_BASE(cid)	\
+#define DEFINE_TYPE_BASE(cid)    \
         typedef cid type;                                                                                                                           \
-        inline static DTcharacter*          class_id_static (void)         	{   return (DTcharacter*) #cid;                                     }   \
-        inline virtual DTcharacter*         class_id_child (void) const		{   return class_id_static();                                       }   \
-        inline DTcharacter*                 class_id (void) const         	{   return class_id_static();                                       }   \
-        inline static DTclasskind*          kind (void)						{	static DTclasskind kind(NULL, class_id_static());                   \
-                                                                            return &kind;                                                   }	\
-        inline virtual bool            isa (DTclasskind* k) const		{	return k == kind();                                             }   \
+        inline static DTcharacter*          class_id_static (void)             {   return (DTcharacter*) #cid;                                     }   \
+        inline virtual DTcharacter*         class_id_child (void) const        {   return class_id_static();                                       }   \
+        inline DTcharacter*                 class_id (void) const             {   return class_id_static();                                       }   \
+        inline static DTclasskind*          kind (void)                        {    static DTclasskind kind(NULL, class_id_static());                   \
+                                                                            return &kind;                                                   }    \
+        inline virtual bool            isa (DTclasskind* k) const        {    return k == kind();                                             }   \
     inline virtual const DTcharacter*   file (void)                     {   return __FILE__;                                                }   \
     inline virtual DTsize               class_size (void) const         {   return static_cast<DTsize>(sizeof(type));                       }
 
 #define DEFINE_TYPE(cid,sid) \
         typedef cid type;                                                                                                                           \
         typedef sid super_type;                                                                                                                     \
-        inline static DTcharacter*          class_id_static (void)         	{   return (DTcharacter*) #cid;                                     }   \
-        inline virtual DTcharacter*         class_id_child (void) const	override	{   return class_id_static();                                       }   \
-        inline DTcharacter*                 class_id (void) const         	{   return class_id_static();                                       }   \
-        inline static DTclasskind*          kind (void)						{	static DTclasskind kind(super_type::kind(), class_id_static());     \
-                                                                            return &kind;                                                   }	\
-        inline virtual bool            isa (DTclasskind* k) const override {	DTclasskind *cur = kind();                                          \
+        inline static DTcharacter*          class_id_static (void)             {   return (DTcharacter*) #cid;                                     }   \
+        inline virtual DTcharacter*         class_id_child (void) const    override    {   return class_id_static();                                       }   \
+        inline DTcharacter*                 class_id (void) const             {   return class_id_static();                                       }   \
+        inline static DTclasskind*          kind (void)                        {    static DTclasskind kind(super_type::kind(), class_id_static());     \
+                                                                            return &kind;                                                   }    \
+        inline virtual bool            isa (DTclasskind* k) const override {    DTclasskind *cur = kind();                                          \
                                                                             while (cur) {                                                       \
-                                                                                if (cur == k)	return true;                                    \
+                                                                                if (cur == k)    return true;                                    \
                                                                                 cur = cur->super;                                               \
                                                                             }                                                                   \
                                                                             return false;                                                       \
@@ -354,30 +354,30 @@ struct DTclasskind {
 
 #define DEFINE_TYPE_SIMPLE_BASE(cid) \
         typedef cid type;                                                                                                                           \
-        inline static DTcharacter*          class_id_static (void)         	{   return (DTcharacter*) #cid;                                     }   \
-        inline DTcharacter*                 class_id (void) const         	{   return class_id_static();                                       }   \
-        inline DTcharacter*                 class_id_child (void) const		{   return class_id_static();                                       }   \
-        inline static DTclasskind*          kind (void)						{	static DTclasskind kind(NULL, class_id_static());                   \
+        inline static DTcharacter*          class_id_static (void)             {   return (DTcharacter*) #cid;                                     }   \
+        inline DTcharacter*                 class_id (void) const             {   return class_id_static();                                       }   \
+        inline DTcharacter*                 class_id_child (void) const        {   return class_id_static();                                       }   \
+        inline static DTclasskind*          kind (void)                        {    static DTclasskind kind(NULL, class_id_static());                   \
                                                                             return &kind;                                                   }
 
 #define DEFINE_TYPE_SIMPLE(cid,sid) \
         typedef cid type;                                                                                                                           \
         typedef sid super_type;                                                                                                                     \
-        inline static DTcharacter*          class_id_static (void)         	{   return (DTcharacter*) #cid;                                     }   \
-        inline DTcharacter*                 class_id (void) const         	{   return class_id_static();                                       }   \
-        inline DTcharacter*                 class_id_child (void) const		{   return class_id_static();                                       }   \
-        inline static DTclasskind*          kind (void)						{	static DTclasskind kind(NULL, class_id_static());                   \
+        inline static DTcharacter*          class_id_static (void)             {   return (DTcharacter*) #cid;                                     }   \
+        inline DTcharacter*                 class_id (void) const             {   return class_id_static();                                       }   \
+        inline DTcharacter*                 class_id_child (void) const        {   return class_id_static();                                       }   \
+        inline static DTclasskind*          kind (void)                        {    static DTclasskind kind(NULL, class_id_static());                   \
                                                                             return &kind;                                                   }
 
 
 #define DEFINE_CLONE\
-        inline virtual std::shared_ptr<BaseClass>   clone(void) const  override {	return std::make_shared<type>(*this); }
+        inline virtual std::shared_ptr<BaseClass>   clone(void) const  override {    return std::make_shared<type>(*this); }
 
 #define DEFINE_CREATE\
-        inline static std::shared_ptr<type>         create(void)            {	return std::make_shared<type>(); }
+        inline static std::shared_ptr<type>         create(void)            {    return std::make_shared<type>(); }
 
 #define DEFINE_CREATE_T(type)\
-        inline static std::shared_ptr<type>         create(void)            {	return std::make_shared<type>(); }
+        inline static std::shared_ptr<type>         create(void)            {    return std::make_shared<type>(); }
 
 #define DEFINE_CREATE_AND_CLONE\
         DEFINE_CLONE\
@@ -388,34 +388,34 @@ struct DTclasskind {
 //==============================================================================
 
 #define DEFINE_ACCESSORS(G,S,T,V)                               \
-inline T G(void) const			{	return V;				}	\
-inline void S(T var_)			{	V = var_;				}
+inline T G(void) const            {    return V;                }    \
+inline void S(T var_)            {    V = var_;                }
 
 #define DEFINE_ACCESSORS_REF(G,S,T,V)                               \
-inline T G(void) const			{	return V;				}	\
-inline void S(const T &var_)			{	V = var_;				}
+inline T G(void) const            {    return V;                }    \
+inline void S(const T &var_)            {    V = var_;                }
 
 #define DEFINE_ACCESSORS_STATIC(G,S,T,V)                        \
-inline static T G(void)			{	return V;				}	\
-inline static void S(T var_)    {	V = var_;				}
+inline static T G(void)            {    return V;                }    \
+inline static void S(T var_)    {    V = var_;                }
 
 #define DEFINE_ACCESSORS_STATIC_REFERENCED(G,S,T,V)                     \
-inline static T& G(void)                {	return V;				}	\
-inline static void S(const T &var_)     {	V = var_;				}
+inline static T& G(void)                {    return V;                }    \
+inline static void S(const T &var_)     {    V = var_;                }
 
 #define DEFINE_ACCESSORS_RANGED(G,S,T,V,LOW,HI)                 \
-inline T G(void) const			{	return V;				}	\
-inline void S(T var_)			{	if (var_ < LOW) V = LOW;    \
+inline T G(void) const            {    return V;                }    \
+inline void S(T var_)            {    if (var_ < LOW) V = LOW;    \
                                     else if (var_ > HI) V = HI; \
                                     else V = var_;          }
 
 #define DEFINE_ACCESSORS_REFERENCED(G,S,T,V)                    \
-inline T& G(void)               {	return V;				}	\
-inline void S(const T &var_)	{	V = var_;				}
+inline T& G(void)               {    return V;                }    \
+inline void S(const T &var_)    {    V = var_;                }
 
 #define DEFINE_ACCESSORS_REFERENCED_CONST(G,S,T,V)              \
-inline const T& G(void) const	{	return V;				}	\
-inline void S(const T &var_)	{	V = var_;				}
+inline const T& G(void) const    {    return V;                }    \
+inline void S(const T &var_)    {    V = var_;                }
 
 //==============================================================================
 /// Array size macro

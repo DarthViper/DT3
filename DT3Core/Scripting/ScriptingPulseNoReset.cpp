@@ -1,12 +1,12 @@
 //==============================================================================
-///	
-///	File: ScriptingPulseNoReset.cpp
-///	
+///    
+///    File: ScriptingPulseNoReset.cpp
+///    
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
 /// This file is subject to the terms and conditions defined in
 /// file 'LICENSE.txt', which is part of this source code package.
-///	
+///    
 //==============================================================================
 
 #include "DT3Core/Scripting/ScriptingPulseNoReset.hpp"
@@ -38,12 +38,12 @@ IMPLEMENT_EVENT_INFO_INDEX(_in_e)
 
 BEGIN_IMPLEMENT_PLUGS(ScriptingPulseNoReset)
 
-	PLUG_INIT(_in,"In")
-		.set_input(true)
-		.affects(PLUG_INFO_INDEX(_out));
+    PLUG_INIT(_in,"In")
+        .set_input(true)
+        .affects(PLUG_INFO_INDEX(_out));
 
-	PLUG_INIT(_out,"Out")
-		.set_output(true);
+    PLUG_INIT(_out,"Out")
+        .set_output(true);
         
     EVENT_INIT(_in_e, "In_Event")
         .set_input(true)
@@ -56,24 +56,24 @@ END_IMPLEMENT_PLUGS
 //==============================================================================
 
 ScriptingPulseNoReset::ScriptingPulseNoReset (void)
-    :   _time		(0.0F),
-		_pulse_time	(1.0F),
+    :   _time        (0.0F),
+        _pulse_time    (1.0F),
         _event_in   (false),
-        _in			(PLUG_INFO_INDEX(_in), false),
-        _out		(PLUG_INFO_INDEX(_out), false),
-		_in_e		(EVENT_INFO_INDEX(_in_e))
+        _in            (PLUG_INFO_INDEX(_in), false),
+        _out        (PLUG_INFO_INDEX(_out), false),
+        _in_e        (EVENT_INFO_INDEX(_in_e))
 {  
 
 }
-		
+        
 ScriptingPulseNoReset::ScriptingPulseNoReset (const ScriptingPulseNoReset &rhs)
-    :   ScriptingBase	(rhs),
-		_time			(rhs._time),
-        _pulse_time		(rhs._pulse_time),
+    :   ScriptingBase    (rhs),
+        _time            (rhs._time),
+        _pulse_time        (rhs._pulse_time),
         _event_in       (rhs._event_in),
-		_in				(rhs._in),
-		_out			(rhs._out),
-		_in_e           (EVENT_INFO_INDEX(_in_e))
+        _in                (rhs._in),
+        _out            (rhs._out),
+        _in_e           (EVENT_INFO_INDEX(_in_e))
 {   
 
 }
@@ -82,17 +82,17 @@ ScriptingPulseNoReset & ScriptingPulseNoReset::operator = (const ScriptingPulseN
 {
     // Make sure we are not assigning the class to itself
     if (&rhs != this) {        
-		ScriptingBase::operator = (rhs);
+        ScriptingBase::operator = (rhs);
 
-		_time = rhs._time;
-		_in = rhs._in;
-		_pulse_time = rhs._pulse_time;
+        _time = rhs._time;
+        _in = rhs._in;
+        _pulse_time = rhs._pulse_time;
         _event_in = rhs._event_in;
-		_out = rhs._out;
-	}
+        _out = rhs._out;
+    }
     return (*this);
 }
-			
+            
 ScriptingPulseNoReset::~ScriptingPulseNoReset (void)
 {
 
@@ -105,13 +105,13 @@ void ScriptingPulseNoReset::archive (const std::shared_ptr<Archive> &archive)
 {
     ScriptingBase::archive(archive);
 
-	archive->push_domain (class_id ());
-	
-	*archive << ARCHIVE_PLUG(_in, DATA_PERSISTENT | DATA_SETTABLE);
+    archive->push_domain (class_id ());
+    
+    *archive << ARCHIVE_PLUG(_in, DATA_PERSISTENT | DATA_SETTABLE);
     *archive << ARCHIVE_DATA(_time, DATA_PERSISTENT);
-	*archive << ARCHIVE_DATA(_pulse_time, DATA_PERSISTENT | DATA_SETTABLE);
-	*archive << ARCHIVE_PLUG(_out, DATA_PERSISTENT);
-	        					
+    *archive << ARCHIVE_DATA(_pulse_time, DATA_PERSISTENT | DATA_SETTABLE);
+    *archive << ARCHIVE_PLUG(_out, DATA_PERSISTENT);
+                                
     archive->pop_domain ();
 }
 
@@ -120,7 +120,7 @@ void ScriptingPulseNoReset::archive (const std::shared_ptr<Archive> &archive)
 
 void ScriptingPulseNoReset::eventIn (PlugNode *sender)
 {
-	PROFILER(SCRIPTING);
+    PROFILER(SCRIPTING);
 
     if (_time <= 0.0F) {
         _event_in = true;
@@ -132,7 +132,7 @@ void ScriptingPulseNoReset::eventIn (PlugNode *sender)
 
 void ScriptingPulseNoReset::tick (const DTfloat dt)
 {
-	PROFILER(SCRIPTING);
+    PROFILER(SCRIPTING);
 
     // Check if staring
     if (_time > 0.0F || _in || _event_in) {

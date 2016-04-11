@@ -3,7 +3,7 @@
 #define DT3_BITFONT
 //==============================================================================
 ///
-///	File: BitFont.hpp
+///    File: BitFont.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -25,8 +25,8 @@ namespace DT3 {
 
 class BitFont {
     private:
-                                    BitFont					(void);
-                                    BitFont					(const BitFont &rhs);
+                                    BitFont                    (void);
+                                    BitFont                    (const BitFont &rhs);
         BitFont &                   operator =              (const BitFont &rhs);
         virtual                     ~BitFont                (void);
 

@@ -3,7 +3,7 @@
 #define DT3_SCRIPTINGPARTICLECOLORRANDOMIZER
 //==============================================================================
 ///
-///	File: ScriptingParticleColorRandomizer.hpp
+///    File: ScriptingParticleColorRandomizer.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -37,15 +37,15 @@ class ScriptingParticleColorRandomizer: public ScriptingBase {
 
                                             ScriptingParticleColorRandomizer    (void);
                                             ScriptingParticleColorRandomizer    (const ScriptingParticleColorRandomizer &rhs);
-        ScriptingParticleColorRandomizer&	operator =							(const ScriptingParticleColorRandomizer &rhs);
-        virtual								~ScriptingParticleColorRandomizer	(void);
+        ScriptingParticleColorRandomizer&    operator =                            (const ScriptingParticleColorRandomizer &rhs);
+        virtual                                ~ScriptingParticleColorRandomizer    (void);
 
         virtual void                archive                 (const std::shared_ptr<Archive> &archive);
 
     public:
         /// Computes the value of the node
         /// \param plug plug to compute
-        bool					compute					(const PlugBase *plug);
+        bool                    compute                    (const PlugBase *plug);
 
 
         DEFINE_ACCESSORS(r_mag, set_r_mag, DTfloat, _r_mag);
@@ -56,13 +56,13 @@ class ScriptingParticleColorRandomizer: public ScriptingBase {
     private:
         static const int32_t NUM_ENTRIES = 8;
 
-        DTfloat		_r_mag;
-        DTfloat		_g_mag;
-        DTfloat		_b_mag;
-        DTfloat		_a_mag;
+        DTfloat        _r_mag;
+        DTfloat        _g_mag;
+        DTfloat        _b_mag;
+        DTfloat        _a_mag;
 
-        Plug<std::shared_ptr<Particles>>		_in;
-        Plug<std::shared_ptr<Particles>>		_out;
+        Plug<std::shared_ptr<Particles>>        _in;
+        Plug<std::shared_ptr<Particles>>        _out;
 
 };
 

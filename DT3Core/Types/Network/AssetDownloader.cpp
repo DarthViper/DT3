@@ -1,12 +1,12 @@
 //==============================================================================
-///	
-///	File: AssetDownloader.cpp
-///	
+///    
+///    File: AssetDownloader.cpp
+///    
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
 /// This file is subject to the terms and conditions defined in
 /// file 'LICENSE.txt', which is part of this source code package.
-///	
+///    
 //==============================================================================
 
 #include "DT3Core/Types/Network/AssetDownloader.hpp"
@@ -51,7 +51,7 @@ AssetDownloader::AssetDownloader (void)
 {
 
 }
-			
+            
 AssetDownloader::~AssetDownloader (void)
 {
 
@@ -173,7 +173,7 @@ void AssetDownloader::downloader_task   (   const URL url,
         return;
     }
         
-	// Send http request
+    // Send http request
     std::string server = url.hostname();
     std::string path = url.path();
     

@@ -1,7 +1,7 @@
 #pragma once
 //==============================================================================
 ///
-///	File: Event.hpp
+///    File: Event.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -83,14 +83,14 @@ class Event {
 
         /// Remove an incoming connection
         /// \param incoming incoming event
-        void                                remove_incoming_connection	(Event* incoming);
+        void                                remove_incoming_connection    (Event* incoming);
 
         /// Remove all incoming connections
-        void                                remove_incoming_connections	(void);
+        void                                remove_incoming_connections    (void);
 
         /// Returns true if there is at least one incoming connection
         /// \return has incoming connection
-        bool                           has_incoming_connection		(void) const;
+        bool                           has_incoming_connection        (void) const;
 
 
         /// Returns all outgoing connections
@@ -99,18 +99,18 @@ class Event {
 
         /// Add an outgoing event connection
         /// \param outgoing outgoing event
-        void                                add_outgoing_connection		(Event* outgoing);
+        void                                add_outgoing_connection        (Event* outgoing);
 
         /// Remove an outgoing connection
         /// \param outgoing outgoing event
-        void                                remove_outgoing_connection	(Event* outgoing);
+        void                                remove_outgoing_connection    (Event* outgoing);
 
         /// Remove all outgoing connections
-        void                                remove_outgoing_connections	(void);
+        void                                remove_outgoing_connections    (void);
 
         /// Returns true if there is at least one outgoing connection
         /// \return has outgoing connection
-        bool                           has_outgoing_connection		(void) const;
+        bool                           has_outgoing_connection        (void) const;
 
 
 

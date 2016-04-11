@@ -1,12 +1,12 @@
 //==============================================================================
-///	
-///	File: SoundResource.cpp
-///	
+///    
+///    File: SoundResource.cpp
+///    
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
 /// This file is subject to the terms and conditions defined in
 /// file 'LICENSE.txt', which is part of this source code package.
-///	
+///    
 //==============================================================================
 
 #include "DT3Core/Resources/ResourceTypes/SoundResource.hpp"
@@ -46,8 +46,8 @@ std::map<std::string, std::shared_ptr<SoundResource>>   SoundResource::_sound_ma
 //==============================================================================
 
 SoundResource::SoundResource (void)
-    :   _format							(FORMAT_STEREO16),
-        _frequency						(0)
+    :   _format                            (FORMAT_STEREO16),
+        _frequency                        (0)
 {
 
 }
@@ -62,21 +62,21 @@ SoundResource::~SoundResource (void)
 
 Stream& operator <<(Stream &s, const std::shared_ptr<SoundResource> &r)
 {
-	if (r) {
-		s << r->property_path();
-	} else {
-		s << "";
-	}
-	return s;
+    if (r) {
+        s << r->property_path();
+    } else {
+        s << "";
+    }
+    return s;
 }
 
 Stream& operator >>(Stream &s, std::shared_ptr<SoundResource> &r)
 {
-	std::string path;
-	s >> path;
-	
-	r = SoundResource::import_resource(FilePath(path));
-	return s;
+    std::string path;
+    s >> path;
+    
+    r = SoundResource::import_resource(FilePath(path));
+    return s;
 }
 
 //==============================================================================
@@ -93,7 +93,7 @@ void SoundResource::reload_if_changed (void)
 }
 
 std::shared_ptr<SoundResource> SoundResource::import_resource (const FilePath &pathname, std::string args)
-{	
+{    
     if (!pathname.exists() && !pathname.in_package()) {
         return NULL;
     }
@@ -136,14 +136,14 @@ void SoundResource::uninitialize_static (void)
 
 void SoundResource::streamed_chunk (SoundPacket &packet, DTsize chunk_index) const
 {
-	// First chunk is preloaded one
-	if (chunk_index >= count_chunks()) {
+    // First chunk is preloaded one
+    if (chunk_index >= count_chunks()) {
     
         packet.set_num_bytes(0);
         packet.set_format(format());
         packet.set_frequency(frequency());
    
-	} else {
+    } else {
         // Start with maximum size
         packet.set_num_bytes(DT3_AUDIO_STREAMING_BUFFER_SIZE);
         
@@ -154,7 +154,7 @@ void SoundResource::streamed_chunk (SoundPacket &packet, DTsize chunk_index) con
         packet.set_format(format());
         packet.set_frequency(frequency());
                 
-	}
+    }
 }
 
 DTsize SoundResource::count_chunks (void) const
@@ -229,7 +229,7 @@ void SoundResource::sample_window (DTsize s, DTsize num, DTfloat &min_sample, DT
             min_sample = (int32_t) min_s / static_cast<DTfloat>(DTSHORT_MAX);
             max_sample = (int32_t) max_s / static_cast<DTfloat>(DTSHORT_MAX);
             
-			delete[] data;
+            delete[] data;
 
             return;
         }
@@ -250,7 +250,7 @@ void SoundResource::sample_window (DTsize s, DTsize num, DTfloat &min_sample, DT
             min_sample = (int32_t) min_s / static_cast<DTfloat>(DTSHORT_MAX);
             max_sample = (int32_t) max_s / static_cast<DTfloat>(DTSHORT_MAX);
             
-			delete[] data;
+            delete[] data;
 
             return;
         }
@@ -267,26 +267,26 @@ void SoundResource::sample_window (DTsize s, DTsize num, DTfloat &min_sample, DT
 
 DTerr SoundResource::import (const FilePath &pathname, std::string args)
 {
-	DTerr err;
-	if ((err = Resource::import (pathname,args)) != DT3_ERR_NONE)
-		return err;
-	
-	FilePath original_path(path());
-	std::string extension = original_path.file_ext();
-	
-	// Build a generic importer for the file type
-	std::shared_ptr<BaseClass> generic_importer = Factory::create_importer(extension);
-	if (!generic_importer || !generic_importer->isa(ImporterSound::kind())) {
-		return DT3_ERR_FILE_WRONG_TYPE;
-	}
+    DTerr err;
+    if ((err = Resource::import (pathname,args)) != DT3_ERR_NONE)
+        return err;
+    
+    FilePath original_path(path());
+    std::string extension = original_path.file_ext();
+    
+    // Build a generic importer for the file type
+    std::shared_ptr<BaseClass> generic_importer = Factory::create_importer(extension);
+    if (!generic_importer || !generic_importer->isa(ImporterSound::kind())) {
+        return DT3_ERR_FILE_WRONG_TYPE;
+    }
 
-	// Attempt to convert the importer of an image importer
-	std::shared_ptr<ImporterSound> sound_importer = checked_static_cast<ImporterSound>(generic_importer);
+    // Attempt to convert the importer of an image importer
+    std::shared_ptr<ImporterSound> sound_importer = checked_static_cast<ImporterSound>(generic_importer);
     err = sound_importer->import(this, args);
 
-	_importer = sound_importer;
-	
-	return err;	
+    _importer = sound_importer;
+    
+    return err;    
 }
 
 //==============================================================================

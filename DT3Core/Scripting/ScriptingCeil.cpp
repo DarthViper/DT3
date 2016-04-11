@@ -1,12 +1,12 @@
 //==============================================================================
-///	
-///	File: ScriptingCeil.cpp
-///	
+///    
+///    File: ScriptingCeil.cpp
+///    
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
 /// This file is subject to the terms and conditions defined in
 /// file 'LICENSE.txt', which is part of this source code package.
-///	
+///    
 //==============================================================================
 
 #include "DT3Core/Scripting/ScriptingCeil.hpp"
@@ -35,12 +35,12 @@ IMPLEMENT_PLUG_INFO_INDEX(_out);
 
 BEGIN_IMPLEMENT_PLUGS(ScriptingCeil)
 
-	PLUG_INIT(_in,"In")
-		.set_input(true)
-		.affects(PLUG_INFO_INDEX(_out));
+    PLUG_INIT(_in,"In")
+        .set_input(true)
+        .affects(PLUG_INFO_INDEX(_out));
 
-	PLUG_INIT(_out,"Out")
-		.set_output(true);
+    PLUG_INIT(_out,"Out")
+        .set_output(true);
         
 END_IMPLEMENT_PLUGS
 
@@ -49,16 +49,16 @@ END_IMPLEMENT_PLUGS
 //==============================================================================
 
 ScriptingCeil::ScriptingCeil (void)
-    :   _in			(PLUG_INFO_INDEX(_in), 0.0F),
-		_out		(PLUG_INFO_INDEX(_out), 0.0F)
+    :   _in            (PLUG_INFO_INDEX(_in), 0.0F),
+        _out        (PLUG_INFO_INDEX(_out), 0.0F)
 {  
 
 }
-		
+        
 ScriptingCeil::ScriptingCeil (const ScriptingCeil &rhs)
-    :   ScriptingBase	(rhs),
-		_in				(rhs._in),
-		_out			(rhs._out)
+    :   ScriptingBase    (rhs),
+        _in                (rhs._in),
+        _out            (rhs._out)
 {   
 
 }
@@ -67,14 +67,14 @@ ScriptingCeil & ScriptingCeil::operator = (const ScriptingCeil &rhs)
 {
     // Make sure we are not assigning the class to itself
     if (&rhs != this) {        
-		ScriptingBase::operator = (rhs);
+        ScriptingBase::operator = (rhs);
 
-		_in = rhs._in;
-		_out = rhs._out;
-	}
+        _in = rhs._in;
+        _out = rhs._out;
+    }
     return (*this);
 }
-			
+            
 ScriptingCeil::~ScriptingCeil (void)
 {
 
@@ -87,11 +87,11 @@ void ScriptingCeil::archive (const std::shared_ptr<Archive> &archive)
 {
     ScriptingBase::archive(archive);
 
-	archive->push_domain (class_id ());
-	        
-	*archive << ARCHIVE_PLUG(_in, DATA_PERSISTENT | DATA_SETTABLE);
-	*archive << ARCHIVE_PLUG(_out, DATA_PERSISTENT);
-													
+    archive->push_domain (class_id ());
+            
+    *archive << ARCHIVE_PLUG(_in, DATA_PERSISTENT | DATA_SETTABLE);
+    *archive << ARCHIVE_PLUG(_out, DATA_PERSISTENT);
+                                                    
     archive->pop_domain ();
 }
 
@@ -100,18 +100,18 @@ void ScriptingCeil::archive (const std::shared_ptr<Archive> &archive)
 
 bool ScriptingCeil::compute (const PlugBase *plug)
 {
-	PROFILER(SCRIPTING);
+    PROFILER(SCRIPTING);
 
     if (super_type::compute(plug))  return true;
 
-	if (plug == &_out) {
-		_out = std::ceil(_in);
-		_out.set_clean();
-		
-		return true;
-	}
-	
-	return false;
+    if (plug == &_out) {
+        _out = std::ceil(_in);
+        _out.set_clean();
+        
+        return true;
+    }
+    
+    return false;
 }
 
 //==============================================================================

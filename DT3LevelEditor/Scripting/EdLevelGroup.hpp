@@ -3,7 +3,7 @@
 #define EDLEVELGROUP
 //==============================================================================
 ///
-///	File: EdLevelGroup.hpp
+///    File: EdLevelGroup.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -58,16 +58,16 @@ class EdLevelGroup : public QGraphicsItem
         std::shared_ptr<Group>      getGroup        (void)                  {   return _group;   }
 
         void                        setBoundingRect (const QRectF &rect);
-        QRectF						boundingRect	(void) const            {   return _bounding_rect;  }
-        //QPainterPath				shape			(void) const;
+        QRectF                        boundingRect    (void) const            {   return _bounding_rect;  }
+        //QPainterPath                shape            (void) const;
 
-        virtual void				paint			(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
+        virtual void                paint            (QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
 
         bool                        checkClick      (const QPointF &scene_pos, const QPointF &global_pos);
         bool                        handleClick     (const QPointF &scene_pos, const QPointF &global_pos);
 
     protected:
-        QFont						_title_font;
+        QFont                        _title_font;
         QRectF                      _bounding_rect;
         std::shared_ptr<Group>      _group;
 

@@ -3,7 +3,7 @@
 #define DT3_SCRIPTINGSINSUPERPOSITION
 //==============================================================================
 ///
-///	File: ScriptingSinSuperposition.hpp
+///    File: ScriptingSinSuperposition.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -36,23 +36,23 @@ class ScriptingSinSuperposition: public ScriptingBase {
                                     ScriptingSinSuperposition   (void);
                                     ScriptingSinSuperposition   (const ScriptingSinSuperposition &rhs);
         ScriptingSinSuperposition & operator =                  (const ScriptingSinSuperposition &rhs);
-        virtual						~ScriptingSinSuperposition  (void);
+        virtual                        ~ScriptingSinSuperposition  (void);
 
-        virtual void				archive                 (const std::shared_ptr<Archive> &archive);
+        virtual void                archive                 (const std::shared_ptr<Archive> &archive);
 
     public:
         /// Computes the value of the node
         /// \param plug plug to compute
-        bool					compute					(const PlugBase *plug);
+        bool                    compute                    (const PlugBase *plug);
 
     private:
-        Plug<DTfloat>				_in;
-        Plug<DTfloat>				_mul1;
-        Plug<DTfloat>				_mul2;
-        Plug<DTfloat>				_mul3;
-        Plug<DTfloat>				_mul4;
-        Plug<DTfloat>				_mul5;
-        Plug<DTfloat>				_out;
+        Plug<DTfloat>                _in;
+        Plug<DTfloat>                _mul1;
+        Plug<DTfloat>                _mul2;
+        Plug<DTfloat>                _mul3;
+        Plug<DTfloat>                _mul4;
+        Plug<DTfloat>                _mul5;
+        Plug<DTfloat>                _out;
 };
 
 //==============================================================================

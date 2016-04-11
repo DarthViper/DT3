@@ -3,7 +3,7 @@
 #define DT3_SCRIPTINGVECTOR3ADD
 //==============================================================================
 ///
-///	File: ScriptingVector3Add.hpp
+///    File: ScriptingVector3Add.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -35,20 +35,20 @@ class ScriptingVector3Add: public ScriptingBase {
 
                                     ScriptingVector3Add     (void);
                                     ScriptingVector3Add     (const ScriptingVector3Add &rhs);
-        ScriptingVector3Add &		operator =              (const ScriptingVector3Add &rhs);
-        virtual						~ScriptingVector3Add    (void);
+        ScriptingVector3Add &        operator =              (const ScriptingVector3Add &rhs);
+        virtual                        ~ScriptingVector3Add    (void);
 
-        virtual void				archive                 (const std::shared_ptr<Archive> &archive);
+        virtual void                archive                 (const std::shared_ptr<Archive> &archive);
 
     public:
         /// Computes the value of the node
         /// \param plug plug to compute
-        bool					compute					(const PlugBase *plug);
+        bool                    compute                    (const PlugBase *plug);
 
     private:
-        Plug<Vector3>				_in1;
-        Plug<Vector3>				_in2;
-        Plug<Vector3>				_out;
+        Plug<Vector3>                _in1;
+        Plug<Vector3>                _in2;
+        Plug<Vector3>                _out;
 };
 
 //==============================================================================

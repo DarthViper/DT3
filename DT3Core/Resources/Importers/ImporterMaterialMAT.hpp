@@ -3,7 +3,7 @@
 #define DT3_IMPORTERMATERIALMAT
 //==============================================================================
 ///
-///	File: ImporterMaterialMAT.hpp
+///    File: ImporterMaterialMAT.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -39,17 +39,17 @@ class ImporterMaterialMAT: public ImporterMaterial {
 
     private:
                                         ImporterMaterialMAT         (const ImporterMaterialMAT &rhs);
-        ImporterMaterialMAT &			operator =                  (const ImporterMaterialMAT &rhs);
+        ImporterMaterialMAT &            operator =                  (const ImporterMaterialMAT &rhs);
 
     public:
-        virtual							~ImporterMaterialMAT        (void);
+        virtual                            ~ImporterMaterialMAT        (void);
 
     public:
         /// Imports a material into an MaterialResource
         /// \param target object to import material into
         /// \param args arguments to importer
         /// \return error code
-        virtual DTerr					import                      (MaterialResource *target, std::string args);
+        virtual DTerr                    import                      (MaterialResource *target, std::string args);
 
 
     private:
@@ -61,7 +61,7 @@ class ImporterMaterialMAT: public ImporterMaterial {
         void                            parse_tex_block             (MaterialResource *target);
         void                            parse_material_block        (MaterialResource *target);
 
-        Tokenizer						_tokenizer;
+        Tokenizer                        _tokenizer;
 };
 
 //==============================================================================

@@ -1,12 +1,12 @@
  //==============================================================================
-///	
-///	File: PlugNode_cmd.cpp
-///	
+///    
+///    File: PlugNode_cmd.cpp
+///    
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
 /// This file is subject to the terms and conditions defined in
 /// file 'LICENSE.txt', which is part of this source code package.
-///	
+///    
 //==============================================================================
 
 #include "DT3Core/System/Command.hpp"
@@ -461,7 +461,7 @@ CommandResult PlugNode_cmd::do_get_prop (CommandContext &ctx, const CommandParam
         return CommandResult(false, "Cannot find property for " + p[1], CommandResult::UPDATE_NONE);
         
     TextBufferStream stream;
-	property->value(stream);
+    property->value(stream);
 
     return CommandResult(true, stream.buffer(), CommandResult::UPDATE_NONE);
 }
@@ -504,7 +504,7 @@ CommandResult PlugNode_cmd::do_set_prop (CommandContext &ctx, const CommandParam
     //
     
     TextBufferStream stream3;
-	property->value(stream3);
+    property->value(stream3);
     cr.append_undo_command(CommandParams("SetProp \"" + p[1] + "\" \"" + stream3.buffer() + "\"" ));
 
     //
@@ -514,10 +514,10 @@ CommandResult PlugNode_cmd::do_set_prop (CommandContext &ctx, const CommandParam
         
     TextBufferStream stream1;
     stream1.set_buffer(p[2]);
-	property->set_value(stream1);
+    property->set_value(stream1);
 
     TextBufferStream stream2;
-	property->value(stream2);
+    property->value(stream2);
 
     cr.set_message("Set " + stream2.buffer());
     cr.set_result(true);

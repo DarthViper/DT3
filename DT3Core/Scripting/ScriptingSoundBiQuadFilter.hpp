@@ -3,7 +3,7 @@
 #define DT3_SCRIPTINGSOUNDBIQUADFILTER
 //==============================================================================
 ///
-///	File: ScriptingSoundBiquadFilter.hpp
+///    File: ScriptingSoundBiquadFilter.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -46,7 +46,7 @@ class ScriptingSoundBiquadFilter: public ScriptingSoundBase {
     public:
         /// Computes the value of the node
         /// \param plug plug to compute
-        bool					compute					(const PlugBase *plug);
+        bool                    compute                    (const PlugBase *plug);
 
     private:
 

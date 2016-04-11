@@ -3,7 +3,7 @@
 #define DT3_IMPORTERGEOMETRYTWM
 //==============================================================================
 ///
-///	File: ImporterGeometryTWM.hpp
+///    File: ImporterGeometryTWM.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -44,21 +44,21 @@ class ImporterGeometryTWM: public ImporterGeometry {
         DEFINE_TYPE(ImporterGeometryTWM,ImporterGeometry)
         DEFINE_CREATE
 
-                                        ImporterGeometryTWM	(void);
+                                        ImporterGeometryTWM    (void);
 
     private:
-                                        ImporterGeometryTWM	(const ImporterGeometryTWM &rhs);
-        ImporterGeometryTWM &			operator =			(const ImporterGeometryTWM &rhs);
+                                        ImporterGeometryTWM    (const ImporterGeometryTWM &rhs);
+        ImporterGeometryTWM &            operator =            (const ImporterGeometryTWM &rhs);
 
     public:
-        virtual							~ImporterGeometryTWM(void);
+        virtual                            ~ImporterGeometryTWM(void);
 
     public:
         /// Imports an geometry into an GeometryResource
         /// \param target object to import geometry into
         /// \param args arguments to importer
         /// \retrun error code
-        virtual DTerr					import				(GeometryResource *target, std::string args);
+        virtual DTerr                    import                (GeometryResource *target, std::string args);
 
     private:
 
@@ -91,12 +91,12 @@ class ImporterGeometryTWM: public ImporterGeometry {
         struct MeshData {
             std::string                     _name;
 
-            std::vector<Vector3>			_vertices;
-            std::vector<Vector3>			_normals;
+            std::vector<Vector3>            _vertices;
+            std::vector<Vector3>            _normals;
             std::vector<UVset>              _uv_sets;
 
             std::vector<std::string>        _joint_names;
-            std::vector<Weights>			_weights;
+            std::vector<Weights>            _weights;
 
             std::vector<Triangle>           _indices;
         };
@@ -128,26 +128,26 @@ class ImporterGeometryTWM: public ImporterGeometry {
         uint32_t                              _weights_count;
 
 
-        void            read_mesh_name		(BinaryFileStream &file, uint32_t remaining_size, std::string &name);
-        void            read_mesh_positions	(BinaryFileStream &file, uint32_t remaining_size, std::vector<Vector3> &positions);
+        void            read_mesh_name        (BinaryFileStream &file, uint32_t remaining_size, std::string &name);
+        void            read_mesh_positions    (BinaryFileStream &file, uint32_t remaining_size, std::vector<Vector3> &positions);
         void            read_mesh_normals   (BinaryFileStream &file, uint32_t remaining_size, std::vector<Vector3> &normals);
         void            read_mesh_uvs       (BinaryFileStream &file, uint32_t remaining_size, std::vector<Vector2> &uvs);
         void            read_mesh_uv_sets   (BinaryFileStream &file, uint32_t remaining_size, std::vector<UVset> &uvs_sets);
         void            read_mesh_joints    (BinaryFileStream &file, uint32_t remaining_size, std::vector<std::string> &joints);
         void            read_mesh_influences(BinaryFileStream &file, uint32_t remaining_size, std::vector<Weights> &weights);
-        void            read_mesh_skinning	(BinaryFileStream &file, uint32_t remaining_size, std::vector<std::string> &joints, std::vector<Weights> &weights);
+        void            read_mesh_skinning    (BinaryFileStream &file, uint32_t remaining_size, std::vector<std::string> &joints, std::vector<Weights> &weights);
         void            read_mesh_indices   (BinaryFileStream &file, uint32_t remaining_size, std::vector<Triangle> &indices);
-        void            read_mesh			(BinaryFileStream &file, uint32_t remaining_size, MeshData &mesh);
-        void            read_meshes			(BinaryFileStream &file, uint32_t remaining_size, std::vector<MeshData> &meshes);
+        void            read_mesh            (BinaryFileStream &file, uint32_t remaining_size, MeshData &mesh);
+        void            read_meshes            (BinaryFileStream &file, uint32_t remaining_size, std::vector<MeshData> &meshes);
 
         void            read_skeleton_joints(BinaryFileStream &file, uint32_t remaining_size, std::vector<Joint> &joints);
-        void            read_skeleton		(BinaryFileStream &file, uint32_t remaining_size, SkeletonData &skeleton);
+        void            read_skeleton        (BinaryFileStream &file, uint32_t remaining_size, SkeletonData &skeleton);
 
-        void            read_file			(BinaryFileStream &file, uint32_t remaining_size);
+        void            read_file            (BinaryFileStream &file, uint32_t remaining_size);
 
 
         // Recursive function to build the skeleton
-        void            build_skeleton		(std::vector<std::string> &joint_names, std::vector<Joint> &src_joints, std::vector<SkeletonJoint> &dst_joints);
+        void            build_skeleton        (std::vector<std::string> &joint_names, std::vector<Joint> &src_joints, std::vector<SkeletonJoint> &dst_joints);
 
 };
 

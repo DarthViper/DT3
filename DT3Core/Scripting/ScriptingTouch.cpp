@@ -1,12 +1,12 @@
 //==============================================================================
-///	
-///	File: ScriptingTouch.cpp
-///	
+///    
+///    File: ScriptingTouch.cpp
+///    
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
 /// This file is subject to the terms and conditions defined in
 /// file 'LICENSE.txt', which is part of this source code package.
-///	
+///    
 //==============================================================================
 
 #include "DT3Core/Scripting/ScriptingTouch.hpp"
@@ -41,47 +41,47 @@ IMPLEMENT_PLUG_INFO_INDEX(_touch_pos_3)
 IMPLEMENT_PLUG_INFO_INDEX(_touch_vel_3)
 IMPLEMENT_PLUG_INFO_INDEX(_touch_initial_3)
 IMPLEMENT_PLUG_INFO_INDEX(_touch_active_3)
-	
+    
 //==============================================================================
 //==============================================================================
 
 BEGIN_IMPLEMENT_PLUGS(ScriptingTouch)
 
-	PLUG_INIT(_touch_pos_1,"Touch_Pos_1")
-		.set_output(true);
+    PLUG_INIT(_touch_pos_1,"Touch_Pos_1")
+        .set_output(true);
 
-	PLUG_INIT(_touch_vel_1,"Touch_Vel_1")
-		.set_output(true);
+    PLUG_INIT(_touch_vel_1,"Touch_Vel_1")
+        .set_output(true);
 
-	PLUG_INIT(_touch_initial_1,"Touch_Initial_1")
-		.set_output(true);
+    PLUG_INIT(_touch_initial_1,"Touch_Initial_1")
+        .set_output(true);
 
-	PLUG_INIT(_touch_active_1,"Touch_Active_1")
-		.set_output(true);
+    PLUG_INIT(_touch_active_1,"Touch_Active_1")
+        .set_output(true);
         
-	PLUG_INIT(_touch_pos_2,"Touch_Pos_2")
-		.set_output(true);
+    PLUG_INIT(_touch_pos_2,"Touch_Pos_2")
+        .set_output(true);
 
-	PLUG_INIT(_touch_vel_2,"Touch_Vel_2")
-		.set_output(true);
+    PLUG_INIT(_touch_vel_2,"Touch_Vel_2")
+        .set_output(true);
 
-	PLUG_INIT(_touch_initial_2,"Touch_Initial_2")
-		.set_output(true);
+    PLUG_INIT(_touch_initial_2,"Touch_Initial_2")
+        .set_output(true);
     
-	PLUG_INIT(_touch_active_2,"Touch_Active_2")
-		.set_output(true);
+    PLUG_INIT(_touch_active_2,"Touch_Active_2")
+        .set_output(true);
         
-	PLUG_INIT(_touch_pos_3,"Touch_Pos_3")
-		.set_output(true);
+    PLUG_INIT(_touch_pos_3,"Touch_Pos_3")
+        .set_output(true);
 
-	PLUG_INIT(_touch_vel_3,"Touch_Vel_3")
-		.set_output(true);
+    PLUG_INIT(_touch_vel_3,"Touch_Vel_3")
+        .set_output(true);
 
-	PLUG_INIT(_touch_initial_3,"Touch_Initial_3")
-		.set_output(true);
+    PLUG_INIT(_touch_initial_3,"Touch_Initial_3")
+        .set_output(true);
 
-	PLUG_INIT(_touch_active_3,"Touch_Active_3")
-		.set_output(true);
+    PLUG_INIT(_touch_active_3,"Touch_Active_3")
+        .set_output(true);
         
 END_IMPLEMENT_PLUGS
 
@@ -90,18 +90,18 @@ END_IMPLEMENT_PLUGS
 //==============================================================================
 
 ScriptingTouch::ScriptingTouch (void)
-    :	_touch_pos_1	(PLUG_INFO_INDEX(_touch_pos_1), {0.0F,0.0F}),
-        _touch_vel_1	(PLUG_INFO_INDEX(_touch_vel_1), {0.0F,0.0F}),
+    :    _touch_pos_1    (PLUG_INFO_INDEX(_touch_pos_1), {0.0F,0.0F}),
+        _touch_vel_1    (PLUG_INFO_INDEX(_touch_vel_1), {0.0F,0.0F}),
         _touch_initial_1(PLUG_INFO_INDEX(_touch_initial_1), {0.0F,0.0F}),
-		_touch_active_1	(PLUG_INFO_INDEX(_touch_active_1), false),
-		_touch_pos_2	(PLUG_INFO_INDEX(_touch_pos_2), {0.0F,0.0F}),
-		_touch_vel_2	(PLUG_INFO_INDEX(_touch_vel_2), {0.0F,0.0F}),
+        _touch_active_1    (PLUG_INFO_INDEX(_touch_active_1), false),
+        _touch_pos_2    (PLUG_INFO_INDEX(_touch_pos_2), {0.0F,0.0F}),
+        _touch_vel_2    (PLUG_INFO_INDEX(_touch_vel_2), {0.0F,0.0F}),
         _touch_initial_2(PLUG_INFO_INDEX(_touch_initial_2), {0.0F,0.0F}),
-		_touch_active_2	(PLUG_INFO_INDEX(_touch_active_2), false),
-		_touch_pos_3	(PLUG_INFO_INDEX(_touch_pos_3), {0.0F,0.0F}),
-		_touch_vel_3	(PLUG_INFO_INDEX(_touch_vel_3), {0.0F,0.0F}),
+        _touch_active_2    (PLUG_INFO_INDEX(_touch_active_2), false),
+        _touch_pos_3    (PLUG_INFO_INDEX(_touch_pos_3), {0.0F,0.0F}),
+        _touch_vel_3    (PLUG_INFO_INDEX(_touch_vel_3), {0.0F,0.0F}),
         _touch_initial_3(PLUG_INFO_INDEX(_touch_initial_3), {0.0F,0.0F}),
-		_touch_active_3	(PLUG_INFO_INDEX(_touch_active_3), false),
+        _touch_active_3    (PLUG_INFO_INDEX(_touch_active_3), false),
         _clear_vel_1    (false),
         _clear_vel_2    (false),
         _clear_vel_3    (false)
@@ -109,9 +109,9 @@ ScriptingTouch::ScriptingTouch (void)
 {  
 
 }
-		
+        
 ScriptingTouch::ScriptingTouch (const ScriptingTouch &rhs)
-    :   ScriptingBase	(rhs),
+    :   ScriptingBase    (rhs),
         _touch_pos_1    (rhs._touch_pos_1),
         _touch_vel_1    (rhs._touch_vel_1),
         _touch_initial_1(rhs._touch_initial_1),
@@ -135,7 +135,7 @@ ScriptingTouch & ScriptingTouch::operator = (const ScriptingTouch &rhs)
 {
     // Make sure we are not assigning the class to itself
     if (&rhs != this) {        
-		ScriptingBase::operator = (rhs);
+        ScriptingBase::operator = (rhs);
 
         _touch_pos_1 = rhs._touch_pos_1;
         _touch_vel_1 = rhs._touch_vel_1;
@@ -153,10 +153,10 @@ ScriptingTouch & ScriptingTouch::operator = (const ScriptingTouch &rhs)
         _clear_vel_1 = rhs._clear_vel_1;
         _clear_vel_2 = rhs._clear_vel_2;
         _clear_vel_3 = rhs._clear_vel_3;
-	}
+    }
     return (*this);
 }
-			
+            
 ScriptingTouch::~ScriptingTouch (void)
 {
 
@@ -169,21 +169,21 @@ void ScriptingTouch::archive (const std::shared_ptr<Archive> &archive)
 {
     ScriptingBase::archive(archive);
 
-	archive->push_domain (class_id ());
-	
-	*archive << ARCHIVE_PLUG(_touch_pos_1, DATA_PERSISTENT | DATA_SETTABLE);
+    archive->push_domain (class_id ());
+    
+    *archive << ARCHIVE_PLUG(_touch_pos_1, DATA_PERSISTENT | DATA_SETTABLE);
     *archive << ARCHIVE_PLUG(_touch_vel_1, DATA_PERSISTENT | DATA_SETTABLE);
     *archive << ARCHIVE_PLUG(_touch_initial_1, DATA_PERSISTENT | DATA_SETTABLE);
-	*archive << ARCHIVE_PLUG(_touch_active_1, DATA_PERSISTENT | DATA_SETTABLE);
-	*archive << ARCHIVE_PLUG(_touch_pos_2, DATA_PERSISTENT | DATA_SETTABLE);
+    *archive << ARCHIVE_PLUG(_touch_active_1, DATA_PERSISTENT | DATA_SETTABLE);
+    *archive << ARCHIVE_PLUG(_touch_pos_2, DATA_PERSISTENT | DATA_SETTABLE);
     *archive << ARCHIVE_PLUG(_touch_vel_2, DATA_PERSISTENT | DATA_SETTABLE);
     *archive << ARCHIVE_PLUG(_touch_initial_2, DATA_PERSISTENT | DATA_SETTABLE);
-	*archive << ARCHIVE_PLUG(_touch_active_2, DATA_PERSISTENT | DATA_SETTABLE);
-	*archive << ARCHIVE_PLUG(_touch_pos_3, DATA_PERSISTENT | DATA_SETTABLE);
+    *archive << ARCHIVE_PLUG(_touch_active_2, DATA_PERSISTENT | DATA_SETTABLE);
+    *archive << ARCHIVE_PLUG(_touch_pos_3, DATA_PERSISTENT | DATA_SETTABLE);
     *archive << ARCHIVE_PLUG(_touch_vel_3, DATA_PERSISTENT | DATA_SETTABLE);
     *archive << ARCHIVE_PLUG(_touch_initial_3, DATA_PERSISTENT | DATA_SETTABLE);
-	*archive << ARCHIVE_PLUG(_touch_active_3, DATA_PERSISTENT | DATA_SETTABLE);
-	   
+    *archive << ARCHIVE_PLUG(_touch_active_3, DATA_PERSISTENT | DATA_SETTABLE);
+       
     archive->pop_domain ();
 }
 
@@ -192,7 +192,7 @@ void ScriptingTouch::archive (const std::shared_ptr<Archive> &archive)
 
 void ScriptingTouch::touch (const TouchEvent*event, const std::shared_ptr<CameraObject> &camera, WorldNode* &handled)
 {
-	PROFILER(SCRIPTING);
+    PROFILER(SCRIPTING);
 
     _touch_pos_1 = TouchEvent::normalize_input(event->touches[0].pos);
     _touch_vel_1 = TouchEvent::normalize_input_vel(event->touches[0].velocity);
@@ -215,7 +215,7 @@ void ScriptingTouch::touch (const TouchEvent*event, const std::shared_ptr<Camera
 
 void ScriptingTouch::tick (const DTfloat dt)
 {
-	PROFILER(SCRIPTING);
+    PROFILER(SCRIPTING);
 }
 
 //==============================================================================
@@ -223,7 +223,7 @@ void ScriptingTouch::tick (const DTfloat dt)
 
 void ScriptingTouch::draw (const std::shared_ptr<CameraObject> &camera, const DTfloat lag)
 {
-	PROFILER(SCRIPTING);
+    PROFILER(SCRIPTING);
 
     _touch_vel_1 = {0.0F,0.0F};
     _touch_vel_2 = {0.0F,0.0F};

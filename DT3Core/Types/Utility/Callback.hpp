@@ -3,7 +3,7 @@
 #define DT3_CALLBACK
 //==============================================================================
 ///
-///	File: Callback.hpp
+///    File: Callback.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -30,7 +30,7 @@ class Callback {
         DEFINE_TYPE_BASE(Callback)
         virtual ~Callback(void)    {}
         virtual void operator ()(T... t) = 0;
-        virtual bool	operator ==	(const Callback& rhs) const = 0;
+        virtual bool    operator ==    (const Callback& rhs) const = 0;
 };
 
 template <typename CLASS,typename... T>

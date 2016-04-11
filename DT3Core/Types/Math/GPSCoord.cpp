@@ -1,12 +1,12 @@
 //==============================================================================
-///	
-///	File: GPSCoord.cpp
-///	
+///    
+///    File: GPSCoord.cpp
+///    
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
 /// This file is subject to the terms and conditions defined in
 /// file 'LICENSE.txt', which is part of this source code package.
-///	
+///    
 //==============================================================================
 
 #include "DT3Core/Types/Math/GPSCoord.hpp"
@@ -32,21 +32,21 @@ GPSCoord::GPSCoord (void)
 }
 
 GPSCoord::GPSCoord (const GPSCoord &rhs)
-	:	_latitude   (rhs._latitude),
+    :    _latitude   (rhs._latitude),
         _longitude  (rhs._longitude),
         _elevation  (rhs._elevation)
 {
-	
+    
 }
-		
+        
 GPSCoord& GPSCoord::operator = (const GPSCoord &rhs)
-{	
+{    
     _latitude = rhs._latitude;
     _longitude = rhs._longitude;
     _elevation = rhs._elevation;
 
     return (*this);
-}	
+}    
 
 GPSCoord::~GPSCoord (void)
 {
@@ -61,7 +61,7 @@ Stream& operator <<(Stream &s, const GPSCoord &v)
     s << v._latitude;
     s << v._longitude;
     s << v._elevation;
-	return s;
+    return s;
 }
 
 Stream& operator >>(Stream &s, GPSCoord &v)
@@ -69,7 +69,7 @@ Stream& operator >>(Stream &s, GPSCoord &v)
     s >> v._latitude;
     s >> v._longitude;
     s >> v._elevation;
-	return s;
+    return s;
 }
 
 //==============================================================================

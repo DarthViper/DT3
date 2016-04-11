@@ -3,7 +3,7 @@
 #define DT3_PLUGKEYFRAMES
 //==============================================================================
 ///
-///	File: ScriptingKeyframes.hpp
+///    File: ScriptingKeyframes.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -32,27 +32,27 @@ class ScriptingKeyframes: public ScriptingBase {
         DEFINE_TYPE(ScriptingKeyframes,ScriptingBase)
         //DEFINE_CREATE_AND_CLONE
 
-                                    ScriptingKeyframes		(void);
-                                    ScriptingKeyframes		(const ScriptingKeyframes &rhs);
-        ScriptingKeyframes &		operator =				(const ScriptingKeyframes &rhs);
-        virtual						~ScriptingKeyframes		(void);
+                                    ScriptingKeyframes        (void);
+                                    ScriptingKeyframes        (const ScriptingKeyframes &rhs);
+        ScriptingKeyframes &        operator =                (const ScriptingKeyframes &rhs);
+        virtual                        ~ScriptingKeyframes        (void);
 
-        virtual void				archive                 (const std::shared_ptr<Archive> &archive);
+        virtual void                archive                 (const std::shared_ptr<Archive> &archive);
 
     public:
         /// Set a key at the current time
-        virtual void				set_key					(void) = 0;
+        virtual void                set_key                    (void) = 0;
 
         /// Clear a key at the current time
-        virtual void				clear_key				(void) = 0;
+        virtual void                clear_key                (void) = 0;
 
         /// Clear a key with index
         /// \param k key index
-        virtual void				clear_key				(int32_t k) = 0;
+        virtual void                clear_key                (int32_t k) = 0;
 
         /// Get the number of keys
         /// \return number of keys
-        virtual DTsize				num_keys                (void) const = 0;
+        virtual DTsize                num_keys                (void) const = 0;
 
         /// Returns a unique ID for this key
         /// \param k key index
@@ -67,13 +67,13 @@ class ScriptingKeyframes: public ScriptingBase {
         /// Get the time for the key
         /// \param k key index
         /// \return time
-        virtual DTfloat				key_time                (int32_t k) const = 0;
+        virtual DTfloat                key_time                (int32_t k) const = 0;
 
         /// Set the time for the key
         /// \param k key index
         /// \param time key time
         /// \return new index
-        virtual int32_t				set_key_time            (int32_t k, DTfloat time) = 0;
+        virtual int32_t                set_key_time            (int32_t k, DTfloat time) = 0;
 
 };
 

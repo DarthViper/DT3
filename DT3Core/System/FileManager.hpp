@@ -3,7 +3,7 @@
 #define DT3_FILEMANAGER
 //==============================================================================
 ///
-///	File: FileManager.hpp
+///    File: FileManager.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -43,7 +43,7 @@ class FileManager {
                                     FileManager         (void);
                                     FileManager         (const FileManager &rhs);
         FileManager &               operator =          (const FileManager &rhs);
-        virtual						~FileManager		(void);
+        virtual                        ~FileManager        (void);
 
     public:
 
@@ -54,7 +54,7 @@ class FileManager {
         static void                 destroy             (void);
 
         /// Scans and build a list of all of the files in the data directory
-        static void                 scan_files			(void);
+        static void                 scan_files            (void);
 
         /// Registers and scans a package file
         /// \param pathname Path to the package
@@ -80,7 +80,7 @@ class FileManager {
         /// \param read Reading or writing
         /// \param progress Progress object to implement progress bars
         /// \return Error code
-        static DTerr				open				(TextFileStream &file, const FilePath &pathname, bool read = true, std::shared_ptr<Progress> progress = NULL);
+        static DTerr                open                (TextFileStream &file, const FilePath &pathname, bool read = true, std::shared_ptr<Progress> progress = NULL);
 
         /// Opens a binary file in the package
         /// \param file Resulting file stream
@@ -88,7 +88,7 @@ class FileManager {
         /// \param read Reading or writing
         /// \param progress Progress object to implement progress bars
         /// \return Error code
-        static DTerr				open				(BinaryFileStream &file, const FilePath &pathname, bool read = true, std::shared_ptr<Progress> progress = NULL);
+        static DTerr                open                (BinaryFileStream &file, const FilePath &pathname, bool read = true, std::shared_ptr<Progress> progress = NULL);
 
 
         /// Sets a callback to be called when the file manager is trying to Open a FileHandle
@@ -99,8 +99,8 @@ class FileManager {
         static void                 set_file_open_cb    (std::shared_ptr<Callback<const FilePath &, std::shared_ptr<FileHandle> &, DTsize &, DTsize &, void *>> cb, void *data);
 
     private:
-        static DTerr				open_from_fragment  (TextFileStream &file, const FilePath &pathname, DTsize start, DTsize length, DTsize uncompressed_length, bool read, std::shared_ptr<Progress> progress = NULL);
-        static DTerr				open_from_fragment  (BinaryFileStream &file, const FilePath &pathname, DTsize start, DTsize length, DTsize uncompressed_length, bool read, std::shared_ptr<Progress> progress = NULL);
+        static DTerr                open_from_fragment  (TextFileStream &file, const FilePath &pathname, DTsize start, DTsize length, DTsize uncompressed_length, bool read, std::shared_ptr<Progress> progress = NULL);
+        static DTerr                open_from_fragment  (BinaryFileStream &file, const FilePath &pathname, DTsize start, DTsize length, DTsize uncompressed_length, bool read, std::shared_ptr<Progress> progress = NULL);
 
         static std::map<std::string, std::shared_ptr<Package>>                                         _packages;
         static std::shared_ptr<Callback<const FilePath &, std::shared_ptr<FileHandle> &, DTsize &, DTsize &, void *>> _cb;

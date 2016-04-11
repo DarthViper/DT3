@@ -3,7 +3,7 @@
 #define DT3_SCRIPTINGGYRO
 //==============================================================================
 ///
-///	File: ScriptingGyro.hpp
+///    File: ScriptingGyro.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -50,8 +50,8 @@ class ScriptingGyro: public ScriptingBase {
 
     private:
         Plug<Vector3>               _out;
-        Plug<Vector3>				_out_low_freq;
-        Plug<Vector3>				_out_high_freq;
+        Plug<Vector3>                _out_low_freq;
+        Plug<Vector3>                _out_high_freq;
 };
 
 //==============================================================================

@@ -3,7 +3,7 @@
 #define DT3_GUICONTROLLER
 //==============================================================================
 ///
-///	File: GUIController.hpp
+///    File: GUIController.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey, Inc. All rights reserved.
 ///

@@ -1,12 +1,12 @@
 //==============================================================================
-///	
-///	File: ComponentGUIToggleButton.cpp
-///	
+///    
+///    File: ComponentGUIToggleButton.cpp
+///    
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
 /// This file is subject to the terms and conditions defined in
 /// file 'LICENSE.txt', which is part of this source code package.
-///	
+///    
 //==============================================================================
 
 #include "DT3Core/Components/ComponentGUIToggleButton.hpp"
@@ -50,28 +50,28 @@ IMPLEMENT_PLUG_INFO_INDEX(_sound_off)
 BEGIN_IMPLEMENT_PLUGS(ComponentGUIToggleButton)
 
     PLUG_INIT(_sound_on, "Sound_On")
-		.set_input(true);
+        .set_input(true);
 
     PLUG_INIT(_sound_off, "Sound_Off")
-		.set_input(true);
+        .set_input(true);
 
     PLUG_INIT(_is_on, "Is_On")
-		.set_output(true);
-
-	EVENT_INIT(_clicked_on,"Clicked_On")
         .set_output(true);
 
-	EVENT_INIT(_clicked_off,"Clicked_Off")
+    EVENT_INIT(_clicked_on,"Clicked_On")
         .set_output(true);
 
-	EVENT_INIT(_toggled,"Toggled")
+    EVENT_INIT(_clicked_off,"Clicked_Off")
         .set_output(true);
 
-	EVENT_INIT(_force_click_on,"Force_Click_On")
+    EVENT_INIT(_toggled,"Toggled")
+        .set_output(true);
+
+    EVENT_INIT(_force_click_on,"Force_Click_On")
         .set_input(true)
         .set_event(&ComponentGUIToggleButton::force_click_on);
 
-	EVENT_INIT(_force_click_off,"Force_Click_Off")
+    EVENT_INIT(_force_click_off,"Force_Click_Off")
         .set_input(true)
         .set_event(&ComponentGUIToggleButton::force_click_off);
 
@@ -93,7 +93,7 @@ ComponentGUIToggleButton::ComponentGUIToggleButton (void)
 {
 
 }
-		
+        
 ComponentGUIToggleButton::ComponentGUIToggleButton (const ComponentGUIToggleButton &rhs)
     :   ComponentBase       (rhs),
         _sound_on           (rhs._sound_on),
@@ -112,7 +112,7 @@ ComponentGUIToggleButton & ComponentGUIToggleButton::operator = (const Component
 {
     // Make sure we are not assigning the class to itself
     if (&rhs != this) {        
-		ComponentBase::operator = (rhs);
+        ComponentBase::operator = (rhs);
         
         _sound_on = rhs._sound_on;
         _sound_off = rhs._sound_off;
@@ -120,7 +120,7 @@ ComponentGUIToggleButton & ComponentGUIToggleButton::operator = (const Component
     }
     return (*this);
 }
-			
+            
 ComponentGUIToggleButton::~ComponentGUIToggleButton (void)
 {
 
@@ -133,8 +133,8 @@ void ComponentGUIToggleButton::archive (const std::shared_ptr<Archive> &archive)
 {
     ComponentBase::archive(archive);
 
-	archive->push_domain (class_id ());
-        		
+    archive->push_domain (class_id ());
+                
     *archive << ARCHIVE_PLUG(_sound_on, DATA_PERSISTENT | DATA_SETTABLE);
     *archive << ARCHIVE_PLUG(_sound_off, DATA_PERSISTENT | DATA_SETTABLE);
 

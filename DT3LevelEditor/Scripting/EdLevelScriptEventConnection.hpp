@@ -3,7 +3,7 @@
 #define EDLEVELSCRIPTEVENTCONNECTION
 //==============================================================================
 ///
-///	File: EdLevelScriptEventConnection.hpp
+///    File: EdLevelScriptEventConnection.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///#pragma once
@@ -47,7 +47,7 @@ class EdLevelScriptEventConnection : public EdLevelScriptConnection
 
     public:
                                     EdLevelScriptEventConnection    (void)  {}
-                                    EdLevelScriptEventConnection	(   EdLevelScriptNodeStandard *node1, Event *event1,
+                                    EdLevelScriptEventConnection    (   EdLevelScriptNodeStandard *node1, Event *event1,
                                                                         EdLevelScriptNodeStandard *node2, Event *event2);
 
                                     ~EdLevelScriptEventConnection()  {}
@@ -60,7 +60,7 @@ class EdLevelScriptEventConnection : public EdLevelScriptConnection
     public:
         virtual void                readjustBounds  (void);
 
-        virtual void				paint			(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
+        virtual void                paint            (QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
 
         Event                       *_event1;
         Event                       *_event2;

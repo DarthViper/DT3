@@ -1,12 +1,12 @@
 //==============================================================================
-///	
-///	File: ScriptingParticleFriction.cpp
-///	
+///    
+///    File: ScriptingParticleFriction.cpp
+///    
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
 /// This file is subject to the terms and conditions defined in
 /// file 'LICENSE.txt', which is part of this source code package.
-///	
+///    
 //==============================================================================
 
 #include "DT3Core/Scripting/ScriptingParticleFriction.hpp"
@@ -37,16 +37,16 @@ IMPLEMENT_PLUG_INFO_INDEX(_out)
 
 BEGIN_IMPLEMENT_PLUGS(ScriptingParticleFriction)
 
-	PLUG_INIT(_drag,"Drag")
-		.set_input(true)
-		.affects(PLUG_INFO_INDEX(_out));
+    PLUG_INIT(_drag,"Drag")
+        .set_input(true)
+        .affects(PLUG_INFO_INDEX(_out));
 
-	PLUG_INIT(_in,"In")
-		.set_input(true)
-		.affects(PLUG_INFO_INDEX(_out));
-	
-	PLUG_INIT(_out,"Out")
-		.set_output(true);
+    PLUG_INIT(_in,"In")
+        .set_input(true)
+        .affects(PLUG_INFO_INDEX(_out));
+    
+    PLUG_INIT(_out,"Out")
+        .set_output(true);
         
 END_IMPLEMENT_PLUGS
 
@@ -56,17 +56,17 @@ END_IMPLEMENT_PLUGS
 
 ScriptingParticleFriction::ScriptingParticleFriction (void)
     :   _drag           (PLUG_INFO_INDEX(_drag), 0.95F),
-		_in				(PLUG_INFO_INDEX(_in)),
-		_out			(PLUG_INFO_INDEX(_out))
+        _in                (PLUG_INFO_INDEX(_in)),
+        _out            (PLUG_INFO_INDEX(_out))
 {  
 
 }
-		
+        
 ScriptingParticleFriction::ScriptingParticleFriction (const ScriptingParticleFriction &rhs)
-    :   ScriptingBase	(rhs),
-		_drag           (rhs._drag),
-		_in				(rhs._in),
-		_out			(rhs._out)
+    :   ScriptingBase    (rhs),
+        _drag           (rhs._drag),
+        _in                (rhs._in),
+        _out            (rhs._out)
 {   
 
 }
@@ -75,15 +75,15 @@ ScriptingParticleFriction & ScriptingParticleFriction::operator = (const Scripti
 {
     // Make sure we are not assigning the class to itself
     if (&rhs != this) {        
-		ScriptingBase::operator = (rhs);
+        ScriptingBase::operator = (rhs);
 
-		_drag = rhs._drag;
-		_in	= rhs._in;
-		_out = rhs._out;
-	}
+        _drag = rhs._drag;
+        _in    = rhs._in;
+        _out = rhs._out;
+    }
     return (*this);
 }
-			
+            
 ScriptingParticleFriction::~ScriptingParticleFriction (void)
 {
 
@@ -96,10 +96,10 @@ void ScriptingParticleFriction::archive (const std::shared_ptr<Archive> &archive
 {
     ScriptingBase::archive(archive);
 
-	archive->push_domain (class_id ());
-	
-	*archive << ARCHIVE_PLUG(_drag, DATA_PERSISTENT | DATA_SETTABLE);
-	        					
+    archive->push_domain (class_id ());
+    
+    *archive << ARCHIVE_PLUG(_drag, DATA_PERSISTENT | DATA_SETTABLE);
+                                
     archive->pop_domain ();
 }
 
@@ -108,38 +108,38 @@ void ScriptingParticleFriction::archive (const std::shared_ptr<Archive> &archive
 
 bool ScriptingParticleFriction::compute (const PlugBase *plug)
 {
-	PROFILER(PARTICLES);
+    PROFILER(PARTICLES);
 
     if (super_type::compute(plug))  return true;
 
-	if (plug == &_out) {
-		
-		// Make sure there are input particles
-		std::shared_ptr<Particles> particles = _in;
-		if (!particles || particles->translations_stream().size() <= 0) {
-			_out.set_clean();
+    if (plug == &_out) {
+        
+        // Make sure there are input particles
+        std::shared_ptr<Particles> particles = _in;
+        if (!particles || particles->translations_stream().size() <= 0) {
+            _out.set_clean();
             return true;
-		}
-			
-		// Build the velocities stream
-		if (particles->velocity_stream().size() <= 0) {
-			particles->build_velocity_stream();
-		}
-		
-		// Do processing
+        }
+            
+        // Build the velocities stream
+        if (particles->velocity_stream().size() <= 0) {
+            particles->build_velocity_stream();
+        }
+        
+        // Do processing
         std::vector<Vector3> &velocities = particles->velocity_stream();
 
-		for (int32_t i = particles->active_start(); i != particles->active_end(); i = (i + 1) % particles->translations_stream().size()) {
-			velocities[i] *= _drag;
-		}
+        for (int32_t i = particles->active_start(); i != particles->active_end(); i = (i + 1) % particles->translations_stream().size()) {
+            velocities[i] *= _drag;
+        }
 
-		_out = particles;
-		_out.set_clean();
-		
-		return true;
-	}
-	
-	return false;
+        _out = particles;
+        _out.set_clean();
+        
+        return true;
+    }
+    
+    return false;
 }
 
 //==============================================================================

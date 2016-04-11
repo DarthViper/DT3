@@ -1,12 +1,12 @@
 //==============================================================================
-///	
-///	File: ScriptingParticleVelocityAdder.cpp
-///	
+///    
+///    File: ScriptingParticleVelocityAdder.cpp
+///    
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
 /// This file is subject to the terms and conditions defined in
 /// file 'LICENSE.txt', which is part of this source code package.
-///	
+///    
 //==============================================================================
 
 #include "DT3Core/Scripting/ScriptingParticleVelocityAdder.hpp"
@@ -37,16 +37,16 @@ IMPLEMENT_PLUG_INFO_INDEX(_out)
 
 BEGIN_IMPLEMENT_PLUGS(ScriptingParticleVelocityAdder)
 
-	PLUG_INIT(_velocity,"Velocity")
-		.set_input(true)
-		.affects(PLUG_INFO_INDEX(_out));
+    PLUG_INIT(_velocity,"Velocity")
+        .set_input(true)
+        .affects(PLUG_INFO_INDEX(_out));
 
-	PLUG_INIT(_in,"In")
-		.set_input(true)
-		.affects(PLUG_INFO_INDEX(_out));
-	
-	PLUG_INIT(_out,"Out")
-		.set_output(true);
+    PLUG_INIT(_in,"In")
+        .set_input(true)
+        .affects(PLUG_INFO_INDEX(_out));
+    
+    PLUG_INIT(_out,"Out")
+        .set_output(true);
         
 END_IMPLEMENT_PLUGS
 
@@ -55,20 +55,20 @@ END_IMPLEMENT_PLUGS
 //==============================================================================
 
 ScriptingParticleVelocityAdder::ScriptingParticleVelocityAdder (void)
-    :   _continuous		(false),
-        _velocity		(PLUG_INFO_INDEX(_velocity), {0.0F,0.0F,0.0F}),
-		_in				(PLUG_INFO_INDEX(_in)),
-		_out			(PLUG_INFO_INDEX(_out))
+    :   _continuous        (false),
+        _velocity        (PLUG_INFO_INDEX(_velocity), {0.0F,0.0F,0.0F}),
+        _in                (PLUG_INFO_INDEX(_in)),
+        _out            (PLUG_INFO_INDEX(_out))
 {  
 
 }
-		
+        
 ScriptingParticleVelocityAdder::ScriptingParticleVelocityAdder (const ScriptingParticleVelocityAdder &rhs)
-    :   ScriptingBase	(rhs),
-		_continuous		(rhs._continuous),
-		_velocity		(rhs._velocity),
-		_in				(rhs._in),
-		_out			(rhs._out)
+    :   ScriptingBase    (rhs),
+        _continuous        (rhs._continuous),
+        _velocity        (rhs._velocity),
+        _in                (rhs._in),
+        _out            (rhs._out)
 {   
 
 }
@@ -77,16 +77,16 @@ ScriptingParticleVelocityAdder & ScriptingParticleVelocityAdder::operator = (con
 {
     // Make sure we are not assigning the class to itself
     if (&rhs != this) {        
-		ScriptingBase::operator = (rhs);
+        ScriptingBase::operator = (rhs);
 
-		_continuous = rhs._continuous;
-		_velocity = rhs._velocity;
-		_in	= rhs._in;
-		_out = rhs._out;
-	}
+        _continuous = rhs._continuous;
+        _velocity = rhs._velocity;
+        _in    = rhs._in;
+        _out = rhs._out;
+    }
     return (*this);
 }
-			
+            
 ScriptingParticleVelocityAdder::~ScriptingParticleVelocityAdder (void)
 {
 
@@ -99,11 +99,11 @@ void ScriptingParticleVelocityAdder::archive (const std::shared_ptr<Archive> &ar
 {
     ScriptingBase::archive(archive);
 
-	archive->push_domain (class_id ());
-	
-	*archive << ARCHIVE_DATA(_continuous, DATA_PERSISTENT | DATA_SETTABLE);
-	*archive << ARCHIVE_PLUG(_velocity, DATA_PERSISTENT | DATA_SETTABLE);
-	        					
+    archive->push_domain (class_id ());
+    
+    *archive << ARCHIVE_DATA(_continuous, DATA_PERSISTENT | DATA_SETTABLE);
+    *archive << ARCHIVE_PLUG(_velocity, DATA_PERSISTENT | DATA_SETTABLE);
+                                
     archive->pop_domain ();
 }
 
@@ -112,41 +112,41 @@ void ScriptingParticleVelocityAdder::archive (const std::shared_ptr<Archive> &ar
 
 bool ScriptingParticleVelocityAdder::compute (const PlugBase *plug)
 {
-	PROFILER(PARTICLES);
+    PROFILER(PARTICLES);
 
     if (super_type::compute(plug))  return true;
 
-	if (plug == &_out) {
-		
-		// Make sure there are input particles
-		std::shared_ptr<Particles> particles = _in;
-		if (!particles || particles->translations_stream().size() <= 0) {
-			_out.set_clean();
+    if (plug == &_out) {
+        
+        // Make sure there are input particles
+        std::shared_ptr<Particles> particles = _in;
+        if (!particles || particles->translations_stream().size() <= 0) {
+            _out.set_clean();
             return true;
-		}
-			
-		// Build the velocities stream
-		if (particles->velocity_stream().size() <= 0) {
-			particles->build_velocity_stream();
-		}
-		
-		// Do processing
+        }
+            
+        // Build the velocities stream
+        if (particles->velocity_stream().size() <= 0) {
+            particles->build_velocity_stream();
+        }
+        
+        // Do processing
         std::vector<Vector3> &velocities = particles->velocity_stream();
-		std::vector<DTfloat> &lifetimes = particles->lifetimes_stream();
+        std::vector<DTfloat> &lifetimes = particles->lifetimes_stream();
 
-		for (int32_t i = particles->active_start(); i != particles->active_end(); i = (i + 1) % particles->translations_stream().size()) {
-			if (_continuous || lifetimes[i] == 0.0F) {
-				velocities[i] += _velocity;
-			}
-		}
+        for (int32_t i = particles->active_start(); i != particles->active_end(); i = (i + 1) % particles->translations_stream().size()) {
+            if (_continuous || lifetimes[i] == 0.0F) {
+                velocities[i] += _velocity;
+            }
+        }
 
-		_out = particles;
-		_out.set_clean();
-		
-		return true;
-	}
-	
-	return false;
+        _out = particles;
+        _out.set_clean();
+        
+        return true;
+    }
+    
+    return false;
 }
 
 //==============================================================================
@@ -156,7 +156,7 @@ bool ScriptingParticleVelocityAdder::compute (const PlugBase *plug)
 
 void ScriptingParticleVelocityAdder::dump_code(const std::string &object_name, Stream &s)
 {
-	PROFILER(PARTICLES);
+    PROFILER(PARTICLES);
 
     s << object_name << "->set_continuous(" << _continuous << ");\n";
     s << object_name << "->set_velocity({" << _velocity->x << "," << _velocity->y << "," << _velocity->z << "});\n";

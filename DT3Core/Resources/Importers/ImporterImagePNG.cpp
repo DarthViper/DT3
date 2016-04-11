@@ -1,6 +1,6 @@
 //==============================================================================
 ///
-///	File: ImporterImagePNG.cpp
+///    File: ImporterImagePNG.cpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -167,7 +167,7 @@ DTerr ImporterImagePNG::import(const FilePath &pathname, const std::string &args
     // set up your own error handlers in the png_create_read_struct() earlier.
     if (setjmp ((*png_set_longjmp_fn((png_ptr), (png_longjmp_ptr)longjmp, sizeof(jmp_buf))))) {
         png_destroy_read_struct(&png_ptr, &info_ptr, (png_infopp)NULL);
-        delete[] row_pointers;	// Gets allocated after here, but don't forget the jump!
+        delete[] row_pointers;    // Gets allocated after here, but don't forget the jump!
         return DT3_ERR_FILE_WRONG_TYPE;
     }
 
@@ -243,7 +243,7 @@ DTerr ImporterImagePNG::import(const FilePath &pathname, const std::string &args
 
         for (uint32_t y = 0; y < height; ++y) {
             for (uint32_t x = 0; x < width; ++x) {
-                *dst =	(uint16_t) (((((*src) >>  0) & 0xFF) >> 3) << 11 |
+                *dst =    (uint16_t) (((((*src) >>  0) & 0xFF) >> 3) << 11 |
                                     ((((*src) >>  8) & 0xFF) >> 3) << 6 |
                                     ((((*src) >>  16) & 0xFF) >> 3) << 1 |
                                     ((*src) >> 31));
@@ -256,7 +256,7 @@ DTerr ImporterImagePNG::import(const FilePath &pathname, const std::string &args
         data = b;
         format = DT3GL_FORMAT_RGBA_5551;
 
-    } else 	if (MoreStrings::lowercase(args).find("r4g4b4a4") != std::string::npos) {
+    } else     if (MoreStrings::lowercase(args).find("r4g4b4a4") != std::string::npos) {
         // Change data format to 16 bit
         std::shared_ptr<uint8_t> b = std::shared_ptr<uint8_t>(new uint8_t[width * height * 2]);
 
@@ -265,7 +265,7 @@ DTerr ImporterImagePNG::import(const FilePath &pathname, const std::string &args
 
         for (uint32_t y = 0; y < height; ++y) {
             for (uint32_t x = 0; x < width; ++x) {
-                *dst =	(uint16_t) (((((*src) >>  0) & 0xFF) >> 4) << 12 |
+                *dst =    (uint16_t) (((((*src) >>  0) & 0xFF) >> 4) << 12 |
                                     ((((*src) >>  8) & 0xFF) >> 4) << 8 |
                                     ((((*src) >>  16) & 0xFF) >> 4) << 4 |
                                     ((((*src) >>  24) & 0xFF) >> 4) << 0);
@@ -278,7 +278,7 @@ DTerr ImporterImagePNG::import(const FilePath &pathname, const std::string &args
         data = b;
         format = DT3GL_FORMAT_RGBA_4444;
 
-    } else 	if (MoreStrings::lowercase(args).find("r5g6b5") != std::string::npos) {
+    } else     if (MoreStrings::lowercase(args).find("r5g6b5") != std::string::npos) {
         // Change data format to 16 bit
         std::shared_ptr<uint8_t> b = std::shared_ptr<uint8_t>(new uint8_t[width * height * 2]);
 
@@ -287,7 +287,7 @@ DTerr ImporterImagePNG::import(const FilePath &pathname, const std::string &args
 
         for (uint32_t y = 0; y < height; ++y) {
             for (uint32_t x = 0; x < width; ++x) {
-                *dst =	(uint16_t) (((((*src) >>  0) & 0xFF) >> 3) << 11 |
+                *dst =    (uint16_t) (((((*src) >>  0) & 0xFF) >> 3) << 11 |
                                     ((((*src) >>  8) & 0xFF) >> 2) << 5 |
                                     ((((*src) >>  16) & 0xFF) >> 3) << 0);
 
@@ -299,7 +299,7 @@ DTerr ImporterImagePNG::import(const FilePath &pathname, const std::string &args
         data = b;
         format = DT3GL_FORMAT_RGB_565;
 
-    } else 	if (MoreStrings::lowercase(args).find("lum8") != std::string::npos) {
+    } else     if (MoreStrings::lowercase(args).find("lum8") != std::string::npos) {
         // Change data format to 8 bit
         std::shared_ptr<uint8_t> b = std::shared_ptr<uint8_t>(new uint8_t[width * height * 2]);
 
@@ -308,7 +308,7 @@ DTerr ImporterImagePNG::import(const FilePath &pathname, const std::string &args
 
         for (uint32_t y = 0; y < height; ++y) {
             for (uint32_t x = 0; x < width; ++x) {
-                *dst =	(uint8_t)	(((*src) >>  0) & 0xFF);
+                *dst =    (uint8_t)    (((*src) >>  0) & 0xFF);
 
                 ++src;
                 ++dst;

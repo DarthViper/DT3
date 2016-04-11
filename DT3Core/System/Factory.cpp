@@ -1,6 +1,6 @@
 //==============================================================================
 ///
-///	File: Factory.cpp
+///    File: Factory.cpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -31,49 +31,49 @@ std::shared_ptr<Callback<std::shared_ptr<BaseClass>>> Factory::_factory_created_
 /// time you use a static variable, it is initialized.
 //==============================================================================
 
-std::map<std::string, std::shared_ptr<CreatorBase>>&   factory_map	(void)
+std::map<std::string, std::shared_ptr<CreatorBase>>&   factory_map    (void)
 {
     static std::map<std::string, std::shared_ptr<CreatorBase>> factory_map;
     return factory_map;
 }
 
-std::map<std::string, std::shared_ptr<CreatorBase>>&   unit_test_map	(void)
+std::map<std::string, std::shared_ptr<CreatorBase>>&   unit_test_map    (void)
 {
     static std::map<std::string, std::shared_ptr<CreatorBase>> factory_map;
     return factory_map;
 }
 
-std::map<std::string, std::shared_ptr<CreatorBase>>&   command_map	(void)
+std::map<std::string, std::shared_ptr<CreatorBase>>&   command_map    (void)
 {
     static std::map<std::string, std::shared_ptr<CreatorBase>> factory_map;
     return factory_map;
 }
 
-std::map<std::string, std::shared_ptr<CreatorBase>>&   factory_importer_map	(void)
+std::map<std::string, std::shared_ptr<CreatorBase>>&   factory_importer_map    (void)
 {
     static std::map<std::string, std::shared_ptr<CreatorBase>> factory_map;
     return factory_map;
 }
 
-std::map<std::string,std::set<std::string>>&           placeable_map	(void)
+std::map<std::string,std::set<std::string>>&           placeable_map    (void)
 {
     static std::map<std::string,std::set<std::string>> placeable_map;
     return placeable_map;
 }
 
-std::map<std::string,std::set<std::string>>&           component_map	(void)
+std::map<std::string,std::set<std::string>>&           component_map    (void)
 {
     static std::map<std::string,std::set<std::string>> component_map;
     return component_map;
 }
 
-std::map<std::string,std::shared_ptr<CreatorBase>>&    world_map	(void)
+std::map<std::string,std::shared_ptr<CreatorBase>>&    world_map    (void)
 {
     static std::map<std::string,std::shared_ptr<CreatorBase>> world_map;
     return world_map;
 }
 
-std::map<std::string,std::set<std::string>>&           script_map	(void)
+std::map<std::string,std::set<std::string>>&           script_map    (void)
 {
     static std::map<std::string,std::set<std::string>> script_map;
     return script_map;
@@ -82,7 +82,7 @@ std::map<std::string,std::set<std::string>>&           script_map	(void)
 //==============================================================================
 //==============================================================================
 
-std::map<std::string, std::string>&                     adapter_map	(void)
+std::map<std::string, std::string>&                     adapter_map    (void)
 {
     static std::map<std::string, std::string> adapter_map;
     return adapter_map;

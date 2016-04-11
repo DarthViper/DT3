@@ -1,12 +1,12 @@
 //==============================================================================
-///	
-///	File: ComponentGUIScrollerLayout.cpp
-///	
+///    
+///    File: ComponentGUIScrollerLayout.cpp
+///    
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
 /// This file is subject to the terms and conditions defined in
 /// file 'LICENSE.txt', which is part of this source code package.
-///	
+///    
 //==============================================================================
 
 #include "DT3Core/Components/ComponentGUIScrollerLayout.hpp"
@@ -45,7 +45,7 @@ ComponentGUIScrollerLayout::ComponentGUIScrollerLayout (void)
 {
 
 }
-		
+        
 ComponentGUIScrollerLayout::ComponentGUIScrollerLayout (const ComponentGUIScrollerLayout &rhs)
     :   ComponentGUIScroller    (rhs),
         _content_width          (rhs._content_width),
@@ -58,14 +58,14 @@ ComponentGUIScrollerLayout & ComponentGUIScrollerLayout::operator = (const Compo
 {
     // Make sure we are not assigning the class to itself
     if (&rhs != this) {        
-		ComponentGUIScroller::operator = (rhs);
+        ComponentGUIScroller::operator = (rhs);
         
         _content_width = rhs._content_width;
         _content_height = rhs._content_height;
     }
     return (*this);
 }
-			
+            
 ComponentGUIScrollerLayout::~ComponentGUIScrollerLayout (void)
 {
 
@@ -78,10 +78,10 @@ void ComponentGUIScrollerLayout::archive (const std::shared_ptr<Archive> &archiv
 {
     ComponentGUIScroller::archive(archive);
 
-	archive->push_domain (class_id ());
+    archive->push_domain (class_id ());
     
-	*archive << ARCHIVE_DATA_ACCESSORS("Content_Width", ComponentGUIScrollerLayout::content_width, ComponentGUIScrollerLayout::set_content_width, DATA_PERSISTENT | DATA_SETTABLE);
-	*archive << ARCHIVE_DATA_ACCESSORS("Content_Height", ComponentGUIScrollerLayout::content_height, ComponentGUIScrollerLayout::set_content_height, DATA_PERSISTENT | DATA_SETTABLE);
+    *archive << ARCHIVE_DATA_ACCESSORS("Content_Width", ComponentGUIScrollerLayout::content_width, ComponentGUIScrollerLayout::set_content_width, DATA_PERSISTENT | DATA_SETTABLE);
+    *archive << ARCHIVE_DATA_ACCESSORS("Content_Height", ComponentGUIScrollerLayout::content_height, ComponentGUIScrollerLayout::set_content_height, DATA_PERSISTENT | DATA_SETTABLE);
     
     archive->pop_domain ();
 }

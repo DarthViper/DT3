@@ -3,7 +3,7 @@
 #define DT3_SCRIPTINGKEYDOWN
 //==============================================================================
 ///
-///	File: ScriptingKeyDown.hpp
+///    File: ScriptingKeyDown.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -34,10 +34,10 @@ class ScriptingKeyDown: public ScriptingBase {
         DEFINE_CREATE_AND_CLONE
         DEFINE_PLUG_NODE
 
-                                    ScriptingKeyDown		(void);
-                                    ScriptingKeyDown		(const ScriptingKeyDown &rhs);
-        ScriptingKeyDown &			operator =				(const ScriptingKeyDown &rhs);
-        virtual                     ~ScriptingKeyDown		(void);
+                                    ScriptingKeyDown        (void);
+                                    ScriptingKeyDown        (const ScriptingKeyDown &rhs);
+        ScriptingKeyDown &            operator =                (const ScriptingKeyDown &rhs);
+        virtual                     ~ScriptingKeyDown        (void);
 
         virtual void                archive                 (const std::shared_ptr<Archive> &archive);
 
@@ -55,17 +55,17 @@ class ScriptingKeyDown: public ScriptingBase {
     private:
         Plug<std::string>           _keys;
 
-        Plug<bool>				_left_shift;
-        Plug<bool>				_right_shift;
-        Plug<bool>				_left_ctrl;
-        Plug<bool>				_right_ctrl;
-        Plug<bool>				_left_alt;
-        Plug<bool>				_right_alt;
-        Plug<bool>				_left_meta;
-        Plug<bool>				_right_meta;
-        Plug<bool>				_caps_meta;
+        Plug<bool>                _left_shift;
+        Plug<bool>                _right_shift;
+        Plug<bool>                _left_ctrl;
+        Plug<bool>                _right_ctrl;
+        Plug<bool>                _left_alt;
+        Plug<bool>                _right_alt;
+        Plug<bool>                _left_meta;
+        Plug<bool>                _right_meta;
+        Plug<bool>                _caps_meta;
 
-        Plug<bool>				_out;
+        Plug<bool>                _out;
 };
 
 //==============================================================================

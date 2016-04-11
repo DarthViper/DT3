@@ -3,7 +3,7 @@
 #define DT3_FILEHANDLEUNCOMPRESSED
 //==============================================================================
 ///
-///	File: FileHandleUncompressed.hpp
+///    File: FileHandleUncompressed.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -53,63 +53,63 @@ class FileHandleUncompressed: public FileHandle {
         /// \param pathname path to file
         /// \param read read or write
         /// \return Error
-        virtual DTerr           open_file			(const FilePath &pathname, bool read = true);
+        virtual DTerr           open_file            (const FilePath &pathname, bool read = true);
 
         /// Close the file handle
-        virtual void            close				(void);
+        virtual void            close                (void);
 
         /// Returns the length of the file
         /// \return Length of the file
-        virtual DTsize          length              (void) const	{	return _length;			}
+        virtual DTsize          length              (void) const    {    return _length;            }
 
 
         /// Return write position
         /// \return write position
-        virtual DTsize          p                   (void)	{	return (DTsize) _file.tellp();	}
+        virtual DTsize          p                   (void)    {    return (DTsize) _file.tellp();    }
 
         /// Return read position
         /// \return read position
-        virtual DTsize          g                   (void)	{	return (DTsize) _file.tellg();	}
+        virtual DTsize          g                   (void)    {    return (DTsize) _file.tellg();    }
 
         /// Change write position
         /// \param p position
         /// \param r relative
-        virtual void            seek_p				(DToffset p, Relative r);
+        virtual void            seek_p                (DToffset p, Relative r);
 
         /// Change read position
         /// \param p position
         /// \param r relative
-        virtual void            seek_g				(DToffset g, Relative r);
+        virtual void            seek_g                (DToffset g, Relative r);
 
 
         /// Peeks ahead at the next byte
         /// \return next byte
-        virtual DTcharacter     peek				(void)	{	return static_cast<DTcharacter>(_file.peek());	}
+        virtual DTcharacter     peek                (void)    {    return static_cast<DTcharacter>(_file.peek());    }
 
         /// Ignores the next byte
-        virtual void            ignore				(void)	{	uint8_t b; read(&b, 1);	}
+        virtual void            ignore                (void)    {    uint8_t b; read(&b, 1);    }
 
 
         /// Checks for end of file
         /// \return End of file
-        virtual bool       is_eof				(void)	{	return _file.eof();		}
+        virtual bool       is_eof                (void)    {    return _file.eof();        }
 
 
         /// Reads a chunk of raw binary data
         /// \param buffer raw buffer
         /// \param size size of raw buffer
         /// \return actual number of bytes read
-        virtual DTsize          read				(uint8_t *buffer, DTsize size);
+        virtual DTsize          read                (uint8_t *buffer, DTsize size);
 
         /// Writes a chunk of raw binary data
         /// \param buffer raw buffer
         /// \param size size of raw buffer
-        virtual void            write				(const uint8_t *buffer, DTsize size);
+        virtual void            write                (const uint8_t *buffer, DTsize size);
 
 
     private:
-        DTsize				_length;
-        std::fstream		_file;
+        DTsize                _length;
+        std::fstream        _file;
 };
 
 //==============================================================================

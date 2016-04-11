@@ -1,12 +1,12 @@
 //==============================================================================
-///	
-///	File: ComponentGUIDrawIcon.cpp
-///	
+///    
+///    File: ComponentGUIDrawIcon.cpp
+///    
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
 /// This file is subject to the terms and conditions defined in
 /// file 'LICENSE.txt', which is part of this source code package.
-///	
+///    
 //==============================================================================
 
 #include "DT3Core/Components/ComponentGUIDrawIcon.hpp"
@@ -41,13 +41,13 @@ IMPLEMENT_PLUG_INFO_INDEX(_shader)
 BEGIN_IMPLEMENT_PLUGS(ComponentGUIDrawIcon)
         
     PLUG_INIT(_material, "Material")
-		.set_input(true);
+        .set_input(true);
         
     PLUG_INIT(_pressed_material, "Pressed_Material")
-		.set_input(true);
+        .set_input(true);
 
     PLUG_INIT(_shader, "Shader")
-		.set_input(true);
+        .set_input(true);
 
 END_IMPLEMENT_PLUGS
 
@@ -65,7 +65,7 @@ ComponentGUIDrawIcon::ComponentGUIDrawIcon (void)
 {
 
 }
-		
+        
 ComponentGUIDrawIcon::ComponentGUIDrawIcon (const ComponentGUIDrawIcon &rhs)
     :   ComponentBase       (rhs),
         _material           (rhs._material),
@@ -82,7 +82,7 @@ ComponentGUIDrawIcon & ComponentGUIDrawIcon::operator = (const ComponentGUIDrawI
 {
     // Make sure we are not assigning the class to itself
     if (&rhs != this) {        
-		ComponentBase::operator = (rhs);
+        ComponentBase::operator = (rhs);
         
         _material = rhs._material;
         _pressed_material = rhs._pressed_material;
@@ -94,7 +94,7 @@ ComponentGUIDrawIcon & ComponentGUIDrawIcon::operator = (const ComponentGUIDrawI
     }
     return (*this);
 }
-			
+            
 ComponentGUIDrawIcon::~ComponentGUIDrawIcon (void)
 {
 
@@ -108,18 +108,18 @@ void ComponentGUIDrawIcon::archive (const std::shared_ptr<Archive> &archive)
     ComponentBase::archive(archive);
 
     archive->push_domain (class_id ());
-	
+    
     *archive << ARCHIVE_DATA_ACCESSORS("Material", ComponentGUIDrawIcon::material, ComponentGUIDrawIcon::set_material, DATA_PERSISTENT | DATA_SETTABLE);
     *archive << ARCHIVE_DATA_ACCESSORS("Pressed_Material", ComponentGUIDrawIcon::pressed_material, ComponentGUIDrawIcon::set_pressed_material, DATA_PERSISTENT | DATA_SETTABLE);
-	*archive << ARCHIVE_DATA_ACCESSORS("Shader", ComponentGUIDrawIcon::shader, ComponentGUIDrawIcon::set_shader, DATA_PERSISTENT | DATA_SETTABLE);
+    *archive << ARCHIVE_DATA_ACCESSORS("Shader", ComponentGUIDrawIcon::shader, ComponentGUIDrawIcon::set_shader, DATA_PERSISTENT | DATA_SETTABLE);
 
-	*archive << ARCHIVE_DATA_ACCESSORS("Draw_Style", ComponentGUIDrawIcon::draw_style, ComponentGUIDrawIcon::set_draw_style, DATA_PERSISTENT | DATA_SETTABLE)
+    *archive << ARCHIVE_DATA_ACCESSORS("Draw_Style", ComponentGUIDrawIcon::draw_style, ComponentGUIDrawIcon::set_draw_style, DATA_PERSISTENT | DATA_SETTABLE)
         .add_enum("Stretch Center 3x3")
         .add_enum("Stretch Center 2x2")
         .add_enum("Rectangle");
 
-	*archive << ARCHIVE_DATA(_corner_width, DATA_PERSISTENT | DATA_SETTABLE);
-	*archive << ARCHIVE_DATA(_corner_height, DATA_PERSISTENT | DATA_SETTABLE);
+    *archive << ARCHIVE_DATA(_corner_width, DATA_PERSISTENT | DATA_SETTABLE);
+    *archive << ARCHIVE_DATA(_corner_height, DATA_PERSISTENT | DATA_SETTABLE);
 
     archive->pop_domain ();
 }

@@ -3,7 +3,7 @@
 #define DT3_TWMWRITER
 //==============================================================================
 ///
-///	File: TWMWriter.hpp
+///    File: TWMWriter.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -34,10 +34,10 @@ class BinaryFileStream;
 
 class TWMWriter {
     private:
-                                TWMWriter			(void);
-                                TWMWriter			(const TWMWriter &rhs);
-        TWMWriter &             operator =			(const TWMWriter &rhs);
-                                ~TWMWriter			(void);
+                                TWMWriter            (void);
+                                TWMWriter            (const TWMWriter &rhs);
+        TWMWriter &             operator =            (const TWMWriter &rhs);
+                                ~TWMWriter            (void);
 
     public:
         /// Exports list of meshes to a twm file

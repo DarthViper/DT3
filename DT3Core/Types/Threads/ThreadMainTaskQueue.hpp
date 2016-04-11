@@ -3,7 +3,7 @@
 #define DT3_THREADMAINTASKQUEUE
 //==============================================================================
 ///
-///	File: ThreadMainTaskQueue.hpp
+///    File: ThreadMainTaskQueue.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -32,10 +32,10 @@ class ThreadMainTaskQueue {
         DEFINE_TYPE_BASE(ThreadMainTaskQueue)
 
     private:
-                                                ThreadMainTaskQueue		(void);
-                                                ThreadMainTaskQueue		(const ThreadMainTaskQueue &rhs);
+                                                ThreadMainTaskQueue        (void);
+                                                ThreadMainTaskQueue        (const ThreadMainTaskQueue &rhs);
         ThreadMainTaskQueue &                   operator =              (const ThreadMainTaskQueue &rhs);
-        virtual                                 ~ThreadMainTaskQueue	(void);
+        virtual                                 ~ThreadMainTaskQueue    (void);
 
     public:
         /// Add a task to the task queue

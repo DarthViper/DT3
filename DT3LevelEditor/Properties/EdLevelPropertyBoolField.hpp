@@ -3,7 +3,7 @@
 #define EDLEVELPROPERTYBOOLFIELD
 //==============================================================================
 ///
-///	File: EdLevelPropertyBoolField.hpp
+///    File: EdLevelPropertyBoolField.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -48,7 +48,7 @@ class EdLevelPropertyBoolField : public EdLevelPropertyBase
     Q_OBJECT
 
     public:
-                                        EdLevelPropertyBoolField		(EdLevelPropertiesWindow *parent, std::shared_ptr<PlugNode> node, std::shared_ptr<ArchiveData> data);
+                                        EdLevelPropertyBoolField        (EdLevelPropertiesWindow *parent, std::shared_ptr<PlugNode> node, std::shared_ptr<ArchiveData> data);
                                         ~EdLevelPropertyBoolField       (void);
 
         /// Gets the value of the field

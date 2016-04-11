@@ -1,12 +1,12 @@
 //==============================================================================
-///	
-///	File: SoundBusSourceObject.cpp
-///	
+///    
+///    File: SoundBusSourceObject.cpp
+///    
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
 /// This file is subject to the terms and conditions defined in
 /// file 'LICENSE.txt', which is part of this source code package.
-///	
+///    
 //==============================================================================
 
 #include "DT3Core/Objects/SoundBusSourceObject.hpp"
@@ -42,16 +42,16 @@ IMPLEMENT_EVENT_INFO_INDEX(_stop)
 
 BEGIN_IMPLEMENT_PLUGS(SoundBusSourceObject)
 
-	PLUG_INIT(_sound_packet,"Sound_Packet")
-		.set_input(true)
-		.set_output(true)
+    PLUG_INIT(_sound_packet,"Sound_Packet")
+        .set_input(true)
+        .set_output(true)
         .set_always_dirty(true);
 
-	EVENT_INIT(_play,"Play")
+    EVENT_INIT(_play,"Play")
         .set_input(true)
         .set_event(&SoundBusSourceObject::play);
 
-	EVENT_INIT(_stop,"Stop")
+    EVENT_INIT(_stop,"Stop")
         .set_input(true)
         .set_event(&SoundBusSourceObject::stop);
 
@@ -69,10 +69,10 @@ SoundBusSourceObject::SoundBusSourceObject (void)
     set_node_color(Color4f(0.360784F,0.729412F,0.92549F,1.0F));
 
 }
-		
+        
 SoundBusSourceObject::SoundBusSourceObject (const SoundBusSourceObject &rhs)
-	:	PlaceableObject	(rhs),
-		_sound_packet   (rhs._sound_packet),
+    :    PlaceableObject    (rhs),
+        _sound_packet   (rhs._sound_packet),
         _bus_name       (rhs._bus_name),
         _play           (rhs._play),
         _stop           (rhs._stop)
@@ -85,14 +85,14 @@ SoundBusSourceObject & SoundBusSourceObject::operator = (const SoundBusSourceObj
 {
     // Make sure we are not assigning the class to itself
     if (&rhs != this) {        
-		PlaceableObject::operator = (rhs);
+        PlaceableObject::operator = (rhs);
 
         _sound_packet = rhs._sound_packet;
         _bus_name = rhs._bus_name;
     }
     return (*this);
 }
-			
+            
 SoundBusSourceObject::~SoundBusSourceObject (void)
 {
 
@@ -103,16 +103,16 @@ SoundBusSourceObject::~SoundBusSourceObject (void)
 
 void SoundBusSourceObject::archive (const std::shared_ptr<Archive> &archive)
 {
-	PlaceableObject::archive(archive);
+    PlaceableObject::archive(archive);
 
-	archive->push_domain (class_id ());
+    archive->push_domain (class_id ());
     
-	*archive << ARCHIVE_DATA(_bus_name, DATA_SETTABLE | DATA_PERSISTENT);
+    *archive << ARCHIVE_DATA(_bus_name, DATA_SETTABLE | DATA_PERSISTENT);
 
-	*archive << ARCHIVE_EVENT(_play, DATA_SETTABLE);
-	*archive << ARCHIVE_EVENT(_stop, DATA_SETTABLE);
+    *archive << ARCHIVE_EVENT(_play, DATA_SETTABLE);
+    *archive << ARCHIVE_EVENT(_stop, DATA_SETTABLE);
 
-	archive->pop_domain ();
+    archive->pop_domain ();
 }
 
 //==============================================================================

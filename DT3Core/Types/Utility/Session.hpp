@@ -3,7 +3,7 @@
 #define DT3_SESSION
 //==============================================================================
 ///
-///	File: Session.hpp
+///    File: Session.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -28,12 +28,12 @@ class Session: public BaseClass {
         DEFINE_TYPE(Session,BaseClass)
         DEFINE_CREATE_AND_CLONE
 
-                            Session					(void);
-                            Session					(const Session &rhs);
-        Session &			operator =				(const Session &rhs);
-        virtual				~Session				(void);
+                            Session                    (void);
+                            Session                    (const Session &rhs);
+        Session &            operator =                (const Session &rhs);
+        virtual                ~Session                (void);
 
-        virtual void		archive                 (const std::shared_ptr<Archive> &archive);
+        virtual void        archive                 (const std::shared_ptr<Archive> &archive);
 
 };
 

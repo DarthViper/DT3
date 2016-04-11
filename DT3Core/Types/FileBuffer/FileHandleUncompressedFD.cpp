@@ -1,12 +1,12 @@
 //==============================================================================
-///	
-///	File: FileHandleUncompressedFD.cpp
-///	
+///    
+///    File: FileHandleUncompressedFD.cpp
+///    
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
 /// This file is subject to the terms and conditions defined in
 /// file 'LICENSE.txt', which is part of this source code package.
-///	
+///    
 //==============================================================================
 
 #include "DT3Core/Types/FileBuffer/FileHandleUncompressedFD.hpp"
@@ -25,41 +25,41 @@ namespace DT3 {
 //==============================================================================
 
 FileHandleUncompressedFD::FileHandleUncompressedFD (void)
-	:   _file       (0),
-        _length		(0),
+    :   _file       (0),
+        _length        (0),
         _eof        (false)
 {
 
 }
-			
+            
 FileHandleUncompressedFD::~FileHandleUncompressedFD (void)
 {
-	close();
+    close();
 }
 
 //==============================================================================
 //==============================================================================
 
 DTsize FileHandleUncompressedFD::read (uint8_t *buffer, DTsize size)
-{		
-	DTsize gcount = ::read( _file, (char*)buffer, (size_t) size);
+{        
+    DTsize gcount = ::read( _file, (char*)buffer, (size_t) size);
     
     _eof = (gcount == 0);
 
-//	// update Progress
-//	if (cache->_last_update > 1024 && cache->_progress) {	
-//		cache->_progress->update(cache->_file_g - cache->_start, cache->_length);
-//		cache->_last_update = 0;
-//	}
-	
-	return gcount;
+//    // update Progress
+//    if (cache->_last_update > 1024 && cache->_progress) {    
+//        cache->_progress->update(cache->_file_g - cache->_start, cache->_length);
+//        cache->_last_update = 0;
+//    }
+    
+    return gcount;
 }
 
 void FileHandleUncompressedFD::write (const uint8_t *buffer, DTsize size)
-{	
-	::write( _file, (char*)buffer, (size_t) size);
+{    
+    ::write( _file, (char*)buffer, (size_t) size);
 }
-		
+        
 //==============================================================================
 //==============================================================================
 
@@ -105,20 +105,20 @@ DTerr FileHandleUncompressedFD::open_file (const FilePath &pathname, bool read)
 {
     close();
     
-	if (read)	_file = ::open(pathname.full_path().c_str(), O_RDONLY);
-	else		_file = ::open(pathname.full_path().c_str(), O_WRONLY);
-	
+    if (read)    _file = ::open(pathname.full_path().c_str(), O_RDONLY);
+    else        _file = ::open(pathname.full_path().c_str(), O_WRONLY);
+    
     if (_file < 0) {
         return DT3_ERR_FILE_OPEN_FAILED;
     }
-		
-	// Set start and length of file
+        
+    // Set start and length of file
     _length = (DTsize) ::lseek(_file, 0, SEEK_END);
     ::lseek(_file, 0, SEEK_SET);
 
     _eof = false;
 
-	return DT3_ERR_NONE;
+    return DT3_ERR_NONE;
 }
 
 DTerr FileHandleUncompressedFD::set_fd (int32_t fd)
@@ -129,13 +129,13 @@ DTerr FileHandleUncompressedFD::set_fd (int32_t fd)
         return DT3_ERR_FILE_OPEN_FAILED;
     }
 
-	// Set start and length of file
+    // Set start and length of file
     _length = (DTsize) ::lseek(_file, 0, SEEK_END);
     ::lseek(_file, 0, SEEK_SET);
 
     _eof = false;
 
-	return DT3_ERR_NONE;
+    return DT3_ERR_NONE;
 }
 
 void FileHandleUncompressedFD::close (void)
@@ -143,28 +143,28 @@ void FileHandleUncompressedFD::close (void)
     if (_file)
         ::close(_file);
     _file = 0;
-}		
+}        
 
 void FileHandleUncompressedFD::seek_p (DToffset p, Relative r)
 {
-	switch (r) {
-		case FROM_CURRENT:		::lseek(_file, p, SEEK_CUR);		break;
-		case FROM_BEGINNING:	::lseek(_file, p, SEEK_SET);		break;
-		case FROM_END:			::lseek(_file, p, SEEK_END);		break;
-	};
+    switch (r) {
+        case FROM_CURRENT:        ::lseek(_file, p, SEEK_CUR);        break;
+        case FROM_BEGINNING:    ::lseek(_file, p, SEEK_SET);        break;
+        case FROM_END:            ::lseek(_file, p, SEEK_END);        break;
+    };
     
 }
 
 void FileHandleUncompressedFD::seek_g (DToffset g, Relative r)
 {
-	switch (r) {
-		case FROM_CURRENT:		::lseek(_file, g, SEEK_CUR);		break;
-		case FROM_BEGINNING:	::lseek(_file, g, SEEK_SET);		break;
-		case FROM_END:			::lseek(_file, g, SEEK_END);		break;
-	};
-	
+    switch (r) {
+        case FROM_CURRENT:        ::lseek(_file, g, SEEK_CUR);        break;
+        case FROM_BEGINNING:    ::lseek(_file, g, SEEK_SET);        break;
+        case FROM_END:            ::lseek(_file, g, SEEK_END);        break;
+    };
+    
 //    // update Progress
-//    if (cache->_progress) {	
+//    if (cache->_progress) {    
 //        cache->_progress->update(cache->_file_g - cache->_start, cache->_length);
 //        cache->_last_update = 0;
 //    }
@@ -174,5 +174,5 @@ void FileHandleUncompressedFD::seek_g (DToffset g, Relative r)
 
 //==============================================================================
 //==============================================================================
-		
+        
 } // DT3

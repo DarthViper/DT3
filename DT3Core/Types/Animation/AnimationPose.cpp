@@ -1,12 +1,12 @@
 //==============================================================================
-///	
-///	File: AnimationPose.cpp
+///    
+///    File: AnimationPose.cpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
 /// This file is subject to the terms and conditions defined in
 /// file 'LICENSE.txt', which is part of this source code package.
-///	
+///    
 //==============================================================================
 
 #include "DT3Core/Types/Animation/AnimationPose.hpp"
@@ -30,14 +30,14 @@ AnimationPose::AnimationPose (void)
 }
 
 AnimationPose::AnimationPose (const AnimationPose &rhs)
-	:	BaseClass		(rhs),
+    :    BaseClass        (rhs),
         _joints         (rhs._joints)
 {
 
 }
 
 AnimationPose::AnimationPose (AnimationPose &&rhs)
-	:	BaseClass		(rhs),
+    :    BaseClass        (rhs),
         _joints         (std::move(rhs._joints))
 {
     
@@ -45,24 +45,24 @@ AnimationPose::AnimationPose (AnimationPose &&rhs)
 
             
 AnimationPose& AnimationPose::operator = (const AnimationPose &rhs)
-{	
+{    
     // Make sure we are not assigning the class to itself
     if (&rhs != this) {
         BaseClass::operator = (rhs);
         _joints = rhs._joints;
-	}
+    }
     return (*this);
-}	
+}    
 
 AnimationPose& AnimationPose::operator = (AnimationPose &&rhs)
-{	
+{    
     // Make sure we are not assigning the class to itself
     if (&rhs != this) {
         BaseClass::operator = (rhs);
         _joints = std::move(rhs._joints);
-	}
+    }
     return (*this);
-}	
+}    
 
 AnimationPose::~AnimationPose (void)
 {
@@ -74,22 +74,22 @@ AnimationPose::~AnimationPose (void)
 
 Stream& operator <<(Stream &s, AnimationPose* &r)
 {
-	return s;
+    return s;
 }
 
 Stream& operator >>(Stream &s, AnimationPose* &r)
 {
-	return s;
+    return s;
 }
 
 Stream& operator <<(Stream &s, const std::shared_ptr<AnimationPose> &r)
 {
-	return s;
+    return s;
 }
 
 Stream& operator >>(Stream &s, std::shared_ptr<AnimationPose> &r)
 {
-	return s;
+    return s;
 }
 
 //==============================================================================
@@ -97,17 +97,17 @@ Stream& operator >>(Stream &s, std::shared_ptr<AnimationPose> &r)
 
 void AnimationPose::update (const DTfloat time, const std::shared_ptr<AnimationResource> &animation)
 {
-	if (!animation)
-		return;
-		
-	// resize Pose for correct number of tracks
-	if (_joints.size() != animation->num_tracks())
-		_joints.clear();
-		
-	for (uint32_t i = 0; i < animation->num_tracks(); ++i) {
-		const std::shared_ptr<AnimationTrack> &track = animation->track(i);
-		track->update_joint(time, _joints[track->name_hash()]);
-	}
+    if (!animation)
+        return;
+        
+    // resize Pose for correct number of tracks
+    if (_joints.size() != animation->num_tracks())
+        _joints.clear();
+        
+    for (uint32_t i = 0; i < animation->num_tracks(); ++i) {
+        const std::shared_ptr<AnimationTrack> &track = animation->track(i);
+        track->update_joint(time, _joints[track->name_hash()]);
+    }
 }
 
 //==============================================================================
@@ -115,17 +115,17 @@ void AnimationPose::update (const DTfloat time, const std::shared_ptr<AnimationR
 
 bool AnimationPose::joint_transform (uint32_t joint_name_hash, Matrix4 &transform) const
 {
-	std::map<uint32_t, AnimationPoseJoint>::const_iterator i = _joints.find(joint_name_hash);
-	if (i == _joints.end()) {
-		return false;
-	} else {
-		Quaternion	orientation = i->second.orientation();
-		Vector3		translation = i->second.translation();
-		
-		transform = Matrix4(Matrix3(orientation), translation);
+    std::map<uint32_t, AnimationPoseJoint>::const_iterator i = _joints.find(joint_name_hash);
+    if (i == _joints.end()) {
+        return false;
+    } else {
+        Quaternion    orientation = i->second.orientation();
+        Vector3        translation = i->second.translation();
+        
+        transform = Matrix4(Matrix3(orientation), translation);
 
-		return true;
-	}
+        return true;
+    }
 }
 
 //==============================================================================

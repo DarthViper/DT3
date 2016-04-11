@@ -1,12 +1,12 @@
 //==============================================================================
-///	
-///	File: World.cpp
-///	
+///    
+///    File: World.cpp
+///    
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
 /// This file is subject to the terms and conditions defined in
 /// file 'LICENSE.txt', which is part of this source code package.
-///	
+///    
 //==============================================================================
 
 #include "DT3Core/World/World.hpp"
@@ -36,16 +36,16 @@ namespace DT3 {
 //==============================================================================
 
 IMPLEMENT_FACTORY_CREATION_WORLD(World)
-		
+        
 //==============================================================================
 /// Standard class constructors/destructors
 //==============================================================================
 
-World::World (void)	
+World::World (void)    
     :   _default_camera ("CameraObject")
 {
-	set_name("World");
-}	
+    set_name("World");
+}    
 
 World::~World (void)
 {    
@@ -72,9 +72,9 @@ void World::uninitialize (void)
 
 void World::archive (const std::shared_ptr<Archive> &archive)
 {
-	PlugNode::archive(archive);
+    PlugNode::archive(archive);
 
-	archive->push_domain (class_id ());
+    archive->push_domain (class_id ());
     
     // Nodes
     DTsize node_count = _nodes.size();
@@ -99,14 +99,14 @@ void World::archive (const std::shared_ptr<Archive> &archive)
     
     // Session
     archive->add_post_process(ARCHIVE_PROCESS_POINTERS(archive,_session));
-	
-	archive->pop_domain();
+    
+    archive->pop_domain();
 }
 
 void World::archive_done (const std::shared_ptr<Archive> &archive)
-{		
-	PlugNode::archive_done(archive);
-		
+{        
+    PlugNode::archive_done(archive);
+        
     if (archive->is_writing())
         return;
     
@@ -124,23 +124,23 @@ void World::archive_done (const std::shared_ptr<Archive> &archive)
     // Add objects
     //
 
-	// Register special nodes.
+    // Register special nodes.
     for (auto &i : _nodes) {
-    			
+                
         if (i->world() == NULL)
             i->add_to_world(this);
         
-		// Special case game controller
-		if (i->isa(GameController::kind())) {
-			_game_controller = checked_static_cast<GameController>(i);
-		}
-				
-		// Special case camera
-		if (i->isa(CameraObject::kind())) {
-			_camera = checked_static_cast<CameraObject>(i);
-		}
+        // Special case game controller
+        if (i->isa(GameController::kind())) {
+            _game_controller = checked_static_cast<GameController>(i);
+        }
+                
+        // Special case camera
+        if (i->isa(CameraObject::kind())) {
+            _camera = checked_static_cast<CameraObject>(i);
+        }
         
-	}
+    }
         
     //
     // Add groups
@@ -181,7 +181,7 @@ void World::archive_done (const std::shared_ptr<Archive> &archive)
 
 void World::set_session (const std::shared_ptr<Session> &s)
 {
-	_session = s;
+    _session = s;
 }
 
 const std::shared_ptr<Session>& World::session (void) const
@@ -193,23 +193,23 @@ const std::shared_ptr<Session>& World::session (void) const
 //==============================================================================
 
 void World::add_node (const std::shared_ptr<WorldNode> &node)
-{	
-	ASSERT(node);
+{    
+    ASSERT(node);
 
-	// Special case game controller
-	if (node->isa(GameController::kind())) {
-		_game_controller = checked_static_cast<GameController>(node);
-	}
+    // Special case game controller
+    if (node->isa(GameController::kind())) {
+        _game_controller = checked_static_cast<GameController>(node);
+    }
     
     // Special case camera
     if (node->isa(CameraObject::kind())) {
         _camera = checked_static_cast<CameraObject>(node);
     }
-		
-	// Add the node to the world list
-	node->add_to_world(this);
+        
+    // Add the node to the world list
+    node->add_to_world(this);
 
-	_nodes.push_back(node);
+    _nodes.push_back(node);
 }
 
 
@@ -235,13 +235,13 @@ void World::add_node_unique_name (const std::shared_ptr<WorldNode> &node)
     add_node(node);
 }
 
-void World::remove_node	(const std::shared_ptr<WorldNode> node)
+void World::remove_node    (const std::shared_ptr<WorldNode> node)
 {
 
-	// Special case game controller
-	if (_game_controller == node) {
-		_game_controller.reset();
-	}
+    // Special case game controller
+    if (_game_controller == node) {
+        _game_controller.reset();
+    }
     
     // Special case camera
     if (_camera == node) {
@@ -260,7 +260,7 @@ void World::remove_node	(const std::shared_ptr<WorldNode> node)
         }
     
     }
-	
+    
     // Delete all nodes in reverse order from the built list
     for (auto i = nodes.rbegin(); i != nodes.rend(); ++i) {
         std::shared_ptr<WorldNode> node_to_delete = checked_cast<WorldNode>((*i)->shared_from_this());
@@ -287,7 +287,7 @@ void World::remove_all_nodes (void)
 
 void World::add_group (const std::shared_ptr<Group> &group)
 {
-	_groups.push_back(group);
+    _groups.push_back(group);
     
     // Add the group to the world
     group->add_to_world(this);
@@ -322,13 +322,13 @@ void World::remove_group (const std::shared_ptr<Group> group)
     auto i = std::remove(_groups.begin(), _groups.end(), group);
     _groups.erase(i,_groups.end());
 }
-			
+            
 void World::remove_all_groups (void)
 {
-	// delete all groups
-	while (_groups.size() > 0) {
-		remove_group(_groups.front());
-	}
+    // delete all groups
+    while (_groups.size() > 0) {
+        remove_group(_groups.front());
+    }
 }
 
 //==============================================================================

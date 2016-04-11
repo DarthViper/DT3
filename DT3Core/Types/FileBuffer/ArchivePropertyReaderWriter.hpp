@@ -3,7 +3,7 @@
 #define DT3_ARCHIVEPROPERTYREADERWRITER
 //==============================================================================
 ///
-///	File: ArchivePropertyReaderWriter.hpp
+///    File: ArchivePropertyReaderWriter.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -36,44 +36,44 @@ class ArchivePropertyReaderWriter: public Archive {
         //DEFINE_TYPE(ArchivePropertyReaderWriter,Archive)
         DEFINE_CREATE_T(ArchivePropertyReaderWriter)
 
-                                                    ArchivePropertyReaderWriter		(void);
+                                                    ArchivePropertyReaderWriter        (void);
 
     private:
-                                                    ArchivePropertyReaderWriter		(const ArchivePropertyReaderWriter &rhs);
-        ArchivePropertyReaderWriter &               operator =						(const ArchivePropertyReaderWriter &rhs);
+                                                    ArchivePropertyReaderWriter        (const ArchivePropertyReaderWriter &rhs);
+        ArchivePropertyReaderWriter &               operator =                        (const ArchivePropertyReaderWriter &rhs);
 
     public:
-        virtual                                     ~ArchivePropertyReaderWriter	(void);
+        virtual                                     ~ArchivePropertyReaderWriter    (void);
 
     public:
         /// Streams data into or out of this object
         /// \param data data to stream
         /// \return reference to this
-        virtual Archive &                           operator <<						(const ArchiveData& data);
+        virtual Archive &                           operator <<                        (const ArchiveData& data);
 
         /// Adds a sub domain for the archive
         /// \param domain name of the domain
-        virtual void                                push_domain						(const std::string &domain);
+        virtual void                                push_domain                        (const std::string &domain);
 
         /// Balances the sub domain for the archive
-        virtual void                                pop_domain						(void);
+        virtual void                                pop_domain                        (void);
 
         /// Returns wether the archive is reading or not
         /// \return archive is loading
-        bool                                   is_reading						(void) const;
+        bool                                   is_reading                        (void) const;
 
         /// Returns wether the arcive is writing or not
         /// \return archive is saving
-        bool                                   is_writing						(void) const;
+        bool                                   is_writing                        (void) const;
 
         /// Call before loading data
-        void                                        begin_reading					(void);
+        void                                        begin_reading                    (void);
 
         /// Call before saving data
-        void                                        begin_writing					(void);
+        void                                        begin_writing                    (void);
 
         /// Resets the state of the class
-        void                                        clear							(void);
+        void                                        clear                            (void);
 
         /// Returns number of properties saved in the class
         /// \return number of properties

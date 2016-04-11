@@ -3,7 +3,7 @@
 #define DT3_PRIMITIVECOLLISIONS
 //==============================================================================
 ///
-///	File: PrimitiveCollisions.hpp
+///    File: PrimitiveCollisions.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -38,10 +38,10 @@ class PrimitiveCollisions {
 
     private:
 
-                                    PrimitiveCollisions					(void);
-                                    PrimitiveCollisions					(const PrimitiveCollisions &rhs);
-        PrimitiveCollisions &		operator =							(const PrimitiveCollisions &rhs);
-        virtual						~PrimitiveCollisions				(void);
+                                    PrimitiveCollisions                    (void);
+                                    PrimitiveCollisions                    (const PrimitiveCollisions &rhs);
+        PrimitiveCollisions &        operator =                            (const PrimitiveCollisions &rhs);
+        virtual                        ~PrimitiveCollisions                (void);
 
     public:
 
@@ -53,7 +53,7 @@ class PrimitiveCollisions {
         /// \param t1 Line 1 parametric intersection value
         /// \param t2 Line 2 parametric intersection value
         /// \return Has intersection
-        static bool			line_intersect_line                 (   const Vector2 &from1, const Vector2 &to1,
+        static bool            line_intersect_line                 (   const Vector2 &from1, const Vector2 &to1,
                                                                             const Vector2 &from2, const Vector2 &to2,
                                                                             DTfloat &t1, DTfloat &t2);
 
@@ -67,7 +67,7 @@ class PrimitiveCollisions {
         /// \param n Intersection normal
         /// \param p Intersection point
         /// \return Has intersection
-        static bool			ray_intersect_triangle              (   const Vector3 &from, const Vector3 &direction,
+        static bool            ray_intersect_triangle              (   const Vector3 &from, const Vector3 &direction,
                                                                             const Vector3 &vert0, const Vector3 &vert1, const Vector3 &vert2,
                                                                             DTfloat &t, Vector3 &n, Vector3 &p);
         /// Find intersection of ray and plane
@@ -76,7 +76,7 @@ class PrimitiveCollisions {
         /// \param p Plane
         /// \param t Parametric intersection value
         /// \return Has intersection
-        static bool			ray_intersect_plane                 (   const Vector3 &from, const Vector3 &direction,
+        static bool            ray_intersect_plane                 (   const Vector3 &from, const Vector3 &direction,
                                                                             const Plane &p, DTfloat &t);
 
         /// Find intersection of ray and box
@@ -97,7 +97,7 @@ class PrimitiveCollisions {
         /// \param t0 Parametric intersection value
         /// \param t1 Parametric intersection value
         /// \return Has intersection
-        static bool			ray_intersect_sphere                (   const Vector3 &from, const Vector3 &direction,
+        static bool            ray_intersect_sphere                (   const Vector3 &from, const Vector3 &direction,
                                                                             const Vector3 &translation, const Sphere &s,
                                                                             DTfloat &t0, DTfloat &t1);
 
@@ -112,7 +112,7 @@ class PrimitiveCollisions {
         /// \param n Intersection normal
         /// \param p Intersection point
         /// \return Has intersection
-        static bool			extruded_sphere_intersect_triangle  (   const Vector3 &from, const Vector3 &to, const Sphere &s,
+        static bool            extruded_sphere_intersect_triangle  (   const Vector3 &from, const Vector3 &to, const Sphere &s,
                                                                             const Vector3 &vert0, const Vector3 &vert1, const Vector3 &vert2,
                                                                             DTfloat &t, Vector3 &n, Vector3 &p);
 
@@ -137,7 +137,7 @@ class PrimitiveCollisions {
         /// \param vert2 Triangle vertex 2
         /// \param pt Closest point
         /// \param dist Closest distance
-        static void					distance_point_to_triangle          (	const Vector3 &p,
+        static void                    distance_point_to_triangle          (    const Vector3 &p,
                                                                             const Vector3 &vert0, const Vector3 &vert1, const Vector3 &vert2,
                                                                             Vector3 &pt, DTfloat &dist);
 

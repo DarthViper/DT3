@@ -3,7 +3,7 @@
 #define DT3_FILEHANDLEUNCOMPRESSEDFD
 //==============================================================================
 ///
-///	File: FileHandleUncompressedFD.hpp
+///    File: FileHandleUncompressedFD.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -52,7 +52,7 @@ class FileHandleUncompressedFD: public FileHandle {
         /// \param pathname path to file
         /// \param read read or write
         /// \return Error
-        virtual DTerr           open_file			(const FilePath &pathname, bool read = true);
+        virtual DTerr           open_file            (const FilePath &pathname, bool read = true);
 
         /// Sets an existing file descriptor for file
         /// \param fd file descriptor
@@ -60,11 +60,11 @@ class FileHandleUncompressedFD: public FileHandle {
         virtual DTerr           set_fd              (int32_t fd);
 
         /// Close the file handle
-        virtual void            close				(void);
+        virtual void            close                (void);
 
         /// Returns the length of the file
         /// \return Length of the file
-        virtual DTsize          length              (void) const	{	return _length;			}
+        virtual DTsize          length              (void) const    {    return _length;            }
 
 
         /// Return write position
@@ -78,40 +78,40 @@ class FileHandleUncompressedFD: public FileHandle {
         /// Change write position
         /// \param p position
         /// \param r relative
-        virtual void            seek_p				(DToffset p, Relative r);
+        virtual void            seek_p                (DToffset p, Relative r);
 
         /// Change read position
         /// \param p position
         /// \param r relative
-        virtual void            seek_g				(DToffset g, Relative r);
+        virtual void            seek_g                (DToffset g, Relative r);
 
 
         /// Peeks ahead at the next byte
         /// \return next byte
-        virtual DTcharacter     peek				(void);
+        virtual DTcharacter     peek                (void);
 
         /// Ignores the next byte
-        virtual void            ignore				(void);
+        virtual void            ignore                (void);
 
 
         /// Checks for end of file
         /// \return End of file
-        virtual bool       is_eof				(void);
+        virtual bool       is_eof                (void);
 
 
         /// Reads a chunk of raw binary data
         /// \param buffer raw buffer
         /// \param size size of raw buffer
         /// \return actual number of bytes read
-        virtual DTsize          read				(uint8_t *buffer, DTsize size);
+        virtual DTsize          read                (uint8_t *buffer, DTsize size);
 
         /// Writes a chunk of raw binary data
         /// \param buffer raw buffer
         /// \param size size of raw buffer
-        virtual void            write				(const uint8_t *buffer, DTsize size);
+        virtual void            write                (const uint8_t *buffer, DTsize size);
 
     private:
-        DTsize				_length;
+        DTsize                _length;
         int32_t               _file;
         bool           _eof;
 };

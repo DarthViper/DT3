@@ -1,12 +1,12 @@
 //==============================================================================
-///	
-///	File: ScriptingCameraPredictor.cpp
-///	
+///    
+///    File: ScriptingCameraPredictor.cpp
+///    
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
 /// This file is subject to the terms and conditions defined in
 /// file 'LICENSE.txt', which is part of this source code package.
-///	
+///    
 //==============================================================================
 
 #include "DT3Core/Scripting/ScriptingCameraPredictor.hpp"
@@ -39,26 +39,26 @@ IMPLEMENT_PLUG_INFO_INDEX(_out_velocity)
 
 BEGIN_IMPLEMENT_PLUGS(ScriptingCameraPredictor)
 
-	PLUG_INIT(_object_translation,"Obj_Translation")
-		.set_input(true)
-		.affects(PLUG_INFO_INDEX(_out_translation))
-		.affects(PLUG_INFO_INDEX(_out_velocity));
+    PLUG_INIT(_object_translation,"Obj_Translation")
+        .set_input(true)
+        .affects(PLUG_INFO_INDEX(_out_translation))
+        .affects(PLUG_INFO_INDEX(_out_velocity));
 
-	PLUG_INIT(_object_velocity,"Obj_Velocity")
-		.set_input(true)
-		.affects(PLUG_INFO_INDEX(_out_translation))
-		.affects(PLUG_INFO_INDEX(_out_velocity));
-		
-	PLUG_INIT(_offset,"Offset")
-		.set_input(true)
-		.affects(PLUG_INFO_INDEX(_out_translation))
-		.affects(PLUG_INFO_INDEX(_out_velocity));
-		
-	PLUG_INIT(_out_translation,"Out_Translation")
-		.set_output(true);
+    PLUG_INIT(_object_velocity,"Obj_Velocity")
+        .set_input(true)
+        .affects(PLUG_INFO_INDEX(_out_translation))
+        .affects(PLUG_INFO_INDEX(_out_velocity));
+        
+    PLUG_INIT(_offset,"Offset")
+        .set_input(true)
+        .affects(PLUG_INFO_INDEX(_out_translation))
+        .affects(PLUG_INFO_INDEX(_out_velocity));
+        
+    PLUG_INIT(_out_translation,"Out_Translation")
+        .set_output(true);
 
-	PLUG_INIT(_out_velocity,"Out_Velocity")
-		.set_output(true);
+    PLUG_INIT(_out_velocity,"Out_Velocity")
+        .set_output(true);
         
 END_IMPLEMENT_PLUGS
 
@@ -67,28 +67,28 @@ END_IMPLEMENT_PLUGS
 //==============================================================================
 
 ScriptingCameraPredictor::ScriptingCameraPredictor (void)
-    :   _object_translation	(PLUG_INFO_INDEX(_object_translation), {0.0F,0.0F,0.0F}),
-        _object_velocity	(PLUG_INFO_INDEX(_object_velocity), {0.0F,0.0F,0.0F}),
-        _offset				(PLUG_INFO_INDEX(_offset), {0.0F,0.0F,75.0F}),
-        _out_translation		(PLUG_INFO_INDEX(_out_translation), {0.0F,0.0F,0.0F}),
-        _out_velocity		(PLUG_INFO_INDEX(_out_velocity), {0.0F,0.0F,0.0F}),
-		_prediction_strength(0.5F),
-		_prediction_smooth	(0.98F),
-        _prediction			({0.0F,0.0F,0.0F})
+    :   _object_translation    (PLUG_INFO_INDEX(_object_translation), {0.0F,0.0F,0.0F}),
+        _object_velocity    (PLUG_INFO_INDEX(_object_velocity), {0.0F,0.0F,0.0F}),
+        _offset                (PLUG_INFO_INDEX(_offset), {0.0F,0.0F,75.0F}),
+        _out_translation        (PLUG_INFO_INDEX(_out_translation), {0.0F,0.0F,0.0F}),
+        _out_velocity        (PLUG_INFO_INDEX(_out_velocity), {0.0F,0.0F,0.0F}),
+        _prediction_strength(0.5F),
+        _prediction_smooth    (0.98F),
+        _prediction            ({0.0F,0.0F,0.0F})
 {  
 
 }
-		
+        
 ScriptingCameraPredictor::ScriptingCameraPredictor (const ScriptingCameraPredictor &rhs)
-    :   ScriptingBase		(rhs),
-		_object_translation	(rhs._object_translation),
-		_object_velocity	(rhs._object_velocity),
-		_offset				(rhs._offset),
-		_out_translation		(rhs._out_translation),
-		_out_velocity		(rhs._out_velocity),
-		_prediction_strength(rhs._prediction_strength),
-		_prediction_smooth	(rhs._prediction_smooth),
-		_prediction			(rhs._prediction)
+    :   ScriptingBase        (rhs),
+        _object_translation    (rhs._object_translation),
+        _object_velocity    (rhs._object_velocity),
+        _offset                (rhs._offset),
+        _out_translation        (rhs._out_translation),
+        _out_velocity        (rhs._out_velocity),
+        _prediction_strength(rhs._prediction_strength),
+        _prediction_smooth    (rhs._prediction_smooth),
+        _prediction            (rhs._prediction)
 {   
 
 }
@@ -97,22 +97,22 @@ ScriptingCameraPredictor & ScriptingCameraPredictor::operator = (const Scripting
 {
     // Make sure we are not assigning the class to itself
     if (&rhs != this) {        
-		ScriptingBase::operator = (rhs);
+        ScriptingBase::operator = (rhs);
 
-		_object_translation = rhs._object_translation;
-		_object_velocity = rhs._object_velocity;
-		_offset = rhs._offset;
-		_out_translation = rhs._out_translation;
-		_out_velocity = rhs._out_velocity;
-		
-		_prediction_strength = rhs._prediction_strength;
-		_prediction_smooth = rhs._prediction_smooth;
-		_prediction = rhs._prediction;
-		
-	}
+        _object_translation = rhs._object_translation;
+        _object_velocity = rhs._object_velocity;
+        _offset = rhs._offset;
+        _out_translation = rhs._out_translation;
+        _out_velocity = rhs._out_velocity;
+        
+        _prediction_strength = rhs._prediction_strength;
+        _prediction_smooth = rhs._prediction_smooth;
+        _prediction = rhs._prediction;
+        
+    }
     return (*this);
 }
-			
+            
 ScriptingCameraPredictor::~ScriptingCameraPredictor (void)
 {
 
@@ -125,16 +125,16 @@ void ScriptingCameraPredictor::archive (const std::shared_ptr<Archive> &archive)
 {
     ScriptingBase::archive(archive);
 
-	archive->push_domain (class_id ());
-	    
-	*archive << ARCHIVE_PLUG(_object_translation, DATA_PERSISTENT | DATA_SETTABLE);
-	*archive << ARCHIVE_PLUG(_object_velocity, DATA_PERSISTENT | DATA_SETTABLE);
-	*archive << ARCHIVE_PLUG(_offset, DATA_PERSISTENT | DATA_SETTABLE);
-	*archive << ARCHIVE_PLUG(_out_translation, DATA_PERSISTENT);
-					
-	*archive << ARCHIVE_DATA(_prediction_strength, DATA_PERSISTENT | DATA_SETTABLE);
-	*archive << ARCHIVE_DATA(_prediction_smooth, DATA_PERSISTENT | DATA_SETTABLE);
-																																												    					
+    archive->push_domain (class_id ());
+        
+    *archive << ARCHIVE_PLUG(_object_translation, DATA_PERSISTENT | DATA_SETTABLE);
+    *archive << ARCHIVE_PLUG(_object_velocity, DATA_PERSISTENT | DATA_SETTABLE);
+    *archive << ARCHIVE_PLUG(_offset, DATA_PERSISTENT | DATA_SETTABLE);
+    *archive << ARCHIVE_PLUG(_out_translation, DATA_PERSISTENT);
+                    
+    *archive << ARCHIVE_DATA(_prediction_strength, DATA_PERSISTENT | DATA_SETTABLE);
+    *archive << ARCHIVE_DATA(_prediction_smooth, DATA_PERSISTENT | DATA_SETTABLE);
+                                                                                                                                                                                                        
     archive->pop_domain ();
 }
 
@@ -143,7 +143,7 @@ void ScriptingCameraPredictor::archive (const std::shared_ptr<Archive> &archive)
 
 void ScriptingCameraPredictor::tick (const DTfloat dt)
 {
-	PROFILER(SCRIPTING);
+    PROFILER(SCRIPTING);
 
     _prediction = ((1.0F-_prediction_smooth) * (_object_velocity) * _prediction_strength) + (_prediction_smooth * _prediction);
     

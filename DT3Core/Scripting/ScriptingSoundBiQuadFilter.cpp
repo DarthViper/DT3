@@ -1,12 +1,12 @@
 //==============================================================================
-///	
-///	File: ScriptingSoundBiquadFilter.cpp
-///	
+///    
+///    File: ScriptingSoundBiquadFilter.cpp
+///    
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
 /// This file is subject to the terms and conditions defined in
 /// file 'LICENSE.txt', which is part of this source code package.
-///	
+///    
 //==============================================================================
 
 #include "DT3Core/Scripting/ScriptingSoundBiQuadFilter.hpp"
@@ -40,28 +40,28 @@ IMPLEMENT_PLUG_INFO_INDEX(_Q)
 
 BEGIN_IMPLEMENT_PLUGS(ScriptingSoundBiquadFilter)
 
-	PLUG_INIT(_sound_packet_in,"Sound_Packet_In")
+    PLUG_INIT(_sound_packet_in,"Sound_Packet_In")
         .affects(PLUG_INFO_INDEX(_sound_packet_out))
-		.set_input(true)
+        .set_input(true)
         .set_always_dirty(true);
 
-	PLUG_INIT(_sound_packet_out,"Sound_Packet_Out")
+    PLUG_INIT(_sound_packet_out,"Sound_Packet_Out")
         .set_single_output(true)
-		.set_output(true)
+        .set_output(true)
         .set_always_dirty(true);
 
-	PLUG_INIT(_filter_type,"Filter_Type")
+    PLUG_INIT(_filter_type,"Filter_Type")
         .affects(PLUG_INFO_INDEX(_sound_packet_out))
-		.set_input(true);
+        .set_input(true);
 
-	PLUG_INIT(_cutoff_frequency,"Cutoff_Frequency")
-		.set_input(true);
+    PLUG_INIT(_cutoff_frequency,"Cutoff_Frequency")
+        .set_input(true);
 
-	PLUG_INIT(_db_gain,"Db_Gain")
-		.set_input(true);
+    PLUG_INIT(_db_gain,"Db_Gain")
+        .set_input(true);
 
-	PLUG_INIT(_Q,"Q")
-		.set_input(true);
+    PLUG_INIT(_Q,"Q")
+        .set_input(true);
 
     
 END_IMPLEMENT_PLUGS
@@ -72,11 +72,11 @@ END_IMPLEMENT_PLUGS
 
 ScriptingSoundBiquadFilter::ScriptingSoundBiquadFilter (void)
     :   _sound_packet_in    (PLUG_INFO_INDEX(_sound_packet_in)),
-		_sound_packet_out   (PLUG_INFO_INDEX(_sound_packet_out)),
-		_filter_type        (PLUG_INFO_INDEX(_filter_type), 0),
-		_cutoff_frequency   (PLUG_INFO_INDEX(_cutoff_frequency), 8000.0F),
-		_db_gain            (PLUG_INFO_INDEX(_db_gain), 1.0F),
-		_Q                  (PLUG_INFO_INDEX(_Q), 1.0F),
+        _sound_packet_out   (PLUG_INFO_INDEX(_sound_packet_out)),
+        _filter_type        (PLUG_INFO_INDEX(_filter_type), 0),
+        _cutoff_frequency   (PLUG_INFO_INDEX(_cutoff_frequency), 8000.0F),
+        _db_gain            (PLUG_INFO_INDEX(_db_gain), 1.0F),
+        _Q                  (PLUG_INFO_INDEX(_Q), 1.0F),
         _last_in_minus_1    (0.0F),
         _last_in_minus_2    (0.0F),
         _last_out_minus_1   (0.0F),
@@ -84,44 +84,44 @@ ScriptingSoundBiquadFilter::ScriptingSoundBiquadFilter (void)
 {  
 
 }
-		
+        
 ScriptingSoundBiquadFilter::ScriptingSoundBiquadFilter (const ScriptingSoundBiquadFilter &rhs)
     :   ScriptingSoundBase  (rhs),
-		_sound_packet_in	(rhs._sound_packet_in),
-		_sound_packet_out   (rhs._sound_packet_out),
+        _sound_packet_in    (rhs._sound_packet_in),
+        _sound_packet_out   (rhs._sound_packet_out),
         _filter_type        (rhs._filter_type),
         _cutoff_frequency   (rhs._cutoff_frequency),
-		_db_gain            (rhs._db_gain),
-		_Q                  (rhs._Q),
+        _db_gain            (rhs._db_gain),
+        _Q                  (rhs._Q),
         _last_in_minus_1    (rhs._last_in_minus_1),
         _last_in_minus_2    (rhs._last_in_minus_2),
         _last_out_minus_1   (rhs._last_out_minus_1),
         _last_out_minus_2   (rhs._last_out_minus_2)
 {   
 
-}	
+}    
 
 ScriptingSoundBiquadFilter & ScriptingSoundBiquadFilter::operator = (const ScriptingSoundBiquadFilter &rhs)
 {
     // Make sure we are not assigning the class to itself
     if (&rhs != this) {        
-		ScriptingSoundBase::operator = (rhs);
+        ScriptingSoundBase::operator = (rhs);
 
-		_sound_packet_in = rhs._sound_packet_in;
-		_sound_packet_out = rhs._sound_packet_out;
+        _sound_packet_in = rhs._sound_packet_in;
+        _sound_packet_out = rhs._sound_packet_out;
         _filter_type = rhs._filter_type;
         _cutoff_frequency = rhs._cutoff_frequency;
-		_db_gain = rhs._db_gain;
-		_Q = rhs._Q;
+        _db_gain = rhs._db_gain;
+        _Q = rhs._Q;
         
         _last_in_minus_1 = rhs._last_in_minus_1;
         _last_in_minus_2 = rhs._last_in_minus_2;
         _last_out_minus_1 = rhs._last_out_minus_1;
         _last_out_minus_2 = rhs._last_out_minus_2;
-	}
+    }
     return (*this);
 }
-			
+            
 ScriptingSoundBiquadFilter::~ScriptingSoundBiquadFilter (void)
 {
 
@@ -136,7 +136,7 @@ void ScriptingSoundBiquadFilter::archive (const std::shared_ptr<Archive> &archiv
 
     archive->push_domain (class_id ());
 
-	*archive << ARCHIVE_PLUG(_filter_type, DATA_PERSISTENT | DATA_SETTABLE)
+    *archive << ARCHIVE_PLUG(_filter_type, DATA_PERSISTENT | DATA_SETTABLE)
         .add_enum("Low Pass")
         .add_enum("High Pass")
         .add_enum("Band Pass (constant skirt gain)")
@@ -146,9 +146,9 @@ void ScriptingSoundBiquadFilter::archive (const std::shared_ptr<Archive> &archiv
         .add_enum("Peaking EQ")
         .add_enum("Low Shelf")
         .add_enum("High Shelf");
-	*archive << ARCHIVE_PLUG(_cutoff_frequency, DATA_PERSISTENT | DATA_SETTABLE);
+    *archive << ARCHIVE_PLUG(_cutoff_frequency, DATA_PERSISTENT | DATA_SETTABLE);
     *archive << ARCHIVE_PLUG(_db_gain, DATA_PERSISTENT | DATA_SETTABLE);
-	*archive << ARCHIVE_PLUG(_Q, DATA_PERSISTENT | DATA_SETTABLE);
+    *archive << ARCHIVE_PLUG(_Q, DATA_PERSISTENT | DATA_SETTABLE);
 
     archive->pop_domain ();
 }
@@ -158,11 +158,11 @@ void ScriptingSoundBiquadFilter::archive (const std::shared_ptr<Archive> &archiv
 
 bool ScriptingSoundBiquadFilter::compute (const PlugBase *plug)
 {
-	PROFILER(SOUND);
+    PROFILER(SOUND);
 
     if (super_type::compute(plug))  return true;
 
-	if (plug == &_sound_packet_out) {
+    if (plug == &_sound_packet_out) {
     
         SoundPacket &sound_packet_in = _sound_packet_in.as_ref_no_compute();
         SoundPacket &sound_packet_out = _sound_packet_out.as_ref_no_compute();
@@ -316,12 +316,12 @@ bool ScriptingSoundBiquadFilter::compute (const PlugBase *plug)
         }
                 
     
-		_sound_packet_out.set_clean();
-		
-		return true;
-	}
-	
-	return false;
+        _sound_packet_out.set_clean();
+        
+        return true;
+    }
+    
+    return false;
 }
 
 //==============================================================================

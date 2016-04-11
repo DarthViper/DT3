@@ -3,7 +3,7 @@
 #define DT3_APPCONFIG
 //==============================================================================
 ///
-///	File: AppConfig.hpp
+///    File: AppConfig.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -53,17 +53,17 @@ namespace DT3 {
 
 class AppConfig {
     public:
-                                    AppConfig				(void);
-                                    AppConfig				(const AppConfig &rhs);
-        AppConfig &                 operator =				(const AppConfig &rhs);
-        virtual                     ~AppConfig				(void);
+                                    AppConfig                (void);
+                                    AppConfig                (const AppConfig &rhs);
+        AppConfig &                 operator =                (const AppConfig &rhs);
+        virtual                     ~AppConfig                (void);
 
     public:
 
         /// The app version number for archining
         /// \return app archive version number
         /// Note: returns unsigned int so we don't have to include anything else
-        static unsigned int			app_version     (void);
+        static unsigned int            app_version     (void);
 
 };
 

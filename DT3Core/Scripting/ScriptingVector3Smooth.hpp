@@ -3,7 +3,7 @@
 #define DT3_SCRIPTINGVECTOR3SMOOTH
 //==============================================================================
 ///
-///	File: ScriptingVector3Smooth.hpp
+///    File: ScriptingVector3Smooth.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -33,12 +33,12 @@ class ScriptingVector3Smooth: public ScriptingBase {
         DEFINE_CREATE_AND_CLONE
         DEFINE_PLUG_NODE
 
-                                    ScriptingVector3Smooth	(void);
-                                    ScriptingVector3Smooth	(const ScriptingVector3Smooth &rhs);
-        ScriptingVector3Smooth &    operator =				(const ScriptingVector3Smooth &rhs);
-        virtual						~ScriptingVector3Smooth	(void);
+                                    ScriptingVector3Smooth    (void);
+                                    ScriptingVector3Smooth    (const ScriptingVector3Smooth &rhs);
+        ScriptingVector3Smooth &    operator =                (const ScriptingVector3Smooth &rhs);
+        virtual                        ~ScriptingVector3Smooth    (void);
 
-        virtual void				archive                 (const std::shared_ptr<Archive> &archive);
+        virtual void                archive                 (const std::shared_ptr<Archive> &archive);
 
         /// Object was added to a world
         /// world world that object was added to
@@ -54,22 +54,22 @@ class ScriptingVector3Smooth: public ScriptingBase {
 
         /// Sets the size of the history
         /// \param size history size
-        void						setHistorySize          (DTsize size)		{	_history.resize(size);	_local_reset = true;	}
+        void                        setHistorySize          (DTsize size)        {    _history.resize(size);    _local_reset = true;    }
 
         /// Gets the size of the history
         /// \return size history size
-        DTsize						getHistorySize          (void) const		{	return _history.size();	}
+        DTsize                        getHistorySize          (void) const        {    return _history.size();    }
 
     private:
-        Plug<Vector3>				_in;
-        Plug<Vector3>				_out;
-        Plug<bool>				_reset;
+        Plug<Vector3>                _in;
+        Plug<Vector3>                _out;
+        Plug<bool>                _reset;
 
-        bool					_local_reset;
+        bool                    _local_reset;
 
-        std::vector<Vector3>		_history;
-        int32_t						_history_index;
-        Vector3						_sum;
+        std::vector<Vector3>        _history;
+        int32_t                        _history_index;
+        Vector3                        _sum;
 };
 
 //==============================================================================

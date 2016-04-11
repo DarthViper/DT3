@@ -1,12 +1,12 @@
 //==============================================================================
-///	
-///	File: ScriptingKeyframesVector2.cpp
-///	
+///    
+///    File: ScriptingKeyframesVector2.cpp
+///    
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
 /// This file is subject to the terms and conditions defined in
 /// file 'LICENSE.txt', which is part of this source code package.
-///	
+///    
 //==============================================================================
 
 #include "DT3Core/Scripting/ScriptingKeyframesVector2.hpp"
@@ -36,12 +36,12 @@ IMPLEMENT_PLUG_INFO_INDEX(_out)
 
 BEGIN_IMPLEMENT_PLUGS(ScriptingKeyframesVector2)
 
-	PLUG_INIT(_t,"t")
-		.set_input(true)
-		.affects(PLUG_INFO_INDEX(_out));
+    PLUG_INIT(_t,"t")
+        .set_input(true)
+        .affects(PLUG_INFO_INDEX(_out));
 
-	PLUG_INIT(_out,"Out")
-		.set_output(true);
+    PLUG_INIT(_out,"Out")
+        .set_output(true);
         
 END_IMPLEMENT_PLUGS
 
@@ -50,23 +50,23 @@ END_IMPLEMENT_PLUGS
 //==============================================================================
 
 ScriptingKeyframesVector2::ScriptingKeyframesVector2 (void)
-	:	_interpolated	(true),
-		_t				(PLUG_INFO_INDEX(_t), 0.0F),
-		_out			(PLUG_INFO_INDEX(_out), {0.0F,0.0F}),
-		_id				(0),
-		_keyframe_cache	(0)
+    :    _interpolated    (true),
+        _t                (PLUG_INFO_INDEX(_t), 0.0F),
+        _out            (PLUG_INFO_INDEX(_out), {0.0F,0.0F}),
+        _id                (0),
+        _keyframe_cache    (0)
 {  
 
 }
-		
+        
 ScriptingKeyframesVector2::ScriptingKeyframesVector2 (const ScriptingKeyframesVector2 &rhs)
-    :   ScriptingKeyframes	(rhs),
-		_interpolated		(rhs._interpolated),
-		_t					(rhs._t),
-		_out				(rhs._out),
-		_id					(rhs._id),
-		_keyframes			(rhs._keyframes),
-		_keyframe_cache		(0)
+    :   ScriptingKeyframes    (rhs),
+        _interpolated        (rhs._interpolated),
+        _t                    (rhs._t),
+        _out                (rhs._out),
+        _id                    (rhs._id),
+        _keyframes            (rhs._keyframes),
+        _keyframe_cache        (0)
 {   
 
 }
@@ -75,18 +75,18 @@ ScriptingKeyframesVector2 & ScriptingKeyframesVector2::operator = (const Scripti
 {
     // Make sure we are not assigning the class to itself
     if (&rhs != this) {        
-		ScriptingKeyframes::operator = (rhs);	
-		
-		_interpolated = rhs._interpolated;
-		_t = rhs._t;
-		_out = rhs._out;
-		_id = rhs._id;
-		_keyframes = rhs._keyframes;
-		_keyframe_cache = rhs._keyframe_cache;
-	}
+        ScriptingKeyframes::operator = (rhs);    
+        
+        _interpolated = rhs._interpolated;
+        _t = rhs._t;
+        _out = rhs._out;
+        _id = rhs._id;
+        _keyframes = rhs._keyframes;
+        _keyframe_cache = rhs._keyframe_cache;
+    }
     return (*this);
 }
-			
+            
 ScriptingKeyframesVector2::~ScriptingKeyframesVector2 (void)
 {
 
@@ -99,7 +99,7 @@ void ScriptingKeyframesVector2::archive (const std::shared_ptr<Archive> &archive
 {
     ScriptingKeyframes::archive(archive);
 
-	archive->push_domain (class_id ());
+    archive->push_domain (class_id ());
     
     *archive << ARCHIVE_PLUG(_t, DATA_PERSISTENT | DATA_SETTABLE);
     *archive << ARCHIVE_DATA(_interpolated, DATA_PERSISTENT | DATA_SETTABLE);
@@ -117,7 +117,7 @@ void ScriptingKeyframesVector2::archive (const std::shared_ptr<Archive> &archive
         if (archive->is_reading())
             _keyframes[i]._id = _id++;
     }
-				
+                
     archive->pop_domain ();
 }
 
@@ -126,25 +126,25 @@ void ScriptingKeyframesVector2::archive (const std::shared_ptr<Archive> &archive
 
 int32_t  ScriptingKeyframesVector2::set_key_time (int32_t k, DTfloat time)
 {
-	PROFILER(SCRIPTING);
+    PROFILER(SCRIPTING);
 
-	int32_t oldid = _keyframes[k]._id;
-	
-	_keyframes[k]._time = time;
-	std::sort(_keyframes.begin(), _keyframes.end());
-	
-	for (std::size_t i = 0; i < _keyframes.size(); ++i)
-		if (oldid == _keyframes[i]._id)
-			return static_cast<int32_t>(i);
-			
-	return -1;
+    int32_t oldid = _keyframes[k]._id;
+    
+    _keyframes[k]._time = time;
+    std::sort(_keyframes.begin(), _keyframes.end());
+    
+    for (std::size_t i = 0; i < _keyframes.size(); ++i)
+        if (oldid == _keyframes[i]._id)
+            return static_cast<int32_t>(i);
+            
+    return -1;
 }
 
 void  ScriptingKeyframesVector2::clear_key (int32_t k)
 {
-	PROFILER(SCRIPTING);
+    PROFILER(SCRIPTING);
 
-	_keyframes.erase(_keyframes.begin() + k);
+    _keyframes.erase(_keyframes.begin() + k);
 }
 
 //==============================================================================
@@ -152,41 +152,41 @@ void  ScriptingKeyframesVector2::clear_key (int32_t k)
 
 void ScriptingKeyframesVector2::set_key (void)
 {
-	PROFILER(SCRIPTING);
+    PROFILER(SCRIPTING);
 
-	const std::vector<PlugBase*> outgoing = _out.outgoing_connections();
-	if (outgoing.size() > 0) {
-		// get first connected plug
-		Plug<Vector2> *outplug = static_cast<Plug<Vector2>*>(*(outgoing.begin()));
-		
-		// get the value of the first connected plug
-		Vector2 val = outplug->value_without_compute();
-				
-		// clear any existing key
-		clear_key();
+    const std::vector<PlugBase*> outgoing = _out.outgoing_connections();
+    if (outgoing.size() > 0) {
+        // get first connected plug
+        Plug<Vector2> *outplug = static_cast<Plug<Vector2>*>(*(outgoing.begin()));
+        
+        // get the value of the first connected plug
+        Vector2 val = outplug->value_without_compute();
+                
+        // clear any existing key
+        clear_key();
 
-		// add the keyframe
-		keyframe k;
-		k._time = _t;
-		k._value = val;
-		k._tangent = {0.0F,0.0F};
-		k._id = _id++;
-		_keyframes.push_back(k);
-		
-		std::sort(_keyframes.begin(), _keyframes.end());
-	}
+        // add the keyframe
+        keyframe k;
+        k._time = _t;
+        k._value = val;
+        k._tangent = {0.0F,0.0F};
+        k._id = _id++;
+        _keyframes.push_back(k);
+        
+        std::sort(_keyframes.begin(), _keyframes.end());
+    }
 }
 
 void ScriptingKeyframesVector2::clear_key (void)
 {
-	PROFILER(SCRIPTING);
+    PROFILER(SCRIPTING);
 
-	FOR_EACH (i,_keyframes) {
-		if (_t <= i->_time + (1.0F/30.0F) && _t > i->_time - (1.0F/30.0F)) {
-			_keyframes.erase(i);
-			return;
-		}
-	}
+    FOR_EACH (i,_keyframes) {
+        if (_t <= i->_time + (1.0F/30.0F) && _t > i->_time - (1.0F/30.0F)) {
+            _keyframes.erase(i);
+            return;
+        }
+    }
 }
 
 //==============================================================================
@@ -194,63 +194,63 @@ void ScriptingKeyframesVector2::clear_key (void)
 
 void ScriptingKeyframesVector2::interpolate (DTfloat t, Vector2 &translation) const
 {
-	PROFILER(SCRIPTING);
+    PROFILER(SCRIPTING);
 
-	// Special cases
-	if (_keyframes.size() == 0)	{
-		return;
-	}
-	
-	if (_keyframes.size() == 1)	{
-		translation = _keyframes[0]._value;
-		return;
-	}
-	
-	// Scan for the best key
-	if (_keyframe_cache < 0)									_keyframe_cache = 0;
-	else if (_keyframe_cache > (int32_t) _keyframes.size() - 2)	_keyframe_cache = (int32_t) _keyframes.size() - 2;
-			
-	while (1) {
-		if (t < _keyframes[_keyframe_cache]._time) {
-			--_keyframe_cache;
-			if (_keyframe_cache < 0) {
-				_keyframe_cache = 0;
-				translation = _keyframes[_keyframe_cache]._value;
-				break;
-			}
-		} else if (t > _keyframes[_keyframe_cache+1]._time) {
-			++_keyframe_cache;
-			if (_keyframe_cache > (int32_t) _keyframes.size() - 2) {
-				_keyframe_cache = (int32_t) _keyframes.size() - 2;
-				translation = _keyframes[_keyframe_cache+1]._value;
-				break;
-			}
-		} else {
-		
-			if (_interpolated) {
-				DTfloat t1 = (t - _keyframes[_keyframe_cache]._time) / (_keyframes[_keyframe_cache+1]._time - _keyframes[_keyframe_cache]._time);
-				DTfloat t2 = t1 * t1;
-				DTfloat t3 = t1 * t2;
-			
-				// interpolate via Hermite spline
-				// See Realtime Rendering, 2nd Ed., Page 492
-				Vector2 p1,p2,p3,p4;
-				p1 = _keyframes[_keyframe_cache]._value * (2.0F * t3 - 3.0F * t2 + 1.0F);
-				p2 = _keyframes[_keyframe_cache]._tangent * (t3 - 2.0F * t2 + t1);
+    // Special cases
+    if (_keyframes.size() == 0)    {
+        return;
+    }
+    
+    if (_keyframes.size() == 1)    {
+        translation = _keyframes[0]._value;
+        return;
+    }
+    
+    // Scan for the best key
+    if (_keyframe_cache < 0)                                    _keyframe_cache = 0;
+    else if (_keyframe_cache > (int32_t) _keyframes.size() - 2)    _keyframe_cache = (int32_t) _keyframes.size() - 2;
+            
+    while (1) {
+        if (t < _keyframes[_keyframe_cache]._time) {
+            --_keyframe_cache;
+            if (_keyframe_cache < 0) {
+                _keyframe_cache = 0;
+                translation = _keyframes[_keyframe_cache]._value;
+                break;
+            }
+        } else if (t > _keyframes[_keyframe_cache+1]._time) {
+            ++_keyframe_cache;
+            if (_keyframe_cache > (int32_t) _keyframes.size() - 2) {
+                _keyframe_cache = (int32_t) _keyframes.size() - 2;
+                translation = _keyframes[_keyframe_cache+1]._value;
+                break;
+            }
+        } else {
+        
+            if (_interpolated) {
+                DTfloat t1 = (t - _keyframes[_keyframe_cache]._time) / (_keyframes[_keyframe_cache+1]._time - _keyframes[_keyframe_cache]._time);
+                DTfloat t2 = t1 * t1;
+                DTfloat t3 = t1 * t2;
+            
+                // interpolate via Hermite spline
+                // See Realtime Rendering, 2nd Ed., Page 492
+                Vector2 p1,p2,p3,p4;
+                p1 = _keyframes[_keyframe_cache]._value * (2.0F * t3 - 3.0F * t2 + 1.0F);
+                p2 = _keyframes[_keyframe_cache]._tangent * (t3 - 2.0F * t2 + t1);
 
-				p3 = _keyframes[_keyframe_cache+1]._tangent * (t3 - t2);
-				p4 = _keyframes[_keyframe_cache+1]._value * (-2.0F * t3 + 3.0F * t2);
-				
-				translation = p1 + p2 + p3 + p4;
-			} else {
-				translation = _keyframes[_keyframe_cache]._value;
-			}
-			
-			break;
-		}
-	
-	}
-	
+                p3 = _keyframes[_keyframe_cache+1]._tangent * (t3 - t2);
+                p4 = _keyframes[_keyframe_cache+1]._value * (-2.0F * t3 + 3.0F * t2);
+                
+                translation = p1 + p2 + p3 + p4;
+            } else {
+                translation = _keyframes[_keyframe_cache]._value;
+            }
+            
+            break;
+        }
+    
+    }
+    
 }
 
 //==============================================================================
@@ -258,22 +258,22 @@ void ScriptingKeyframesVector2::interpolate (DTfloat t, Vector2 &translation) co
 
 bool ScriptingKeyframesVector2::compute (const PlugBase *plug)
 {
-	PROFILER(SCRIPTING);
+    PROFILER(SCRIPTING);
 
     if (super_type::compute(plug))  return true;
 
-	if (plug == &_out) {
-				
-		Vector2 out = _out;
-		interpolate (_t, out);
-		_out = out;
+    if (plug == &_out) {
+                
+        Vector2 out = _out;
+        interpolate (_t, out);
+        _out = out;
 
-		_out.set_clean();
-				
-		return true;
-	} 
-	
-	return false;
+        _out.set_clean();
+                
+        return true;
+    } 
+    
+    return false;
 }
 
 //==============================================================================

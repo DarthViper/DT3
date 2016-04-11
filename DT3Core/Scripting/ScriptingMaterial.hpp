@@ -3,7 +3,7 @@
 #define DT3_SCRIPTINGMATERIAL
 //==============================================================================
 ///
-///	File: ScriptingMaterial.hpp
+///    File: ScriptingMaterial.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -35,17 +35,17 @@ class ScriptingMaterial: public ScriptingBase {
         DEFINE_CREATE_AND_CLONE
         DEFINE_PLUG_NODE
 
-                                    ScriptingMaterial		(void);
-                                    ScriptingMaterial		(const ScriptingMaterial &rhs);
-        ScriptingMaterial &			operator =				(const ScriptingMaterial &rhs);
-        virtual                     ~ScriptingMaterial		(void);
+                                    ScriptingMaterial        (void);
+                                    ScriptingMaterial        (const ScriptingMaterial &rhs);
+        ScriptingMaterial &            operator =                (const ScriptingMaterial &rhs);
+        virtual                     ~ScriptingMaterial        (void);
 
         virtual void                archive                 (const std::shared_ptr<Archive> &archive);
 
     public:
         /// Computes the value of the node
         /// \param plug plug to compute
-        bool                                   compute					(const PlugBase *plug);
+        bool                                   compute                    (const PlugBase *plug);
 
 
         /// Sets the material property
@@ -54,7 +54,7 @@ class ScriptingMaterial: public ScriptingBase {
 
         /// Gets the material property
         /// \return material
-        const std::shared_ptr<MaterialResource>&    material_property       (void) const        {   return _material;	}
+        const std::shared_ptr<MaterialResource>&    material_property       (void) const        {   return _material;    }
 
     private:
         std::shared_ptr<MaterialResource>           _material;

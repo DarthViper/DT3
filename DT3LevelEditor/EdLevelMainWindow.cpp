@@ -1,6 +1,6 @@
 //==============================================================================
 ///
-///	File: EdLevelMainWindow.cpp
+///    File: EdLevelMainWindow.cpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -66,10 +66,10 @@
 //==============================================================================
 
 namespace DT3 {
-    extern std::map<std::string,std::shared_ptr<CreatorBase>>&	world_map       (void);
+    extern std::map<std::string,std::shared_ptr<CreatorBase>>&    world_map       (void);
 
-    extern std::map<std::string,std::set<std::string>>&         placeable_map	(void);
-    extern std::map<std::string,std::set<std::string>>&         component_map	(void);
+    extern std::map<std::string,std::set<std::string>>&         placeable_map    (void);
+    extern std::map<std::string,std::set<std::string>>&         component_map    (void);
     extern std::map<std::string,std::set<std::string>>&         script_map      (void);
 }
 
@@ -530,11 +530,11 @@ void EdLevelMainWindow::timerEvent(QTimerEvent *event)
 //        DTfloatTEP_SIZE = 200.0F / 1000.0F; // 200 msec
 
 //        if (System::input_manager())          System::input_manager()->tick(STEP_SIZE);
-//		if (System::network_manager())		System::network_manager()->tick(STEP_SIZE);
-//		if (System::getReplicationManager())	System::getReplicationManager()->tick(STEP_SIZE);
-//		if (System::getAudioRenderer())         System::getAudioRenderer()->tick(STEP_SIZE);
-//		if (System::getMusicRenderer())         System::getMusicRenderer()->tick(STEP_SIZE);
-//		if (System::getRenderer())				System::getRenderer()->tick(STEP_SIZE);
+//        if (System::network_manager())        System::network_manager()->tick(STEP_SIZE);
+//        if (System::getReplicationManager())    System::getReplicationManager()->tick(STEP_SIZE);
+//        if (System::getAudioRenderer())         System::getAudioRenderer()->tick(STEP_SIZE);
+//        if (System::getMusicRenderer())         System::getMusicRenderer()->tick(STEP_SIZE);
+//        if (System::getRenderer())                System::getRenderer()->tick(STEP_SIZE);
 
     } else if (event->timerId() == _autosave_timer.timerId()) {
 

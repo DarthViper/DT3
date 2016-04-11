@@ -3,7 +3,7 @@
 #define DT3_ARCHIVEPROCESS
 //==============================================================================
 ///
-///	File: ArchiveProcess.hpp
+///    File: ArchiveProcess.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -34,18 +34,18 @@ class ArchiveProcess: public BaseClass {
     public:
         DEFINE_TYPE(ArchiveProcess,BaseClass)
 
-                            ArchiveProcess	(void);
+                            ArchiveProcess    (void);
 
-                            ArchiveProcess	(const ArchiveProcess &rhs);
-        ArchiveProcess &	operator =		(const ArchiveProcess &rhs);
+                            ArchiveProcess    (const ArchiveProcess &rhs);
+        ArchiveProcess &    operator =        (const ArchiveProcess &rhs);
 
-        virtual				~ArchiveProcess	(void);
+        virtual                ~ArchiveProcess    (void);
 
     public:
         /// Post process for archiving
         /// \param archive Archive that owns the post process
         /// \param archive Objects Map of objects that have been archived
-        virtual void		process			(const std::shared_ptr<Archive> &archive, std::map<uint64_t, std::shared_ptr<BaseClass>> &objects) = 0;
+        virtual void        process            (const std::shared_ptr<Archive> &archive, std::map<uint64_t, std::shared_ptr<BaseClass>> &objects) = 0;
 };
 
 //==============================================================================

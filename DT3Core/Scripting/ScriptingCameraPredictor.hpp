@@ -3,7 +3,7 @@
 #define DT3_SCRIPTINGCAMERAPREDICTOR
 //==============================================================================
 ///
-///	File: ScriptingCameraPredictor.hpp
+///    File: ScriptingCameraPredictor.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -33,10 +33,10 @@ class ScriptingCameraPredictor: public ScriptingBase {
         DEFINE_CREATE_AND_CLONE
         DEFINE_PLUG_NODE
 
-                                    ScriptingCameraPredictor	(void);
-                                    ScriptingCameraPredictor	(const ScriptingCameraPredictor &rhs);
-        ScriptingCameraPredictor &	operator =					(const ScriptingCameraPredictor &rhs);
-        virtual                     ~ScriptingCameraPredictor	(void);
+                                    ScriptingCameraPredictor    (void);
+                                    ScriptingCameraPredictor    (const ScriptingCameraPredictor &rhs);
+        ScriptingCameraPredictor &    operator =                    (const ScriptingCameraPredictor &rhs);
+        virtual                     ~ScriptingCameraPredictor    (void);
 
         virtual void                archive                     (const std::shared_ptr<Archive> &archive);
 
@@ -53,16 +53,16 @@ class ScriptingCameraPredictor: public ScriptingBase {
         void                        tick                        (const DTfloat dt);
 
     private:
-        Plug<Vector3>				_object_translation;
-        Plug<Vector3>				_object_velocity;
-        Plug<Vector3>				_offset;
-        Plug<Vector3>				_out_translation;
-        Plug<Vector3>				_out_velocity;
+        Plug<Vector3>                _object_translation;
+        Plug<Vector3>                _object_velocity;
+        Plug<Vector3>                _offset;
+        Plug<Vector3>                _out_translation;
+        Plug<Vector3>                _out_velocity;
 
-        DTfloat						_prediction_strength;
-        DTfloat						_prediction_smooth;
+        DTfloat                        _prediction_strength;
+        DTfloat                        _prediction_smooth;
 
-        Vector3						_prediction;
+        Vector3                        _prediction;
 };
 
 //==============================================================================

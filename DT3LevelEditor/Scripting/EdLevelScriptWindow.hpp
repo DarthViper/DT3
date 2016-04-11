@@ -3,7 +3,7 @@
 #define EDLEVELSCRIPTWINDOW
 //==============================================================================
 ///
-///	File: EdLevelScriptWindow.hpp
+///    File: EdLevelScriptWindow.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -56,7 +56,7 @@ class EdLevelScriptWindow : public QGraphicsView
     Q_OBJECT
 
     public:
-                                        EdLevelScriptWindow	(QWidget *parent, QToolBar *toolbar, EdLevelDocument *document);
+                                        EdLevelScriptWindow    (QWidget *parent, QToolBar *toolbar, EdLevelDocument *document);
 
         void                            dragEnterEvent (QDragEnterEvent *event);
         void                            dragMoveEvent (QDragMoveEvent *event);
@@ -65,13 +65,13 @@ class EdLevelScriptWindow : public QGraphicsView
 
     protected:
         void                            mouseDoubleClickEvent   (QMouseEvent *event);
-        void							mousePressEvent		(QMouseEvent *event);
-        void							mouseMoveEvent		(QMouseEvent *event);
-        void							mouseReleaseEvent	(QMouseEvent *event);
+        void                            mousePressEvent        (QMouseEvent *event);
+        void                            mouseMoveEvent        (QMouseEvent *event);
+        void                            mouseReleaseEvent    (QMouseEvent *event);
 
         void                            keyPressEvent       (QKeyEvent *event);
 
-        void							drawBackground		(QPainter *painter, const QRectF &rect);
+        void                            drawBackground        (QPainter *painter, const QRectF &rect);
 
     private:
         static const int AUTO_SCROLL_TIMER;
@@ -80,12 +80,12 @@ class EdLevelScriptWindow : public QGraphicsView
         EdLevelDocument                 *_document;
         QToolBar                        *_toolbar;
 
-        QAction *						_script_align;
-        QAction *						_script_values;
-        QAction *						_script_add_to_library;
-        QAction *						_script_color;
+        QAction *                        _script_align;
+        QAction *                        _script_values;
+        QAction *                        _script_add_to_library;
+        QAction *                        _script_color;
 
-        QGraphicsScene					_scene;
+        QGraphicsScene                    _scene;
 
         QTimer                          _auto_scroll_timer;
         int                             _auto_scroll_x;
@@ -94,7 +94,7 @@ class EdLevelScriptWindow : public QGraphicsView
         void                            syncConnections     (PlugNode *node);
         void                            adjustGroupBounds   (std::shared_ptr<Group> group);
 
-        void							readjustSceneRect   (void);
+        void                            readjustSceneRect   (void);
 
         enum Mode {
             MODE_NONE,
@@ -109,20 +109,20 @@ class EdLevelScriptWindow : public QGraphicsView
         void                                setMode         (Mode mode);
         Mode                                getMode         (void)          {   return _mode;   }
 
-        QPoint								_start_point;
-        QPoint								_last_point;
-        QPoint								_end_point;
+        QPoint                                _start_point;
+        QPoint                                _last_point;
+        QPoint                                _end_point;
 
-        QPointF								_start_point_scene;
-        QPointF								_last_point_scene;
-        QPointF								_end_point_scene;
+        QPointF                                _start_point_scene;
+        QPointF                                _last_point_scene;
+        QPointF                                _end_point_scene;
 
-        float								_scale;
-        unsigned int						_z;
+        float                                _scale;
+        unsigned int                        _z;
 
         // Rubber band widgets
-        EdLevelScriptConnectionRubberBand	*_connection_rubber_band;
-        EdLevelScriptSelectionRubberBand	*_selection_rubber_band;
+        EdLevelScriptConnectionRubberBand    *_connection_rubber_band;
+        EdLevelScriptSelectionRubberBand    *_selection_rubber_band;
 
         // Connection info while connecting
         EdLevelScriptNodeStandard           *_connection_start_node;
@@ -137,7 +137,7 @@ class EdLevelScriptWindow : public QGraphicsView
             NodeCache(void)                             {   _scene_object = NULL; }
             NodeCache(std::shared_ptr<WorldNode> node)  {   _node = node; _scene_object = NULL; }
 
-            bool   operator == (const NodeCache& rhs) const	{	return _node == rhs._node;		}
+            bool   operator == (const NodeCache& rhs) const    {    return _node == rhs._node;        }
 
             std::shared_ptr<WorldNode>      _node;
             EdLevelScriptNodeStandard       *_scene_object;
@@ -147,7 +147,7 @@ class EdLevelScriptWindow : public QGraphicsView
             GroupCache(void)                            {   _scene_object = NULL; }
             GroupCache(std::shared_ptr<Group> group)    {   _group = group; _scene_object = NULL; }
 
-            bool   operator == (const GroupCache& rhs) const	{	return _group == rhs._group;    }
+            bool   operator == (const GroupCache& rhs) const    {    return _group == rhs._group;    }
 
             std::shared_ptr<Group>          _group;
             EdLevelGroup                    *_scene_object;
@@ -159,7 +159,7 @@ class EdLevelScriptWindow : public QGraphicsView
             ConnectionPlugCache(PlugBase *outgoing, PlugBase *incoming)
                 {   _outgoing = outgoing; _incoming = incoming; _scene_object = NULL; }
 
-            bool   operator == (const ConnectionPlugCache& rhs) const	{	return (_outgoing == rhs._outgoing) && (_incoming == rhs._incoming);		}
+            bool   operator == (const ConnectionPlugCache& rhs) const    {    return (_outgoing == rhs._outgoing) && (_incoming == rhs._incoming);        }
 
             PlugBase                        *_outgoing;
             PlugBase                        *_incoming;
@@ -172,7 +172,7 @@ class EdLevelScriptWindow : public QGraphicsView
             ConnectionEventCache(Event *outgoing, Event *incoming)
                 {   _outgoing = outgoing; _incoming = incoming; _scene_object = NULL; }
 
-            bool   operator == (const ConnectionEventCache& rhs) const	{	return (_outgoing == rhs._outgoing) && (_incoming == rhs._incoming);		}
+            bool   operator == (const ConnectionEventCache& rhs) const    {    return (_outgoing == rhs._outgoing) && (_incoming == rhs._incoming);        }
 
             Event                           *_outgoing;
             Event                           *_incoming;

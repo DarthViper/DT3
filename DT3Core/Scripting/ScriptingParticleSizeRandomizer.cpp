@@ -1,12 +1,12 @@
 //==============================================================================
-///	
-///	File: ScriptingParticleSizeRandomizer.cpp
-///	
+///    
+///    File: ScriptingParticleSizeRandomizer.cpp
+///    
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
 /// This file is subject to the terms and conditions defined in
 /// file 'LICENSE.txt', which is part of this source code package.
-///	
+///    
 //==============================================================================
 
 #include "DT3Core/Scripting/ScriptingParticleSizeRandomizer.hpp"
@@ -37,12 +37,12 @@ IMPLEMENT_PLUG_INFO_INDEX(_out)
 
 BEGIN_IMPLEMENT_PLUGS(ScriptingParticleSizeRandomizer)
 
-	PLUG_INIT(_in,"In")
-		.set_input(true)
-		.affects(PLUG_INFO_INDEX(_out));
-	
-	PLUG_INIT(_out,"Out")
-		.set_output(true);
+    PLUG_INIT(_in,"In")
+        .set_input(true)
+        .affects(PLUG_INFO_INDEX(_out));
+    
+    PLUG_INIT(_out,"Out")
+        .set_output(true);
         
 END_IMPLEMENT_PLUGS
 
@@ -54,19 +54,19 @@ ScriptingParticleSizeRandomizer::ScriptingParticleSizeRandomizer (void)
     :   _continuous (false),
         _min_size   (1.0F),
         _max_size   (2.0F),
-        _in			(PLUG_INFO_INDEX(_in)),
-        _out		(PLUG_INFO_INDEX(_out))
+        _in            (PLUG_INFO_INDEX(_in)),
+        _out        (PLUG_INFO_INDEX(_out))
 {  
 
 }
-		
+        
 ScriptingParticleSizeRandomizer::ScriptingParticleSizeRandomizer (const ScriptingParticleSizeRandomizer &rhs)
-    :   ScriptingBase		(rhs),
+    :   ScriptingBase        (rhs),
         _continuous         (rhs._continuous),
         _min_size           (rhs._min_size),
         _max_size           (rhs._max_size),
-        _in					(rhs._in),
-        _out				(rhs._out)
+        _in                    (rhs._in),
+        _out                (rhs._out)
 {   
 
 }
@@ -75,18 +75,18 @@ ScriptingParticleSizeRandomizer & ScriptingParticleSizeRandomizer::operator = (c
 {
     // Make sure we are not assigning the class to itself
     if (&rhs != this) {        
-		ScriptingBase::operator = (rhs);
+        ScriptingBase::operator = (rhs);
         
         _min_size = rhs._min_size;
         _max_size = rhs._max_size;
         _continuous = rhs._continuous;
 
-		_in	= rhs._in;
-		_out = rhs._out;
-	}
+        _in    = rhs._in;
+        _out = rhs._out;
+    }
     return (*this);
 }
-			
+            
 ScriptingParticleSizeRandomizer::~ScriptingParticleSizeRandomizer (void)
 {
 
@@ -99,12 +99,12 @@ void ScriptingParticleSizeRandomizer::archive (const std::shared_ptr<Archive> &a
 {
     ScriptingBase::archive(archive);
 
-	archive->push_domain (class_id ());
+    archive->push_domain (class_id ());
     
     *archive << ARCHIVE_DATA(_continuous, DATA_PERSISTENT | DATA_SETTABLE);
     *archive << ARCHIVE_DATA(_min_size, DATA_PERSISTENT | DATA_SETTABLE);
     *archive << ARCHIVE_DATA(_max_size, DATA_PERSISTENT | DATA_SETTABLE);
-	        
+            
     archive->pop_domain ();
 }
 
@@ -113,49 +113,49 @@ void ScriptingParticleSizeRandomizer::archive (const std::shared_ptr<Archive> &a
 
 bool ScriptingParticleSizeRandomizer::compute (const PlugBase *plug)
 {
-	PROFILER(PARTICLES);
+    PROFILER(PARTICLES);
 
     if (super_type::compute(plug))  return true;
 
-	if (plug == &_out) {
-		
-		// Make sure there are input particles
-		std::shared_ptr<Particles> particles = _in;
-		if (!particles || particles->translations_stream().size() <= 0) {
-			_out.set_clean();
+    if (plug == &_out) {
+        
+        // Make sure there are input particles
+        std::shared_ptr<Particles> particles = _in;
+        if (!particles || particles->translations_stream().size() <= 0) {
+            _out.set_clean();
             return true;
-		}
-		
-		// Build the sizes stream
-		if (particles->sizes_stream().size() <= 0) {
-			particles->build_sizes_stream();
-		}
-		
-		// Do processing
-		std::vector<DTfloat> &sizes = particles->sizes_stream();
-		std::vector<DTfloat> &lifetimes = particles->lifetimes_stream();
+        }
+        
+        // Build the sizes stream
+        if (particles->sizes_stream().size() <= 0) {
+            particles->build_sizes_stream();
+        }
+        
+        // Do processing
+        std::vector<DTfloat> &sizes = particles->sizes_stream();
+        std::vector<DTfloat> &lifetimes = particles->lifetimes_stream();
 
         int32_t rs = MoreMath::random_seed();
 
-		for (int32_t i = particles->active_start(); i != particles->active_end(); i = (i + 1) % particles->translations_stream().size()) {
-			if (_continuous || lifetimes[i] == 0.0F) {
+        for (int32_t i = particles->active_start(); i != particles->active_end(); i = (i + 1) % particles->translations_stream().size()) {
+            if (_continuous || lifetimes[i] == 0.0F) {
                 DTfloat &size = sizes[i];
                 
                 // Generate random number
                 MoreMath::set_random_seed(i);
                 size = MoreMath::random_float() * (_max_size - _min_size) + _min_size;
             }
-		}
+        }
         
         MoreMath::set_random_seed(rs);
 
-		_out = particles;
-		_out.set_clean();
-		
-		return true;
-	}
-	
-	return false;
+        _out = particles;
+        _out.set_clean();
+        
+        return true;
+    }
+    
+    return false;
 }
 
 //==============================================================================

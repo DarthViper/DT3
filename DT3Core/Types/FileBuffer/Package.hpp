@@ -3,7 +3,7 @@
 #define DT3_PACKAGE
 //==============================================================================
 ///
-///	File: Package.hpp
+///    File: Package.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -35,13 +35,13 @@ class Package: public BaseClass {
         DEFINE_TYPE(Package,BaseClass)
         DEFINE_CREATE
 
-                                        Package				(void);
+                                        Package                (void);
     private:
-                                        Package				(const Package &rhs);
-        Package &                       operator =			(const Package &rhs);
+                                        Package                (const Package &rhs);
+        Package &                       operator =            (const Package &rhs);
 
     public:
-        virtual                         ~Package			(void);
+        virtual                         ~Package            (void);
 
     public:
         /// Loads a package and indexes it

@@ -3,7 +3,7 @@
 #define EDLEVELSCRIPTNODESTANDARD
 //==============================================================================
 ///
-///	File: EdLevelScriptNodeStandard.hpp
+///    File: EdLevelScriptNodeStandard.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -90,7 +90,7 @@ class EdLevelScriptNodeStandard :public QObject, public QGraphicsItem
         int type() const {  return Type;    }
 
     public:
-                                    EdLevelScriptNodeStandard	(std::shared_ptr<WorldNode> node);
+                                    EdLevelScriptNodeStandard    (std::shared_ptr<WorldNode> node);
                                     ~EdLevelScriptNodeStandard  (void);
 
 
@@ -105,8 +105,8 @@ class EdLevelScriptNodeStandard :public QObject, public QGraphicsItem
 
         QVariant                    itemChange      (GraphicsItemChange change, const QVariant &value);
 
-        QRectF						boundingRect	(void) const;
-        void						paint			(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
+        QRectF                        boundingRect    (void) const;
+        void                        paint            (QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
 
         void                        addConnection   (EdLevelScriptConnection* connection);
         void                        removeConnection(EdLevelScriptConnection* connection);
@@ -119,7 +119,7 @@ class EdLevelScriptNodeStandard :public QObject, public QGraphicsItem
         QRectF                      getNodeEditorRect   (void);
         QRectF                      getTitleActionRect  (const QComponentTitle& title);
 
-        void						layoutNode          (void);
+        void                        layoutNode          (void);
         void                        layoutConnections   (void);
 
     private:
@@ -144,15 +144,15 @@ class EdLevelScriptNodeStandard :public QObject, public QGraphicsItem
         std::deque<QInputOutputEvent>       _events;
         std::deque<QComponentTitle>         _titles;
 
-        float						_width;
-        float						_height;
+        float                        _width;
+        float                        _height;
 
-        float						_input_width;
-        float						_output_width;
-        float						_title_width;
+        float                        _input_width;
+        float                        _output_width;
+        float                        _title_width;
 
-        QFont						_title_font;
-        QFont						_item_font;
+        QFont                        _title_font;
+        QFont                        _item_font;
 
     signals:
         void                        doNodeContextMenu           (std::shared_ptr<WorldNode> node, const QPointF &global_pos);

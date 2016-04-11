@@ -1,6 +1,6 @@
 //==============================================================================
 ///
-///	File: FileHandleCompressedFD.cpp
+///    File: FileHandleCompressedFD.cpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -138,16 +138,16 @@ void FileHandleCompressedFD::seek_p (DToffset p, Relative r)
 void FileHandleCompressedFD::seek_g (DToffset g, Relative r)
 {
     switch (r) {
-        case FROM_CURRENT:		_file_g += g;                   break;
-        case FROM_BEGINNING:	_file_g = g;                    break;
-        case FROM_END:			_file_g = _data.size() - g;		break;
+        case FROM_CURRENT:        _file_g += g;                   break;
+        case FROM_BEGINNING:    _file_g = g;                    break;
+        case FROM_END:            _file_g = _data.size() - g;        break;
     };
 
-//	// update Progress
-//	if (cache->_progress) {
-//		cache->_progress->update(_file_g, _data.size());
-//		cache->_last_update = 0;
-//	}
+//    // update Progress
+//    if (cache->_progress) {
+//        cache->_progress->update(_file_g, _data.size());
+//        cache->_last_update = 0;
+//    }
 
 }
 

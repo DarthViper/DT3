@@ -3,7 +3,7 @@
 #define DT3_SCRIPTINGSOUNDGAIN
 //==============================================================================
 ///
-///	File: ScriptingSoundGain.hpp
+///    File: ScriptingSoundGain.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -38,7 +38,7 @@ class ScriptingSoundGain: public ScriptingSoundBase {
 
                                     ScriptingSoundGain      (void);
                                     ScriptingSoundGain      (const ScriptingSoundGain &rhs);
-        ScriptingSoundGain &		operator =				(const ScriptingSoundGain &rhs);
+        ScriptingSoundGain &        operator =                (const ScriptingSoundGain &rhs);
         virtual                     ~ScriptingSoundGain     (void);
 
         virtual void                archive                 (const std::shared_ptr<Archive> &archive);
@@ -46,7 +46,7 @@ class ScriptingSoundGain: public ScriptingSoundBase {
     public:
         /// Computes the value of the node
         /// \param plug plug to compute
-        bool					compute					(const PlugBase *plug);
+        bool                    compute                    (const PlugBase *plug);
 
     private:
         Plug<SoundPacket>         _sound_packet_in;

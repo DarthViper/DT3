@@ -1,7 +1,7 @@
 #pragma once
 //==============================================================================
 ///
-///	File: ScriptingMusicPlayer.hpp
+///    File: ScriptingMusicPlayer.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -33,10 +33,10 @@ class ScriptingMusicPlayer: public ScriptingBase {
         DEFINE_CREATE_AND_CLONE
         DEFINE_PLUG_NODE
 
-                                    ScriptingMusicPlayer	(void);
-                                    ScriptingMusicPlayer	(const ScriptingMusicPlayer &rhs);
-        ScriptingMusicPlayer &		operator =				(const ScriptingMusicPlayer &rhs);
-        virtual                     ~ScriptingMusicPlayer	(void);
+                                    ScriptingMusicPlayer    (void);
+                                    ScriptingMusicPlayer    (const ScriptingMusicPlayer &rhs);
+        ScriptingMusicPlayer &        operator =                (const ScriptingMusicPlayer &rhs);
+        virtual                     ~ScriptingMusicPlayer    (void);
 
         virtual void                archive                 (const std::shared_ptr<Archive> &archive);
 
@@ -63,13 +63,13 @@ class ScriptingMusicPlayer: public ScriptingBase {
         Event                       _play;
         Event                       _stop;
 
-        Plug<FilePath>				_path;
-        Plug<DTfloat>				_gain;
+        Plug<FilePath>                _path;
+        Plug<DTfloat>                _gain;
 
-        Plug<bool>				_is_playing;
-        Plug<bool>				_stop_on_destroy;
+        Plug<bool>                _is_playing;
+        Plug<bool>                _stop_on_destroy;
 
-        Plug<bool>				_loop;
+        Plug<bool>                _loop;
 };
 
 //==============================================================================

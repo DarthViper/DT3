@@ -3,7 +3,7 @@
 #define DT3_MOREMATH
 //==============================================================================
 ///
-///	File: MoreMath.hpp
+///    File: MoreMath.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -54,12 +54,12 @@ class MoreMath {
     private:
                                 MoreMath                        (void);
                                 MoreMath                        (const MoreMath &rhs);
-        MoreMath &				operator =                      (const MoreMath &rhs);
+        MoreMath &                operator =                      (const MoreMath &rhs);
                                 ~MoreMath                       (void);
 
     public:
         /// Initializes internal tables. This function is called automatically and you don't have to call it.
-        static void				init_tables                     (void);
+        static void                init_tables                     (void);
 
 
         //
@@ -82,27 +82,27 @@ class MoreMath {
 
         /// Generate a random float
         /// \return random number
-        static DTfloat			random_float                    (void);
+        static DTfloat            random_float                    (void);
 
         /// Generate a random float using a Mersenne Twister
         /// \return random number
-        static DTfloat			random_MT_float                 (void);
+        static DTfloat            random_MT_float                 (void);
 
         /// Generate a random int
         /// \return random number
-        static uint32_t			random_int                      (void);
+        static uint32_t            random_int                      (void);
 
         /// Generate a random int
         /// \return random number
-        static uint32_t			random_MT_int                   (void);
+        static uint32_t            random_MT_int                   (void);
 
         /// Sets the random seed
         /// \param random_seed Random seed
-        static void				set_random_seed                 (uint32_t random_seed)	{	_random_seed = random_seed;		}
+        static void                set_random_seed                 (uint32_t random_seed)    {    _random_seed = random_seed;        }
 
         /// Sets the random seed from entropy pool
         /// \param random_seed Random seed
-        static void				set_random_seed                 (void);
+        static void                set_random_seed                 (void);
 
         /// Returns the random seed
         /// \return random seed
@@ -116,7 +116,7 @@ class MoreMath {
         /// Calculate a factorial. Note it it uses floats so it's probably really only useful for smallish inputs
         /// \param f number
         /// \return Factorial of number
-        static DTfloat			factorial						(int32_t f);
+        static DTfloat            factorial                        (int32_t f);
 
         /// Solves a quadratic equation at^2 + bt + c = 0. See http://en.wikipedia.org/wiki/Quadratic_equation
         /// \param a a coefficient of equation
@@ -150,13 +150,13 @@ class MoreMath {
         /// Tries to quickly convert a float to an int
         /// \param f float value
         /// \return int value
-        static inline int32_t		float_to_int        (DTfloat f)
+        static inline int32_t        float_to_int        (DTfloat f)
         {
-        #if DT3_CPU	== DT3_INTEL
+        #if DT3_CPU    == DT3_INTEL
             return (int32_t) f;
         #else
-            IntOrFloat	n;
-            IntOrFloat	bias;
+            IntOrFloat    n;
+            IntOrFloat    bias;
 
             bias.i = (23 + 127) << 23;
             n.f = f;
@@ -173,11 +173,11 @@ class MoreMath {
         /// \return float value
         static inline DTfloat   int_to_float        (int32_t i)
         {
-        #if DT3_CPU	== DT3_INTEL
+        #if DT3_CPU    == DT3_INTEL
             return static_cast<DTfloat>(i);
         #else
-            IntOrFloat	n;
-            IntOrFloat	bias;
+            IntOrFloat    n;
+            IntOrFloat    bias;
 
             bias.i = (23 + 127) << 23;
             n.i = i;
@@ -195,8 +195,8 @@ class MoreMath {
         template<typename T>
         static inline T         clamp_zero_one      (T v)
         {
-            if (v < 0.0F)		return 0.0F;
-            else if (v > 1.0F)	return 1.0F;
+            if (v < 0.0F)        return 0.0F;
+            else if (v > 1.0F)    return 1.0F;
 
             return v;
         }
@@ -209,8 +209,8 @@ class MoreMath {
         template<typename T>
         static inline DTfloat   clamp               (T v, T low, T high)
         {
-            if (v < low)		return low;
-            else if (v > high)	return high;
+            if (v < low)        return low;
+            else if (v > high)    return high;
 
             return v;
         }
@@ -303,7 +303,7 @@ class MoreMath {
         /// Checks is a value is a power of 2
         /// \param v value
         /// \return return wether is power of 2 or not
-        static inline bool	is_power_2      (uint32_t v)
+        static inline bool    is_power_2      (uint32_t v)
         {
             return (!(v & (v-1)));
         }
@@ -311,7 +311,7 @@ class MoreMath {
         /// Gets next power of 2
         /// \param v value
         /// \return next power of 2
-        static inline uint32_t	next_power_2    (uint32_t v)
+        static inline uint32_t    next_power_2    (uint32_t v)
         {
             --v;
             v = (v >> 1) | v;
@@ -409,7 +409,7 @@ class MoreMath {
         /// \param data pointer to raw bytes
         /// \param length length of raw bytes
         /// \return 32 bit hash
-        static uint32_t			calc_crc32      (const void* data, DTsize length);
+        static uint32_t            calc_crc32      (const void* data, DTsize length);
 
 
         //
@@ -449,8 +449,8 @@ class MoreMath {
     private:
 
         typedef union {
-            int32_t		i;
-            DTfloat		f;
+            int32_t        i;
+            DTfloat        f;
         } IntOrFloat;
 
         typedef union {
@@ -462,15 +462,15 @@ class MoreMath {
         static const int32_t FACTORIAL_TABLE_SIZE = 16;
         static const int32_t MT_LEN = 624;
 
-        static uint32_t		_crc_table[CRC_TABLE_SIZE];
-        static uint32_t		_random_seed;
+        static uint32_t        _crc_table[CRC_TABLE_SIZE];
+        static uint32_t        _random_seed;
 
         static uint8_t      _4_to_8_bit[16];
         static uint8_t      _5_to_8_bit[32];
         static uint8_t      _6_to_8_bit[64];
 
-        static DTfloat		_factorial[FACTORIAL_TABLE_SIZE];
-        static DTfloat		_factorial_inv[FACTORIAL_TABLE_SIZE];
+        static DTfloat        _factorial[FACTORIAL_TABLE_SIZE];
+        static DTfloat        _factorial_inv[FACTORIAL_TABLE_SIZE];
 
         static int32_t        _mt_index;
         static uint32_t       _mt_buffer[MT_LEN];

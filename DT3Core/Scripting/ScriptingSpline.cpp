@@ -1,12 +1,12 @@
 //==============================================================================
-///	
-///	File: ScriptingSpline.cpp
-///	
+///    
+///    File: ScriptingSpline.cpp
+///    
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
 /// This file is subject to the terms and conditions defined in
 /// file 'LICENSE.txt', which is part of this source code package.
-///	
+///    
 //==============================================================================
 
 #include "DT3Core/Scripting/ScriptingSpline.hpp"
@@ -39,20 +39,20 @@ IMPLEMENT_PLUG_INFO_INDEX(_translation)
 
 BEGIN_IMPLEMENT_PLUGS(ScriptingSpline)
       
-	PLUG_INIT(_d,"d")
-		.set_input(true)
-		.affects(PLUG_INFO_INDEX(_transform))
-		.affects(PLUG_INFO_INDEX(_orientation))
-		.affects(PLUG_INFO_INDEX(_translation));
+    PLUG_INIT(_d,"d")
+        .set_input(true)
+        .affects(PLUG_INFO_INDEX(_transform))
+        .affects(PLUG_INFO_INDEX(_orientation))
+        .affects(PLUG_INFO_INDEX(_translation));
 
-	PLUG_INIT(_transform,"Transform")
-		.set_output(true);
+    PLUG_INIT(_transform,"Transform")
+        .set_output(true);
 
-	PLUG_INIT(_translation,"Translation")
-		.set_output(true);
+    PLUG_INIT(_translation,"Translation")
+        .set_output(true);
 
-	PLUG_INIT(_orientation,"Orientation")
-		.set_output(true);
+    PLUG_INIT(_orientation,"Orientation")
+        .set_output(true);
 
 END_IMPLEMENT_PLUGS
 }
@@ -62,17 +62,17 @@ using namespace DT3;
 //==============================================================================
 
 ScriptingSpline::ScriptingSpline (void)
-	:	_constant_speed (true),
-        _d				(PLUG_INFO_INDEX(_d), 0.0F),
-		_transform      (PLUG_INFO_INDEX(_transform), Matrix4::identity()),
-		_orientation    (PLUG_INFO_INDEX(_orientation), Matrix3::identity()),
+    :    _constant_speed (true),
+        _d                (PLUG_INFO_INDEX(_d), 0.0F),
+        _transform      (PLUG_INFO_INDEX(_transform), Matrix4::identity()),
+        _orientation    (PLUG_INFO_INDEX(_orientation), Matrix3::identity()),
         _translation    (PLUG_INFO_INDEX(_translation), {0.0F,0.0F,0.0F}),
-        _keyframe_cache	(0),
+        _keyframe_cache    (0),
         _dirty          (true)
 {  
 
 }
-		
+        
 ScriptingSpline::ScriptingSpline (const ScriptingSpline &rhs)
     :   ScriptingBase       (rhs),
         _constant_speed     (rhs._constant_speed),
@@ -80,7 +80,7 @@ ScriptingSpline::ScriptingSpline (const ScriptingSpline &rhs)
         _transform          (rhs._transform),
         _orientation        (rhs._orientation),
         _translation        (rhs._translation),
-        _keyframe_cache		(0),
+        _keyframe_cache        (0),
         _dirty              (true)
 {   
 
@@ -90,7 +90,7 @@ ScriptingSpline & ScriptingSpline::operator = (const ScriptingSpline &rhs)
 {
     // Make sure we are not assigning the class to itself
     if (&rhs != this) {        
-		ScriptingBase::operator = (rhs);	
+        ScriptingBase::operator = (rhs);    
 
         _constant_speed = rhs._constant_speed;
         _d = rhs._d;
@@ -98,13 +98,13 @@ ScriptingSpline & ScriptingSpline::operator = (const ScriptingSpline &rhs)
         _orientation = rhs._orientation;
         _translation = rhs._translation;
         
-		_keyframe_cache = rhs._keyframe_cache;
+        _keyframe_cache = rhs._keyframe_cache;
         _dirty = true;
 
     }
     return (*this);
 }
-			
+            
 ScriptingSpline::~ScriptingSpline (void)
 {
 
@@ -117,7 +117,7 @@ void ScriptingSpline::archive (const std::shared_ptr<Archive> &archive)
 {
     ScriptingBase::archive(archive);
 
-	archive->push_domain (class_id ());
+    archive->push_domain (class_id ());
     
     *archive << ARCHIVE_DATA_ACCESSORS("Num_Points", ScriptingSpline::num_points, ScriptingSpline::set_num_points, DATA_PERSISTENT | DATA_SETTABLE);
     
@@ -137,7 +137,7 @@ void ScriptingSpline::archive (const std::shared_ptr<Archive> &archive)
 
 void ScriptingSpline::archive_done (const std::shared_ptr<Archive> &archive)
 {
-	ScriptingBase::archive_done (archive);
+    ScriptingBase::archive_done (archive);
 
     if (archive->is_writing())
         return;
@@ -150,7 +150,7 @@ void ScriptingSpline::archive_done (const std::shared_ptr<Archive> &archive)
 
 DTfloat ScriptingSpline::max_distance (void)
 {
-	PROFILER(SCRIPTING);
+    PROFILER(SCRIPTING);
 
     if (_transforms.size() > 0) {
         if (_dirty)
@@ -166,7 +166,7 @@ DTfloat ScriptingSpline::max_distance (void)
 
 void ScriptingSpline::set_num_points (DTsize num)
 {
-	PROFILER(SCRIPTING);
+    PROFILER(SCRIPTING);
 
     _transforms.resize(num);     
              
@@ -178,14 +178,14 @@ void ScriptingSpline::set_num_points (DTsize num)
 
 DTsize ScriptingSpline::num_points (void) const
 {
-	PROFILER(SCRIPTING);
+    PROFILER(SCRIPTING);
 
     return _transforms.size();              
 }
 
 void ScriptingSpline::set_point_transform (uint32_t k, const Matrix4 &transform)
 {
-	PROFILER(SCRIPTING);
+    PROFILER(SCRIPTING);
 
     _transforms[k]._transform = transform;  
     
@@ -197,14 +197,14 @@ void ScriptingSpline::set_point_transform (uint32_t k, const Matrix4 &transform)
 
 const Matrix4& ScriptingSpline::point_transform (uint32_t k) const
 {
-	PROFILER(SCRIPTING);
+    PROFILER(SCRIPTING);
 
     return _transforms[k]._transform;       
 }
 
 void ScriptingSpline::set_point_tangent (uint32_t k, const Vector3 &tangent)
 {
-	PROFILER(SCRIPTING);
+    PROFILER(SCRIPTING);
 
     _transforms[k]._tangent = tangent;      
 
@@ -216,7 +216,7 @@ void ScriptingSpline::set_point_tangent (uint32_t k, const Vector3 &tangent)
 
 const Vector3& ScriptingSpline::point_tangent (uint32_t k) const
 {
-	PROFILER(SCRIPTING);
+    PROFILER(SCRIPTING);
 
     return _transforms[k]._tangent;         
 }
@@ -227,7 +227,7 @@ const Vector3& ScriptingSpline::point_tangent (uint32_t k) const
 
 void ScriptingSpline::process_distances (void)
 {
-	PROFILER(SCRIPTING);
+    PROFILER(SCRIPTING);
 
     if (_transforms.size() == 0)
         return;
@@ -361,49 +361,49 @@ void ScriptingSpline::interpolate (int32_t i0, int32_t i1, DTfloat d, Matrix4 &t
     
     // Slerp orientations
     Quaternion q0 = Quaternion(_transforms[i0]._transform);
-	Quaternion q1 = Quaternion(_transforms[i1]._transform);
-	Quaternion rotation = Quaternion::slerp (q0, q1, d);
-	
+    Quaternion q1 = Quaternion(_transforms[i1]._transform);
+    Quaternion rotation = Quaternion::slerp (q0, q1, d);
+    
     transform = Matrix4( Matrix3(rotation), translation);
 }
 
 void ScriptingSpline::interpolate (DTfloat d, Matrix4 &transform)
 {
     
-	// Special cases
-	if (_transforms.size() == 0)	{
+    // Special cases
+    if (_transforms.size() == 0)    {
         transform = Matrix4::identity();
-		return;
-	}
+        return;
+    }
     
     if (_dirty)
         process_distances();
-	
-	if (_transforms.size() == 1)	{
-		transform = _transforms[0]._transform;
-		return;
-	}
     
-	// Scan for the best key
-	if (_keyframe_cache < 0)									_keyframe_cache = 0;
-    else if (_keyframe_cache > (int32_t) _transforms.size() - 2)	_keyframe_cache = (int32_t) _transforms.size() - 2;
-			
-	while (1) {
-		if (d < _transforms[_keyframe_cache]._distance) {
-			--_keyframe_cache;
-			if (_keyframe_cache < 0) {
-				_keyframe_cache = 0;
-				transform = _transforms[_keyframe_cache]._transform;
-				break;
-			}
-		} else if (d > _transforms[_keyframe_cache+1]._distance) {
-			++_keyframe_cache;
+    if (_transforms.size() == 1)    {
+        transform = _transforms[0]._transform;
+        return;
+    }
+    
+    // Scan for the best key
+    if (_keyframe_cache < 0)                                    _keyframe_cache = 0;
+    else if (_keyframe_cache > (int32_t) _transforms.size() - 2)    _keyframe_cache = (int32_t) _transforms.size() - 2;
+            
+    while (1) {
+        if (d < _transforms[_keyframe_cache]._distance) {
+            --_keyframe_cache;
+            if (_keyframe_cache < 0) {
+                _keyframe_cache = 0;
+                transform = _transforms[_keyframe_cache]._transform;
+                break;
+            }
+        } else if (d > _transforms[_keyframe_cache+1]._distance) {
+            ++_keyframe_cache;
             if (_keyframe_cache > (int32_t) _transforms.size() - 2) {
                 _keyframe_cache = (int32_t) _transforms.size() - 2;
-				transform = _transforms[_keyframe_cache+1]._transform;
-				break;
-			}
-		} else {
+                transform = _transforms[_keyframe_cache+1]._transform;
+                break;
+            }
+        } else {
             Pt &pt = _transforms[_keyframe_cache];
             
             DTfloat d1 = 0.0F;
@@ -418,11 +418,11 @@ void ScriptingSpline::interpolate (DTfloat d, Matrix4 &transform)
             } else {
                 interpolate (_keyframe_cache, _keyframe_cache+1, d1, transform);
             }
-			
-			break;
-		}
-	
-	}
+            
+            break;
+        }
+    
+    }
     
 }
 
@@ -431,28 +431,28 @@ void ScriptingSpline::interpolate (DTfloat d, Matrix4 &transform)
 
 bool ScriptingSpline::compute (const PlugBase *plug)
 {
-	PROFILER(SCRIPTING);
+    PROFILER(SCRIPTING);
     
     if (super_type::compute(plug))  return true;
 
-	if (plug == &_transform || 
+    if (plug == &_transform || 
         plug == &_orientation || 
         plug == &_translation) {
         
         Matrix4 transform = Matrix4::identity();
         interpolate(_d,transform);
         
-		_transform = transform;
-		_orientation = transform.orientation();
-		_translation = transform.translation();
+        _transform = transform;
+        _orientation = transform.orientation();
+        _translation = transform.translation();
 
-		_transform.set_clean();
-		_orientation.set_clean();
-		_translation.set_clean();
-		return true;
-	}
-	
-	return false;
+        _transform.set_clean();
+        _orientation.set_clean();
+        _translation.set_clean();
+        return true;
+    }
+    
+    return false;
 
 }
 //==============================================================================

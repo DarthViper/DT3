@@ -1,12 +1,12 @@
 //==============================================================================
-///	
-///	File: ComponentBase.cpp
-///	
+///    
+///    File: ComponentBase.cpp
+///    
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
 /// This file is subject to the terms and conditions defined in
 /// file 'LICENSE.txt', which is part of this source code package.
-///	
+///    
 //==============================================================================
 
 #include "DT3Core/Components/ComponentBase.hpp"
@@ -29,9 +29,9 @@ ComponentBase::ComponentBase (void)
 {
     set_name(class_id_child());
 }
-		
+        
 ComponentBase::ComponentBase (const ComponentBase &rhs)
-    :   PlugNode	(rhs),
+    :   PlugNode    (rhs),
         _owner      (NULL)
 {
     set_name(class_id_child());
@@ -41,11 +41,11 @@ ComponentBase & ComponentBase::operator = (const ComponentBase &rhs)
 {
     // Make sure we are not assigning the class to itself
     if (&rhs != this) {        
-		PlugNode::operator = (rhs);
+        PlugNode::operator = (rhs);
     }
     return (*this);
 }
-			
+            
 ComponentBase::~ComponentBase (void)
 {
     
@@ -58,8 +58,8 @@ void ComponentBase::archive (const std::shared_ptr<Archive> &archive)
 {
     PlugNode::archive(archive);
 
-	archive->push_domain (class_id());
-        		
+    archive->push_domain (class_id());
+                
     archive->pop_domain ();
 }
 

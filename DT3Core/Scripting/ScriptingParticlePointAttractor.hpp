@@ -3,7 +3,7 @@
 #define DT3_SCRIPTINGPARTICLEPOINTATTRACTOR
 //==============================================================================
 ///
-///	File: ScriptingParticlePointAttractor.hpp
+///    File: ScriptingParticlePointAttractor.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -35,29 +35,29 @@ class ScriptingParticlePointAttractor: public ScriptingBase {
         DEFINE_CREATE_AND_CLONE
         DEFINE_PLUG_NODE
 
-                                            ScriptingParticlePointAttractor		(void);
-                                            ScriptingParticlePointAttractor		(const ScriptingParticlePointAttractor &rhs);
-        ScriptingParticlePointAttractor &	operator =							(const ScriptingParticlePointAttractor &rhs);
-        virtual								~ScriptingParticlePointAttractor	(void);
+                                            ScriptingParticlePointAttractor        (void);
+                                            ScriptingParticlePointAttractor        (const ScriptingParticlePointAttractor &rhs);
+        ScriptingParticlePointAttractor &    operator =                            (const ScriptingParticlePointAttractor &rhs);
+        virtual                                ~ScriptingParticlePointAttractor    (void);
 
         virtual void                archive                 (const std::shared_ptr<Archive> &archive);
 
     public:
         /// Computes the value of the node
         /// \param plug plug to compute
-        bool					compute					(const PlugBase *plug);
+        bool                    compute                    (const PlugBase *plug);
 
         DEFINE_ACCESSORS(target, set_target, Vector3, _target);
         DEFINE_ACCESSORS(strength, set_strength, DTfloat, _strength);
         DEFINE_ACCESSORS(converge_time, set_converge_time, DTfloat, _converge_time);
 
     private:
-        Plug<Vector3>								_target;
-        Plug<DTfloat>								_strength;
-        Plug<DTfloat>								_converge_time;
+        Plug<Vector3>                                _target;
+        Plug<DTfloat>                                _strength;
+        Plug<DTfloat>                                _converge_time;
 
-        Plug<std::shared_ptr<Particles>>		_in;
-        Plug<std::shared_ptr<Particles>>		_out;
+        Plug<std::shared_ptr<Particles>>        _in;
+        Plug<std::shared_ptr<Particles>>        _out;
 
 };
 

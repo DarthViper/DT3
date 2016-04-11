@@ -1,12 +1,12 @@
 //==============================================================================
-///	
-///	File: PrimitiveCollisions.cpp
-///	
+///    
+///    File: PrimitiveCollisions.cpp
+///    
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
 /// This file is subject to the terms and conditions defined in
 /// file 'LICENSE.txt', which is part of this source code package.
-///	
+///    
 //==============================================================================
 
 #include "DT3Core/Types/Math/PrimitiveCollisions.hpp"
@@ -36,22 +36,22 @@ bool PrimitiveCollisions::line_intersect_line (    const Vector2 &from1, const V
     DTfloat to2y_minus_from2y = to2.y-from2.y;
     DTfloat to1x_minus_from1x = to1.x-from1.x;
     DTfloat to2x_minus_from2x = to2.x-from2.x;
-	
-	DTfloat den = (to2y_minus_from2y) * (to1x_minus_from1x) - (to2x_minus_from2x) * (to1y_minus_from1y);
-	if (den < EPSILON && den > -EPSILON)	return false;
+    
+    DTfloat den = (to2y_minus_from2y) * (to1x_minus_from1x) - (to2x_minus_from2x) * (to1y_minus_from1y);
+    if (den < EPSILON && den > -EPSILON)    return false;
     
     DTfloat from1y_minus_from2y = from1.y-from2.y;
     DTfloat from1x_minus_from2x = from1.x-from2.x;
 
-	DTfloat ua_num = (to2x_minus_from2x)*(from1y_minus_from2y) - (to2y_minus_from2y)*(from1x_minus_from2x);
-	DTfloat ub_num = (to1x_minus_from1x)*(from1y_minus_from2y) - (to1y_minus_from1y)*(from1x_minus_from2x);
-	
-	t1 = ua_num / den;
-	t2 = ub_num / den;
+    DTfloat ua_num = (to2x_minus_from2x)*(from1y_minus_from2y) - (to2y_minus_from2y)*(from1x_minus_from2x);
+    DTfloat ub_num = (to1x_minus_from1x)*(from1y_minus_from2y) - (to1y_minus_from1y)*(from1x_minus_from2x);
+    
+    t1 = ua_num / den;
+    t2 = ub_num / den;
 
-	return (t1 >= 0.0F && t1 <= 1.0F && t2 >= 0.0F && t2 <= 1.0F);
+    return (t1 >= 0.0F && t1 <= 1.0F && t2 >= 0.0F && t2 <= 1.0F);
 }
-																			
+                                                                            
 //==============================================================================
 //==============================================================================
 
@@ -87,7 +87,7 @@ bool PrimitiveCollisions::ray_intersect_triangle   (   const Vector3 &from, cons
         return false;
 
     // prepare to test V parameter
-	qvec = Vector3::cross(tvec, edge1);
+    qvec = Vector3::cross(tvec, edge1);
 
     // calculate V parameter and test bounds
     v = Vector3::dot(dir, qvec);
@@ -103,7 +103,7 @@ bool PrimitiveCollisions::ray_intersect_triangle   (   const Vector3 &from, cons
 
     if (test_t > t || test_t < 0.0F) {
         return false;
-	
+    
     } else {
         // Calculate collision parameters
         t = test_t;
@@ -122,17 +122,17 @@ bool PrimitiveCollisions::ray_intersect_triangle   (   const Vector3 &from, cons
 //==============================================================================
 //==============================================================================
 
-bool     PrimitiveCollisions::ray_intersect_plane	(   const Vector3 &from, const Vector3 &direction,
-															const Plane &p, DTfloat &t)
+bool     PrimitiveCollisions::ray_intersect_plane    (   const Vector3 &from, const Vector3 &direction,
+                                                            const Plane &p, DTfloat &t)
 {
-	DTfloat dir_dot_n = Vector3::dot(p.normal(), direction);
+    DTfloat dir_dot_n = Vector3::dot(p.normal(), direction);
 
-	if ( dir_dot_n < EPSILON && dir_dot_n > -EPSILON)
-		return false;
-		
-	t = (p.D() -  Vector3::dot(from, p.normal())) / dir_dot_n;
-	
-	return true;
+    if ( dir_dot_n < EPSILON && dir_dot_n > -EPSILON)
+        return false;
+        
+    t = (p.D() -  Vector3::dot(from, p.normal())) / dir_dot_n;
+    
+    return true;
 }
 
 //==============================================================================
@@ -206,24 +206,24 @@ bool     PrimitiveCollisions::ray_intersect_sphere(    const Vector3 &from, cons
                                                             const Vector3 &translation, const Sphere &s,
                                                             DTfloat &t0, DTfloat &t1)
 {
-	DTfloat fmpx = from.x - translation.x;
-	DTfloat fmpy = from.y - translation.y;
-	DTfloat fmpz = from.z - translation.z;
+    DTfloat fmpx = from.x - translation.x;
+    DTfloat fmpy = from.y - translation.y;
+    DTfloat fmpz = from.z - translation.z;
 
-	DTfloat a = (direction.x * direction.x) + (direction.y * direction.y) + (direction.z * direction.z);
-	DTfloat b = 2.0F * (direction.x * fmpx + direction.y * fmpy + direction.z * fmpz);
-	DTfloat c = fmpx * fmpx + fmpy * fmpy + fmpz * fmpz - s.radius() * s.radius();
-	
+    DTfloat a = (direction.x * direction.x) + (direction.y * direction.y) + (direction.z * direction.z);
+    DTfloat b = 2.0F * (direction.x * fmpx + direction.y * fmpy + direction.z * fmpz);
+    DTfloat c = fmpx * fmpx + fmpy * fmpy + fmpz * fmpz - s.radius() * s.radius();
+    
     //Solves at^2 + bt + c = 0. Page 623 of real time rendering.
-	MoreMath::solve_quadratic (a, b, c, t0, t1);
-				
-	return true;
+    MoreMath::solve_quadratic (a, b, c, t0, t1);
+                
+    return true;
 }
 
 //==============================================================================
 //==============================================================================
 
-bool     PrimitiveCollisions::extruded_sphere_intersect_triangle   (	const Vector3 &from, const Vector3 &to, const Sphere &s,
+bool     PrimitiveCollisions::extruded_sphere_intersect_triangle   (    const Vector3 &from, const Vector3 &to, const Sphere &s,
                                                                             const Vector3 &vert0, const Vector3 &vert1, const Vector3 &vert2,
                                                                             DTfloat &t, Vector3 &n, Vector3 &p)
 {
@@ -239,7 +239,7 @@ bool     PrimitiveCollisions::extruded_sphere_intersect_triangle   (	const Vecto
     
     // Make sure it could potentially be colliding
     if (to_dist > s.radius() || from_dist < 0.0F || from_dist <= to_dist)
-		return false;
+        return false;
 
     // Offset the from and to vectors by the radius of the sphere
     Vector3::displace(from, plane.normal(), -s.radius(), from_offset);
@@ -250,7 +250,7 @@ bool     PrimitiveCollisions::extruded_sphere_intersect_triangle   (	const Vecto
     
     // Check the case where the ray intersects the triangle
     if (ray_intersect_triangle(from_offset, to_offset, vert0, vert1, vert2, t, n, p))
-		return true;
+        return true;
         
     // Even if the ray doesn't intersect the triangle, the sphere might touch an edge
         
@@ -273,99 +273,99 @@ bool     PrimitiveCollisions::extruded_sphere_intersect_triangle   (	const Vecto
     bool found_collision = false;
     
     for (int32_t i = 0; i < 3; ++i) {
-		int32_t j = (i+1) % 3;  // next index
-			
-		// Some intermediate calcs that do change in the loop
-		Vector3 ke, kg;
-		ke = *verts[j] - *verts[i];
-		kg = *verts[i] - from;
-		
-		DTfloat kee,kes,kgs,keg,kgg;	
-		kee = Vector3::dot(ke,ke);     keg = Vector3::dot(ke,kg);
-		kes = Vector3::dot(ke,ks);     kgg = Vector3::dot(kg,kg);
-		kgs = Vector3::dot(kg,ks);     
-		
-		// save a few values for vertex collision later
-		kss_save[i] = kss;
-		kgs_save[i] = kgs;
-		kgg_save[i] = kgg;
+        int32_t j = (i+1) % 3;  // next index
+            
+        // Some intermediate calcs that do change in the loop
+        Vector3 ke, kg;
+        ke = *verts[j] - *verts[i];
+        kg = *verts[i] - from;
+        
+        DTfloat kee,kes,kgs,keg,kgg;    
+        kee = Vector3::dot(ke,ke);     keg = Vector3::dot(ke,kg);
+        kes = Vector3::dot(ke,ks);     kgg = Vector3::dot(kg,kg);
+        kgs = Vector3::dot(kg,ks);     
+        
+        // save a few values for vertex collision later
+        kss_save[i] = kss;
+        kgs_save[i] = kgs;
+        kgg_save[i] = kgg;
 
-		// Coefficients of quadratic
-		DTfloat a,b,c;
-		a = kee*kss - kes*kes;
-		b = 2.0F * (keg*kes - kee*kgs);
-		c = kee * (kgg - r_squared) - keg * keg;
-		
-		// Calculate collision time by solving quadratic
-		DTfloat t0,t1;
-		MoreMath::solve_quadratic (a, b, c, t0, t1);
-				
-		// sort the t's
-		if (t1 < t0)    std::swap(t0,t1);
-		
-		// Pick a t
-		DTfloat test_t;
-		if (t0 >= 0.0F && t0 <= t)		test_t = t0;
-		else if (t1 >= 0.0F && t1 <= t)		test_t = t1;
-		else continue;  // t not in 0-t range
-		
-		
-		// find distance along edge to collision
-		Vector3 ct;
-		DTfloat d;
+        // Coefficients of quadratic
+        DTfloat a,b,c;
+        a = kee*kss - kes*kes;
+        b = 2.0F * (keg*kes - kee*kgs);
+        c = kee * (kgg - r_squared) - keg * keg;
+        
+        // Calculate collision time by solving quadratic
+        DTfloat t0,t1;
+        MoreMath::solve_quadratic (a, b, c, t0, t1);
+                
+        // sort the t's
+        if (t1 < t0)    std::swap(t0,t1);
+        
+        // Pick a t
+        DTfloat test_t;
+        if (t0 >= 0.0F && t0 <= t)        test_t = t0;
+        else if (t1 >= 0.0F && t1 <= t)        test_t = t1;
+        else continue;  // t not in 0-t range
+        
+        
+        // find distance along edge to collision
+        Vector3 ct;
+        DTfloat d;
 
-		ct = ks * test_t;
-		ct = ct + from - *verts[i];
-		
-		d = Vector3::dot(ct, ke);
-		d = d / kee;
-		
-		// Check for d in 0-1 range
-		if (d < 0.0F || d > 1.0F)
-			continue;
-			
-		// We have found a collision with an edge
-		t = test_t;
-		
-		// Calculate a normal
-		Vector3 d_pos;
-		d_pos = ke * d;
-		n = ct - d_pos;
-		
-		// Calculate contact point
-		Vector3::displace(*verts[i], ke, d, p);
-		
-		found_collision = true;
+        ct = ks * test_t;
+        ct = ct + from - *verts[i];
+        
+        d = Vector3::dot(ct, ke);
+        d = d / kee;
+        
+        // Check for d in 0-1 range
+        if (d < 0.0F || d > 1.0F)
+            continue;
+            
+        // We have found a collision with an edge
+        t = test_t;
+        
+        // Calculate a normal
+        Vector3 d_pos;
+        d_pos = ke * d;
+        n = ct - d_pos;
+        
+        // Calculate contact point
+        Vector3::displace(*verts[i], ke, d, p);
+        
+        found_collision = true;
     }
 
     // If we've found an edge collision, we are done
     if (found_collision)
-		return true;
+        return true;
     
     // Check the vertices
     for (int32_t i = 0; i < 3; ++i) {
-    	
-		// Calculate collision time
-		DTfloat t0,t1;
-		MoreMath::solve_quadratic (kss_save[i], -2.0F * kgs_save[i], kgg_save[i] - r_squared, t0, t1);
-				
-		// sort the t's
-		if (t1 < t0)    std::swap(t0,t1);
-		
-		// Pick a t
-		if (t0 >= 0.0F && t0 <= t)	    t = t0;
-		else if (t1 >= 0.0F && t1 <= t)     t = t1;
-		else continue;  // t not in 0-t range
-		
-		// update normal
-		Vector3 ct;
-		Vector3::displace(from, ks, t, ct);
-		n = ct - *verts[i];
-		
-		// Calc contact point - same as vertex
-		p = *verts[i];
+        
+        // Calculate collision time
+        DTfloat t0,t1;
+        MoreMath::solve_quadratic (kss_save[i], -2.0F * kgs_save[i], kgg_save[i] - r_squared, t0, t1);
+                
+        // sort the t's
+        if (t1 < t0)    std::swap(t0,t1);
+        
+        // Pick a t
+        if (t0 >= 0.0F && t0 <= t)        t = t0;
+        else if (t1 >= 0.0F && t1 <= t)     t = t1;
+        else continue;  // t not in 0-t range
+        
+        // update normal
+        Vector3 ct;
+        Vector3::displace(from, ks, t, ct);
+        n = ct - *verts[i];
+        
+        // Calc contact point - same as vertex
+        p = *verts[i];
 
-		found_collision = true;
+        found_collision = true;
     }
     
     
@@ -404,7 +404,7 @@ bool PrimitiveCollisions::sphere_intersect_sphere (    const Vector3 &from1, con
 //==============================================================================
 //==============================================================================
 
-void		PrimitiveCollisions::distance_point_to_triangle (	const Vector3 &p,
+void        PrimitiveCollisions::distance_point_to_triangle (    const Vector3 &p,
                                                                 const Vector3 &vert0, const Vector3 &vert1, const Vector3 &vert2,
                                                                 Vector3 &pt, DTfloat &dist)
 {
@@ -461,14 +461,14 @@ void		PrimitiveCollisions::distance_point_to_triangle (	const Vector3 &p,
     // Check edges
     if (outside_ab) {
         DTfloat length, t;
-        length = edge_ab.abs();	    // Length of edge
-        norm = edge_ab / length;	    // normalize
-        t = Vector3::dot(norm,diff_a);		    // Component along edge
+        length = edge_ab.abs();        // Length of edge
+        norm = edge_ab / length;        // normalize
+        t = Vector3::dot(norm,diff_a);            // Component along edge
         
         // Clamp to corners
-        if (t <= 0.0F)		pt = vert0;
-        else if (t >= length)	pt = vert1;
-        else			Vector3::displace(vert0, norm, t, pt);  // Position on edge
+        if (t <= 0.0F)        pt = vert0;
+        else if (t >= length)    pt = vert1;
+        else            Vector3::displace(vert0, norm, t, pt);  // Position on edge
         
         diff = p - pt;
         dist = diff.abs();
@@ -477,14 +477,14 @@ void		PrimitiveCollisions::distance_point_to_triangle (	const Vector3 &p,
     
     if (outside_bc) {
         DTfloat length, t;
-        length = edge_bc.abs();	    // Length of edge
-        norm = edge_bc / length;	    // normalize
-        t = Vector3::dot(norm,diff_b);		    // Component along edge
+        length = edge_bc.abs();        // Length of edge
+        norm = edge_bc / length;        // normalize
+        t = Vector3::dot(norm,diff_b);            // Component along edge
         
         // Clamp to corners
-        if (t <= 0.0F)		pt = vert1;
-        else if (t >= length)	pt = vert2;
-        else			Vector3::displace(vert1, norm, t, pt);  // Position on edge
+        if (t <= 0.0F)        pt = vert1;
+        else if (t >= length)    pt = vert2;
+        else            Vector3::displace(vert1, norm, t, pt);  // Position on edge
         
         diff = p - pt;
         dist = diff.abs();
@@ -493,14 +493,14 @@ void		PrimitiveCollisions::distance_point_to_triangle (	const Vector3 &p,
     
     if (outside_ca) {
         DTfloat length, t;
-        length = edge_ca.abs();	    // Length of edge
-        norm = edge_ca / length;	    // normalize
-        t = Vector3::dot(norm,diff_c);		    // Component along edge
+        length = edge_ca.abs();        // Length of edge
+        norm = edge_ca / length;        // normalize
+        t = Vector3::dot(norm,diff_c);            // Component along edge
         
         // Clamp to corners
-        if (t <= 0.0F)		pt = vert2;
-        else if (t >= length)	pt = vert0;
-        else			Vector3::displace(vert2, norm, t, pt);  // Position on edge
+        if (t <= 0.0F)        pt = vert2;
+        else if (t >= length)    pt = vert0;
+        else            Vector3::displace(vert2, norm, t, pt);  // Position on edge
         
         diff = p - pt;
         dist = diff.abs(); 

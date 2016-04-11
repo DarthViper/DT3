@@ -1,12 +1,12 @@
 //==============================================================================
-///	
-///	File: ScriptingCameraShake.cpp
-///	
+///    
+///    File: ScriptingCameraShake.cpp
+///    
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
 /// This file is subject to the terms and conditions defined in
 /// file 'LICENSE.txt', which is part of this source code package.
-///	
+///    
 //==============================================================================
 
 #include "DT3Core/Scripting/ScriptingCameraShake.hpp"
@@ -33,26 +33,26 @@ IMPLEMENT_PLUG_INFO_INDEX(_in)
 IMPLEMENT_PLUG_INFO_INDEX(_magnitude)
 IMPLEMENT_PLUG_INFO_INDEX(_on)
 IMPLEMENT_PLUG_INFO_INDEX(_out)
-		
+        
 //==============================================================================
 //==============================================================================
 
 BEGIN_IMPLEMENT_PLUGS(ScriptingCameraShake)
-		
-	PLUG_INIT(_in,"In")
-		.set_input(true)
-		.affects(PLUG_INFO_INDEX(_out));
+        
+    PLUG_INIT(_in,"In")
+        .set_input(true)
+        .affects(PLUG_INFO_INDEX(_out));
 
-	PLUG_INIT(_magnitude,"Magnitude")
-		.set_input(true)
-		.affects(PLUG_INFO_INDEX(_out));
+    PLUG_INIT(_magnitude,"Magnitude")
+        .set_input(true)
+        .affects(PLUG_INFO_INDEX(_out));
 
-	PLUG_INIT(_on,"On")
-		.set_input(true)
-		.affects(PLUG_INFO_INDEX(_out));
+    PLUG_INIT(_on,"On")
+        .set_input(true)
+        .affects(PLUG_INFO_INDEX(_out));
 
-	PLUG_INIT(_out,"Out")
-		.set_output(true);
+    PLUG_INIT(_out,"Out")
+        .set_output(true);
         
 END_IMPLEMENT_PLUGS
 
@@ -61,20 +61,20 @@ END_IMPLEMENT_PLUGS
 //==============================================================================
 
 ScriptingCameraShake::ScriptingCameraShake (void)
-    :   _in				(PLUG_INFO_INDEX(_in), {0.0F,0.0F,0.0F}),
-		_magnitude		(PLUG_INFO_INDEX(_magnitude), 0.5F),
-		_on				(PLUG_INFO_INDEX(_on), false),
-        _out			(PLUG_INFO_INDEX(_out), {0.0F,0.0F,0.0F})
+    :   _in                (PLUG_INFO_INDEX(_in), {0.0F,0.0F,0.0F}),
+        _magnitude        (PLUG_INFO_INDEX(_magnitude), 0.5F),
+        _on                (PLUG_INFO_INDEX(_on), false),
+        _out            (PLUG_INFO_INDEX(_out), {0.0F,0.0F,0.0F})
 {  
 
 }
-		
+        
 ScriptingCameraShake::ScriptingCameraShake (const ScriptingCameraShake &rhs)
-    :   ScriptingBase	(rhs),
-		_in				(rhs._in),
-		_magnitude		(rhs._magnitude),
-		_on				(rhs._on),
-		_out			(rhs._out)
+    :   ScriptingBase    (rhs),
+        _in                (rhs._in),
+        _magnitude        (rhs._magnitude),
+        _on                (rhs._on),
+        _out            (rhs._out)
 {   
 
 }
@@ -83,16 +83,16 @@ ScriptingCameraShake & ScriptingCameraShake::operator = (const ScriptingCameraSh
 {
     // Make sure we are not assigning the class to itself
     if (&rhs != this) {        
-		ScriptingBase::operator = (rhs);
+        ScriptingBase::operator = (rhs);
 
-		_in = rhs._in;
-		_magnitude = rhs._magnitude;
-		_on = rhs._on;
-		_out = rhs._out;
-	}
+        _in = rhs._in;
+        _magnitude = rhs._magnitude;
+        _on = rhs._on;
+        _out = rhs._out;
+    }
     return (*this);
 }
-			
+            
 ScriptingCameraShake::~ScriptingCameraShake (void)
 {
 
@@ -105,13 +105,13 @@ void ScriptingCameraShake::archive (const std::shared_ptr<Archive> &archive)
 {
     ScriptingBase::archive(archive);
 
-	archive->push_domain (class_id ());
-	   
-	*archive << ARCHIVE_PLUG(_in, DATA_PERSISTENT | DATA_SETTABLE);
-	*archive << ARCHIVE_PLUG(_magnitude, DATA_PERSISTENT | DATA_SETTABLE);
-	*archive << ARCHIVE_PLUG(_on, DATA_PERSISTENT | DATA_SETTABLE);
-	*archive << ARCHIVE_PLUG(_out, DATA_PERSISTENT);
-														     					
+    archive->push_domain (class_id ());
+       
+    *archive << ARCHIVE_PLUG(_in, DATA_PERSISTENT | DATA_SETTABLE);
+    *archive << ARCHIVE_PLUG(_magnitude, DATA_PERSISTENT | DATA_SETTABLE);
+    *archive << ARCHIVE_PLUG(_on, DATA_PERSISTENT | DATA_SETTABLE);
+    *archive << ARCHIVE_PLUG(_out, DATA_PERSISTENT);
+                                                                                 
     archive->pop_domain ();
 }
 
@@ -120,7 +120,7 @@ void ScriptingCameraShake::archive (const std::shared_ptr<Archive> &archive)
 
 void ScriptingCameraShake::tick (const DTfloat dt)
 {
-	PROFILER(SCRIPTING);
+    PROFILER(SCRIPTING);
 
     if (_on) {
         _out.set_dirty();
@@ -132,11 +132,11 @@ void ScriptingCameraShake::tick (const DTfloat dt)
 
 bool ScriptingCameraShake::compute (const PlugBase *plug)
 {
-	PROFILER(SCRIPTING);
+    PROFILER(SCRIPTING);
 
     if (super_type::compute(plug))  return true;
 
-	if (plug == &_out) {
+    if (plug == &_out) {
     
         if (_on) {
             DTfloat theta = 2.0F * std::acos(std::sqrt(1.0F - MoreMath::random_float()));
@@ -148,11 +148,11 @@ bool ScriptingCameraShake::compute (const PlugBase *plug)
         } else {
             _out = _in;
         }
-		
-		return true;
-	}
-	
-	return false;
+        
+        return true;
+    }
+    
+    return false;
 }
 
 //==============================================================================

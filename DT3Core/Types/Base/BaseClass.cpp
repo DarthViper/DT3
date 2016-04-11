@@ -1,6 +1,6 @@
 //==============================================================================
 ///
-///	File: BaseClass.cpp
+///    File: BaseClass.cpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -29,7 +29,7 @@ std::atomic<uint32_t> BaseClass::_unique_id_counter(0);
 //==============================================================================
 
 BaseClass::BaseClass (void)
-    :   _streamable				(true)
+    :   _streamable                (true)
 {
     new_unique_id();
 }
@@ -57,7 +57,7 @@ void BaseClass::archive    (const std::shared_ptr<Archive> &archive)
 {
     archive->push_domain (class_id ());
 
-    uint32_t unique_id = _unique_id;	// Just in case the next line does nothing
+    uint32_t unique_id = _unique_id;    // Just in case the next line does nothing
     *archive << ARCHIVE_DATA(unique_id, DATA_PERSISTENT);
     _unique_id = unique_id;
 

@@ -1,7 +1,7 @@
 #pragma once
 //==============================================================================
 ///
-///	File: ScriptingTransitionLevel.hpp
+///    File: ScriptingTransitionLevel.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -36,8 +36,8 @@ class ScriptingTransitionLevel: public ScriptingBase {
 
                                     ScriptingTransitionLevel    (void);
                                     ScriptingTransitionLevel    (const ScriptingTransitionLevel &rhs);
-        ScriptingTransitionLevel &	operator =                  (const ScriptingTransitionLevel &rhs);
-        virtual                     ~ScriptingTransitionLevel	(void);
+        ScriptingTransitionLevel &    operator =                  (const ScriptingTransitionLevel &rhs);
+        virtual                     ~ScriptingTransitionLevel    (void);
 
         virtual void                archive                     (const std::shared_ptr<Archive> &archive);
 
@@ -48,12 +48,12 @@ class ScriptingTransitionLevel: public ScriptingBase {
 
     private:
 
-        Plug<FilePath>				_pathname;
+        Plug<FilePath>                _pathname;
         Plug<std::string>           _transition;
-        Plug<std::string>			_progress;
-        Plug<DTfloat>				_duration;
+        Plug<std::string>            _progress;
+        Plug<DTfloat>                _duration;
 
-        Plug<bool>				_same_session;
+        Plug<bool>                _same_session;
 
         Event                       _transition_e;
 };

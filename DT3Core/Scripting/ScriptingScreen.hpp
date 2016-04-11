@@ -3,7 +3,7 @@
 #define DT3_SCRIPTINGSCREEN
 //==============================================================================
 ///
-///	File: ScriptingScreen.hpp
+///    File: ScriptingScreen.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -40,7 +40,7 @@ class ScriptingScreen: public ScriptingBase {
 
                                     ScriptingScreen         (void);
                                     ScriptingScreen         (const ScriptingScreen &rhs);
-        ScriptingScreen &			operator =				(const ScriptingScreen &rhs);
+        ScriptingScreen &            operator =                (const ScriptingScreen &rhs);
         virtual                     ~ScriptingScreen        (void);
 
         virtual void                archive                 (const std::shared_ptr<Archive> &archive);
@@ -55,9 +55,9 @@ class ScriptingScreen: public ScriptingBase {
         void                        screen_changed          (uint32_t width, uint32_t height);
 
     private:
-        Plug<DTfloat>				_width;
-        Plug<DTfloat>				_height;
-        Plug<DTfloat>				_aspect;
+        Plug<DTfloat>                _width;
+        Plug<DTfloat>                _height;
+        Plug<DTfloat>                _aspect;
 };
 
 //==============================================================================

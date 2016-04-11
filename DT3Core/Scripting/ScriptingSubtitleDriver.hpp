@@ -3,7 +3,7 @@
 #define DT3_SCRIPTINGSUBTITLEDRIVER
 //==============================================================================
 ///
-///	File: ScriptingSubtitleDriver.hpp
+///    File: ScriptingSubtitleDriver.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -51,7 +51,7 @@ class ScriptingSubtitleDriver: public ScriptingBase {
     public:
         /// Computes the value of the node
         /// \param plug plug to compute
-        bool					compute                     (const PlugBase *plug);
+        bool                    compute                     (const PlugBase *plug);
 
         /// Get the subtitles file
         /// \return subtitles file
@@ -76,7 +76,7 @@ class ScriptingSubtitleDriver: public ScriptingBase {
         Plug<FilePath>              _subtitles;
         Plug<DTfloat>               _time;
 
-        Plug<std::string>			_out;
+        Plug<std::string>            _out;
 };
 
 //==============================================================================

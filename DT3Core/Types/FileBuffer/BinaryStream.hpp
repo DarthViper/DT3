@@ -3,7 +3,7 @@
 #define DT3_BINARYSTREAM
 //==============================================================================
 ///
-///	File: BinaryStream.hpp
+///    File: BinaryStream.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -33,12 +33,12 @@ class BinaryStream: public Stream {
         DEFINE_TYPE(BinaryStream,Stream)
         //DEFINE_CREATE_AND_CLONE
 
-                                    BinaryStream		(void);
+                                    BinaryStream        (void);
     private:
-                                    BinaryStream		(const BinaryStream &rhs);
-        BinaryStream &				operator =			(const BinaryStream &rhs);
+                                    BinaryStream        (const BinaryStream &rhs);
+        BinaryStream &                operator =            (const BinaryStream &rhs);
     public:
-        virtual						~BinaryStream		(void);
+        virtual                        ~BinaryStream        (void);
 };
 
 //==============================================================================

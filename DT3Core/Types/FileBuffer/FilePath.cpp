@@ -1,6 +1,6 @@
 //==============================================================================
 ///
-///	File: FilePath.cpp
+///    File: FilePath.cpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -99,7 +99,7 @@ Stream& operator >>(Stream &s, FilePath&v)
 //==============================================================================
 //==============================================================================
 
-void FilePath::recache_path			(void)
+void FilePath::recache_path            (void)
 {
     _path = Globals::substitute_global(_original_path);
 
@@ -129,7 +129,7 @@ std::string FilePath::full_path (void) const
     return _path;
 }
 
-std::string FilePath::original_path		(void) const
+std::string FilePath::original_path        (void) const
 {
     return _original_path;
 }
@@ -137,12 +137,12 @@ std::string FilePath::original_path		(void) const
 //==============================================================================
 //==============================================================================
 
-std::string FilePath::path_separator	(void)
+std::string FilePath::path_separator    (void)
 {
     return HAL::path_separator();
 }
 
-std::string FilePath::package_separator	(void)
+std::string FilePath::package_separator    (void)
 {
     return ":";
 }
@@ -276,7 +276,7 @@ void FilePath::clear (void)
 //==============================================================================
 //==============================================================================
 
-uint64_t FilePath::modification_date	(void) const
+uint64_t FilePath::modification_date    (void) const
 {
     return HAL::modification_date(*this);
 }

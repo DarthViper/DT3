@@ -1,6 +1,6 @@
 //==============================================================================
 ///
-///	File: TextFileStream.cpp
+///    File: TextFileStream.cpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -26,9 +26,9 @@ namespace DT3 {
 //==============================================================================
 
 TextFileStream::TextFileStream (void)
-        :	_start			(0),
-                _length			(0),
-                _last_update	(0),
+        :    _start            (0),
+                _length            (0),
+                _last_update    (0),
         _eof            (false),
         _ignore_whitespace  (false)
 {
@@ -56,7 +56,7 @@ void TextFileStream::set_file_handle (const std::shared_ptr<FileHandle> &file_ha
 //==============================================================================
 //==============================================================================
 
-void TextFileStream::eat_whitespace	(void)
+void TextFileStream::eat_whitespace    (void)
 {
         if (_eof)
                 return;
@@ -85,7 +85,7 @@ void TextFileStream::read_float_string (DTcharacter buffer[TEMP_BUFFER_SIZE])
         DTcharacter c = peek();
         uint16_t i = 0;
 
-        while (	i < TEMP_BUFFER_SIZE &&
+        while (    i < TEMP_BUFFER_SIZE &&
                         (c == '+' || c == '-' || (c >= '0' && c <= '9') || c == '.' || c == 'e' || c == 'E')  &&
                         _file->g() < (_start + _length)) {
                 _file->read((uint8_t*) &buffer[i++], 1);
@@ -426,18 +426,18 @@ DTsize TextFileStream::g (void)
 void TextFileStream::seek_p (DToffset p, Relative r)
 {
         switch (r) {
-                case FROM_BEGINNING:	_file->seek_p(_start+p, FileHandle::FROM_BEGINNING);			break;
-                case FROM_CURRENT:		_file->seek_p(p, FileHandle::FROM_CURRENT);						break;
-                case FROM_END:			_file->seek_p(_start+_length-p, FileHandle::FROM_BEGINNING);	break;
+                case FROM_BEGINNING:    _file->seek_p(_start+p, FileHandle::FROM_BEGINNING);            break;
+                case FROM_CURRENT:        _file->seek_p(p, FileHandle::FROM_CURRENT);                        break;
+                case FROM_END:            _file->seek_p(_start+_length-p, FileHandle::FROM_BEGINNING);    break;
         };
 }
 
 void TextFileStream::seek_g (DToffset g, Relative r)
 {
         switch (r) {
-                case FROM_BEGINNING:	_file->seek_g(_start+g, FileHandle::FROM_BEGINNING);			break;
-                case FROM_CURRENT:		_file->seek_g(g, FileHandle::FROM_CURRENT);						break;
-                case FROM_END:			_file->seek_g(_start+_length-g, FileHandle::FROM_BEGINNING);	break;
+                case FROM_BEGINNING:    _file->seek_g(_start+g, FileHandle::FROM_BEGINNING);            break;
+                case FROM_CURRENT:        _file->seek_g(g, FileHandle::FROM_CURRENT);                        break;
+                case FROM_END:            _file->seek_g(_start+_length-g, FileHandle::FROM_BEGINNING);    break;
         };
 }
 
@@ -493,7 +493,7 @@ void TextFileStream::line (DTcharacter *buffer, uint32_t size)
 //==============================================================================
 //==============================================================================
 
-void TextFileStream::open_file_fragment	(const std::shared_ptr<FileHandle> &file, DTsize start, DTsize length, std::shared_ptr<Progress> progress)
+void TextFileStream::open_file_fragment    (const std::shared_ptr<FileHandle> &file, DTsize start, DTsize length, std::shared_ptr<Progress> progress)
 {
         set_file_handle(file);
 

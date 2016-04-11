@@ -3,7 +3,7 @@
 #define EDLEVELSCRIPTCONNECTION
 //==============================================================================
 ///
-///	File: EdLevelScriptConnection.hpp
+///    File: EdLevelScriptConnection.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -36,15 +36,15 @@ class EdLevelScriptConnection : public QGraphicsItem
 
         public:
                                     EdLevelScriptConnection (void)  {}
-                                                                        EdLevelScriptConnection	(   EdLevelScriptNodeStandard *node1,
+                                                                        EdLevelScriptConnection    (   EdLevelScriptNodeStandard *node1,
                                                                 EdLevelScriptNodeStandard *node2);
 
                                     ~EdLevelScriptConnection();
 
 
         public:
-                QRectF						boundingRect	(void) const;
-                QPainterPath				shape			(void) const;
+                QRectF                        boundingRect    (void) const;
+                QPainterPath                shape            (void) const;
 
         virtual void                readjustBounds  (void) = 0;
         void                        removeLink      (EdLevelScriptNodeStandard *node);

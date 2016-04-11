@@ -3,7 +3,7 @@
 #define DT3_TIME
 //==============================================================================
 ///
-///	File: Time.hpp
+///    File: Time.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -28,12 +28,12 @@ class Time {
     private:
                                     Time                (void);
                                     Time                (const Time &rhs);
-        Time &						operator =          (const Time &rhs);
-        virtual						~Time               (void);
+        Time &                        operator =          (const Time &rhs);
+        virtual                        ~Time               (void);
 
     public:
         /// Returns the number of seconds on clock
-        static uint64_t				seconds             (void);
+        static uint64_t                seconds             (void);
 
         /// Returns the number of seconds like a clock
         static std::string          seconds_to_clock    (uint32_t seconds);

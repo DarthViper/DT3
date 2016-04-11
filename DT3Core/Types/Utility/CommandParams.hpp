@@ -3,7 +3,7 @@
 #define DT3_COMMANDPARAMS
 //==============================================================================
 ///
-///	File: CommandParams.hpp
+///    File: CommandParams.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -27,10 +27,10 @@ namespace DT3 {
 
 class CommandParams {
     public:
-                                    CommandParams		(void);
-                                    CommandParams		(const std::string &c);
-                                    CommandParams		(const CommandParams &rhs);
-        CommandParams &             operator =			(const CommandParams &rhs);
+                                    CommandParams        (void);
+                                    CommandParams        (const std::string &c);
+                                    CommandParams        (const CommandParams &rhs);
+        CommandParams &             operator =            (const CommandParams &rhs);
         virtual                     ~CommandParams      (void);
 
     public:

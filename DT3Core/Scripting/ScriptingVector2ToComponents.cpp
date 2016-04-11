@@ -1,12 +1,12 @@
 //==============================================================================
-///	
-///	File: ScriptingVector2ToComponents.cpp
-///	
+///    
+///    File: ScriptingVector2ToComponents.cpp
+///    
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
 /// This file is subject to the terms and conditions defined in
 /// file 'LICENSE.txt', which is part of this source code package.
-///	
+///    
 //==============================================================================
 
 #include "DT3Core/Scripting/ScriptingVector2ToComponents.hpp"
@@ -36,17 +36,17 @@ IMPLEMENT_PLUG_INFO_INDEX(_out_y)
 
 BEGIN_IMPLEMENT_PLUGS(ScriptingVector2ToComponents)
 
-	PLUG_INIT(_in,"In")
-		.set_input(true)
-		.affects(PLUG_INFO_INDEX(_out_x))
-		.affects(PLUG_INFO_INDEX(_out_y));
+    PLUG_INIT(_in,"In")
+        .set_input(true)
+        .affects(PLUG_INFO_INDEX(_out_x))
+        .affects(PLUG_INFO_INDEX(_out_y));
 
-	PLUG_INIT(_out_x,"Out_X")
-		.set_output(true);
-		
-	PLUG_INIT(_out_y,"Out_Y")
-		.set_output(true);
-		
+    PLUG_INIT(_out_x,"Out_X")
+        .set_output(true);
+        
+    PLUG_INIT(_out_y,"Out_Y")
+        .set_output(true);
+        
 END_IMPLEMENT_PLUGS
 
 //==============================================================================
@@ -54,18 +54,18 @@ END_IMPLEMENT_PLUGS
 //==============================================================================
 
 ScriptingVector2ToComponents::ScriptingVector2ToComponents (void)
-    :   _in				(PLUG_INFO_INDEX(_in), {0.0F,0.0F}),
-		_out_x			(PLUG_INFO_INDEX(_out_x), 0.0F),
-		_out_y			(PLUG_INFO_INDEX(_out_y), 0.0F)
+    :   _in                (PLUG_INFO_INDEX(_in), {0.0F,0.0F}),
+        _out_x            (PLUG_INFO_INDEX(_out_x), 0.0F),
+        _out_y            (PLUG_INFO_INDEX(_out_y), 0.0F)
 {  
 
 }
-		
+        
 ScriptingVector2ToComponents::ScriptingVector2ToComponents (const ScriptingVector2ToComponents &rhs)
-    :   ScriptingBase	(rhs),
-		_in				(rhs._in),
-		_out_x			(rhs._out_x),
-		_out_y			(rhs._out_y)
+    :   ScriptingBase    (rhs),
+        _in                (rhs._in),
+        _out_x            (rhs._out_x),
+        _out_y            (rhs._out_y)
 {   
 
 }
@@ -74,15 +74,15 @@ ScriptingVector2ToComponents & ScriptingVector2ToComponents::operator = (const S
 {
     // Make sure we are not assigning the class to itself
     if (&rhs != this) {        
-		ScriptingBase::operator = (rhs);
+        ScriptingBase::operator = (rhs);
 
-		_in = rhs._in;
-		_out_x = rhs._out_x;
-		_out_y = rhs._out_y;
-	}
+        _in = rhs._in;
+        _out_x = rhs._out_x;
+        _out_y = rhs._out_y;
+    }
     return (*this);
 }
-			
+            
 ScriptingVector2ToComponents::~ScriptingVector2ToComponents (void)
 {
 
@@ -95,11 +95,11 @@ void ScriptingVector2ToComponents::archive (const std::shared_ptr<Archive> &arch
 {
     ScriptingBase::archive(archive);
 
-	archive->push_domain (class_id ());
+    archive->push_domain (class_id ());
 
-	*archive << ARCHIVE_PLUG(_in, DATA_PERSISTENT | DATA_SETTABLE);
-	*archive << ARCHIVE_PLUG(_out_x, DATA_PERSISTENT);
-	*archive << ARCHIVE_PLUG(_out_y, DATA_PERSISTENT);
+    *archive << ARCHIVE_PLUG(_in, DATA_PERSISTENT | DATA_SETTABLE);
+    *archive << ARCHIVE_PLUG(_out_x, DATA_PERSISTENT);
+    *archive << ARCHIVE_PLUG(_out_y, DATA_PERSISTENT);
 
     archive->pop_domain ();
 }
@@ -109,19 +109,19 @@ void ScriptingVector2ToComponents::archive (const std::shared_ptr<Archive> &arch
 
 bool ScriptingVector2ToComponents::compute (const PlugBase *plug)
 {
-	PROFILER(SCRIPTING);
+    PROFILER(SCRIPTING);
 
     if (super_type::compute(plug))  return true;
 
-	if (plug == &_out_x || plug == &_out_y) {
-		_out_x = _in->x;
-		_out_y = _in->y;
-		_out_x.set_clean();
-		_out_y.set_clean();
-		return true;
-	}
-	
-	return false;
+    if (plug == &_out_x || plug == &_out_y) {
+        _out_x = _in->x;
+        _out_y = _in->y;
+        _out_x.set_clean();
+        _out_y.set_clean();
+        return true;
+    }
+    
+    return false;
 }
 
 //==============================================================================

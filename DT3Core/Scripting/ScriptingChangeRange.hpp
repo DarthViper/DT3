@@ -3,7 +3,7 @@
 #define DT3_SCRIPTINGCHANGERANGE
 //==============================================================================
 ///
-///	File: ScriptingChangeRange.hpp
+///    File: ScriptingChangeRange.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -29,25 +29,25 @@ class ScriptingChangeRange: public ScriptingBase {
         DEFINE_CREATE_AND_CLONE
         DEFINE_PLUG_NODE
 
-                                    ScriptingChangeRange	(void);
-                                    ScriptingChangeRange	(const ScriptingChangeRange &rhs);
-        ScriptingChangeRange &		operator =				(const ScriptingChangeRange &rhs);
-        virtual						~ScriptingChangeRange	(void);
+                                    ScriptingChangeRange    (void);
+                                    ScriptingChangeRange    (const ScriptingChangeRange &rhs);
+        ScriptingChangeRange &        operator =                (const ScriptingChangeRange &rhs);
+        virtual                        ~ScriptingChangeRange    (void);
 
-        virtual void				archive                 (const std::shared_ptr<Archive> &archive);
+        virtual void                archive                 (const std::shared_ptr<Archive> &archive);
 
     public:
         /// Computes the value of the node
         /// \param plug plug to compute
-        bool					compute					(const PlugBase *plug);
+        bool                    compute                    (const PlugBase *plug);
 
     private:
-        Plug<DTfloat>				_in_low;
-        Plug<DTfloat>				_in_high;
-        Plug<DTfloat>				_out_low;
-        Plug<DTfloat>				_out_high;
-        Plug<DTfloat>				_in;
-        Plug<DTfloat>				_out;
+        Plug<DTfloat>                _in_low;
+        Plug<DTfloat>                _in_high;
+        Plug<DTfloat>                _out_low;
+        Plug<DTfloat>                _out_high;
+        Plug<DTfloat>                _in;
+        Plug<DTfloat>                _out;
 };
 
 //==============================================================================

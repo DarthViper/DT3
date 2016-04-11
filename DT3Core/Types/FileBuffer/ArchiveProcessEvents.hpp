@@ -3,7 +3,7 @@
 #define DT3_ARCHIVEPROCESSEVENTS
 //==============================================================================
 ///
-///	File: ArchiveProcessEvents.hpp
+///    File: ArchiveProcessEvents.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -35,16 +35,16 @@ class ArchiveProcessEvents: public ArchiveProcess {
     public:
         //DEFINE_TYPE(ArchiveProcessEvents,ArchiveProcess)
 
-                                    ArchiveProcessEvents	(const std::shared_ptr<Archive> &archive, T dst_event);
+                                    ArchiveProcessEvents    (const std::shared_ptr<Archive> &archive, T dst_event);
                                     ArchiveProcessEvents    (const ArchiveProcessEvents &rhs);
-        ArchiveProcessEvents &		operator =				(const ArchiveProcessEvents &rhs);
-        virtual						~ArchiveProcessEvents	(void);
+        ArchiveProcessEvents &        operator =                (const ArchiveProcessEvents &rhs);
+        virtual                        ~ArchiveProcessEvents    (void);
 
     public:
         /// Post process for archiving
         /// \param archive Archive that owns the post process
         /// \param archive Objects Map of objects that have been archived
-        virtual void				process                 (const std::shared_ptr<Archive> &archive, std::map<uint64_t, std::shared_ptr<BaseClass>> &objects);
+        virtual void                process                 (const std::shared_ptr<Archive> &archive, std::map<uint64_t, std::shared_ptr<BaseClass>> &objects);
 
     private:
 
@@ -67,7 +67,7 @@ std::shared_ptr<ArchiveProcess> archive_process_events_creator (const std::share
     return std::shared_ptr<ArchiveProcess> (new ("archive_process_events_creator") ArchiveProcessEvents<T>(archive, dst_event));
 }
 
-#define ARCHIVE_PROCESS_EVENTS(A,V)			archive_process_events_creator(A, V)
+#define ARCHIVE_PROCESS_EVENTS(A,V)            archive_process_events_creator(A, V)
 
 //==============================================================================
 //==============================================================================
@@ -84,15 +84,15 @@ ArchiveProcessEvents<T>::ArchiveProcessEvents(const std::shared_ptr<Archive> &ar
         DTsize num_connections = src_events.size();
         *archive << ARCHIVE_DATA(num_connections, DATA_PERSISTENT);
 
-        uint32_t	dst_node_id = dst_event->owner()->unique_id();
+        uint32_t    dst_node_id = dst_event->owner()->unique_id();
         std::string  dst_name = dst_event->name();
 
         *archive << ARCHIVE_DATA(dst_node_id, DATA_PERSISTENT);
         *archive << ARCHIVE_DATA(dst_name, DATA_PERSISTENT);
 
         for (uint32_t i = 0; i < num_connections; ++i) {
-            uint32_t	src_node_id = src_events[i]->owner()->unique_id();
-            std::string	src_name = src_events[i]->name();
+            uint32_t    src_node_id = src_events[i]->owner()->unique_id();
+            std::string    src_name = src_events[i]->name();
 
             *archive << ARCHIVE_DATA(src_node_id, DATA_PERSISTENT);
             *archive << ARCHIVE_DATA(src_name, DATA_PERSISTENT);
@@ -103,9 +103,9 @@ ArchiveProcessEvents<T>::ArchiveProcessEvents(const std::shared_ptr<Archive> &ar
 
     // Reading in pointer reference immediately
     } else {
-        uint32_t		src_node_id;
-        uint32_t		dst_node_id;
-        std::string	src_name;
+        uint32_t        src_node_id;
+        uint32_t        dst_node_id;
+        std::string    src_name;
         std::string dst_name;
 
         archive->push_domain ("EventConnection");

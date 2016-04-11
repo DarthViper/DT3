@@ -1,12 +1,12 @@
 //==============================================================================
-///	
-///	File: Plane.cpp
-///	
+///    
+///    File: Plane.cpp
+///    
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
 /// This file is subject to the terms and conditions defined in
 /// file 'LICENSE.txt', which is part of this source code package.
-///	
+///    
 //==============================================================================
 
 #include "DT3Core/Types/Math/Plane.hpp"
@@ -25,8 +25,8 @@ namespace DT3 {
 //==============================================================================
 
 Plane::Plane (void)
-    :	n({0.0F,1.0F,0.0F}),
-		d(0.0F)
+    :    n({0.0F,1.0F,0.0F}),
+        d(0.0F)
 {
 
 }
@@ -61,26 +61,26 @@ Plane::Plane (const Vector4 &a)
 }
 
 Plane::Plane (const Plane &rhs)
-    :	n(rhs.n),
+    :    n(rhs.n),
         d(rhs.d)
 {
 
 }
             
 Plane& Plane::operator = (const Plane &rhs)
-{	
-	n = rhs.n;
-	d = rhs.d;
+{    
+    n = rhs.n;
+    d = rhs.d;
     return (*this);
-}	
+}    
 
 //==============================================================================
 //==============================================================================
 
 Stream& operator <<(Stream &s, const Plane&p)
 {
-	s << p.normal().x << Stream::fs << p.normal().y << Stream::fs << p.normal().z << Stream::fs << p.D();
-	return s;
+    s << p.normal().x << Stream::fs << p.normal().y << Stream::fs << p.normal().z << Stream::fs << p.D();
+    return s;
 }
 
 Stream& operator >>(Stream &s, Plane&p)
@@ -88,12 +88,12 @@ Stream& operator >>(Stream &s, Plane&p)
     Vector3 normal {0.0F,1.0F,0.0F};
     DTfloat d(0.0F);
     
-	s >> normal.x >> normal.y >> normal.z >> d;
+    s >> normal.x >> normal.y >> normal.z >> d;
     
     p.set_normal(normal);
     p.set_d(d);
     
-	return s;
+    return s;
 }
 
 //==============================================================================
@@ -118,11 +118,11 @@ DTfloat Plane::distance_to_sphere (const Vector3 &translation, const Sphere &s) 
     DTfloat to_center = distance_to_point(translation);
 
     if (to_center > 0.0F) {
-		if (to_center > s.radius())     return to_center - s.radius();
-		else                            return 0.0F;
+        if (to_center > s.radius())     return to_center - s.radius();
+        else                            return 0.0F;
     } else {
-		if (-to_center > s.radius())	return to_center + s.radius();
-		else                            return 0.0F;
+        if (-to_center > s.radius())    return to_center + s.radius();
+        else                            return 0.0F;
     }
     
     return 0.0F;
@@ -139,35 +139,35 @@ DTfloat Plane::distance_to_box (const Box &box) const
     // find positive and negative points farthest from the plane
     if (n.x > 0.0F) {                                                                               // +x
         if (n.y > 0.0F) {                                                                           // +x,+y
-            if (n.z > 0.0F)	{	far_pos = {box.plus_x(), box.plus_y(), box.plus_z()};		// +x,+y,+z
+            if (n.z > 0.0F)    {    far_pos = {box.plus_x(), box.plus_y(), box.plus_z()};        // +x,+y,+z
                                 far_neg = {box.minus_x(), box.minus_y(), box.minus_z()};}
-            else            {	far_pos = {box.plus_x(), box.plus_y(), box.minus_z()};		// +x,+y,-z
-                                far_neg = {box.minus_x(), box.minus_y(), box.plus_z()};	}
-        } else {																					// +x,-y
-            if (n.z > 0.0F)	{	far_pos = {box.plus_x(), box.minus_y(), box.plus_z()};		// +x,-y,+z
-                                far_neg = {box.minus_x(), box.plus_y(), box.minus_z()};	}
-            else            {	far_pos = {box.plus_x(), box.minus_y(), box.minus_z()};		// +x,-y,-z
-                                far_neg = {box.minus_x(), box.plus_y(), box.plus_z()};	}
+            else            {    far_pos = {box.plus_x(), box.plus_y(), box.minus_z()};        // +x,+y,-z
+                                far_neg = {box.minus_x(), box.minus_y(), box.plus_z()};    }
+        } else {                                                                                    // +x,-y
+            if (n.z > 0.0F)    {    far_pos = {box.plus_x(), box.minus_y(), box.plus_z()};        // +x,-y,+z
+                                far_neg = {box.minus_x(), box.plus_y(), box.minus_z()};    }
+            else            {    far_pos = {box.plus_x(), box.minus_y(), box.minus_z()};        // +x,-y,-z
+                                far_neg = {box.minus_x(), box.plus_y(), box.plus_z()};    }
         }
-    } else {																						// -x
-        if (n.y > 0.0F) {																			// -x,+y
-            if (n.z > 0.0F)	{	far_pos = {box.minus_x(), box.plus_y(), box.plus_z()};		// -x,+y,+z
-                                far_neg = {box.plus_x(), box.minus_y(), box.minus_z()};	}
-            else            {	far_pos = {box.minus_x(), box.plus_y(), box.minus_z()};		// -x,+y,-z
-                                far_neg = {box.plus_x(), box.minus_y(), box.plus_z()};	}
-        } else {																						// -x,-y
-            if (n.z > 0.0F)	{	far_pos = {box.minus_x(), box.minus_y(), box.plus_z()};		// -x,-y,+z
-                                far_neg = {box.plus_x(), box.plus_y(), box.minus_z()};	}
-            else            {	far_pos = {box.minus_x(), box.minus_y(), box.minus_z()};		// -x,-y,-z
-                                far_neg = {box.plus_x(), box.plus_y(), box.plus_z()};	}
+    } else {                                                                                        // -x
+        if (n.y > 0.0F) {                                                                            // -x,+y
+            if (n.z > 0.0F)    {    far_pos = {box.minus_x(), box.plus_y(), box.plus_z()};        // -x,+y,+z
+                                far_neg = {box.plus_x(), box.minus_y(), box.minus_z()};    }
+            else            {    far_pos = {box.minus_x(), box.plus_y(), box.minus_z()};        // -x,+y,-z
+                                far_neg = {box.plus_x(), box.minus_y(), box.plus_z()};    }
+        } else {                                                                                        // -x,-y
+            if (n.z > 0.0F)    {    far_pos = {box.minus_x(), box.minus_y(), box.plus_z()};        // -x,-y,+z
+                                far_neg = {box.plus_x(), box.plus_y(), box.minus_z()};    }
+            else            {    far_pos = {box.minus_x(), box.minus_y(), box.minus_z()};        // -x,-y,-z
+                                far_neg = {box.plus_x(), box.plus_y(), box.plus_z()};    }
         }
     }
     
     DTfloat far_pos_dist = distance_to_point (far_pos);
     DTfloat far_neg_dist = distance_to_point (far_neg);
     
-    if (far_pos_dist < 0.0F)		return far_pos_dist;
-    else if (far_neg_dist > 0.0F)	return far_neg_dist;
+    if (far_pos_dist < 0.0F)        return far_pos_dist;
+    else if (far_neg_dist > 0.0F)    return far_neg_dist;
     return 0.0F;
     
 }
@@ -201,7 +201,7 @@ void Plane::set(const Vector3 &a, const Vector3 &b, const Vector3 &c)
     mag = n.abs();
     if (mag > 0.0F)
         n = n / mag;
-	
+    
     d = -(n.x * a.x + n.y * a.y + n.z * a.z);
 }
 

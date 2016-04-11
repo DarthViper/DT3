@@ -1,6 +1,6 @@
 //==============================================================================
 ///
-///	File: ScriptingNOT.cpp
+///    File: ScriptingNOT.cpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -50,16 +50,16 @@ using namespace DT3;
 //==============================================================================
 
 ScriptingNOT::ScriptingNOT (void)
-    :   _in			(PLUG_INFO_INDEX(_in), false),
-        _out		(PLUG_INFO_INDEX(_out), true)
+    :   _in            (PLUG_INFO_INDEX(_in), false),
+        _out        (PLUG_INFO_INDEX(_out), true)
 {
 
 }
 
 ScriptingNOT::ScriptingNOT (const ScriptingNOT &rhs)
-    :   ScriptingBase	(rhs),
-        _in				(rhs._in),
-        _out			(rhs._out)
+    :   ScriptingBase    (rhs),
+        _in                (rhs._in),
+        _out            (rhs._out)
 {
 
 }

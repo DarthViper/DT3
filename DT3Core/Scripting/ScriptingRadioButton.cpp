@@ -1,12 +1,12 @@
 //==============================================================================
-///	
-///	File: ScriptingRadioButton.cpp
-///	
+///    
+///    File: ScriptingRadioButton.cpp
+///    
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
 /// This file is subject to the terms and conditions defined in
 /// file 'LICENSE.txt', which is part of this source code package.
-///	
+///    
 //==============================================================================
 
 #include "DT3Core/Scripting/ScriptingRadioButton.hpp"
@@ -96,205 +96,205 @@ IMPLEMENT_EVENT_INFO_INDEX(_reset20)
 
 BEGIN_IMPLEMENT_PLUGS(ScriptingRadioButton)
 
-	EVENT_INIT(_in1,"In1")
+    EVENT_INIT(_in1,"In1")
         .set_input(true)
         .set_event(&ScriptingRadioButton::in1);
     
-	EVENT_INIT(_in2,"In2")
+    EVENT_INIT(_in2,"In2")
         .set_input(true)
         .set_event(&ScriptingRadioButton::in2);
 
-	EVENT_INIT(_in3,"In3")
+    EVENT_INIT(_in3,"In3")
         .set_input(true)
         .set_event(&ScriptingRadioButton::in3);
 
-	EVENT_INIT(_in4,"In4")
+    EVENT_INIT(_in4,"In4")
         .set_input(true)
         .set_event(&ScriptingRadioButton::in4);
 
-	EVENT_INIT(_in5,"In5")
+    EVENT_INIT(_in5,"In5")
         .set_input(true)
         .set_event(&ScriptingRadioButton::in5);
 
-	EVENT_INIT(_in6,"In6")
+    EVENT_INIT(_in6,"In6")
         .set_input(true)
         .set_event(&ScriptingRadioButton::in6);
 
-	EVENT_INIT(_in7,"In7")
+    EVENT_INIT(_in7,"In7")
         .set_input(true)
         .set_event(&ScriptingRadioButton::in7);
 
-	EVENT_INIT(_in8,"In8")
+    EVENT_INIT(_in8,"In8")
         .set_input(true)
         .set_event(&ScriptingRadioButton::in8);
 
-	EVENT_INIT(_in9,"In9")
+    EVENT_INIT(_in9,"In9")
         .set_input(true)
         .set_event(&ScriptingRadioButton::in9);
 
-	EVENT_INIT(_in10,"In10")
+    EVENT_INIT(_in10,"In10")
         .set_input(true)
         .set_event(&ScriptingRadioButton::in10);
 
-	EVENT_INIT(_in11,"In11")
+    EVENT_INIT(_in11,"In11")
         .set_input(true)
         .set_event(&ScriptingRadioButton::in11);
 
-	EVENT_INIT(_in12,"In12")
+    EVENT_INIT(_in12,"In12")
         .set_input(true)
         .set_event(&ScriptingRadioButton::in12);
 
-	EVENT_INIT(_in13,"In13")
+    EVENT_INIT(_in13,"In13")
         .set_input(true)
         .set_event(&ScriptingRadioButton::in13);
 
-	EVENT_INIT(_in14,"In14")
+    EVENT_INIT(_in14,"In14")
         .set_input(true)
         .set_event(&ScriptingRadioButton::in14);
 
-	EVENT_INIT(_in15,"In15")
+    EVENT_INIT(_in15,"In15")
         .set_input(true)
         .set_event(&ScriptingRadioButton::in15);
 
-	EVENT_INIT(_in16,"In16")
+    EVENT_INIT(_in16,"In16")
         .set_input(true)
         .set_event(&ScriptingRadioButton::in16);
 
-	EVENT_INIT(_in17,"In17")
+    EVENT_INIT(_in17,"In17")
         .set_input(true)
         .set_event(&ScriptingRadioButton::in17);
 
-	EVENT_INIT(_in18,"In18")
+    EVENT_INIT(_in18,"In18")
         .set_input(true)
         .set_event(&ScriptingRadioButton::in18);
 
-	EVENT_INIT(_in19,"In19")
+    EVENT_INIT(_in19,"In19")
         .set_input(true)
         .set_event(&ScriptingRadioButton::in19);
 
-	EVENT_INIT(_in20,"In20")
+    EVENT_INIT(_in20,"In20")
         .set_input(true)
         .set_event(&ScriptingRadioButton::in20);
     
     
-	EVENT_INIT(_set1,"Set1")
+    EVENT_INIT(_set1,"Set1")
         .set_output(true);
     
-	EVENT_INIT(_reset1,"Reset1")
+    EVENT_INIT(_reset1,"Reset1")
         .set_output(true);
 
-	EVENT_INIT(_set2,"Set2")
+    EVENT_INIT(_set2,"Set2")
         .set_output(true);
     
-	EVENT_INIT(_reset2,"Reset2")
+    EVENT_INIT(_reset2,"Reset2")
         .set_output(true);
 
-	EVENT_INIT(_set3,"Set3")
+    EVENT_INIT(_set3,"Set3")
         .set_output(true);
     
-	EVENT_INIT(_reset3,"Reset3")
+    EVENT_INIT(_reset3,"Reset3")
         .set_output(true);
 
-	EVENT_INIT(_set4,"Set4")
+    EVENT_INIT(_set4,"Set4")
         .set_output(true);
     
-	EVENT_INIT(_reset4,"Reset4")
+    EVENT_INIT(_reset4,"Reset4")
         .set_output(true);
 
-	EVENT_INIT(_set5,"Set5")
+    EVENT_INIT(_set5,"Set5")
         .set_output(true);
     
-	EVENT_INIT(_reset5,"Reset5")
+    EVENT_INIT(_reset5,"Reset5")
         .set_output(true);
 
-	EVENT_INIT(_set6,"Set6")
+    EVENT_INIT(_set6,"Set6")
         .set_output(true);
     
-	EVENT_INIT(_reset6,"Reset6")
+    EVENT_INIT(_reset6,"Reset6")
         .set_output(true);
 
-	EVENT_INIT(_set7,"Set7")
+    EVENT_INIT(_set7,"Set7")
         .set_output(true);
     
-	EVENT_INIT(_reset7,"Reset7")
+    EVENT_INIT(_reset7,"Reset7")
         .set_output(true);
 
-	EVENT_INIT(_set8,"Set8")
+    EVENT_INIT(_set8,"Set8")
         .set_output(true);
     
-	EVENT_INIT(_reset8,"Reset8")
+    EVENT_INIT(_reset8,"Reset8")
         .set_output(true);
 
-	EVENT_INIT(_set9,"Set9")
+    EVENT_INIT(_set9,"Set9")
         .set_output(true);
     
-	EVENT_INIT(_reset9,"Reset9")
+    EVENT_INIT(_reset9,"Reset9")
         .set_output(true);
 
-	EVENT_INIT(_set10,"Set10")
+    EVENT_INIT(_set10,"Set10")
         .set_output(true);
     
-	EVENT_INIT(_reset10,"Reset10")
+    EVENT_INIT(_reset10,"Reset10")
         .set_output(true);
 
-	EVENT_INIT(_set11,"Set11")
+    EVENT_INIT(_set11,"Set11")
         .set_output(true);
     
-	EVENT_INIT(_reset11,"Reset11")
+    EVENT_INIT(_reset11,"Reset11")
         .set_output(true);
 
-	EVENT_INIT(_set12,"Set12")
+    EVENT_INIT(_set12,"Set12")
         .set_output(true);
     
-	EVENT_INIT(_reset12,"Reset12")
+    EVENT_INIT(_reset12,"Reset12")
         .set_output(true);
 
-	EVENT_INIT(_set13,"Set13")
+    EVENT_INIT(_set13,"Set13")
         .set_output(true);
     
-	EVENT_INIT(_reset13,"Reset13")
+    EVENT_INIT(_reset13,"Reset13")
         .set_output(true);
 
-	EVENT_INIT(_set14,"Set14")
+    EVENT_INIT(_set14,"Set14")
         .set_output(true);
     
-	EVENT_INIT(_reset14,"Reset14")
+    EVENT_INIT(_reset14,"Reset14")
         .set_output(true);
 
-	EVENT_INIT(_set15,"Set15")
+    EVENT_INIT(_set15,"Set15")
         .set_output(true);
     
-	EVENT_INIT(_reset15,"Reset15")
+    EVENT_INIT(_reset15,"Reset15")
         .set_output(true);
 
-	EVENT_INIT(_set16,"Set16")
+    EVENT_INIT(_set16,"Set16")
         .set_output(true);
     
-	EVENT_INIT(_reset16,"Reset16")
+    EVENT_INIT(_reset16,"Reset16")
         .set_output(true);
 
-	EVENT_INIT(_set17,"Set17")
+    EVENT_INIT(_set17,"Set17")
         .set_output(true);
     
-	EVENT_INIT(_reset17,"Reset17")
+    EVENT_INIT(_reset17,"Reset17")
         .set_output(true);
 
-	EVENT_INIT(_set18,"Set18")
+    EVENT_INIT(_set18,"Set18")
         .set_output(true);
     
-	EVENT_INIT(_reset18,"Reset18")
+    EVENT_INIT(_reset18,"Reset18")
         .set_output(true);
 
-	EVENT_INIT(_set19,"Set19")
+    EVENT_INIT(_set19,"Set19")
         .set_output(true);
     
-	EVENT_INIT(_reset19,"Reset19")
+    EVENT_INIT(_reset19,"Reset19")
         .set_output(true);
 
-	EVENT_INIT(_set20,"Set20")
+    EVENT_INIT(_set20,"Set20")
         .set_output(true);
     
-	EVENT_INIT(_reset20,"Reset20")
+    EVENT_INIT(_reset20,"Reset20")
         .set_output(true);
 
     
@@ -368,9 +368,9 @@ ScriptingRadioButton::ScriptingRadioButton (void)
 {
 
 }
-		
+        
 ScriptingRadioButton::ScriptingRadioButton (const ScriptingRadioButton &rhs)
-    :   ScriptingBase	(rhs),
+    :   ScriptingBase    (rhs),
         _in1    (EVENT_INFO_INDEX(_in1)),
         _in2    (EVENT_INFO_INDEX(_in2)),
         _in3    (EVENT_INFO_INDEX(_in3)),
@@ -439,11 +439,11 @@ ScriptingRadioButton & ScriptingRadioButton::operator = (const ScriptingRadioBut
 {
     // Make sure we are not assigning the class to itself
     if (&rhs != this) {        
-		ScriptingBase::operator = (rhs);
-	}
+        ScriptingBase::operator = (rhs);
+    }
     return (*this);
 }
-			
+            
 ScriptingRadioButton::~ScriptingRadioButton (void)
 {
 
@@ -456,7 +456,7 @@ void ScriptingRadioButton::archive (const std::shared_ptr<Archive> &archive)
 {
     ScriptingBase::archive(archive);
 
-	archive->push_domain (class_id ());
+    archive->push_domain (class_id ());
     archive->pop_domain ();
 }
 
@@ -465,7 +465,7 @@ void ScriptingRadioButton::archive (const std::shared_ptr<Archive> &archive)
 
 void ScriptingRadioButton::flip (PlugNode *sender, Event *in)
 {
-	PROFILER(SCRIPTING);
+    PROFILER(SCRIPTING);
 
     if (in == &_in1)    _set1.send(sender);
     else                _reset1.send(sender);

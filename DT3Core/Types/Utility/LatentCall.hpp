@@ -3,7 +3,7 @@
 #define DT3_LATENTCALL
 //==============================================================================
 ///
-///	File: LatentCall.hpp
+///    File: LatentCall.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -29,7 +29,7 @@ class LatentCall {
     public:
         DEFINE_TYPE_BASE(LatentCall)
 
-        LatentCall&     operator =          (const LatentCall& /*rhs*/)     {	return (*this);     }
+        LatentCall&     operator =          (const LatentCall& /*rhs*/)     {    return (*this);     }
 
     public:
         virtual void    fire            (void) = 0;
@@ -50,7 +50,7 @@ class LatentCallImpl: public LatentCall {
         {}
 
         LatentCallImpl (const LatentCallImpl<T...>& rhs)
-            :	LatentCall(rhs),
+            :    LatentCall(rhs),
                 _cb (rhs._cb),
                 _t  (rhs._t)
         {}

@@ -1,6 +1,6 @@
 //==============================================================================
 ///
-///	File: EdLevelScriptConnection.cpp
+///    File: EdLevelScriptConnection.cpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -73,10 +73,10 @@ QPainterPath EdLevelScriptConnection::shape(void) const
     QPainterPath path;
     QPainterPathStroker stroke;
 
-    stroke.setWidth	(8.0F);
+    stroke.setWidth    (8.0F);
 
-    path.moveTo		(   _p1_local.x() + OFFSET, _p1_local.y());
-    path.cubicTo	(	_p1_local.x() + OFFSET + BEZIER_SIZE, _p1_local.y(),
+    path.moveTo        (   _p1_local.x() + OFFSET, _p1_local.y());
+    path.cubicTo    (    _p1_local.x() + OFFSET + BEZIER_SIZE, _p1_local.y(),
                         _p2_local.x() - OFFSET - BEZIER_SIZE, _p2_local.y(),
                         _p2_local.x() - OFFSET, _p2_local.y() );
 

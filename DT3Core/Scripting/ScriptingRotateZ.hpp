@@ -3,7 +3,7 @@
 #define DT3_SCRIPTINGROTATEZ
 //==============================================================================
 ///
-///	File: ScriptingRotateZ.hpp
+///    File: ScriptingRotateZ.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -34,22 +34,22 @@ class ScriptingRotateZ: public ScriptingBase {
         DEFINE_CREATE_AND_CLONE
         DEFINE_PLUG_NODE
 
-                                    ScriptingRotateZ		(void);
-                                    ScriptingRotateZ		(const ScriptingRotateZ &rhs);
-        ScriptingRotateZ &			operator =				(const ScriptingRotateZ &rhs);
-        virtual                     ~ScriptingRotateZ		(void);
+                                    ScriptingRotateZ        (void);
+                                    ScriptingRotateZ        (const ScriptingRotateZ &rhs);
+        ScriptingRotateZ &            operator =                (const ScriptingRotateZ &rhs);
+        virtual                     ~ScriptingRotateZ        (void);
 
         virtual void                archive                 (const std::shared_ptr<Archive> &archive);
 
     public:
         /// Computes the value of the node
         /// \param plug plug to compute
-        bool					compute					(const PlugBase *plug);
+        bool                    compute                    (const PlugBase *plug);
 
     private:
-        Plug<Matrix3>				_in;
-        Plug<DTfloat>				_angle;
-        Plug<Matrix3>				_out;
+        Plug<Matrix3>                _in;
+        Plug<DTfloat>                _angle;
+        Plug<Matrix3>                _out;
 
 };
 

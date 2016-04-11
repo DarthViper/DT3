@@ -3,7 +3,7 @@
 #define DT3_COMMANDREGISTRY
 //==============================================================================
 ///
-///	File: CommandRegistry.hpp
+///    File: CommandRegistry.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -36,10 +36,10 @@ class CommandParams;
 
 class CommandRegistry {
     private:
-                                CommandRegistry			(void);
-                                CommandRegistry			(const CommandRegistry &rhs);
-        CommandRegistry &       operator =				(const CommandRegistry &rhs);
-        virtual                 ~CommandRegistry		(void);
+                                CommandRegistry            (void);
+                                CommandRegistry            (const CommandRegistry &rhs);
+        CommandRegistry &       operator =                (const CommandRegistry &rhs);
+        virtual                 ~CommandRegistry        (void);
 
     public:
         typedef CommandResult (*Commandfn)(CommandContext &ctx, const CommandParams &p);

@@ -1,12 +1,12 @@
 //==============================================================================
-///	
-///	File: ImporterShaderSHDR.cpp
-///	
+///    
+///    File: ImporterShaderSHDR.cpp
+///    
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
 /// This file is subject to the terms and conditions defined in
 /// file 'LICENSE.txt', which is part of this source code package.
-///	
+///    
 //==============================================================================
 
 #include "DT3Core/Resources/Importers/ImporterShaderSHDR.hpp"
@@ -31,9 +31,9 @@ IMPLEMENT_FACTORY_IMPORTER(ImporterShaderSHDR,shdr)
 
 ImporterShaderSHDR::ImporterShaderSHDR (void)
 {    
-	
+    
 }
-			
+            
 ImporterShaderSHDR::~ImporterShaderSHDR (void)
 { 
 
@@ -44,21 +44,21 @@ ImporterShaderSHDR::~ImporterShaderSHDR (void)
 
 void ImporterShaderSHDR::parse_fragment_shader_implementation_block (ShaderResource *target)
 {
-	std::string standard = _tokenizer.next_token_string();
+    std::string standard = _tokenizer.next_token_string();
 
-	_tokenizer.assume_next_token("{");
+    _tokenizer.assume_next_token("{");
 
-	while (true) {
-		std::string token = _tokenizer.next_token_string();
-	
-		// Handle Preprocessor
-		if (_tokenizer.parse_preprocessor_macros(token))
-			continue;
-			
-		// Are we at the end of the block
-		if (token == "}")	break;
-		
-		if (MoreStrings::iequals(token,"Shader")) {
+    while (true) {
+        std::string token = _tokenizer.next_token_string();
+    
+        // Handle Preprocessor
+        if (_tokenizer.parse_preprocessor_macros(token))
+            continue;
+            
+        // Are we at the end of the block
+        if (token == "}")    break;
+        
+        if (MoreStrings::iequals(token,"Shader")) {
             _tokenizer.assume_next_token("=");
             
 #if DT3_OS == DT3_ANDROID || DT3_OS == DT3_IOS
@@ -71,8 +71,8 @@ void ImporterShaderSHDR::parse_fragment_shader_implementation_block (ShaderResou
             
             continue;
         }
-	};
-	
+    };
+    
 }
 
 //==============================================================================
@@ -80,21 +80,21 @@ void ImporterShaderSHDR::parse_fragment_shader_implementation_block (ShaderResou
 
 void ImporterShaderSHDR::parse_geometry_shader_implementation_block (ShaderResource *target)
 {
-	std::string standard = _tokenizer.next_token_string();
+    std::string standard = _tokenizer.next_token_string();
 
-	_tokenizer.assume_next_token("{");
+    _tokenizer.assume_next_token("{");
 
-	while (true) {
-		std::string token = _tokenizer.next_token_string();
-	
-		// Handle Preprocessor
-		if (_tokenizer.parse_preprocessor_macros(token))
-			continue;
-			
-		// Are we at the end of the block
-		if (token == "}")	break;
-		
-		if (MoreStrings::iequals(token,"Shader")) {
+    while (true) {
+        std::string token = _tokenizer.next_token_string();
+    
+        // Handle Preprocessor
+        if (_tokenizer.parse_preprocessor_macros(token))
+            continue;
+            
+        // Are we at the end of the block
+        if (token == "}")    break;
+        
+        if (MoreStrings::iequals(token,"Shader")) {
             _tokenizer.assume_next_token("=");
             
 #if DT3_OS == DT3_ANDROID || DT3_OS == DT3_IOS
@@ -107,8 +107,8 @@ void ImporterShaderSHDR::parse_geometry_shader_implementation_block (ShaderResou
 
             continue;
         }
-	};
-	
+    };
+    
 }
 
 //==============================================================================
@@ -116,21 +116,21 @@ void ImporterShaderSHDR::parse_geometry_shader_implementation_block (ShaderResou
 
 void ImporterShaderSHDR::parse_vertex_shader_implementation_block (ShaderResource *target)
 {
-	std::string standard = _tokenizer.next_token_string();
+    std::string standard = _tokenizer.next_token_string();
 
-	_tokenizer.assume_next_token("{");
+    _tokenizer.assume_next_token("{");
 
-	while (true) {
-		std::string token = _tokenizer.next_token_string();
-	
-		// Handle Preprocessor
-		if (_tokenizer.parse_preprocessor_macros(token))
-			continue;
-			
-		// Are we at the end of the block
-		if (token == "}")	break;
-		
-		if (MoreStrings::iequals(token,"Shader")) {
+    while (true) {
+        std::string token = _tokenizer.next_token_string();
+    
+        // Handle Preprocessor
+        if (_tokenizer.parse_preprocessor_macros(token))
+            continue;
+            
+        // Are we at the end of the block
+        if (token == "}")    break;
+        
+        if (MoreStrings::iequals(token,"Shader")) {
             _tokenizer.assume_next_token("=");
 
 #if DT3_OS == DT3_ANDROID || DT3_OS == DT3_IOS
@@ -143,8 +143,8 @@ void ImporterShaderSHDR::parse_vertex_shader_implementation_block (ShaderResourc
 
             continue;
         }
-	};
-	
+    };
+    
 }
 
 //==============================================================================
@@ -152,58 +152,58 @@ void ImporterShaderSHDR::parse_vertex_shader_implementation_block (ShaderResourc
 
 void ImporterShaderSHDR::parse_fragment_shader_block (ShaderResource *target)
 {
-	_tokenizer.assume_next_token("{");
+    _tokenizer.assume_next_token("{");
 
-	while (true) {
-		std::string token = _tokenizer.next_token_string();
-	
-		// Handle Preprocessor
-		if (_tokenizer.parse_preprocessor_macros(token))
-			continue;
-			
-		// Are we at the end of the block
-		if (token == "}")	break;
-		
-		if (MoreStrings::iequals(token,"Implementation"))			{	parse_fragment_shader_implementation_block(target);		continue;	}
-	};
+    while (true) {
+        std::string token = _tokenizer.next_token_string();
+    
+        // Handle Preprocessor
+        if (_tokenizer.parse_preprocessor_macros(token))
+            continue;
+            
+        // Are we at the end of the block
+        if (token == "}")    break;
+        
+        if (MoreStrings::iequals(token,"Implementation"))            {    parse_fragment_shader_implementation_block(target);        continue;    }
+    };
     
 }
 
 void ImporterShaderSHDR::parse_geometry_shader_block (ShaderResource *target)
 {
-	_tokenizer.assume_next_token("{");
+    _tokenizer.assume_next_token("{");
 
-	while (true) {
-		std::string token = _tokenizer.next_token_string();
-	
-		// Handle Preprocessor
-		if (_tokenizer.parse_preprocessor_macros(token))
-			continue;
-			
-		// Are we at the end of the block
-		if (token == "}")	break;
-		
-		if (MoreStrings::iequals(token,"Implementation"))			{	parse_geometry_shader_implementation_block(target);		continue;	}
-	};
+    while (true) {
+        std::string token = _tokenizer.next_token_string();
+    
+        // Handle Preprocessor
+        if (_tokenizer.parse_preprocessor_macros(token))
+            continue;
+            
+        // Are we at the end of the block
+        if (token == "}")    break;
+        
+        if (MoreStrings::iequals(token,"Implementation"))            {    parse_geometry_shader_implementation_block(target);        continue;    }
+    };
     
 }
 
 void ImporterShaderSHDR::parse_vertex_shader_block (ShaderResource *target)
 {
-	_tokenizer.assume_next_token("{");
+    _tokenizer.assume_next_token("{");
 
-	while (true) {
-		std::string token = _tokenizer.next_token_string();
-	
-		// Handle Preprocessor
-		if (_tokenizer.parse_preprocessor_macros(token))
-			continue;
-			
-		// Are we at the end of the block
-		if (token == "}")	break;
-		
-		if (MoreStrings::iequals(token,"Implementation"))			{	parse_vertex_shader_implementation_block(target);		continue;	}
-	};
+    while (true) {
+        std::string token = _tokenizer.next_token_string();
+    
+        // Handle Preprocessor
+        if (_tokenizer.parse_preprocessor_macros(token))
+            continue;
+            
+        // Are we at the end of the block
+        if (token == "}")    break;
+        
+        if (MoreStrings::iequals(token,"Implementation"))            {    parse_vertex_shader_implementation_block(target);        continue;    }
+    };
     
 }
 
@@ -212,23 +212,23 @@ void ImporterShaderSHDR::parse_vertex_shader_block (ShaderResource *target)
 
 void ImporterShaderSHDR::parse_shaders_block (ShaderResource *target)
 {
-	_tokenizer.assume_next_token("{");
+    _tokenizer.assume_next_token("{");
 
-	while (true) {
-		std::string token = _tokenizer.next_token_string();
-	
-		// Handle Preprocessor
-		if (_tokenizer.parse_preprocessor_macros(token))
-			continue;
-			
-		// Are we at the end of the block
-		if (token == "}")	break;
-		
-		if (MoreStrings::iequals(token,"FragmentShaderBlock"))      {	parse_fragment_shader_block(target);	continue;	}
-		if (MoreStrings::iequals(token,"GeometryShaderBlock"))      {	parse_geometry_shader_block(target);	continue;	}
-		if (MoreStrings::iequals(token,"VertexShaderBlock"))        {	parse_vertex_shader_block(target);		continue;	}
-	};
-	
+    while (true) {
+        std::string token = _tokenizer.next_token_string();
+    
+        // Handle Preprocessor
+        if (_tokenizer.parse_preprocessor_macros(token))
+            continue;
+            
+        // Are we at the end of the block
+        if (token == "}")    break;
+        
+        if (MoreStrings::iequals(token,"FragmentShaderBlock"))      {    parse_fragment_shader_block(target);    continue;    }
+        if (MoreStrings::iequals(token,"GeometryShaderBlock"))      {    parse_geometry_shader_block(target);    continue;    }
+        if (MoreStrings::iequals(token,"VertexShaderBlock"))        {    parse_vertex_shader_block(target);        continue;    }
+    };
+    
 }
 
 //==============================================================================
@@ -236,17 +236,17 @@ void ImporterShaderSHDR::parse_shaders_block (ShaderResource *target)
 
 void ImporterShaderSHDR::parse_attrib (ShaderResource *target)
 {
-	_tokenizer.assume_next_token("=");
+    _tokenizer.assume_next_token("=");
     std::string name = _tokenizer.next_token_string();
-	target->add_attrib(name);
+    target->add_attrib(name);
 }
 
 void ImporterShaderSHDR::parse_standard_attrib (ShaderResource *target)
 {
-	_tokenizer.assume_next_token("=");
+    _tokenizer.assume_next_token("=");
     int32_t standard_attrib = static_cast<int32_t>(_tokenizer.next_token_number());
     std::string name = _tokenizer.next_token_string();
-	target->add_attrib(name, (DT3GLStandardAttrib) standard_attrib);
+    target->add_attrib(name, (DT3GLStandardAttrib) standard_attrib);
 }
 
 //==============================================================================
@@ -254,7 +254,7 @@ void ImporterShaderSHDR::parse_standard_attrib (ShaderResource *target)
 
 void ImporterShaderSHDR::parse_uniform_v (ShaderResource *target)
 {
-	_tokenizer.assume_next_token("=");
+    _tokenizer.assume_next_token("=");
     
     uint32_t array_size = 1;
     
@@ -274,7 +274,7 @@ void ImporterShaderSHDR::parse_uniform_v (ShaderResource *target)
 
 void ImporterShaderSHDR::parse_uniform_m (ShaderResource *target)
 {
-	_tokenizer.assume_next_token("=");
+    _tokenizer.assume_next_token("=");
 
     uint32_t array_size = 1;
         
@@ -294,7 +294,7 @@ void ImporterShaderSHDR::parse_uniform_m (ShaderResource *target)
 
 void ImporterShaderSHDR::parse_standard_uniform (ShaderResource *target)
 {
-	_tokenizer.assume_next_token("=");
+    _tokenizer.assume_next_token("=");
 
     int32_t standard_attrib = static_cast<int32_t>(_tokenizer.next_token_number());
     std::string name = _tokenizer.next_token_string();
@@ -360,32 +360,32 @@ void ImporterShaderSHDR::parse_standard_uniform (ShaderResource *target)
 
 void ImporterShaderSHDR::parse_program_block (ShaderResource *target)
 {
-	_tokenizer.assume_next_token("{");
+    _tokenizer.assume_next_token("{");
 
-	while (true) {
-		std::string token = _tokenizer.next_token_string();
-	
-		// Handle Preprocessor
-		if (_tokenizer.parse_preprocessor_macros(token))
-			continue;
-			
-		// Are we at the end of the block
-		if (token == "}")	break;
-		
-		if (MoreStrings::iequals(token,"Attrib"))               {	parse_attrib(target);                   continue;	}
-		if (MoreStrings::iequals(token,"StandardAttrib"))       {	parse_standard_attrib(target);          continue;	}
-		if (MoreStrings::iequals(token,"UniformV"))             {	parse_uniform_v(target);                continue;	}
-		if (MoreStrings::iequals(token,"UniformM"))             {	parse_uniform_m(target);                continue;	}
-		if (MoreStrings::iequals(token,"StandardUniform"))      {	parse_standard_uniform(target);         continue;	}
+    while (true) {
+        std::string token = _tokenizer.next_token_string();
+    
+        // Handle Preprocessor
+        if (_tokenizer.parse_preprocessor_macros(token))
+            continue;
+            
+        // Are we at the end of the block
+        if (token == "}")    break;
+        
+        if (MoreStrings::iequals(token,"Attrib"))               {    parse_attrib(target);                   continue;    }
+        if (MoreStrings::iequals(token,"StandardAttrib"))       {    parse_standard_attrib(target);          continue;    }
+        if (MoreStrings::iequals(token,"UniformV"))             {    parse_uniform_v(target);                continue;    }
+        if (MoreStrings::iequals(token,"UniformM"))             {    parse_uniform_m(target);                continue;    }
+        if (MoreStrings::iequals(token,"StandardUniform"))      {    parse_standard_uniform(target);         continue;    }
 
         // NOTE: shaders block is optional
-		if (MoreStrings::iequals(token,"Shaders"))              {	parse_shaders_block(target);            continue;	}
+        if (MoreStrings::iequals(token,"Shaders"))              {    parse_shaders_block(target);            continue;    }
         
-		if (MoreStrings::iequals(token,"FragmentShaderBlock"))  {	parse_fragment_shader_block(target);	continue;	}
-		if (MoreStrings::iequals(token,"GeometryShaderBlock"))  {	parse_geometry_shader_block(target);    continue;	}
-		if (MoreStrings::iequals(token,"VertexShaderBlock"))	{	parse_vertex_shader_block(target);		continue;	}
-	};
-	
+        if (MoreStrings::iequals(token,"FragmentShaderBlock"))  {    parse_fragment_shader_block(target);    continue;    }
+        if (MoreStrings::iequals(token,"GeometryShaderBlock"))  {    parse_geometry_shader_block(target);    continue;    }
+        if (MoreStrings::iequals(token,"VertexShaderBlock"))    {    parse_vertex_shader_block(target);        continue;    }
+    };
+    
 }
 
 //==============================================================================
@@ -440,24 +440,24 @@ DTerr ImporterShaderSHDR::import(ShaderResource *target, std::string args)
     
     _tokenizer.set_token_stream(header, true);
     
-	DTerr err;
-	if ((err = _tokenizer.load_token_stream (target->path(), true)) != DT3_ERR_NONE)
-		return DT3_ERR_FILE_OPEN_FAILED;
-	
-	while (!_tokenizer.is_done()) {
-		std::string token = _tokenizer.next_token_string();
-		
-		// Handle Preprocessor
-		if (_tokenizer.parse_preprocessor_macros(token))
-			continue;
-		
-		if (MoreStrings::iequals(token,"shader"))		{	parse_program_block(target);		continue;	}
-		
-	};
-	
+    DTerr err;
+    if ((err = _tokenizer.load_token_stream (target->path(), true)) != DT3_ERR_NONE)
+        return DT3_ERR_FILE_OPEN_FAILED;
+    
+    while (!_tokenizer.is_done()) {
+        std::string token = _tokenizer.next_token_string();
+        
+        // Handle Preprocessor
+        if (_tokenizer.parse_preprocessor_macros(token))
+            continue;
+        
+        if (MoreStrings::iequals(token,"shader"))        {    parse_program_block(target);        continue;    }
+        
+    };
+    
     target->add_dependencies(_tokenizer.dependencies());
 
-	return DT3_ERR_NONE;
+    return DT3_ERR_NONE;
 }
 
 //==============================================================================

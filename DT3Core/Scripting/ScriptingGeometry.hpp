@@ -3,7 +3,7 @@
 #define DT3_SCRIPTINGMATERIAL
 //==============================================================================
 ///
-///	File: ScriptingGeometry.hpp
+///    File: ScriptingGeometry.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -35,17 +35,17 @@ class ScriptingGeometry: public ScriptingBase {
         DEFINE_CREATE_AND_CLONE
         DEFINE_PLUG_NODE
 
-                                                        ScriptingGeometry		(void);
-                                                        ScriptingGeometry		(const ScriptingGeometry &rhs);
-        ScriptingGeometry &                             operator =				(const ScriptingGeometry &rhs);
-        virtual                                         ~ScriptingGeometry		(void);
+                                                        ScriptingGeometry        (void);
+                                                        ScriptingGeometry        (const ScriptingGeometry &rhs);
+        ScriptingGeometry &                             operator =                (const ScriptingGeometry &rhs);
+        virtual                                         ~ScriptingGeometry        (void);
 
         virtual void                                    archive                 (const std::shared_ptr<Archive> &archive);
 
     public:
         /// Computes the value of the node
         /// \param plug plug to compute
-        bool                                       compute					(const PlugBase *plug);
+        bool                                       compute                    (const PlugBase *plug);
 
 
         /// Set the geometry
@@ -54,7 +54,7 @@ class ScriptingGeometry: public ScriptingBase {
 
         /// Get the geometry
         /// \return geometry
-        const std::shared_ptr<GeometryResource>&        geometry_property       (void) const				{   return _geometry;	}
+        const std::shared_ptr<GeometryResource>&        geometry_property       (void) const                {   return _geometry;    }
 
     private:
         std::shared_ptr<GeometryResource>               _geometry;

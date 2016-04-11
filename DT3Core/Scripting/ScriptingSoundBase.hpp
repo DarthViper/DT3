@@ -3,7 +3,7 @@
 #define DT3_SCRIPTINGSOUNDBASE
 //==============================================================================
 ///
-///	File: ScriptingSoundBaseBase.hpp
+///    File: ScriptingSoundBaseBase.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -37,7 +37,7 @@ class ScriptingSoundBase: public ScriptingBase {
 
                                     ScriptingSoundBase      (void);
                                     ScriptingSoundBase      (const ScriptingSoundBase &rhs);
-        ScriptingSoundBase &		operator =				(const ScriptingSoundBase &rhs);
+        ScriptingSoundBase &        operator =                (const ScriptingSoundBase &rhs);
         virtual                     ~ScriptingSoundBase     (void);
 
         virtual void                archive                 (const std::shared_ptr<Archive> &archive);

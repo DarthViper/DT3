@@ -3,7 +3,7 @@
 #define DT3_COMPONENTGUISCROLLER
 //==============================================================================
 ///
-///	File: ComponentGUIScroller.hpp
+///    File: ComponentGUIScroller.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -39,10 +39,10 @@ class ComponentGUIScroller: public ComponentBase {
         DEFINE_CREATE_AND_CLONE
         DEFINE_PLUG_NODE
 
-                                    ComponentGUIScroller	(void);
-                                    ComponentGUIScroller	(const ComponentGUIScroller &rhs);
+                                    ComponentGUIScroller    (void);
+                                    ComponentGUIScroller    (const ComponentGUIScroller &rhs);
         ComponentGUIScroller &      operator =              (const ComponentGUIScroller &rhs);
-        virtual                     ~ComponentGUIScroller	(void);
+        virtual                     ~ComponentGUIScroller    (void);
 
         virtual void                archive                 (const std::shared_ptr<Archive> &archive);
 

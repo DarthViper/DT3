@@ -1,12 +1,12 @@
 //==============================================================================
-///	
-///	File: FontResource.cpp
-///	
+///    
+///    File: FontResource.cpp
+///    
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
 /// This file is subject to the terms and conditions defined in
 /// file 'LICENSE.txt', which is part of this source code package.
-///	
+///    
 //==============================================================================
 
 #include "DT3Core/Resources/ResourceTypes/FontResource.hpp"
@@ -48,7 +48,7 @@ FT_MemoryRec_   FontResource::_memory;
 //==============================================================================
 
 FontResource::FontResource (void)
-    :	_typeface   (NULL)
+    :    _typeface   (NULL)
 {
 
 }
@@ -63,21 +63,21 @@ FontResource::~FontResource (void)
 
 Stream& operator <<(Stream &s, const std::shared_ptr<FontResource> &r)
 {
-	if (r) {
-		s << r->property_path();
-	} else {
-		s << "";
-	}
-	return s;
+    if (r) {
+        s << r->property_path();
+    } else {
+        s << "";
+    }
+    return s;
 }
 
 Stream& operator >>(Stream &s, std::shared_ptr<FontResource> &r)
 {
-	std::string path;
-	s >> path;
-	
-	r = FontResource::import_resource(FilePath(path));
-	return s;
+    std::string path;
+    s >> path;
+    
+    r = FontResource::import_resource(FilePath(path));
+    return s;
 }
 
 //==============================================================================
@@ -137,24 +137,24 @@ void FontResource::uninitialize_static (void)
 
 DTerr FontResource::import (const FilePath &pathname, std::string args)
 {
-	DTerr err;
-	if ((err = Resource::import (pathname,args)) != DT3_ERR_NONE)
-		return err;
-			
-	FilePath original_path(path());
-	std::string extension = original_path.file_ext();
-	
-	// Build a generic importer for the file type
-	std::shared_ptr<BaseClass> generic_importer = Factory::create_importer(extension);
-	if (!generic_importer || !generic_importer->isa(ImporterFont::kind())) {
-		return DT3_ERR_FILE_WRONG_TYPE;
-	}
+    DTerr err;
+    if ((err = Resource::import (pathname,args)) != DT3_ERR_NONE)
+        return err;
+            
+    FilePath original_path(path());
+    std::string extension = original_path.file_ext();
+    
+    // Build a generic importer for the file type
+    std::shared_ptr<BaseClass> generic_importer = Factory::create_importer(extension);
+    if (!generic_importer || !generic_importer->isa(ImporterFont::kind())) {
+        return DT3_ERR_FILE_WRONG_TYPE;
+    }
 
-	// Attempt to convert the importer of a font importer
-	std::shared_ptr<ImporterFont> font_importer = checked_static_cast<ImporterFont>(generic_importer);
+    // Attempt to convert the importer of a font importer
+    std::shared_ptr<ImporterFont> font_importer = checked_static_cast<ImporterFont>(generic_importer);
     err = font_importer->import(this, args);
-	
-	return err;
+    
+    return err;
 }
 
 //==============================================================================

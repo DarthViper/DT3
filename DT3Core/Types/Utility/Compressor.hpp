@@ -3,7 +3,7 @@
 #define DT3_COMPRESSOR
 //==============================================================================
 ///
-///	File: Compressor.hpp
+///    File: Compressor.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -25,10 +25,10 @@ namespace DT3 {
 
 class Compressor {
     private:
-        inline					Compressor			(void)  {}
-                                Compressor			(const Compressor &rhs);
-        Compressor &			operator =			(const Compressor &rhs);
-                                ~Compressor			(void);
+        inline                    Compressor            (void)  {}
+                                Compressor            (const Compressor &rhs);
+        Compressor &            operator =            (const Compressor &rhs);
+                                ~Compressor            (void);
 
     public:
 

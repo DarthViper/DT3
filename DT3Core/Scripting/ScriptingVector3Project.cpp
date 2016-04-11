@@ -1,12 +1,12 @@
 //==============================================================================
-///	
-///	File: ScriptingVector3Project.cpp
-///	
+///    
+///    File: ScriptingVector3Project.cpp
+///    
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
 /// This file is subject to the terms and conditions defined in
 /// file 'LICENSE.txt', which is part of this source code package.
-///	
+///    
 //==============================================================================
 
 #include "DT3Core/Scripting/ScriptingVector3Project.hpp"
@@ -38,16 +38,16 @@ IMPLEMENT_PLUG_INFO_INDEX(_out)
 
 BEGIN_IMPLEMENT_PLUGS(ScriptingVector3Project)
 
-	PLUG_INIT(_in,"In")
-		.set_input(true)
-		.affects(PLUG_INFO_INDEX(_out));
-		
-	PLUG_INIT(_camera,"Camera")
-		.set_input(true)
-		.affects(PLUG_INFO_INDEX(_out));
+    PLUG_INIT(_in,"In")
+        .set_input(true)
+        .affects(PLUG_INFO_INDEX(_out));
+        
+    PLUG_INIT(_camera,"Camera")
+        .set_input(true)
+        .affects(PLUG_INFO_INDEX(_out));
 
-	PLUG_INIT(_out,"Out")
-		.set_output(true);
+    PLUG_INIT(_out,"Out")
+        .set_output(true);
         
 END_IMPLEMENT_PLUGS
 
@@ -58,16 +58,16 @@ END_IMPLEMENT_PLUGS
 ScriptingVector3Project::ScriptingVector3Project (void)
     :   _camera         (PLUG_INFO_INDEX(_camera), NULL),
         _in             (PLUG_INFO_INDEX(_in), {0.0F,0.0F,0.0F}),
-        _out			(PLUG_INFO_INDEX(_out), {0.0F,0.0F,0.0F})
+        _out            (PLUG_INFO_INDEX(_out), {0.0F,0.0F,0.0F})
 {
 
 }
-		
+        
 ScriptingVector3Project::ScriptingVector3Project (const ScriptingVector3Project &rhs)
-    :   ScriptingBase	(rhs),
+    :   ScriptingBase    (rhs),
         _camera         (rhs._camera),
-		_in             (rhs._in),
-		_out			(rhs._out)
+        _in             (rhs._in),
+        _out            (rhs._out)
 {
 
 }
@@ -76,15 +76,15 @@ ScriptingVector3Project & ScriptingVector3Project::operator = (const ScriptingVe
 {
     // Make sure we are not assigning the class to itself
     if (&rhs != this) {        
-		ScriptingBase::operator = (rhs);
+        ScriptingBase::operator = (rhs);
 
-		_in = rhs._in;
-		_camera = rhs._camera;
-		_out = rhs._out;
-	}
+        _in = rhs._in;
+        _camera = rhs._camera;
+        _out = rhs._out;
+    }
     return (*this);
 }
-			
+            
 ScriptingVector3Project::~ScriptingVector3Project (void)
 {
 
@@ -97,11 +97,11 @@ void ScriptingVector3Project::archive (const std::shared_ptr<Archive> &archive)
 {
     ScriptingBase::archive(archive);
 
-	archive->push_domain (class_id ());
-	   
-	*archive << ARCHIVE_PLUG(_in, DATA_PERSISTENT | DATA_SETTABLE);
-	*archive << ARCHIVE_PLUG(_out, DATA_PERSISTENT);
-														     					
+    archive->push_domain (class_id ());
+       
+    *archive << ARCHIVE_PLUG(_in, DATA_PERSISTENT | DATA_SETTABLE);
+    *archive << ARCHIVE_PLUG(_out, DATA_PERSISTENT);
+                                                                                 
     archive->pop_domain ();
 }
 
@@ -110,11 +110,11 @@ void ScriptingVector3Project::archive (const std::shared_ptr<Archive> &archive)
 
 bool ScriptingVector3Project::compute (const PlugBase *plug)
 {
-	PROFILER(SCRIPTING);
+    PROFILER(SCRIPTING);
 
     if (super_type::compute(plug))  return true;
 
-	if (plug == &_out) {
+    if (plug == &_out) {
         
         if ( *_camera && _camera.has_incoming_connection() && (**_camera).isa(CameraObject::kind()) ) {
             std::shared_ptr<CameraObject> camera = checked_static_cast<CameraObject>(*_camera);
@@ -124,11 +124,11 @@ bool ScriptingVector3Project::compute (const PlugBase *plug)
             _out = {0.0F,0.0F,0.0F};
         }
 
-		_out.set_clean();
-		return true;
-	}
-	
-	return false;
+        _out.set_clean();
+        return true;
+    }
+    
+    return false;
 }
 
 //==============================================================================

@@ -1,7 +1,7 @@
 #pragma once
 //==============================================================================
 ///
-///	File: EdLevelHierarchyWindow.hpp
+///    File: EdLevelHierarchyWindow.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -46,7 +46,7 @@ class EdLevelHierarchyWindow : public QTreeWidget
     Q_OBJECT
 
     public:
-                                        EdLevelHierarchyWindow		(QWidget *parent, QToolBar *toolbar, EdLevelDocument *document);
+                                        EdLevelHierarchyWindow        (QWidget *parent, QToolBar *toolbar, EdLevelDocument *document);
 
         void                            selectionChanged            (const QItemSelection & selected, const QItemSelection & deselected);
 
@@ -90,7 +90,7 @@ class EdLevelHierarchyWindow : public QTreeWidget
         struct NodeCache {
             NodeCache(const std::shared_ptr<DT3::WorldNode> &node)       {   _node = node; }
 
-            bool   operator == (const NodeCache& rhs) const    {	return _node == rhs._node;		}
+            bool   operator == (const NodeCache& rhs) const    {    return _node == rhs._node;        }
 
             std::shared_ptr<DT3::WorldNode>      _node;
             QTreeWidgetItem                 *_list_object=nullptr;

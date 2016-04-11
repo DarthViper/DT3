@@ -3,7 +3,7 @@
 #define DT3_SOUNDSOURCECALLBACK
 //==============================================================================
 ///
-///	File: SoundSourceCallback.hpp
+///    File: SoundSourceCallback.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///

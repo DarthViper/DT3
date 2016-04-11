@@ -3,7 +3,7 @@
 #define DT3_CAMERAOBJECT
 //==============================================================================
 ///
-///	File: CameraObject.hpp
+///    File: CameraObject.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -37,56 +37,56 @@ class CameraObject: public PlaceableObject {
         DEFINE_TYPE(CameraObject,PlaceableObject)
         DEFINE_CREATE_AND_CLONE
 
-                                    CameraObject				(void);
+                                    CameraObject                (void);
                                     CameraObject                (const CameraObject &rhs);
-        CameraObject &				operator =                  (const CameraObject &rhs);
+        CameraObject &                operator =                  (const CameraObject &rhs);
         virtual                     ~CameraObject               (void);
 
         virtual void                archive                     (const std::shared_ptr<Archive> &archive);
 
     public:
         /// Accessors for the far plane of the camera (Perspective Camera)
-        DEFINE_ACCESSORS		(far_plane, set_far_plane, DTfloat, _far_plane);
+        DEFINE_ACCESSORS        (far_plane, set_far_plane, DTfloat, _far_plane);
 
         /// Accessors for the near plane of the camera (Perspective Camera)
-        DEFINE_ACCESSORS		(near_plane, set_near_plane, DTfloat, _near_plane);
+        DEFINE_ACCESSORS        (near_plane, set_near_plane, DTfloat, _near_plane);
 
         /// Accessors for the angle of the view frustum (Perspective Camera)
-        DEFINE_ACCESSORS		(angle, set_angle, DTfloat, _angle);
+        DEFINE_ACCESSORS        (angle, set_angle, DTfloat, _angle);
 
         /// Accessors for the auxilary aspect ratio multiplier (Perspective Camera)
-        DEFINE_ACCESSORS		(aspect_ratio_mul, set_aspect_ratio_mul, DTfloat, _aspect_ratio_mul);
+        DEFINE_ACCESSORS        (aspect_ratio_mul, set_aspect_ratio_mul, DTfloat, _aspect_ratio_mul);
 
         /// Accessors for the auxilary aspect ratio multiplier (Perspective Camera)
-        DEFINE_ACCESSORS		(perspective_fill_width, set_perspective_fill_width, bool, _perspective_fill_width);
+        DEFINE_ACCESSORS        (perspective_fill_width, set_perspective_fill_width, bool, _perspective_fill_width);
 
         /// Sets the perspective camera frustum
         /// \param near_plane Near plane of the camera
         /// \param far_plane Far plane of the camera
         /// \param angle Angle of the camera frustum
         /// \param aspect_ratio_mul Aspect ratio multiplier for the frustum
-        void						set_frustum                 (   const DTfloat near_plane,
+        void                        set_frustum                 (   const DTfloat near_plane,
                                                                     const DTfloat far_plane,
                                                                     const DTfloat angle,
                                                                     const DTfloat aspect_ratio_mul);
 
         /// Get Far plane (Ortho camera)
-        DEFINE_ACCESSORS		(far, set_far, DTfloat, _far);
+        DEFINE_ACCESSORS        (far, set_far, DTfloat, _far);
 
         /// Get Near plane (Ortho camera)
-        DEFINE_ACCESSORS		(near, set_near, DTfloat, _near);
+        DEFINE_ACCESSORS        (near, set_near, DTfloat, _near);
 
         /// Get Left plane (Ortho camera)
-        DEFINE_ACCESSORS		(left, set_left, DTfloat, _left);
+        DEFINE_ACCESSORS        (left, set_left, DTfloat, _left);
 
         /// Get Right plane (Ortho camera)
-        DEFINE_ACCESSORS		(right, set_right, DTfloat, _right);
+        DEFINE_ACCESSORS        (right, set_right, DTfloat, _right);
 
         /// Get Bottom plane (Ortho camera)
-        DEFINE_ACCESSORS		(bottom, set_bottom, DTfloat, _bottom);
+        DEFINE_ACCESSORS        (bottom, set_bottom, DTfloat, _bottom);
 
         /// Get Top plane (Ortho camera)
-        DEFINE_ACCESSORS		(top, set_top, DTfloat, _top);
+        DEFINE_ACCESSORS        (top, set_top, DTfloat, _top);
 
 
         /// Sets the orthographic camera frustum
@@ -96,7 +96,7 @@ class CameraObject: public PlaceableObject {
         /// \param top top plane
         /// \param near near plane
         /// \param far far plane
-        void						set_ortho                   (   const DTfloat left,
+        void                        set_ortho                   (   const DTfloat left,
                                                                     const DTfloat right,
                                                                     const DTfloat bottom,
                                                                     const DTfloat top,
@@ -115,10 +115,10 @@ class CameraObject: public PlaceableObject {
         /// \param width width of window
         /// \param height height of window
         /// \param viewport viewport of window
-        void						set_picking                 (const DTfloat x, const DTfloat y, const DTfloat width, const DTfloat height, int32_t viewport[4]);
+        void                        set_picking                 (const DTfloat x, const DTfloat y, const DTfloat width, const DTfloat height, int32_t viewport[4]);
 
         /// End picking and return the camera back to normal
-        void						end_picking					(void)							{	_picking = false;		}
+        void                        end_picking                    (void)                            {    _picking = false;        }
 
         /// Is the camera a picking camera
         /// \return is picking
@@ -128,75 +128,75 @@ class CameraObject: public PlaceableObject {
         /// Checks if a point is in the frustum
         /// \param point point to check
         /// \return is in frustum
-        bool					point_in_frustum            (const Vector3 &point) const;
+        bool                    point_in_frustum            (const Vector3 &point) const;
 
         /// Checks the distance of a point to the frustum
         /// \param point point to check
         /// \return distance to frustum
-        DTfloat						distance_to_frustum         (const Vector3 &point) const;
+        DTfloat                        distance_to_frustum         (const Vector3 &point) const;
 
 
         /// Checks if a sphere is in the frustum
         /// \param translation translation of sphere
         /// \param sphere sphere
         /// \return is in frustum
-        bool					sphere_in_frustum           (const Vector3 &translation, const Sphere &sphere) const;
+        bool                    sphere_in_frustum           (const Vector3 &translation, const Sphere &sphere) const;
 
         /// Checks if a sphere is in the frustum, but doesn't check front and back planes
         /// \param translation translation of sphere
         /// \param sphere sphere
         /// \return is in frustum
-        bool					sphere_in_frustum_no_front_back (const Vector3 &translation, const Sphere &sphere) const;
+        bool                    sphere_in_frustum_no_front_back (const Vector3 &translation, const Sphere &sphere) const;
 
         /// Checks if a box is in the frustum
         /// \param box box
         /// \return is in frustum
-        bool					box_in_frustum              (const Box &box) const;
+        bool                    box_in_frustum              (const Box &box) const;
 
 
         /// Orients the camera to look at a point in space
         /// \param to look to point
         /// \param up up vector
-        void						look_at                     (const Vector3 &to, const Vector3 &up);
+        void                        look_at                     (const Vector3 &to, const Vector3 &up);
 
         /// Orients the camera to look at a point in space and also modifies the frustum angle to focus the camera
         /// \param to look to point
         /// \param up up vector
         /// \param radius radius of focal point
-        void						focus_at                    (const Vector3 &to, const Vector3 &up, const DTfloat radius);
+        void                        focus_at                    (const Vector3 &to, const Vector3 &up, const DTfloat radius);
 
         /// Calculates an apparent size of an oject at a distance given perspective
         /// \param distance distance to object
         /// \return multiplier
-        DTfloat						fraction_screen_size        (const DTfloat distance);
+        DTfloat                        fraction_screen_size        (const DTfloat distance);
 
         /// Projects a point to openGL clip space.
         /// \param point Point to project
         /// \return projected point
-        Vector3						project_point               (const Vector3 &point) const;
+        Vector3                        project_point               (const Vector3 &point) const;
 
         /// Projects a point to raster space.
         /// \param point Point to project
         /// \return projected point
-        Vector3						project_point_to_pixel      (const Vector3 &point) const;
+        Vector3                        project_point_to_pixel      (const Vector3 &point) const;
 
         /// Unprojects a point from clip space to world space
         /// \param point Point to unproject
         /// \return unprojected point
-        Vector3						unproject_point             (const Vector3 &point) const;
+        Vector3                        unproject_point             (const Vector3 &point) const;
 
 
         /// Returns the modelview matrix for this camera. Calculated by calculateFrustum.
         /// \return Modelview matrix
-        const Matrix4 &				modelview                   (void) const					{	return _modelview;				}
+        const Matrix4 &                modelview                   (void) const                    {    return _modelview;                }
 
         /// Returns the projection matrix for this camera. Calculated by calculateFrustum.
         /// \return projection matrix
-        const Matrix4 &				projection                  (void) const					{	return _projection;				}
+        const Matrix4 &                projection                  (void) const                    {    return _projection;                }
 
 
         /// Calculates all clip planes and matrices for the camera
-        void						calculate_frustum           (void);
+        void                        calculate_frustum           (void);
 
 
         /// Camera rotation around axes
@@ -211,10 +211,10 @@ class CameraObject: public PlaceableObject {
         void                        orbit                       (DTfloat angle_x, DTfloat angle_y, const Vector3 &around_pt);
 
         /// Called when the camera is activated
-        virtual void				activated					(void)							{}
+        virtual void                activated                    (void)                            {}
 
         /// Called when the camera is done being activated
-        virtual void				activated_done              (void)							{}
+        virtual void                activated_done              (void)                            {}
 
         enum {
             PLANE_FAR = 0,
@@ -228,7 +228,7 @@ class CameraObject: public PlaceableObject {
         /// Retrieves a clip plane from the camera
         /// \param which_plane plane index
         /// \return clip plane
-        const Plane&				camera_plane                (int32_t which_plane)				{	return _frustum[which_plane];	}
+        const Plane&                camera_plane                (int32_t which_plane)                {    return _frustum[which_plane];    }
 
 
         /// Sets the post projection matrix. This is used to modify the projection matrix.
@@ -241,37 +241,37 @@ class CameraObject: public PlaceableObject {
         const Matrix4 &             post_projection_matrix      (void) const                    {   return _post_projection;    }
 
     private:
-        Plane				_frustum[6];
+        Plane                _frustum[6];
 
-        bool			_picking;
-        bool			_perspective;
+        bool            _picking;
+        bool            _perspective;
         bool           _perspective_fill_width;
 
         // Perspective
-        DTfloat				_near_plane;
-        DTfloat				_far_plane;
-        DTfloat				_angle;
-        DTfloat				_aspect_ratio_mul;
+        DTfloat                _near_plane;
+        DTfloat                _far_plane;
+        DTfloat                _angle;
+        DTfloat                _aspect_ratio_mul;
 
         // Ortho
-        DTfloat				_left;
-        DTfloat				_right;
-        DTfloat				_bottom;
-        DTfloat				_top;
-        DTfloat				_near;
-        DTfloat				_far;
+        DTfloat                _left;
+        DTfloat                _right;
+        DTfloat                _bottom;
+        DTfloat                _top;
+        DTfloat                _near;
+        DTfloat                _far;
 
         // Picking (_mode = 2)
-        DTfloat				_x;
-        DTfloat				_y;
-        DTfloat				_deltax;
-        DTfloat				_deltay;
-        int32_t				_viewport[4];
+        DTfloat                _x;
+        DTfloat                _y;
+        DTfloat                _deltax;
+        DTfloat                _deltay;
+        int32_t                _viewport[4];
 
         // Calculated matrices
-        Matrix4				_modelview;
-        Matrix4				_projection;
-        Matrix4				_post_projection;
+        Matrix4                _modelview;
+        Matrix4                _projection;
+        Matrix4                _post_projection;
 };
 
 //==============================================================================

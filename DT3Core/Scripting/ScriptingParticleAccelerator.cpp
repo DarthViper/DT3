@@ -1,12 +1,12 @@
 //==============================================================================
-///	
-///	File: ScriptingParticleAccelerator.cpp
-///	
+///    
+///    File: ScriptingParticleAccelerator.cpp
+///    
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
 /// This file is subject to the terms and conditions defined in
 /// file 'LICENSE.txt', which is part of this source code package.
-///	
+///    
 //==============================================================================
 
 #include "DT3Core/Scripting/ScriptingParticleAccelerator.hpp"
@@ -38,16 +38,16 @@ IMPLEMENT_PLUG_INFO_INDEX(_out)
 
 BEGIN_IMPLEMENT_PLUGS(ScriptingParticleAccelerator)
 
-	PLUG_INIT(_acceleration,"Acceleration")
-		.set_input(true)
-		.affects(PLUG_INFO_INDEX(_out));
+    PLUG_INIT(_acceleration,"Acceleration")
+        .set_input(true)
+        .affects(PLUG_INFO_INDEX(_out));
 
-	PLUG_INIT(_in,"In")
-		.set_input(true)
-		.affects(PLUG_INFO_INDEX(_out));
-	
-	PLUG_INIT(_out,"Out")
-		.set_output(true);
+    PLUG_INIT(_in,"In")
+        .set_input(true)
+        .affects(PLUG_INFO_INDEX(_out));
+    
+    PLUG_INIT(_out,"Out")
+        .set_output(true);
         
 END_IMPLEMENT_PLUGS
 
@@ -56,18 +56,18 @@ END_IMPLEMENT_PLUGS
 //==============================================================================
 
 ScriptingParticleAccelerator::ScriptingParticleAccelerator (void)
-    :   _acceleration	(PLUG_INFO_INDEX(_acceleration),  {0.0F,0.0F,0.0F}),
-		_in				(PLUG_INFO_INDEX(_in)),
-		_out			(PLUG_INFO_INDEX(_out))
+    :   _acceleration    (PLUG_INFO_INDEX(_acceleration),  {0.0F,0.0F,0.0F}),
+        _in                (PLUG_INFO_INDEX(_in)),
+        _out            (PLUG_INFO_INDEX(_out))
 {  
 
 }
-		
+        
 ScriptingParticleAccelerator::ScriptingParticleAccelerator (const ScriptingParticleAccelerator &rhs)
-    :   ScriptingBase	(rhs),
-		_acceleration	(rhs._acceleration),
-		_in				(rhs._in),
-		_out			(rhs._out)
+    :   ScriptingBase    (rhs),
+        _acceleration    (rhs._acceleration),
+        _in                (rhs._in),
+        _out            (rhs._out)
 {   
 
 }
@@ -76,15 +76,15 @@ ScriptingParticleAccelerator & ScriptingParticleAccelerator::operator = (const S
 {
     // Make sure we are not assigning the class to itself
     if (&rhs != this) {        
-		ScriptingBase::operator = (rhs);
+        ScriptingBase::operator = (rhs);
 
-		_acceleration = rhs._acceleration;
-		_in	= rhs._in;
-		_out = rhs._out;
-	}
+        _acceleration = rhs._acceleration;
+        _in    = rhs._in;
+        _out = rhs._out;
+    }
     return (*this);
 }
-			
+            
 ScriptingParticleAccelerator::~ScriptingParticleAccelerator (void)
 {
 
@@ -97,10 +97,10 @@ void ScriptingParticleAccelerator::archive (const std::shared_ptr<Archive> &arch
 {
     ScriptingBase::archive(archive);
 
-	archive->push_domain (class_id ());
-	
-	*archive << ARCHIVE_PLUG(_acceleration, DATA_PERSISTENT | DATA_SETTABLE);
-	        					
+    archive->push_domain (class_id ());
+    
+    *archive << ARCHIVE_PLUG(_acceleration, DATA_PERSISTENT | DATA_SETTABLE);
+                                
     archive->pop_domain ();
 }
 
@@ -109,7 +109,7 @@ void ScriptingParticleAccelerator::archive (const std::shared_ptr<Archive> &arch
 
 void ScriptingParticleAccelerator::tick (const DTfloat dt)
 {
-	PROFILER(PARTICLES);
+    PROFILER(PARTICLES);
 
     // Make sure there are input particles
     std::shared_ptr<Particles> particles = _in;
@@ -139,19 +139,19 @@ void ScriptingParticleAccelerator::tick (const DTfloat dt)
 
 bool ScriptingParticleAccelerator::compute (const PlugBase *plug)
 {
-	PROFILER(PARTICLES);
+    PROFILER(PARTICLES);
 
     if (super_type::compute(plug))  return true;
 
-	if (plug == &_out) {
-		
-		_out = _in;
-		_out.set_clean();
-		
-		return true;
-	}
-	
-	return false;
+    if (plug == &_out) {
+        
+        _out = _in;
+        _out.set_clean();
+        
+        return true;
+    }
+    
+    return false;
 }
 
 //==============================================================================

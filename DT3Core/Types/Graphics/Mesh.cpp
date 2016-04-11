@@ -1,12 +1,12 @@
 //==============================================================================
-///	
-///	File: Mesh.cpp
-///	
+///    
+///    File: Mesh.cpp
+///    
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
 /// This file is subject to the terms and conditions defined in
 /// file 'LICENSE.txt', which is part of this source code package.
-///	
+///    
 //==============================================================================
 
 #include "DT3Core/Types/Graphics/Mesh.hpp"
@@ -65,7 +65,7 @@ Mesh::Mesh (Mesh &&rhs)
 {
 
 }
-		
+        
 Mesh& Mesh::operator = (const Mesh &rhs)
 {
     _vertex_stream = rhs._vertex_stream;
@@ -79,7 +79,7 @@ Mesh& Mesh::operator = (const Mesh &rhs)
     _index_stream = rhs._index_stream;
 
     return (*this);
-}	
+}    
 
 Mesh& Mesh::operator = (Mesh &&rhs)
 {
@@ -94,7 +94,7 @@ Mesh& Mesh::operator = (Mesh &&rhs)
     _index_stream = std::move(rhs._index_stream);
 
     return (*this);
-}	
+}    
 
 Mesh::~Mesh (void)
 {
@@ -102,7 +102,7 @@ Mesh::~Mesh (void)
 }
 
 //==============================================================================
-//==============================================================================		
+//==============================================================================        
 
 void Mesh::generate_normals (void)
 {
@@ -125,17 +125,17 @@ void Mesh::generate_normals (void)
     // Accumulate normals
     for (uint32_t i = 0; i < _index_stream.size(); ++i) {
         uint32_t ai,bi,ci;
-		
-		ai = _index_stream[i].v[0];
-		bi = _index_stream[i].v[1];
-		ci = _index_stream[i].v[2];
-		
-		ASSERT(ai < _vertex_stream.size());
-		ASSERT(bi < _vertex_stream.size());
-		ASSERT(ci < _vertex_stream.size());
-		
-		Vector3 n = Vector3::cross(_vertex_stream[bi] - _vertex_stream[ai], _vertex_stream[ci] - _vertex_stream[ai]);
-		n.normalize();
+        
+        ai = _index_stream[i].v[0];
+        bi = _index_stream[i].v[1];
+        ci = _index_stream[i].v[2];
+        
+        ASSERT(ai < _vertex_stream.size());
+        ASSERT(bi < _vertex_stream.size());
+        ASSERT(ci < _vertex_stream.size());
+        
+        Vector3 n = Vector3::cross(_vertex_stream[bi] - _vertex_stream[ai], _vertex_stream[ci] - _vertex_stream[ai]);
+        n.normalize();
         
         // Hashes of vertex positions
         uint32_t h0 = hash_vertex(ai, true);
@@ -161,19 +161,19 @@ void Mesh::generate_normals (void)
             if (equal_vertex(ci, j, true))
                 _normals_stream[j] += n;
         }
-		
-	}
-	
+        
+    }
+    
     for (uint32_t i = 0; i < _vertex_stream.size(); ++i)
         if (_normals_stream[i] != Vector3 {0.0F,0.0F,0.0F})
-			_normals_stream[i].normalize();
-		
+            _normals_stream[i].normalize();
+        
 }
-		
+        
 //==============================================================================
-//==============================================================================		
+//==============================================================================        
 
-void Mesh::generate_tangents	(void)
+void Mesh::generate_tangents    (void)
 {    
     std::vector<Vector3> tan1;
     std::vector<Vector3> tan2;
@@ -185,80 +185,80 @@ void Mesh::generate_tangents	(void)
         uint32_t i1 = _index_stream[face_index].v[0];
         uint32_t i2 = _index_stream[face_index].v[1];
         uint32_t i3 = _index_stream[face_index].v[2];
-		
-		ASSERT(i1 < _vertex_stream.size());
-		ASSERT(i2 < _vertex_stream.size());
-		ASSERT(i3 < _vertex_stream.size());
-		
-		Vector3	&v1 = _vertex_stream[i1];
-		Vector3	&v2 = _vertex_stream[i2];
-		Vector3	&v3 = _vertex_stream[i3];
+        
+        ASSERT(i1 < _vertex_stream.size());
+        ASSERT(i2 < _vertex_stream.size());
+        ASSERT(i3 < _vertex_stream.size());
+        
+        Vector3    &v1 = _vertex_stream[i1];
+        Vector3    &v2 = _vertex_stream[i2];
+        Vector3    &v3 = _vertex_stream[i3];
 
-		Vector2	&w1 = _uvs_stream_0[i1];
-		Vector2	&w2 = _uvs_stream_0[i2];
-		Vector2	&w3 = _uvs_stream_0[i3];
+        Vector2    &w1 = _uvs_stream_0[i1];
+        Vector2    &w2 = _uvs_stream_0[i2];
+        Vector2    &w3 = _uvs_stream_0[i3];
 
-		DTfloat x1 = v2.x - v1.x;
-		DTfloat x2 = v3.x - v1.x;
-		DTfloat y1 = v2.y - v1.y;
-		DTfloat y2 = v3.y - v1.y;
-		DTfloat z1 = v2.z - v1.z;
-		DTfloat z2 = v3.z - v1.z; 
+        DTfloat x1 = v2.x - v1.x;
+        DTfloat x2 = v3.x - v1.x;
+        DTfloat y1 = v2.y - v1.y;
+        DTfloat y2 = v3.y - v1.y;
+        DTfloat z1 = v2.z - v1.z;
+        DTfloat z2 = v3.z - v1.z; 
 
         DTfloat s1 = w2.x - w1.x;
         DTfloat s2 = w3.x - w1.x;
         DTfloat t1 = w2.y - w1.y;
         DTfloat t2 = w3.y - w1.y;
 
-		Vector3 sdir, tdir;
+        Vector3 sdir, tdir;
 
-		DTfloat r = s1 * t2 - s2 * t1;
-		if (r != 0.0F) {
-			r = 1.0F / r;
+        DTfloat r = s1 * t2 - s2 * t1;
+        if (r != 0.0F) {
+            r = 1.0F / r;
             sdir = {(t2 * x1 - t1 * x2) * r, (t2 * y1 - t1 * y2) * r, (t2 * z1 - t1 * z2) * r};
             tdir = {(s1 * x2 - s2 * x1) * r, (s1 * y2 - s2 * y1) * r, (s1 * z2 - s2 * z1) * r};
-		} else {
+        } else {
             sdir = {0.0F,0.0F,0.0F};
             tdir = {0.0F,0.0F,0.0F};
-		}
-		
+        }
+        
 
-		tan1[i1] = tan1[i1] + sdir;
-		tan1[i2] = tan1[i2] + sdir;
-		tan1[i3] = tan1[i3] + sdir; 
+        tan1[i1] = tan1[i1] + sdir;
+        tan1[i2] = tan1[i2] + sdir;
+        tan1[i3] = tan1[i3] + sdir; 
 
-		tan2[i1] = tan2[i1] + tdir;
-		tan2[i2] = tan2[i2] + tdir;
-		tan2[i3] = tan2[i3] + tdir; 
+        tan2[i1] = tan2[i1] + tdir;
+        tan2[i2] = tan2[i2] + tdir;
+        tan2[i3] = tan2[i3] + tdir; 
     } 
 
     _tangents_stream.resize(_vertex_stream.size());
 
     for (uint32_t vert_index = 0; vert_index < _vertex_stream.size(); ++vert_index) {
-		const Vector3 n = _normals_stream[vert_index];
-		const Vector3 t = tan1[vert_index];
-		
-		Vector3 temp_v;
-		DTfloat temp_s;
-		
-		temp_s = Vector3::dot(n,t);
-		temp_v = temp_s * n;
-		temp_v = t - temp_v;
-		
-		if (temp_v.x != 0.0F || temp_v.y != 0.0F || temp_v.z != 0.0F) 
-			temp_v.normalize();
-				
-		_tangents_stream[vert_index] = temp_v;
-		
-		temp_v = Vector3::cross(n,t);
-		temp_s = Vector3::dot(temp_v,tan2[vert_index]);
-		if (temp_s < 0.0F)
-			_tangents_stream[vert_index] = -_tangents_stream[vert_index];
+        const Vector3 n = _normals_stream[vert_index];
+        const Vector3 t = tan1[vert_index];
+        
+        Vector3 temp_v;
+        DTfloat temp_s;
+        
+        temp_s = Vector3::dot(n,t);
+        temp_v = temp_s * n;
+        temp_v = t - temp_v;
+        
+        if (temp_v.x != 0.0F || temp_v.y != 0.0F || temp_v.z != 0.0F) 
+            temp_v.normalize();
+                
+        _tangents_stream[vert_index] = temp_v;
+        
+        temp_v = Vector3::cross(n,t);
+        temp_s = Vector3::dot(temp_v,tan2[vert_index]);
+        if (temp_s < 0.0F)
+            _tangents_stream[vert_index] = -_tangents_stream[vert_index];
     } 
 }
 
 //==============================================================================
-//==============================================================================	
+//==============================================================================    
 
 uint32_t Mesh::hash_vertex (uint32_t i, bool vertex_only)
 {
@@ -347,10 +347,10 @@ void Mesh::collapse_verts (void)
     // Rebuild the mesh
     //
     
-    std::vector<Vector3>		vertex_stream;
-    std::vector<Vector3>		normals_stream;
-    std::vector<Vector3>		tangents_stream;
-    std::vector<Color4b>		colors_stream;
+    std::vector<Vector3>        vertex_stream;
+    std::vector<Vector3>        normals_stream;
+    std::vector<Vector3>        tangents_stream;
+    std::vector<Color4b>        colors_stream;
     std::vector<Vector2>        uvs_stream_0;
     std::vector<Vector2>        uvs_stream_1;
     std::vector<WeightsIndex>   weights_index_stream;
@@ -390,7 +390,7 @@ void Mesh::collapse_verts (void)
         if (j == list.end()) {
             if (vertex_stream.size() > 0)           vertex_stream[num_new_verts] = _vertex_stream[i];
             if (normals_stream.size() > 0)          normals_stream[num_new_verts] = _normals_stream[i];
-            if (tangents_stream.size() > 0)			tangents_stream[num_new_verts] = _tangents_stream[i];
+            if (tangents_stream.size() > 0)            tangents_stream[num_new_verts] = _tangents_stream[i];
             if (colors_stream.size() > 0)           colors_stream[num_new_verts] = _colors_stream[i];
             if (uvs_stream_0.size() > 0)            uvs_stream_0[num_new_verts] = _uvs_stream_0[i];
             if (uvs_stream_1.size() > 0)            uvs_stream_1[num_new_verts] = _uvs_stream_1[i];
@@ -460,15 +460,15 @@ void Mesh::collapse_verts (void)
     } 
     
                 
-	if (vertex_stream.size() > 0)           vertex_stream.resize(num_new_verts);
-	if (normals_stream.size() > 0)          normals_stream.resize(num_new_verts);
-	if (tangents_stream.size() > 0)			tangents_stream.resize(num_new_verts);
-	if (colors_stream.size() > 0)           colors_stream.resize(num_new_verts);
-	if (uvs_stream_0.size() > 0)            uvs_stream_0.resize(num_new_verts);
-	if (uvs_stream_1.size() > 0)            uvs_stream_1.resize(num_new_verts);
-	if (weights_index_stream.size() > 0)    weights_index_stream.resize(num_new_verts);
-	if (weights_strength_stream.size() > 0) weights_strength_stream.resize(num_new_verts);
-	if (smoothing_group.size() > 0)         smoothing_group.resize(num_new_verts);
+    if (vertex_stream.size() > 0)           vertex_stream.resize(num_new_verts);
+    if (normals_stream.size() > 0)          normals_stream.resize(num_new_verts);
+    if (tangents_stream.size() > 0)            tangents_stream.resize(num_new_verts);
+    if (colors_stream.size() > 0)           colors_stream.resize(num_new_verts);
+    if (uvs_stream_0.size() > 0)            uvs_stream_0.resize(num_new_verts);
+    if (uvs_stream_1.size() > 0)            uvs_stream_1.resize(num_new_verts);
+    if (weights_index_stream.size() > 0)    weights_index_stream.resize(num_new_verts);
+    if (weights_strength_stream.size() > 0) weights_strength_stream.resize(num_new_verts);
+    if (smoothing_group.size() > 0)         smoothing_group.resize(num_new_verts);
     
     _vertex_stream = vertex_stream;
     _normals_stream = normals_stream;
@@ -487,14 +487,14 @@ void Mesh::collapse_verts (void)
 }
 
 //==============================================================================
-//==============================================================================		
+//==============================================================================        
 
 void Mesh::generate_weights (void)
 {
-	_weights_index_stream.resize(_vertex_stream.size(), WeightsIndex(0, 0, 0, 0));
-	_weights_strength_stream.resize(_vertex_stream.size(), Vector4(1.0F, 0.0F, 0.0F, 0.0F));
-}			
-	
+    _weights_index_stream.resize(_vertex_stream.size(), WeightsIndex(0, 0, 0, 0));
+    _weights_strength_stream.resize(_vertex_stream.size(), Vector4(1.0F, 0.0F, 0.0F, 0.0F));
+}            
+    
 //==============================================================================
 //==============================================================================
 

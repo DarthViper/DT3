@@ -3,7 +3,7 @@
 #define DT3_SCRIPTINGTOUCH
 //==============================================================================
 ///
-///	File: ScriptingTouch.hpp
+///    File: ScriptingTouch.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -42,7 +42,7 @@ class ScriptingTouch: public ScriptingBase {
 
                                     ScriptingTouch          (void);
                                     ScriptingTouch          (const ScriptingTouch &rhs);
-        ScriptingTouch &			operator =				(const ScriptingTouch &rhs);
+        ScriptingTouch &            operator =                (const ScriptingTouch &rhs);
         virtual                     ~ScriptingTouch         (void);
 
         virtual void                archive                 (const std::shared_ptr<Archive> &archive);
@@ -67,20 +67,20 @@ class ScriptingTouch: public ScriptingBase {
         void                        draw                    (const std::shared_ptr<CameraObject> &camera, const DTfloat lag);
 
     private:
-        Plug<Vector2>				_touch_pos_1;
-        Plug<Vector2>				_touch_vel_1;
-        Plug<Vector2>				_touch_initial_1;
-        Plug<bool>				_touch_active_1;
+        Plug<Vector2>                _touch_pos_1;
+        Plug<Vector2>                _touch_vel_1;
+        Plug<Vector2>                _touch_initial_1;
+        Plug<bool>                _touch_active_1;
 
-        Plug<Vector2>				_touch_pos_2;
-        Plug<Vector2>				_touch_vel_2;
-        Plug<Vector2>				_touch_initial_2;
-        Plug<bool>				_touch_active_2;
+        Plug<Vector2>                _touch_pos_2;
+        Plug<Vector2>                _touch_vel_2;
+        Plug<Vector2>                _touch_initial_2;
+        Plug<bool>                _touch_active_2;
 
-        Plug<Vector2>				_touch_pos_3;
-        Plug<Vector2>				_touch_vel_3;
-        Plug<Vector2>				_touch_initial_3;
-        Plug<bool>				_touch_active_3;
+        Plug<Vector2>                _touch_pos_3;
+        Plug<Vector2>                _touch_vel_3;
+        Plug<Vector2>                _touch_initial_3;
+        Plug<bool>                _touch_active_3;
 
         bool                   _clear_vel_1;
         bool                   _clear_vel_2;

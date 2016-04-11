@@ -1,7 +1,7 @@
 #pragma once
 //==============================================================================
 ///
-///	File: DeviceGraphics.hpp
+///    File: DeviceGraphics.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -229,9 +229,9 @@ struct DT3GLRasterizerState {
 
 struct DT3GLSamplerState {
     DT3GLFilterMode     filter;
-    DT3GLAddressMode	address_u;
-    DT3GLAddressMode	address_v;
-    DT3GLAddressMode	address_w;
+    DT3GLAddressMode    address_u;
+    DT3GLAddressMode    address_v;
+    DT3GLAddressMode    address_w;
     DTfloat             mip_lod_bias;
     DTfloat             max_anisotropy;
 };
@@ -651,9 +651,9 @@ class DeviceGraphics: public DeviceBase {
 
 #define DEF_GL_TYPE_TRAITS(T)                                                       \
     template <> struct Info<T> {                                                    \
-        static T                    default_value(void)	{	return (T) 0;   }       \
-        static const DTcharacter*	name(void)          {	return #T;      }       \
-        static const DTcharacter*	name_caps(void)     {	return #T;      }       \
+        static T                    default_value(void)    {    return (T) 0;   }       \
+        static const DTcharacter*    name(void)          {    return #T;      }       \
+        static const DTcharacter*    name_caps(void)     {    return #T;      }       \
         enum { isFundamental = 0 };                                                 \
     };
 

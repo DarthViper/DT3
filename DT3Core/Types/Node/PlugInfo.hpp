@@ -1,7 +1,7 @@
 #pragma once
 //==============================================================================
 ///
-///	File: PlugInfo.hpp
+///    File: PlugInfo.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -58,7 +58,7 @@ class PlugInfo {
 
         /// Returns plug name
         /// \return plug name
-        inline const std::string&       name                (void) const				{	return _name;								}
+        inline const std::string&       name                (void) const                {    return _name;                                }
 
 
         /// Copy values
@@ -72,66 +72,66 @@ class PlugInfo {
 
         /// Returns plug type
         /// \return plug type
-        inline const DTcharacter*       plug_type           (void) const				{	return (*_type_fn)();                       }
+        inline const DTcharacter*       plug_type           (void) const                {    return (*_type_fn)();                       }
 
 
         /// Returns no draw flag
         /// \return No draw flag
-        inline bool                is_no_draw          (void) const				{	return _is_no_draw;							}
+        inline bool                is_no_draw          (void) const                {    return _is_no_draw;                            }
 
         /// Sets the no draw flag
         /// \param flag no draw flag
         /// \return This event info
-        inline PlugInfo&                set_no_draw         (const bool flag)		{	_is_no_draw = flag;	return *this;			}
+        inline PlugInfo&                set_no_draw         (const bool flag)        {    _is_no_draw = flag;    return *this;            }
 
 
         /// Returns is single output flag (i.e. can only connect to one other plug)
         /// \return is single output
-        inline bool                is_single_output    (void) const				{	return _is_single_output;                   }
+        inline bool                is_single_output    (void) const                {    return _is_single_output;                   }
 
         /// Sets is single output flag (i.e. can only connect to one other plug)
         /// \param flag single output flag
         /// \return This event info
-        inline PlugInfo&                set_single_output   (const bool flag)		{	_is_single_output = flag;	return *this;   }
+        inline PlugInfo&                set_single_output   (const bool flag)        {    _is_single_output = flag;    return *this;   }
 
 
         /// Returns is input flag
         /// \return is input
-        inline bool                is_input            (void) const				{	return _is_input;							}
+        inline bool                is_input            (void) const                {    return _is_input;                            }
 
         /// Sets the is input flag
         /// \param flag is input flag
         /// \return This event info
-        inline PlugInfo&                set_input           (const bool flag)		{	_is_input = flag;	return *this;			}
+        inline PlugInfo&                set_input           (const bool flag)        {    _is_input = flag;    return *this;            }
 
 
         /// Returns is output flag
         /// \return is output
-        inline bool                is_output           (void) const				{	return _is_output;							}
+        inline bool                is_output           (void) const                {    return _is_output;                            }
 
         /// Sets the is output flag
         /// \param flag is output flag
         /// \return This event info
-        inline PlugInfo&                set_output          (const bool flag)		{	_is_output = flag;	return *this;			}
+        inline PlugInfo&                set_output          (const bool flag)        {    _is_output = flag;    return *this;            }
 
 
 
         /// Returns wether the plug requires computing
         /// \return requires compute
-        inline bool                requires_compute        (void) const            {	return _is_compute;							}
+        inline bool                requires_compute        (void) const            {    return _is_compute;                            }
 
         /// Sets wether the plug requires computing or not
         /// \param flag requires compute
-        inline void                     set_requires_compute    (const bool flag)  {	_is_compute = flag;                         }
+        inline void                     set_requires_compute    (const bool flag)  {    _is_compute = flag;                         }
 
 
         /// Returns wether the plug is always dirty
         /// \return is always dirty
-        inline bool                is_always_dirty     (void) const				{	return _is_always_dirty;                    }
+        inline bool                is_always_dirty     (void) const                {    return _is_always_dirty;                    }
 
         /// Sets wether the plug is always dirty
         /// \param flag always dirty
-        inline void                     set_always_dirty    (const bool flag)      {	_is_always_dirty = flag;                    }
+        inline void                     set_always_dirty    (const bool flag)      {    _is_always_dirty = flag;                    }
 
 
         /// Sets which plugs are affected by this plug
@@ -141,7 +141,7 @@ class PlugInfo {
 
         /// Returns which plugs are affected by this plug
         /// \return affected plugs
-        const std::vector<PlugInfo*>&   affects             (void) const				{	return _affects;							}
+        const std::vector<PlugInfo*>&   affects             (void) const                {    return _affects;                            }
 
 
         /// Sets a plug that affects this plug
@@ -150,12 +150,12 @@ class PlugInfo {
 
         /// Returns which plugs that affects this plug
         /// \return affected by plugs
-        const std::vector<PlugInfo*>&   affected_by         (void) const				{	return _affected_by;						}
+        const std::vector<PlugInfo*>&   affected_by         (void) const                {    return _affected_by;                        }
 
 
         /// Returns the next info object in the list
         /// \return Next info object
-        PlugInfo*                       next_info           (void) const				{	return _next;								}
+        PlugInfo*                       next_info           (void) const                {    return _next;                                }
 
 
         /// Given the plug, return a pointer to the node
@@ -217,10 +217,10 @@ class PlugInfo {
 
 #define PLUG_INFO_INDEX(Plug)       Plug##Index
 
-#define IMPLEMENT_PLUG_INFO_INDEX(Plug)	namespace {	uint16_t PLUG_INFO_INDEX(Plug) = PlugInfo::get_free_index();	}
+#define IMPLEMENT_PLUG_INFO_INDEX(Plug)    namespace {    uint16_t PLUG_INFO_INDEX(Plug) = PlugInfo::get_free_index();    }
 
-#define PLUG_OFFSET(Plug)			(	(uint8_t*) (static_cast<PlugBase*>(&(reinterpret_cast<type*>(0x99999999)->Plug))) - \
-                                        (uint8_t*) (static_cast<PlugNode*>(reinterpret_cast<type*>(0x99999999)))	)
+#define PLUG_OFFSET(Plug)            (    (uint8_t*) (static_cast<PlugBase*>(&(reinterpret_cast<type*>(0x99999999)->Plug))) - \
+                                        (uint8_t*) (static_cast<PlugNode*>(reinterpret_cast<type*>(0x99999999)))    )
 
 #define PLUG_INIT(Plug, Name)       PlugInfo::get_info(PLUG_INFO_INDEX(Plug)).init(         \
                                         Name,                                               \

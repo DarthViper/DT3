@@ -1,6 +1,6 @@
 //==============================================================================
 ///
-///	File: EdLevelPropertyEnumField.cpp
+///    File: EdLevelPropertyEnumField.cpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -48,11 +48,11 @@ EdLevelPropertyEnumField::EdLevelPropertyEnumField (EdLevelPropertiesWindow *par
         _value->addItem(enums[i].c_str());
     }
 
-    connect(	_value,         SIGNAL(activated(int)),
-                this,           SLOT(doWriteParams())	);
+    connect(    _value,         SIGNAL(activated(int)),
+                this,           SLOT(doWriteParams())    );
 
-    connect(	this,           SIGNAL(doCommand(QString, bool)),
-                parent,         SLOT(onCommand(QString, bool))	);
+    connect(    this,           SIGNAL(doCommand(QString, bool)),
+                parent,         SLOT(onCommand(QString, bool))    );
 
     QGridLayout *layout = new QGridLayout;
     layout->setContentsMargins(0,0,0,0);
@@ -71,7 +71,7 @@ EdLevelPropertyEnumField::EdLevelPropertyEnumField (EdLevelPropertiesWindow *par
     doReadParams();
 }
 
-EdLevelPropertyEnumField::~EdLevelPropertyEnumField	(void)
+EdLevelPropertyEnumField::~EdLevelPropertyEnumField    (void)
 {
 
 }

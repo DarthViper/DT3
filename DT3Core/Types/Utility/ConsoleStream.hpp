@@ -3,7 +3,7 @@
 #define DT3_CONSOLESTREAM
 //==============================================================================
 ///
-///	File: ConsoleStream.hpp
+///    File: ConsoleStream.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -32,7 +32,7 @@ class ConsoleStream {
                         ConsoleStream   (ConsoleStream &rhs);
 
     private:
-        ConsoleStream&	operator =      (const ConsoleStream &rhs);
+        ConsoleStream&    operator =      (const ConsoleStream &rhs);
     public:
                         ~ConsoleStream  (void);
 
@@ -54,7 +54,7 @@ class ConsoleStream {
     private:
         struct SS {
             TextBufferStream    _buffer;
-            uint32_t				_type;
+            uint32_t                _type;
         };
 
         std::shared_ptr<SS>     _ss;
@@ -97,7 +97,7 @@ class ConsoleNullStream {
     public:
         template <class V>
         ConsoleNullStream& operator << (const V& v) {
-            return *this;	// Does nothing
+            return *this;    // Does nothing
         }
 };
 

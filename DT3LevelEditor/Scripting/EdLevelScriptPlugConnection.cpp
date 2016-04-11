@@ -1,6 +1,6 @@
 //==============================================================================
 ///
-///	File: EdLevelScriptPlugConnection.cpp
+///    File: EdLevelScriptPlugConnection.cpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -34,7 +34,7 @@ const float EdLevelScriptPlugConnection::OFFSET = 5.0F;
 //==============================================================================
 //==============================================================================
 
-EdLevelScriptPlugConnection::EdLevelScriptPlugConnection	(   EdLevelScriptNodeStandard *node1, PlugBase *plug1,
+EdLevelScriptPlugConnection::EdLevelScriptPlugConnection    (   EdLevelScriptNodeStandard *node1, PlugBase *plug1,
                                                                 EdLevelScriptNodeStandard *node2, PlugBase *plug2)
     :   EdLevelScriptConnection(node1, node2),
         _font("Arial", 9),
@@ -112,8 +112,8 @@ void EdLevelScriptPlugConnection::paint(QPainter *painter, const QStyleOptionGra
     painter->setBrush(Qt::NoBrush);
 
     QPainterPath path0;
-    path0.moveTo(	_p1_local.x() + SHADOW_OFFSET_X + OFFSET,                   _p1_local.y() + SHADOW_OFFSET_Y);
-    path0.cubicTo (	_p1_local.x() + SHADOW_OFFSET_X + OFFSET + BEZIER_SIZE,     _p1_local.y() + SHADOW_OFFSET_Y,
+    path0.moveTo(    _p1_local.x() + SHADOW_OFFSET_X + OFFSET,                   _p1_local.y() + SHADOW_OFFSET_Y);
+    path0.cubicTo (    _p1_local.x() + SHADOW_OFFSET_X + OFFSET + BEZIER_SIZE,     _p1_local.y() + SHADOW_OFFSET_Y,
                     _p2_local.x() + SHADOW_OFFSET_X - OFFSET - BEZIER_SIZE,     _p2_local.y() + SHADOW_OFFSET_Y,
                     _p2_local.x() + SHADOW_OFFSET_X - OFFSET,                   _p2_local.y() + SHADOW_OFFSET_Y );
     painter->drawPath(path0);
@@ -137,8 +137,8 @@ void EdLevelScriptPlugConnection::paint(QPainter *painter, const QStyleOptionGra
     painter->setBrush(Qt::NoBrush);
 
     QPainterPath path1;
-    path1.moveTo(	_p1_local.x() + OFFSET,                  _p1_local.y());
-    path1.cubicTo (	_p1_local.x() + OFFSET + BEZIER_SIZE,    _p1_local.y(),
+    path1.moveTo(    _p1_local.x() + OFFSET,                  _p1_local.y());
+    path1.cubicTo (    _p1_local.x() + OFFSET + BEZIER_SIZE,    _p1_local.y(),
                     _p2_local.x() - OFFSET - BEZIER_SIZE,    _p2_local.y(),
                     _p2_local.x() - OFFSET,                  _p2_local.y() );
     painter->drawPath(path1);

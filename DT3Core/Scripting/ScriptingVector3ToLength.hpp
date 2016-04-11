@@ -3,7 +3,7 @@
 #define DT3_SCRIPTINGVECTOR3TOLENGTH
 //==============================================================================
 ///
-///	File: ScriptingVector3ToLength.hpp
+///    File: ScriptingVector3ToLength.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -35,19 +35,19 @@ class ScriptingVector3ToLength: public ScriptingBase {
 
                                     ScriptingVector3ToLength    (void);
                                     ScriptingVector3ToLength    (const ScriptingVector3ToLength &rhs);
-        ScriptingVector3ToLength &	operator =					(const ScriptingVector3ToLength &rhs);
-        virtual						~ScriptingVector3ToLength	(void);
+        ScriptingVector3ToLength &    operator =                    (const ScriptingVector3ToLength &rhs);
+        virtual                        ~ScriptingVector3ToLength    (void);
 
-        virtual void				archive                 (const std::shared_ptr<Archive> &archive);
+        virtual void                archive                 (const std::shared_ptr<Archive> &archive);
 
     public:
         /// Computes the value of the node
         /// \param plug plug to compute
-        bool					compute					(const PlugBase *plug);
+        bool                    compute                    (const PlugBase *plug);
 
     private:
-        Plug<Vector3>				_in;
-        Plug<DTfloat>				_out;
+        Plug<Vector3>                _in;
+        Plug<DTfloat>                _out;
 };
 
 //==============================================================================

@@ -3,7 +3,7 @@
 #define DT3_SCRIPTINGTIMERUPDOWN
 //==============================================================================
 ///
-///	File: ScriptingTimerUpDown.hpp
+///    File: ScriptingTimerUpDown.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -33,10 +33,10 @@ class ScriptingTimerUpDown: public ScriptingBase {
         DEFINE_CREATE_AND_CLONE
         DEFINE_PLUG_NODE
 
-                                    ScriptingTimerUpDown	(void);
-                                    ScriptingTimerUpDown	(const ScriptingTimerUpDown &rhs);
-        ScriptingTimerUpDown &		operator =				(const ScriptingTimerUpDown &rhs);
-        virtual                     ~ScriptingTimerUpDown	(void);
+                                    ScriptingTimerUpDown    (void);
+                                    ScriptingTimerUpDown    (const ScriptingTimerUpDown &rhs);
+        ScriptingTimerUpDown &        operator =                (const ScriptingTimerUpDown &rhs);
+        virtual                     ~ScriptingTimerUpDown    (void);
 
         virtual void                archive                 (const std::shared_ptr<Archive> &archive);
 
@@ -53,16 +53,16 @@ class ScriptingTimerUpDown: public ScriptingBase {
         void                        tick                    (const DTfloat dt);
 
     private:
-        DTfloat						_lower_range;
-        DTfloat						_upper_range;
+        DTfloat                        _lower_range;
+        DTfloat                        _upper_range;
 
-        Plug<DTfloat>				_speed;
-        Plug<bool>				_active;
+        Plug<DTfloat>                _speed;
+        Plug<bool>                _active;
 
-        Plug<DTfloat>				_time;
-        Plug<DTfloat>				_t;
-        Plug<bool>				_counting_up;
-        Plug<bool>				_counting_down;
+        Plug<DTfloat>                _time;
+        Plug<DTfloat>                _t;
+        Plug<bool>                _counting_up;
+        Plug<bool>                _counting_down;
 
         bool                   _is_counting_up;
 

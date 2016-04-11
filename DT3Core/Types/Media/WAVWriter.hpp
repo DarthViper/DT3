@@ -3,7 +3,7 @@
 #define DT3_WAVWRITER
 //==============================================================================
 ///
-///	File: WAVWriter.hpp
+///    File: WAVWriter.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -32,10 +32,10 @@ class FilePath;
 
 class WAVWriter {
     public:
-                                WAVWriter			(void);
-                                WAVWriter			(const WAVWriter &rhs);
-        WAVWriter &             operator =			(const WAVWriter &rhs);
-                                ~WAVWriter			(void);
+                                WAVWriter            (void);
+                                WAVWriter            (const WAVWriter &rhs);
+        WAVWriter &             operator =            (const WAVWriter &rhs);
+                                ~WAVWriter            (void);
 
     public:
         /// Open a blank sound file
@@ -61,12 +61,12 @@ class WAVWriter {
 
     private:
         struct ChunkHeader {
-            DTcharacter	id[4];
-            uint32_t		length;
+            DTcharacter    id[4];
+            uint32_t        length;
         };
 
         enum FORMAT_TAG {
-            FMT_WAVE_FORMAT_PCM		= 0x0001
+            FMT_WAVE_FORMAT_PCM        = 0x0001
         };
 
         //
@@ -74,21 +74,21 @@ class WAVWriter {
         //
 
         struct Format {
-            uint16_t	formatTag;			// Format category
-            uint16_t	channels;			// Number of channels
-            uint32_t		samplesPerSec;		// Sampling rate
-            uint32_t		avgBytesPerSec;		// For buffer estimation
-            uint16_t	blockAlign;			// Data block size
-            uint16_t	bitsPerSample;
+            uint16_t    formatTag;            // Format category
+            uint16_t    channels;            // Number of channels
+            uint32_t        samplesPerSec;        // Sampling rate
+            uint32_t        avgBytesPerSec;        // For buffer estimation
+            uint16_t    blockAlign;            // Data block size
+            uint16_t    bitsPerSample;
         };
 
-        void					write				(std::ofstream &outfile, uint8_t &v);
-        void					write				(std::ofstream &outfile, uint16_t &v);
-        void					write				(std::ofstream &outfile, int16_t &v);
-        void					write				(std::ofstream &outfile, int32_t &v);
-        void					write				(std::ofstream &outfile, uint32_t &v);
-        void					write				(std::ofstream &outfile, DTcharacter id[4]);
-        void					write				(std::ofstream &outfile, ChunkHeader &v);
+        void                    write                (std::ofstream &outfile, uint8_t &v);
+        void                    write                (std::ofstream &outfile, uint16_t &v);
+        void                    write                (std::ofstream &outfile, int16_t &v);
+        void                    write                (std::ofstream &outfile, int32_t &v);
+        void                    write                (std::ofstream &outfile, uint32_t &v);
+        void                    write                (std::ofstream &outfile, DTcharacter id[4]);
+        void                    write                (std::ofstream &outfile, ChunkHeader &v);
         void                    set_type            (DTcharacter id[4], const DTcharacter *id_str);
 
         std::ofstream           _outfile;

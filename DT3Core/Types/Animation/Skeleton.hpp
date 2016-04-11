@@ -3,7 +3,7 @@
 #define DT3_SKELETON
 //==============================================================================
 ///
-///	File: Skeleton.hpp
+///    File: Skeleton.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -37,8 +37,8 @@ class Skeleton: public BaseClass {
                                             Skeleton            (void);
                                             Skeleton            (const Skeleton &rhs);
                                             Skeleton            (Skeleton &&rhs);
-        Skeleton &                          operator =			(const Skeleton &rhs);
-        Skeleton &                          operator =			(Skeleton &&rhs);
+        Skeleton &                          operator =            (const Skeleton &rhs);
+        Skeleton &                          operator =            (Skeleton &&rhs);
                                             ~Skeleton           (void);
 
 
@@ -48,7 +48,7 @@ class Skeleton: public BaseClass {
 
         /// Gets the skeleton for the geometry
         /// \return skeleton
-        const std::vector<SkeletonJoint>&   skeleton            (void) const        {	return _skeleton;			}
+        const std::vector<SkeletonJoint>&   skeleton            (void) const        {    return _skeleton;            }
 
         /// Gets the size of the skeleton for the geometry
         /// \return skeleton size

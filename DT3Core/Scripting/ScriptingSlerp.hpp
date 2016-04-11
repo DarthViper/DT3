@@ -3,7 +3,7 @@
 #define DT3_SCRIPTINGSLERP
 //==============================================================================
 ///
-///	File: ScriptingSlerp.hpp
+///    File: ScriptingSlerp.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -32,30 +32,30 @@ class ScriptingSlerp: public ScriptingBase {
 
                                     ScriptingSlerp          (void);
                                     ScriptingSlerp          (const ScriptingSlerp &rhs);
-        ScriptingSlerp &            operator =				(const ScriptingSlerp &rhs);
-        virtual						~ScriptingSlerp         (void);
+        ScriptingSlerp &            operator =                (const ScriptingSlerp &rhs);
+        virtual                        ~ScriptingSlerp         (void);
 
-        virtual void				archive                 (const std::shared_ptr<Archive> &archive);
+        virtual void                archive                 (const std::shared_ptr<Archive> &archive);
 
     public:
         /// Computes the value of the node
         /// \param plug plug to compute
-        bool					compute					(const PlugBase *plug);
+        bool                    compute                    (const PlugBase *plug);
 
     private:
-        Plug<Matrix3>				_in_orientation_0;
-        Plug<Matrix3>				_in_orientation_1;
-        Plug<Matrix3>				_out_orientation;
+        Plug<Matrix3>                _in_orientation_0;
+        Plug<Matrix3>                _in_orientation_1;
+        Plug<Matrix3>                _out_orientation;
 
-        Plug<Vector3>				_in_translation_0;
-        Plug<Vector3>				_in_translation_1;
-        Plug<Vector3>				_out_translation;
+        Plug<Vector3>                _in_translation_0;
+        Plug<Vector3>                _in_translation_1;
+        Plug<Vector3>                _out_translation;
 
-        Plug<Vector3>				_in_scale_0;
-        Plug<Vector3>				_in_scale_1;
-        Plug<Vector3>				_out_scale;
+        Plug<Vector3>                _in_scale_0;
+        Plug<Vector3>                _in_scale_1;
+        Plug<Vector3>                _out_scale;
 
-        Plug<DTfloat>				_t;
+        Plug<DTfloat>                _t;
 };
 
 //==============================================================================

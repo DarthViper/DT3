@@ -3,7 +3,7 @@
 #define DT3_SCRIPTINGPARTICLESIZESEQUENCER
 //==============================================================================
 ///
-///	File: ScriptingParticleSizeSequencer.hpp
+///    File: ScriptingParticleSizeSequencer.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -35,10 +35,10 @@ class ScriptingParticleSizeSequencer: public ScriptingBase {
         DEFINE_CREATE_AND_CLONE
         DEFINE_PLUG_NODE
 
-                                            ScriptingParticleSizeSequencer	(void);
-                                            ScriptingParticleSizeSequencer	(const ScriptingParticleSizeSequencer &rhs);
-        ScriptingParticleSizeSequencer&		operator =						(const ScriptingParticleSizeSequencer &rhs);
-        virtual								~ScriptingParticleSizeSequencer	(void);
+                                            ScriptingParticleSizeSequencer    (void);
+                                            ScriptingParticleSizeSequencer    (const ScriptingParticleSizeSequencer &rhs);
+        ScriptingParticleSizeSequencer&        operator =                        (const ScriptingParticleSizeSequencer &rhs);
+        virtual                                ~ScriptingParticleSizeSequencer    (void);
 
         virtual void                archive                 (const std::shared_ptr<Archive> &archive);
 
@@ -46,7 +46,7 @@ class ScriptingParticleSizeSequencer: public ScriptingBase {
 
         /// Computes the value of the node
         /// \param plug plug to compute
-        bool					compute					(const PlugBase *plug);
+        bool                    compute                    (const PlugBase *plug);
 
 
         DEFINE_ACCESSORS(time_0, set_time_0, DTfloat, _t[0]);

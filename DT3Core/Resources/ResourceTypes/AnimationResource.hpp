@@ -3,7 +3,7 @@
 #define DT3_ANIMATIONRESOURCE
 //==============================================================================
 ///
-///	File: AnimationResource.hpp
+///    File: AnimationResource.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -37,12 +37,12 @@ class AnimationResource: public Resource {
         DEFINE_TYPE(AnimationResource,Resource)
         DEFINE_CREATE
 
-                                                AnimationResource	(void);
+                                                AnimationResource    (void);
     private:
-                                                AnimationResource	(const AnimationResource &rhs);
-        AnimationResource &                     operator =			(const AnimationResource &rhs);
+                                                AnimationResource    (const AnimationResource &rhs);
+        AnimationResource &                     operator =            (const AnimationResource &rhs);
     public:
-        virtual                                 ~AnimationResource	(void);
+        virtual                                 ~AnimationResource    (void);
 
     public:
 
@@ -56,11 +56,11 @@ class AnimationResource: public Resource {
         /// \param pathname path to resource
         /// \param args importer args
         /// \return error code
-        DTerr                                   import				(const FilePath &pathname, std::string args);
+        DTerr                                   import                (const FilePath &pathname, std::string args);
 
         /// Add an animation track
         /// \param track animation track to add
-        void                                    add_track			(const std::shared_ptr<AnimationTrack> &track);
+        void                                    add_track            (const std::shared_ptr<AnimationTrack> &track);
 
         /// Remove the animation track
         /// \param track animation track to remove
@@ -72,39 +72,39 @@ class AnimationResource: public Resource {
 
         /// Gets the number of animation tracks
         /// \return number of tracks
-        uint32_t                                  num_tracks          (void) const				{	return static_cast<uint32_t>(_tracks.size());	}
+        uint32_t                                  num_tracks          (void) const                {    return static_cast<uint32_t>(_tracks.size());    }
 
         /// Gets the animation track
         /// \param track index of track
         /// \return animation track
-        const std::shared_ptr<AnimationTrack>&  track               (uint32_t track) const		{	return _tracks[track];      }
+        const std::shared_ptr<AnimationTrack>&  track               (uint32_t track) const        {    return _tracks[track];      }
 
 
 
         /// Sets the rate at which the animation plays
         /// \param fps frames per second
-        void                                    set_fps				(uint32_t fps)				{	_fps = fps;                 }
+        void                                    set_fps                (uint32_t fps)                {    _fps = fps;                 }
 
         /// Gets the rate at which the animation plays
         /// \return frames per second
-        DTfloat                                 fps                 (void) const				{	return _fps;                }
+        DTfloat                                 fps                 (void) const                {    return _fps;                }
 
 
         /// Sets the animation start time
         /// \param start_time animation start time
-        void                                    set_start_time		(DTfloat start_time)		{	_start_time = start_time;	}
+        void                                    set_start_time        (DTfloat start_time)        {    _start_time = start_time;    }
 
         /// Gets the animation start time
         /// \return animation start time
-        DTfloat                                 start_time          (void) const				{	return _start_time;			}
+        DTfloat                                 start_time          (void) const                {    return _start_time;            }
 
         /// Sets the animation end time
         /// \param end_time animation end time
-        void                                    set_end_time        (DTfloat end_time)			{	_end_time = end_time;		}
+        void                                    set_end_time        (DTfloat end_time)            {    _end_time = end_time;        }
 
         /// Gets the animation end time
         /// \return animation end time
-        DTfloat                                 end_time            (void) const				{	return _end_time;			}
+        DTfloat                                 end_time            (void) const                {    return _end_time;            }
 
 
         /// Load the resource

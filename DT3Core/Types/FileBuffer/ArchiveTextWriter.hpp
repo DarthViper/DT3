@@ -3,7 +3,7 @@
 #define DT3_ARCHIVETEXTWRITER
 //==============================================================================
 ///
-///	File: ArchiveTextWriter.hpp
+///    File: ArchiveTextWriter.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -34,48 +34,48 @@ class ArchiveTextWriter: public Archive {
         //DEFINE_TYPE(ArchiveTextWriter,Archive)
         DEFINE_CREATE_T(ArchiveTextWriter)
 
-                                ArchiveTextWriter		(void);
+                                ArchiveTextWriter        (void);
 
     private:
-                                ArchiveTextWriter		(const ArchiveTextWriter &rhs);
-        ArchiveTextWriter &		operator =              (const ArchiveTextWriter &rhs);
+                                ArchiveTextWriter        (const ArchiveTextWriter &rhs);
+        ArchiveTextWriter &        operator =              (const ArchiveTextWriter &rhs);
 
     public:
-        virtual					~ArchiveTextWriter		(void);
+        virtual                    ~ArchiveTextWriter        (void);
 
     public:
         /// Opens an archive
         /// \param pathname path to archive
-        DTerr					open					(const FilePath &pathname);
+        DTerr                    open                    (const FilePath &pathname);
 
         /// Closes archive
-        void					close					(void);
+        void                    close                    (void);
 
         /// Streams data into or out of this object
         /// \param data data to stream
         /// \return this archiving object so you can chain them together
-        virtual Archive &		operator <<             (const ArchiveData& data);
+        virtual Archive &        operator <<             (const ArchiveData& data);
 
         /// Adds a sub domain for the archive
         /// \param domain name of the domain
-        virtual void			push_domain             (const std::string &domain);
+        virtual void            push_domain             (const std::string &domain);
 
         /// Balances the sub domain for the archive
-        virtual void			pop_domain				(void);
+        virtual void            pop_domain                (void);
 
         /// Returns wether the archive is reading or not
         /// \return archive is loading
-        bool				is_reading				(void) const;
+        bool                is_reading                (void) const;
 
         /// Returns wether the archive is writing or not
         /// \return archive is saving
-        bool				is_writing				(void) const;
+        bool                is_writing                (void) const;
 
     private:
-        std::string             indent					(void) const;
+        std::string             indent                    (void) const;
 
-        int32_t					_indent;
-        TextFileStream			_outfile;
+        int32_t                    _indent;
+        TextFileStream            _outfile;
 
 };
 

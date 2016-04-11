@@ -1,12 +1,12 @@
 //==============================================================================
-///	
-///	File: SimpleSoundSourceObject.cpp
-///	
+///    
+///    File: SimpleSoundSourceObject.cpp
+///    
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
 /// This file is subject to the terms and conditions defined in
 /// file 'LICENSE.txt', which is part of this source code package.
-///	
+///    
 //==============================================================================
 
 #include "DT3Core/Objects/SimpleSoundSourceObject.hpp"
@@ -46,24 +46,24 @@ IMPLEMENT_EVENT_INFO_INDEX(_stopped)
 
 BEGIN_IMPLEMENT_PLUGS(SimpleSoundSourceObject)
 
-	PLUG_INIT(_gain,"Gain")
-		.set_input(true);
+    PLUG_INIT(_gain,"Gain")
+        .set_input(true);
 
-	PLUG_INIT(_pitch,"Pitch")
-		.set_input(true);
+    PLUG_INIT(_pitch,"Pitch")
+        .set_input(true);
 
-	PLUG_INIT(_rolloff,"Rolloff")
-		.set_input(true);
+    PLUG_INIT(_rolloff,"Rolloff")
+        .set_input(true);
 
-	EVENT_INIT(_play,"Play")
+    EVENT_INIT(_play,"Play")
         .set_input(true)
         .set_event(&SimpleSoundSourceObject::play);
 
-	EVENT_INIT(_stop,"Stop")
+    EVENT_INIT(_stop,"Stop")
         .set_input(true)
         .set_event(&SimpleSoundSourceObject::stop);
 
-	EVENT_INIT(_stopped,"Stopped")
+    EVENT_INIT(_stopped,"Stopped")
         .set_input(true)
         .set_no_draw(true)
         .set_event(&SimpleSoundSourceObject::stopped);
@@ -86,9 +86,9 @@ SimpleSoundSourceObject::SimpleSoundSourceObject (void)
     set_node_color(Color4f(0.360784F,0.729412F,0.92549F,1.0F));
 
 }
-		
+        
 SimpleSoundSourceObject::SimpleSoundSourceObject (const SimpleSoundSourceObject &rhs)
-	:	PlaceableObject	(rhs),
+    :    PlaceableObject    (rhs),
         _gain           (rhs._gain),
         _pitch          (rhs._pitch),
         _rolloff        (rhs._rolloff),
@@ -107,7 +107,7 @@ SimpleSoundSourceObject & SimpleSoundSourceObject::operator = (const SimpleSound
 {
     // Make sure we are not assigning the class to itself
     if (&rhs != this) {        
-		PlaceableObject::operator = (rhs);
+        PlaceableObject::operator = (rhs);
 
         _gain = rhs._gain;
         _pitch = rhs._pitch;
@@ -116,10 +116,10 @@ SimpleSoundSourceObject & SimpleSoundSourceObject::operator = (const SimpleSound
         _sound = rhs._sound;
 
         stop(NULL);
-	}
+    }
     return (*this);
 }
-			
+            
 SimpleSoundSourceObject::~SimpleSoundSourceObject (void)
 {
     stop(NULL);
@@ -130,20 +130,20 @@ SimpleSoundSourceObject::~SimpleSoundSourceObject (void)
 
 void SimpleSoundSourceObject::archive (const std::shared_ptr<Archive> &archive)
 {
-	PlaceableObject::archive(archive);
+    PlaceableObject::archive(archive);
 
-	archive->push_domain (class_id ());
-			
-	*archive << ARCHIVE_DATA_ACCESSORS("Sound", SimpleSoundSourceObject::sound_property, SimpleSoundSourceObject::set_sound_property, DATA_PERSISTENT | DATA_SETTABLE);
+    archive->push_domain (class_id ());
+            
+    *archive << ARCHIVE_DATA_ACCESSORS("Sound", SimpleSoundSourceObject::sound_property, SimpleSoundSourceObject::set_sound_property, DATA_PERSISTENT | DATA_SETTABLE);
 
     *archive << ARCHIVE_PLUG(_gain, DATA_PERSISTENT | DATA_SETTABLE);
     *archive << ARCHIVE_PLUG(_pitch, DATA_PERSISTENT | DATA_SETTABLE);
     *archive << ARCHIVE_PLUG(_rolloff, DATA_PERSISTENT | DATA_SETTABLE);
-	   
-	*archive << ARCHIVE_EVENT(_play, DATA_SETTABLE);
-	*archive << ARCHIVE_EVENT(_stop, DATA_SETTABLE);
+       
+    *archive << ARCHIVE_EVENT(_play, DATA_SETTABLE);
+    *archive << ARCHIVE_EVENT(_stop, DATA_SETTABLE);
 
-	archive->pop_domain ();
+    archive->pop_domain ();
 }
 
 //==============================================================================
@@ -158,7 +158,7 @@ void SimpleSoundSourceObject::initialize (void)  noexcept(true)
 
 void SimpleSoundSourceObject::set_sound_property (const std::shared_ptr<SoundResource> &attr)
 {
-	_sound = attr;
+    _sound = attr;
 }
 
 //==============================================================================

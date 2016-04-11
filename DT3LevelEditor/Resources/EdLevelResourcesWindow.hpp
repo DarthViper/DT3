@@ -3,7 +3,7 @@
 #define EDLEVELRESOURCESWINDOW
 //==============================================================================
 ///
-///	File: EdLevelResourcesWindow.hpp
+///    File: EdLevelResourcesWindow.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -37,7 +37,7 @@ class EdLevelResourcesWindow: public QTreeWidget
     Q_OBJECT
 
     public:
-                                        EdLevelResourcesWindow		(QWidget *parent, QToolBar *toolbar, EdLevelDocument *document, QOpenGLWidget *gl);
+                                        EdLevelResourcesWindow        (QWidget *parent, QToolBar *toolbar, EdLevelDocument *document, QOpenGLWidget *gl);
 
         Qt::DropActions                 supportedDropActions        (void) const    {   return Qt::CopyAction;  }
 
@@ -54,7 +54,7 @@ class EdLevelResourcesWindow: public QTreeWidget
 
         // Internal representation of scene
         struct ResourceCache {
-            bool   operator == (const ResourceCache& rhs) const	{	return _path == rhs._path;		}
+            bool   operator == (const ResourceCache& rhs) const    {    return _path == rhs._path;        }
 
             DT3::FilePath                    _path;
         };

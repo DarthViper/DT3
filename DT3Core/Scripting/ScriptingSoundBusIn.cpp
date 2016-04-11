@@ -1,12 +1,12 @@
 //==============================================================================
-///	
-///	File: ScriptingSoundBusIn.cpp
-///	
+///    
+///    File: ScriptingSoundBusIn.cpp
+///    
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
 /// This file is subject to the terms and conditions defined in
 /// file 'LICENSE.txt', which is part of this source code package.
-///	
+///    
 //==============================================================================
 
 #include "DT3Core/Scripting/ScriptingSoundBusIn.hpp"
@@ -36,9 +36,9 @@ IMPLEMENT_PLUG_INFO_INDEX(_sound_packet_out)
 
 BEGIN_IMPLEMENT_PLUGS(ScriptingSoundBusIn)
 
-	PLUG_INIT(_sound_packet_out,"Sound_Packet_Out")
+    PLUG_INIT(_sound_packet_out,"Sound_Packet_Out")
         .set_single_output(true)
-		.set_output(true)
+        .set_output(true)
         .set_always_dirty(true);
         
 END_IMPLEMENT_PLUGS
@@ -52,25 +52,25 @@ ScriptingSoundBusIn::ScriptingSoundBusIn (void)
 {  
 
 }
-		
+        
 ScriptingSoundBusIn::ScriptingSoundBusIn (const ScriptingSoundBusIn &rhs)
     :   ScriptingSoundBase  (rhs),
-		_sound_packet_out   (rhs._sound_packet_out)
+        _sound_packet_out   (rhs._sound_packet_out)
 {   
 
-}	
+}    
 
 ScriptingSoundBusIn & ScriptingSoundBusIn::operator = (const ScriptingSoundBusIn &rhs)
 {
     // Make sure we are not assigning the class to itself
     if (&rhs != this) {        
-		ScriptingSoundBase::operator = (rhs);
+        ScriptingSoundBase::operator = (rhs);
 
-		_sound_packet_out = rhs._sound_packet_out;
-	}
+        _sound_packet_out = rhs._sound_packet_out;
+    }
     return (*this);
 }
-			
+            
 ScriptingSoundBusIn::~ScriptingSoundBusIn (void)
 {
 
@@ -83,7 +83,7 @@ void ScriptingSoundBusIn::archive (const std::shared_ptr<Archive> &archive)
 {
     ScriptingSoundBase::archive(archive);
 
-	archive->push_domain (class_id ());
+    archive->push_domain (class_id ());
     archive->pop_domain ();
 }
 
@@ -92,7 +92,7 @@ void ScriptingSoundBusIn::archive (const std::shared_ptr<Archive> &archive)
 
 void ScriptingSoundBusIn::add_source (const std::shared_ptr<SoundBusSourceObject> &source)
 {
-	PROFILER(SOUND);
+    PROFILER(SOUND);
 
     // Check and see if it's already in the list
     FOR_EACH (i,_bus_sources) {
@@ -109,7 +109,7 @@ void ScriptingSoundBusIn::add_source (const std::shared_ptr<SoundBusSourceObject
 
 void ScriptingSoundBusIn::remove_source (const std::shared_ptr<SoundBusSourceObject> &source)
 {
-	PROFILER(SOUND);
+    PROFILER(SOUND);
 
     // Check and see if it's already in the list
     FOR_EACH (i,_bus_sources) {
@@ -125,11 +125,11 @@ void ScriptingSoundBusIn::remove_source (const std::shared_ptr<SoundBusSourceObj
 
 bool ScriptingSoundBusIn::compute (const PlugBase *plug)
 {
-	PROFILER(SOUND);
+    PROFILER(SOUND);
 
     if (super_type::compute(plug))  return true;
 
-	if (plug == &_sound_packet_out) {
+    if (plug == &_sound_packet_out) {
     
         SoundPacket &sound_packet_out = _sound_packet_out.as_ref_no_compute();
         
@@ -242,12 +242,12 @@ bool ScriptingSoundBusIn::compute (const PlugBase *plug)
             ++src;
         }
                         
-		_sound_packet_out.set_clean();
-		
-		return true;
-	}
-	
-	return false;
+        _sound_packet_out.set_clean();
+        
+        return true;
+    }
+    
+    return false;
 }
 
 //==============================================================================

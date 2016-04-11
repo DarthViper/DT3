@@ -3,7 +3,7 @@
 #define DT3_PLANE
 //==============================================================================
 ///
-///	File: Plane.hpp
+///    File: Plane.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -45,15 +45,15 @@ class Plane {
                                     Plane                           (const Plane &rhs);
 
 
-        Plane &						operator =                      (const Plane &rhs);
+        Plane &                        operator =                      (const Plane &rhs);
 
 
-        //virtual					~Plane                          (void);
+        //virtual                    ~Plane                          (void);
 
     public:
 
-        inline bool			operator ==                     (const Plane& rhs) const				{	return	n == rhs.n && d == rhs.d;   }
-        inline bool			operator !=                     (const Plane& rhs) const				{	return	n != rhs.n || d != rhs.d;   }
+        inline bool            operator ==                     (const Plane& rhs) const                {    return    n == rhs.n && d == rhs.d;   }
+        inline bool            operator !=                     (const Plane& rhs) const                {    return    n != rhs.n || d != rhs.d;   }
 
 
         DEFINE_ACCESSORS(D, set_d, DTfloat, d)
@@ -62,12 +62,12 @@ class Plane {
         /// Distance from plane to a point
         /// \param p point
         /// \return Distance
-        inline DTfloat				distance_to_point               (const Vector3 &p) const                {	return n.x * p.x + n.y * p.y + n.z * p.z + d;	}
+        inline DTfloat                distance_to_point               (const Vector3 &p) const                {    return n.x * p.x + n.y * p.y + n.z * p.z + d;    }
 
         /// Distance from plane to a sphere
         /// \param s sphere
         /// \return Distance
-        DTfloat						distance_to_sphere              (const Vector3 &translation, const Sphere &s) const;
+        DTfloat                        distance_to_sphere              (const Vector3 &translation, const Sphere &s) const;
 
         /// Check if a sphere is completely in front of the plane
         /// \param s sphere
@@ -82,34 +82,34 @@ class Plane {
         /// Distance from plane to a box
         /// \param box Box
         /// \return Distance
-        DTfloat						distance_to_box                 (const Box &box) const;
+        DTfloat                        distance_to_box                 (const Box &box) const;
 
         /// Sets the plane equation using a point and normal
         /// \param p point
         /// \param n_ normal
-        void						set                             (const Vector3 &p, const Vector3 &n_);
+        void                        set                             (const Vector3 &p, const Vector3 &n_);
 
         /// Sets the plane equation using three points
         /// \param a point 0
         /// \param b point 1
         /// \param c point 2
-        void						set                             (const Vector3 &a, const Vector3 &b, const Vector3 &c);
+        void                        set                             (const Vector3 &a, const Vector3 &b, const Vector3 &c);
 
         /// Returns a plane that is flipped in the opposite direction
         /// \return Flipped Plane
-        Plane						flipped                         (void) const;
+        Plane                        flipped                         (void) const;
 
         /// Reflect a vector around the plane
         /// \param a vector
         /// \return Reflected vector
-        Vector3						reflect                         (const Vector3 &a) const;
+        Vector3                        reflect                         (const Vector3 &a) const;
 
         /// Normalizes the plane so that the normal is unit length without changine its position
         void                        normalize                       (void);
 
     private:
-        Vector3						n;
-        DTfloat						d;
+        Vector3                        n;
+        DTfloat                        d;
 };
 
 //==============================================================================
@@ -126,9 +126,9 @@ Stream& operator >>(Stream &s, Plane&v);
 namespace TypeTraitsInfo {
 
 template <> struct Info<Plane> {
-    static Plane				default_value(void)	{	return Plane(0.0F,1.0F,0.0F,0.0F);			}
-    static const DTcharacter*	name(void)          {	return "Plane";}
-    static const DTcharacter*	name_caps(void)     {	return "Plane";}
+    static Plane                default_value(void)    {    return Plane(0.0F,1.0F,0.0F,0.0F);            }
+    static const DTcharacter*    name(void)          {    return "Plane";}
+    static const DTcharacter*    name_caps(void)     {    return "Plane";}
     enum { isFundamental = 0 };
 };
 

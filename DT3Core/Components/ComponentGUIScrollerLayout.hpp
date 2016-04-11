@@ -1,7 +1,7 @@
 #pragma once
 //==============================================================================
 ///
-///	File: ComponentGUIScrollerLayout.hpp
+///    File: ComponentGUIScrollerLayout.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -25,10 +25,10 @@ class ComponentGUIScrollerLayout: public ComponentGUIScroller {
         DEFINE_CREATE_AND_CLONE
         DEFINE_PLUG_NODE
 
-                                    ComponentGUIScrollerLayout	(void);
-                                    ComponentGUIScrollerLayout	(const ComponentGUIScrollerLayout &rhs);
+                                    ComponentGUIScrollerLayout    (void);
+                                    ComponentGUIScrollerLayout    (const ComponentGUIScrollerLayout &rhs);
         ComponentGUIScrollerLayout& operator =                  (const ComponentGUIScrollerLayout &rhs);
-        virtual                     ~ComponentGUIScrollerLayout	(void);
+        virtual                     ~ComponentGUIScrollerLayout    (void);
 
         virtual void                archive                     (const std::shared_ptr<Archive> &archive);
 

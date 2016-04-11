@@ -1,12 +1,12 @@
 //==============================================================================
-///	
-///	File: ScriptingParticleRepel.cpp
-///	
+///    
+///    File: ScriptingParticleRepel.cpp
+///    
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
 /// This file is subject to the terms and conditions defined in
 /// file 'LICENSE.txt', which is part of this source code package.
-///	
+///    
 //==============================================================================
 
 #include "DT3Core/Scripting/ScriptingParticleRepel.hpp"
@@ -41,28 +41,28 @@ IMPLEMENT_PLUG_INFO_INDEX(_out)
 
 BEGIN_IMPLEMENT_PLUGS(ScriptingParticleRepel)
 
-	PLUG_INIT(_force,"Force")
-		.set_input(true)
-		.affects(PLUG_INFO_INDEX(_out));
+    PLUG_INIT(_force,"Force")
+        .set_input(true)
+        .affects(PLUG_INFO_INDEX(_out));
 
-	PLUG_INIT(_translation,"Translation")
-		.set_input(true)
-		.affects(PLUG_INFO_INDEX(_out));
+    PLUG_INIT(_translation,"Translation")
+        .set_input(true)
+        .affects(PLUG_INFO_INDEX(_out));
 
-	PLUG_INIT(_distance,"Distance")
-		.set_input(true)
-		.affects(PLUG_INFO_INDEX(_out));
+    PLUG_INIT(_distance,"Distance")
+        .set_input(true)
+        .affects(PLUG_INFO_INDEX(_out));
 
-	PLUG_INIT(_active,"Active")
-		.set_input(true)
-		.affects(PLUG_INFO_INDEX(_out));
+    PLUG_INIT(_active,"Active")
+        .set_input(true)
+        .affects(PLUG_INFO_INDEX(_out));
 
-	PLUG_INIT(_in,"In")
-		.set_input(true)
-		.affects(PLUG_INFO_INDEX(_out));
-	
-	PLUG_INIT(_out,"Out")
-		.set_output(true);
+    PLUG_INIT(_in,"In")
+        .set_input(true)
+        .affects(PLUG_INFO_INDEX(_out));
+    
+    PLUG_INIT(_out,"Out")
+        .set_output(true);
         
 END_IMPLEMENT_PLUGS
 
@@ -73,22 +73,22 @@ END_IMPLEMENT_PLUGS
 ScriptingParticleRepel::ScriptingParticleRepel (void)
     :   _force          (PLUG_INFO_INDEX(_force), 1.0F),
         _translation       (PLUG_INFO_INDEX(_translation), {0.0F,0.0F,0.0F}),
-		_distance       (PLUG_INFO_INDEX(_distance), 1.0F),
-		_active         (PLUG_INFO_INDEX(_active), true),
-		_in				(PLUG_INFO_INDEX(_in)),
-		_out			(PLUG_INFO_INDEX(_out))
+        _distance       (PLUG_INFO_INDEX(_distance), 1.0F),
+        _active         (PLUG_INFO_INDEX(_active), true),
+        _in                (PLUG_INFO_INDEX(_in)),
+        _out            (PLUG_INFO_INDEX(_out))
 {  
 
 }
-		
+        
 ScriptingParticleRepel::ScriptingParticleRepel (const ScriptingParticleRepel &rhs)
-    :   ScriptingBase	(rhs),
-		_force          (rhs._force),
-		_translation    (rhs._translation),
-		_distance       (rhs._distance),
-		_active         (rhs._active),
-		_in				(rhs._in),
-		_out			(rhs._out)
+    :   ScriptingBase    (rhs),
+        _force          (rhs._force),
+        _translation    (rhs._translation),
+        _distance       (rhs._distance),
+        _active         (rhs._active),
+        _in                (rhs._in),
+        _out            (rhs._out)
 {   
 
 }
@@ -97,19 +97,19 @@ ScriptingParticleRepel & ScriptingParticleRepel::operator = (const ScriptingPart
 {
     // Make sure we are not assigning the class to itself
     if (&rhs != this) {        
-		ScriptingBase::operator = (rhs);
+        ScriptingBase::operator = (rhs);
 
-		_force = rhs._force;
-		_translation = rhs._translation;
-		_distance = rhs._distance;
-		_active = rhs._active;
+        _force = rhs._force;
+        _translation = rhs._translation;
+        _distance = rhs._distance;
+        _active = rhs._active;
         
-		_in	= rhs._in;
-		_out = rhs._out;
-	}
+        _in    = rhs._in;
+        _out = rhs._out;
+    }
     return (*this);
 }
-			
+            
 ScriptingParticleRepel::~ScriptingParticleRepel (void)
 {
 
@@ -122,13 +122,13 @@ void ScriptingParticleRepel::archive (const std::shared_ptr<Archive> &archive)
 {
     ScriptingBase::archive(archive);
 
-	archive->push_domain (class_id ());
-	
-	*archive << ARCHIVE_PLUG(_force, DATA_PERSISTENT | DATA_SETTABLE);
-	*archive << ARCHIVE_PLUG(_translation, DATA_PERSISTENT | DATA_SETTABLE);
-	*archive << ARCHIVE_PLUG(_distance, DATA_PERSISTENT | DATA_SETTABLE);
-	*archive << ARCHIVE_PLUG(_active, DATA_PERSISTENT | DATA_SETTABLE);
-	        					
+    archive->push_domain (class_id ());
+    
+    *archive << ARCHIVE_PLUG(_force, DATA_PERSISTENT | DATA_SETTABLE);
+    *archive << ARCHIVE_PLUG(_translation, DATA_PERSISTENT | DATA_SETTABLE);
+    *archive << ARCHIVE_PLUG(_distance, DATA_PERSISTENT | DATA_SETTABLE);
+    *archive << ARCHIVE_PLUG(_active, DATA_PERSISTENT | DATA_SETTABLE);
+                                
     archive->pop_domain ();
 }
 
@@ -137,7 +137,7 @@ void ScriptingParticleRepel::archive (const std::shared_ptr<Archive> &archive)
 
 void ScriptingParticleRepel::tick (const DTfloat dt)
 {
-	PROFILER(PARTICLES);
+    PROFILER(PARTICLES);
 
     // Make sure there are input particles
     std::shared_ptr<Particles> particles = _in;

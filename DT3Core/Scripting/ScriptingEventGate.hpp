@@ -1,7 +1,7 @@
 #pragma once
 //==============================================================================
 ///
-///	File: ScriptingEventGate.hpp
+///    File: ScriptingEventGate.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -33,10 +33,10 @@ class ScriptingEventGate: public ScriptingBase {
         DEFINE_CREATE_AND_CLONE
         DEFINE_PLUG_NODE
 
-                                    ScriptingEventGate		(void);
-                                    ScriptingEventGate		(const ScriptingEventGate &rhs);
-        ScriptingEventGate &        operator =				(const ScriptingEventGate &rhs);
-        virtual                     ~ScriptingEventGate		(void);
+                                    ScriptingEventGate        (void);
+                                    ScriptingEventGate        (const ScriptingEventGate &rhs);
+        ScriptingEventGate &        operator =                (const ScriptingEventGate &rhs);
+        virtual                     ~ScriptingEventGate        (void);
 
         virtual void                archive                 (const std::shared_ptr<Archive> &archive);
 
@@ -45,7 +45,7 @@ class ScriptingEventGate: public ScriptingBase {
         void                        event_in                (PlugNode *sender);
 
     private:
-        Plug<bool>				_enable;
+        Plug<bool>                _enable;
 
         Event                       _event_in;
         Event                       _event_out;

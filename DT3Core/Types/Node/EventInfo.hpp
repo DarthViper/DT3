@@ -3,7 +3,7 @@
 #define DT3_EVENTINFO
 //==============================================================================
 ///
-///	File: EventInfo.hpp
+///    File: EventInfo.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -39,7 +39,7 @@ struct DTnodekind;
 class EventBindBase
 {
     public:
-        virtual void		trigger	(PlugNode *node, PlugNode *sender) = 0;
+        virtual void        trigger    (PlugNode *node, PlugNode *sender) = 0;
 };
 
 template <class CLASS>
@@ -67,13 +67,13 @@ class EventBind: public EventBindBase
 
 class EventInfo {
     public:
-                                        EventInfo		(void);
+                                        EventInfo        (void);
     private:
-                                        EventInfo		(const EventInfo &rhs);
-        EventInfo &                     operator =		(const EventInfo &rhs);
+                                        EventInfo        (const EventInfo &rhs);
+        EventInfo &                     operator =        (const EventInfo &rhs);
 
     public:
-        virtual                         ~EventInfo		(void);
+        virtual                         ~EventInfo        (void);
 
 
     public:
@@ -82,59 +82,59 @@ class EventInfo {
         /// \param offset Byte offset to the event in the object
         /// \param event_node_info next event info in linked list
         /// \return This event info
-        EventInfo&                      init			(std::string name, DTsize offset, DTnodekind *event_node_info);
+        EventInfo&                      init            (std::string name, DTsize offset, DTnodekind *event_node_info);
 
         /// Returns event name
         /// \return event name
-        inline const std::string &		name            (void) const				{	return _name;									}
+        inline const std::string &        name            (void) const                {    return _name;                                    }
 
 
         /// Returns no draw flag
         /// \return No draw flag
-        inline bool                is_no_draw		(void) const				{	return _is_no_draw;							}
+        inline bool                is_no_draw        (void) const                {    return _is_no_draw;                            }
 
         /// Sets the no draw flag
         /// \param flag no draw flag
         /// \return This event info
-        inline EventInfo&               set_no_draw		(const bool flag)		{	_is_no_draw = flag;	return *this;			}
+        inline EventInfo&               set_no_draw        (const bool flag)        {    _is_no_draw = flag;    return *this;            }
 
 
         /// Returns is input flag
         /// \return is input
-        inline bool                is_input        (void) const				{	return _is_input;							}
+        inline bool                is_input        (void) const                {    return _is_input;                            }
 
         /// Sets the is input flag
         /// \param flag is input flag
         /// \return This event info
-        inline EventInfo&               set_input		(const bool flag)		{	_is_input = flag;	return *this;			}
+        inline EventInfo&               set_input        (const bool flag)        {    _is_input = flag;    return *this;            }
 
 
         /// Returns is output flag
         /// \return is output
-        inline bool                is_output		(void) const				{	return _is_output;							}
+        inline bool                is_output        (void) const                {    return _is_output;                            }
 
         /// Sets the is output flag
         /// \param flag is output flag
         /// \return This event info
-        inline EventInfo&               set_output		(const bool flag)		{	_is_output = flag;	return *this;			}
+        inline EventInfo&               set_output        (const bool flag)        {    _is_output = flag;    return *this;            }
 
 
         /// Returns the next info object in the list
         /// \return Next info object
-        EventInfo*                      next_info       (void) const				{	return _next;				}
+        EventInfo*                      next_info       (void) const                {    return _next;                }
 
 
         /// Create the event binding object
         /// \param fn event binding funtion pointer
         template<typename CLASS>
-        void                            set_event		(void (CLASS::*fn)(PlugNode*))
+        void                            set_event        (void (CLASS::*fn)(PlugNode*))
         {
             _event_bind = std::shared_ptr<EventBindBase>(new ("EventBind") EventBind<CLASS>(fn));
         }
 
         /// Returns the event binding object
         /// \return event binding object
-        std::shared_ptr<EventBindBase>  event           (void) const                            {	return _event_bind;         }
+        std::shared_ptr<EventBindBase>  event           (void) const                            {    return _event_bind;         }
 
 
         /// Given the event, return a pointer to the node
@@ -187,10 +187,10 @@ class EventInfo {
 
 #define EVENT_INFO_INDEX(Evt)               Evt##Index
 
-#define IMPLEMENT_EVENT_INFO_INDEX(Evt)     namespace {	uint16_t EVENT_INFO_INDEX(Evt) = EventInfo::get_free_index();	}
+#define IMPLEMENT_EVENT_INFO_INDEX(Evt)     namespace {    uint16_t EVENT_INFO_INDEX(Evt) = EventInfo::get_free_index();    }
 
-#define EVENT_OFFSET(Evt)                   (	(uint8_t*) (static_cast<Event*>(&(reinterpret_cast<type*>(0x99999999)->Evt))) - \
-                                                (uint8_t*) (static_cast<PlugNode*>(reinterpret_cast<type*>(0x99999999)))	)
+#define EVENT_OFFSET(Evt)                   (    (uint8_t*) (static_cast<Event*>(&(reinterpret_cast<type*>(0x99999999)->Evt))) - \
+                                                (uint8_t*) (static_cast<PlugNode*>(reinterpret_cast<type*>(0x99999999)))    )
 
 #define EVENT_INIT(Evt, Name)               EventInfo::get_info(EVENT_INFO_INDEX(Evt)).init(    \
                                                 Name,                                           \

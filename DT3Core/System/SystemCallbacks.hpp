@@ -3,7 +3,7 @@
 #define DT3_SYSTEMCALLBACKS
 //==============================================================================
 ///
-///	File: SystemCallbacks.hpp
+///    File: SystemCallbacks.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -43,8 +43,8 @@ class SystemCallbacks {
     private:
                                         SystemCallbacks             (void);
                                         SystemCallbacks             (const SystemCallbacks &rhs);
-        SystemCallbacks &               operator =					(const SystemCallbacks &rhs);
-        virtual							~SystemCallbacks            (void);
+        SystemCallbacks &               operator =                    (const SystemCallbacks &rhs);
+        virtual                            ~SystemCallbacks            (void);
 
     public:
 

@@ -1,7 +1,7 @@
 #pragma once
 //==============================================================================
 ///
-///	File: Group.hpp
+///    File: Group.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -37,7 +37,7 @@ class Group: public PlugNode {
 
                                                 Group               (void);
                                                 Group               (const Group &rhs);
-        Group &                                 operator =			(const Group &rhs);
+        Group &                                 operator =            (const Group &rhs);
         virtual                                 ~Group              (void);
 
         virtual void                            archive             (const std::shared_ptr<Archive> &archive);
@@ -49,18 +49,18 @@ class Group: public PlugNode {
 
         /// Returns a list of nodes that the group contains
         /// \return list of nodes
-        std::list<std::shared_ptr<WorldNode>>&  nodes               (void)                          {	return _nodes;                  }
+        std::list<std::shared_ptr<WorldNode>>&  nodes               (void)                          {    return _nodes;                  }
 
         void                                    remove_all_nodes    (void);
         void                                    set_nodes_center    (const Vector2 &center);
 
         /// Sets the color of the group
         /// \param group_color group color
-        void                                    set_group_color     (const Color4f &group_color)    {	_group_color = group_color;     }
+        void                                    set_group_color     (const Color4f &group_color)    {    _group_color = group_color;     }
 
         /// Returns the color of the group
         /// \return group color
-        const Color4f&                          group_color         (void) const					{	return _group_color;            }
+        const Color4f&                          group_color         (void) const                    {    return _group_color;            }
 
 
 

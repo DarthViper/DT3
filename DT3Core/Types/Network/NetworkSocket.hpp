@@ -3,7 +3,7 @@
 #define DT3_NETWORKSOCKET
 //==============================================================================
 ///
-///	File: NetworkSocket.hpp
+///    File: NetworkSocket.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -33,35 +33,35 @@ class NetworkSocket: public BaseClass {
         DEFINE_TYPE(NetworkSocket,BaseClass)
         DEFINE_CREATE_AND_CLONE
 
-                                NetworkSocket				(void);
-                                NetworkSocket				(const uint8_t *socket_structure, uint32_t length);
-                                NetworkSocket				(const NetworkSocket &rhs);
-                                NetworkSocket				(NetworkSocket &&rhs);
-        NetworkSocket &			operator =					(const NetworkSocket &rhs);
-        NetworkSocket &			operator =					(NetworkSocket &&rhs);
-                                ~NetworkSocket				(void);
+                                NetworkSocket                (void);
+                                NetworkSocket                (const uint8_t *socket_structure, uint32_t length);
+                                NetworkSocket                (const NetworkSocket &rhs);
+                                NetworkSocket                (NetworkSocket &&rhs);
+        NetworkSocket &            operator =                    (const NetworkSocket &rhs);
+        NetworkSocket &            operator =                    (NetworkSocket &&rhs);
+                                ~NetworkSocket                (void);
 
     public:
 
         /// Raw socket structure data
         /// \param socket_structure pointer to socket structure data
         /// \param length length of socket structure data
-        void                    set_network_socket_data		(const uint8_t *socket_structure, uint32_t length);
+        void                    set_network_socket_data        (const uint8_t *socket_structure, uint32_t length);
 
         /// Returns raw socket structure data
         /// \return socket structure data
-        uint8_t*				network_socket_data         (void) const				{	return (uint8_t*) &_data[0];		}
+        uint8_t*                network_socket_data         (void) const                {    return (uint8_t*) &_data[0];        }
 
         /// Returns raw socket structure data length
         /// \return socket structure data length
-        DTsize                  network_socket_length       (void) const				{	return _data.size();                }
+        DTsize                  network_socket_length       (void) const                {    return _data.size();                }
 
         /// Clear socket structure data
-        void					clear						(void)						{	_data.clear();						}
+        void                    clear                        (void)                        {    _data.clear();                        }
 
         /// Checks if the socket structure address is empty or not
         /// \return Socket is empty
-        bool				is_empty                    (void) const				{	return _data.size() == 0;			}
+        bool                is_empty                    (void) const                {    return _data.size() == 0;            }
 
     private:
         friend int operator == (const NetworkSocket& a, const NetworkSocket& b);

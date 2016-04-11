@@ -3,7 +3,7 @@
 #define DT3_PLAYERCONTROLLER
 //==============================================================================
 ///
-///	File: PlayerController.hpp
+///    File: PlayerController.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -34,10 +34,10 @@ class PlayerController: public ObjectBase {
         DEFINE_TYPE(PlayerController,ObjectBase)
         DEFINE_CREATE_AND_CLONE
 
-                                    PlayerController	(void);
-                                    PlayerController	(const PlayerController &rhs);
-        PlayerController &			operator =          (const PlayerController &rhs);
-        virtual                     ~PlayerController	(void);
+                                    PlayerController    (void);
+                                    PlayerController    (const PlayerController &rhs);
+        PlayerController &            operator =          (const PlayerController &rhs);
+        virtual                     ~PlayerController    (void);
 
         virtual void                archive             (const std::shared_ptr<Archive> &archive);
 

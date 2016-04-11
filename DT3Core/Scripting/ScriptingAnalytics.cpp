@@ -1,12 +1,12 @@
 //==============================================================================
-///	
-///	File: ScriptingAnalytics.cpp
-///	
+///    
+///    File: ScriptingAnalytics.cpp
+///    
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
 /// This file is subject to the terms and conditions defined in
 /// file 'LICENSE.txt', which is part of this source code package.
-///	
+///    
 //==============================================================================
 
 #include "DT3Core/Scripting/ScriptingAnalytics.hpp"
@@ -30,26 +30,26 @@ IMPLEMENT_FACTORY_CREATION_SCRIPT(ScriptingAnalytics,"Engine",NULL)
 IMPLEMENT_PLUG_NODE(ScriptingAnalytics)
 
 IMPLEMENT_PLUG_INFO_INDEX(_context)
-IMPLEMENT_PLUG_INFO_INDEX(_event_id)		
+IMPLEMENT_PLUG_INFO_INDEX(_event_id)        
 IMPLEMENT_PLUG_INFO_INDEX(_data)
 
-IMPLEMENT_EVENT_INFO_INDEX(_register_e)		
+IMPLEMENT_EVENT_INFO_INDEX(_register_e)        
 
 //==============================================================================
 //==============================================================================
 
 BEGIN_IMPLEMENT_PLUGS(ScriptingAnalytics)
 
-	PLUG_INIT(_context,"Context")
-		.set_input(true);
+    PLUG_INIT(_context,"Context")
+        .set_input(true);
 
-	PLUG_INIT(_event_id,"Event_ID")
-		.set_input(true);
+    PLUG_INIT(_event_id,"Event_ID")
+        .set_input(true);
 
-	PLUG_INIT(_data,"Data")
-		.set_input(true);
+    PLUG_INIT(_data,"Data")
+        .set_input(true);
                 
-	EVENT_INIT(_register_e,"Register_Event")
+    EVENT_INIT(_register_e,"Register_Event")
         .set_input(true)
         .set_event(&ScriptingAnalytics::register_event);
 
@@ -62,14 +62,14 @@ END_IMPLEMENT_PLUGS
 ScriptingAnalytics::ScriptingAnalytics (void)
     :   _context            (PLUG_INFO_INDEX(_context), "SomeContext"),
         _event_id           (PLUG_INFO_INDEX(_event_id), "SomeEvent"),
-		_data               (PLUG_INFO_INDEX(_data), ""),
+        _data               (PLUG_INFO_INDEX(_data), ""),
         _register_e         (EVENT_INFO_INDEX(_register_e))
 {  
 
 }
-		
+        
 ScriptingAnalytics::ScriptingAnalytics (const ScriptingAnalytics &rhs)
-    :   ScriptingBase	(rhs),
+    :   ScriptingBase    (rhs),
         _context        (rhs._context),
         _event_id       (rhs._event_id),
         _data           (rhs._data),
@@ -82,15 +82,15 @@ ScriptingAnalytics & ScriptingAnalytics::operator = (const ScriptingAnalytics &r
 {
     // Make sure we are not assigning the class to itself
     if (&rhs != this) {        
-		ScriptingBase::operator = (rhs);
+        ScriptingBase::operator = (rhs);
 
         _context = rhs._context;
         _event_id = rhs._event_id;
         _data = rhs._data;
-	}
+    }
     return (*this);
 }
-			
+            
 ScriptingAnalytics::~ScriptingAnalytics (void)
 {
 
@@ -103,12 +103,12 @@ void ScriptingAnalytics::archive (const std::shared_ptr<Archive> &archive)
 {
     ScriptingBase::archive(archive);
 
-	archive->push_domain (class_id ());
+    archive->push_domain (class_id ());
     
-	*archive << ARCHIVE_PLUG(_context, DATA_PERSISTENT | DATA_SETTABLE);
-	*archive << ARCHIVE_PLUG(_event_id, DATA_PERSISTENT | DATA_SETTABLE);
-	*archive << ARCHIVE_PLUG(_data, DATA_PERSISTENT | DATA_SETTABLE);
-		        					
+    *archive << ARCHIVE_PLUG(_context, DATA_PERSISTENT | DATA_SETTABLE);
+    *archive << ARCHIVE_PLUG(_event_id, DATA_PERSISTENT | DATA_SETTABLE);
+    *archive << ARCHIVE_PLUG(_data, DATA_PERSISTENT | DATA_SETTABLE);
+                                    
     archive->pop_domain ();
 }
 

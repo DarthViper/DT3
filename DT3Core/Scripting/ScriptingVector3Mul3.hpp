@@ -3,7 +3,7 @@
 #define DT3_ScriptingVectorMul33
 //==============================================================================
 ///
-///	File: ScriptingVector3Mul3.hpp
+///    File: ScriptingVector3Mul3.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -33,26 +33,26 @@ class ScriptingVector3Mul3: public ScriptingBase {
         DEFINE_CREATE_AND_CLONE
         DEFINE_PLUG_NODE
 
-                                    ScriptingVector3Mul3		(void);
-                                    ScriptingVector3Mul3		(const ScriptingVector3Mul3 &rhs);
-        ScriptingVector3Mul3 &		operator =					(const ScriptingVector3Mul3 &rhs);
-        virtual						~ScriptingVector3Mul3       (void);
+                                    ScriptingVector3Mul3        (void);
+                                    ScriptingVector3Mul3        (const ScriptingVector3Mul3 &rhs);
+        ScriptingVector3Mul3 &        operator =                    (const ScriptingVector3Mul3 &rhs);
+        virtual                        ~ScriptingVector3Mul3       (void);
 
-        virtual void				archive                     (const std::shared_ptr<Archive> &archive);
+        virtual void                archive                     (const std::shared_ptr<Archive> &archive);
 
     public:
         /// Computes the value of the node
         /// \param plug plug to compute
-        bool					compute                     (const PlugBase *plug);
+        bool                    compute                     (const PlugBase *plug);
 
     private:
-        Plug<Vector3>				_in1;
+        Plug<Vector3>                _in1;
 
-        Plug<DTfloat>				_in_mul_x;
-        Plug<DTfloat>				_in_mul_y;
-        Plug<DTfloat>				_in_mul_z;
+        Plug<DTfloat>                _in_mul_x;
+        Plug<DTfloat>                _in_mul_y;
+        Plug<DTfloat>                _in_mul_z;
 
-        Plug<Vector3>				_out;
+        Plug<Vector3>                _out;
 };
 
 //==============================================================================

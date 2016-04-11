@@ -1,6 +1,6 @@
 //==============================================================================
 ///
-///	File: EdLevelPropertyBoolField.cpp
+///    File: EdLevelPropertyBoolField.cpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -44,11 +44,11 @@ EdLevelPropertyBoolField::EdLevelPropertyBoolField (EdLevelPropertiesWindow *par
     _value = new QCheckBox(this);
     _value->setObjectName("prop");
 
-    connect(	_value,         SIGNAL(stateChanged(int)),
-                this,           SLOT(doWriteParams())	);
+    connect(    _value,         SIGNAL(stateChanged(int)),
+                this,           SLOT(doWriteParams())    );
 
-    connect(	this,           SIGNAL(doCommand(QString, bool)),
-                parent,         SLOT(onCommand(QString, bool))	);
+    connect(    this,           SIGNAL(doCommand(QString, bool)),
+                parent,         SLOT(onCommand(QString, bool))    );
 
 
     QGridLayout *layout = new QGridLayout;
@@ -68,7 +68,7 @@ EdLevelPropertyBoolField::EdLevelPropertyBoolField (EdLevelPropertiesWindow *par
     doReadParams();
 }
 
-EdLevelPropertyBoolField::~EdLevelPropertyBoolField	(void)
+EdLevelPropertyBoolField::~EdLevelPropertyBoolField    (void)
 {
 
 }

@@ -3,7 +3,7 @@
 #define DT3_GUILAYOUT
 //==============================================================================
 ///
-///	File: GUILayout.hpp
+///    File: GUILayout.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey, Inc. All rights reserved.
 ///

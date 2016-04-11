@@ -1,7 +1,7 @@
 #pragma once
 //==============================================================================
 ///
-///	File: ScriptingParticleEmitterBurst.hpp
+///    File: ScriptingParticleEmitterBurst.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -33,10 +33,10 @@ class ScriptingParticleEmitterBurst: public ScriptingParticleEmitter {
         DEFINE_CREATE_AND_CLONE
         DEFINE_PLUG_NODE
 
-                                            ScriptingParticleEmitterBurst	(void);
-                                            ScriptingParticleEmitterBurst	(const ScriptingParticleEmitterBurst &rhs);
-        ScriptingParticleEmitterBurst &		operator =						(const ScriptingParticleEmitterBurst &rhs);
-        virtual								~ScriptingParticleEmitterBurst	(void);
+                                            ScriptingParticleEmitterBurst    (void);
+                                            ScriptingParticleEmitterBurst    (const ScriptingParticleEmitterBurst &rhs);
+        ScriptingParticleEmitterBurst &        operator =                        (const ScriptingParticleEmitterBurst &rhs);
+        virtual                                ~ScriptingParticleEmitterBurst    (void);
 
         virtual void                archive                 (const std::shared_ptr<Archive> &archive);
 
@@ -54,7 +54,7 @@ class ScriptingParticleEmitterBurst: public ScriptingParticleEmitter {
         virtual void                tick                    (const DTfloat dt);
 
         /// Emits a particle
-        void						eventActive             (PlugNode *sender);
+        void                        eventActive             (PlugNode *sender);
 
 
         DEFINE_ACCESSORS(max_num, set_max_num, int32_t, _max_num);
@@ -73,18 +73,18 @@ class ScriptingParticleEmitterBurst: public ScriptingParticleEmitter {
     private:
         void                        emitParticle            (void);
 
-        Plug<int32_t>									_num;
-        Plug<int32_t>									_num_variation;
+        Plug<int32_t>                                    _num;
+        Plug<int32_t>                                    _num_variation;
 
-        Plug<Vector3>								_spawn_translation;
-        Plug<DTfloat>								_max_lifetime;
+        Plug<Vector3>                                _spawn_translation;
+        Plug<DTfloat>                                _max_lifetime;
 
-        Plug<bool>								_active;
+        Plug<bool>                                _active;
         Event                                       _active_e;
 
-        bool									_last_active;
+        bool                                    _last_active;
 
-        int32_t										_max_num;
+        int32_t                                        _max_num;
 
         Plug<std::shared_ptr<Particles>>          _out;
 };

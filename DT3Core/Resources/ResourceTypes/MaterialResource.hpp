@@ -3,7 +3,7 @@
 #define DT3_MATERIALRESOURCE
 //==============================================================================
 ///
-///	File: MaterialResource.hpp
+///    File: MaterialResource.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -36,24 +36,24 @@ class TextureResourceCube;
 //==============================================================================
 
 #define DEFINE_ACCESSORS_DEPTH_STENCIL(G,S,T,V)                                                             \
-inline T G(void) const			{	return _depth_stencil_state.V;                                      }	\
-inline void S(T var_)			{	_depth_stencil_state.V = var_;   _depth_stencil_state_dirty = true; }
+inline T G(void) const            {    return _depth_stencil_state.V;                                      }    \
+inline void S(T var_)            {    _depth_stencil_state.V = var_;   _depth_stencil_state_dirty = true; }
 
 #define DEFINE_ACCESSORS_BLEND(G,S,T,V)                                                                     \
-inline T G(void) const			{	return _blend_state.V;                                              }	\
-inline void S(T var_)			{	_blend_state.V = var_;   _blend_state_dirty = true;                 }
+inline T G(void) const            {    return _blend_state.V;                                              }    \
+inline void S(T var_)            {    _blend_state.V = var_;   _blend_state_dirty = true;                 }
 
 #define DEFINE_ACCESSORS_RASTERIZER(G,S,T,V)                                                                \
-inline T G(void) const			{	return _rasterizer_state.V;                                         }	\
-inline void S(T var_)			{	_rasterizer_state.V = var_;   _rasterizer_state_dirty = true;       }
+inline T G(void) const            {    return _rasterizer_state.V;                                         }    \
+inline void S(T var_)            {    _rasterizer_state.V = var_;   _rasterizer_state_dirty = true;       }
 
 #define DEFINE_ACCESSORS_TEXTURE_SLOT(G,S,T,V)                                                                                           \
-inline T G(void) const			{	return _textures[_unit].V;  }	\
-inline void S(const T &var_)			{	_textures[_unit].V = var_;  }
+inline T G(void) const            {    return _textures[_unit].V;  }    \
+inline void S(const T &var_)            {    _textures[_unit].V = var_;  }
 
 #define DEFINE_ACCESSORS_SAMPLER(G,S,T,V)                                                                                           \
-inline T G(void) const			{	return _textures[_unit]._sampler_state.V;                                                   }	\
-inline void S(T var_)			{	_textures[_unit]._sampler_state.V = var_;   _textures[_unit]._sampler_state_dirty = true;   }
+inline T G(void) const            {    return _textures[_unit]._sampler_state.V;                                                   }    \
+inline void S(T var_)            {    _textures[_unit]._sampler_state.V = var_;   _textures[_unit]._sampler_state_dirty = true;   }
 
 //==============================================================================
 /// Material resource type
@@ -64,12 +64,12 @@ class MaterialResource: public Resource {
         DEFINE_TYPE(MaterialResource,Resource)
         DEFINE_CREATE
 
-                                        MaterialResource			(void);
+                                        MaterialResource            (void);
     private:
-                                        MaterialResource			(const MaterialResource &rhs);
-        MaterialResource &				operator =					(const MaterialResource &rhs);
+                                        MaterialResource            (const MaterialResource &rhs);
+        MaterialResource &                operator =                    (const MaterialResource &rhs);
     public:
-        virtual							~MaterialResource			(void);
+        virtual                            ~MaterialResource            (void);
 
     public:
         /// Called to initialize the class
@@ -82,7 +82,7 @@ class MaterialResource: public Resource {
         /// \param pathname path to resource
         /// \param args importer args
         /// \return error code
-        DTerr							import						(const FilePath &pathname, std::string args);
+        DTerr                            import                        (const FilePath &pathname, std::string args);
 
         /// Checks if a reload is needed
         /// \return reload needed
@@ -91,7 +91,7 @@ class MaterialResource: public Resource {
         /// Description
         /// \param param description
         /// \return description
-        void							reset						(void);
+        void                            reset                        (void);
 
 
 

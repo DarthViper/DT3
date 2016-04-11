@@ -1,12 +1,12 @@
 //==============================================================================
-///	
-///	File: Particles.cpp
-///	
+///    
+///    File: Particles.cpp
+///    
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
 /// This file is subject to the terms and conditions defined in
 /// file 'LICENSE.txt', which is part of this source code package.
-///	
+///    
 //==============================================================================
 
 #include "DT3Core/Types/Graphics/Particles.hpp"
@@ -30,18 +30,18 @@ IMPLEMENT_FACTORY_CREATION(Particles)
 //==============================================================================
 
 Particles::Particles (void)
-    :   _default_velocity	({0.0F,0.0F,0.0F}),
-		_default_size		(1.0F),
-		_default_lifetime	(0.0F),
-		_default_rotation	(0.0F),
-		_default_color		(1.0F,1.0F,1.0F,1.0F),
-		_active_start		(0),
-		_active_end			(0),
+    :   _default_velocity    ({0.0F,0.0F,0.0F}),
+        _default_size        (1.0F),
+        _default_lifetime    (0.0F),
+        _default_rotation    (0.0F),
+        _default_color        (1.0F,1.0F,1.0F,1.0F),
+        _active_start        (0),
+        _active_end            (0),
         _stream_size        (0)
 {
 
 }
-		
+        
 Particles::~Particles (void)
 {
 
@@ -52,12 +52,12 @@ Particles::~Particles (void)
 
 Stream& operator <<(Stream &s, const std::shared_ptr<Particles> &r)
 {
-	return s;
+    return s;
 }
 
 Stream& operator >>(Stream &s, std::shared_ptr<Particles> &r)
 {
-	return s;
+    return s;
 }
 
 //==============================================================================
@@ -78,27 +78,27 @@ void Particles::screen_closed (void)
 //==============================================================================
 //==============================================================================
 
-void Particles::build_velocity_stream	(void)
+void Particles::build_velocity_stream    (void)
 {
     _velocities.resize(_translations.size(), _default_velocity);
 }
 
-void Particles::build_sizes_stream		(void)
+void Particles::build_sizes_stream        (void)
 {
     _sizes.resize(_translations.size(), _default_size);
 }
 
-void Particles::build_lifetimes_stream	(void)
+void Particles::build_lifetimes_stream    (void)
 {
     _lifetimes.resize(_translations.size(), _default_lifetime);
 }
 
-void Particles::build_colors_stream		(void)
+void Particles::build_colors_stream        (void)
 {
     _colors.resize(_translations.size(), _default_color);
 }
 
-void Particles::build_rotations_stream	(void)
+void Particles::build_rotations_stream    (void)
 {
     _rotations.resize(_translations.size(), _default_rotation);
 }
@@ -108,17 +108,17 @@ void Particles::build_rotations_stream	(void)
 
 void Particles::resize (uint32_t size)
 {
-	if (_translations.size() != size) {
+    if (_translations.size() != size) {
     
         _translations.resize(size, {0.0F,0.0F,0.0F});
-	
-		// Build optional streams
-		if (_velocities.size() > 0)     build_velocity_stream();
-		if (_sizes.size() > 0)			build_sizes_stream();
-		if (_lifetimes.size() > 0)		build_lifetimes_stream();
-		if (_colors.size() > 0)         build_colors_stream();
-		if (_rotations.size() > 0)      build_rotations_stream();
-	}
+    
+        // Build optional streams
+        if (_velocities.size() > 0)     build_velocity_stream();
+        if (_sizes.size() > 0)            build_sizes_stream();
+        if (_lifetimes.size() > 0)        build_lifetimes_stream();
+        if (_colors.size() > 0)         build_colors_stream();
+        if (_rotations.size() > 0)      build_rotations_stream();
+    }
 }
 
 //==============================================================================
@@ -257,7 +257,7 @@ void Particles::draw (const std::shared_ptr<CameraObject> &camera, int32_t first
 //    System::getRenderer()->drawArraysRanged(DT3GL_PRIM_TRIS, first*6, num*6);
 
 }
-		
+        
 //==============================================================================
 //==============================================================================
 

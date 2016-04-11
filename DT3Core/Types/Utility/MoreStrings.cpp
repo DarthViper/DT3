@@ -1,6 +1,6 @@
 //==============================================================================
 ///
-///	File: MoreStrings.cpp
+///    File: MoreStrings.cpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -36,14 +36,14 @@ std::string MoreStrings::to_hex_string (const void* data, DTsize length)
 
     for (uint32_t i = 0; i < length; ++i) {
 
-        uint8_t nibbles[2] = {	(uint8_t)((data_bytes[i] >> 4) & 0xF),
+        uint8_t nibbles[2] = {    (uint8_t)((data_bytes[i] >> 4) & 0xF),
                                 (uint8_t)((data_bytes[i]) & 0xF) };
 
-        if (nibbles[0] <= 9)	as_hex += (DTcharacter) ('0' + nibbles[0]);
-        else					as_hex += (DTcharacter) ('A' + nibbles[0] - 10);
+        if (nibbles[0] <= 9)    as_hex += (DTcharacter) ('0' + nibbles[0]);
+        else                    as_hex += (DTcharacter) ('A' + nibbles[0] - 10);
 
-        if (nibbles[1] <= 9)	as_hex += (DTcharacter) ('0' + nibbles[1]);
-        else					as_hex += (DTcharacter) ('A' + nibbles[1] - 10);
+        if (nibbles[1] <= 9)    as_hex += (DTcharacter) ('0' + nibbles[1]);
+        else                    as_hex += (DTcharacter) ('A' + nibbles[1] - 10);
 
     }
 
@@ -62,11 +62,11 @@ void MoreStrings::from_hex_string (const std::string &s, void* data, DTsize leng
         DTcharacter nibbles[2] = { ss[i*2+0], ss[i*2+1] };
         uint8_t byte;
 
-        if (nibbles[0] >= '0' && nibbles[0] <= '9')		byte = static_cast<uint8_t>((nibbles[0] - '0') << 4);
-        else											byte = static_cast<uint8_t>((nibbles[0] - 'A' + 10) << 4);
+        if (nibbles[0] >= '0' && nibbles[0] <= '9')        byte = static_cast<uint8_t>((nibbles[0] - '0') << 4);
+        else                                            byte = static_cast<uint8_t>((nibbles[0] - 'A' + 10) << 4);
 
-        if (nibbles[1] >= '0' && nibbles[1] <= '9')		byte |= static_cast<uint8_t>((nibbles[1] - '0'));
-        else											byte |= static_cast<uint8_t>((nibbles[1] - 'A' + 10));
+        if (nibbles[1] >= '0' && nibbles[1] <= '9')        byte |= static_cast<uint8_t>((nibbles[1] - '0'));
+        else                                            byte |= static_cast<uint8_t>((nibbles[1] - 'A' + 10));
 
         data_bytes[i] = byte;
     }
@@ -80,14 +80,14 @@ void MoreStrings::obfuscate_raw (uint8_t *data, DTsize size, uint32_t salt, DTsi
     // This is just a stupid XOR of bytes. It won't fool anyone that takes
     // any time to try and break it.
 
-    static uint8_t xor_table[] = {	0xf3, 0x5b, 0x47, 0x86, 0xb0, 0xd5, 0x99, 0x4e, 0xce, 0xe1, 0x3c, 0xe9, 0x06, 0x71, 0x9f, 0xcf,
+    static uint8_t xor_table[] = {    0xf3, 0x5b, 0x47, 0x86, 0xb0, 0xd5, 0x99, 0x4e, 0xce, 0xe1, 0x3c, 0xe9, 0x06, 0x71, 0x9f, 0xcf,
                                     0x0b, 0xe6, 0x31, 0x9b, 0x81, 0x5f, 0x3b, 0xdd, 0x14, 0xac, 0x9b, 0xd7, 0x19, 0xd2, 0xfa, 0xf3,
                                     0xe3, 0x31, 0xca, 0xc8, 0x93, 0x9d, 0xa3, 0x03, 0x0c, 0x93, 0x7f, 0xaf, 0x4b, 0x50, 0xac, 0x80,
                                     0x8f, 0x81, 0x44, 0xb1, 0x8a, 0x43, 0xc5, 0x79, 0x72, 0xa6, 0x85, 0x94, 0x52, 0x97, 0xf4, 0xa5,
                                     0x76, 0xfc, 0x04, 0x65, 0xee, 0x84, 0x17, 0xa0, 0xab, 0x84, 0xe7, 0x00, 0xa6, 0xba, 0xb7, 0x38,
                                     0xc5, 0x67, 0xdf, 0x92, 0x22, 0x1b, 0xe1, 0x60, 0xce, 0x24, 0x32, 0x9c, 0x8c, 0xa8, 0xcb, 0x14,
                                     0x08, 0x3e, 0x73, 0x52, 0x37, 0x41, 0x5c, 0xd9, 0xb5, 0x90, 0xa1, 0x1e, 0xde, 0x30, 0x52, 0xcd,
-                                    0x46, 0x46, 0xe8, 0xef, 0x0e, 0x29, 0x69, 0xd6, 0x93, 0x45, 0xab, 0xf5, 0xe3, 0x13, 0x6b, 0x41	};
+                                    0x46, 0x46, 0xe8, 0xef, 0x0e, 0x29, 0x69, 0xd6, 0x93, 0x45, 0xab, 0xf5, 0xe3, 0x13, 0x6b, 0x41    };
 
     // Old method
     if (salt == 0xFFFFFFFF) {
@@ -110,7 +110,7 @@ void MoreStrings::obfuscate_raw (uint8_t *data, DTsize size, uint32_t salt, DTsi
 
 std::string MoreStrings::to_obfuscated (const std::string &key, const std::string &s)
 {
-    std::vector<uint8_t>	buffer;
+    std::vector<uint8_t>    buffer;
     buffer.reserve( (size_t) (s.size() + 4) );
 
     uint32_t salt = MoreMath::calc_crc32(key.c_str(), key.size());
@@ -129,15 +129,15 @@ std::string MoreStrings::to_obfuscated (const std::string &key, const std::strin
 
 std::string MoreStrings::from_obfuscated (const std::string &key, const std::string &s)
 {
-    if (s.size() < 8)	// There has to be at least 8 characters for a checksum
+    if (s.size() < 8)    // There has to be at least 8 characters for a checksum
         return "";
 
     uint32_t salt = MoreMath::calc_crc32(key.c_str(), key.size());
 
-    std::vector<uint8_t>	buffer;
+    std::vector<uint8_t>    buffer;
     buffer.resize( (size_t) (s.size() / 2) );
 
-    from_hex_string	(s, &buffer[0], buffer.size());
+    from_hex_string    (s, &buffer[0], buffer.size());
     obfuscate_raw(&buffer[0], buffer.size(), salt, 0);
 
     std::string s_out;

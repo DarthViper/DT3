@@ -1,6 +1,6 @@
 //==============================================================================
 ///
-///	File: EdLevelPropertyTitleField.cpp
+///    File: EdLevelPropertyTitleField.cpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -35,11 +35,11 @@ EdLevelPropertyTitleField::EdLevelPropertyTitleField (EdLevelPropertiesWindow *p
     _value = new EdLevelLineEdit(this);
     _value->setObjectName("prop");
 
-    connect(	_value,         SIGNAL(editingFinished()),
-                this,           SLOT(doWriteParams())	);
+    connect(    _value,         SIGNAL(editingFinished()),
+                this,           SLOT(doWriteParams())    );
 
-    connect(	this,           SIGNAL(doCommand(QString, bool)),
-                parent,         SLOT(onCommand(QString, bool))	);
+    connect(    this,           SIGNAL(doCommand(QString, bool)),
+                parent,         SLOT(onCommand(QString, bool))    );
 
     QGridLayout *layout = new QGridLayout;
     layout->setContentsMargins(0,10,0,5);
@@ -54,7 +54,7 @@ EdLevelPropertyTitleField::EdLevelPropertyTitleField (EdLevelPropertiesWindow *p
     doReadParams();
 }
 
-EdLevelPropertyTitleField::~EdLevelPropertyTitleField	(void)
+EdLevelPropertyTitleField::~EdLevelPropertyTitleField    (void)
 {
 
 }

@@ -1,12 +1,12 @@
 //==============================================================================
-///	
-///	File: LightingTools_cmd.cpp
-///	
+///    
+///    File: LightingTools_cmd.cpp
+///    
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
 /// This file is subject to the terms and conditions defined in
 /// file 'LICENSE.txt', which is part of this source code package.
-///	
+///    
 //==============================================================================
 //
 // convert final_minus_x.png final_plus_x.png final_minus_y.png final_plus_y.png final_minus_z.png final_plus_z.png -append out.png
@@ -175,7 +175,7 @@ namespace {
                 dst_tex->set_pixel(dst_size-x-1, dst_size-y-1, Color4b(rc*gain/num_samples, gc*gain/num_samples, bc*gain/num_samples, 1.0F));
                 
             }
-        }		
+        }        
             
         return;
     }
@@ -199,7 +199,7 @@ CommandResult LightingTools_cmd::do_generate_irradiance_map (CommandContext &ctx
     // Load the Level
     //
     
-	std::shared_ptr<World> world = checked_cast<World>(Factory::create_object_from_stream(FilePath(p[1]), NULL, NULL));
+    std::shared_ptr<World> world = checked_cast<World>(Factory::create_object_from_stream(FilePath(p[1]), NULL, NULL));
     if (!world) {
         Globals::set_global("SYS_GEN_IRRADIANCE", "0", DT3::Globals::VOLATILE);
 
@@ -229,7 +229,7 @@ CommandResult LightingTools_cmd::do_generate_irradiance_map (CommandContext &ctx
     // Setup the viewport
     int32_t x, y, width, height;
     System::renderer()->viewport (x, y, width, height);
-	System::renderer()->set_viewport (0,0,SRC_SIZE,SRC_SIZE);
+    System::renderer()->set_viewport (0,0,SRC_SIZE,SRC_SIZE);
 
 
     // Build an appropriate camera
@@ -299,13 +299,13 @@ CommandResult LightingTools_cmd::do_generate_irradiance_map (CommandContext &ctx
     std::thread t5(std::bind(generate_maps, 4, gain, exponent, dst_size, num_samples, src_tex[4], dst_tex[4]));
     std::thread t6(std::bind(generate_maps, 5, gain, exponent, dst_size, num_samples, src_tex[5], dst_tex[5]));
     
-	t1.join();
-	t2.join();
-	t3.join();
-	t4.join();
-	t5.join();
-	t6.join();
-	
+    t1.join();
+    t2.join();
+    t3.join();
+    t4.join();
+    t5.join();
+    t6.join();
+    
     PNGWriter::write(FilePath("final_plus_x.png"), dst_tex[PLUS_X]);
     PNGWriter::write(FilePath("final_minus_x.png"), dst_tex[MINUS_X]);
     PNGWriter::write(FilePath("final_plus_y.png"), dst_tex[PLUS_Y]);
@@ -315,7 +315,7 @@ CommandResult LightingTools_cmd::do_generate_irradiance_map (CommandContext &ctx
 
 
     // Finish up
-	System::renderer()->set_viewport (x, y, width, height);
+    System::renderer()->set_viewport (x, y, width, height);
     
     Globals::set_global("SYS_GEN_IRRADIANCE", "0", DT3::Globals::VOLATILE);
     

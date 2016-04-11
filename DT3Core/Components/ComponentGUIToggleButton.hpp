@@ -3,7 +3,7 @@
 #define DT3_COMPONENTGUITOGGLEBUTTON
 //==============================================================================
 ///
-///	File: ComponentGUIToggleButton.hpp
+///    File: ComponentGUIToggleButton.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -36,10 +36,10 @@ class ComponentGUIToggleButton: public ComponentBase {
         DEFINE_CREATE_AND_CLONE
         DEFINE_PLUG_NODE
 
-                                    ComponentGUIToggleButton	(void);
-                                    ComponentGUIToggleButton	(const ComponentGUIToggleButton &rhs);
+                                    ComponentGUIToggleButton    (void);
+                                    ComponentGUIToggleButton    (const ComponentGUIToggleButton &rhs);
         ComponentGUIToggleButton &  operator =                  (const ComponentGUIToggleButton &rhs);
-        virtual                     ~ComponentGUIToggleButton	(void);
+        virtual                     ~ComponentGUIToggleButton    (void);
 
         virtual void                archive                     (const std::shared_ptr<Archive> &archive);
 

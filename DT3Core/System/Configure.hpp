@@ -3,7 +3,7 @@
 #define DT3_CONFIGURE
 //==============================================================================
 ///
-///	File: Configure.hpp
+///    File: Configure.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -28,10 +28,10 @@ class FilePath;
 
 class Configure {
     private:
-                                    Configure					(void);
-                                    Configure					(const Configure &rhs);
-        Configure &                 operator =					(const Configure &rhs);
-        virtual						~Configure                  (void);
+                                    Configure                    (void);
+                                    Configure                    (const Configure &rhs);
+        Configure &                 operator =                    (const Configure &rhs);
+        virtual                        ~Configure                  (void);
 
     public:
 
@@ -44,7 +44,7 @@ class Configure {
         /// Import a configuration file
         /// pathname path to configuration file
         /// cb optional callback to monitor values which are beign set
-        static void                 import_config				(const FilePath &pathname);
+        static void                 import_config                (const FilePath &pathname);
 
         /// Setup system globals such as platform globals, language, region, etc.
         /// \return success
@@ -52,11 +52,11 @@ class Configure {
 
     private:
         static void                 parse_package_block         (Tokenizer &tokenizer);
-        static void                 parse_default_block			(Tokenizer &tokenizer);
-        static void					parse_global_block			(Tokenizer &tokenizer);
+        static void                 parse_default_block            (Tokenizer &tokenizer);
+        static void                    parse_global_block            (Tokenizer &tokenizer);
 
-        static void					parse_engine_block			(Tokenizer &tokenizer);
-        static void					parse_application_block     (Tokenizer &tokenizer);
+        static void                    parse_engine_block            (Tokenizer &tokenizer);
+        static void                    parse_application_block     (Tokenizer &tokenizer);
 
 
 };

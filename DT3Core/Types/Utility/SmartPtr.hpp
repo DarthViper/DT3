@@ -3,7 +3,7 @@
 #define DT3_SMARTPTR
 //==============================================================================
 ///
-///	File: SmartPtr.hpp
+///    File: SmartPtr.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///

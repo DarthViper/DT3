@@ -3,7 +3,7 @@
 #define DT3_LIGHTOBJECT
 //==============================================================================
 ///
-///	File: LightObject.hpp
+///    File: LightObject.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -35,10 +35,10 @@ class LightObject: public PlaceableObject {
         DEFINE_CREATE_AND_CLONE
         DEFINE_PLUG_NODE
 
-                                    LightObject						(void);
-                                    LightObject						(const LightObject &rhs);
-        LightObject &				operator =						(const LightObject &rhs);
-        virtual                     ~LightObject					(void);
+                                    LightObject                        (void);
+                                    LightObject                        (const LightObject &rhs);
+        LightObject &                operator =                        (const LightObject &rhs);
+        virtual                     ~LightObject                    (void);
 
         virtual void                archive                         (const std::shared_ptr<Archive> &archive);
 
@@ -65,14 +65,14 @@ class LightObject: public PlaceableObject {
         DEFINE_ACCESSORS(specular_exponent_gain, set_specular_exponent_gain, DTfloat, _specular_gain);
 
     private:
-        Plug<DTfloat>				_gain_r;
-        Plug<DTfloat>				_gain_g;
-        Plug<DTfloat>				_gain_b;
-        Plug<DTfloat>				_gain_a;
+        Plug<DTfloat>                _gain_r;
+        Plug<DTfloat>                _gain_g;
+        Plug<DTfloat>                _gain_b;
+        Plug<DTfloat>                _gain_a;
 
-        Plug<Color4f>				_color;
-        Plug<Color4f>				_specular_color;
-        Plug<DTfloat>				_specular_gain;
+        Plug<Color4f>                _color;
+        Plug<Color4f>                _specular_color;
+        Plug<DTfloat>                _specular_gain;
 };
 
 //==============================================================================

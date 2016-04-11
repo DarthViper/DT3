@@ -3,7 +3,7 @@
 #define DT3_FACTORY
 //==============================================================================
 ///
-///	File: Factory.hpp
+///    File: Factory.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -35,44 +35,44 @@ class FilePath;
 
 class Factory {
     private:
-                                Factory						(void);
-                                Factory						(const Factory &rhs);
-        Factory &				operator =					(const Factory &rhs);
-                                ~Factory					(void);
+                                Factory                        (void);
+                                Factory                        (const Factory &rhs);
+        Factory &                operator =                    (const Factory &rhs);
+                                ~Factory                    (void);
 
     public:
 
         /// Description
         /// \param param description
         /// \return description
-        static std::shared_ptr<BaseClass>		create_world                (const std::string cid);
+        static std::shared_ptr<BaseClass>        create_world                (const std::string cid);
 
         /// Description
         /// \param param description
         /// \return description
-        static std::shared_ptr<BaseClass>		create_object               (const std::string cid, bool net_create = false);
+        static std::shared_ptr<BaseClass>        create_object               (const std::string cid, bool net_create = false);
 
         /// Description
         /// \param param description
         /// \return description
-        static std::shared_ptr<BaseClass>		create_object_from_stream   (   const FilePath &pathname,
+        static std::shared_ptr<BaseClass>        create_object_from_stream   (   const FilePath &pathname,
                                                                                 std::shared_ptr<Progress> progress = NULL,
                                                                                 std::shared_ptr<Callback<std::shared_ptr<BaseClass>>> obj_loaded_cb = NULL);
 
         /// Description
         /// \param param description
         /// \return description
-        static std::shared_ptr<BaseClass>		create_importer             (const std::string ext);
+        static std::shared_ptr<BaseClass>        create_importer             (const std::string ext);
 
         /// Description
         /// \param param description
         /// \return description
-        static std::shared_ptr<BaseClass>		create_unit_test            (const std::string cid);
+        static std::shared_ptr<BaseClass>        create_unit_test            (const std::string cid);
 
         /// Description
         /// \param param description
         /// \return description
-        static std::shared_ptr<BaseClass>		create_command              (const std::string cid);
+        static std::shared_ptr<BaseClass>        create_command              (const std::string cid);
 
         /// Description
         /// \param param description
@@ -89,8 +89,8 @@ class Factory {
 
 class CreatorBase {
     public:
-                CreatorBase(void)	{}
-        virtual ~CreatorBase(void)	{}
+                CreatorBase(void)    {}
+        virtual ~CreatorBase(void)    {}
 
         virtual std::shared_ptr<BaseClass>      create_object (void) const = 0;
         virtual std::string                     stored_class_id (void) const = 0;
@@ -100,8 +100,8 @@ class CreatorBase {
 template <typename T>
 class Creator: public CreatorBase {
     public:
-                Creator(void)	{}
-        virtual ~Creator(void)	{}
+                Creator(void)    {}
+        virtual ~Creator(void)    {}
 
         virtual std::shared_ptr<BaseClass>      create_object (void) const      {   return T::create(); }
         virtual std::string                     stored_class_id (void) const    {   return std::string(T::class_id_static());       }
@@ -122,7 +122,7 @@ extern std::map<std::string, std::shared_ptr<CreatorBase>>&    tool_map         
 extern std::map<std::string, std::shared_ptr<CreatorBase>>&    world_map                (void);
 extern std::map<std::string, std::set<std::string>>&           script_map               (void);
 
-#define IMPLEMENT_FACTORY_CREATION(Class)	\
+#define IMPLEMENT_FACTORY_CREATION(Class)    \
     namespace { \
         struct registration_class##Class: public StaticInitializerCallback { \
             void initialize() { \
@@ -131,7 +131,7 @@ extern std::map<std::string, std::set<std::string>>&           script_map       
         } registration_obj##Class; \
     }
 
-#define IMPLEMENT_FACTORY_UNIT_TEST(Class)	\
+#define IMPLEMENT_FACTORY_UNIT_TEST(Class)    \
     namespace { \
         struct registration_class##Class: public StaticInitializerCallback { \
             void initialize() { \
@@ -140,7 +140,7 @@ extern std::map<std::string, std::set<std::string>>&           script_map       
         } registration_obj##Class; \
     }
 
-#define IMPLEMENT_FACTORY_COMMAND(Class)	\
+#define IMPLEMENT_FACTORY_COMMAND(Class)    \
     namespace { \
         struct registration_class##Class: public StaticInitializerCallback { \
             void initialize() { \
@@ -149,7 +149,7 @@ extern std::map<std::string, std::set<std::string>>&           script_map       
         } registration_obj##Class; \
     }
 
-#define IMPLEMENT_FACTORY_IMPORTER(Class,Extension)	\
+#define IMPLEMENT_FACTORY_IMPORTER(Class,Extension)    \
     namespace { \
         struct registration_class##Class##Extension: public StaticInitializerCallback { \
             void initialize() { \
@@ -195,7 +195,7 @@ extern std::map<std::string, std::set<std::string>>&           script_map       
         struct registration_class##Class: public DT3::StaticInitializerCallback { \
             void initialize() { \
                 DT3::factory_map()[Class::class_id_static()] = std::shared_ptr<DT3::CreatorBase>(new ("FactoryObjectCreator") DT3::Creator<Class>); \
-                if (std::string(Category) != "")																						\
+                if (std::string(Category) != "")                                                                                        \
                     DT3::script_map()[Category].insert( Class::class_id_static() ); \
                 DT3::adapter_map()[Class::class_id_static()] = #Adapter; \
             } \

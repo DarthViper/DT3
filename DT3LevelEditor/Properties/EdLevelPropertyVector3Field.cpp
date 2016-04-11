@@ -1,6 +1,6 @@
 //==============================================================================
 ///
-///	File: EdLevelPropertyVector3Field.cpp
+///    File: EdLevelPropertyVector3Field.cpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -48,15 +48,15 @@ EdLevelPropertyVector3Field::EdLevelPropertyVector3Field (EdLevelPropertiesWindo
     _value_y->setObjectName("prop");
     _value_z->setObjectName("prop");
 
-    connect(	_value_x,       SIGNAL(editingFinished()),
-                this,           SLOT(doWriteParams())	);
-    connect(	_value_y,       SIGNAL(editingFinished()),
-                this,           SLOT(doWriteParams())	);
-    connect(	_value_z,       SIGNAL(editingFinished()),
-                this,           SLOT(doWriteParams())	);
+    connect(    _value_x,       SIGNAL(editingFinished()),
+                this,           SLOT(doWriteParams())    );
+    connect(    _value_y,       SIGNAL(editingFinished()),
+                this,           SLOT(doWriteParams())    );
+    connect(    _value_z,       SIGNAL(editingFinished()),
+                this,           SLOT(doWriteParams())    );
 
-    connect(	this,           SIGNAL(doCommand(QString, bool)),
-                parent,         SLOT(onCommand(QString, bool))	);
+    connect(    this,           SIGNAL(doCommand(QString, bool)),
+                parent,         SLOT(onCommand(QString, bool))    );
 
     QGridLayout *layout = new QGridLayout;
     layout->setContentsMargins(0,0,0,0);
@@ -77,7 +77,7 @@ EdLevelPropertyVector3Field::EdLevelPropertyVector3Field (EdLevelPropertiesWindo
     doReadParams();
 }
 
-EdLevelPropertyVector3Field::~EdLevelPropertyVector3Field	(void)
+EdLevelPropertyVector3Field::~EdLevelPropertyVector3Field    (void)
 {
 
 }

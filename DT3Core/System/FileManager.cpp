@@ -1,12 +1,12 @@
 //==============================================================================
-///	
-///	File: FileManager.cpp
-///	
+///    
+///    File: FileManager.cpp
+///    
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
 /// This file is subject to the terms and conditions defined in
 /// file 'LICENSE.txt', which is part of this source code package.
-///	
+///    
 //==============================================================================
 
 #include "DT3Core/System/FileManager.hpp"
@@ -67,9 +67,9 @@ void FileManager::set_file_open_cb (std::shared_ptr<Callback<const FilePath &, s
 //==============================================================================
 //==============================================================================
 
-void FileManager::scan_files	(void)
+void FileManager::scan_files    (void)
 {
-	DirectoryLister lister;
+    DirectoryLister lister;
 
 #if DT3_OS == DT3_IOS || DT3_OS == DT3_ANDROID || DT3_OS == DT3_WINDOWS
     FilePath p("{APPDIR}");
@@ -78,35 +78,35 @@ void FileManager::scan_files	(void)
 #endif
 
     
-	LOG_MESSAGE << "Scanning files at " << p.full_path();
-	lister.scan_path(p);
+    LOG_MESSAGE << "Scanning files at " << p.full_path();
+    lister.scan_path(p);
 
     uint32_t num_files = lister.num_files();
-	for (uint32_t i = 0; i < num_files; ++i) {
+    for (uint32_t i = 0; i < num_files; ++i) {
         if (!lister.file_path(i).is_dir()) {
             Globals::set_global(lister.file_name(i), lister.file_path(i).full_path(), Globals::VOLATILE);
          
             LOG_MESSAGE << lister.file_name(i) << "  " << lister.file_path(i).full_path();
         }
-	}
-	
+    }
+    
 }
 
 //==============================================================================
 //==============================================================================
 
-DTerr FileManager::register_package	(const FilePath &packagename)
+DTerr FileManager::register_package    (const FilePath &packagename)
 {
-	std::shared_ptr<Package> package = Package::create();
-	
-	DTerr err;
-	if ((err = package->load_package(packagename)) != DT3_ERR_NONE) {
-		return err;
-	}
-		
-	_packages[packagename.file_name()] = package;
-	
-	return DT3_ERR_NONE;
+    std::shared_ptr<Package> package = Package::create();
+    
+    DTerr err;
+    if ((err = package->load_package(packagename)) != DT3_ERR_NONE) {
+        return err;
+    }
+        
+    _packages[packagename.file_name()] = package;
+    
+    return DT3_ERR_NONE;
 }
 
 void FileManager::unregister_packages (void)
@@ -230,7 +230,7 @@ DTerr FileManager::open (TextFileStream &file, const FilePath &pathname, bool re
     
     }
 
-	if (pathname.in_package()) {
+    if (pathname.in_package()) {
         ASSERT(read);
 
         FilePath package_name;
@@ -242,15 +242,15 @@ DTerr FileManager::open (TextFileStream &file, const FilePath &pathname, bool re
 
         open_from_fragment (file, package_name, start, length, uncompressed_length, read, progress);
 
-	} else {
+    } else {
         open_from_fragment (file, pathname, 0, -1, -1, read, progress);
-	}
+    }
     
     // File is opened
     if (progress)   
         progress->started();
-	
-	return DT3_ERR_NONE;
+    
+    return DT3_ERR_NONE;
 }
 
 //==============================================================================
@@ -273,7 +273,7 @@ DTerr FileManager::open (BinaryFileStream &file, const FilePath &pathname, bool 
     
     }
 
-	if (pathname.in_package()) {
+    if (pathname.in_package()) {
         ASSERT(read);
 
         FilePath package_name;
@@ -285,15 +285,15 @@ DTerr FileManager::open (BinaryFileStream &file, const FilePath &pathname, bool 
 
         open_from_fragment (file, package_name, start, length, uncompressed_length, read, progress);
 
-	} else {
+    } else {
         open_from_fragment (file, pathname, 0, -1, -1, read, progress);
-	}
+    }
 
     // File is opened
     if (progress)   
         progress->started();
 
-	return DT3_ERR_NONE;
+    return DT3_ERR_NONE;
 }
 
 //==============================================================================

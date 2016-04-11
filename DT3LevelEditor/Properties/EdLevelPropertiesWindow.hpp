@@ -3,7 +3,7 @@
 #define EDLEVELPROPERTIESWINDOW
 //==============================================================================
 ///
-///	File: EdLevelPropertiesWindow.hpp
+///    File: EdLevelPropertiesWindow.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -47,7 +47,7 @@ class EdLevelPropertiesWindow : public QListWidget
     Q_OBJECT
 
     public:
-                                        EdLevelPropertiesWindow		(QWidget *parent, QToolBar *toolbar, EdLevelDocument *document);
+                                        EdLevelPropertiesWindow        (QWidget *parent, QToolBar *toolbar, EdLevelDocument *document);
 
     private:
         EdLevelDocument                                 *_document;

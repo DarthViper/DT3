@@ -1,7 +1,7 @@
 #pragma once
 //==============================================================================
 ///
-///	File: DrawUtils.hpp
+///    File: DrawUtils.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -38,15 +38,15 @@ class ShaderResource;
 
 class DrawUtils {
     private:
-                                        DrawUtils					(void);
-                                        DrawUtils					(const DrawUtils &rhs);
-        DrawUtils &						operator =					(const DrawUtils &rhs);
-        virtual							~DrawUtils					(void);
+                                        DrawUtils                    (void);
+                                        DrawUtils                    (const DrawUtils &rhs);
+        DrawUtils &                        operator =                    (const DrawUtils &rhs);
+        virtual                            ~DrawUtils                    (void);
 
     public:
         // Helper Drawing routines
 
-        static void						draw_quad_stretch_center_3x3(   DrawBatcher &draw_batcher,
+        static void                        draw_quad_stretch_center_3x3(   DrawBatcher &draw_batcher,
                                                                         const std::shared_ptr<CameraObject> &camera,
                                                                         const std::shared_ptr<MaterialResource> &material,
                                                                         const std::shared_ptr<ShaderResource> &shader,
@@ -59,7 +59,7 @@ class DrawUtils {
                                                                         DTfloat corner_width,
                                                                         DTfloat corner_height);
 
-        static void						draw_quad_stretch_center_2x2(   DrawBatcher &draw_batcher,
+        static void                        draw_quad_stretch_center_2x2(   DrawBatcher &draw_batcher,
                                                                         const std::shared_ptr<CameraObject> &camera,
                                                                         const std::shared_ptr<MaterialResource> &material,
                                                                         const std::shared_ptr<ShaderResource> &shader,
@@ -72,7 +72,7 @@ class DrawUtils {
                                                                         DTfloat corner_width,
                                                                         DTfloat corner_height);
 
-        static void						draw_selection              (   DrawBatcher &draw_batcher,
+        static void                        draw_selection              (   DrawBatcher &draw_batcher,
                                                                         const std::shared_ptr<CameraObject> &camera,
                                                                         const std::shared_ptr<MaterialResource> &material,
                                                                         const std::shared_ptr<ShaderResource> &shader,

@@ -3,7 +3,7 @@
 #define EDLEVELMESHBUILDER
 //==============================================================================
 ///
-///	File: EdLevelMeshBuilder.hpp
+///    File: EdLevelMeshBuilder.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -36,7 +36,7 @@ class EdLevelMeshBuilder: public QDialog
     Q_OBJECT
 
     public:
-                                        EdLevelMeshBuilder		(void);
+                                        EdLevelMeshBuilder        (void);
                                         ~EdLevelMeshBuilder     (void);
 
     public slots:

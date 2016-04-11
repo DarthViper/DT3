@@ -1,6 +1,6 @@
 //==============================================================================
 ///
-///	File: EdLevelResourceImage.cpp
+///    File: EdLevelResourceImage.cpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -53,7 +53,7 @@ EdLevelResourceImage::EdLevelResourceImage (const FilePath &path)
     setMaximumWidth(200);
 }
 
-EdLevelResourceImage::~EdLevelResourceImage	(void)
+EdLevelResourceImage::~EdLevelResourceImage    (void)
 {
 
 }

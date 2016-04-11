@@ -1,6 +1,6 @@
 //==============================================================================
 ///
-///	File: EdLevelPropertyVector2Field.cpp
+///    File: EdLevelPropertyVector2Field.cpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -46,13 +46,13 @@ EdLevelPropertyVector2Field::EdLevelPropertyVector2Field (EdLevelPropertiesWindo
     _value_x->setObjectName("prop");
     _value_y->setObjectName("prop");
 
-    connect(	_value_x,       SIGNAL(editingFinished()),
-                this,           SLOT(doWriteParams())	);
-    connect(	_value_y,       SIGNAL(editingFinished()),
-                this,           SLOT(doWriteParams())	);
+    connect(    _value_x,       SIGNAL(editingFinished()),
+                this,           SLOT(doWriteParams())    );
+    connect(    _value_y,       SIGNAL(editingFinished()),
+                this,           SLOT(doWriteParams())    );
 
-    connect(	this,           SIGNAL(doCommand(QString, bool)),
-                parent,         SLOT(onCommand(QString, bool))	);
+    connect(    this,           SIGNAL(doCommand(QString, bool)),
+                parent,         SLOT(onCommand(QString, bool))    );
 
     QGridLayout *layout = new QGridLayout;
     layout->setContentsMargins(0,0,0,0);
@@ -72,7 +72,7 @@ EdLevelPropertyVector2Field::EdLevelPropertyVector2Field (EdLevelPropertiesWindo
     doReadParams();
 }
 
-EdLevelPropertyVector2Field::~EdLevelPropertyVector2Field	(void)
+EdLevelPropertyVector2Field::~EdLevelPropertyVector2Field    (void)
 {
 
 }

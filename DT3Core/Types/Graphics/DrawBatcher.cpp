@@ -1,12 +1,12 @@
 //==============================================================================
-///	
-///	File: DrawBatcher.cpp
-///	
+///    
+///    File: DrawBatcher.cpp
+///    
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
 /// This file is subject to the terms and conditions defined in
 /// file 'LICENSE.txt', which is part of this source code package.
-///	
+///    
 //==============================================================================
 
 #include "DT3Core/Types/Graphics/DrawBatcher.hpp"
@@ -27,9 +27,9 @@ namespace DT3 {
 //==============================================================================
 
 DrawBatcher::DrawBatcher (void)
-	:	_type           (DT3GL_PRIM_TRI_STRIP),
-		_format         (FMT_V),
-		_cur_index		(-1),
+    :    _type           (DT3GL_PRIM_TRI_STRIP),
+        _format         (FMT_V),
+        _cur_index        (-1),
         _flush_callback (NULL)
 {
     SystemCallbacks::screen_opened_cb().add(make_callback(this, &type::screen_opened));
@@ -38,7 +38,7 @@ DrawBatcher::DrawBatcher (void)
 
 DrawBatcher::~DrawBatcher (void)
 {
-	draw();
+    draw();
 
     SystemCallbacks::screen_opened_cb().remove(make_callback(this, &type::screen_opened));
     SystemCallbacks::screen_closed_cb().remove(make_callback(this, &type::screen_closed));
@@ -67,7 +67,7 @@ void DrawBatcher::screen_closed (void)
 //==============================================================================
 //==============================================================================
 
-void	 DrawBatcher::batch_begin ( const std::shared_ptr<CameraObject> &camera,
+void     DrawBatcher::batch_begin ( const std::shared_ptr<CameraObject> &camera,
                                     const std::shared_ptr<MaterialResource> &material,
                                     const std::shared_ptr<ShaderResource> &shader,
                                     const Matrix4 &transform,
@@ -75,16 +75,16 @@ void	 DrawBatcher::batch_begin ( const std::shared_ptr<CameraObject> &camera,
                                     uint16_t fmt,
                                     DTsize size_hint)
 {
-	// flush for materials and format changes
-	if (_material != material || _format != fmt || _transform != transform)
-		draw();
+    // flush for materials and format changes
+    if (_material != material || _format != fmt || _transform != transform)
+        draw();
 
     _camera_object = camera;
-	_material = material;
+    _material = material;
     _shader = shader;
     _transform = transform;
-	_format = fmt;
-	_type = type;
+    _format = fmt;
+    _type = type;
     
     _size_hint = size_hint;
 
@@ -125,15 +125,15 @@ void	 DrawBatcher::batch_begin ( const std::shared_ptr<CameraObject> &camera,
         _batch_cf_raw.reset();
 }
 
-void	 DrawBatcher::batch_end (void)
+void     DrawBatcher::batch_end (void)
 {
-	// Does nothing yet
+    // Does nothing yet
 }
 
-void	 DrawBatcher::batch_split (void)
+void     DrawBatcher::batch_split (void)
 {
-	if (_cur_index > _size_hint - 3) {
-		draw();
+    if (_cur_index > _size_hint - 3) {
+        draw();
     }
 
 }
@@ -143,7 +143,7 @@ void	 DrawBatcher::batch_split (void)
 
 void DrawBatcher::draw (bool clear_when_done)
 {
-	if (System::renderer() && _cur_index > 0) {
+    if (System::renderer() && _cur_index > 0) {
     
         if (_flush_callback)
             (*_flush_callback)(this);
@@ -238,11 +238,11 @@ void DrawBatcher::draw (bool clear_when_done)
         
         // Draw!!
         System::renderer()->draw_arrays(_type, _cur_index+1);
-				
+                
         // Do we clear after?
         if (clear_when_done)
             _cur_index = -1;
-	}
+    }
 }
 
 

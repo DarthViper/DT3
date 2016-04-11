@@ -1,12 +1,12 @@
 //==============================================================================
-///	
-///	File: ScriptingKeyframesBool.cpp
-///	
+///    
+///    File: ScriptingKeyframesBool.cpp
+///    
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
 /// This file is subject to the terms and conditions defined in
 /// file 'LICENSE.txt', which is part of this source code package.
-///	
+///    
 //==============================================================================
 
 #include "DT3Core/Scripting/ScriptingKeyframesBool.hpp"
@@ -30,18 +30,18 @@ IMPLEMENT_PLUG_NODE(ScriptingKeyframesBool)
 
 IMPLEMENT_PLUG_INFO_INDEX(_t)
 IMPLEMENT_PLUG_INFO_INDEX(_out)
-		
+        
 //==============================================================================
 //==============================================================================
 
 BEGIN_IMPLEMENT_PLUGS(ScriptingKeyframesBool)
 
-	PLUG_INIT(_t,"t")
-		.set_input(true)
-		.affects(PLUG_INFO_INDEX(_out));
+    PLUG_INIT(_t,"t")
+        .set_input(true)
+        .affects(PLUG_INFO_INDEX(_out));
 
-	PLUG_INIT(_out,"Out")
-		.set_output(true);
+    PLUG_INIT(_out,"Out")
+        .set_output(true);
         
 END_IMPLEMENT_PLUGS
 
@@ -50,21 +50,21 @@ END_IMPLEMENT_PLUGS
 //==============================================================================
 
 ScriptingKeyframesBool::ScriptingKeyframesBool (void)
-	:	_t				(PLUG_INFO_INDEX(_t), 0.0F),
-		_out			(PLUG_INFO_INDEX(_out), false),
-		_id				(0),
-		_keyframe_cache	(0)
+    :    _t                (PLUG_INFO_INDEX(_t), 0.0F),
+        _out            (PLUG_INFO_INDEX(_out), false),
+        _id                (0),
+        _keyframe_cache    (0)
 {  
 
 }
-		
+        
 ScriptingKeyframesBool::ScriptingKeyframesBool (const ScriptingKeyframesBool &rhs)
-    :   ScriptingKeyframes	(rhs),
-		_t					(rhs._t),
-		_out				(PLUG_INFO_INDEX(_out), false),
-		_id					(rhs._id),
-		_keyframes			(rhs._keyframes),
-		_keyframe_cache		(0)
+    :   ScriptingKeyframes    (rhs),
+        _t                    (rhs._t),
+        _out                (PLUG_INFO_INDEX(_out), false),
+        _id                    (rhs._id),
+        _keyframes            (rhs._keyframes),
+        _keyframe_cache        (0)
 {   
 
 }
@@ -73,17 +73,17 @@ ScriptingKeyframesBool & ScriptingKeyframesBool::operator = (const ScriptingKeyf
 {
     // Make sure we are not assigning the class to itself
     if (&rhs != this) {        
-		ScriptingKeyframes::operator = (rhs);	
-		
-		_t = rhs._t;
-		_out = rhs._out;
-		_id = rhs._id;
-		_keyframes = rhs._keyframes;
-		_keyframe_cache = rhs._keyframe_cache;
-	}
+        ScriptingKeyframes::operator = (rhs);    
+        
+        _t = rhs._t;
+        _out = rhs._out;
+        _id = rhs._id;
+        _keyframes = rhs._keyframes;
+        _keyframe_cache = rhs._keyframe_cache;
+    }
     return (*this);
 }
-			
+            
 ScriptingKeyframesBool::~ScriptingKeyframesBool (void)
 {
 
@@ -96,7 +96,7 @@ void ScriptingKeyframesBool::archive (const std::shared_ptr<Archive> &archive)
 {
     ScriptingKeyframes::archive(archive);
 
-	archive->push_domain (class_id ());
+    archive->push_domain (class_id ());
     
     *archive << ARCHIVE_PLUG(_t, DATA_PERSISTENT | DATA_SETTABLE);
     *archive << ARCHIVE_PLUG(_out, DATA_PERSISTENT);
@@ -112,7 +112,7 @@ void ScriptingKeyframesBool::archive (const std::shared_ptr<Archive> &archive)
         if (archive->is_reading())
             _keyframes[i]._id = _id++;
     }
-				
+                
     archive->pop_domain ();
 }
 
@@ -120,24 +120,24 @@ void ScriptingKeyframesBool::archive (const std::shared_ptr<Archive> &archive)
 //==============================================================================
 
 int32_t  ScriptingKeyframesBool::set_key_time (int32_t k, DTfloat time)
-{	
-	PROFILER(SCRIPTING);
+{    
+    PROFILER(SCRIPTING);
 
-	int32_t oldid = _keyframes[k]._id;
-	
-	_keyframes[k]._time = time;
-	std::sort(_keyframes.begin(), _keyframes.end());
-	
-	for (std::size_t i = 0; i < _keyframes.size(); ++i)
-		if (oldid == _keyframes[i]._id)
-			return static_cast<int32_t>(i);
-			
-	return -1;
+    int32_t oldid = _keyframes[k]._id;
+    
+    _keyframes[k]._time = time;
+    std::sort(_keyframes.begin(), _keyframes.end());
+    
+    for (std::size_t i = 0; i < _keyframes.size(); ++i)
+        if (oldid == _keyframes[i]._id)
+            return static_cast<int32_t>(i);
+            
+    return -1;
 }
 
 void  ScriptingKeyframesBool::clear_key (int32_t k)
 {
-	_keyframes.erase(_keyframes.begin() + k);
+    _keyframes.erase(_keyframes.begin() + k);
 }
 
 //==============================================================================
@@ -145,40 +145,40 @@ void  ScriptingKeyframesBool::clear_key (int32_t k)
 
 void ScriptingKeyframesBool::set_key (void)
 {
-	PROFILER(SCRIPTING);
+    PROFILER(SCRIPTING);
 
-	const std::vector<PlugBase*> outgoing = _out.outgoing_connections();
-	if (outgoing.size() > 0) {
-		// get first connected plug
-		Plug<bool> *outplug = static_cast<Plug<bool>*>(*(outgoing.begin()));
-		
-		// get the value of the first connected plug
-		bool val = outplug->value_without_compute();
-				
-		// clear any existing key
-		clear_key();
-		
-		// add the keyframe
-		keyframe k;
-		k._time = _t;
-		k._value = val;
-		k._id = _id++;
-		_keyframes.push_back(k);
-		
-		std::sort(_keyframes.begin(), _keyframes.end());
-	}
+    const std::vector<PlugBase*> outgoing = _out.outgoing_connections();
+    if (outgoing.size() > 0) {
+        // get first connected plug
+        Plug<bool> *outplug = static_cast<Plug<bool>*>(*(outgoing.begin()));
+        
+        // get the value of the first connected plug
+        bool val = outplug->value_without_compute();
+                
+        // clear any existing key
+        clear_key();
+        
+        // add the keyframe
+        keyframe k;
+        k._time = _t;
+        k._value = val;
+        k._id = _id++;
+        _keyframes.push_back(k);
+        
+        std::sort(_keyframes.begin(), _keyframes.end());
+    }
 }
 
 void ScriptingKeyframesBool::clear_key (void)
 {
-	PROFILER(SCRIPTING);
+    PROFILER(SCRIPTING);
 
-	FOR_EACH (i,_keyframes) {
-		if (_t <= i->_time + (1.0F/30.0F) && _t > i->_time - (1.0F/30.0F)) {
-			_keyframes.erase(i);
-			return;
-		}
-	}
+    FOR_EACH (i,_keyframes) {
+        if (_t <= i->_time + (1.0F/30.0F) && _t > i->_time - (1.0F/30.0F)) {
+            _keyframes.erase(i);
+            return;
+        }
+    }
 }
 
 //==============================================================================
@@ -186,57 +186,57 @@ void ScriptingKeyframesBool::clear_key (void)
 
 bool ScriptingKeyframesBool::compute (const PlugBase *plug)
 {
-	PROFILER(SCRIPTING);
+    PROFILER(SCRIPTING);
 
     if (super_type::compute(plug))  return true;
 
-	if (plug == &_out) {
-		
-		DTfloat t = _t;
-		
-		// Special cases
-		if (_keyframes.size() == 0)	{
-			_out.set_clean();
-			return true;
-		}
-		
-		if (_keyframes.size() == 1)	{
-			_out = _keyframes[0]._value;
-			return true;
-		}
-		
-		// Scan for the best key
-		if (_keyframe_cache < 0)									_keyframe_cache = 0;
-		else if (_keyframe_cache > (int32_t) _keyframes.size() - 2)	_keyframe_cache = (int32_t) _keyframes.size() - 2;
-				
-		while (1) {
-			if (t < _keyframes[_keyframe_cache]._time) {
-				--_keyframe_cache;
-				if (_keyframe_cache < 0) {
-					_keyframe_cache = 0;
-					_out = _keyframes[_keyframe_cache]._value;
-					break;
-				}
-			} else if (t > _keyframes[_keyframe_cache+1]._time) {
-				++_keyframe_cache;
-				if (_keyframe_cache > (int32_t) _keyframes.size() - 2) {
-					_keyframe_cache = (int32_t) _keyframes.size() - 2;
-					_out = _keyframes[_keyframe_cache+1]._value;
-					break;
-				}
-			} else {			
-				_out = _keyframes[_keyframe_cache]._value;
-				break;
-			}
-		
-		}
-		
-		_out.set_clean();
-		
-		return true;
-	} 
-	
-	return false;
+    if (plug == &_out) {
+        
+        DTfloat t = _t;
+        
+        // Special cases
+        if (_keyframes.size() == 0)    {
+            _out.set_clean();
+            return true;
+        }
+        
+        if (_keyframes.size() == 1)    {
+            _out = _keyframes[0]._value;
+            return true;
+        }
+        
+        // Scan for the best key
+        if (_keyframe_cache < 0)                                    _keyframe_cache = 0;
+        else if (_keyframe_cache > (int32_t) _keyframes.size() - 2)    _keyframe_cache = (int32_t) _keyframes.size() - 2;
+                
+        while (1) {
+            if (t < _keyframes[_keyframe_cache]._time) {
+                --_keyframe_cache;
+                if (_keyframe_cache < 0) {
+                    _keyframe_cache = 0;
+                    _out = _keyframes[_keyframe_cache]._value;
+                    break;
+                }
+            } else if (t > _keyframes[_keyframe_cache+1]._time) {
+                ++_keyframe_cache;
+                if (_keyframe_cache > (int32_t) _keyframes.size() - 2) {
+                    _keyframe_cache = (int32_t) _keyframes.size() - 2;
+                    _out = _keyframes[_keyframe_cache+1]._value;
+                    break;
+                }
+            } else {            
+                _out = _keyframes[_keyframe_cache]._value;
+                break;
+            }
+        
+        }
+        
+        _out.set_clean();
+        
+        return true;
+    } 
+    
+    return false;
 }
 
 //==============================================================================

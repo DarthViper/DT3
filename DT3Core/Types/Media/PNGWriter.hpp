@@ -3,7 +3,7 @@
 #define DT3_PNGWRITER
 //==============================================================================
 ///
-///	File: PNGWriter.hpp
+///    File: PNGWriter.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -33,10 +33,10 @@ class TextureResource2D;
 
 class PNGWriter {
     private:
-                                PNGWriter			(void);
-                                PNGWriter			(const PNGWriter &rhs);
-        PNGWriter &             operator =			(const PNGWriter &rhs);
-                                ~PNGWriter			(void);
+                                PNGWriter            (void);
+                                PNGWriter            (const PNGWriter &rhs);
+        PNGWriter &             operator =            (const PNGWriter &rhs);
+                                ~PNGWriter            (void);
 
     public:
         /// Write an image to a png file

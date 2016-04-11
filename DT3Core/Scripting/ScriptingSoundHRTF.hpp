@@ -3,7 +3,7 @@
 #define DT3_SCRIPTINGSOUNDHRTF
 //==============================================================================
 ///
-///	File: ScriptingSoundHRTF.hpp
+///    File: ScriptingSoundHRTF.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -48,17 +48,17 @@ class ScriptingSoundHRTF: public ScriptingSoundBase {
         DEFINE_CREATE_AND_CLONE
         DEFINE_PLUG_NODE
 
-                                    ScriptingSoundHRTF    	(void);
-                                    ScriptingSoundHRTF    	(const ScriptingSoundHRTF &rhs);
-        ScriptingSoundHRTF &		operator =				(const ScriptingSoundHRTF &rhs);
-        virtual                     ~ScriptingSoundHRTF  	(void);
+                                    ScriptingSoundHRTF        (void);
+                                    ScriptingSoundHRTF        (const ScriptingSoundHRTF &rhs);
+        ScriptingSoundHRTF &        operator =                (const ScriptingSoundHRTF &rhs);
+        virtual                     ~ScriptingSoundHRTF      (void);
 
         virtual void                archive                 (const std::shared_ptr<Archive> &archive);
 
     public:
         /// Computes the value of the node
         /// \param plug plug to compute
-        bool					compute					(const PlugBase *plug);
+        bool                    compute                    (const PlugBase *plug);
 
     private:
 

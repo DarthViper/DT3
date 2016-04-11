@@ -1,7 +1,7 @@
 #pragma once
 //==============================================================================
 ///
-///	File: WorldNode.hpp
+///    File: WorldNode.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -38,10 +38,10 @@ class WorldNode: public PlugNode {
         DEFINE_CREATE_AND_CLONE
         DEFINE_PLUG_NODE
 
-                                    WorldNode			(void);
-                                    WorldNode			(const WorldNode &rhs);
-        WorldNode &                 operator =			(const WorldNode &rhs);
-        virtual                     ~WorldNode			(void) = default;
+                                    WorldNode            (void);
+                                    WorldNode            (const WorldNode &rhs);
+        WorldNode &                 operator =            (const WorldNode &rhs);
+        virtual                     ~WorldNode            (void) = default;
 
         virtual void                archive             (const std::shared_ptr<Archive> &archive);
 
@@ -92,9 +92,9 @@ class WorldNode: public PlugNode {
 
     private:
 
-        bool					_node_collapsed;	// Editor node collapsed
-        Vector3						_node_position;		// Editor node position
-        Color4f						_node_color;		// Editor node color
+        bool                    _node_collapsed;    // Editor node collapsed
+        Vector3                        _node_position;        // Editor node position
+        Color4f                        _node_color;        // Editor node color
 
         Plug<WorldNode*>            _self;
         Group                       *_group;            // weak reference - no ref count

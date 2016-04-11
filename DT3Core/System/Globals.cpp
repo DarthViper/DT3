@@ -1,6 +1,6 @@
 //==============================================================================
 ///
-///	File: Globals.cpp
+///    File: Globals.cpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -75,7 +75,7 @@ std::string Globals::global (const std::string &name_with_case)
     auto i = _globals.find(name.c_str());
 
     if (i != _globals.end())
-        return	_globals[name.c_str()].value;
+        return    _globals[name.c_str()].value;
     else
         return "";
 }
@@ -90,7 +90,7 @@ bool Globals::global (const std::string &name_with_case, std::string &value)
     auto i = _globals.find(name.c_str());
 
     if (i != _globals.end()) {
-        value =	_globals[name.c_str()].value;
+        value =    _globals[name.c_str()].value;
         return true;
     } else {
         value = "";
@@ -149,13 +149,13 @@ void Globals::set_global_default (const std::string &name_with_case, const std::
 //==============================================================================
 //==============================================================================
 
-std::string Globals::substitute_global	(const std::string &s)
+std::string Globals::substitute_global    (const std::string &s)
 {
     std::string value;
     bool success = substitute_global (s, value);
 
-    if (success)	return value;
-    else			return s;
+    if (success)    return value;
+    else            return s;
 }
 
 bool Globals::substitute_global (const std::string &s, std::string &value)

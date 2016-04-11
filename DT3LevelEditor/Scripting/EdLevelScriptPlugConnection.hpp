@@ -3,7 +3,7 @@
 #define EDLEVELSCRIPTPLUGCONNECTION
 //==============================================================================
 ///
-///	File: EdLevelScriptPlugConnection.hpp
+///    File: EdLevelScriptPlugConnection.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -54,7 +54,7 @@ class EdLevelScriptPlugConnection: public EdLevelScriptConnection
                                             _fm(_font)
                                     {}
 
-                                    EdLevelScriptPlugConnection	(   EdLevelScriptNodeStandard *node1, PlugBase *plug1,
+                                    EdLevelScriptPlugConnection    (   EdLevelScriptNodeStandard *node1, PlugBase *plug1,
                                                                     EdLevelScriptNodeStandard *node2, PlugBase *plug2);
 
                                     ~EdLevelScriptPlugConnection()  {}
@@ -62,8 +62,8 @@ class EdLevelScriptPlugConnection: public EdLevelScriptConnection
     public:
         virtual void                readjustBounds  (void);
 
-        QRectF						boundingRect	(void) const;
-        virtual void				paint			(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
+        QRectF                        boundingRect    (void) const;
+        virtual void                paint            (QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
 
         void                        disconnect      (void)          {   _plug1 = _plug2 = NULL; }
 

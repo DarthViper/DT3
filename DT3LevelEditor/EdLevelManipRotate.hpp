@@ -1,7 +1,7 @@
 #pragma once
 //==============================================================================
 ///
-///	File: EdLevelManipRotate.hpp
+///    File: EdLevelManipRotate.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///

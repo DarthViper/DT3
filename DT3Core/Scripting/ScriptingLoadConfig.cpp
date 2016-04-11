@@ -1,12 +1,12 @@
 //==============================================================================
-///	
-///	File: ScriptingLoadConfig.cpp
-///	
+///    
+///    File: ScriptingLoadConfig.cpp
+///    
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
 /// This file is subject to the terms and conditions defined in
 /// file 'LICENSE.txt', which is part of this source code package.
-///	
+///    
 //==============================================================================
 
 #include "DT3Core/Scripting/ScriptingLoadConfig.hpp"
@@ -29,18 +29,18 @@ namespace DT3 {
 IMPLEMENT_FACTORY_CREATION_SCRIPT(ScriptingLoadConfig,"Engine",NULL)
 IMPLEMENT_PLUG_NODE(ScriptingLoadConfig)
 
-IMPLEMENT_PLUG_INFO_INDEX(_config_path)		
-IMPLEMENT_EVENT_INFO_INDEX(_load)		
+IMPLEMENT_PLUG_INFO_INDEX(_config_path)        
+IMPLEMENT_EVENT_INFO_INDEX(_load)        
 
 //==============================================================================
 //==============================================================================
 
 BEGIN_IMPLEMENT_PLUGS(ScriptingLoadConfig)
         
-	PLUG_INIT(_config_path,"Config_Path")
-		.set_output(true);
+    PLUG_INIT(_config_path,"Config_Path")
+        .set_output(true);
                 
-	EVENT_INIT(_load,"Load")
+    EVENT_INIT(_load,"Load")
         .set_input(true)
         .set_event(&ScriptingLoadConfig::event_load);
    
@@ -56,10 +56,10 @@ ScriptingLoadConfig::ScriptingLoadConfig (void)
 {  
 
 }
-		
+        
 ScriptingLoadConfig::ScriptingLoadConfig (const ScriptingLoadConfig &rhs)
     :   ScriptingBase       (rhs),
-		_config_path        (rhs._config_path),
+        _config_path        (rhs._config_path),
         _load               (rhs._load)
 {   
 
@@ -69,13 +69,13 @@ ScriptingLoadConfig & ScriptingLoadConfig::operator = (const ScriptingLoadConfig
 {
     // Make sure we are not assigning the class to itself
     if (&rhs != this) {        
-		ScriptingBase::operator = (rhs);
+        ScriptingBase::operator = (rhs);
 
-		_config_path = rhs._config_path;
-	}
+        _config_path = rhs._config_path;
+    }
     return (*this);
 }
-			
+            
 ScriptingLoadConfig::~ScriptingLoadConfig (void)
 {
 
@@ -88,9 +88,9 @@ void ScriptingLoadConfig::archive (const std::shared_ptr<Archive> &archive)
 {
     ScriptingBase::archive(archive);
 
-	archive->push_domain (class_id ());
+    archive->push_domain (class_id ());
     
-	*archive << ARCHIVE_PLUG(_config_path, DATA_PERSISTENT | DATA_SETTABLE);
+    *archive << ARCHIVE_PLUG(_config_path, DATA_PERSISTENT | DATA_SETTABLE);
 
     archive->pop_domain ();
 }
@@ -100,7 +100,7 @@ void ScriptingLoadConfig::archive (const std::shared_ptr<Archive> &archive)
 
 void ScriptingLoadConfig::event_load (PlugNode *sender)
 {
-	PROFILER(SCRIPTING);
+    PROFILER(SCRIPTING);
 
     Configure::import_config(_config_path);
 }

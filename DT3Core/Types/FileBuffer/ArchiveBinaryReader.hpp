@@ -1,7 +1,7 @@
 #pragma once
 //==============================================================================
 ///
-///	File: ArchiveBinaryReader.hpp
+///    File: ArchiveBinaryReader.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -34,60 +34,60 @@ class ArchiveBinaryReader: public Archive {
         //DEFINE_TYPE(ArchiveBinaryReader,Archive)
         DEFINE_CREATE_T(ArchiveBinaryReader)
 
-                                ArchiveBinaryReader		(void);
+                                ArchiveBinaryReader        (void);
 
     private:
-                                ArchiveBinaryReader		(const ArchiveBinaryReader &rhs);
-        ArchiveBinaryReader &	operator =              (const ArchiveBinaryReader &rhs);
+                                ArchiveBinaryReader        (const ArchiveBinaryReader &rhs);
+        ArchiveBinaryReader &    operator =              (const ArchiveBinaryReader &rhs);
 
     public:
-        virtual					~ArchiveBinaryReader	(void);
+        virtual                    ~ArchiveBinaryReader    (void);
 
     public:
 
         /// Opens an archive
         /// \param pathname path to archive
-        DTerr					open					(const FilePath &pathname, std::shared_ptr<Progress> progress = NULL);
+        DTerr                    open                    (const FilePath &pathname, std::shared_ptr<Progress> progress = NULL);
 
         /// Closes archive
-        void					close					(void);
+        void                    close                    (void);
 
         /// Streams data into or out of this object
         /// \param data data to stream
         /// \return this archiving object so you can chain them together
-        virtual Archive &		operator <<				(const ArchiveData& data);
+        virtual Archive &        operator <<                (const ArchiveData& data);
 
         /// Adds a sub domain for the archive
         /// \param domain name of the domain
-        virtual void			push_domain             (const std::string &domain);
+        virtual void            push_domain             (const std::string &domain);
 
         /// Balances the sub domain for the archive
-        virtual void			pop_domain				(void);
+        virtual void            pop_domain                (void);
 
         /// Returns the engine version of the archive
         /// \return the engine version of the archive
-        uint32_t					get_engine_version      (void) const;
+        uint32_t                    get_engine_version      (void) const;
 
         /// Returns the app version of the archive
         /// \return the app version of the archive
-        uint32_t					get_app_version			(void) const;
+        uint32_t                    get_app_version            (void) const;
 
         /// Returns wether the archive is reading or not
         /// \return archive is loading
-        bool				is_reading				(void) const;
+        bool                is_reading                (void) const;
 
         /// Returns wether the arcive is writing or not
         /// \return archive is saving
-        bool				is_writing				(void) const;
+        bool                is_writing                (void) const;
 
         /// Returns the stream
         /// \return stream
-        BinaryFileStream&		stream                  (void)		{	return _infile;	}
+        BinaryFileStream&        stream                  (void)        {    return _infile;    }
 
     private:
-        uint32_t					_engine_version;
-        uint32_t					_app_version;
-        BinaryFileStream		_infile;
+        uint32_t                    _engine_version;
+        uint32_t                    _app_version;
+        BinaryFileStream        _infile;
 };
 
 //==============================================================================

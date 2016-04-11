@@ -1,7 +1,7 @@
 #pragma once
 //==============================================================================
 ///
-///	File: ScriptingBoolToEvent.hpp
+///    File: ScriptingBoolToEvent.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -52,7 +52,7 @@ class ScriptingBoolToEvent: public ScriptingBase {
         void                        tick                        (const DTfloat dt);
 
     private:
-        Plug<bool>				_in;
+        Plug<bool>                _in;
         bool                   _last_in;
         Event                       _out_positive;
         Event                       _out_negative;

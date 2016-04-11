@@ -3,7 +3,7 @@
 #define DT3_IMPORTERSHADER
 //==============================================================================
 ///
-///	File: ImporterShader.hpp
+///    File: ImporterShader.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -35,21 +35,21 @@ class ImporterShader: public BaseClass {
         DEFINE_TYPE(ImporterShader,BaseClass)
 
 
-                                    ImporterShader			(void);
+                                    ImporterShader            (void);
 
     private:
-                                    ImporterShader			(const ImporterShader &rhs);
-        ImporterShader &			operator =				(const ImporterShader &rhs);
+                                    ImporterShader            (const ImporterShader &rhs);
+        ImporterShader &            operator =                (const ImporterShader &rhs);
 
     public:
-        virtual						~ImporterShader			(void);
+        virtual                        ~ImporterShader            (void);
 
     public:
         /// Imports a shader into a ShaderResource
         /// \param target object to import sound into
         /// \param args arguments to importer
         /// \return error code
-        virtual DTerr				import					(ShaderResource *target, std::string args) = 0;
+        virtual DTerr                import                    (ShaderResource *target, std::string args) = 0;
 
 };
 

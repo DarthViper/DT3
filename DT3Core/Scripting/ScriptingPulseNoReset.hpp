@@ -1,7 +1,7 @@
 #pragma once
 //==============================================================================
 ///
-///	File: ScriptingPulseNoReset.hpp
+///    File: ScriptingPulseNoReset.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -32,10 +32,10 @@ class ScriptingPulseNoReset: public ScriptingBase {
         DEFINE_CREATE_AND_CLONE
         DEFINE_PLUG_NODE
 
-                                    ScriptingPulseNoReset	(void);
-                                    ScriptingPulseNoReset	(const ScriptingPulseNoReset &rhs);
-        ScriptingPulseNoReset &		operator =				(const ScriptingPulseNoReset &rhs);
-        virtual                     ~ScriptingPulseNoReset	(void);
+                                    ScriptingPulseNoReset    (void);
+                                    ScriptingPulseNoReset    (const ScriptingPulseNoReset &rhs);
+        ScriptingPulseNoReset &        operator =                (const ScriptingPulseNoReset &rhs);
+        virtual                     ~ScriptingPulseNoReset    (void);
 
         virtual void                archive                 (const std::shared_ptr<Archive> &archive);
 
@@ -55,13 +55,13 @@ class ScriptingPulseNoReset: public ScriptingBase {
         void                        eventIn                 (PlugNode *sender);
 
     private:
-        DTfloat						_time;
-        DTfloat						_pulse_time;
+        DTfloat                        _time;
+        DTfloat                        _pulse_time;
 
         bool                   _event_in;
 
-        Plug<bool>				_in;
-        Plug<bool>				_out;
+        Plug<bool>                _in;
+        Plug<bool>                _out;
 
         Event                       _in_e;
 };

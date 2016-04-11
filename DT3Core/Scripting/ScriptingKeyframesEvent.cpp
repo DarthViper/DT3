@@ -1,12 +1,12 @@
 //==============================================================================
-///	
-///	File: ScriptingKeyframesEvent.cpp
-///	
+///    
+///    File: ScriptingKeyframesEvent.cpp
+///    
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
 /// This file is subject to the terms and conditions defined in
 /// file 'LICENSE.txt', which is part of this source code package.
-///	
+///    
 //==============================================================================
 
 #include "DT3Core/Scripting/ScriptingKeyframesEvent.hpp"
@@ -33,17 +33,17 @@ IMPLEMENT_PLUG_NODE(ScriptingKeyframesEvent)
 
 IMPLEMENT_PLUG_INFO_INDEX(_t)
 IMPLEMENT_EVENT_INFO_INDEX(_out)
-		
+        
 //==============================================================================
 //==============================================================================
 
 BEGIN_IMPLEMENT_PLUGS(ScriptingKeyframesEvent)
 
-	PLUG_INIT(_t,"t")
-		.set_input(true);
+    PLUG_INIT(_t,"t")
+        .set_input(true);
 
-	EVENT_INIT(_out,"Out")
-		.set_output(true);
+    EVENT_INIT(_out,"Out")
+        .set_output(true);
         
 END_IMPLEMENT_PLUGS
 
@@ -52,21 +52,21 @@ END_IMPLEMENT_PLUGS
 //==============================================================================
 
 ScriptingKeyframesEvent::ScriptingKeyframesEvent (void)
-	:	_t				(PLUG_INFO_INDEX(_t), 0.0F),
+    :    _t                (PLUG_INFO_INDEX(_t), 0.0F),
         _last_t         (0.0F),
-		_out			(EVENT_INFO_INDEX(_out)),
-		_id				(0)
+        _out            (EVENT_INFO_INDEX(_out)),
+        _id                (0)
 {  
 
 }
-		
+        
 ScriptingKeyframesEvent::ScriptingKeyframesEvent (const ScriptingKeyframesEvent &rhs)
-    :   ScriptingKeyframes	(rhs),
-		_t					(rhs._t),
+    :   ScriptingKeyframes    (rhs),
+        _t                    (rhs._t),
         _last_t             (rhs._last_t),
-		_out				(rhs._out),
-		_id					(rhs._id),
-		_keyframes			(rhs._keyframes)
+        _out                (rhs._out),
+        _id                    (rhs._id),
+        _keyframes            (rhs._keyframes)
 {   
 
 }
@@ -75,16 +75,16 @@ ScriptingKeyframesEvent & ScriptingKeyframesEvent::operator = (const ScriptingKe
 {
     // Make sure we are not assigning the class to itself
     if (&rhs != this) {        
-		ScriptingKeyframes::operator = (rhs);	
-		
-		_t = rhs._t;
+        ScriptingKeyframes::operator = (rhs);    
+        
+        _t = rhs._t;
         _last_t = rhs._last_t;
-		_id = rhs._id;
-		_keyframes = rhs._keyframes;
-	}
+        _id = rhs._id;
+        _keyframes = rhs._keyframes;
+    }
     return (*this);
 }
-			
+            
 ScriptingKeyframesEvent::~ScriptingKeyframesEvent (void)
 {
 
@@ -97,7 +97,7 @@ void ScriptingKeyframesEvent::archive (const std::shared_ptr<Archive> &archive)
 {
     ScriptingKeyframes::archive(archive);
 
-	archive->push_domain (class_id ());
+    archive->push_domain (class_id ());
 
     *archive << ARCHIVE_PLUG(_t, DATA_PERSISTENT | DATA_SETTABLE);
     *archive << ARCHIVE_EVENT(_out, DATA_SETTABLE);
@@ -134,25 +134,25 @@ void ScriptingKeyframesEvent::archive (const std::shared_ptr<Archive> &archive)
 
 int32_t  ScriptingKeyframesEvent::set_key_time (int32_t k, DTfloat time)
 {
-	PROFILER(SCRIPTING);
+    PROFILER(SCRIPTING);
 
-	int32_t oldid = _keyframes[k]._id;
-	
-	_keyframes[k]._time = time;
-	std::sort(_keyframes.begin(), _keyframes.end());
-	
-	for (std::size_t i = 0; i < _keyframes.size(); ++i)
-		if (oldid == _keyframes[i]._id)
-			return static_cast<int32_t>(i);
-			
-	return -1;
+    int32_t oldid = _keyframes[k]._id;
+    
+    _keyframes[k]._time = time;
+    std::sort(_keyframes.begin(), _keyframes.end());
+    
+    for (std::size_t i = 0; i < _keyframes.size(); ++i)
+        if (oldid == _keyframes[i]._id)
+            return static_cast<int32_t>(i);
+            
+    return -1;
 }
 
 void  ScriptingKeyframesEvent::clear_key (int32_t k)
 {
-	PROFILER(SCRIPTING);
+    PROFILER(SCRIPTING);
 
-	_keyframes.erase(_keyframes.begin() + k);
+    _keyframes.erase(_keyframes.begin() + k);
 }
 
 //==============================================================================
@@ -160,8 +160,8 @@ void  ScriptingKeyframesEvent::clear_key (int32_t k)
 
 void ScriptingKeyframesEvent::set_key (void)
 {
-	PROFILER(SCRIPTING);
-		
+    PROFILER(SCRIPTING);
+        
     // clear any existing key
     clear_key();
     
@@ -172,19 +172,19 @@ void ScriptingKeyframesEvent::set_key (void)
     _keyframes.push_back(k);
     
     std::sort(_keyframes.begin(), _keyframes.end());
-	
+    
 }
 
 void ScriptingKeyframesEvent::clear_key (void)
 {
-	PROFILER(SCRIPTING);
+    PROFILER(SCRIPTING);
 
-	FOR_EACH (i,_keyframes) {
-		if (_t <= i->_time + (1.0F/30.0F) && _t > i->_time - (1.0F/30.0F)) {
-			_keyframes.erase(i);
-			return;
-		}
-	}
+    FOR_EACH (i,_keyframes) {
+        if (_t <= i->_time + (1.0F/30.0F) && _t > i->_time - (1.0F/30.0F)) {
+            _keyframes.erase(i);
+            return;
+        }
+    }
 }
 
 //==============================================================================
@@ -192,12 +192,12 @@ void ScriptingKeyframesEvent::clear_key (void)
 
 void ScriptingKeyframesEvent::tick (const DTfloat dt)
 {
-	PROFILER(SCRIPTING);
+    PROFILER(SCRIPTING);
 
     DTfloat t = _t;
     
     // Special cases
-    if (_keyframes.size() == 0)	{
+    if (_keyframes.size() == 0)    {
         return;
     }
     

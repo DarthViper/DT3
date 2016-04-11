@@ -1,12 +1,12 @@
 //==============================================================================
-///	
-///	File: ScriptingBoolToEvent.cpp
-///	
+///    
+///    File: ScriptingBoolToEvent.cpp
+///    
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
 /// This file is subject to the terms and conditions defined in
 /// file 'LICENSE.txt', which is part of this source code package.
-///	
+///    
 //==============================================================================
 
 #include "DT3Core/Scripting/ScriptingBoolToEvent.hpp"
@@ -38,14 +38,14 @@ IMPLEMENT_EVENT_INFO_INDEX(_out_negative)
 
 BEGIN_IMPLEMENT_PLUGS(ScriptingBoolToEvent)
 
-	PLUG_INIT(_in,"In")
-		.set_input(true);
+    PLUG_INIT(_in,"In")
+        .set_input(true);
 
-	EVENT_INIT(_out_positive,"Out_Positive")
-		.set_output(true);
+    EVENT_INIT(_out_positive,"Out_Positive")
+        .set_output(true);
         
-	EVENT_INIT(_out_negative,"Out_Negative")
-		.set_output(true);
+    EVENT_INIT(_out_negative,"Out_Negative")
+        .set_output(true);
         
 END_IMPLEMENT_PLUGS
 
@@ -56,18 +56,18 @@ END_IMPLEMENT_PLUGS
 ScriptingBoolToEvent::ScriptingBoolToEvent (void)
     :   _in             (PLUG_INFO_INDEX(_in), false),
         _last_in        (false),
-		_out_positive   (EVENT_INFO_INDEX(_out_positive)),
-		_out_negative   (EVENT_INFO_INDEX(_out_negative))
+        _out_positive   (EVENT_INFO_INDEX(_out_positive)),
+        _out_negative   (EVENT_INFO_INDEX(_out_negative))
 {  
 
 }
-		
+        
 ScriptingBoolToEvent::ScriptingBoolToEvent (const ScriptingBoolToEvent &rhs)
-    :   ScriptingBase	(rhs),
-		_in				(rhs._in),
+    :   ScriptingBase    (rhs),
+        _in                (rhs._in),
         _last_in        (rhs._last_in),
-		_out_positive   (rhs._out_positive),
-		_out_negative   (rhs._out_negative)
+        _out_positive   (rhs._out_positive),
+        _out_negative   (rhs._out_negative)
 {   
 
 }
@@ -76,14 +76,14 @@ ScriptingBoolToEvent & ScriptingBoolToEvent::operator = (const ScriptingBoolToEv
 {
     // Make sure we are not assigning the class to itself
     if (&rhs != this) {        
-		ScriptingBase::operator = (rhs);
+        ScriptingBase::operator = (rhs);
 
-		_in = rhs._in;
+        _in = rhs._in;
         _last_in = rhs._last_in;
-	}
+    }
     return (*this);
 }
-			
+            
 ScriptingBoolToEvent::~ScriptingBoolToEvent (void)
 {
 
@@ -96,11 +96,11 @@ void ScriptingBoolToEvent::archive (const std::shared_ptr<Archive> &archive)
 {
     ScriptingBase::archive(archive);
 
-	archive->push_domain (class_id ());
-	
-	*archive << ARCHIVE_PLUG(_in, DATA_PERSISTENT | DATA_SETTABLE);
-	*archive << ARCHIVE_DATA(_last_in, DATA_PERSISTENT | DATA_SETTABLE);
-	        					
+    archive->push_domain (class_id ());
+    
+    *archive << ARCHIVE_PLUG(_in, DATA_PERSISTENT | DATA_SETTABLE);
+    *archive << ARCHIVE_DATA(_last_in, DATA_PERSISTENT | DATA_SETTABLE);
+                                
     archive->pop_domain ();
 }
 
@@ -109,7 +109,7 @@ void ScriptingBoolToEvent::archive (const std::shared_ptr<Archive> &archive)
 
 void ScriptingBoolToEvent::tick (const DTfloat dt)
 {
-	PROFILER(SCRIPTING);
+    PROFILER(SCRIPTING);
 
     if (!_last_in && _in) {   
         _out_positive.send(this);    // this is the originator of the event

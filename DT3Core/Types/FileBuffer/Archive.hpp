@@ -1,7 +1,7 @@
 #pragma once
 //==============================================================================
 ///
-///	File: Archive.hpp
+///    File: Archive.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -80,19 +80,19 @@ class Archive /*: public BaseClass*/ {
 
                 /// set this flag to ignore the streaming flag while archiving objects
                 /// \param ignore flag to ignore streamable objects or not
-        void                            set_ignore_streamable_flag  (const bool ignore)    {   _ignore_streamable_flag = ignore;	}
+        void                            set_ignore_streamable_flag  (const bool ignore)    {   _ignore_streamable_flag = ignore;    }
 
                 /// Returns wether streamable objects are ignored or not
                 /// \return if streamable flag is ignored
-        bool                       ignore_streamable_flag      (void) const                {   return _ignore_streamable_flag;		}
+        bool                       ignore_streamable_flag      (void) const                {   return _ignore_streamable_flag;        }
 
                 /// set this flag to ignore the streaming and pointers to other objects
                 /// \param ignore flag to ignore pointers to other objects
-        void                            set_recursive				(const bool recursive) {   _recursive = recursive;				}
+        void                            set_recursive                (const bool recursive) {   _recursive = recursive;                }
 
                 /// Returns wether pointers to other objects are ignored or not
                 /// \return if pointers to other objects are ignored or not
-        bool                       recursive                   (void) const                {   return _recursive;					}
+        bool                       recursive                   (void) const                {   return _recursive;                    }
 
                 /// Returns and removes next post process
                 /// \return post process
@@ -101,7 +101,7 @@ class Archive /*: public BaseClass*/ {
     private:
         friend class ArchiveObjectQueue;
 
-                std::list<std::shared_ptr<ArchiveProcess>>		_processes;
+                std::list<std::shared_ptr<ArchiveProcess>>        _processes;
 
         bool                       _ignore_streamable_flag;
         bool                       _recursive;

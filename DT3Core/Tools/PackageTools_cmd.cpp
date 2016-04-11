@@ -1,12 +1,12 @@
 //==============================================================================
-///	
-///	File: PackageTools_cmd.cpp
-///	
+///    
+///    File: PackageTools_cmd.cpp
+///    
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
 /// This file is subject to the terms and conditions defined in
 /// file 'LICENSE.txt', which is part of this source code package.
-///	
+///    
 //==============================================================================
 
 #include "DT3Core/System/Command.hpp"
@@ -54,8 +54,8 @@ IMPLEMENT_FACTORY_COMMAND(PackageTools_cmd)
 
 namespace {
     struct FileProcess {
-        std::string		file;
-        FilePath		path;
+        std::string        file;
+        FilePath        path;
         int64_t         start;
         int64_t         length;
         int64_t         uncompressed_length;
@@ -138,12 +138,12 @@ CommandResult PackageTools_cmd::do_make_package (CommandContext &ctx, const Comm
     BinaryFileStream outfile;
     
     // Open the file
-	DTerr error = FileManager::open(outfile, package_pathname, false);
-	if (error != DT3_ERR_NONE)
-		return CommandResult(true, "Unable to open package file for writing", CommandResult::UPDATE_NONE);
+    DTerr error = FileManager::open(outfile, package_pathname, false);
+    if (error != DT3_ERR_NONE)
+        return CommandResult(true, "Unable to open package file for writing", CommandResult::UPDATE_NONE);
     
     // Write magic number
-	const uint32_t MAGIC = 0x5041434B;	// i.e. PACK
+    const uint32_t MAGIC = 0x5041434B;    // i.e. PACK
     outfile << MAGIC;
     
     

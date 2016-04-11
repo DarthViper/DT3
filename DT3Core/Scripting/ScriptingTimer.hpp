@@ -3,7 +3,7 @@
 #define DT3_SCRIPTINGTIMER
 //==============================================================================
 ///
-///	File: ScriptingTimer.hpp
+///    File: ScriptingTimer.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -33,9 +33,9 @@ class ScriptingTimer: public ScriptingBase {
         DEFINE_CREATE_AND_CLONE
         DEFINE_PLUG_NODE
 
-                                    ScriptingTimer			(void);
-                                    ScriptingTimer			(const ScriptingTimer &rhs);
-        ScriptingTimer &			operator =              (const ScriptingTimer &rhs);
+                                    ScriptingTimer            (void);
+                                    ScriptingTimer            (const ScriptingTimer &rhs);
+        ScriptingTimer &            operator =              (const ScriptingTimer &rhs);
         virtual                     ~ScriptingTimer         (void);
 
         virtual void                archive                 (const std::shared_ptr<Archive> &archive);
@@ -54,10 +54,10 @@ class ScriptingTimer: public ScriptingBase {
         void                        tick                    (const DTfloat dt);
 
     private:
-        Plug<DTfloat>				_speed;
-        Plug<bool>				_count_up;
-        Plug<bool>				_count_down;
-        Plug<DTfloat>				_time;
+        Plug<DTfloat>                _speed;
+        Plug<bool>                _count_up;
+        Plug<bool>                _count_down;
+        Plug<DTfloat>                _time;
 };
 
 //==============================================================================

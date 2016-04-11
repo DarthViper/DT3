@@ -3,7 +3,7 @@
 #define DT3_MEMORYALLOCATORTRACE
 //==============================================================================
 ///
-///	File: MemoryAllocatorTrace.hpp
+///    File: MemoryAllocatorTrace.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -63,8 +63,8 @@ template< typename T > struct MallocAllocator : public std::allocator<T>
     }
 };
 
-template<typename T> inline bool operator==(const MallocAllocator<T>&, const MallocAllocator<T>& )	{ return true; }
-template<typename T> inline bool operator!=(const MallocAllocator<T>&, const MallocAllocator<T>& )	{ return false; }
+template<typename T> inline bool operator==(const MallocAllocator<T>&, const MallocAllocator<T>& )    { return true; }
+template<typename T> inline bool operator!=(const MallocAllocator<T>&, const MallocAllocator<T>& )    { return false; }
 
 //==============================================================================
 /// Class
@@ -75,26 +75,26 @@ class MemoryAllocatorTrace {
         DEFINE_TYPE_SIMPLE_BASE(MemoryAllocatorTrace)
 
     private:
-                                    MemoryAllocatorTrace	(void);
-                                    MemoryAllocatorTrace	(const MemoryAllocatorTrace &rhs);
-        MemoryAllocatorTrace &		operator =				(const MemoryAllocatorTrace &rhs);
-        virtual						~MemoryAllocatorTrace	(void);
+                                    MemoryAllocatorTrace    (void);
+                                    MemoryAllocatorTrace    (const MemoryAllocatorTrace &rhs);
+        MemoryAllocatorTrace &        operator =                (const MemoryAllocatorTrace &rhs);
+        virtual                        ~MemoryAllocatorTrace    (void);
 
     public:
 
         /// allocate memory
         /// \param size size of the chunk of memory to allocate
-        static void*				allocate				(const DTsize size, const DTcharacter *name = NULL);
+        static void*                allocate                (const DTsize size, const DTcharacter *name = NULL);
 
         /// allocate memory
         /// \param size size of the chunk of memory to allocate
-        static void					deallocate				(void *p);
+        static void                    deallocate                (void *p);
 
         /// init Routine
-        static void					init					(void);
+        static void                    init                    (void);
 
         /// exit Routine
-        static void					exit					(void);
+        static void                    exit                    (void);
 
         /// check allocations
         static void                 check_allocations       (void);
@@ -121,8 +121,8 @@ class MemoryAllocatorTrace {
         };
 
         struct Allocation {
-            DTcharacter*	_name;
-            DTsize			_size;
+            DTcharacter*    _name;
+            DTsize            _size;
         };
 
 

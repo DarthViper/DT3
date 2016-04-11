@@ -1,12 +1,12 @@
 //==============================================================================
-///	
-///	File: FileHandleUncompressedFD_test.cpp
-///	
+///    
+///    File: FileHandleUncompressedFD_test.cpp
+///    
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
 /// This file is subject to the terms and conditions defined in
 /// file 'LICENSE.txt', which is part of this source code package.
-///	
+///    
 //==============================================================================
 
 #include "DT3Core/System/UnitTest.hpp"
@@ -132,11 +132,11 @@ void FileHandleUncompressedFD_test::run_test (void)
 //    //
 //
 //    BinaryFileStream infile;
-//	DTerr error = FileManager::open(infile, pathname, true, NULL);
+//    DTerr error = FileManager::open(infile, pathname, true, NULL);
 //    TEST_ASSERTION(error == DT3_ERR_NONE);
 //
 //    uint8_t buffer[1024];
-//	DTsize size = infile.read_raw(buffer, s.length());
+//    DTsize size = infile.read_raw(buffer, s.length());
 //    TEST_ASSERTION(size == s.length());
 
     FileManager::register_package (FilePath("{Troika-debug.apk}"));

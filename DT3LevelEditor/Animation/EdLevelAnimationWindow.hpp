@@ -3,7 +3,7 @@
 #define EDLEVELANIMATIONWINDOW
 //==============================================================================
 ///
-///	File: EdLevelAnimationWindow.hpp
+///    File: EdLevelAnimationWindow.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -54,17 +54,17 @@ class EdLevelAnimationWindow : public QWidget
     Q_OBJECT
 
     public:
-                                    EdLevelAnimationWindow	(QWidget *parent, QToolBar *toolbar, EdLevelDocument *document);
-        virtual                     ~EdLevelAnimationWindow	(void);
+                                    EdLevelAnimationWindow    (QWidget *parent, QToolBar *toolbar, EdLevelDocument *document);
+        virtual                     ~EdLevelAnimationWindow    (void);
 
     protected:
-        void						draw							(QPainter *painter);
-        void						paintEvent						(QPaintEvent *event);
+        void                        draw                            (QPainter *painter);
+        void                        paintEvent                        (QPaintEvent *event);
 
         void                        mouseDoubleClickEvent           (QMouseEvent *event);
-        void						mousePressEvent					(QMouseEvent *event);
-        void						mouseMoveEvent					(QMouseEvent *event);
-        void						mouseReleaseEvent				(QMouseEvent *event);
+        void                        mousePressEvent                    (QMouseEvent *event);
+        void                        mouseMoveEvent                    (QMouseEvent *event);
+        void                        mouseReleaseEvent                (QMouseEvent *event);
 
         void                        keyPressEvent                   (QKeyEvent *event);
         void                        wheelEvent                      (QWheelEvent *event);
@@ -224,9 +224,9 @@ class EdLevelAnimationWindow : public QWidget
         void                        setMode         (Mode mode)     {   _mode = mode;   }
         Mode                        getMode         (void)          {   return _mode;   }
 
-        QPoint						_start_point;
-        QPoint						_last_point;
-        QPoint						_end_point;
+        QPoint                        _start_point;
+        QPoint                        _last_point;
+        QPoint                        _end_point;
 };
 
 //==============================================================================

@@ -3,7 +3,7 @@
 #define DT3_EXPRESSIONPARSER
 //==============================================================================
 ///
-///	File: ExpressionParser.hpp
+///    File: ExpressionParser.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -40,7 +40,7 @@ class ExpressionParser:public BaseClass {
         ExpressionParser &          operator =              (const ExpressionParser &rhs);
 
     public:
-        virtual						~ExpressionParser       (void);
+        virtual                        ~ExpressionParser       (void);
 
     public:
         /// Compile the expression

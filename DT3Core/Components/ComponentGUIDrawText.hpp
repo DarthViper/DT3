@@ -3,7 +3,7 @@
 #define DT3_COMPONENTGUIDRAWTEXT
 //==============================================================================
 ///
-///	File: ComponentGUIDrawText.hpp
+///    File: ComponentGUIDrawText.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -30,28 +30,28 @@ class FontResource;
 //==============================================================================
 /// GUI drawing for text that supports different fonts and styles using
 /// a special markup language. The formatting options supported are:
-/// \\t		Tab
-/// \\n		Newline
-/// [j<]	Left justify text
-/// [j>]	Right justify text
-/// [j><]	Center justify text
-/// [j<>]	Full justify text
-/// [vlr]	Vertical text, left to right
-/// [vrl]	Vertical text, right to left
-/// [hrl]	Horizontal text, right to left
-/// [hlr]	Horizontal text, left to right	(Default)
-/// [ww]	Word Wrap
-/// [cw]	Character wrap
-/// [font="{somefont.ttf}"]	Set the font
-/// [size=##]	Set the font size
-/// [kern=##]	Set the font kern
-/// [color=R G B A]	Set the font color
-/// [outlinecolor=R G B A]	Set the outline color
-/// [outlinesize=##]	Set the outline size
-/// [color=R G B A]	Set the font color
-/// [tab=##]	Set the tab size
-/// [baseline=##]	Set the baseline shift
-/// [U=##]	Insert a unicode character
+/// \\t        Tab
+/// \\n        Newline
+/// [j<]    Left justify text
+/// [j>]    Right justify text
+/// [j><]    Center justify text
+/// [j<>]    Full justify text
+/// [vlr]    Vertical text, left to right
+/// [vrl]    Vertical text, right to left
+/// [hrl]    Horizontal text, right to left
+/// [hlr]    Horizontal text, left to right    (Default)
+/// [ww]    Word Wrap
+/// [cw]    Character wrap
+/// [font="{somefont.ttf}"]    Set the font
+/// [size=##]    Set the font size
+/// [kern=##]    Set the font kern
+/// [color=R G B A]    Set the font color
+/// [outlinecolor=R G B A]    Set the outline color
+/// [outlinesize=##]    Set the outline size
+/// [color=R G B A]    Set the font color
+/// [tab=##]    Set the tab size
+/// [baseline=##]    Set the baseline shift
+/// [U=##]    Insert a unicode character
 //==============================================================================
 
 class ComponentGUIDrawText: public ComponentBase {
@@ -60,8 +60,8 @@ class ComponentGUIDrawText: public ComponentBase {
         DEFINE_CREATE_AND_CLONE
         DEFINE_PLUG_NODE
 
-                                    ComponentGUIDrawText	(void);
-                                    ComponentGUIDrawText	(const ComponentGUIDrawText &rhs);
+                                    ComponentGUIDrawText    (void);
+                                    ComponentGUIDrawText    (const ComponentGUIDrawText &rhs);
         ComponentGUIDrawText &      operator =              (const ComponentGUIDrawText &rhs);
         virtual                     ~ComponentGUIDrawText   (void);
 

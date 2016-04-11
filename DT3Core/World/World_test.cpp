@@ -1,12 +1,12 @@
 //==============================================================================
-///	
-///	File: World_test.cpp
-///	
+///    
+///    File: World_test.cpp
+///    
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
 /// This file is subject to the terms and conditions defined in
 /// file 'LICENSE.txt', which is part of this source code package.
-///	
+///    
 //==============================================================================
 
 #include "DT3Core/System/UnitTest.hpp"
@@ -45,22 +45,22 @@ IMPLEMENT_FACTORY_UNIT_TEST (World_test)
 
 void World_test::run_test (void)
 {
-/*	
+/*    
 
-	// add a bunch of objects to the world
-	World *world = World::create();
-	
-	for (int32_t i = 0; i < 100; ++i) {
-		WorldNode *obj = WorldNode::create();
-		
-		world->addObject(obj);
-		obj->expire();
-		world->tick(0.0F);
-	
-		RELEASE(obj);
-	}
-	
-	RELEASE(world);
+    // add a bunch of objects to the world
+    World *world = World::create();
+    
+    for (int32_t i = 0; i < 100; ++i) {
+        WorldNode *obj = WorldNode::create();
+        
+        world->addObject(obj);
+        obj->expire();
+        world->tick(0.0F);
+    
+        RELEASE(obj);
+    }
+    
+    RELEASE(world);
 */
 }
 

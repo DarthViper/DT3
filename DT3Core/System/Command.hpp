@@ -3,7 +3,7 @@
 #define DT3_COMMAND
 //==============================================================================
 ///
-///	File: Command.hpp
+///    File: Command.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -40,10 +40,10 @@ class Command: public BaseClass {
     public:
         DEFINE_TYPE(Command,BaseClass)
 
-                                Command				(void);
-                                Command				(const Command &rhs);
-        Command &               operator =			(const Command &rhs);
-        virtual                 ~Command			(void);
+                                Command                (void);
+                                Command                (const Command &rhs);
+        Command &               operator =            (const Command &rhs);
+        virtual                 ~Command            (void);
 
     public:
 

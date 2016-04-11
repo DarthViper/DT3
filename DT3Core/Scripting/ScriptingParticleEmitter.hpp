@@ -3,7 +3,7 @@
 #define DT3_SCRIPTINGPARTICLEEMITTER
 //==============================================================================
 ///
-///	File: ScriptingParticleEmitter.hpp
+///    File: ScriptingParticleEmitter.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -35,10 +35,10 @@ class ScriptingParticleEmitter: public ScriptingBase {
         //DEFINE_CREATE_AND_CLONE
         DEFINE_PLUG_NODE
 
-                                        ScriptingParticleEmitter	(void);
-                                        ScriptingParticleEmitter	(const ScriptingParticleEmitter &rhs);
-        ScriptingParticleEmitter &		operator =					(const ScriptingParticleEmitter &rhs);
-        virtual							~ScriptingParticleEmitter	(void);
+                                        ScriptingParticleEmitter    (void);
+                                        ScriptingParticleEmitter    (const ScriptingParticleEmitter &rhs);
+        ScriptingParticleEmitter &        operator =                    (const ScriptingParticleEmitter &rhs);
+        virtual                            ~ScriptingParticleEmitter    (void);
 
         virtual void                archive                 (const std::shared_ptr<Archive> &archive);
 

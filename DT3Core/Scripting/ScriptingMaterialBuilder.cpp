@@ -1,12 +1,12 @@
 //==============================================================================
-///	
-///	File: ScriptingMaterialBuilder.cpp
-///	
+///    
+///    File: ScriptingMaterialBuilder.cpp
+///    
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
 /// This file is subject to the terms and conditions defined in
 /// file 'LICENSE.txt', which is part of this source code package.
-///	
+///    
 //==============================================================================
 
 #include "DT3Core/Scripting/ScriptingMaterialBuilder.hpp"
@@ -71,136 +71,136 @@ IMPLEMENT_PLUG_INFO_INDEX(_rect_15)
 
 BEGIN_IMPLEMENT_PLUGS(ScriptingMaterialBuilder)
 
-	PLUG_INIT(_out_material,"Out_Material")
-		.set_output(true);
+    PLUG_INIT(_out_material,"Out_Material")
+        .set_output(true);
         
-	PLUG_INIT(_tex_0,"Tex_0")
+    PLUG_INIT(_tex_0,"Tex_0")
         .affects(PLUG_INFO_INDEX(_out_material))
-		.set_input(true);
+        .set_input(true);
         
-	PLUG_INIT(_rect_0,"Rect_0")
+    PLUG_INIT(_rect_0,"Rect_0")
         .affects(PLUG_INFO_INDEX(_out_material))
-		.set_input(true);
+        .set_input(true);
         
-	PLUG_INIT(_tex_1,"Tex_1")
+    PLUG_INIT(_tex_1,"Tex_1")
         .affects(PLUG_INFO_INDEX(_out_material))
-		.set_input(true);
+        .set_input(true);
         
-	PLUG_INIT(_rect_1,"Rect_1")
+    PLUG_INIT(_rect_1,"Rect_1")
         .affects(PLUG_INFO_INDEX(_out_material))
-		.set_input(true);
+        .set_input(true);
 
-	PLUG_INIT(_tex_2,"Tex_2")
+    PLUG_INIT(_tex_2,"Tex_2")
         .affects(PLUG_INFO_INDEX(_out_material))
-		.set_input(true);
+        .set_input(true);
         
-	PLUG_INIT(_rect_2,"Rect_2")
+    PLUG_INIT(_rect_2,"Rect_2")
         .affects(PLUG_INFO_INDEX(_out_material))
-		.set_input(true);
+        .set_input(true);
 
-	PLUG_INIT(_tex_3,"Tex_3")
+    PLUG_INIT(_tex_3,"Tex_3")
         .affects(PLUG_INFO_INDEX(_out_material))
-		.set_input(true);
+        .set_input(true);
         
-	PLUG_INIT(_rect_3,"Rect_3")
+    PLUG_INIT(_rect_3,"Rect_3")
         .affects(PLUG_INFO_INDEX(_out_material))
-		.set_input(true);
+        .set_input(true);
 
-	PLUG_INIT(_tex_4,"Tex_4")
+    PLUG_INIT(_tex_4,"Tex_4")
         .affects(PLUG_INFO_INDEX(_out_material))
-		.set_input(true);
+        .set_input(true);
         
-	PLUG_INIT(_rect_4,"Rect_4")
+    PLUG_INIT(_rect_4,"Rect_4")
         .affects(PLUG_INFO_INDEX(_out_material))
-		.set_input(true);
+        .set_input(true);
 
-	PLUG_INIT(_tex_5,"Tex_5")
+    PLUG_INIT(_tex_5,"Tex_5")
         .affects(PLUG_INFO_INDEX(_out_material))
-		.set_input(true);
+        .set_input(true);
         
-	PLUG_INIT(_rect_5,"Rect_5")
+    PLUG_INIT(_rect_5,"Rect_5")
         .affects(PLUG_INFO_INDEX(_out_material))
-		.set_input(true);
+        .set_input(true);
 
-	PLUG_INIT(_tex_6,"Tex_6")
+    PLUG_INIT(_tex_6,"Tex_6")
         .affects(PLUG_INFO_INDEX(_out_material))
-		.set_input(true);
+        .set_input(true);
         
-	PLUG_INIT(_rect_6,"Rect_6")
+    PLUG_INIT(_rect_6,"Rect_6")
         .affects(PLUG_INFO_INDEX(_out_material))
-		.set_input(true);
+        .set_input(true);
 
-	PLUG_INIT(_tex_7,"Tex_7")
+    PLUG_INIT(_tex_7,"Tex_7")
         .affects(PLUG_INFO_INDEX(_out_material))
-		.set_input(true);
+        .set_input(true);
 
-	PLUG_INIT(_rect_7,"Rect_7")
+    PLUG_INIT(_rect_7,"Rect_7")
         .affects(PLUG_INFO_INDEX(_out_material))
-		.set_input(true);
+        .set_input(true);
 
-	PLUG_INIT(_tex_8,"Tex_8")
+    PLUG_INIT(_tex_8,"Tex_8")
         .affects(PLUG_INFO_INDEX(_out_material))
-		.set_input(true);
+        .set_input(true);
 
-	PLUG_INIT(_rect_8,"Rect_8")
+    PLUG_INIT(_rect_8,"Rect_8")
         .affects(PLUG_INFO_INDEX(_out_material))
-		.set_input(true);
+        .set_input(true);
 
-	PLUG_INIT(_tex_9,"Tex_9")
+    PLUG_INIT(_tex_9,"Tex_9")
         .affects(PLUG_INFO_INDEX(_out_material))
-		.set_input(true);
+        .set_input(true);
 
-	PLUG_INIT(_rect_9,"Rect_9")
+    PLUG_INIT(_rect_9,"Rect_9")
         .affects(PLUG_INFO_INDEX(_out_material))
-		.set_input(true);
+        .set_input(true);
 
-	PLUG_INIT(_tex_10,"Tex_10")
+    PLUG_INIT(_tex_10,"Tex_10")
         .affects(PLUG_INFO_INDEX(_out_material))
-		.set_input(true);
+        .set_input(true);
 
-	PLUG_INIT(_rect_10,"Rect_10")
+    PLUG_INIT(_rect_10,"Rect_10")
         .affects(PLUG_INFO_INDEX(_out_material))
-		.set_input(true);
+        .set_input(true);
 
-	PLUG_INIT(_tex_11,"Tex_11")
+    PLUG_INIT(_tex_11,"Tex_11")
         .affects(PLUG_INFO_INDEX(_out_material))
-		.set_input(true);
+        .set_input(true);
 
-	PLUG_INIT(_rect_11,"Rect_11")
+    PLUG_INIT(_rect_11,"Rect_11")
         .affects(PLUG_INFO_INDEX(_out_material))
-		.set_input(true);
+        .set_input(true);
 
-	PLUG_INIT(_tex_12,"Tex_12")
+    PLUG_INIT(_tex_12,"Tex_12")
         .affects(PLUG_INFO_INDEX(_out_material))
-		.set_input(true);
+        .set_input(true);
 
-	PLUG_INIT(_rect_12,"Rect_12")
+    PLUG_INIT(_rect_12,"Rect_12")
         .affects(PLUG_INFO_INDEX(_out_material))
-		.set_input(true);
+        .set_input(true);
 
-	PLUG_INIT(_tex_13,"Tex_13")
+    PLUG_INIT(_tex_13,"Tex_13")
         .affects(PLUG_INFO_INDEX(_out_material))
-		.set_input(true);
+        .set_input(true);
 
-	PLUG_INIT(_rect_13,"Rect_13")
+    PLUG_INIT(_rect_13,"Rect_13")
         .affects(PLUG_INFO_INDEX(_out_material))
-		.set_input(true);
+        .set_input(true);
 
-	PLUG_INIT(_tex_14,"Tex_14")
+    PLUG_INIT(_tex_14,"Tex_14")
         .affects(PLUG_INFO_INDEX(_out_material))
-		.set_input(true);
+        .set_input(true);
 
-	PLUG_INIT(_rect_14,"Rect_14")
+    PLUG_INIT(_rect_14,"Rect_14")
         .affects(PLUG_INFO_INDEX(_out_material))
-		.set_input(true);
+        .set_input(true);
 
-	PLUG_INIT(_tex_15,"Tex_15")
+    PLUG_INIT(_tex_15,"Tex_15")
         .affects(PLUG_INFO_INDEX(_out_material))
-		.set_input(true);
+        .set_input(true);
 
-	PLUG_INIT(_rect_15,"Rect_15")
+    PLUG_INIT(_rect_15,"Rect_15")
         .affects(PLUG_INFO_INDEX(_out_material))
-		.set_input(true);
+        .set_input(true);
     
 END_IMPLEMENT_PLUGS
 
@@ -209,7 +209,7 @@ END_IMPLEMENT_PLUGS
 //==============================================================================
 
 ScriptingMaterialBuilder::ScriptingMaterialBuilder (void)
-    :   _out_material	(PLUG_INFO_INDEX(_out_material)),
+    :   _out_material    (PLUG_INFO_INDEX(_out_material)),
         _tex_0          (PLUG_INFO_INDEX(_tex_0)),
         _tex_1          (PLUG_INFO_INDEX(_tex_1)),
         _tex_2          (PLUG_INFO_INDEX(_tex_2)),
@@ -246,26 +246,26 @@ ScriptingMaterialBuilder::ScriptingMaterialBuilder (void)
     _out_material = MaterialResource::create();
 
 }
-		
+        
 ScriptingMaterialBuilder::ScriptingMaterialBuilder (const ScriptingMaterialBuilder &rhs)
-    :   ScriptingBase	(rhs),
-		_out_material	(rhs._out_material),
-		_tex_0          (rhs._tex_0),
-		_tex_1          (rhs._tex_1),
-		_tex_2          (rhs._tex_2),
-		_tex_3          (rhs._tex_3),
-		_tex_4          (rhs._tex_4),
-		_tex_5          (rhs._tex_5),
-		_tex_6          (rhs._tex_6),
-		_tex_7          (rhs._tex_7),
-		_tex_8          (rhs._tex_8),
-		_tex_9          (rhs._tex_9),
-		_tex_10         (rhs._tex_10),
-		_tex_11         (rhs._tex_11),
-		_tex_12         (rhs._tex_12),
-		_tex_13         (rhs._tex_13),
-		_tex_14         (rhs._tex_14),
-		_tex_15         (rhs._tex_15),
+    :   ScriptingBase    (rhs),
+        _out_material    (rhs._out_material),
+        _tex_0          (rhs._tex_0),
+        _tex_1          (rhs._tex_1),
+        _tex_2          (rhs._tex_2),
+        _tex_3          (rhs._tex_3),
+        _tex_4          (rhs._tex_4),
+        _tex_5          (rhs._tex_5),
+        _tex_6          (rhs._tex_6),
+        _tex_7          (rhs._tex_7),
+        _tex_8          (rhs._tex_8),
+        _tex_9          (rhs._tex_9),
+        _tex_10         (rhs._tex_10),
+        _tex_11         (rhs._tex_11),
+        _tex_12         (rhs._tex_12),
+        _tex_13         (rhs._tex_13),
+        _tex_14         (rhs._tex_14),
+        _tex_15         (rhs._tex_15),
         _rect_0         (rhs._rect_0),
         _rect_1         (rhs._rect_1),
         _rect_2         (rhs._rect_2),
@@ -285,51 +285,51 @@ ScriptingMaterialBuilder::ScriptingMaterialBuilder (const ScriptingMaterialBuild
 {
     _out_material = MaterialResource::create();
 
-}	
+}    
 
 ScriptingMaterialBuilder & ScriptingMaterialBuilder::operator = (const ScriptingMaterialBuilder &rhs)
 {
     // Make sure we are not assigning the class to itself
     if (&rhs != this) {        
-		ScriptingBase::operator = (rhs);
+        ScriptingBase::operator = (rhs);
         
-		_tex_0 = rhs._tex_0;
-		_tex_1 = rhs._tex_1;
-		_tex_2 = rhs._tex_2;
-		_tex_3 = rhs._tex_3;
-		_tex_4 = rhs._tex_4;
-		_tex_5 = rhs._tex_5;
-		_tex_6 = rhs._tex_6;
-		_tex_7 = rhs._tex_7;
-		_tex_8 = rhs._tex_8;
-		_tex_9 = rhs._tex_9;
-		_tex_10 = rhs._tex_10;
-		_tex_11 = rhs._tex_11;
-		_tex_12 = rhs._tex_12;
-		_tex_13 = rhs._tex_13;
-		_tex_14 = rhs._tex_14;
-		_tex_15 = rhs._tex_15;
+        _tex_0 = rhs._tex_0;
+        _tex_1 = rhs._tex_1;
+        _tex_2 = rhs._tex_2;
+        _tex_3 = rhs._tex_3;
+        _tex_4 = rhs._tex_4;
+        _tex_5 = rhs._tex_5;
+        _tex_6 = rhs._tex_6;
+        _tex_7 = rhs._tex_7;
+        _tex_8 = rhs._tex_8;
+        _tex_9 = rhs._tex_9;
+        _tex_10 = rhs._tex_10;
+        _tex_11 = rhs._tex_11;
+        _tex_12 = rhs._tex_12;
+        _tex_13 = rhs._tex_13;
+        _tex_14 = rhs._tex_14;
+        _tex_15 = rhs._tex_15;
         
-		_rect_0 = rhs._rect_0;
-		_rect_1 = rhs._rect_1;
-		_rect_2 = rhs._rect_2;
-		_rect_3 = rhs._rect_3;
-		_rect_4 = rhs._rect_4;
-		_rect_5 = rhs._rect_5;
-		_rect_6 = rhs._rect_6;
-		_rect_7 = rhs._rect_7;
-		_rect_8 = rhs._rect_8;
-		_rect_9 = rhs._rect_9;
-		_rect_10 = rhs._rect_10;
-		_rect_11 = rhs._rect_11;
-		_rect_12 = rhs._rect_12;
-		_rect_13 = rhs._rect_13;
-		_rect_14 = rhs._rect_14;
-		_rect_15 = rhs._rect_15;
-	}
+        _rect_0 = rhs._rect_0;
+        _rect_1 = rhs._rect_1;
+        _rect_2 = rhs._rect_2;
+        _rect_3 = rhs._rect_3;
+        _rect_4 = rhs._rect_4;
+        _rect_5 = rhs._rect_5;
+        _rect_6 = rhs._rect_6;
+        _rect_7 = rhs._rect_7;
+        _rect_8 = rhs._rect_8;
+        _rect_9 = rhs._rect_9;
+        _rect_10 = rhs._rect_10;
+        _rect_11 = rhs._rect_11;
+        _rect_12 = rhs._rect_12;
+        _rect_13 = rhs._rect_13;
+        _rect_14 = rhs._rect_14;
+        _rect_15 = rhs._rect_15;
+    }
     return (*this);
 }
-			
+            
 ScriptingMaterialBuilder::~ScriptingMaterialBuilder (void)
 {
 
@@ -843,11 +843,11 @@ void ScriptingMaterialBuilder::archive (const std::shared_ptr<Archive> &archive)
 
 bool ScriptingMaterialBuilder::compute (const PlugBase *plug)
 {
-	PROFILER(SCRIPTING);
+    PROFILER(SCRIPTING);
 
     if (super_type::compute(plug))  return true;
 
-	if (plug == &_out_material) {
+    if (plug == &_out_material) {
         
         set_texture_2D_0(_tex_0);
         set_texture_2D_1(_tex_1);
@@ -883,12 +883,12 @@ bool ScriptingMaterialBuilder::compute (const PlugBase *plug)
         set_rectangle_14(_rect_14);
         set_rectangle_15(_rect_15);
 
-		_out_material.set_clean();
-		
-		return true;
-	}
-	
-	return false;
+        _out_material.set_clean();
+        
+        return true;
+    }
+    
+    return false;
 }
 
 //==============================================================================

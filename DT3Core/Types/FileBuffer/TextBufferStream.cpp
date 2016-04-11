@@ -1,6 +1,6 @@
 //==============================================================================
 ///
-///	File: TextBufferStream.cpp
+///    File: TextBufferStream.cpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -296,18 +296,18 @@ DTsize TextBufferStream::g (void)
 void TextBufferStream::seek_p (DToffset p, Relative r)
 {
         switch (r) {
-                case FROM_BEGINNING:	_buffer.seekp(p,std::ios::beg);	break;
-                case FROM_CURRENT:		_buffer.seekp(p,std::ios::cur);	break;
-                case FROM_END:			_buffer.seekp(p,std::ios::end);	break;
+                case FROM_BEGINNING:    _buffer.seekp(p,std::ios::beg);    break;
+                case FROM_CURRENT:        _buffer.seekp(p,std::ios::cur);    break;
+                case FROM_END:            _buffer.seekp(p,std::ios::end);    break;
         };
 }
 
 void TextBufferStream::seek_g (DToffset g, Relative r)
 {
         switch (r) {
-                case FROM_BEGINNING:	_buffer.seekg(g,std::ios::beg);	break;
-                case FROM_CURRENT:		_buffer.seekg(g,std::ios::cur);	break;
-                case FROM_END:			_buffer.seekg(g,std::ios::end);	break;
+                case FROM_BEGINNING:    _buffer.seekg(g,std::ios::beg);    break;
+                case FROM_CURRENT:        _buffer.seekg(g,std::ios::cur);    break;
+                case FROM_END:            _buffer.seekg(g,std::ios::end);    break;
         };
 }
 

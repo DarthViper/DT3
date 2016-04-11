@@ -1,12 +1,12 @@
 //==============================================================================
-///	
-///	File: Filters.cpp
-///	
+///    
+///    File: Filters.cpp
+///    
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
 /// This file is subject to the terms and conditions defined in
 /// file 'LICENSE.txt', which is part of this source code package.
-///	
+///    
 //==============================================================================
 
 #include "DT3Core/Types/Math/Filters.hpp"
@@ -52,9 +52,9 @@ Filters::Filters (const Filters &rhs)
     _y[1] = rhs._y[1];
     _y[2] = rhs._y[2];
 }
-		
+        
 Filters& Filters::operator = (const Filters &rhs)
-{	
+{    
     _a0 = rhs._a0;
     _a1 = rhs._a1;
     _a2 = rhs._a2;
@@ -68,7 +68,7 @@ Filters& Filters::operator = (const Filters &rhs)
     _y[2] = rhs._y[2];
 
     return (*this);
-}	
+}    
 
 Filters::~Filters (void)
 {
@@ -92,7 +92,7 @@ Stream& operator << (Stream &s, const Filters &f)
         << f._y[1] << Stream::fs
         << f._y[2];
 
-	return s;
+    return s;
 }
 
 Stream& operator >> (Stream &s, Filters &f)
@@ -102,13 +102,13 @@ Stream& operator >> (Stream &s, Filters &f)
         >> f._x[0] >> f._x[1] >> f._x[2]
         >> f._y[0] >> f._y[1] >> f._y[2];
 
-	return s;
+    return s;
 }
 
 //==============================================================================
 //==============================================================================
 
-void Filters::initialize (	FilterType type,
+void Filters::initialize (    FilterType type,
                             uint32_t n,
                             DTfloat f0,
                             DTfloat fs,
@@ -162,7 +162,7 @@ void Filters::initialize (	FilterType type,
     _x[0] = _x[1] = _x[2] = default_val;
     _y[0] = _y[1] = _y[2] = default_val;
 }
-	
+    
 //==============================================================================
 //==============================================================================
 
@@ -185,5 +185,5 @@ DTfloat Filters::filter (const DTfloat &in)
 
 //==============================================================================
 //==============================================================================
-		
+        
 } // DT3

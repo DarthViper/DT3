@@ -1,12 +1,12 @@
 //==============================================================================
-///	
-///	File: ScriptingSubtitleDriver.cpp
-///	
+///    
+///    File: ScriptingSubtitleDriver.cpp
+///    
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
 /// This file is subject to the terms and conditions defined in
 /// file 'LICENSE.txt', which is part of this source code package.
-///	
+///    
 //==============================================================================
 
 #include "DT3Core/Scripting/ScriptingSubtitleDriver.hpp"
@@ -38,16 +38,16 @@ IMPLEMENT_PLUG_INFO_INDEX(_out)
 
 BEGIN_IMPLEMENT_PLUGS(ScriptingSubtitleDriver)
 
-	PLUG_INIT(_subtitles,"Subtitles")
-		.set_input(true)
-		.affects(PLUG_INFO_INDEX(_out));
+    PLUG_INIT(_subtitles,"Subtitles")
+        .set_input(true)
+        .affects(PLUG_INFO_INDEX(_out));
 
-	PLUG_INIT(_time,"Time")
-		.set_input(true)
-		.affects(PLUG_INFO_INDEX(_out));
+    PLUG_INIT(_time,"Time")
+        .set_input(true)
+        .affects(PLUG_INFO_INDEX(_out));
 
-	PLUG_INIT(_out,"Out")
-		.set_output(true);
+    PLUG_INIT(_out,"Out")
+        .set_output(true);
         
 END_IMPLEMENT_PLUGS
 
@@ -57,17 +57,17 @@ END_IMPLEMENT_PLUGS
 
 ScriptingSubtitleDriver::ScriptingSubtitleDriver (void)
     :   _subtitles      (PLUG_INFO_INDEX(_subtitles)),
-		_time           (PLUG_INFO_INDEX(_time)),
-		_out			(PLUG_INFO_INDEX(_out))
+        _time           (PLUG_INFO_INDEX(_time)),
+        _out            (PLUG_INFO_INDEX(_out))
 {  
 
 }
-		
+        
 ScriptingSubtitleDriver::ScriptingSubtitleDriver (const ScriptingSubtitleDriver &rhs)
-    :   ScriptingBase	(rhs),
-		_subtitles      (rhs._subtitles),
-		_time           (rhs._time),
-		_out			(rhs._out)
+    :   ScriptingBase    (rhs),
+        _subtitles      (rhs._subtitles),
+        _time           (rhs._time),
+        _out            (rhs._out)
 {   
 
 }
@@ -76,15 +76,15 @@ ScriptingSubtitleDriver & ScriptingSubtitleDriver::operator = (const ScriptingSu
 {
     // Make sure we are not assigning the class to itself
     if (&rhs != this) {        
-		ScriptingBase::operator = (rhs);
+        ScriptingBase::operator = (rhs);
 
-		_subtitles = rhs._subtitles;
-		_time = rhs._time;
-		_out = rhs._out;
-	}
+        _subtitles = rhs._subtitles;
+        _time = rhs._time;
+        _out = rhs._out;
+    }
     return (*this);
 }
-			
+            
 ScriptingSubtitleDriver::~ScriptingSubtitleDriver (void)
 {
 
@@ -97,12 +97,12 @@ void ScriptingSubtitleDriver::archive (const std::shared_ptr<Archive> &archive)
 {
     ScriptingBase::archive(archive);
 
-	archive->push_domain (class_id ());
-	
+    archive->push_domain (class_id ());
+    
     *archive << ARCHIVE_DATA_ACCESSORS("Subtitles", ScriptingSubtitleDriver::subtitles, ScriptingSubtitleDriver::set_subtitles, DATA_PERSISTENT | DATA_SETTABLE);
-	*archive << ARCHIVE_PLUG(_time, DATA_PERSISTENT | DATA_SETTABLE);
-	*archive << ARCHIVE_PLUG(_out, DATA_PERSISTENT);
-        					
+    *archive << ARCHIVE_PLUG(_time, DATA_PERSISTENT | DATA_SETTABLE);
+    *archive << ARCHIVE_PLUG(_out, DATA_PERSISTENT);
+                            
     archive->pop_domain ();
 }
 
@@ -111,47 +111,47 @@ void ScriptingSubtitleDriver::archive (const std::shared_ptr<Archive> &archive)
 
 void ScriptingSubtitleDriver::parse_subtitle_block (Tokenizer &tokenizer)
 {
-	tokenizer.assume_next_token("{");
+    tokenizer.assume_next_token("{");
     
     Subtitle s;
 
-	while (true) {
-		std::string token = tokenizer.next_token_string_no_substitute();
-		
-		// Handle Preprocessor
-		if (tokenizer.parse_preprocessor_macros(token))
-			continue;
-	
-		// Are we at the end of the block
-		if (token == "}")	break;
-		
-		if (MoreStrings::iequals(token,"time"))       {	tokenizer.assume_next_token("=");     s._time = tokenizer.next_token_number();                  continue;   }
-		if (MoreStrings::iequals(token,"text"))       {	tokenizer.assume_next_token("=");     s._text = tokenizer.next_token_string_no_substitute();    continue;   }
-		
-		tokenizer.syntax_error("Unknown Token " + token);
-	};
+    while (true) {
+        std::string token = tokenizer.next_token_string_no_substitute();
+        
+        // Handle Preprocessor
+        if (tokenizer.parse_preprocessor_macros(token))
+            continue;
+    
+        // Are we at the end of the block
+        if (token == "}")    break;
+        
+        if (MoreStrings::iequals(token,"time"))       {    tokenizer.assume_next_token("=");     s._time = tokenizer.next_token_number();                  continue;   }
+        if (MoreStrings::iequals(token,"text"))       {    tokenizer.assume_next_token("=");     s._text = tokenizer.next_token_string_no_substitute();    continue;   }
+        
+        tokenizer.syntax_error("Unknown Token " + token);
+    };
     
     _subtitle_array.push_back(s);
 }
 
 void ScriptingSubtitleDriver::parse_subtitles_block (Tokenizer &tokenizer)
 {
-	tokenizer.assume_next_token("{");
+    tokenizer.assume_next_token("{");
 
-	while (true) {
-		std::string token = tokenizer.next_token_string_no_substitute();
-		
-		// Handle Preprocessor
-		if (tokenizer.parse_preprocessor_macros(token))
-			continue;
-	
-		// Are we at the end of the block
-		if (token == "}")	break;
-		
-		if (MoreStrings::iequals(token,"subtitle"))   {	parse_subtitle_block(tokenizer);    continue;	}
-		
-		tokenizer.syntax_error("Unknown Token " + token);
-	};
+    while (true) {
+        std::string token = tokenizer.next_token_string_no_substitute();
+        
+        // Handle Preprocessor
+        if (tokenizer.parse_preprocessor_macros(token))
+            continue;
+    
+        // Are we at the end of the block
+        if (token == "}")    break;
+        
+        if (MoreStrings::iequals(token,"subtitle"))   {    parse_subtitle_block(tokenizer);    continue;    }
+        
+        tokenizer.syntax_error("Unknown Token " + token);
+    };
 }
 
 //==============================================================================
@@ -163,18 +163,18 @@ void ScriptingSubtitleDriver::set_subtitles (const FilePath& subtitles)
 
     _subtitle_array.clear();
 
-	Tokenizer tokenizer;
-	tokenizer.load_token_stream (subtitles);
-	
-	while (!tokenizer.is_done()) {
-		std::string token = tokenizer.next_token_string_no_substitute();
-		
-		// Handle Preprocessor
-		if (tokenizer.parse_preprocessor_macros(token))
-			continue;
-		
-		if (MoreStrings::iequals(token,"subtitles"))  {	parse_subtitles_block(tokenizer);	continue;	}
-	};
+    Tokenizer tokenizer;
+    tokenizer.load_token_stream (subtitles);
+    
+    while (!tokenizer.is_done()) {
+        std::string token = tokenizer.next_token_string_no_substitute();
+        
+        // Handle Preprocessor
+        if (tokenizer.parse_preprocessor_macros(token))
+            continue;
+        
+        if (MoreStrings::iequals(token,"subtitles"))  {    parse_subtitles_block(tokenizer);    continue;    }
+    };
 
 }
 
@@ -183,11 +183,11 @@ void ScriptingSubtitleDriver::set_subtitles (const FilePath& subtitles)
 
 bool ScriptingSubtitleDriver::compute (const PlugBase *plug)
 {
-	PROFILER(SCRIPTING);
+    PROFILER(SCRIPTING);
 
     if (super_type::compute(plug))  return true;
 
-	if (plug == &_out) {
+    if (plug == &_out) {
 
         (*_out).clear();
         
@@ -208,11 +208,11 @@ bool ScriptingSubtitleDriver::compute (const PlugBase *plug)
             
         }
 
-		_out.set_clean();
-		return true;
-	}
-	
-	return false;
+        _out.set_clean();
+        return true;
+    }
+    
+    return false;
 }
 
 //==============================================================================

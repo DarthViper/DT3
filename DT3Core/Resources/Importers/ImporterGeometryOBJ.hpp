@@ -3,7 +3,7 @@
 #define DT3_IMPORTERGEOMETRYOBJ
 //==============================================================================
 ///
-///	File: ImporterGeometryOBJ.hpp
+///    File: ImporterGeometryOBJ.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -37,34 +37,34 @@ class ImporterGeometryOBJ: public ImporterGeometry {
         DEFINE_TYPE(ImporterGeometryOBJ,ImporterGeometry)
         DEFINE_CREATE
 
-                                        ImporterGeometryOBJ	(void);
+                                        ImporterGeometryOBJ    (void);
 
     private:
-                                        ImporterGeometryOBJ	(const ImporterGeometryOBJ &rhs);
-        ImporterGeometryOBJ &			operator =			(const ImporterGeometryOBJ &rhs);
+                                        ImporterGeometryOBJ    (const ImporterGeometryOBJ &rhs);
+        ImporterGeometryOBJ &            operator =            (const ImporterGeometryOBJ &rhs);
 
     public:
-        virtual							~ImporterGeometryOBJ(void);
+        virtual                            ~ImporterGeometryOBJ(void);
 
     public:
         /// Imports an geometry into an GeometryResource
         /// \param target object to import geometry into
         /// \param args arguments to importer
         /// \return error code
-        virtual DTerr					import				(GeometryResource *target, std::string args);
+        virtual DTerr                    import                (GeometryResource *target, std::string args);
 
     private:
 
-        std::vector<Vector3>	_vertices;
-        std::vector<Vector3>	_normals;
-        std::vector<Vector2>	_texcoords;
+        std::vector<Vector3>    _vertices;
+        std::vector<Vector3>    _normals;
+        std::vector<Vector2>    _texcoords;
 
         struct Face {
-            int32_t				_v[3];
-            int32_t				_vt[3];
-            int32_t				_vn[3];
+            int32_t                _v[3];
+            int32_t                _vt[3];
+            int32_t                _vn[3];
         };
-        std::vector<Face>		_faces;
+        std::vector<Face>        _faces;
 };
 
 //==============================================================================

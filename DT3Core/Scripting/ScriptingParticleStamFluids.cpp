@@ -1,12 +1,12 @@
 //==============================================================================
-///	
-///	File: ScriptingParticleStamFluids.cpp
-///	
+///    
+///    File: ScriptingParticleStamFluids.cpp
+///    
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
 /// This file is subject to the terms and conditions defined in
 /// file 'LICENSE.txt', which is part of this source code package.
-///	
+///    
 //==============================================================================
 //
 // From Jos Stam's code: http://www.dgp.toronto.edu/people/stam/reality/Research/pub.html
@@ -51,16 +51,16 @@ IMPLEMENT_PLUG_INFO_INDEX(_out)
 
 BEGIN_IMPLEMENT_PLUGS(ScriptingParticleStamFluids)
 
-	PLUG_INIT(_turbulence,"Turbulence")
-		.set_input(true)
-		.affects(PLUG_INFO_INDEX(_out));
+    PLUG_INIT(_turbulence,"Turbulence")
+        .set_input(true)
+        .affects(PLUG_INFO_INDEX(_out));
 
-	PLUG_INIT(_in,"In")
-		.set_input(true)
-		.affects(PLUG_INFO_INDEX(_out));
-	
-	PLUG_INIT(_out,"Out")
-		.set_output(true);
+    PLUG_INIT(_in,"In")
+        .set_input(true)
+        .affects(PLUG_INFO_INDEX(_out));
+    
+    PLUG_INIT(_out,"Out")
+        .set_output(true);
         
 END_IMPLEMENT_PLUGS
 
@@ -74,25 +74,25 @@ ScriptingParticleStamFluids::ScriptingParticleStamFluids (void)
         _visc           (1.0F),
         _particle_drag  (0.5F),
         _rectangle      (0.0F,1024.0F,0.0F,768.0F),
-		_turbulence	(PLUG_INFO_INDEX(_turbulence), {0.0F,0.0F}),
+        _turbulence    (PLUG_INFO_INDEX(_turbulence), {0.0F,0.0F}),
         _turbulence_timer(0.0F),
-		_in				(PLUG_INFO_INDEX(_in)),
-		_out			(PLUG_INFO_INDEX(_out))
+        _in                (PLUG_INFO_INDEX(_in)),
+        _out            (PLUG_INFO_INDEX(_out))
 {  
 
 }
-		
+        
 ScriptingParticleStamFluids::ScriptingParticleStamFluids (const ScriptingParticleStamFluids &rhs)
-    :   ScriptingBase	(rhs),
+    :   ScriptingBase    (rhs),
         _n              (rhs._n),
-		_diff           (rhs._diff),
-		_visc           (rhs._visc),
+        _diff           (rhs._diff),
+        _visc           (rhs._visc),
         _particle_drag  (rhs._particle_drag),
         _rectangle      (rhs._rectangle),
         _turbulence     (rhs._turbulence),
         _turbulence_timer(rhs._turbulence_timer),
-		_in				(rhs._in),
-		_out			(rhs._out)
+        _in                (rhs._in),
+        _out            (rhs._out)
 {   
 
 }
@@ -101,24 +101,24 @@ ScriptingParticleStamFluids & ScriptingParticleStamFluids::operator = (const Scr
 {
     // Make sure we are not assigning the class to itself
     if (&rhs != this) {        
-		ScriptingBase::operator = (rhs);
+        ScriptingBase::operator = (rhs);
 
         _rectangle = rhs._rectangle;
         
-		_n = rhs._n;
-		_diff = rhs._diff;
-		_visc = rhs._visc;
+        _n = rhs._n;
+        _diff = rhs._diff;
+        _visc = rhs._visc;
         _particle_drag = rhs._particle_drag;
         
         _turbulence = rhs._turbulence;
         _turbulence_timer = rhs._turbulence_timer;
         
-		_in	= rhs._in;
-		_out = rhs._out;
-	}
+        _in    = rhs._in;
+        _out = rhs._out;
+    }
     return (*this);
 }
-			
+            
 ScriptingParticleStamFluids::~ScriptingParticleStamFluids (void)
 {
 
@@ -131,19 +131,19 @@ void ScriptingParticleStamFluids::archive (const std::shared_ptr<Archive> &archi
 {
     ScriptingBase::archive(archive);
 
-	archive->push_domain (class_id ());
-	
-	*archive << ARCHIVE_DATA_ACCESSORS("n", ScriptingParticleStamFluids::n, ScriptingParticleStamFluids::set_n, DATA_PERSISTENT | DATA_SETTABLE);
+    archive->push_domain (class_id ());
+    
+    *archive << ARCHIVE_DATA_ACCESSORS("n", ScriptingParticleStamFluids::n, ScriptingParticleStamFluids::set_n, DATA_PERSISTENT | DATA_SETTABLE);
 
-	*archive << ARCHIVE_PLUG(_turbulence, DATA_PERSISTENT | DATA_SETTABLE);
+    *archive << ARCHIVE_PLUG(_turbulence, DATA_PERSISTENT | DATA_SETTABLE);
     
-	*archive << ARCHIVE_DATA(_rectangle, DATA_PERSISTENT | DATA_SETTABLE);
-	*archive << ARCHIVE_DATA(_diff, DATA_PERSISTENT | DATA_SETTABLE);
-	*archive << ARCHIVE_DATA(_visc, DATA_PERSISTENT | DATA_SETTABLE);
-	*archive << ARCHIVE_DATA(_particle_drag, DATA_PERSISTENT | DATA_SETTABLE);
+    *archive << ARCHIVE_DATA(_rectangle, DATA_PERSISTENT | DATA_SETTABLE);
+    *archive << ARCHIVE_DATA(_diff, DATA_PERSISTENT | DATA_SETTABLE);
+    *archive << ARCHIVE_DATA(_visc, DATA_PERSISTENT | DATA_SETTABLE);
+    *archive << ARCHIVE_DATA(_particle_drag, DATA_PERSISTENT | DATA_SETTABLE);
     
     
-	        					
+                                
     archive->pop_domain ();
 }
 
@@ -152,7 +152,7 @@ void ScriptingParticleStamFluids::archive (const std::shared_ptr<Archive> &archi
 
 void ScriptingParticleStamFluids::tick (const DTfloat dt)
 {
-	PROFILER(PARTICLES);
+    PROFILER(PARTICLES);
 
     // Make sure there are input particles
     std::shared_ptr<Particles> particles = _in;
@@ -179,8 +179,8 @@ void ScriptingParticleStamFluids::tick (const DTfloat dt)
         _v_prev[index] += y * _turbulence->y;
     END_FOR
     
-	vel_step (&_u[0], &_v[0], &_u_prev[0], &_v_prev[0], _visc, dt );
-	dens_step (&_dens[0], &_dens_prev[0], &_u[0], &_v[0], _diff, dt );
+    vel_step (&_u[0], &_v[0], &_u_prev[0], &_v_prev[0], _visc, dt );
+    dens_step (&_dens[0], &_dens_prev[0], &_u[0], &_v[0], _diff, dt );
     
     // Do processing
     std::vector<Vector3> &velocities = particles->velocity_stream();
@@ -215,7 +215,7 @@ void ScriptingParticleStamFluids::tick (const DTfloat dt)
 void ScriptingParticleStamFluids::set_n (const int32_t n)
 {
     _n = n;
-	int32_t size = (_n+2)*(_n+2);
+    int32_t size = (_n+2)*(_n+2);
 
     _u.resize(size, 0.0F);
     _v.resize(size, 0.0F);
@@ -235,107 +235,107 @@ int32_t ScriptingParticleStamFluids::n (void) const
 
 void ScriptingParticleStamFluids::add_source (DTfloat *x, DTfloat *s, DTfloat dt )
 {
-	int32_t i, size=(_n+2)*(_n+2);
-	for ( i=0 ; i<size ; i++ ) 
+    int32_t i, size=(_n+2)*(_n+2);
+    for ( i=0 ; i<size ; i++ ) 
         x[i] += dt*s[i];
 }
 
 void ScriptingParticleStamFluids::set_bnd (int32_t b, DTfloat* x )
 {
-	int32_t i;
+    int32_t i;
 
-	for ( i=1 ; i<=_n ; i++ ) {
-		x[IX(0  ,i)] = b==1 ? -x[IX(1,i)] : x[IX(1,i)];
-		x[IX(_n+1,i)] = b==1 ? -x[IX(_n,i)] : x[IX(_n,i)];
-		x[IX(i,0  )] = b==2 ? -x[IX(i,1)] : x[IX(i,1)];
-		x[IX(i,_n+1)] = b==2 ? -x[IX(i,_n)] : x[IX(i,_n)];
-	}
-	x[IX(0  ,0  )] = 0.5f*(x[IX(1,0  )]+x[IX(0  ,1)]);
-	x[IX(0  ,_n+1)] = 0.5f*(x[IX(1,_n+1)]+x[IX(0  ,_n)]);
-	x[IX(_n+1,0  )] = 0.5f*(x[IX(_n,0  )]+x[IX(_n+1,1)]);
-	x[IX(_n+1,_n+1)] = 0.5f*(x[IX(_n,_n+1)]+x[IX(_n+1,_n)]);
+    for ( i=1 ; i<=_n ; i++ ) {
+        x[IX(0  ,i)] = b==1 ? -x[IX(1,i)] : x[IX(1,i)];
+        x[IX(_n+1,i)] = b==1 ? -x[IX(_n,i)] : x[IX(_n,i)];
+        x[IX(i,0  )] = b==2 ? -x[IX(i,1)] : x[IX(i,1)];
+        x[IX(i,_n+1)] = b==2 ? -x[IX(i,_n)] : x[IX(i,_n)];
+    }
+    x[IX(0  ,0  )] = 0.5f*(x[IX(1,0  )]+x[IX(0  ,1)]);
+    x[IX(0  ,_n+1)] = 0.5f*(x[IX(1,_n+1)]+x[IX(0  ,_n)]);
+    x[IX(_n+1,0  )] = 0.5f*(x[IX(_n,0  )]+x[IX(_n+1,1)]);
+    x[IX(_n+1,_n+1)] = 0.5f*(x[IX(_n,_n+1)]+x[IX(_n+1,_n)]);
 }
 
 void ScriptingParticleStamFluids::lin_solve (int32_t b, DTfloat *x, DTfloat *x0, DTfloat a, DTfloat c )
 {
-	int32_t i, j, k;
+    int32_t i, j, k;
 
-	for ( k=0 ; k<20 ; k++ ) {
-		FOR_EACH_CELL
-			x[IX(i,j)] = (x0[IX(i,j)] + a*(x[IX(i-1,j)]+x[IX(i+1,j)]+x[IX(i,j-1)]+x[IX(i,j+1)]))/c;
-		END_FOR
-		set_bnd (b, x );
-	}
+    for ( k=0 ; k<20 ; k++ ) {
+        FOR_EACH_CELL
+            x[IX(i,j)] = (x0[IX(i,j)] + a*(x[IX(i-1,j)]+x[IX(i+1,j)]+x[IX(i,j-1)]+x[IX(i,j+1)]))/c;
+        END_FOR
+        set_bnd (b, x );
+    }
 }
 
 void ScriptingParticleStamFluids::diffuse (int32_t b, DTfloat *x, DTfloat *x0, DTfloat diff, DTfloat dt )
 {
-	DTfloat a=dt*diff*_n*_n;
-	lin_solve (b, x, x0, a, 1+4*a );
+    DTfloat a=dt*diff*_n*_n;
+    lin_solve (b, x, x0, a, 1+4*a );
 }
 
 void ScriptingParticleStamFluids::advect (int32_t b, DTfloat *d, DTfloat *d0, DTfloat *u, DTfloat *v, DTfloat dt )
 {
-	int32_t i, j, i0, j0, i1, j1;
-	DTfloat x, y, s0, t0, s1, t1, dt0;
+    int32_t i, j, i0, j0, i1, j1;
+    DTfloat x, y, s0, t0, s1, t1, dt0;
 
-	dt0 = dt*_n;
-	FOR_EACH_CELL
-		x = i-dt0*u[IX(i,j)]; y = j-dt0*v[IX(i,j)];
-		if (x<0.5f) x=0.5f; if (x>_n+0.5f) x=_n+0.5f; i0=(int32_t)x; i1=i0+1;
-		if (y<0.5f) y=0.5f; if (y>_n+0.5f) y=_n+0.5f; j0=(int32_t)y; j1=j0+1;
-		s1 = x-i0; s0 = 1-s1; t1 = y-j0; t0 = 1-t1;
-		d[IX(i,j)] = s0*(t0*d0[IX(i0,j0)]+t1*d0[IX(i0,j1)])+
-					 s1*(t0*d0[IX(i1,j0)]+t1*d0[IX(i1,j1)]);
-	END_FOR
-	set_bnd (b, d );
+    dt0 = dt*_n;
+    FOR_EACH_CELL
+        x = i-dt0*u[IX(i,j)]; y = j-dt0*v[IX(i,j)];
+        if (x<0.5f) x=0.5f; if (x>_n+0.5f) x=_n+0.5f; i0=(int32_t)x; i1=i0+1;
+        if (y<0.5f) y=0.5f; if (y>_n+0.5f) y=_n+0.5f; j0=(int32_t)y; j1=j0+1;
+        s1 = x-i0; s0 = 1-s1; t1 = y-j0; t0 = 1-t1;
+        d[IX(i,j)] = s0*(t0*d0[IX(i0,j0)]+t1*d0[IX(i0,j1)])+
+                     s1*(t0*d0[IX(i1,j0)]+t1*d0[IX(i1,j1)]);
+    END_FOR
+    set_bnd (b, d );
 }
 
 void ScriptingParticleStamFluids::project (DTfloat *u, DTfloat *v, DTfloat *p, DTfloat *div )
 {
-	int32_t i, j;
+    int32_t i, j;
 
-	FOR_EACH_CELL
-		div[IX(i,j)] = -0.5f*(u[IX(i+1,j)]-u[IX(i-1,j)]+v[IX(i,j+1)]-v[IX(i,j-1)])/_n;
-		p[IX(i,j)] = 0;
-	END_FOR	
-	set_bnd (0, div );
+    FOR_EACH_CELL
+        div[IX(i,j)] = -0.5f*(u[IX(i+1,j)]-u[IX(i-1,j)]+v[IX(i,j+1)]-v[IX(i,j-1)])/_n;
+        p[IX(i,j)] = 0;
+    END_FOR    
+    set_bnd (0, div );
     set_bnd (0, p );
 
-	lin_solve (0, p, div, 1, 4 );
+    lin_solve (0, p, div, 1, 4 );
 
-	FOR_EACH_CELL
-		u[IX(i,j)] -= 0.5f*_n*(p[IX(i+1,j)]-p[IX(i-1,j)]);
-		v[IX(i,j)] -= 0.5f*_n*(p[IX(i,j+1)]-p[IX(i,j-1)]);
-	END_FOR
+    FOR_EACH_CELL
+        u[IX(i,j)] -= 0.5f*_n*(p[IX(i+1,j)]-p[IX(i-1,j)]);
+        v[IX(i,j)] -= 0.5f*_n*(p[IX(i,j+1)]-p[IX(i,j-1)]);
+    END_FOR
     
-	set_bnd (1, u );
+    set_bnd (1, u );
     set_bnd (2, v );
 }
 
 void ScriptingParticleStamFluids::dens_step (DTfloat *x, DTfloat *x0, DTfloat *u, DTfloat *v, DTfloat diff, DTfloat dt )
 {
-	add_source (x, x0, dt );
-	SWAP ( x0, x ); 
+    add_source (x, x0, dt );
+    SWAP ( x0, x ); 
     diffuse (0, x, x0, diff, dt );
-	SWAP ( x0, x ); 
+    SWAP ( x0, x ); 
     advect (0, x, x0, u, v, dt );
 }
 
 void ScriptingParticleStamFluids::vel_step (DTfloat *u, DTfloat *v, DTfloat *u0, DTfloat *v0, DTfloat visc, DTfloat dt )
 {
-	add_source (u, u0, dt );
+    add_source (u, u0, dt );
     add_source (v, v0, dt );
-	SWAP ( u0, u ); 
+    SWAP ( u0, u ); 
     diffuse (1, u, u0, visc, dt );
-	SWAP ( v0, v ); 
+    SWAP ( v0, v ); 
     diffuse (2, v, v0, visc, dt );
-	project (u, v, u0, v0 );
-	SWAP ( u0, u ); 
+    project (u, v, u0, v0 );
+    SWAP ( u0, u ); 
     SWAP ( v0, v );
-	advect (1, u, u0, u0, v0, dt ); 
+    advect (1, u, u0, u0, v0, dt ); 
     advect (2, v, v0, u0, v0, dt );
-	project (u, v, u0, v0 );
+    project (u, v, u0, v0 );
 }
 
 
@@ -345,19 +345,19 @@ void ScriptingParticleStamFluids::vel_step (DTfloat *u, DTfloat *v, DTfloat *u0,
 
 bool ScriptingParticleStamFluids::compute (const PlugBase *plug)
 {
-	PROFILER(PARTICLES);
+    PROFILER(PARTICLES);
 
     if (super_type::compute(plug))  return true;
 
-	if (plug == &_out) {
-		
-		_out = _in;
-		_out.set_clean();
-		
-		return true;
-	}
-	
-	return false;
+    if (plug == &_out) {
+        
+        _out = _in;
+        _out.set_clean();
+        
+        return true;
+    }
+    
+    return false;
 }
 
 //==============================================================================

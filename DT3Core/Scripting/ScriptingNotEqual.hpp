@@ -3,7 +3,7 @@
 #define DT3_SCRIPTINGNOTEQUAL
 //==============================================================================
 ///
-///	File: ScriptingNotEqual.hpp
+///    File: ScriptingNotEqual.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -35,20 +35,20 @@ class ScriptingNotEqual: public ScriptingBase {
 
                                     ScriptingNotEqual       (void);
                                     ScriptingNotEqual       (const ScriptingNotEqual &rhs);
-        ScriptingNotEqual &			operator =				(const ScriptingNotEqual &rhs);
-        virtual						~ScriptingNotEqual		(void);
+        ScriptingNotEqual &            operator =                (const ScriptingNotEqual &rhs);
+        virtual                        ~ScriptingNotEqual        (void);
 
-        virtual void				archive                 (const std::shared_ptr<Archive> &archive);
+        virtual void                archive                 (const std::shared_ptr<Archive> &archive);
 
     public:
         /// Computes the value of the node
         /// \param plug plug to compute
-        bool					compute					(const PlugBase *plug);
+        bool                    compute                    (const PlugBase *plug);
 
     private:
-        Plug<DTfloat>				_in1;
-        Plug<DTfloat>				_in2;
-        Plug<bool>				_out;
+        Plug<DTfloat>                _in1;
+        Plug<DTfloat>                _in2;
+        Plug<bool>                _out;
 };
 
 //==============================================================================

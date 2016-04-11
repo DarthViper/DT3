@@ -3,7 +3,7 @@
 #define DT3_GRIDIMAGEDATA
 //==============================================================================
 ///
-///	File: GridImageData.hpp
+///    File: GridImageData.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -43,8 +43,8 @@ class GridImageData {
 
     public:
 
-        inline bool	operator ==                     (const GridImageData& /*rhs*/) const  {	return false;		}
-        inline bool	operator !=                     (const GridImageData& /*rhs*/) const  {	return true;		}
+        inline bool    operator ==                     (const GridImageData& /*rhs*/) const  {    return false;        }
+        inline bool    operator !=                     (const GridImageData& /*rhs*/) const  {    return true;        }
 
 
         /// Set number of control points in X direction
@@ -53,7 +53,7 @@ class GridImageData {
 
         /// Returns number of control points in X direction
         /// \return number of control points
-        uint32_t				num_x                   (void) const;
+        uint32_t                num_x                   (void) const;
 
         /// Set number of control points in Y direction
         /// \param num_y number of control points
@@ -61,7 +61,7 @@ class GridImageData {
 
         /// Returns number of control points in Y direction
         /// \return number of control points
-        uint32_t				num_y                   (void) const;
+        uint32_t                num_y                   (void) const;
 
         /// Returns the control point at x,y location
         /// \param x x index
@@ -79,9 +79,9 @@ class GridImageData {
         friend Stream& operator << (Stream &s, const GridImageData&v);
         friend Stream& operator >> (Stream &s, GridImageData&v);
 
-        friend GridImageData		operator +              (const GridImageData &a, const GridImageData &b);
-        friend GridImageData		operator -              (const GridImageData &a, const GridImageData &b);
-        friend GridImageData		operator *              (const DTfloat b, const GridImageData &a);
+        friend GridImageData        operator +              (const GridImageData &a, const GridImageData &b);
+        friend GridImageData        operator -              (const GridImageData &a, const GridImageData &b);
+        friend GridImageData        operator *              (const DTfloat b, const GridImageData &a);
 
         void                        clear                   (void);
 

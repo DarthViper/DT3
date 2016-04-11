@@ -3,7 +3,7 @@
 #define DT3_SCRIPTINGPARTICLECOLORSEQUENCER
 //==============================================================================
 ///
-///	File: ScriptingParticleColorSequencer.hpp
+///    File: ScriptingParticleColorSequencer.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -36,17 +36,17 @@ class ScriptingParticleColorSequencer: public ScriptingBase {
         DEFINE_CREATE_AND_CLONE
         DEFINE_PLUG_NODE
 
-                                            ScriptingParticleColorSequencer		(void);
-                                            ScriptingParticleColorSequencer		(const ScriptingParticleColorSequencer &rhs);
-        ScriptingParticleColorSequencer&	operator =							(const ScriptingParticleColorSequencer &rhs);
-        virtual								~ScriptingParticleColorSequencer	(void);
+                                            ScriptingParticleColorSequencer        (void);
+                                            ScriptingParticleColorSequencer        (const ScriptingParticleColorSequencer &rhs);
+        ScriptingParticleColorSequencer&    operator =                            (const ScriptingParticleColorSequencer &rhs);
+        virtual                                ~ScriptingParticleColorSequencer    (void);
 
         virtual void                archive                 (const std::shared_ptr<Archive> &archive);
 
     public:
         /// Computes the value of the node
         /// \param plug plug to compute
-        bool					compute					(const PlugBase *plug);
+        bool                    compute                    (const PlugBase *plug);
 
 
         DEFINE_ACCESSORS(r_mask, set_r_mask, bool, _r_mask);
@@ -80,18 +80,18 @@ class ScriptingParticleColorSequencer: public ScriptingBase {
     private:
         static const int32_t NUM_ENTRIES = 8;
 
-        bool		_r_mask;
-        bool		_g_mask;
-        bool		_b_mask;
-        bool		_a_mask;
+        bool        _r_mask;
+        bool        _g_mask;
+        bool        _b_mask;
+        bool        _a_mask;
 
-        DTfloat			_t[NUM_ENTRIES];
-        Color4b			_c[NUM_ENTRIES];
+        DTfloat            _t[NUM_ENTRIES];
+        Color4b            _c[NUM_ENTRIES];
 
-        std::vector<int32_t>	_cache;
+        std::vector<int32_t>    _cache;
 
-        Plug<std::shared_ptr<Particles>>		_in;
-        Plug<std::shared_ptr<Particles>>		_out;
+        Plug<std::shared_ptr<Particles>>        _in;
+        Plug<std::shared_ptr<Particles>>        _out;
 
 };
 

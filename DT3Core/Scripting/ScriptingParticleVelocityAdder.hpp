@@ -3,7 +3,7 @@
 #define DT3_SCRIPTINGPARTICLEVELOCITYADDER
 //==============================================================================
 ///
-///	File: ScriptingParticleVelocityAdder.hpp
+///    File: ScriptingParticleVelocityAdder.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -35,17 +35,17 @@ class ScriptingParticleVelocityAdder: public ScriptingBase {
         DEFINE_CREATE_AND_CLONE
         DEFINE_PLUG_NODE
 
-                                                ScriptingParticleVelocityAdder	(void);
-                                                ScriptingParticleVelocityAdder	(const ScriptingParticleVelocityAdder &rhs);
+                                                ScriptingParticleVelocityAdder    (void);
+                                                ScriptingParticleVelocityAdder    (const ScriptingParticleVelocityAdder &rhs);
         ScriptingParticleVelocityAdder &        operator =                      (const ScriptingParticleVelocityAdder &rhs);
-        virtual									~ScriptingParticleVelocityAdder (void);
+        virtual                                    ~ScriptingParticleVelocityAdder (void);
 
         virtual void                archive                 (const std::shared_ptr<Archive> &archive);
 
     public:
         /// Computes the value of the node
         /// \param plug plug to compute
-        bool					compute					(const PlugBase *plug);
+        bool                    compute                    (const PlugBase *plug);
 
         DEFINE_ACCESSORS(continuous, set_continuous, bool, _continuous);
         DEFINE_ACCESSORS(velocity, set_velocity, Vector3, _velocity);
@@ -57,12 +57,12 @@ class ScriptingParticleVelocityAdder: public ScriptingBase {
 #endif
 
     private:
-        bool									_continuous;
+        bool                                    _continuous;
 
-        Plug<Vector3>								_velocity;
+        Plug<Vector3>                                _velocity;
 
-        Plug<std::shared_ptr<Particles>>		_in;
-        Plug<std::shared_ptr<Particles>>		_out;
+        Plug<std::shared_ptr<Particles>>        _in;
+        Plug<std::shared_ptr<Particles>>        _out;
 
 };
 

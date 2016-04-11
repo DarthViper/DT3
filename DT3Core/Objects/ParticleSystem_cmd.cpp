@@ -1,12 +1,12 @@
 //==============================================================================
-///	
-///	File: ParticleSystem_cmd.cpp
-///	
+///    
+///    File: ParticleSystem_cmd.cpp
+///    
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
 /// This file is subject to the terms and conditions defined in
 /// file 'LICENSE.txt', which is part of this source code package.
-///	
+///    
 //==============================================================================
 
 #include "DT3Core/System/Command.hpp"
@@ -116,8 +116,8 @@ CommandResult ParticleSystem_cmd::do_particles_to_code (CommandContext &ctx, con
     TextFileStream s;
     
     // open the file
-	DTerr error = FileManager::open(s, FilePath("Particles.cpp"), false);
-	if (error != DT3_ERR_NONE)
+    DTerr error = FileManager::open(s, FilePath("Particles.cpp"), false);
+    if (error != DT3_ERR_NONE)
         return CommandResult(false, "Unable to open file", CommandResult::UPDATE_NONE);
 
     // Dump Object setup

@@ -3,7 +3,7 @@
 #define DT3_BOX
 //==============================================================================
 ///
-///	File: Box.hpp
+///    File: Box.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -47,8 +47,8 @@ class Box: public Rectangle {
 
     public:
 
-        bool               operator ==			(const Box& rhs) const;
-        bool               operator !=			(const Box& rhs) const;
+        bool               operator ==            (const Box& rhs) const;
+        bool               operator !=            (const Box& rhs) const;
 
         /// Sets the size of the box given the extents along all 3 axes.
         /// \param minus_x Minimum Coordinate along the X axis
@@ -63,7 +63,7 @@ class Box: public Rectangle {
         /// Sets the extents of the box along the Z axis.
         /// \param minus_z Minimum Coordinate along the Z axis
         /// \param plus_z Maximum Coordinate along the Z axis
-        void                    set_Z_extents       (const DTfloat minus_z, const DTfloat plus_z)	{   _minus_z = minus_z; _plus_z = plus_z;	}
+        void                    set_Z_extents       (const DTfloat minus_z, const DTfloat plus_z)    {   _minus_z = minus_z; _plus_z = plus_z;    }
 
 
         DEFINE_ACCESSORS(minus_z, set_minus_z, DTfloat, _minus_z)
@@ -134,7 +134,7 @@ class Box: public Rectangle {
         /// Check for overlap beteen two rectangles
         /// \param pt point
         /// \return is touching
-        bool               is_touching			(const Vector3 &pt) const;
+        bool               is_touching            (const Vector3 &pt) const;
 
         /// Is this box touching an extruded sphere?
         /// \param start point
@@ -160,8 +160,8 @@ class Box: public Rectangle {
         const Vector3           closest_point       (const Vector3 &pt) const;
 
     private:
-        DTfloat									_minus_z;	/// Minus position on Z axis
-        DTfloat									_plus_z;	/// Plus position on Z axis
+        DTfloat                                    _minus_z;    /// Minus position on Z axis
+        DTfloat                                    _plus_z;    /// Plus position on Z axis
 };
 
 //==============================================================================

@@ -1,6 +1,6 @@
 //==============================================================================
 ///
-///	File: ImporterSoundWAV.cpp
+///    File: ImporterSoundWAV.cpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -37,10 +37,10 @@ IMPLEMENT_FACTORY_IMPORTER(ImporterSoundWAV,wav)
 //==============================================================================
 
 ImporterSoundWAV::ImporterSoundWAV (void)
-    :	_data_start             (0),
+    :    _data_start             (0),
         _data_length            (0),
         _preloaded_chunk        (NULL),
-        _preloaded_chunk_size	(0)
+        _preloaded_chunk_size    (0)
 {
 
 }
@@ -53,7 +53,7 @@ ImporterSoundWAV::~ImporterSoundWAV (void)
 //==============================================================================
 //==============================================================================
 
-void	ImporterSoundWAV::read(BinaryFileStream &infile, uint8_t &v)
+void    ImporterSoundWAV::read(BinaryFileStream &infile, uint8_t &v)
 {
     infile.read_raw((uint8_t*)&v, sizeof(int8_t));
 }
@@ -61,7 +61,7 @@ void	ImporterSoundWAV::read(BinaryFileStream &infile, uint8_t &v)
 //==============================================================================
 //==============================================================================
 
-void	ImporterSoundWAV::read(BinaryFileStream &infile, uint16_t &v)
+void    ImporterSoundWAV::read(BinaryFileStream &infile, uint16_t &v)
 {
     infile.read_raw((uint8_t*)&v, sizeof(uint16_t));
     Endian::from_little_endian(v);
@@ -70,7 +70,7 @@ void	ImporterSoundWAV::read(BinaryFileStream &infile, uint16_t &v)
 //==============================================================================
 //==============================================================================
 
-void	ImporterSoundWAV::read(BinaryFileStream &infile, int16_t &v)
+void    ImporterSoundWAV::read(BinaryFileStream &infile, int16_t &v)
 {
     infile.read_raw((uint8_t*)&v, sizeof(int16_t));
     Endian::from_little_endian(v);
@@ -79,7 +79,7 @@ void	ImporterSoundWAV::read(BinaryFileStream &infile, int16_t &v)
 //==============================================================================
 //==============================================================================
 
-void	ImporterSoundWAV::read(BinaryFileStream &infile, uint32_t &v)
+void    ImporterSoundWAV::read(BinaryFileStream &infile, uint32_t &v)
 {
     infile.read_raw((uint8_t*)&v, sizeof(uint32_t));
     Endian::from_little_endian(v);
@@ -88,7 +88,7 @@ void	ImporterSoundWAV::read(BinaryFileStream &infile, uint32_t &v)
 //==============================================================================
 //==============================================================================
 
-void	ImporterSoundWAV::read(BinaryFileStream &infile, int32_t &v)
+void    ImporterSoundWAV::read(BinaryFileStream &infile, int32_t &v)
 {
     infile.read_raw((uint8_t*)&v, sizeof(int32_t));
     Endian::from_little_endian(v);
@@ -97,7 +97,7 @@ void	ImporterSoundWAV::read(BinaryFileStream &infile, int32_t &v)
 //==============================================================================
 //==============================================================================
 
-void	ImporterSoundWAV::read(BinaryFileStream &infile, DTcharacter id[4])
+void    ImporterSoundWAV::read(BinaryFileStream &infile, DTcharacter id[4])
 {
     infile.read_raw((uint8_t*)&id[0], sizeof(DTcharacter));
     infile.read_raw((uint8_t*)&id[1], sizeof(DTcharacter));
@@ -108,7 +108,7 @@ void	ImporterSoundWAV::read(BinaryFileStream &infile, DTcharacter id[4])
 //==============================================================================
 //==============================================================================
 
-void	ImporterSoundWAV::read(BinaryFileStream &infile, ChunkHeader &v)
+void    ImporterSoundWAV::read(BinaryFileStream &infile, ChunkHeader &v)
 {
     read(infile, v.id);
     read(infile, v.length);
@@ -119,7 +119,7 @@ void	ImporterSoundWAV::read(BinaryFileStream &infile, ChunkHeader &v)
 
 bool ImporterSoundWAV::is_type (DTcharacter id[4], const DTcharacter *id_str)
 {
-    return	id[0] == id_str[0] &&
+    return    id[0] == id_str[0] &&
             id[1] == id_str[1] &&
             id[2] == id_str[2] &&
             id[3] == id_str[3];
@@ -150,7 +150,7 @@ DTerr ImporterSoundWAV::import(SoundResource *target, std::string args)
         return DT3_ERR_FILE_WRONG_TYPE;
 
 
-    DTcharacter	id_wave[4];
+    DTcharacter    id_wave[4];
     read(_infile, id_wave);
 
     if (!is_type(id_wave,"WAVE"))
@@ -176,12 +176,12 @@ DTerr ImporterSoundWAV::import(SoundResource *target, std::string args)
 
             // Specific format
             switch (_format._format_tag) {
-                case FMT_WAVE_FORMAT_PCM:	read(_infile, _format._wave_format_PCM._bits_per_sample);
+                case FMT_WAVE_FORMAT_PCM:    read(_infile, _format._wave_format_PCM._bits_per_sample);
                                         break;
                 case FMT_FORMAT_MULAW:
                 case FMT_IBM_FORMAT_ALAW:
                 case FMT_IBM_FORMAT_ADPCM:
-                default:				LOG_MESSAGE << "Failed to read WAV file. Currently only Microsoft PCM is supported.";
+                default:                LOG_MESSAGE << "Failed to read WAV file. Currently only Microsoft PCM is supported.";
                                         return DT3_ERR_FILE_OPEN_FAILED;
                                         break;
             };
@@ -218,8 +218,8 @@ DTerr ImporterSoundWAV::import(SoundResource *target, std::string args)
     //
 
     switch (_format._format_tag) {
-        case FMT_WAVE_FORMAT_PCM:	if (_format._wave_format_PCM._bits_per_sample == 16 && _format._channels == 1)	target->set_format(SoundResource::FORMAT_MONO16);
-                                    else if (_format._wave_format_PCM._bits_per_sample == 16 && _format._channels == 2)	target->set_format(SoundResource::FORMAT_STEREO16);
+        case FMT_WAVE_FORMAT_PCM:    if (_format._wave_format_PCM._bits_per_sample == 16 && _format._channels == 1)    target->set_format(SoundResource::FORMAT_MONO16);
+                                    else if (_format._wave_format_PCM._bits_per_sample == 16 && _format._channels == 2)    target->set_format(SoundResource::FORMAT_STEREO16);
                                     else return DT3_ERR_FILE_OPEN_FAILED;
                                     break;
         case FMT_FORMAT_MULAW:

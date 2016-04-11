@@ -1,12 +1,12 @@
 //==============================================================================
-///	
-///	File: ObjectBase.cpp
-///	
+///    
+///    File: ObjectBase.cpp
+///    
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
 /// This file is subject to the terms and conditions defined in
 /// file 'LICENSE.txt', which is part of this source code package.
-///	
+///    
 //==============================================================================
 
 #include "DT3Core/Objects/ObjectBase.hpp"
@@ -36,9 +36,9 @@ ObjectBase::ObjectBase (void)
 {  
 
 }
-		
+        
 ObjectBase::ObjectBase (const ObjectBase &rhs)
-    :   WorldNode				(rhs)
+    :   WorldNode                (rhs)
 {   
     for (uint32_t i = 0; i < ComponentBase::NUM_COMPONENT_TYPES; ++i) {
         if (rhs._components[i]) {
@@ -51,7 +51,7 @@ ObjectBase & ObjectBase::operator = (const ObjectBase &rhs)
 {
     // Make sure we are not assigning the class to itself
     if (&rhs != this) {        
-		WorldNode::operator = (rhs);
+        WorldNode::operator = (rhs);
         
         for (uint32_t i = 0; i < ComponentBase::NUM_COMPONENT_TYPES; ++i) {
             _components[i].reset();
@@ -64,7 +64,7 @@ ObjectBase & ObjectBase::operator = (const ObjectBase &rhs)
     }
     return (*this);
 }
-			
+            
 ObjectBase::~ObjectBase (void)
 {
 
@@ -81,7 +81,7 @@ void ObjectBase::archive (const std::shared_ptr<Archive> &archive)
 
     uint32_t num_components = ComponentBase::NUM_COMPONENT_TYPES;
     *archive << ARCHIVE_DATA(num_components,DATA_PERSISTENT);
-	
+    
     for (uint32_t i = 0; i < ComponentBase::NUM_COMPONENT_TYPES; ++i)
         archive->add_post_process(ARCHIVE_PROCESS_POINTERS(archive,_components[i]));
 
@@ -116,8 +116,8 @@ void ObjectBase::add_to_world(World *world)
     }
 }
 
-void ObjectBase::remove_from_world (void)			
-{	
+void ObjectBase::remove_from_world (void)            
+{    
     // Tell the components that they were removed from this object
     for (int32_t i = ComponentBase::NUM_COMPONENT_TYPES-1; i >= 0; --i) {
         if (_components[i]) {
@@ -194,7 +194,7 @@ std::shared_ptr<ComponentBase> ObjectBase::component_by_name (const std::string 
     return std::shared_ptr<ComponentBase>();
 }
 
-const std::shared_ptr<ComponentBase>& ObjectBase::component_by_type	(ComponentBase::ComponentType type)
+const std::shared_ptr<ComponentBase>& ObjectBase::component_by_type    (ComponentBase::ComponentType type)
 {
     return _components[type];
 }

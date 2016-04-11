@@ -1,6 +1,6 @@
 //==============================================================================
 ///
-///	File: DrawUtils.cpp
+///    File: DrawUtils.cpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -78,46 +78,46 @@ void DrawUtils::draw_quad_stretch_center_3x3 (  DrawBatcher &draw_batcher,
     DTfloat inner_top = plus_y - corner_height;
     DTfloat inner_bottom = minus_y + corner_height;
 
-    if (inner_left > inner_right)	inner_left = inner_right = (minus_x + plus_x) * 0.5F;
-    if (inner_bottom > inner_top)	inner_bottom = inner_top = (minus_y + plus_y) * 0.5F;
+    if (inner_left > inner_right)    inner_left = inner_right = (minus_x + plus_x) * 0.5F;
+    if (inner_bottom > inner_top)    inner_bottom = inner_top = (minus_y + plus_y) * 0.5F;
 
     draw_batcher.batch_begin(camera, material, shader, transform, DT3GL_PRIM_TRI_STRIP, DrawBatcher::FMT_V | DrawBatcher::FMT_T0 | DrawBatcher::FMT_C);
 
     // Bottom row
-    draw_batcher.add().v(minus_x,		inner_bottom,	0.0F)   .t0(0.0F,			one_third_y)    .c(color);
+    draw_batcher.add().v(minus_x,        inner_bottom,    0.0F)   .t0(0.0F,            one_third_y)    .c(color);
     draw_batcher.add().v(minus_x,       minus_y,        0.0F)   .t0(0.0F,           0.0F)           .c(color);
-    draw_batcher.add().v(inner_left,	inner_bottom,	0.0F)   .t0(one_third_x,	one_third_y)    .c(color);
-    draw_batcher.add().v(inner_left,    minus_y,		0.0F)   .t0(one_third_x,    0.0F)           .c(color);
-    draw_batcher.add().v(inner_right,	inner_bottom,	0.0F)   .t0(two_thirds_x,	one_third_y)    .c(color);
-    draw_batcher.add().v(inner_right,	minus_y,		0.0F)   .t0(two_thirds_x,	0.0F)           .c(color);
-    draw_batcher.add().v(plus_x,		inner_bottom,	0.0F)   .t0(1.0F,			one_third_y)    .c(color);
-    draw_batcher.add().v(plus_x,		minus_y,		0.0F)   .t0(1.0F,			0.0F)           .c(color);
+    draw_batcher.add().v(inner_left,    inner_bottom,    0.0F)   .t0(one_third_x,    one_third_y)    .c(color);
+    draw_batcher.add().v(inner_left,    minus_y,        0.0F)   .t0(one_third_x,    0.0F)           .c(color);
+    draw_batcher.add().v(inner_right,    inner_bottom,    0.0F)   .t0(two_thirds_x,    one_third_y)    .c(color);
+    draw_batcher.add().v(inner_right,    minus_y,        0.0F)   .t0(two_thirds_x,    0.0F)           .c(color);
+    draw_batcher.add().v(plus_x,        inner_bottom,    0.0F)   .t0(1.0F,            one_third_y)    .c(color);
+    draw_batcher.add().v(plus_x,        minus_y,        0.0F)   .t0(1.0F,            0.0F)           .c(color);
 
-    draw_batcher.add().v(plus_x,		minus_y,		0.0F)   .t0(1.0F,			0.0F)           .c(color);  // Degenerate
-    draw_batcher.add().v(plus_x,		minus_y,		0.0F)   .t0(1.0F,			0.0F)           .c(color);  // Degenerate
+    draw_batcher.add().v(plus_x,        minus_y,        0.0F)   .t0(1.0F,            0.0F)           .c(color);  // Degenerate
+    draw_batcher.add().v(plus_x,        minus_y,        0.0F)   .t0(1.0F,            0.0F)           .c(color);  // Degenerate
 
     // Middle row
-    draw_batcher.add().v(minus_x,		inner_top,		0.0F)   .t0(0.0F,			two_thirds_y)   .c(color);
-    draw_batcher.add().v(minus_x,		inner_bottom,	0.0F)   .t0(0.0F,			one_third_y)    .c(color);
-    draw_batcher.add().v(inner_left,	inner_top,		0.0F)   .t0(one_third_x,	two_thirds_y)   .c(color);
-    draw_batcher.add().v(inner_left,	inner_bottom,	0.0F)   .t0(one_third_x,	one_third_y)    .c(color);
-    draw_batcher.add().v(inner_right,	inner_top,		0.0F)   .t0(two_thirds_x,	two_thirds_y)   .c(color);
-    draw_batcher.add().v(inner_right,	inner_bottom,	0.0F)   .t0(two_thirds_x,	one_third_y)    .c(color);
-    draw_batcher.add().v(plus_x,		inner_top,		0.0F)   .t0(1.0F,			two_thirds_y)   .c(color);
-    draw_batcher.add().v(plus_x,		inner_bottom,	0.0F)   .t0(1.0F,			one_third_y)    .c(color);
+    draw_batcher.add().v(minus_x,        inner_top,        0.0F)   .t0(0.0F,            two_thirds_y)   .c(color);
+    draw_batcher.add().v(minus_x,        inner_bottom,    0.0F)   .t0(0.0F,            one_third_y)    .c(color);
+    draw_batcher.add().v(inner_left,    inner_top,        0.0F)   .t0(one_third_x,    two_thirds_y)   .c(color);
+    draw_batcher.add().v(inner_left,    inner_bottom,    0.0F)   .t0(one_third_x,    one_third_y)    .c(color);
+    draw_batcher.add().v(inner_right,    inner_top,        0.0F)   .t0(two_thirds_x,    two_thirds_y)   .c(color);
+    draw_batcher.add().v(inner_right,    inner_bottom,    0.0F)   .t0(two_thirds_x,    one_third_y)    .c(color);
+    draw_batcher.add().v(plus_x,        inner_top,        0.0F)   .t0(1.0F,            two_thirds_y)   .c(color);
+    draw_batcher.add().v(plus_x,        inner_bottom,    0.0F)   .t0(1.0F,            one_third_y)    .c(color);
 
-    draw_batcher.add().v(plus_x,		inner_bottom,	0.0F)   .t0(1.0F,			one_third_y)    .c(color);  // Degenerate
-    draw_batcher.add().v(plus_x,		inner_bottom,	0.0F)   .t0(1.0F,			one_third_y)    .c(color);  // Degenerate
+    draw_batcher.add().v(plus_x,        inner_bottom,    0.0F)   .t0(1.0F,            one_third_y)    .c(color);  // Degenerate
+    draw_batcher.add().v(plus_x,        inner_bottom,    0.0F)   .t0(1.0F,            one_third_y)    .c(color);  // Degenerate
 
     // Top row
-    draw_batcher.add().v(minus_x,		plus_y,			0.0F)   .t0(0.0F,			1.0F)           .c(color);
-    draw_batcher.add().v(minus_x,		inner_top,		0.0F)   .t0(0.0F,			two_thirds_y)   .c(color);
-    draw_batcher.add().v(inner_left,	plus_y,			0.0F)   .t0(one_third_x,	1.0F)           .c(color);
-    draw_batcher.add().v(inner_left,	inner_top,		0.0F)   .t0(one_third_x,	two_thirds_y)   .c(color);
-    draw_batcher.add().v(inner_right,	plus_y,			0.0F)   .t0(two_thirds_x,	1.0F)           .c(color);
-    draw_batcher.add().v(inner_right,	inner_top,		0.0F)   .t0(two_thirds_x,	two_thirds_y)   .c(color);
-    draw_batcher.add().v(plus_x,		plus_y,			0.0F)   .t0(1.0F,			1.0F)           .c(color);
-    draw_batcher.add().v(plus_x,		inner_top,		0.0F)   .t0(1.0F,			two_thirds_y)   .c(color);
+    draw_batcher.add().v(minus_x,        plus_y,            0.0F)   .t0(0.0F,            1.0F)           .c(color);
+    draw_batcher.add().v(minus_x,        inner_top,        0.0F)   .t0(0.0F,            two_thirds_y)   .c(color);
+    draw_batcher.add().v(inner_left,    plus_y,            0.0F)   .t0(one_third_x,    1.0F)           .c(color);
+    draw_batcher.add().v(inner_left,    inner_top,        0.0F)   .t0(one_third_x,    two_thirds_y)   .c(color);
+    draw_batcher.add().v(inner_right,    plus_y,            0.0F)   .t0(two_thirds_x,    1.0F)           .c(color);
+    draw_batcher.add().v(inner_right,    inner_top,        0.0F)   .t0(two_thirds_x,    two_thirds_y)   .c(color);
+    draw_batcher.add().v(plus_x,        plus_y,            0.0F)   .t0(1.0F,            1.0F)           .c(color);
+    draw_batcher.add().v(plus_x,        inner_top,        0.0F)   .t0(1.0F,            two_thirds_y)   .c(color);
 
     draw_batcher.batch_end();
     draw_batcher.draw();
@@ -170,46 +170,46 @@ void DrawUtils::draw_quad_stretch_center_2x2 (  DrawBatcher &draw_batcher,
     DTfloat inner_top = plus_y - corner_height;
     DTfloat inner_bottom = minus_y + corner_height;
 
-    if (inner_left > inner_right)	inner_left = inner_right = (minus_x + plus_x) * 0.5F;
-    if (inner_bottom > inner_top)	inner_bottom = inner_top = (minus_y + plus_y) * 0.5F;
+    if (inner_left > inner_right)    inner_left = inner_right = (minus_x + plus_x) * 0.5F;
+    if (inner_bottom > inner_top)    inner_bottom = inner_top = (minus_y + plus_y) * 0.5F;
 
     draw_batcher.batch_begin(camera, material, shader, transform, DT3GL_PRIM_TRI_STRIP, DrawBatcher::FMT_V | DrawBatcher::FMT_T0 | DrawBatcher::FMT_C);
 
     // Bottom row
-    draw_batcher.add().v(minus_x,		inner_bottom,	0.0F)   .t0(0.0F,   0.5F)   .c(color);
+    draw_batcher.add().v(minus_x,        inner_bottom,    0.0F)   .t0(0.0F,   0.5F)   .c(color);
     draw_batcher.add().v(minus_x,       minus_y,        0.0F)   .t0(0.0F,   0.0F)   .c(color);
-    draw_batcher.add().v(inner_left,	inner_bottom,	0.0F)   .t0(0.5F,	0.5F)   .c(color);
-    draw_batcher.add().v(inner_left,    minus_y,		0.0F)   .t0(0.5F,   0.0F)   .c(color);
-    draw_batcher.add().v(inner_right,	inner_bottom,	0.0F)   .t0(0.5F,	0.5F)   .c(color);
-    draw_batcher.add().v(inner_right,	minus_y,		0.0F)   .t0(0.5F,	0.0F)   .c(color);
-    draw_batcher.add().v(plus_x,		inner_bottom,	0.0F)   .t0(1.0F,   0.5F)   .c(color);
-    draw_batcher.add().v(plus_x,		minus_y,		0.0F)   .t0(1.0F,   0.0F)   .c(color);
+    draw_batcher.add().v(inner_left,    inner_bottom,    0.0F)   .t0(0.5F,    0.5F)   .c(color);
+    draw_batcher.add().v(inner_left,    minus_y,        0.0F)   .t0(0.5F,   0.0F)   .c(color);
+    draw_batcher.add().v(inner_right,    inner_bottom,    0.0F)   .t0(0.5F,    0.5F)   .c(color);
+    draw_batcher.add().v(inner_right,    minus_y,        0.0F)   .t0(0.5F,    0.0F)   .c(color);
+    draw_batcher.add().v(plus_x,        inner_bottom,    0.0F)   .t0(1.0F,   0.5F)   .c(color);
+    draw_batcher.add().v(plus_x,        minus_y,        0.0F)   .t0(1.0F,   0.0F)   .c(color);
 
-    draw_batcher.add().v(plus_x,		minus_y,		0.0F)   .t0(1.0F,   0.0F)   .c(color);  // Degenerate
-    draw_batcher.add().v(plus_x,		minus_y,		0.0F)   .t0(1.0F,   0.0F)   .c(color);  // Degenerate
+    draw_batcher.add().v(plus_x,        minus_y,        0.0F)   .t0(1.0F,   0.0F)   .c(color);  // Degenerate
+    draw_batcher.add().v(plus_x,        minus_y,        0.0F)   .t0(1.0F,   0.0F)   .c(color);  // Degenerate
 
     // Middle row
-    draw_batcher.add().v(minus_x,		inner_top,		0.0F)   .t0(0.0F,   0.5F)   .c(color);
-    draw_batcher.add().v(minus_x,		inner_bottom,	0.0F)   .t0(0.0F,   0.5F)   .c(color);
-    draw_batcher.add().v(inner_left,	inner_top,		0.0F)   .t0(0.5F,	0.5F)   .c(color);
-    draw_batcher.add().v(inner_left,	inner_bottom,	0.0F)   .t0(0.5F,	0.5F)   .c(color);
-    draw_batcher.add().v(inner_right,	inner_top,		0.0F)   .t0(0.5F,	0.5F)   .c(color);
-    draw_batcher.add().v(inner_right,	inner_bottom,	0.0F)   .t0(0.5F,	0.5F)   .c(color);
-    draw_batcher.add().v(plus_x,		inner_top,		0.0F)   .t0(1.0F,   0.5F)   .c(color);
-    draw_batcher.add().v(plus_x,		inner_bottom,	0.0F)   .t0(1.0F,   0.5F)   .c(color);
+    draw_batcher.add().v(minus_x,        inner_top,        0.0F)   .t0(0.0F,   0.5F)   .c(color);
+    draw_batcher.add().v(minus_x,        inner_bottom,    0.0F)   .t0(0.0F,   0.5F)   .c(color);
+    draw_batcher.add().v(inner_left,    inner_top,        0.0F)   .t0(0.5F,    0.5F)   .c(color);
+    draw_batcher.add().v(inner_left,    inner_bottom,    0.0F)   .t0(0.5F,    0.5F)   .c(color);
+    draw_batcher.add().v(inner_right,    inner_top,        0.0F)   .t0(0.5F,    0.5F)   .c(color);
+    draw_batcher.add().v(inner_right,    inner_bottom,    0.0F)   .t0(0.5F,    0.5F)   .c(color);
+    draw_batcher.add().v(plus_x,        inner_top,        0.0F)   .t0(1.0F,   0.5F)   .c(color);
+    draw_batcher.add().v(plus_x,        inner_bottom,    0.0F)   .t0(1.0F,   0.5F)   .c(color);
 
-    draw_batcher.add().v(plus_x,		inner_bottom,	0.0F)   .t0(1.0F,   0.5F)   .c(color);  // Degenerate
-    draw_batcher.add().v(plus_x,		inner_bottom,	0.0F)   .t0(1.0F,   0.5F)   .c(color);  // Degenerate
+    draw_batcher.add().v(plus_x,        inner_bottom,    0.0F)   .t0(1.0F,   0.5F)   .c(color);  // Degenerate
+    draw_batcher.add().v(plus_x,        inner_bottom,    0.0F)   .t0(1.0F,   0.5F)   .c(color);  // Degenerate
 
     // Top row
-    draw_batcher.add().v(minus_x,		plus_y,			0.0F)   .t0(0.0F,   1.0F)   .c(color);
-    draw_batcher.add().v(minus_x,		inner_top,		0.0F)   .t0(0.0F,   0.5F)   .c(color);
-    draw_batcher.add().v(inner_left,	plus_y,			0.0F)   .t0(0.5F,	1.0F)   .c(color);
-    draw_batcher.add().v(inner_left,	inner_top,		0.0F)   .t0(0.5F,	0.5F)   .c(color);
-    draw_batcher.add().v(inner_right,	plus_y,			0.0F)   .t0(0.5F,	1.0F)   .c(color);
-    draw_batcher.add().v(inner_right,	inner_top,		0.0F)   .t0(0.5F,	0.5F)   .c(color);
-    draw_batcher.add().v(plus_x,		plus_y,			0.0F)   .t0(1.0F,   1.0F)   .c(color);
-    draw_batcher.add().v(plus_x,		inner_top,		0.0F)   .t0(1.0F,   0.5F)   .c(color);
+    draw_batcher.add().v(minus_x,        plus_y,            0.0F)   .t0(0.0F,   1.0F)   .c(color);
+    draw_batcher.add().v(minus_x,        inner_top,        0.0F)   .t0(0.0F,   0.5F)   .c(color);
+    draw_batcher.add().v(inner_left,    plus_y,            0.0F)   .t0(0.5F,    1.0F)   .c(color);
+    draw_batcher.add().v(inner_left,    inner_top,        0.0F)   .t0(0.5F,    0.5F)   .c(color);
+    draw_batcher.add().v(inner_right,    plus_y,            0.0F)   .t0(0.5F,    1.0F)   .c(color);
+    draw_batcher.add().v(inner_right,    inner_top,        0.0F)   .t0(0.5F,    0.5F)   .c(color);
+    draw_batcher.add().v(plus_x,        plus_y,            0.0F)   .t0(1.0F,   1.0F)   .c(color);
+    draw_batcher.add().v(plus_x,        inner_top,        0.0F)   .t0(1.0F,   0.5F)   .c(color);
 
     draw_batcher.batch_end();
     draw_batcher.draw();

@@ -3,7 +3,7 @@
 #define DT3_SCRIPTINGPARTICLESTAMFLUIDS
 //==============================================================================
 ///
-///	File: ScriptingParticleStamFluids.hpp
+///    File: ScriptingParticleStamFluids.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -38,7 +38,7 @@ class ScriptingParticleStamFluids: public ScriptingBase {
 
                                         ScriptingParticleStamFluids     (void);
                                         ScriptingParticleStamFluids     (const ScriptingParticleStamFluids &rhs);
-        ScriptingParticleStamFluids &	operator =                      (const ScriptingParticleStamFluids &rhs);
+        ScriptingParticleStamFluids &    operator =                      (const ScriptingParticleStamFluids &rhs);
         virtual                         ~ScriptingParticleStamFluids    (void);
 
         virtual void                    archive                 (const std::shared_ptr<Archive> &archive);
@@ -53,7 +53,7 @@ class ScriptingParticleStamFluids: public ScriptingBase {
     public:
         /// Computes the value of the node
         /// \param plug plug to compute
-        bool                       compute					(const PlugBase *plug);
+        bool                       compute                    (const PlugBase *plug);
 
         /// Sets number of cells
         /// \param n number of cells
@@ -98,8 +98,8 @@ class ScriptingParticleStamFluids: public ScriptingBase {
         Plug<Vector2>                           _turbulence;
         DTfloat                                 _turbulence_timer;
 
-        Plug<std::shared_ptr<Particles>>		_in;
-        Plug<std::shared_ptr<Particles>>		_out;
+        Plug<std::shared_ptr<Particles>>        _in;
+        Plug<std::shared_ptr<Particles>>        _out;
 
 };
 

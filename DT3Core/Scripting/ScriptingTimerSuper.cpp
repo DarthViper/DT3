@@ -1,12 +1,12 @@
 //==============================================================================
-///	
-///	File: ScriptingTimerSuper.cpp
-///	
+///    
+///    File: ScriptingTimerSuper.cpp
+///    
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
 /// This file is subject to the terms and conditions defined in
 /// file 'LICENSE.txt', which is part of this source code package.
-///	
+///    
 //==============================================================================
 
 #include "DT3Core/Scripting/ScriptingTimerSuper.hpp"
@@ -28,14 +28,14 @@ namespace DT3 {
 IMPLEMENT_FACTORY_CREATION_SCRIPT(ScriptingTimerSuper,"Timers",NULL)
 IMPLEMENT_PLUG_NODE(ScriptingTimerSuper)
 
-IMPLEMENT_PLUG_INFO_INDEX(_when_activated)		
-IMPLEMENT_PLUG_INFO_INDEX(_when_deactivated)		
+IMPLEMENT_PLUG_INFO_INDEX(_when_activated)        
+IMPLEMENT_PLUG_INFO_INDEX(_when_deactivated)        
 
-IMPLEMENT_PLUG_INFO_INDEX(_when_reach_upper)		
-IMPLEMENT_PLUG_INFO_INDEX(_when_reach_lower)		
+IMPLEMENT_PLUG_INFO_INDEX(_when_reach_upper)        
+IMPLEMENT_PLUG_INFO_INDEX(_when_reach_lower)        
 
-IMPLEMENT_PLUG_INFO_INDEX(_upper_range)		
-IMPLEMENT_PLUG_INFO_INDEX(_lower_range)		
+IMPLEMENT_PLUG_INFO_INDEX(_upper_range)        
+IMPLEMENT_PLUG_INFO_INDEX(_lower_range)        
 
 IMPLEMENT_PLUG_INFO_INDEX(_counting_up_speed)
 IMPLEMENT_PLUG_INFO_INDEX(_counting_down_speed)
@@ -44,7 +44,7 @@ IMPLEMENT_PLUG_INFO_INDEX(_current_speed)
 IMPLEMENT_PLUG_INFO_INDEX(_last_active)
 IMPLEMENT_PLUG_INFO_INDEX(_active)
 
-IMPLEMENT_PLUG_INFO_INDEX(_time)		
+IMPLEMENT_PLUG_INFO_INDEX(_time)        
 IMPLEMENT_PLUG_INFO_INDEX(_t)
 
 IMPLEMENT_EVENT_INFO_INDEX(_upper_reached)
@@ -140,10 +140,10 @@ using namespace DT3;
 //==============================================================================
 
 ScriptingTimerSuper::ScriptingTimerSuper (void)
-    :   _when_activated		(PLUG_INFO_INDEX(_when_activated), STATE_CHANGE_BEHAVIOUR_COUNT_UP),
-        _when_deactivated	(PLUG_INFO_INDEX(_when_deactivated), STATE_CHANGE_BEHAVIOUR_COUNT_STOP),
+    :   _when_activated        (PLUG_INFO_INDEX(_when_activated), STATE_CHANGE_BEHAVIOUR_COUNT_UP),
+        _when_deactivated    (PLUG_INFO_INDEX(_when_deactivated), STATE_CHANGE_BEHAVIOUR_COUNT_STOP),
         _when_reach_upper   (PLUG_INFO_INDEX(_when_reach_upper), STATE_RANGE_STOP),
-        _when_reach_lower	(PLUG_INFO_INDEX(_when_reach_lower), STATE_RANGE_STOP),
+        _when_reach_lower    (PLUG_INFO_INDEX(_when_reach_lower), STATE_RANGE_STOP),
         _upper_range        (PLUG_INFO_INDEX(_upper_range), 1.0F),
         _lower_range        (PLUG_INFO_INDEX(_lower_range), 0.0F),
         _counting_up_speed  (PLUG_INFO_INDEX(_counting_up_speed), 1.0F),
@@ -164,9 +164,9 @@ ScriptingTimerSuper::ScriptingTimerSuper (void)
 ScriptingTimerSuper::ScriptingTimerSuper (const ScriptingTimerSuper &rhs)
     :   ScriptingBase       (rhs),
         _when_activated     (rhs._when_activated),
-        _when_deactivated	(rhs._when_deactivated),
+        _when_deactivated    (rhs._when_deactivated),
         _when_reach_upper   (rhs._when_reach_upper),
-        _when_reach_lower	(rhs._when_reach_lower),
+        _when_reach_lower    (rhs._when_reach_lower),
         _upper_range        (rhs._upper_range),
         _lower_range        (rhs._lower_range),
         _counting_up_speed  (rhs._counting_up_speed),
@@ -191,9 +191,9 @@ ScriptingTimerSuper & ScriptingTimerSuper::operator = (const ScriptingTimerSuper
         ScriptingBase::operator = (rhs);
 
         _when_activated     = rhs._when_activated;
-        _when_deactivated	= rhs._when_deactivated;
+        _when_deactivated    = rhs._when_deactivated;
         _when_reach_upper   = rhs._when_reach_upper;
-        _when_reach_lower	= rhs._when_reach_lower;
+        _when_reach_lower    = rhs._when_reach_lower;
         _upper_range        = rhs._upper_range;
         _lower_range        = rhs._lower_range;
         _counting_up_speed  = rhs._counting_up_speed;

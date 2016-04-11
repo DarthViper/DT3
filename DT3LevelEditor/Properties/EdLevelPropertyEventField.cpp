@@ -1,6 +1,6 @@
 //==============================================================================
 ///
-///	File: EdLevelPropertyEventField.cpp
+///    File: EdLevelPropertyEventField.cpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -40,11 +40,11 @@ EdLevelPropertyEventField::EdLevelPropertyEventField (EdLevelPropertiesWindow *p
     _value = new QPushButton(MoreStrings::captialize_and_format(_data->title()).c_str(), this);
     _value->setEnabled(true);
 
-    connect(	_value,         SIGNAL(clicked()),
-                this,           SLOT(doClicked())	);
+    connect(    _value,         SIGNAL(clicked()),
+                this,           SLOT(doClicked())    );
 
-    connect(	this,           SIGNAL(doCommand(QString, bool)),
-                parent,         SLOT(onCommand(QString, bool))	);
+    connect(    this,           SIGNAL(doCommand(QString, bool)),
+                parent,         SLOT(onCommand(QString, bool))    );
 
 
     QGridLayout *layout = new QGridLayout;
@@ -63,7 +63,7 @@ EdLevelPropertyEventField::EdLevelPropertyEventField (EdLevelPropertiesWindow *p
     doReadParams();
 }
 
-EdLevelPropertyEventField::~EdLevelPropertyEventField	(void)
+EdLevelPropertyEventField::~EdLevelPropertyEventField    (void)
 {
 
 }

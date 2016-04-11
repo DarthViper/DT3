@@ -3,7 +3,7 @@
 #define DT3_SCRIPTINGTIMERACTIVE
 //==============================================================================
 ///
-///	File: ScriptingTimerActive.hpp
+///    File: ScriptingTimerActive.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -33,10 +33,10 @@ class ScriptingTimerActive: public ScriptingBase {
         DEFINE_CREATE_AND_CLONE
         DEFINE_PLUG_NODE
 
-                                    ScriptingTimerActive	(void);
-                                    ScriptingTimerActive	(const ScriptingTimerActive &rhs);
-        ScriptingTimerActive &		operator =				(const ScriptingTimerActive &rhs);
-        virtual                     ~ScriptingTimerActive	(void);
+                                    ScriptingTimerActive    (void);
+                                    ScriptingTimerActive    (const ScriptingTimerActive &rhs);
+        ScriptingTimerActive &        operator =                (const ScriptingTimerActive &rhs);
+        virtual                     ~ScriptingTimerActive    (void);
 
         virtual void                archive                 (const std::shared_ptr<Archive> &archive);
 

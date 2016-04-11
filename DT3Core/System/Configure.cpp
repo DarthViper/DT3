@@ -1,12 +1,12 @@
 //==============================================================================
-///	
-///	File: Configure.cpp
-///	
+///    
+///    File: Configure.cpp
+///    
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
 /// This file is subject to the terms and conditions defined in
 /// file 'LICENSE.txt', which is part of this source code package.
-///	
+///    
 //==============================================================================
 
 #include "DT3Core/System/Configure.hpp"
@@ -50,26 +50,26 @@ void Configure::destroy (void)
 
 void Configure::parse_package_block (Tokenizer &tokenizer)
 {
-	tokenizer.assume_next_token("{");
-	
-	std::string name;
+    tokenizer.assume_next_token("{");
+    
+    std::string name;
 
-	while (true) {
-		std::string token = tokenizer.next_token_string();
-		
-		// Handle Preprocessor
-		if (tokenizer.parse_preprocessor_macros(token))
-			continue;
-	
-		// Are we at the end of the block
-		if (token == "}")	break;
-		
-		if (MoreStrings::iequals(token,"path"))     {	tokenizer.assume_next_token("="); name = tokenizer.next_token_string_no_substitute();   continue;	}
-		
-		tokenizer.syntax_error("Unknown Token " + token);
-	};
+    while (true) {
+        std::string token = tokenizer.next_token_string();
+        
+        // Handle Preprocessor
+        if (tokenizer.parse_preprocessor_macros(token))
+            continue;
+    
+        // Are we at the end of the block
+        if (token == "}")    break;
+        
+        if (MoreStrings::iequals(token,"path"))     {    tokenizer.assume_next_token("="); name = tokenizer.next_token_string_no_substitute();   continue;    }
+        
+        tokenizer.syntax_error("Unknown Token " + token);
+    };
 
-	FileManager::register_package(FilePath(name));
+    FileManager::register_package(FilePath(name));
 }
 
 //==============================================================================
@@ -77,30 +77,30 @@ void Configure::parse_package_block (Tokenizer &tokenizer)
 
 void Configure::parse_default_block (Tokenizer &tokenizer)
 {
-	tokenizer.assume_next_token("{");
-	
-	std::string name;
-	std::string value;
-	uint32_t lifetime = Globals::VOLATILE;
+    tokenizer.assume_next_token("{");
+    
+    std::string name;
+    std::string value;
+    uint32_t lifetime = Globals::VOLATILE;
 
-	while (true) {
-		std::string token = tokenizer.next_token_string();
-		
-		// Handle Preprocessor
-		if (tokenizer.parse_preprocessor_macros(token))
-			continue;
-	
-		// Are we at the end of the block
-		if (token == "}")	break;
-		
-		if (MoreStrings::iequals(token,"Name"))		{	tokenizer.assume_next_token("="); name = tokenizer.next_token_string();                         continue;	}
-		if (MoreStrings::iequals(token,"Value"))	{	tokenizer.assume_next_token("="); value = tokenizer.next_token_string_no_substitute();          continue;	}
-		if (MoreStrings::iequals(token,"Lifetime"))	{	tokenizer.assume_next_token("="); lifetime = static_cast<uint32_t>(tokenizer.next_token_number());continue;	}
-		
-		tokenizer.syntax_error("Unknown Token " + token);
-	};
-	
-	Globals::set_global_default(name,value,lifetime);
+    while (true) {
+        std::string token = tokenizer.next_token_string();
+        
+        // Handle Preprocessor
+        if (tokenizer.parse_preprocessor_macros(token))
+            continue;
+    
+        // Are we at the end of the block
+        if (token == "}")    break;
+        
+        if (MoreStrings::iequals(token,"Name"))        {    tokenizer.assume_next_token("="); name = tokenizer.next_token_string();                         continue;    }
+        if (MoreStrings::iequals(token,"Value"))    {    tokenizer.assume_next_token("="); value = tokenizer.next_token_string_no_substitute();          continue;    }
+        if (MoreStrings::iequals(token,"Lifetime"))    {    tokenizer.assume_next_token("="); lifetime = static_cast<uint32_t>(tokenizer.next_token_number());continue;    }
+        
+        tokenizer.syntax_error("Unknown Token " + token);
+    };
+    
+    Globals::set_global_default(name,value,lifetime);
 }
 
 //==============================================================================
@@ -108,30 +108,30 @@ void Configure::parse_default_block (Tokenizer &tokenizer)
 
 void Configure::parse_global_block (Tokenizer &tokenizer)
 {
-	tokenizer.assume_next_token("{");
-		
-	std::string name;
-	std::string value;
+    tokenizer.assume_next_token("{");
+        
+    std::string name;
+    std::string value;
     uint32_t lifetime = Globals::VOLATILE;
 
-	while (true) {
-		std::string token = tokenizer.next_token_string();
-		
-		// Handle Preprocessor
-		if (tokenizer.parse_preprocessor_macros(token))
-			continue;
-	
-		// Are we at the end of the block
-		if (token == "}")	break;
-		
-		if (MoreStrings::iequals(token,"Name"))		{	tokenizer.assume_next_token("="); name = tokenizer.next_token_string();                 continue;	}
-		if (MoreStrings::iequals(token,"Value"))	{	tokenizer.assume_next_token("="); value = tokenizer.next_token_string_no_substitute();  continue;	}
-		if (MoreStrings::iequals(token,"Lifetime"))	{	tokenizer.assume_next_token("="); lifetime = (uint32_t) tokenizer.next_token_number();	continue;	}
-		
-		tokenizer.syntax_error("Unknown Token " + token);
-	};
-	    
-	Globals::set_global(name,value,lifetime);
+    while (true) {
+        std::string token = tokenizer.next_token_string();
+        
+        // Handle Preprocessor
+        if (tokenizer.parse_preprocessor_macros(token))
+            continue;
+    
+        // Are we at the end of the block
+        if (token == "}")    break;
+        
+        if (MoreStrings::iequals(token,"Name"))        {    tokenizer.assume_next_token("="); name = tokenizer.next_token_string();                 continue;    }
+        if (MoreStrings::iequals(token,"Value"))    {    tokenizer.assume_next_token("="); value = tokenizer.next_token_string_no_substitute();  continue;    }
+        if (MoreStrings::iequals(token,"Lifetime"))    {    tokenizer.assume_next_token("="); lifetime = (uint32_t) tokenizer.next_token_number();    continue;    }
+        
+        tokenizer.syntax_error("Unknown Token " + token);
+    };
+        
+    Globals::set_global(name,value,lifetime);
 }
 
 //==============================================================================
@@ -139,46 +139,46 @@ void Configure::parse_global_block (Tokenizer &tokenizer)
 
 void Configure::parse_application_block (Tokenizer &tokenizer)
 {
-	tokenizer.assume_next_token("{");
+    tokenizer.assume_next_token("{");
 
-	while (true) {
-		std::string token = tokenizer.next_token_string();
-		
-		// Handle Preprocessor
-		if (tokenizer.parse_preprocessor_macros(token))
-			continue;
-	
-		// Are we at the end of the block
-		if (token == "}")	break;
-		
-		if (MoreStrings::iequals(token,"default"))	{	parse_default_block(tokenizer);		continue;	}
-		if (MoreStrings::iequals(token,"global"))	{	parse_global_block(tokenizer);		continue;	}
-		if (MoreStrings::iequals(token,"package"))  {	parse_package_block(tokenizer);		continue;	}
+    while (true) {
+        std::string token = tokenizer.next_token_string();
+        
+        // Handle Preprocessor
+        if (tokenizer.parse_preprocessor_macros(token))
+            continue;
+    
+        // Are we at the end of the block
+        if (token == "}")    break;
+        
+        if (MoreStrings::iequals(token,"default"))    {    parse_default_block(tokenizer);        continue;    }
+        if (MoreStrings::iequals(token,"global"))    {    parse_global_block(tokenizer);        continue;    }
+        if (MoreStrings::iequals(token,"package"))  {    parse_package_block(tokenizer);        continue;    }
 
-		tokenizer.syntax_error("Unknown Token " + token);
-	};
+        tokenizer.syntax_error("Unknown Token " + token);
+    };
 
 }
 
 void Configure::parse_engine_block (Tokenizer &tokenizer)
 {
-	tokenizer.assume_next_token("{");
+    tokenizer.assume_next_token("{");
 
-	while (true) {
-		std::string token = tokenizer.next_token_string();
-		
-		// Handle Preprocessor
-		if (tokenizer.parse_preprocessor_macros(token))
-			continue;
-	
-		// Are we at the end of the block
-		if (token == "}")	break;
-		
-		if (MoreStrings::iequals(token,"default"))	{	parse_default_block(tokenizer);		continue;	}
-		if (MoreStrings::iequals(token,"global"))	{	parse_global_block(tokenizer);		continue;	}
-		
-		tokenizer.syntax_error("Unknown Token " + token);
-	};
+    while (true) {
+        std::string token = tokenizer.next_token_string();
+        
+        // Handle Preprocessor
+        if (tokenizer.parse_preprocessor_macros(token))
+            continue;
+    
+        // Are we at the end of the block
+        if (token == "}")    break;
+        
+        if (MoreStrings::iequals(token,"default"))    {    parse_default_block(tokenizer);        continue;    }
+        if (MoreStrings::iequals(token,"global"))    {    parse_global_block(tokenizer);        continue;    }
+        
+        tokenizer.syntax_error("Unknown Token " + token);
+    };
 
 }
 
@@ -187,9 +187,9 @@ void Configure::parse_engine_block (Tokenizer &tokenizer)
 
 void Configure::import_config(const FilePath &pathname)
 {
-	LOG_MESSAGE << "Importing config file " << pathname.full_path();
+    LOG_MESSAGE << "Importing config file " << pathname.full_path();
 
-	Tokenizer tokenizer;
+    Tokenizer tokenizer;
     
     // Load in defines for material
     const DTcharacter* header =
@@ -201,20 +201,20 @@ void Configure::import_config(const FilePath &pathname)
     tokenizer.set_token_stream(header, true);
     
     
-	tokenizer.load_token_stream (pathname);
-	
-	while (!tokenizer.is_done()) {
-		std::string token = tokenizer.next_token_string();
+    tokenizer.load_token_stream (pathname);
+    
+    while (!tokenizer.is_done()) {
+        std::string token = tokenizer.next_token_string();
 
-		// Handle Preprocessor
-		if (tokenizer.parse_preprocessor_macros(token))
-			continue;
-		
-		if (MoreStrings::iequals(token,"application"))    {	parse_application_block(tokenizer);	continue;	}
-		if (MoreStrings::iequals(token,"engine"))         {	parse_engine_block(tokenizer);      continue;	}
-	};
+        // Handle Preprocessor
+        if (tokenizer.parse_preprocessor_macros(token))
+            continue;
+        
+        if (MoreStrings::iequals(token,"application"))    {    parse_application_block(tokenizer);    continue;    }
+        if (MoreStrings::iequals(token,"engine"))         {    parse_engine_block(tokenizer);      continue;    }
+    };
 
-	LOG_MESSAGE << "Finished importing config file";
+    LOG_MESSAGE << "Finished importing config file";
 }
 
 //==============================================================================
@@ -228,64 +228,64 @@ bool Configure::setup_system_globals    (void)
     // Standard defaults
     //
 
-	Globals::set_global ("SYS_MUSIC", "1", Globals::PERSISTENT);
+    Globals::set_global ("SYS_MUSIC", "1", Globals::PERSISTENT);
 
-	Globals::set_global ("SYS_SOUND", "1", Globals::PERSISTENT);
-	Globals::set_global ("SYS_MUSIC_GAIN", "1", Globals::PERSISTENT);
-	Globals::set_global ("SYS_SOUND_GAIN", "1", Globals::PERSISTENT);
+    Globals::set_global ("SYS_SOUND", "1", Globals::PERSISTENT);
+    Globals::set_global ("SYS_MUSIC_GAIN", "1", Globals::PERSISTENT);
+    Globals::set_global ("SYS_SOUND_GAIN", "1", Globals::PERSISTENT);
 
-	Globals::set_global_default ("SYS_SCREEN_WIDTH", "800", Globals::PERSISTENT);
-	Globals::set_global_default ("SYS_SCREEN_HEIGHT", "600", Globals::PERSISTENT);
+    Globals::set_global_default ("SYS_SCREEN_WIDTH", "800", Globals::PERSISTENT);
+    Globals::set_global_default ("SYS_SCREEN_HEIGHT", "600", Globals::PERSISTENT);
 
-	//
-	// These globals describe the execution environment
-	//
+    //
+    // These globals describe the execution environment
+    //
 
 #if DT3_OS == DT3_WINDOWS
-	Globals::set_global ("SYS_PLATFORM_WINDOWS", "1", Globals::READ_ONLY); 
-	Globals::set_global ("SYS_PLATFORM_MACOSX", "0", Globals::READ_ONLY); 
-	Globals::set_global ("SYS_PLATFORM_LINUX", "0", Globals::READ_ONLY); 
-	Globals::set_global ("SYS_PLATFORM_IOS", "0", Globals::READ_ONLY); 
-	Globals::set_global ("SYS_PLATFORM_ANDROID", "0", Globals::READ_ONLY); 
+    Globals::set_global ("SYS_PLATFORM_WINDOWS", "1", Globals::READ_ONLY); 
+    Globals::set_global ("SYS_PLATFORM_MACOSX", "0", Globals::READ_ONLY); 
+    Globals::set_global ("SYS_PLATFORM_LINUX", "0", Globals::READ_ONLY); 
+    Globals::set_global ("SYS_PLATFORM_IOS", "0", Globals::READ_ONLY); 
+    Globals::set_global ("SYS_PLATFORM_ANDROID", "0", Globals::READ_ONLY); 
 
-	Globals::set_global ("SYS_PLATFORM", "Windows", Globals::READ_ONLY); 
-	Globals::set_global ("SYS_DEVICE", "Desktop", Globals::READ_ONLY); 
+    Globals::set_global ("SYS_PLATFORM", "Windows", Globals::READ_ONLY); 
+    Globals::set_global ("SYS_DEVICE", "Desktop", Globals::READ_ONLY); 
 #elif DT3_OS == DT3_MACOSX
-	Globals::set_global ("SYS_PLATFORM_WINDOWS", "0", Globals::READ_ONLY); 
-	Globals::set_global ("SYS_PLATFORM_MACOSX", "1", Globals::READ_ONLY); 
-	Globals::set_global ("SYS_PLATFORM_LINUX", "0", Globals::READ_ONLY); 
-	Globals::set_global ("SYS_PLATFORM_IOS", "0", Globals::READ_ONLY); 
-	Globals::set_global ("SYS_PLATFORM_ANDROID", "0", Globals::READ_ONLY); 
+    Globals::set_global ("SYS_PLATFORM_WINDOWS", "0", Globals::READ_ONLY); 
+    Globals::set_global ("SYS_PLATFORM_MACOSX", "1", Globals::READ_ONLY); 
+    Globals::set_global ("SYS_PLATFORM_LINUX", "0", Globals::READ_ONLY); 
+    Globals::set_global ("SYS_PLATFORM_IOS", "0", Globals::READ_ONLY); 
+    Globals::set_global ("SYS_PLATFORM_ANDROID", "0", Globals::READ_ONLY); 
 
-	Globals::set_global ("SYS_PLATFORM", "MacOSX", Globals::READ_ONLY); 
-	Globals::set_global ("SYS_DEVICE", "Desktop", Globals::READ_ONLY); 
+    Globals::set_global ("SYS_PLATFORM", "MacOSX", Globals::READ_ONLY); 
+    Globals::set_global ("SYS_DEVICE", "Desktop", Globals::READ_ONLY); 
 #elif DT3_OS == DT3_LINUX
-	Globals::set_global ("SYS_PLATFORM_WINDOWS", "0", Globals::READ_ONLY); 
-	Globals::set_global ("SYS_PLATFORM_MACOSX", "0", Globals::READ_ONLY); 
-	Globals::set_global ("SYS_PLATFORM_LINUX", "1", Globals::READ_ONLY); 
-	Globals::set_global ("SYS_PLATFORM_IOS", "0", Globals::READ_ONLY); 
-	Globals::set_global ("SYS_PLATFORM_ANDROID", "0", Globals::READ_ONLY); 
+    Globals::set_global ("SYS_PLATFORM_WINDOWS", "0", Globals::READ_ONLY); 
+    Globals::set_global ("SYS_PLATFORM_MACOSX", "0", Globals::READ_ONLY); 
+    Globals::set_global ("SYS_PLATFORM_LINUX", "1", Globals::READ_ONLY); 
+    Globals::set_global ("SYS_PLATFORM_IOS", "0", Globals::READ_ONLY); 
+    Globals::set_global ("SYS_PLATFORM_ANDROID", "0", Globals::READ_ONLY); 
 
-	Globals::set_global ("SYS_PLATFORM", "Linux", Globals::READ_ONLY); 
-	Globals::set_global ("SYS_DEVICE", "Desktop", Globals::READ_ONLY); 
+    Globals::set_global ("SYS_PLATFORM", "Linux", Globals::READ_ONLY); 
+    Globals::set_global ("SYS_DEVICE", "Desktop", Globals::READ_ONLY); 
 #elif DT3_OS == DT3_IOS
-	Globals::set_global ("SYS_PLATFORM_WINDOWS", "0", Globals::READ_ONLY); 
-	Globals::set_global ("SYS_PLATFORM_MACOSX", "0", Globals::READ_ONLY); 
-	Globals::set_global ("SYS_PLATFORM_LINUX", "0", Globals::READ_ONLY); 
-	Globals::set_global ("SYS_PLATFORM_IOS", "1", Globals::READ_ONLY); 
-	Globals::set_global ("SYS_PLATFORM_ANDROID", "0", Globals::READ_ONLY); 
+    Globals::set_global ("SYS_PLATFORM_WINDOWS", "0", Globals::READ_ONLY); 
+    Globals::set_global ("SYS_PLATFORM_MACOSX", "0", Globals::READ_ONLY); 
+    Globals::set_global ("SYS_PLATFORM_LINUX", "0", Globals::READ_ONLY); 
+    Globals::set_global ("SYS_PLATFORM_IOS", "1", Globals::READ_ONLY); 
+    Globals::set_global ("SYS_PLATFORM_ANDROID", "0", Globals::READ_ONLY); 
 
-	Globals::set_global ("SYS_PLATFORM", "iPhone", Globals::READ_ONLY); 
-	Globals::set_global ("SYS_DEVICE", "Mobile", Globals::READ_ONLY); 
+    Globals::set_global ("SYS_PLATFORM", "iPhone", Globals::READ_ONLY); 
+    Globals::set_global ("SYS_DEVICE", "Mobile", Globals::READ_ONLY); 
 #elif DT3_OS == DT3_ANDROID
-	Globals::set_global ("SYS_PLATFORM_WINDOWS", "0", Globals::READ_ONLY); 
-	Globals::set_global ("SYS_PLATFORM_MACOSX", "0", Globals::READ_ONLY); 
-	Globals::set_global ("SYS_PLATFORM_LINUX", "0", Globals::READ_ONLY); 
-	Globals::set_global ("SYS_PLATFORM_IOS", "0", Globals::READ_ONLY); 
-	Globals::set_global ("SYS_PLATFORM_ANDROID", "1", Globals::READ_ONLY); 
+    Globals::set_global ("SYS_PLATFORM_WINDOWS", "0", Globals::READ_ONLY); 
+    Globals::set_global ("SYS_PLATFORM_MACOSX", "0", Globals::READ_ONLY); 
+    Globals::set_global ("SYS_PLATFORM_LINUX", "0", Globals::READ_ONLY); 
+    Globals::set_global ("SYS_PLATFORM_IOS", "0", Globals::READ_ONLY); 
+    Globals::set_global ("SYS_PLATFORM_ANDROID", "1", Globals::READ_ONLY); 
 
-	Globals::set_global ("SYS_PLATFORM", "Android", Globals::READ_ONLY); 
-	Globals::set_global ("SYS_DEVICE", "Mobile", Globals::READ_ONLY); 
+    Globals::set_global ("SYS_PLATFORM", "Android", Globals::READ_ONLY); 
+    Globals::set_global ("SYS_DEVICE", "Mobile", Globals::READ_ONLY); 
 #endif
 
     //
@@ -297,26 +297,26 @@ bool Configure::setup_system_globals    (void)
 
     std::string language = HAL::language();
 
-	Globals::set_global ("SYS_CURRENT_REGION", region, Globals::READ_ONLY); 
-	Globals::set_global ("SYS_CURRENT_LANGUAGE", language, Globals::READ_ONLY);
+    Globals::set_global ("SYS_CURRENT_REGION", region, Globals::READ_ONLY); 
+    Globals::set_global ("SYS_CURRENT_LANGUAGE", language, Globals::READ_ONLY);
     
     LOG_MESSAGE << "Region: " << region;
     LOG_MESSAGE << "Language: " << language;
 
-	//
-	// Determine Application and Save Dirs
-	//
+    //
+    // Determine Application and Save Dirs
+    //
 
-	Globals::set_global ("APPDIR", HAL::app_dir().full_path(), Globals::READ_ONLY);
-	Globals::set_global ("SAVEDIR", HAL::save_dir().full_path(), Globals::READ_ONLY);
+    Globals::set_global ("APPDIR", HAL::app_dir().full_path(), Globals::READ_ONLY);
+    Globals::set_global ("SAVEDIR", HAL::save_dir().full_path(), Globals::READ_ONLY);
     
     //
     // Number of cores
     //
     
     uint32_t num_cores = HAL::num_CPU_cores();
-	Globals::set_global ("SYS_NUM_CORES", MoreStrings::cast_to_string(num_cores), Globals::READ_ONLY);
-	Globals::set_global ("SYS_MULTICORE", num_cores > 1 ? "1" : "0", Globals::READ_ONLY);
+    Globals::set_global ("SYS_NUM_CORES", MoreStrings::cast_to_string(num_cores), Globals::READ_ONLY);
+    Globals::set_global ("SYS_MULTICORE", num_cores > 1 ? "1" : "0", Globals::READ_ONLY);
 
     //
     // Screen size

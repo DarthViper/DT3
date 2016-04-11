@@ -3,7 +3,7 @@
 #define DT3_IMPORTERIMAGEPNG
 //==============================================================================
 ///
-///	File: ImporterImagePNG.hpp
+///    File: ImporterImagePNG.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -42,33 +42,33 @@ class ImporterImagePNG: public ImporterImage {
         DEFINE_TYPE(ImporterImagePNG,ImporterImage)
         DEFINE_CREATE
 
-                                    ImporterImagePNG	(void);
+                                    ImporterImagePNG    (void);
 
     private:
-                                    ImporterImagePNG	(const ImporterImagePNG &rhs);
-        ImporterImagePNG &			operator =			(const ImporterImagePNG &rhs);
+                                    ImporterImagePNG    (const ImporterImagePNG &rhs);
+        ImporterImagePNG &            operator =            (const ImporterImagePNG &rhs);
 
     public:
-        virtual						~ImporterImagePNG	(void);
+        virtual                        ~ImporterImagePNG    (void);
 
     public:
         /// Imports an image into a TextureResource2D
         /// \param target object to import texture into
         /// \param args arguments to importer
         /// \return error code
-        virtual DTerr				import				(TextureResource2D *target, std::string args);
+        virtual DTerr                import                (TextureResource2D *target, std::string args);
 
         /// Imports an image into a TextureResource3D
         /// \param target object to import texture into
         /// \param args arguments to importer
         /// \return error code
-        virtual DTerr				import				(TextureResource3D *target, std::string args);
+        virtual DTerr                import                (TextureResource3D *target, std::string args);
 
         /// Imports an image into a TextureResourceCube
         /// \param target object to import texture into
         /// \param args arguments to importer
         /// \return error code
-        virtual DTerr				import				(TextureResourceCube *target, std::string args);
+        virtual DTerr                import                (TextureResourceCube *target, std::string args);
 
     private:
         DTerr                       import              (   const FilePath &pathname,

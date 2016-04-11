@@ -3,7 +3,7 @@
 #define DT3_SCRIPTINGACCELEROMETER
 //==============================================================================
 ///
-///	File: ScriptingAccelerometer.hpp
+///    File: ScriptingAccelerometer.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -29,9 +29,9 @@ class ScriptingAccelerometer: public ScriptingBase {
         DEFINE_CREATE_AND_CLONE
         DEFINE_PLUG_NODE
 
-                                    ScriptingAccelerometer	(void);
-                                    ScriptingAccelerometer	(const ScriptingAccelerometer &rhs);
-        ScriptingAccelerometer &	operator =				(const ScriptingAccelerometer &rhs);
+                                    ScriptingAccelerometer    (void);
+                                    ScriptingAccelerometer    (const ScriptingAccelerometer &rhs);
+        ScriptingAccelerometer &    operator =                (const ScriptingAccelerometer &rhs);
         virtual                     ~ScriptingAccelerometer (void);
 
         virtual void                archive                 (const std::shared_ptr<Archive> &archive);

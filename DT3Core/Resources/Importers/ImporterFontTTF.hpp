@@ -3,7 +3,7 @@
 #define DT3_IMPORTERFONTTTF
 //==============================================================================
 ///
-///	File: ImporterFontTTF.hpp
+///    File: ImporterFontTTF.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -41,21 +41,21 @@ class ImporterFontTTF: public ImporterFont {
         DEFINE_TYPE(ImporterFontTTF,ImporterFont)
         DEFINE_CREATE
 
-                                        ImporterFontTTF			(void);
+                                        ImporterFontTTF            (void);
 
     private:
-                                        ImporterFontTTF			(const ImporterFontTTF &rhs);
-        ImporterFontTTF &				operator =				(const ImporterFontTTF &rhs);
+                                        ImporterFontTTF            (const ImporterFontTTF &rhs);
+        ImporterFontTTF &                operator =                (const ImporterFontTTF &rhs);
 
     public:
-        virtual							~ImporterFontTTF		(void);
+        virtual                            ~ImporterFontTTF        (void);
 
     public:
         /// Imports a sound group into an FontResource
         /// \param target object to import sound into
         /// \param args arguments to importer
         /// \return error code
-        virtual DTerr					import					(FontResource *target, std::string args);
+        virtual DTerr                    import                    (FontResource *target, std::string args);
 
 
         static unsigned long            ft_io_func   (  FT_Stream       stream,

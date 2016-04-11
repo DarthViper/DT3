@@ -1,12 +1,12 @@
 //==============================================================================
-///	
-///	File: WorldNode.cpp
-///	
+///    
+///    File: WorldNode.cpp
+///    
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
 /// This file is subject to the terms and conditions defined in
 /// file 'LICENSE.txt', which is part of this source code package.
-///	
+///    
 //==============================================================================
 
 #include "DT3Core/World/WorldNode.hpp"
@@ -37,8 +37,8 @@ IMPLEMENT_PLUG_INFO_INDEX(_self)
 
 BEGIN_IMPLEMENT_PLUGS(WorldNode)
 
-	PLUG_INIT(_self,"Self")
-		.set_output(true);
+    PLUG_INIT(_self,"Self")
+        .set_output(true);
       
 END_IMPLEMENT_PLUGS
 
@@ -51,19 +51,19 @@ using namespace DT3;
 WorldNode::WorldNode (void)
     :   _self                   (PLUG_INFO_INDEX(_self), this),
         _node_collapsed         (false),
-        _node_position			({0.0F,0.0F,0.0F}),
+        _node_position            ({0.0F,0.0F,0.0F}),
         _node_color             ((uint8_t)150,(uint8_t)150,(uint8_t)150,(uint8_t)255),
         _group                  (NULL),
         _world                  (NULL)
 {
-	set_name(class_id_child());
+    set_name(class_id_child());
 }
-		
+        
 WorldNode::WorldNode (const WorldNode &rhs)
-    :   PlugNode				(rhs),
+    :   PlugNode                (rhs),
         _self                   (PLUG_INFO_INDEX(_self), this),
         _node_collapsed         (rhs._node_collapsed),
-		_node_position			(rhs._node_position),
+        _node_position            (rhs._node_position),
         _node_color             (rhs._node_color),
         _group                  (NULL),
         _world                  (NULL)
@@ -75,15 +75,15 @@ WorldNode & WorldNode::operator = (const WorldNode &rhs)
 {
     // Make sure we are not assigning the class to itself
     if (&rhs != this) {        
-		PlugNode::operator = (rhs);
+        PlugNode::operator = (rhs);
 
         _node_collapsed = rhs._node_collapsed;
         _node_position = rhs._node_position;
         _node_color = rhs._node_color;
-	}
+    }
     return (*this);
 }
-			
+            
 
 
 //==============================================================================
@@ -93,7 +93,7 @@ void WorldNode::archive (const std::shared_ptr<Archive> &archive)
 {
     PlugNode::archive(archive);
 
-	archive->push_domain (class_id ());
+    archive->push_domain (class_id ());
         
     *archive << ARCHIVE_DATA_ACCESSORS("Node_Collapsed", WorldNode::node_collapsed, WorldNode::set_node_collapsed, DATA_PERSISTENT);
     *archive << ARCHIVE_DATA_ACCESSORS("Node_Position", WorldNode::node_position, WorldNode::set_node_position, DATA_PERSISTENT);
@@ -106,8 +106,8 @@ void WorldNode::archive (const std::shared_ptr<Archive> &archive)
 //==============================================================================
 
 void WorldNode::add_to_world (World *world)
-{	
-	_world = world;		
+{    
+    _world = world;        
     SystemCallbacks::add_node_cb().fire(_world,this);
 }
 
@@ -115,20 +115,20 @@ void WorldNode::add_to_world (World *world)
 //==============================================================================
 
 void WorldNode::remove_from_world (void)
-{	
+{    
     disconnect_all_plugs();
     disconnect_all_events();
 
     SystemCallbacks::remove_node_cb().fire(_world,this);
-	_world = NULL;
+    _world = NULL;
 }
 
 //==============================================================================
 //==============================================================================
 
 void WorldNode::remove_from_group(void)
-{	
-	_group = NULL;
+{    
+    _group = NULL;
 }
 
 //==============================================================================

@@ -1,12 +1,12 @@
 //==============================================================================
-///	
-///	File: ScriptingScreen.cpp
-///	
+///    
+///    File: ScriptingScreen.cpp
+///    
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
 /// This file is subject to the terms and conditions defined in
 /// file 'LICENSE.txt', which is part of this source code package.
-///	
+///    
 //==============================================================================
 
 #include "DT3Core/Scripting/ScriptingScreen.hpp"
@@ -33,20 +33,20 @@ IMPLEMENT_PLUG_NODE(ScriptingScreen)
 IMPLEMENT_PLUG_INFO_INDEX(_width)
 IMPLEMENT_PLUG_INFO_INDEX(_height)
 IMPLEMENT_PLUG_INFO_INDEX(_aspect)
-	
+    
 //==============================================================================
 //==============================================================================
 
 BEGIN_IMPLEMENT_PLUGS(ScriptingScreen)
 
-	PLUG_INIT(_width,"Width")
-		.set_output(true);
+    PLUG_INIT(_width,"Width")
+        .set_output(true);
 
-	PLUG_INIT(_height,"Height")
-		.set_output(true);
+    PLUG_INIT(_height,"Height")
+        .set_output(true);
 
-	PLUG_INIT(_aspect,"Aspect")
-		.set_output(true);
+    PLUG_INIT(_aspect,"Aspect")
+        .set_output(true);
                 
 END_IMPLEMENT_PLUGS
 
@@ -55,7 +55,7 @@ END_IMPLEMENT_PLUGS
 //==============================================================================
 
 ScriptingScreen::ScriptingScreen (void)
-    :	_width          (PLUG_INFO_INDEX(_width), 1.0F),
+    :    _width          (PLUG_INFO_INDEX(_width), 1.0F),
         _height         (PLUG_INFO_INDEX(_height), 1.0F),
         _aspect         (PLUG_INFO_INDEX(_aspect), 1.0F)
 {  
@@ -63,9 +63,9 @@ ScriptingScreen::ScriptingScreen (void)
     SystemCallbacks::screen_changed_cb().add(make_callback(this, &ScriptingScreen::screen_opened));
 
 }
-		
+        
 ScriptingScreen::ScriptingScreen (const ScriptingScreen &rhs)
-    :   ScriptingBase	(rhs),
+    :   ScriptingBase    (rhs),
         _width          (rhs._width),
         _height         (rhs._height),
         _aspect         (rhs._aspect)
@@ -79,15 +79,15 @@ ScriptingScreen & ScriptingScreen::operator = (const ScriptingScreen &rhs)
 {
     // Make sure we are not assigning the class to itself
     if (&rhs != this) {        
-		ScriptingBase::operator = (rhs);
+        ScriptingBase::operator = (rhs);
 
         _width = rhs._width;
         _height = rhs._height;
         _aspect = rhs._aspect;
-	}
+    }
     return (*this);
 }
-			
+            
 ScriptingScreen::~ScriptingScreen (void)
 {
     SystemCallbacks::screen_opened_cb().remove(make_callback(this, &ScriptingScreen::screen_opened));
@@ -101,18 +101,18 @@ void ScriptingScreen::archive (const std::shared_ptr<Archive> &archive)
 {
     ScriptingBase::archive(archive);
 
-	archive->push_domain (class_id ());
-	
-	*archive << ARCHIVE_PLUG(_width, DATA_PERSISTENT | DATA_SETTABLE);
-	*archive << ARCHIVE_PLUG(_height, DATA_PERSISTENT | DATA_SETTABLE);
-	*archive << ARCHIVE_PLUG(_aspect, DATA_PERSISTENT | DATA_SETTABLE);
+    archive->push_domain (class_id ());
+    
+    *archive << ARCHIVE_PLUG(_width, DATA_PERSISTENT | DATA_SETTABLE);
+    *archive << ARCHIVE_PLUG(_height, DATA_PERSISTENT | DATA_SETTABLE);
+    *archive << ARCHIVE_PLUG(_aspect, DATA_PERSISTENT | DATA_SETTABLE);
 
     archive->pop_domain ();
 }
 
 void ScriptingScreen::archive_done   (const std::shared_ptr<Archive> &archive)
-{		
-	ScriptingBase::archive_done (archive);
+{        
+    ScriptingBase::archive_done (archive);
     
     if (archive->is_writing())
         return;

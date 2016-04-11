@@ -1,12 +1,12 @@
 //==============================================================================
-///	
-///	File: TransitionFadeOutIn.cpp
-///	
+///    
+///    File: TransitionFadeOutIn.cpp
+///    
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
 /// This file is subject to the terms and conditions defined in
 /// file 'LICENSE.txt', which is part of this source code package.
-///	
+///    
 //==============================================================================
 
 #include "DT3Core/Transitions/TransitionFadeOutIn.hpp"
@@ -31,11 +31,11 @@ IMPLEMENT_FACTORY_CREATION(TransitionFadeOutIn)
 //==============================================================================
 
 TransitionFadeOutIn::TransitionFadeOutIn (void)
-	:	_transition			(0.0F)
+    :    _transition            (0.0F)
 {
 
 }
-			
+            
 TransitionFadeOutIn::~TransitionFadeOutIn (void)
 {
 
@@ -47,21 +47,21 @@ TransitionFadeOutIn::~TransitionFadeOutIn (void)
 
 bool TransitionFadeOutIn::begin_new_world (void)
 {
-	if (!_material) {
-		_material = MaterialResource::import_resource(FilePath("{SYS_TRANSITION_MATERIAL}"));
-		_shader = ShaderResource::import_resource(FilePath("{SYS_TRANSITION_SHADER}"));
+    if (!_material) {
+        _material = MaterialResource::import_resource(FilePath("{SYS_TRANSITION_MATERIAL}"));
+        _shader = ShaderResource::import_resource(FilePath("{SYS_TRANSITION_SHADER}"));
     }
 
     ASSERT(_shader);
     ASSERT(_material);
-		
-	return _transition > 0.6F;
+        
+    return _transition > 0.6F;
 }
 
 void TransitionFadeOutIn::end_new_world (void)
 {
-	DTfloat fade = remap_zero_one (_transition, 0.6F,1.0F);
-	   
+    DTfloat fade = remap_zero_one (_transition, 0.6F,1.0F);
+       
     Color4f c(0.0F,0.0F,0.0F,1.0F-fade);
     
     _b.batch_begin(nullptr, _material, _shader, Matrix4::identity(), DT3GL_PRIM_TRI_STRIP, DrawBatcher::FMT_V | DrawBatcher::FMT_C);
@@ -77,21 +77,21 @@ void TransitionFadeOutIn::end_new_world (void)
 
 bool TransitionFadeOutIn::begin_old_world (void)
 {
-	if (!_material) {
-		_material = MaterialResource::import_resource(FilePath("{SYS_TRANSITION_MATERIAL}"));
-		_shader = ShaderResource::import_resource(FilePath("{SYS_TRANSITION_SHADER}"));
+    if (!_material) {
+        _material = MaterialResource::import_resource(FilePath("{SYS_TRANSITION_MATERIAL}"));
+        _shader = ShaderResource::import_resource(FilePath("{SYS_TRANSITION_SHADER}"));
     }
 
     ASSERT(_shader);
     ASSERT(_material);
 
-	return _transition <= 0.4F;
+    return _transition <= 0.4F;
 }
 
 void TransitionFadeOutIn::end_old_world (void)
 {
-	DTfloat fade = remap_zero_one (_transition, 0.0F,0.4F);
-		  
+    DTfloat fade = remap_zero_one (_transition, 0.0F,0.4F);
+          
     Color4f c(0.0F,0.0F,0.0F,fade);
     
     _material->activate();
@@ -109,7 +109,7 @@ void TransitionFadeOutIn::end_old_world (void)
 
 void TransitionFadeOutIn::transition (const DTfloat t)
 {
-	_transition = t;
+    _transition = t;
 }
 
 void TransitionFadeOutIn::draw (void)

@@ -3,7 +3,7 @@
 #define DT3_QUATERNION
 //==============================================================================
 ///
-///	File: Quaternion.hpp
+///    File: Quaternion.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -38,30 +38,30 @@ class Quaternion {
 
 
                                 Quaternion          (void);
-                                Quaternion          (const Quaternion &rhs)         {	w = rhs.w; x = rhs.x; y = rhs.y; z = rhs.z;                 }
-        explicit				Quaternion          (const Matrix3 &rhs);
-        explicit				Quaternion          (const Matrix4 &rhs);
+                                Quaternion          (const Quaternion &rhs)         {    w = rhs.w; x = rhs.x; y = rhs.y; z = rhs.z;                 }
+        explicit                Quaternion          (const Matrix3 &rhs);
+        explicit                Quaternion          (const Matrix4 &rhs);
                                 Quaternion          (   const DTfloat w_,
                                                         const DTfloat x_,
                                                         const DTfloat y_,
-                                                        const DTfloat z_)			{	w = w_; x = x_; y = y_; z = z_;                             }
+                                                        const DTfloat z_)            {    w = w_; x = x_; y = y_; z = z_;                             }
 
-        Quaternion &            operator =          (const Quaternion &rhs)         {	w = rhs.w; x = rhs.x; y = rhs.y; z = rhs.z; return *this;   }
+        Quaternion &            operator =          (const Quaternion &rhs)         {    w = rhs.w; x = rhs.x; y = rhs.y; z = rhs.z; return *this;   }
 
                                 ~Quaternion         (void)                          {}
 
     public:
 
-        bool               operator ==				(const Quaternion& rhs) const   {	return w == rhs.w && x == rhs.x && y == rhs.y && z == rhs.z;	}
-        bool               operator !=				(const Quaternion& rhs) const   {	return w != rhs.w || x != rhs.x || y != rhs.y || z != rhs.z;	}
+        bool               operator ==                (const Quaternion& rhs) const   {    return w == rhs.w && x == rhs.x && y == rhs.y && z == rhs.z;    }
+        bool               operator !=                (const Quaternion& rhs) const   {    return w != rhs.w || x != rhs.x || y != rhs.y || z != rhs.z;    }
 
 
         /// Set each of the components to zero
-        void					clear					(void);
+        void                    clear                    (void);
 
         /// Returns an identity quaternion
         /// \return identity quaternion
-        static Quaternion		identity				(void);
+        static Quaternion        identity                (void);
 
         /// Transform a vector by Quaternion
         /// \param a Quaternion

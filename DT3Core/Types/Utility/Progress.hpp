@@ -3,7 +3,7 @@
 #define DT3_PROGRESS
 //==============================================================================
 ///
-///	File: Progress.hpp
+///    File: Progress.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -28,20 +28,20 @@ class Progress: public BaseClass {
         DEFINE_TYPE(Progress,BaseClass)
         DEFINE_CREATE_AND_CLONE
 
-                                        Progress			(void);
-                                        Progress			(const Progress &rhs);
-        Progress &						operator =			(const Progress &rhs);
-        virtual							~Progress			(void);
+                                        Progress            (void);
+                                        Progress            (const Progress &rhs);
+        Progress &                        operator =            (const Progress &rhs);
+        virtual                            ~Progress            (void);
 
     public:
 
         /// Called when progress has started a new process
         /// \param current current progress
         /// \param length total progress length
-        virtual void					update				(DTsize current, DTsize length)		{}
+        virtual void                    update                (DTsize current, DTsize length)        {}
 
         /// Called when progress has started a new process
-        virtual void					started				(void)		{}
+        virtual void                    started                (void)        {}
 
 };
 

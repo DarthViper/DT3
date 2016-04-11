@@ -3,7 +3,7 @@
 #define DT3_TEXTLINES
 //==============================================================================
 ///
-///	File: TextLines.hpp
+///    File: TextLines.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -79,10 +79,10 @@ class TextLines: public BaseClass {
     public:
         DEFINE_TYPE(TextLines, BaseClass)
 
-                                        TextLines			(void);
-                                        TextLines			(const TextLines &rhs);
-        TextLines &                     operator =			(const TextLines &rhs);
-                                        ~TextLines			(void);
+                                        TextLines            (void);
+                                        TextLines            (const TextLines &rhs);
+        TextLines &                     operator =            (const TextLines &rhs);
+                                        ~TextLines            (void);
 
     public:
 

@@ -1,12 +1,12 @@
 //==============================================================================
-///	
-///	File: ImporterFontTTF.cpp
-///	
+///    
+///    File: ImporterFontTTF.cpp
+///    
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
 /// This file is subject to the terms and conditions defined in
 /// file 'LICENSE.txt', which is part of this source code package.
-///	
+///    
 //==============================================================================
 
 #include "DT3Core/Resources/Importers/ImporterFontTTF.hpp"
@@ -35,9 +35,9 @@ IMPLEMENT_FACTORY_IMPORTER(ImporterFontTTF,otf)
 
 ImporterFontTTF::ImporterFontTTF (void)
 {    
-	
+    
 }
-			
+            
 ImporterFontTTF::~ImporterFontTTF (void)
 { 
 
@@ -51,17 +51,17 @@ unsigned long ImporterFontTTF::ft_io_func   (   FT_Stream       stream,
                                                 unsigned char*  buffer,
                                                 unsigned long   count)
 {
-	BinaryFileStream *read_ptr = reinterpret_cast<BinaryFileStream*>(stream->descriptor.pointer);
+    BinaryFileStream *read_ptr = reinterpret_cast<BinaryFileStream*>(stream->descriptor.pointer);
     read_ptr->seek_g(offset, Stream::FROM_BEGINNING);
     
     if (count == 0)
         return 0;
-	return (unsigned long) read_ptr->read_raw(buffer,count);
+    return (unsigned long) read_ptr->read_raw(buffer,count);
 }
 
 void ImporterFontTTF::ft_close_func(   FT_Stream    stream)
 {
-	BinaryFileStream *read_ptr = reinterpret_cast<BinaryFileStream*>(stream->descriptor.pointer);
+    BinaryFileStream *read_ptr = reinterpret_cast<BinaryFileStream*>(stream->descriptor.pointer);
     delete read_ptr;
 }
 
@@ -71,8 +71,8 @@ void ImporterFontTTF::ft_close_func(   FT_Stream    stream)
 DTerr ImporterFontTTF::import(FontResource *target, std::string args)
 {
     // Open up the stream for the font file
-	BinaryFileStream *file = new BinaryFileStream();    // This pointer has to go through a C-API so no shared_ptr
-	DTerr err = FileManager::open(*file, target->path(), true);
+    BinaryFileStream *file = new BinaryFileStream();    // This pointer has to go through a C-API so no shared_ptr
+    DTerr err = FileManager::open(*file, target->path(), true);
     if (err != DT3_ERR_NONE) {
         LOG_MESSAGE << "Unable to open font " << target->path().full_path();
         delete file;
@@ -95,14 +95,14 @@ DTerr ImporterFontTTF::import(FontResource *target, std::string args)
     ftargs.stream->read = &ImporterFontTTF::ft_io_func;
     ftargs.stream->close = &ImporterFontTTF::ft_close_func;
 
-	FT_Error error = ::FT_Open_Face(FontResource::library(),
+    FT_Error error = ::FT_Open_Face(FontResource::library(),
                                     &ftargs,
                                     0,
                                     &(target->typeface()));
     
     ::FT_Select_Charmap(target->typeface(),FT_ENCODING_UNICODE);
     
-	return error == 0 ? DT3_ERR_NONE : DT3_ERR_FILE_OPEN_FAILED;
+    return error == 0 ? DT3_ERR_NONE : DT3_ERR_FILE_OPEN_FAILED;
 }
 
 //==============================================================================

@@ -1,6 +1,6 @@
 //==============================================================================
 ///
-///	File: ContextSwitcher.cpp
+///    File: ContextSwitcher.cpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -24,8 +24,8 @@
 //==============================================================================
 
 extern "C" {
-    extern	int     m_context(DT3::mcontext*);
-    extern	void    set_m_context(const DT3::mcontext*);
+    extern    int     m_context(DT3::mcontext*);
+    extern    void    set_m_context(const DT3::mcontext*);
 }
 
 //==============================================================================
@@ -50,12 +50,12 @@ void ContextSwitcher::make_context(uContext *ucp, void (*func)(void*), void *dat
 
     uint32_t *sp = (uint32_t*)ucp->uc_stack_sp + ucp->uc_stack_ss/sizeof(void*);
     sp -= 1;
-    sp = (uint32_t*)((uint32_t)sp - (uint32_t)sp%16);	/* 16-align for OS X */
+    sp = (uint32_t*)((uint32_t)sp - (uint32_t)sp%16);    /* 16-align for OS X */
 
     *sp = (uint64_t) data;
     ucp->uc_mcontext.gregs[1] = *sp;
 
-    *--sp = 0;		// return address
+    *--sp = 0;        // return address
     ucp->uc_mcontext.gregs[15] = (uint32_t)func;    // eip
     ucp->uc_mcontext.gregs[18] = (uint32_t)sp;      // esp
 
@@ -64,12 +64,12 @@ void ContextSwitcher::make_context(uContext *ucp, void (*func)(void*), void *dat
 
     uint64_t *sp = (uint64_t*)ucp->uc_stack_sp+ucp->uc_stack_ss/sizeof(void*);
     sp -= 1;
-    sp = (uint64_t*)((uint64_t)sp - (uint64_t)sp%16);	/* 16-align for OS X */
+    sp = (uint64_t*)((uint64_t)sp - (uint64_t)sp%16);    /* 16-align for OS X */
 
     *sp = (uint64_t) data;
     ucp->uc_mcontext.gregs[1] = *sp;
 
-    *--sp = 0;	// return address
+    *--sp = 0;    // return address
     ucp->uc_mcontext.gregs[20] = (uint64_t)func;
     ucp->uc_mcontext.gregs[23] = (uint64_t)sp;
 

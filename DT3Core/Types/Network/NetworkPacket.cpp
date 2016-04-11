@@ -1,6 +1,6 @@
 //==============================================================================
 ///
-///	File: NetworkPacket.cpp
+///    File: NetworkPacket.cpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -34,14 +34,14 @@ NetworkPacket::NetworkPacket (void)
 }
 
 NetworkPacket::NetworkPacket (const NetworkPacket &rhs)
-    :	_ip_address         (rhs._ip_address),
+    :    _ip_address         (rhs._ip_address),
         _data               (rhs._data)
 {
 
 }
 
 NetworkPacket::NetworkPacket (NetworkPacket &&rhs)
-    :	_ip_address         (std::move(rhs._ip_address)),
+    :    _ip_address         (std::move(rhs._ip_address)),
         _data               (std::move(rhs._data))
 {
 

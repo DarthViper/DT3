@@ -1,7 +1,7 @@
 #pragma once
 //==============================================================================
 ///
-///	File: TextureResourceCube.hpp
+///    File: TextureResourceCube.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -41,9 +41,9 @@ class TextureResourceCube: public Resource {
                                     TextureResourceCube (void);
     private:
                                     TextureResourceCube (const TextureResourceCube &rhs);
-        TextureResourceCube &       operator =			(const TextureResourceCube &rhs);
+        TextureResourceCube &       operator =            (const TextureResourceCube &rhs);
     public:
-        virtual						~TextureResourceCube(void);
+        virtual                        ~TextureResourceCube(void);
 
     public:
         /// Called to initialize the class
@@ -56,7 +56,7 @@ class TextureResourceCube: public Resource {
         /// \param pathname path to resource
         /// \param args importer args
         /// \return error code
-        DTerr						import				(const FilePath &pathname, std::string args);
+        DTerr                        import                (const FilePath &pathname, std::string args);
 
         // Texture building functions
 
@@ -85,11 +85,11 @@ class TextureResourceCube: public Resource {
 
         /// Width of the buffer
         /// \return buffer width
-        int32_t						width               (void) const	{	return _width;	}
+        int32_t                        width               (void) const    {    return _width;    }
 
         /// Height of the buffer
         /// \return buffer height
-        int32_t						height              (void) const	{	return _height;	}
+        int32_t                        height              (void) const    {    return _height;    }
 
         /// Activate the resource
         /// \param texture_slot which slot to activate the texture in

@@ -2,12 +2,12 @@ aux_source_directory(. SRC_LIST)
 
 #==============================================================================
 #
-#	File: CMakeLists.txt	(for Android)
+#    File: CMakeLists.txt    (for Android)
 #
-#	Copyright (C) 2000-2013 by Smells Like Donkey, Inc. All rights reserved.
+#    Copyright (C) 2000-2013 by Smells Like Donkey, Inc. All rights reserved.
 #
-#	This file is subject to the terms and conditions defined in
-#	file 'LICENSE.txt', which is part of this source code package.
+#    This file is subject to the terms and conditions defined in
+#    file 'LICENSE.txt', which is part of this source code package.
 #
 #==============================================================================
 
@@ -237,24 +237,24 @@ endif (EXISTS "${PROJECT_MODULE_AL}")
 #set (PROJECT_MODULE "${ENGINE_ROOT}/src/DT3HWVideoPlayer/")
 #if (EXISTS "${PROJECT_MODULE}")
 #
-#	#Add libraries
-#	set(MODULE_LIBS ${MODULE_LIBS} "libswscale.a" "libavformat.a" "libavcodec.a" "libavfilter.a" "libavutil.a" "libswresample.a"  )
-#	set(MODULE_LIBS_DIRS ${MODULE_LIBS_DIRS} "${ENGINE_ROOT}/src/DT3HWVideoPlayer/3rdParty/ffmpeg-2.0.2/ffmpeg-android/lib/${ANDROID_NDK_ABI_NAME}" )
+#    #Add libraries
+#    set(MODULE_LIBS ${MODULE_LIBS} "libswscale.a" "libavformat.a" "libavcodec.a" "libavfilter.a" "libavutil.a" "libswresample.a"  )
+#    set(MODULE_LIBS_DIRS ${MODULE_LIBS_DIRS} "${ENGINE_ROOT}/src/DT3HWVideoPlayer/3rdParty/ffmpeg-2.0.2/ffmpeg-android/lib/${ANDROID_NDK_ABI_NAME}" )
 #
-#	#Library includes
-#	include_directories("${ENGINE_ROOT}/src/DT3HWVideoPlayer/3rdParty/ffmpeg-2.0.2/ffmpeg-android/include")
+#    #Library includes
+#    include_directories("${ENGINE_ROOT}/src/DT3HWVideoPlayer/3rdParty/ffmpeg-2.0.2/ffmpeg-android/include")
 #
-#	# Compile files
-#	file(GLOB_RECURSE PROJECT_SRCS
-#		"${ENGINE_ROOT}/src/DT3HWVideoPlayer/FFmpeg/*.cpp"
-#		"${ENGINE_ROOT}/src/DT3HWVideoPlayer/ScriptingVideoTexture.cpp"
-#		"${ENGINE_ROOT}/src/DT3HWVideoPlayer/ComponentGUIVideoPlayer.cpp"
-#	)
-#	SET(PROJECT_SOURCE ${PROJECT_SOURCE} ${PROJECT_SRCS})
+#    # Compile files
+#    file(GLOB_RECURSE PROJECT_SRCS
+#        "${ENGINE_ROOT}/src/DT3HWVideoPlayer/FFmpeg/*.cpp"
+#        "${ENGINE_ROOT}/src/DT3HWVideoPlayer/ScriptingVideoTexture.cpp"
+#        "${ENGINE_ROOT}/src/DT3HWVideoPlayer/ComponentGUIVideoPlayer.cpp"
+#    )
+#    SET(PROJECT_SOURCE ${PROJECT_SOURCE} ${PROJECT_SRCS})
 #
-#	# Build include directories
-#	HEADER_DIRECTORIES("${PROJECT_SRCS}" HEADER_INCLUDES)
-#	include_directories(${HEADER_INCLUDES})
+#    # Build include directories
+#    HEADER_DIRECTORIES("${PROJECT_SRCS}" HEADER_INCLUDES)
+#    include_directories(${HEADER_INCLUDES})
 #
 #endif (EXISTS "${PROJECT_MODULE}")
 
@@ -305,15 +305,15 @@ endif (EXISTS "${PROJECT_MODULE_SOCKETS}")
 #set (PROJECT_MODULE "${ENGINE_ROOT}/src/DT3Sprites/")
 #if (EXISTS "${PROJECT_MODULE}")
 #
-#	file(GLOB_RECURSE PROJECT_SRCS
-#		"${ENGINE_ROOT}/src/DT3Sprites/*.hpp"
-#		"${ENGINE_ROOT}/src/DT3Sprites/*.cpp"
-#	)
-#	SET(PROJECT_SOURCE ${PROJECT_SOURCE} ${PROJECT_SRCS})
+#    file(GLOB_RECURSE PROJECT_SRCS
+#        "${ENGINE_ROOT}/src/DT3Sprites/*.hpp"
+#        "${ENGINE_ROOT}/src/DT3Sprites/*.cpp"
+#    )
+#    SET(PROJECT_SOURCE ${PROJECT_SOURCE} ${PROJECT_SRCS})
 #
-#	# Build include directories
-#	HEADER_DIRECTORIES("${PROJECT_SRCS}" HEADER_INCLUDES)
-#	include_directories(${HEADER_INCLUDES})
+#    # Build include directories
+#    HEADER_DIRECTORIES("${PROJECT_SRCS}" HEADER_INCLUDES)
+#    include_directories(${HEADER_INCLUDES})
 #
 #endif (EXISTS "${PROJECT_MODULE}")
 

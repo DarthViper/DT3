@@ -1,12 +1,12 @@
 //==============================================================================
-///	
-///	File: ScriptingAccelerometer.cpp
-///	
+///    
+///    File: ScriptingAccelerometer.cpp
+///    
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
 /// This file is subject to the terms and conditions defined in
 /// file 'LICENSE.txt', which is part of this source code package.
-///	
+///    
 //==============================================================================
 
 #include "DT3Core/Scripting/ScriptingAccelerometer.hpp"
@@ -34,23 +34,23 @@ IMPLEMENT_PLUG_INFO_INDEX(_enable)
 IMPLEMENT_PLUG_INFO_INDEX(_out)
 IMPLEMENT_PLUG_INFO_INDEX(_out_low_freq)
 IMPLEMENT_PLUG_INFO_INDEX(_out_high_freq)
-		
+        
 //==============================================================================
 //==============================================================================
 
 BEGIN_IMPLEMENT_PLUGS(ScriptingAccelerometer)
-		
-	PLUG_INIT(_enable,"Enable")
-		.set_input(true);
+        
+    PLUG_INIT(_enable,"Enable")
+        .set_input(true);
 
-	PLUG_INIT(_out,"Out")
-		.set_output(true);
+    PLUG_INIT(_out,"Out")
+        .set_output(true);
 
-	PLUG_INIT(_out_low_freq,"Low_Pass")
-		.set_output(true);
+    PLUG_INIT(_out_low_freq,"Low_Pass")
+        .set_output(true);
 
-	PLUG_INIT(_out_high_freq,"High_Pass")
-		.set_output(true);
+    PLUG_INIT(_out_high_freq,"High_Pass")
+        .set_output(true);
 
 END_IMPLEMENT_PLUGS
 
@@ -59,7 +59,7 @@ END_IMPLEMENT_PLUGS
 //==============================================================================
 
 ScriptingAccelerometer::ScriptingAccelerometer (void)
-    :	_enable                 (PLUG_INFO_INDEX(_enable), true),
+    :    _enable                 (PLUG_INFO_INDEX(_enable), true),
         _out                    (PLUG_INFO_INDEX(_out), {0.0F,-1.0F,0.0F}),
         _out_low_freq           (PLUG_INFO_INDEX(_out_low_freq), {0.0F,-1.0F,0.0F}),
         _out_high_freq          (PLUG_INFO_INDEX(_out_high_freq), {0.0F,0.0F,0.0F}),
@@ -68,13 +68,13 @@ ScriptingAccelerometer::ScriptingAccelerometer (void)
 {  
 
 }
-		
+        
 ScriptingAccelerometer::ScriptingAccelerometer (const ScriptingAccelerometer &rhs)
     :   ScriptingBase           (rhs),
         _enable                 (rhs._enable),
-		_out                    (rhs._out),
-		_out_low_freq           (rhs._out_low_freq),
-		_out_high_freq          (rhs._out_high_freq),
+        _out                    (rhs._out),
+        _out_low_freq           (rhs._out_low_freq),
+        _out_high_freq          (rhs._out_high_freq),
         _warmup_time            (rhs._warmup_time),
         _current_warmup_time    (rhs._current_warmup_time)
 {   
@@ -85,20 +85,20 @@ ScriptingAccelerometer & ScriptingAccelerometer::operator = (const ScriptingAcce
 {
     // Make sure we are not assigning the class to itself
     if (&rhs != this) {        
-		ScriptingBase::operator = (rhs);
+        ScriptingBase::operator = (rhs);
 
         _enable = rhs._enable;
         
-		_out = rhs._out;
-		_out_low_freq = rhs._out_low_freq;
-		_out_high_freq = rhs._out_high_freq;
+        _out = rhs._out;
+        _out_low_freq = rhs._out_low_freq;
+        _out_high_freq = rhs._out_high_freq;
         
         _warmup_time = rhs._warmup_time;
         _current_warmup_time = rhs._current_warmup_time;
-	}
+    }
     return (*this);
 }
-			
+            
 ScriptingAccelerometer::~ScriptingAccelerometer (void)
 {
 
@@ -111,20 +111,20 @@ void ScriptingAccelerometer::archive (const std::shared_ptr<Archive> &archive)
 {
     ScriptingBase::archive(archive);
 
-	archive->push_domain (class_id ());
+    archive->push_domain (class_id ());
     
     *archive << ARCHIVE_PLUG(_enable, DATA_PERSISTENT | DATA_SETTABLE);
-	*archive << ARCHIVE_PLUG(_out, DATA_PERSISTENT | DATA_SETTABLE);
+    *archive << ARCHIVE_PLUG(_out, DATA_PERSISTENT | DATA_SETTABLE);
     *archive << ARCHIVE_PLUG(_out_low_freq, DATA_PERSISTENT | DATA_SETTABLE);
     *archive << ARCHIVE_PLUG(_out_high_freq, DATA_PERSISTENT | DATA_SETTABLE);
     *archive << ARCHIVE_DATA(_warmup_time, DATA_PERSISTENT | DATA_SETTABLE);
-	   
+       
     archive->pop_domain ();
 }
 
 void ScriptingAccelerometer::archive_done   (const std::shared_ptr<Archive> &archive)
-{		
-	ScriptingBase::archive_done (archive);
+{        
+    ScriptingBase::archive_done (archive);
     
     if (archive->is_writing())
         return;
@@ -139,7 +139,7 @@ void ScriptingAccelerometer::archive_done   (const std::shared_ptr<Archive> &arc
 
 void ScriptingAccelerometer::key (uint32_t modifiers, uint16_t key)
 {
-	PROFILER(SCRIPTING);
+    PROFILER(SCRIPTING);
 
     if (key == DeviceInput::INPUT_KP4)   accelerate ({-1.0F,0.0F,0.0F});
     if (key == DeviceInput::INPUT_KP6)   accelerate ({1.0F,0.0F,0.0F});
@@ -154,7 +154,7 @@ void ScriptingAccelerometer::key (uint32_t modifiers, uint16_t key)
 
 void ScriptingAccelerometer::accelerate (const Vector3 &a)
 {
-	PROFILER(SCRIPTING);
+    PROFILER(SCRIPTING);
     
     Vector3 out, out_low_freq, out_high_freq;
     
@@ -185,7 +185,7 @@ void ScriptingAccelerometer::accelerate (const Vector3 &a)
 
 void ScriptingAccelerometer::tick (const DTfloat dt)
 {
-	PROFILER(SCRIPTING);
+    PROFILER(SCRIPTING);
 
     _current_warmup_time += dt;
 }

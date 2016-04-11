@@ -3,7 +3,7 @@
 #define DT3_SCRIPTINGKEYFRAMESTIMER
 //==============================================================================
 ///
-///	File: ScriptingKeyframesRoot.hpp
+///    File: ScriptingKeyframesRoot.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -33,9 +33,9 @@ class ScriptingKeyframesRoot: public ScriptingBase {
         DEFINE_CREATE_AND_CLONE
         DEFINE_PLUG_NODE
 
-                                    ScriptingKeyframesRoot	(void);
-                                    ScriptingKeyframesRoot	(const ScriptingKeyframesRoot &rhs);
-        ScriptingKeyframesRoot &	operator =				(const ScriptingKeyframesRoot &rhs);
+                                    ScriptingKeyframesRoot    (void);
+                                    ScriptingKeyframesRoot    (const ScriptingKeyframesRoot &rhs);
+        ScriptingKeyframesRoot &    operator =                (const ScriptingKeyframesRoot &rhs);
         virtual                     ~ScriptingKeyframesRoot (void);
 
         virtual void                archive                 (const std::shared_ptr<Archive> &archive);
@@ -43,27 +43,27 @@ class ScriptingKeyframesRoot: public ScriptingBase {
     public:
         /// Computes the value of the node
         /// \param plug plug to compute
-        bool					compute					(const PlugBase *plug);
+        bool                    compute                    (const PlugBase *plug);
 
         /// Sets the output time
         /// \param time time to set
-        void						set_time_milliseconds   (DTfloat time)				{	_time_out = time/1000.0F;	}
+        void                        set_time_milliseconds   (DTfloat time)                {    _time_out = time/1000.0F;    }
 
         /// Sets the output time
         /// \param time time to set
-        DTfloat						time_milliseconds       (void) const				{	return _time_out*1000.0F;	}
+        DTfloat                        time_milliseconds       (void) const                {    return _time_out*1000.0F;    }
 
         /// Sets the output time
         /// \param time time to set
-        void						set_time                (DTfloat time)				{	_time_out = time;	}
+        void                        set_time                (DTfloat time)                {    _time_out = time;    }
 
         /// Sets the output time
         /// \param time time to set
-        DTfloat						time                    (void) const				{	return _time_out;	}
+        DTfloat                        time                    (void) const                {    return _time_out;    }
 
     private:
-        Plug<DTfloat>				_time_in;
-        Plug<DTfloat>				_time_out;
+        Plug<DTfloat>                _time_in;
+        Plug<DTfloat>                _time_out;
 };
 
 //==============================================================================

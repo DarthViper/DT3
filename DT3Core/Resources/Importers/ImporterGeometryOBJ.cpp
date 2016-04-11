@@ -1,12 +1,12 @@
 //==============================================================================
-///	
-///	File: ImporterGeometryOBJ.cpp
-///	
+///    
+///    File: ImporterGeometryOBJ.cpp
+///    
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
 /// This file is subject to the terms and conditions defined in
 /// file 'LICENSE.txt', which is part of this source code package.
-///	
+///    
 //==============================================================================
 
 #include "DT3Core/Resources/Importers/ImporterGeometryOBJ.hpp"
@@ -33,11 +33,11 @@ IMPLEMENT_FACTORY_IMPORTER(ImporterGeometryOBJ,obj)
 /// Standard class constructors/destructors
 //==============================================================================
 
-ImporterGeometryOBJ::ImporterGeometryOBJ (void)		
+ImporterGeometryOBJ::ImporterGeometryOBJ (void)        
 {    
 
 }
-			
+            
 ImporterGeometryOBJ::~ImporterGeometryOBJ (void)
 { 
 
@@ -46,56 +46,56 @@ ImporterGeometryOBJ::~ImporterGeometryOBJ (void)
 //==============================================================================
 //==============================================================================
 
-DTerr	ImporterGeometryOBJ::import(GeometryResource *target, std::string args)
+DTerr    ImporterGeometryOBJ::import(GeometryResource *target, std::string args)
 {
-	FilePath pathname(target->path());
-	
+    FilePath pathname(target->path());
+    
     // open the file
-    TextFileStream	file;
-	FileManager::open(file, pathname, true);
+    TextFileStream    file;
+    FileManager::open(file, pathname, true);
      
     while (1) {
-		DTcharacter buffer[1024];
-		
-		file.line (buffer, sizeof(buffer));
-		if (file.is_eof())
-			break;
-		
-		std::stringstream ss(buffer);
-	
-		// read the command
-		std::string command;
-		ss >> command;
-		
-		if (command == "v") {
-			DTfloat x,y,z;
-			ss >> x >> y >> z;
+        DTcharacter buffer[1024];
+        
+        file.line (buffer, sizeof(buffer));
+        if (file.is_eof())
+            break;
+        
+        std::stringstream ss(buffer);
+    
+        // read the command
+        std::string command;
+        ss >> command;
+        
+        if (command == "v") {
+            DTfloat x,y,z;
+            ss >> x >> y >> z;
             _vertices.push_back({x,y,z});
-		} else if (command == "vt") {
-			DTfloat u,v,w;
-			ss >> u >> v >> w;
+        } else if (command == "vt") {
+            DTfloat u,v,w;
+            ss >> u >> v >> w;
             _texcoords.push_back({u,v});
-		} else if (command == "vn") {
-			DTfloat x,y,z;
-			ss >> x >> y >> z;
+        } else if (command == "vn") {
+            DTfloat x,y,z;
+            ss >> x >> y >> z;
             _normals.push_back({x,y,z});
-		} else if (command == "f") {
-			
-			Face face;
-			
+        } else if (command == "f") {
+            
+            Face face;
+            
             for (int32_t i = 0; i < 3; ++i) {
-				std::string f;
-				ss >> f;
-				
-				// get rid of slashes
-				for (std::size_t j = 0; j < f.size(); ++j)
-					if (f[j] == '/')	f[j] = ' ';
-				
-				std::stringstream ssv(f);
-				
-				ssv >> face._v[i];
-				ssv >> face._vt[i];
-				ssv >> face._vn[i];
+                std::string f;
+                ss >> f;
+                
+                // get rid of slashes
+                for (std::size_t j = 0; j < f.size(); ++j)
+                    if (f[j] == '/')    f[j] = ' ';
+                
+                std::stringstream ssv(f);
+                
+                ssv >> face._v[i];
+                ssv >> face._vt[i];
+                ssv >> face._vn[i];
                                 
                 if (face._v[i] < 0) face._v[i] = static_cast<int32_t>(_vertices.size()) + face._v[i];
                 else                face._v[i] -= 1;
@@ -110,56 +110,56 @@ DTerr	ImporterGeometryOBJ::import(GeometryResource *target, std::string args)
                 ASSERT(face._vt[i] >= 0 && face._vt[i] < static_cast<int32_t>(_texcoords.size()));
                 ASSERT(face._vn[i] >= 0 && face._vn[i] < static_cast<int32_t>(_normals.size()));
             }
-			
-			_faces.push_back(face);
-			
-		}
-	}
+            
+            _faces.push_back(face);
+            
+        }
+    }
     
     LOG_MESSAGE << "Read " << static_cast<int32_t>(_vertices.size()) << " vertices";
     LOG_MESSAGE << "Read " << static_cast<int32_t>(_texcoords.size()) << " texcoords";
     LOG_MESSAGE << "Read " << static_cast<int32_t>(_normals.size()) << " normals";
     LOG_MESSAGE << "Read " << static_cast<int32_t>(_faces.size()) << " faces";
-	
-	//
-	// compile geometry
-	//
     
-    std::vector<Vector3>	vertices_stream;
-    std::vector<Vector3>	normals_stream;
-    std::vector<Vector2>	uvs_stream;
-    std::vector<Triangle>	index_stream;
+    //
+    // compile geometry
+    //
+    
+    std::vector<Vector3>    vertices_stream;
+    std::vector<Vector3>    normals_stream;
+    std::vector<Vector2>    uvs_stream;
+    std::vector<Triangle>    index_stream;
 
-	vertices_stream.resize(_faces.size() * 3);
-	normals_stream.resize(_faces.size() * 3);
-	uvs_stream.resize(_faces.size() * 3);
-	index_stream.resize(_faces.size());
-	
+    vertices_stream.resize(_faces.size() * 3);
+    normals_stream.resize(_faces.size() * 3);
+    uvs_stream.resize(_faces.size() * 3);
+    index_stream.resize(_faces.size());
+    
     int32_t index = 0;
-	for (std::size_t f = 0; f < _faces.size(); ++f) {
-		index_stream[f].v[0] = index+0;
-		index_stream[f].v[1] = index+1;
-		index_stream[f].v[2] = index+2;
+    for (std::size_t f = 0; f < _faces.size(); ++f) {
+        index_stream[f].v[0] = index+0;
+        index_stream[f].v[1] = index+1;
+        index_stream[f].v[2] = index+2;
 
         for (int32_t v = 0; v < 3; ++v) {
-			vertices_stream[index] = _vertices[ _faces[f]._v[v]];
-			normals_stream[index] = _normals[ _faces[f]._vn[v] ];
-			uvs_stream[index] = _texcoords[ _faces[f]._vt[v] ];
-			++index;
-		}
-	}
+            vertices_stream[index] = _vertices[ _faces[f]._v[v]];
+            normals_stream[index] = _normals[ _faces[f]._vn[v] ];
+            uvs_stream[index] = _texcoords[ _faces[f]._vt[v] ];
+            ++index;
+        }
+    }
 
     std::shared_ptr<Mesh>  mesh = Mesh::create();
     mesh->set_name("Mesh");
 
-	mesh->set_vertex_stream(vertices_stream);
-	mesh->set_normals_stream(normals_stream);
-	mesh->set_uv_stream0(uvs_stream);
-	mesh->set_index_stream(index_stream);
-	    
+    mesh->set_vertex_stream(vertices_stream);
+    mesh->set_normals_stream(normals_stream);
+    mesh->set_uv_stream0(uvs_stream);
+    mesh->set_index_stream(index_stream);
+        
     target->add_mesh(mesh);
 
-	return DT3_ERR_NONE;
+    return DT3_ERR_NONE;
 }
 
 //==============================================================================

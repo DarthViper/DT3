@@ -1,7 +1,7 @@
 #pragma once
 //==============================================================================
 ///
-///	File: EdLevelLineEdit.hpp
+///    File: EdLevelLineEdit.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///

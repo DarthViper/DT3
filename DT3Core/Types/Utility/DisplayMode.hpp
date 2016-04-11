@@ -3,7 +3,7 @@
 #define DT3_DISPLAYMODE
 //==============================================================================
 ///
-///	File: DisplayMode.hpp
+///    File: DisplayMode.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -28,26 +28,26 @@ class DisplayMode: public BaseClass {
         DEFINE_TYPE(DisplayMode,BaseClass)
         DEFINE_CREATE_AND_CLONE
 
-                                DisplayMode			(void);
+                                DisplayMode            (void);
                                 DisplayMode         (const DisplayMode &rhs);
-        DisplayMode &			operator =          (const DisplayMode &rhs);
+        DisplayMode &            operator =          (const DisplayMode &rhs);
                                 ~DisplayMode        (void);
 
     public:
 
-        bool				operator ==			(const DisplayMode& rhs) const	{	return (_width == rhs._width) && (_height == rhs._height);  }
+        bool                operator ==            (const DisplayMode& rhs) const    {    return (_width == rhs._width) && (_height == rhs._height);  }
 
         /// Comparison operators for properly sorting resolutions
-        bool               operator <			(const DisplayMode& rhs) const	{	return _width * _height * _refresh_rate < rhs._width * rhs._height * rhs._refresh_rate; }
-        bool               operator >          (const DisplayMode& rhs) const	{	return !operator < (rhs);   }
+        bool               operator <            (const DisplayMode& rhs) const    {    return _width * _height * _refresh_rate < rhs._width * rhs._height * rhs._refresh_rate; }
+        bool               operator >          (const DisplayMode& rhs) const    {    return !operator < (rhs);   }
 
         DEFINE_ACCESSORS(width, set_width, int32_t, _width)
         DEFINE_ACCESSORS(height, set_height, int32_t, _height)
         DEFINE_ACCESSORS(refresh_rate, set_refresh_rate, DTdouble, _refresh_rate)
 
     private:
-        int32_t		_width;
-        int32_t		_height;
+        int32_t        _width;
+        int32_t        _height;
         DTdouble    _refresh_rate;
 };
 

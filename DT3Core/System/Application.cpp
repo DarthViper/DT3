@@ -1,6 +1,6 @@
 //==============================================================================
 ///
-///	File: Application.cpp
+///    File: Application.cpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -45,16 +45,16 @@ namespace DT3 {
 //==============================================================================
 
 Application::Application (void)
-    :	_done					(false),
-        _show_console			(false),
-        _show_profiler			(false),
+    :    _done                    (false),
+        _show_console            (false),
+        _show_profiler            (false),
         _obj_world              (NULL),
         _obj_pending_world      (NULL),
-        _transition				(NULL),
-        _pending_session		(NULL),
+        _transition                (NULL),
+        _pending_session        (NULL),
         _pending_progress       (NULL),
-        _transition_time		(0.0F),
-        _transition_timer		(0.0F)
+        _transition_time        (0.0F),
+        _transition_timer        (0.0F)
 {
     // update all Lores timers
     TimerLores::update_program_running_time();
@@ -98,7 +98,7 @@ void Application::quit(void)
 //==============================================================================
 //==============================================================================
 
-void Application::clear	(void)
+void Application::clear    (void)
 {
     System::renderer()->clear_viewport(true,true,false);
 }
@@ -331,7 +331,7 @@ void Application::transition_to_world ( const FilePath &pathname,
 
 }
 
-void Application::load_pending_world	(void)
+void Application::load_pending_world    (void)
 {
     LOG_MESSAGE << "Loading deferred world: " << _pending_pathname.full_path();
 
@@ -361,7 +361,7 @@ void Application::load_pending_world	(void)
 
 }
 
-const std::shared_ptr<World>& Application::pending_world		(void) const
+const std::shared_ptr<World>& Application::pending_world        (void) const
 {
     return _obj_pending_world;
 }

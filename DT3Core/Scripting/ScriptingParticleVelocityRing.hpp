@@ -3,7 +3,7 @@
 #define DT3_SCRIPTINGPARTICLEVELOCITYRING
 //==============================================================================
 ///
-///	File: ScriptingParticleVelocityRing.hpp
+///    File: ScriptingParticleVelocityRing.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -35,17 +35,17 @@ class ScriptingParticleVelocityRing: public ScriptingBase {
         DEFINE_CREATE_AND_CLONE
         DEFINE_PLUG_NODE
 
-                                            ScriptingParticleVelocityRing	(void);
-                                            ScriptingParticleVelocityRing	(const ScriptingParticleVelocityRing &rhs);
-        ScriptingParticleVelocityRing &		operator =						(const ScriptingParticleVelocityRing &rhs);
-        virtual								~ScriptingParticleVelocityRing	(void);
+                                            ScriptingParticleVelocityRing    (void);
+                                            ScriptingParticleVelocityRing    (const ScriptingParticleVelocityRing &rhs);
+        ScriptingParticleVelocityRing &        operator =                        (const ScriptingParticleVelocityRing &rhs);
+        virtual                                ~ScriptingParticleVelocityRing    (void);
 
         virtual void                archive                 (const std::shared_ptr<Archive> &archive);
 
     public:
         /// Computes the value of the node
         /// \param plug plug to compute
-        bool					compute					(const PlugBase *plug);
+        bool                    compute                    (const PlugBase *plug);
 
 
         DEFINE_ACCESSORS(normal, set_normal, Vector3, _normal);
@@ -59,12 +59,12 @@ class ScriptingParticleVelocityRing: public ScriptingBase {
 #endif
 
     private:
-        Plug<Vector3>								_normal;
-        DTfloat										_velocity;
-        DTfloat										_variation;
+        Plug<Vector3>                                _normal;
+        DTfloat                                        _velocity;
+        DTfloat                                        _variation;
 
-        Plug<std::shared_ptr<Particles>>		_in;
-        Plug<std::shared_ptr<Particles>>		_out;
+        Plug<std::shared_ptr<Particles>>        _in;
+        Plug<std::shared_ptr<Particles>>        _out;
 
 };
 

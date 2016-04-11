@@ -1,6 +1,6 @@
 //==============================================================================
 ///
-///	File: HAL.cpp
+///    File: HAL.cpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -78,7 +78,7 @@ void HAL::initialize (void)
 
 
 
-//	// Just set these to NULL if you don't want a callback function
+//    // Just set these to NULL if you don't want a callback function
 //    ::AudioSessionInitialize (NULL,NULL,NULL,NULL);
 //
 //    // Set audio category
@@ -186,7 +186,7 @@ void HAL::display_modes (std::map<int32_t, std::vector<DisplayMode>> &modes)
             CGDisplayModeRef cg_mode = (CGDisplayModeRef)CFArrayGetValueAtIndex(mode_list, j);
 
             //CFBooleanRef stretched = (CFBooleanRef) CFDictionaryGetValue(mode, kCGDisplayModeIsStretched);
-            //if (!stretched || !CFBooleanGetValue(stretched))	continue;
+            //if (!stretched || !CFBooleanGetValue(stretched))    continue;
 
             //CFNumberRef bitsPerPixel = (CFNumberRef)CFDictionaryGetValue(mode, kCGDisplayBitsPerPixel);
             int32_t width = static_cast<int32_t>(::CGDisplayModeGetWidth(cg_mode));
@@ -417,7 +417,7 @@ FilePath HAL::app_dir (void)
 
 #if DT3_OS == DT3_MACOSX
     // get Current directory
-    DTcharacter cstr[1024];	//MAXPATHLEN??
+    DTcharacter cstr[1024];    //MAXPATHLEN??
 
     // get Application path
     CFURLRef mainURL = CFBundleCopyBundleURL(CFBundleGetMainBundle());
@@ -443,7 +443,7 @@ FilePath HAL::app_dir (void)
 
 #elif DT3_OS == DT3_IOS
     // get Current directory
-    DTcharacter cstr[1024];	//MAXPATHLEN??
+    DTcharacter cstr[1024];    //MAXPATHLEN??
 
     // get Application path
     CFURLRef mainURL = CFBundleCopyResourcesDirectoryURL(CFBundleGetMainBundle());
@@ -483,7 +483,7 @@ FilePath HAL::save_dir (void)
     FSRef prefs_dir_ref;
     OSErr err = FSFindFolder (kUserDomain,kPreferencesFolderType,false,&prefs_dir_ref);
     if (err == noErr) {
-        DTcharacter cstr[1024];	//MAXPATHLEN??
+        DTcharacter cstr[1024];    //MAXPATHLEN??
         CFStringRef text;
 
         CFURLRef prefsURL = CFURLCreateFromFSRef (kCFAllocatorDefault, &prefs_dir_ref);

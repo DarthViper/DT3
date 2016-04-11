@@ -1,12 +1,12 @@
 //==============================================================================
-///	
-///	File: Color4b.cpp
-///	
+///    
+///    File: Color4b.cpp
+///    
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
 /// This file is subject to the terms and conditions defined in
 /// file 'LICENSE.txt', which is part of this source code package.
-///	
+///    
 //==============================================================================
 
 #include "DT3Core/Types/Math/Color4b.hpp"
@@ -43,40 +43,40 @@ const Color4b Color4b::transparent_white (1.0F,1.0F,1.0F,0.0F);
 /// Constructors
 //==============================================================================
 
-Color4b::Color4b	(void)
-    :	r(255),
-		g(255),
+Color4b::Color4b    (void)
+    :    r(255),
+        g(255),
         b(255),
         a(255)
 {
 
 }
 
-Color4b::Color4b	(const Color4b &rhs)
-    :	r(rhs.r),
-		g(rhs.g),
+Color4b::Color4b    (const Color4b &rhs)
+    :    r(rhs.r),
+        g(rhs.g),
         b(rhs.b),
         a(rhs.a)
 {
 
 }
 
-Color4b::Color4b	(const DTfloat r_, const DTfloat g_, const DTfloat b_, const DTfloat a_)
+Color4b::Color4b    (const DTfloat r_, const DTfloat g_, const DTfloat b_, const DTfloat a_)
 {
     set(r_,g_,b_,a_);
 }
 
-Color4b::Color4b	(const uint8_t r_, const uint8_t g_, const uint8_t b_, const uint8_t a_)
+Color4b::Color4b    (const uint8_t r_, const uint8_t g_, const uint8_t b_, const uint8_t a_)
 {
     set(r_,g_,b_,a_);
-}	
+}    
 
-Color4b::Color4b	(const DTfloat rhs[])
+Color4b::Color4b    (const DTfloat rhs[])
 {
     set(rhs);
 }
 
-Color4b::Color4b	(const uint8_t rhs[])
+Color4b::Color4b    (const uint8_t rhs[])
 {
     set(rhs);
 }
@@ -91,37 +91,37 @@ Color4b::Color4b    (const Color4f& rhs)
 
 Color4b & Color4b::operator = (const Color4b& rhs)
 {
-	r = rhs.r;
-	g = rhs.g;
-	b = rhs.b;
-	a = rhs.a;
+    r = rhs.r;
+    g = rhs.g;
+    b = rhs.b;
+    a = rhs.a;
     return (*this);
-}	
+}    
 
 //==============================================================================
 //==============================================================================
 
 Stream& operator << (Stream &s, const Color4b&c)
 {
-	s << c.r_as_float() << Stream::fs << c.g_as_float() << Stream::fs << c.b_as_float() << Stream::fs << c.a_as_float();
-	return s;
+    s << c.r_as_float() << Stream::fs << c.g_as_float() << Stream::fs << c.b_as_float() << Stream::fs << c.a_as_float();
+    return s;
 }
 
 Stream& operator >> (Stream &s, Color4b&c)
 {
-	DTfloat r = c.r_as_float(),
+    DTfloat r = c.r_as_float(),
             g = c.g_as_float(),
             b = c.b_as_float(),
             a = c.a_as_float();
     
-	s >> r >> g >> b >> a;
-	
-	c.set_r(r);
-	c.set_g(g);
-	c.set_b(b);
-	c.set_a(a);
-	
-	return s;
+    s >> r >> g >> b >> a;
+    
+    c.set_r(r);
+    c.set_g(g);
+    c.set_b(b);
+    c.set_a(a);
+    
+    return s;
 }
 
 //==============================================================================
@@ -194,22 +194,22 @@ void Color4b::set_a (const DTfloat a_)
 //==============================================================================
 //==============================================================================
 
-DTfloat Color4b::r_as_float (void) 	const
+DTfloat Color4b::r_as_float (void)     const
 {
     return MoreMath::int_to_float(r) / static_cast<DTfloat>(DTUBYTE_MAX);
 }
 
-DTfloat Color4b::g_as_float (void)	const
+DTfloat Color4b::g_as_float (void)    const
 {
     return MoreMath::int_to_float(g) / static_cast<DTfloat>(DTUBYTE_MAX);
 }
 
-DTfloat Color4b::b_as_float (void)	const
+DTfloat Color4b::b_as_float (void)    const
 {
     return MoreMath::int_to_float(b) / static_cast<DTfloat>(DTUBYTE_MAX);
 }
 
-DTfloat Color4b::a_as_float (void)	const
+DTfloat Color4b::a_as_float (void)    const
 {
     return MoreMath::int_to_float(a) / static_cast<DTfloat>(DTUBYTE_MAX);
 }

@@ -3,7 +3,7 @@
 #define DT3_TYPETRAITS
 //==============================================================================
 ///
-///	File: BaseInclude.hpp
+///    File: BaseInclude.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -36,12 +36,12 @@ struct default_value_handler {
 
 template<class U>
 struct default_value_handler<true, U> {
-    static U                    default_value(void) {	return U();						}
+    static U                    default_value(void) {    return U();                        }
 };
 
 template <typename U> struct Info: public default_value_handler<!std::is_abstract<U>::value, U> {
-    static const DTcharacter*	name(void)          {	return U::class_id_static();	}
-    static const DTcharacter*	name_caps(void)     {	return U::class_id_static();	}
+    static const DTcharacter*    name(void)          {    return U::class_id_static();    }
+    static const DTcharacter*    name_caps(void)     {    return U::class_id_static();    }
     enum { isFundamental = 0 };
 };
 
@@ -49,130 +49,130 @@ template <typename U> struct Info: public default_value_handler<!std::is_abstrac
 //==============================================================================
 
 template <typename U> struct Info<U*> {
-    static U*                   default_value(void) {	return (U*) 0;					}
-    static const DTcharacter*	name(void)          {	return U::class_id_static();	}
-    static const DTcharacter*	name_caps(void)     {	return U::class_id_static();	}
+    static U*                   default_value(void) {    return (U*) 0;                    }
+    static const DTcharacter*    name(void)          {    return U::class_id_static();    }
+    static const DTcharacter*    name_caps(void)     {    return U::class_id_static();    }
     enum { isFundamental = 0 };
 };
 
 template <typename U> struct Info<std::shared_ptr<U>> {
-    static std::shared_ptr<U>	default_value(void) {	return NULL;					}
-    static const DTcharacter*	name(void)          {	return U::class_id_static();	}
-    static const DTcharacter*	name_caps(void)     {	return U::class_id_static();	}
+    static std::shared_ptr<U>    default_value(void) {    return NULL;                    }
+    static const DTcharacter*    name(void)          {    return U::class_id_static();    }
+    static const DTcharacter*    name_caps(void)     {    return U::class_id_static();    }
     enum { isFundamental = 0 };
 };
 
 template <> struct Info<void> {
-    static void					default_value(void)	{	return;			}
-    static const DTcharacter*	name(void)          {	return "void";	}
-    static const DTcharacter*	name_caps(void)     {	return "Void";	}
+    static void                    default_value(void)    {    return;            }
+    static const DTcharacter*    name(void)          {    return "void";    }
+    static const DTcharacter*    name_caps(void)     {    return "Void";    }
     enum { isFundamental = 1 };
 };
 
 template <> struct Info<bool> {
-    static bool			default_value(void)	{	return false;	}
-    static const DTcharacter*	name(void)          {	return "bool";	}
-    static const DTcharacter*	name_caps(void)     {	return "Bool";	}
+    static bool            default_value(void)    {    return false;    }
+    static const DTcharacter*    name(void)          {    return "bool";    }
+    static const DTcharacter*    name_caps(void)     {    return "Bool";    }
     enum { isFundamental = 1 };
 };
 
 template <> struct Info<int8_t> {
-    static int8_t				default_value(void)	{	return 0;		}
-    static const DTcharacter*	name(void)          {	return "byte";	}
-    static const DTcharacter*	name_caps(void)     {	return "Byte";	}
+    static int8_t                default_value(void)    {    return 0;        }
+    static const DTcharacter*    name(void)          {    return "byte";    }
+    static const DTcharacter*    name_caps(void)     {    return "Byte";    }
     enum { isFundamental = 1 };
 };
 
 template <> struct Info<int16_t> {
-    static int16_t				default_value(void)	{	return 0;		}
-    static const DTcharacter*	name(void)          {	return "short";	}
-    static const DTcharacter*	name_caps(void)     {	return "Short";	}
+    static int16_t                default_value(void)    {    return 0;        }
+    static const DTcharacter*    name(void)          {    return "short";    }
+    static const DTcharacter*    name_caps(void)     {    return "Short";    }
     enum { isFundamental = 1 };
 };
 
 template <> struct Info<int32_t> {
-    static int32_t				default_value(void)	{	return 0;		}
-    static const DTcharacter*	name(void)          {	return "int";	}
-    static const DTcharacter*	name_caps(void)     {	return "Int";	}
+    static int32_t                default_value(void)    {    return 0;        }
+    static const DTcharacter*    name(void)          {    return "int";    }
+    static const DTcharacter*    name_caps(void)     {    return "Int";    }
     enum { isFundamental = 1 };
 };
 
 template <> struct Info<int64_t> {
-    static int64_t				default_value(void)	{	return 0;		}
-    static const DTcharacter*	name(void)          {	return "int64";	}
-    static const DTcharacter*	name_caps(void)     {	return "Int64";	}
+    static int64_t                default_value(void)    {    return 0;        }
+    static const DTcharacter*    name(void)          {    return "int64";    }
+    static const DTcharacter*    name_caps(void)     {    return "Int64";    }
     enum { isFundamental = 1 };
 };
 
 #if DT3_SIZES_ARE_DISTINCT_TYPES
 template <> struct Info<DTsize> {
-    static DTsize				default_value(void)	{	return 0;		}
-    static const DTcharacter*	name(void)          {	return "size";	}
-    static const DTcharacter*	name_caps(void)     {	return "Size";	}
+    static DTsize                default_value(void)    {    return 0;        }
+    static const DTcharacter*    name(void)          {    return "size";    }
+    static const DTcharacter*    name_caps(void)     {    return "Size";    }
     enum { isFundamental = 1 };
 };
 #endif
 
 template <> struct Info<uint8_t> {
-    static uint8_t				default_value(void)	{	return 0;		}
-    static const DTcharacter*	name(void)          {	return "ubyte";	}
-    static const DTcharacter*	name_caps(void)     {	return "UByte";	}
+    static uint8_t                default_value(void)    {    return 0;        }
+    static const DTcharacter*    name(void)          {    return "ubyte";    }
+    static const DTcharacter*    name_caps(void)     {    return "UByte";    }
     enum { isFundamental = 1 };
 };
 
 template <> struct Info<uint16_t> {
-    static uint16_t				default_value(void)	{	return 0;		}
-    static const DTcharacter*	name(void)          {	return "ushort";}
-    static const DTcharacter*	name_caps(void)     {	return "UShort";}
+    static uint16_t                default_value(void)    {    return 0;        }
+    static const DTcharacter*    name(void)          {    return "ushort";}
+    static const DTcharacter*    name_caps(void)     {    return "UShort";}
     enum { isFundamental = 1 };
 };
 
 template <> struct Info<uint32_t> {
-    static uint32_t				default_value(void)	{	return 0;		}
-    static const DTcharacter*	name(void)          {	return "uint";	}
-    static const DTcharacter*	name_caps(void)     {	return "UInt";	}
+    static uint32_t                default_value(void)    {    return 0;        }
+    static const DTcharacter*    name(void)          {    return "uint";    }
+    static const DTcharacter*    name_caps(void)     {    return "UInt";    }
     enum { isFundamental = 1 };
 };
 
 template <> struct Info<uint64_t> {
-    static uint64_t				default_value(void)	{	return 0;		}
-    static const DTcharacter*	name(void)          {	return "uint64";}
-    static const DTcharacter*	name_caps(void)     {	return "UInt64";}
+    static uint64_t                default_value(void)    {    return 0;        }
+    static const DTcharacter*    name(void)          {    return "uint64";}
+    static const DTcharacter*    name_caps(void)     {    return "UInt64";}
     enum { isFundamental = 1 };
 };
 
 template <> struct Info<DTfloat> {
-    static DTfloat				default_value(void)	{	return 0.0F;	}
-    static const DTcharacter*	name(void)          {	return "float";	}
-    static const DTcharacter*	name_caps(void)     {	return "Float";	}
+    static DTfloat                default_value(void)    {    return 0.0F;    }
+    static const DTcharacter*    name(void)          {    return "float";    }
+    static const DTcharacter*    name_caps(void)     {    return "Float";    }
     enum { isFundamental = 1 };
 };
 
 template <> struct Info<DTdouble> {
-    static DTdouble				default_value(void)	{	return 0.0;		}
-    static const DTcharacter*	name(void)          {	return "double";}
-    static const DTcharacter*	name_caps(void)     {	return "Double";}
+    static DTdouble                default_value(void)    {    return 0.0;        }
+    static const DTcharacter*    name(void)          {    return "double";}
+    static const DTcharacter*    name_caps(void)     {    return "Double";}
     enum { isFundamental = 1 };
 };
 
 template <> struct Info<DTcharacter> {
-    static DTcharacter			default_value(void)	{	return '\0';	}
-    static const DTcharacter*	name(void)          {	return "char";	}
-    static const DTcharacter*	name_caps(void)     {	return "Char";	}
+    static DTcharacter            default_value(void)    {    return '\0';    }
+    static const DTcharacter*    name(void)          {    return "char";    }
+    static const DTcharacter*    name_caps(void)     {    return "Char";    }
     enum { isFundamental = 1 };
 };
 
 template <> struct Info<std::string> {
-    static std::string          default_value(void)	{	return "";		}
-    static const DTcharacter*	name(void)          {	return "string";}
-    static const DTcharacter*	name_caps(void)     {	return "String";}
+    static std::string          default_value(void)    {    return "";        }
+    static const DTcharacter*    name(void)          {    return "string";}
+    static const DTcharacter*    name_caps(void)     {    return "String";}
     enum { isFundamental = 0 };
 };
 
 template <> struct Info<std::wstring> {
-    static std::wstring         default_value(void)	{	return std::wstring();  }
-    static const DTcharacter*	name(void)          {	return "wstring";}
-    static const DTcharacter*	name_caps(void)     {	return "wString";}
+    static std::wstring         default_value(void)    {    return std::wstring();  }
+    static const DTcharacter*    name(void)          {    return "wstring";}
+    static const DTcharacter*    name_caps(void)     {    return "wString";}
     enum { isFundamental = 1 };
 };
 

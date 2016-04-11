@@ -3,7 +3,7 @@
 #define DT3_GUIGRIDLAYOUT
 //==============================================================================
 ///
-///	File: GUIGridLayout.hpp
+///    File: GUIGridLayout.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey, Inc. All rights reserved.
 ///
@@ -67,7 +67,7 @@ class GUIGridLayout: public GUILayout {
 
                                     GUIGridLayout           (void);
                                     GUIGridLayout           (const GUIGridLayout &rhs);
-        GUIGridLayout &				operator =              (const GUIGridLayout &rhs);
+        GUIGridLayout &                operator =              (const GUIGridLayout &rhs);
         virtual                     ~GUIGridLayout          (void);
 
     public:

@@ -3,7 +3,7 @@
 #define DT3_TEXTFILESTREAM
 //==============================================================================
 ///
-///	File: TextFileStream.hpp
+///    File: TextFileStream.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -50,7 +50,7 @@ class TextFileStream: public TextStream {
         virtual                             ~TextFileStream         (void);
 
         public:
-                Stream&                             operator<<              (const Stream::FS)	{	*this << " ";	return *this;	}
+                Stream&                             operator<<              (const Stream::FS)    {    *this << " ";    return *this;    }
                 Stream&                             operator<<              (const bool n);
                 Stream&                             operator<<              (const int8_t n);
                 Stream&                             operator<<              (const int16_t n);
@@ -142,11 +142,11 @@ class TextFileStream: public TextStream {
 
                 /// Length of the stream
                 /// \return Length of the stream
-                DTsize                              length                  (void) const			{	return _length;		}
+                DTsize                              length                  (void) const            {    return _length;        }
 
                 /// Returns the start of the stream if opening a fragment
                 /// \return Start position
-                DTsize                              start                   (void) const			{	return _start;		}
+                DTsize                              start                   (void) const            {    return _start;        }
 
                 /// Returns the file handle associated with the stream
                 /// \return file handle
@@ -176,7 +176,7 @@ class TextFileStream: public TextStream {
 
         static const DTsize TEMP_BUFFER_SIZE = 1024;
 
-                void                                eat_whitespace			(void);
+                void                                eat_whitespace            (void);
                 void                                read_float_string       (DTcharacter buffer[TEMP_BUFFER_SIZE]);
 };
 

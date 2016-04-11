@@ -3,7 +3,7 @@
 #define DT3_MATRIX4
 //==============================================================================
 ///
-///	File: Matrix4.hpp
+///    File: Matrix4.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -43,77 +43,77 @@ class Matrix4 {
         DEFINE_TYPE_SIMPLE_BASE(Matrix4)
 
 
-                                Matrix4					(void);
+                                Matrix4                    (void);
 
-        explicit                Matrix4					(const Matrix2 &rhs);
-        explicit                Matrix4					(const Matrix2 &o, const Vector2 &t);
-        explicit                Matrix4					(const Matrix2 &o, const Vector2 &t, DTfloat s);
-        explicit                Matrix4					(const Matrix2 &o, const Vector3 &t);
-        explicit                Matrix4					(const Matrix2 &o, const Vector3 &t, DTfloat s);
+        explicit                Matrix4                    (const Matrix2 &rhs);
+        explicit                Matrix4                    (const Matrix2 &o, const Vector2 &t);
+        explicit                Matrix4                    (const Matrix2 &o, const Vector2 &t, DTfloat s);
+        explicit                Matrix4                    (const Matrix2 &o, const Vector3 &t);
+        explicit                Matrix4                    (const Matrix2 &o, const Vector3 &t, DTfloat s);
 
-        explicit                Matrix4					(const Matrix3 &rhs);
-        explicit                Matrix4					(const Matrix3 &o, const Vector3 &t);
-        explicit                Matrix4					(const Matrix3 &o, const Vector3 &t, DTfloat s);
-        explicit                Matrix4					(const Matrix3 &o, const Vector3 &t, const Vector3 &s);
+        explicit                Matrix4                    (const Matrix3 &rhs);
+        explicit                Matrix4                    (const Matrix3 &o, const Vector3 &t);
+        explicit                Matrix4                    (const Matrix3 &o, const Vector3 &t, DTfloat s);
+        explicit                Matrix4                    (const Matrix3 &o, const Vector3 &t, const Vector3 &s);
 
-                                Matrix4					(const Matrix4 &rhs);
+                                Matrix4                    (const Matrix4 &rhs);
 
-        explicit                Matrix4					(const Quaternion &rhs);
-        explicit                Matrix4					(const Quaternion &o, const Vector3 &t);
-        explicit                Matrix4					(const Quaternion &o, const Vector3 &t, DTfloat s);
+        explicit                Matrix4                    (const Quaternion &rhs);
+        explicit                Matrix4                    (const Quaternion &o, const Vector3 &t);
+        explicit                Matrix4                    (const Quaternion &o, const Vector3 &t, DTfloat s);
 
-        explicit                Matrix4					(   const DTfloat m11,const DTfloat m12,const DTfloat m13,const DTfloat m14,
+        explicit                Matrix4                    (   const DTfloat m11,const DTfloat m12,const DTfloat m13,const DTfloat m14,
                                                             const DTfloat m21,const DTfloat m22,const DTfloat m23,const DTfloat m24,
                                                             const DTfloat m31,const DTfloat m32,const DTfloat m33,const DTfloat m34,
                                                             const DTfloat m41,const DTfloat m42,const DTfloat m43,const DTfloat m44);
-        explicit                Matrix4					(const Vector3 &vx, const Vector3 &vy, const Vector3 &vz);
-        explicit                Matrix4					(const Vector3 &translation);
+        explicit                Matrix4                    (const Vector3 &vx, const Vector3 &vy, const Vector3 &vz);
+        explicit                Matrix4                    (const Vector3 &translation);
 
-        Matrix4 &               operator =				(const Matrix4 &rhs);
+        Matrix4 &               operator =                (const Matrix4 &rhs);
 
         inline                  ~Matrix4                (void) {}
 
     public:
 
-        bool               operator ==				(const Matrix4& rhs) const;
-        bool               operator !=				(const Matrix4& rhs) const;
+        bool               operator ==                (const Matrix4& rhs) const;
+        bool               operator !=                (const Matrix4& rhs) const;
 
-        Matrix4 &               operator *=				(const DTfloat rhs);
-        Matrix4 &               operator /=				(const DTfloat rhs);
-        Matrix4 &               operator *=				(const Matrix4 &rhs);
+        Matrix4 &               operator *=                (const DTfloat rhs);
+        Matrix4 &               operator /=                (const DTfloat rhs);
+        Matrix4 &               operator *=                (const Matrix4 &rhs);
 
         /// Clear Matrix to all zero
-        void                    clear					(void);
+        void                    clear                    (void);
 
         /// Calculate Determinant for matrix
         /// \return Determinant
-        DTfloat                 determinant				(void) const;
+        DTfloat                 determinant                (void) const;
 
         /// Return the inverse of the matrix
         /// \return inversed Matrix
-        Matrix4                 inversed				(void) const;
+        Matrix4                 inversed                (void) const;
 
         /// Calculate the inverse of the matrix
-        void                    inverse					(void)              {	*this = inversed();     }
+        void                    inverse                    (void)              {    *this = inversed();     }
 
         /// Return the transpose of the matrix
         /// \return transposed Matrix
-        Matrix4                 transposed				(void) const;
+        Matrix4                 transposed                (void) const;
 
         /// Calculate the transpose of the matrix
-        void                    transpose				(void)              {	*this = transposed();   }
+        void                    transpose                (void)              {    *this = transposed();   }
 
         /// X Axis from the transform
         /// \return X Axis
-        Vector3                 x_axis					(void) const		{	return {_m11, _m21, _m31};		}
+        Vector3                 x_axis                    (void) const        {    return {_m11, _m21, _m31};        }
 
         /// Y Axis from the transform
         /// \return Y Axis
-        Vector3                 y_axis					(void) const		{	return {_m12, _m22, _m32};		}
+        Vector3                 y_axis                    (void) const        {    return {_m12, _m22, _m32};        }
 
         /// Z Axis from the transform
         /// \return Z Axis
-        Vector3                 z_axis					(void) const		{	return {_m13, _m23, _m33};		}
+        Vector3                 z_axis                    (void) const        {    return {_m13, _m23, _m33};        }
 
         /// Return the orthogonalized matrix
         /// \return Orthogonalized Matrix
@@ -162,20 +162,20 @@ class Matrix4 {
         /// Description
         /// \param param description
         /// \return description
-        static const Matrix4 &	identity                (void);
+        static const Matrix4 &    identity                (void);
 
         /// Description
         /// \param param description
         /// \return description
-        static const Matrix4 &	zero                    (void);
+        static const Matrix4 &    zero                    (void);
 
     public:
         union {
             struct {
-                DTfloat			_m11, _m21, _m31, _m41;		// xx xy xz 0
-                DTfloat			_m12, _m22, _m32, _m42;		// yx yy yz 0
-                DTfloat			_m13, _m23, _m33, _m43;		// zx zy zz 0
-                DTfloat			_m14, _m24, _m34, _m44;		// tx ty tz 1
+                DTfloat            _m11, _m21, _m31, _m41;        // xx xy xz 0
+                DTfloat            _m12, _m22, _m32, _m42;        // yx yy yz 0
+                DTfloat            _m13, _m23, _m33, _m43;        // zx zy zz 0
+                DTfloat            _m14, _m24, _m34, _m44;        // tx ty tz 1
             };
             DTfloat _m[4][4];
             DTfloat _mi[16];
@@ -213,9 +213,9 @@ Matrix4 operator - (const Matrix4 &a, const Matrix4 &b);
 namespace TypeTraitsInfo {
 
 template <> struct Info<Matrix4> {
-    static Matrix4				default_value(void)	{	return Matrix4::identity();			}
-    static const DTcharacter*	name(void)          {	return "Matrix4";}
-    static const DTcharacter*	name_caps(void)     {	return "Matrix4";}
+    static Matrix4                default_value(void)    {    return Matrix4::identity();            }
+    static const DTcharacter*    name(void)          {    return "Matrix4";}
+    static const DTcharacter*    name_caps(void)     {    return "Matrix4";}
     enum { isFundamental = 0 };
 };
 

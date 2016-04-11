@@ -3,7 +3,7 @@
 #define DT3_SCRIPTINGCOMPONENTSTOCOLOR
 //==============================================================================
 ///
-///	File: ScriptingComponentsToColor.hpp
+///    File: ScriptingComponentsToColor.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -29,20 +29,20 @@ class ScriptingComponentsToColor: public ScriptingBase {
         DEFINE_CREATE_AND_CLONE
         DEFINE_PLUG_NODE
 
-                                        ScriptingComponentsToColor		(void);
-                                        ScriptingComponentsToColor		(const ScriptingComponentsToColor &rhs);
-        ScriptingComponentsToColor &	operator =						(const ScriptingComponentsToColor &rhs);
-        virtual							~ScriptingComponentsToColor     (void);
+                                        ScriptingComponentsToColor        (void);
+                                        ScriptingComponentsToColor        (const ScriptingComponentsToColor &rhs);
+        ScriptingComponentsToColor &    operator =                        (const ScriptingComponentsToColor &rhs);
+        virtual                            ~ScriptingComponentsToColor     (void);
 
-        virtual void					archive                         (const std::shared_ptr<Archive> &archive);
+        virtual void                    archive                         (const std::shared_ptr<Archive> &archive);
 
     public:
 //        /// Called to initialize the object
-//        virtual void					initialize                      (void) noexcept(true);
+//        virtual void                    initialize                      (void) noexcept(true);
 
         /// Computes the value of the node
         /// \param plug plug to compute
-        bool						compute                         (const PlugBase *plug);
+        bool                        compute                         (const PlugBase *plug);
 
     private:
         Plug<DTfloat>                   _in_r;

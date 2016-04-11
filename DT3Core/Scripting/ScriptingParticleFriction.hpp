@@ -3,7 +3,7 @@
 #define DT3_SCRIPTINGPARTICLEFRICTION
 //==============================================================================
 ///
-///	File: ScriptingParticleFriction.hpp
+///    File: ScriptingParticleFriction.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -35,25 +35,25 @@ class ScriptingParticleFriction: public ScriptingBase {
         DEFINE_CREATE_AND_CLONE
         DEFINE_PLUG_NODE
 
-                                    ScriptingParticleFriction	(void);
-                                    ScriptingParticleFriction	(const ScriptingParticleFriction &rhs);
-        ScriptingParticleFriction &	operator =					(const ScriptingParticleFriction &rhs);
-        virtual						~ScriptingParticleFriction	(void);
+                                    ScriptingParticleFriction    (void);
+                                    ScriptingParticleFriction    (const ScriptingParticleFriction &rhs);
+        ScriptingParticleFriction &    operator =                    (const ScriptingParticleFriction &rhs);
+        virtual                        ~ScriptingParticleFriction    (void);
 
         virtual void                archive                 (const std::shared_ptr<Archive> &archive);
 
     public:
         /// Computes the value of the node
         /// \param plug plug to compute
-        bool					compute					(const PlugBase *plug);
+        bool                    compute                    (const PlugBase *plug);
 
         DEFINE_ACCESSORS(drag, set_drag, DTfloat, _drag);
 
     private:
         Plug<DTfloat>                                       _drag;
 
-        Plug<std::shared_ptr<Particles>>		_in;
-        Plug<std::shared_ptr<Particles>>		_out;
+        Plug<std::shared_ptr<Particles>>        _in;
+        Plug<std::shared_ptr<Particles>>        _out;
 
 };
 

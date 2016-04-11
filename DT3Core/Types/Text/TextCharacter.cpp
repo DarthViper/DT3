@@ -1,12 +1,12 @@
 //==============================================================================
-///	
-///	File: TextCharacter.cpp
-///	
+///    
+///    File: TextCharacter.cpp
+///    
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
 /// This file is subject to the terms and conditions defined in
 /// file 'LICENSE.txt', which is part of this source code package.
-///	
+///    
 //==============================================================================
 
 #include "DT3Core/Types/Text/TextCharacter.hpp"
@@ -60,7 +60,7 @@ TextCharacter::TextCharacter (const TextCharacter &rhs)
 TextCharacter& TextCharacter::operator = (const TextCharacter &rhs)
 {
     // Make sure we are not assigning the class to itself
-    if (&rhs != this) {		        
+    if (&rhs != this) {                
         _justification = rhs._justification;
         _tab_size = rhs._tab_size;
         _baseline = rhs._baseline;

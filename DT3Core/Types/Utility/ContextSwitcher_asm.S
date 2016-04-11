@@ -1,6 +1,6 @@
 //==============================================================================
 ///
-///	File: ContextSwitcher.hpp
+///    File: ContextSwitcher.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -31,97 +31,97 @@
 #if DT3_NEED_INTEL32
 .globl set_m_context
 set_m_context:
-        movl	4(%esp), %eax
+        movl    4(%esp), %eax
 
-        movl	8(%eax), %fs
-        movl	12(%eax), %es
-        movl	16(%eax), %ds
-        movl	76(%eax), %ss
-        movl	20(%eax), %edi
-        movl	24(%eax), %esi
-        movl	28(%eax), %ebp
-        movl	36(%eax), %ebx
-        movl	40(%eax), %edx
-        movl	44(%eax), %ecx
+        movl    8(%eax), %fs
+        movl    12(%eax), %es
+        movl    16(%eax), %ds
+        movl    76(%eax), %ss
+        movl    20(%eax), %edi
+        movl    24(%eax), %esi
+        movl    28(%eax), %ebp
+        movl    36(%eax), %ebx
+        movl    40(%eax), %edx
+        movl    44(%eax), %ecx
 
-        movl	72(%eax), %esp
-        pushl	60(%eax)	/* new %eip */
-        movl	48(%eax), %eax
+        movl    72(%eax), %esp
+        pushl    60(%eax)    /* new %eip */
+        movl    48(%eax), %eax
         ret
 
 .globl m_context
 m_context:
-        movl	4(%esp), %eax
+        movl    4(%esp), %eax
 
-        movl	%fs, 8(%eax)
-        movl	%es, 12(%eax)
-        movl	%ds, 16(%eax)
-        movl	%ss, 76(%eax)
-        movl	%edi, 20(%eax)
-        movl	%esi, 24(%eax)
-        movl	%ebp, 28(%eax)
-        movl	%ebx, 36(%eax)
-        movl	%edx, 40(%eax)
-        movl	%ecx, 44(%eax)
+        movl    %fs, 8(%eax)
+        movl    %es, 12(%eax)
+        movl    %ds, 16(%eax)
+        movl    %ss, 76(%eax)
+        movl    %edi, 20(%eax)
+        movl    %esi, 24(%eax)
+        movl    %ebp, 28(%eax)
+        movl    %ebx, 36(%eax)
+        movl    %edx, 40(%eax)
+        movl    %ecx, 44(%eax)
 
-        movl	$1, 48(%eax)	/* %eax */
-        movl	(%esp), %ecx	/* %eip */
-        movl	%ecx, 60(%eax)
-        leal	4(%esp), %ecx	/* %esp */
-        movl	%ecx, 72(%eax)
+        movl    $1, 48(%eax)    /* %eax */
+        movl    (%esp), %ecx    /* %eip */
+        movl    %ecx, 60(%eax)
+        leal    4(%esp), %ecx    /* %esp */
+        movl    %ecx, 72(%eax)
 
-        movl	44(%eax), %ecx	/* restore %ecx */
-        movl	$0, %eax
+        movl    44(%eax), %ecx    /* restore %ecx */
+        movl    $0, %eax
         ret
 #endif
 
 #if DT3_NEED_INTEL64
 .globl set_m_context
 set_m_context:
-        movq	16(%rdi), %rsi
-        movq	24(%rdi), %rdx
-        movq	32(%rdi), %rcx
-        movq	40(%rdi), %r8
-        movq	48(%rdi), %r9
-        movq	56(%rdi), %rax
-        movq	64(%rdi), %rbx
-        movq	72(%rdi), %rbp
-        movq	80(%rdi), %r10
-        movq	88(%rdi), %r11
-        movq	96(%rdi), %r12
-        movq	104(%rdi), %r13
-        movq	112(%rdi), %r14
-        movq	120(%rdi), %r15
-        movq	184(%rdi), %rsp
-        pushq	160(%rdi)	/* new %eip */
-        movq	8(%rdi), %rdi
+        movq    16(%rdi), %rsi
+        movq    24(%rdi), %rdx
+        movq    32(%rdi), %rcx
+        movq    40(%rdi), %r8
+        movq    48(%rdi), %r9
+        movq    56(%rdi), %rax
+        movq    64(%rdi), %rbx
+        movq    72(%rdi), %rbp
+        movq    80(%rdi), %r10
+        movq    88(%rdi), %r11
+        movq    96(%rdi), %r12
+        movq    104(%rdi), %r13
+        movq    112(%rdi), %r14
+        movq    120(%rdi), %r15
+        movq    184(%rdi), %rsp
+        pushq    160(%rdi)    /* new %eip */
+        movq    8(%rdi), %rdi
         ret
 
 .globl m_context
 m_context:
-        movq	%rdi, 8(%rdi)
-        movq	%rsi, 16(%rdi)
-        movq	%rdx, 24(%rdi)
-        movq	%rcx, 32(%rdi)
-        movq	%r8, 40(%rdi)
-        movq	%r9, 48(%rdi)
-        movq	$1, 56(%rdi)	/* %rax */
-        movq	%rbx, 64(%rdi)
-        movq	%rbp, 72(%rdi)
-        movq	%r10, 80(%rdi)
-        movq	%r11, 88(%rdi)
-        movq	%r12, 96(%rdi)
-        movq	%r13, 104(%rdi)
-        movq	%r14, 112(%rdi)
-        movq	%r15, 120(%rdi)
+        movq    %rdi, 8(%rdi)
+        movq    %rsi, 16(%rdi)
+        movq    %rdx, 24(%rdi)
+        movq    %rcx, 32(%rdi)
+        movq    %r8, 40(%rdi)
+        movq    %r9, 48(%rdi)
+        movq    $1, 56(%rdi)    /* %rax */
+        movq    %rbx, 64(%rdi)
+        movq    %rbp, 72(%rdi)
+        movq    %r10, 80(%rdi)
+        movq    %r11, 88(%rdi)
+        movq    %r12, 96(%rdi)
+        movq    %r13, 104(%rdi)
+        movq    %r14, 112(%rdi)
+        movq    %r15, 120(%rdi)
 
-        movq	(%rsp), %rcx	/* %rip */
-        movq	%rcx, 160(%rdi)
-        leaq	8(%rsp), %rcx	/* %rsp */
-        movq	%rcx, 184(%rdi)
+        movq    (%rsp), %rcx    /* %rip */
+        movq    %rcx, 160(%rdi)
+        leaq    8(%rsp), %rcx    /* %rsp */
+        movq    %rcx, 184(%rdi)
 
-        movq	32(%rdi), %rcx	/* restore %rcx */
-        movq	$0, %rax
+        movq    32(%rdi), %rcx    /* restore %rcx */
+        movq    $0, %rax
         ret
 #endif
 
@@ -133,20 +133,20 @@ _set_m_context:
 .globl set_m_context
 set_m_context:
 #endif
-        ldr	r1, [r0,#4]
-        ldr	r2, [r0,#8]
-        ldr	r3, [r0,#12]
-        ldr	r4, [r0,#16]
-        ldr	r5, [r0,#20]
-        ldr	r6, [r0,#24]
-        ldr	r7, [r0,#28]
-        ldr	r8, [r0,#32]
-        ldr	r9, [r0,#36]
-        ldr	r10, [r0,#40]
-        ldr	r11, [r0,#44]
-        ldr	r12, [r0,#48]
-        ldr	r13, [r0,#52]
-        ldr	r14, [r0,#56]
+        ldr    r1, [r0,#4]
+        ldr    r2, [r0,#8]
+        ldr    r3, [r0,#12]
+        ldr    r4, [r0,#16]
+        ldr    r5, [r0,#20]
+        ldr    r6, [r0,#24]
+        ldr    r7, [r0,#28]
+        ldr    r8, [r0,#32]
+        ldr    r9, [r0,#36]
+        ldr    r10, [r0,#40]
+        ldr    r11, [r0,#44]
+        ldr    r12, [r0,#48]
+        ldr    r13, [r0,#52]
+        ldr    r14, [r0,#56]
 
     vldr.64 d0,[r0,#60]
     vldr.64 d1,[r0,#68]
@@ -184,8 +184,8 @@ set_m_context:
     vldr.64 d31,[r0,#308]
 #endif
 
-        ldr	r0, [r0]
-        mov	pc, lr
+        ldr    r0, [r0]
+        mov    pc, lr
 
 #if defined(__APPLE__)
 .globl _m_context
@@ -194,20 +194,20 @@ _m_context:
 .globl m_context
 m_context:
 #endif
-        str	r1, [r0,#4]
-        str	r2, [r0,#8]
-        str	r3, [r0,#12]
-        str	r4, [r0,#16]
-        str	r5, [r0,#20]
-        str	r6, [r0,#24]
-        str	r7, [r0,#28]
-        str	r8, [r0,#32]
-        str	r9, [r0,#36]
-        str	r10, [r0,#40]
-        str	r11, [r0,#44]
-        str	r12, [r0,#48]
-        str	r13, [r0,#52]
-        str	r14, [r0,#56]
+        str    r1, [r0,#4]
+        str    r2, [r0,#8]
+        str    r3, [r0,#12]
+        str    r4, [r0,#16]
+        str    r5, [r0,#20]
+        str    r6, [r0,#24]
+        str    r7, [r0,#28]
+        str    r8, [r0,#32]
+        str    r9, [r0,#36]
+        str    r10, [r0,#40]
+        str    r11, [r0,#44]
+        str    r12, [r0,#48]
+        str    r13, [r0,#52]
+        str    r14, [r0,#56]
 
     vstr.64 d0,[r0,#60]
     vstr.64 d1,[r0,#68]
@@ -246,11 +246,11 @@ m_context:
 #endif
 
         /* store 1 as r0-to-restore */
-        mov	r1, #1
-        str	r1, [r0]
+        mov    r1, #1
+        str    r1, [r0]
         /* return 0 */
-        mov	r0, #0
-        mov	pc, lr
+        mov    r0, #0
+        mov    pc, lr
 
 #endif
 

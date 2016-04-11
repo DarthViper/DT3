@@ -3,7 +3,7 @@
 #define EDLEVELLIBRARYDIALOG
 //==============================================================================
 ///
-///	File: EdLevelLibraryDialog.hpp
+///    File: EdLevelLibraryDialog.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -39,7 +39,7 @@ class EdLevelLibraryDialog: public QDialog
     Q_OBJECT
 
     public:
-                                        EdLevelLibraryDialog		(QWidget *parent, std::string &name_text, std::string &description_text);
+                                        EdLevelLibraryDialog        (QWidget *parent, std::string &name_text, std::string &description_text);
                                         ~EdLevelLibraryDialog       (void);
 
     public slots:

@@ -1,12 +1,12 @@
 //==============================================================================
-///	
-///	File: SphericalHarmonics.cpp
-///	
+///    
+///    File: SphericalHarmonics.cpp
+///    
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
 /// This file is subject to the terms and conditions defined in
 /// file 'LICENSE.txt', which is part of this source code package.
-///	
+///    
 //==============================================================================
 /// Refer to the Sony paper:
 /// http://www.research.scea.com/gdc2003/spherical-harmonic-lighting.pdf
@@ -26,17 +26,17 @@ namespace DT3 {
 //==============================================================================
 
 SphericalHarmonics::SphericalHarmonics (void)
-	:	_num_bands			(0),
-		_num_samples		(0),
-		_num_samples_sqrt	(0)
+    :    _num_bands            (0),
+        _num_samples        (0),
+        _num_samples_sqrt    (0)
 {
 
 }
-	
+    
 SphericalHarmonics::~SphericalHarmonics (void)
 {
-	clear_spherical_samples ();
-	clear_coefficients ();
+    clear_spherical_samples ();
+    clear_coefficients ();
 }
 
 //==============================================================================
@@ -71,28 +71,28 @@ SphericalHarmonics::~SphericalHarmonics (void)
 
 DTfloat SphericalHarmonics::legendre(int32_t l,int32_t m, DTfloat x)
 {
-	// evaluate an Associated legendre Polynomial legendre(l,m,x) at x
-	DTfloat pmm = 1.0F;
-	if(m>0) {
-		DTfloat somx2 = std::sqrt((1.0F-x)*(1.0F+x));
-		DTfloat fact = 1.0F;
-		for(int32_t i=1; i<=m; i++) {
-			pmm *= (-fact) * somx2;
-			fact += 2.0F;
-		}
-	}
-	if(l==m) return pmm;
-	
-	DTfloat pmmp1 = x * (2.0F*m+1.0F) * pmm;
-	if(l==m+1) return pmmp1;
-	
-	DTfloat pll = 0.0F;
-	for(int32_t ll=m+2; ll<=l; ++ll) {
-		pll = ( (2.0F*ll-1.0F)*x*pmmp1-(ll+m-1.0F)*pmm ) / (ll-m);
-		pmm = pmmp1;
-		pmmp1 = pll;
-	}
-	return pll;
+    // evaluate an Associated legendre Polynomial legendre(l,m,x) at x
+    DTfloat pmm = 1.0F;
+    if(m>0) {
+        DTfloat somx2 = std::sqrt((1.0F-x)*(1.0F+x));
+        DTfloat fact = 1.0F;
+        for(int32_t i=1; i<=m; i++) {
+            pmm *= (-fact) * somx2;
+            fact += 2.0F;
+        }
+    }
+    if(l==m) return pmm;
+    
+    DTfloat pmmp1 = x * (2.0F*m+1.0F) * pmm;
+    if(l==m+1) return pmmp1;
+    
+    DTfloat pll = 0.0F;
+    for(int32_t ll=m+2; ll<=l; ++ll) {
+        pll = ( (2.0F*ll-1.0F)*x*pmmp1-(ll+m-1.0F)*pmm ) / (ll-m);
+        pmm = pmmp1;
+        pmmp1 = pll;
+    }
+    return pll;
 }
 
 
@@ -102,9 +102,9 @@ DTfloat SphericalHarmonics::legendre(int32_t l,int32_t m, DTfloat x)
 
 DTfloat SphericalHarmonics::legendre_scale (int32_t l, int32_t m)
 {
-	// renormalisation constant for sH function
-	DTfloat temp = ((2.0F * l + 1.0F) * MoreMath::factorial(l-m)) / (4.0F * PI * MoreMath::factorial(l+m));
-	return std::sqrt(temp);
+    // renormalisation constant for sH function
+    DTfloat temp = ((2.0F * l + 1.0F) * MoreMath::factorial(l-m)) / (4.0F * PI * MoreMath::factorial(l+m));
+    return std::sqrt(temp);
 }
 
 //==============================================================================
@@ -127,16 +127,16 @@ DTfloat SphericalHarmonics::legendre_scale (int32_t l, int32_t m)
 
 DTfloat SphericalHarmonics::sH(int32_t l, int32_t m, DTfloat theta, DTfloat phi)
 {
-	// Return a point sample of a Spherical Harmonic basis function
-	// l is the band, range [0..N]
-	// m in the range [-l..l]
-	// theta in the range [0..Pi]
-	// phi in the range [0..2*Pi]
-	static const DTfloat sqrt2 = std::sqrt(2.0F);
-	
-	if(m==0) return legendre_scale(l,0) * legendre(l,m, std::cos(theta));
-	else if(m>0) return sqrt2 * legendre_scale(l,m) * std::cos(m*phi) * legendre(l,m,std::cos(theta));
-	else return sqrt2 * legendre_scale(l,-m) * std::sin(-m*phi) * legendre(l,-m,std::cos(theta));
+    // Return a point sample of a Spherical Harmonic basis function
+    // l is the band, range [0..N]
+    // m in the range [-l..l]
+    // theta in the range [0..Pi]
+    // phi in the range [0..2*Pi]
+    static const DTfloat sqrt2 = std::sqrt(2.0F);
+    
+    if(m==0) return legendre_scale(l,0) * legendre(l,m, std::cos(theta));
+    else if(m>0) return sqrt2 * legendre_scale(l,m) * std::cos(m*phi) * legendre(l,m,std::cos(theta));
+    else return sqrt2 * legendre_scale(l,-m) * std::sin(-m*phi) * legendre(l,-m,std::cos(theta));
 }
 
 //==============================================================================
@@ -146,64 +146,64 @@ DTfloat SphericalHarmonics::sH(int32_t l, int32_t m, DTfloat theta, DTfloat phi)
 
 void SphericalHarmonics::build_spherical_samples(int32_t num_bands, int32_t num_samples)
 {
-	
-	clear_spherical_samples();
-	
-	_num_bands = num_bands;
-	_num_samples_sqrt = (int32_t) std::sqrt(static_cast<DTfloat>(num_samples));
-	_num_samples = _num_samples_sqrt * _num_samples_sqrt;
+    
+    clear_spherical_samples();
+    
+    _num_bands = num_bands;
+    _num_samples_sqrt = (int32_t) std::sqrt(static_cast<DTfloat>(num_samples));
+    _num_samples = _num_samples_sqrt * _num_samples_sqrt;
 
-	// allocate Samples
-	_samples.resize(_num_samples);
-	for (int32_t k = 0; k < _num_samples; ++k) {
-		_samples[k]._sph.clear();
-		_samples[k]._vec.clear();
-		_samples[k]._coeff.resize(num_coefficients());
-		
-		int32_t num_coeff = num_coefficients();
-		for (int32_t j = 0; j < num_coeff; ++j)
-			_samples[k]._coeff[j] = 0.0F;
-	}
-	
-	// fill an N*N*2 array with uniformly distributed
-	// _samples across the sphere using jittered stratification
-	
-	int32_t i=0; // array index
-	DTfloat oneoverN = 1.0F/_num_samples_sqrt;
-	
-	for(int32_t a = 0; a < _num_samples_sqrt; a++) {
-		for(int32_t b = 0; b < _num_samples_sqrt; b++) {
-			
-			// generate unbiased distribution of spherical coords
-			DTfloat x = (a + MoreMath::random_float()) * oneoverN; // do not reuse results
-			DTfloat y = (b + MoreMath::random_float()) * oneoverN; // each sample must be random
-			
-			// Mapping [0..1,0..1] random numbers into spherical coordinates
-			DTfloat theta = 2.0F * std::acos(std::sqrt(1.0F - x));
-			DTfloat phi = TWO_PI * y;
-			
-			// Angle representation
-			ASSERT(i>= 0 && i < _num_samples);
+    // allocate Samples
+    _samples.resize(_num_samples);
+    for (int32_t k = 0; k < _num_samples; ++k) {
+        _samples[k]._sph.clear();
+        _samples[k]._vec.clear();
+        _samples[k]._coeff.resize(num_coefficients());
+        
+        int32_t num_coeff = num_coefficients();
+        for (int32_t j = 0; j < num_coeff; ++j)
+            _samples[k]._coeff[j] = 0.0F;
+    }
+    
+    // fill an N*N*2 array with uniformly distributed
+    // _samples across the sphere using jittered stratification
+    
+    int32_t i=0; // array index
+    DTfloat oneoverN = 1.0F/_num_samples_sqrt;
+    
+    for(int32_t a = 0; a < _num_samples_sqrt; a++) {
+        for(int32_t b = 0; b < _num_samples_sqrt; b++) {
+            
+            // generate unbiased distribution of spherical coords
+            DTfloat x = (a + MoreMath::random_float()) * oneoverN; // do not reuse results
+            DTfloat y = (b + MoreMath::random_float()) * oneoverN; // each sample must be random
+            
+            // Mapping [0..1,0..1] random numbers into spherical coordinates
+            DTfloat theta = 2.0F * std::acos(std::sqrt(1.0F - x));
+            DTfloat phi = TWO_PI * y;
+            
+            // Angle representation
+            ASSERT(i>= 0 && i < _num_samples);
             _samples[i]._sph = {theta,phi,1.0F};
-			
-			// Unit vector representation
+            
+            // Unit vector representation
             Vector3 vec {std::sin(theta) * std::cos(phi), std::sin(theta) * std::sin(phi), std::cos(theta)};
-			_samples[i]._vec = vec;
-			
-			// precompute all sH coefficients for this sample
-			for(int32_t l=0; l<_num_bands; ++l) {
-				for(int32_t m=-l; m<=l; ++m) {
-					int32_t index = l*(l+1)+m;
-					
-					ASSERT(index>= 0 && index < num_coefficients());
-					_samples[i]._coeff[index] = sH(l,m,theta,phi);
-				}
-			}
-			
-			++i;
-			
-		} // a
-	} // b
+            _samples[i]._vec = vec;
+            
+            // precompute all sH coefficients for this sample
+            for(int32_t l=0; l<_num_bands; ++l) {
+                for(int32_t m=-l; m<=l; ++m) {
+                    int32_t index = l*(l+1)+m;
+                    
+                    ASSERT(index>= 0 && index < num_coefficients());
+                    _samples[i]._coeff[index] = sH(l,m,theta,phi);
+                }
+            }
+            
+            ++i;
+            
+        } // a
+    } // b
 }
 
 //==============================================================================
@@ -212,35 +212,35 @@ void SphericalHarmonics::build_spherical_samples(int32_t num_bands, int32_t num_
 
 void SphericalHarmonics::build_coefficients(Polar_Function fn)
 {
-	// allocate results
-	clear_coefficients();
-	_coeff.resize(num_coefficients());
+    // allocate results
+    clear_coefficients();
+    _coeff.resize(num_coefficients());
 
-	const DTfloat weight = 4.0F * PI;
-	// for each sample
-	for(int32_t i = 0; i < _num_samples; ++i) {
-		DTfloat theta = _samples[i]._sph.x;
-		DTfloat phi = _samples[i]._sph.y;
-		
-		int32_t num_coeff = num_coefficients();
-		for(int32_t n = 0; n < num_coeff; ++n) {
-			_coeff[n] += fn(theta,phi) * _samples[i]._coeff[n];
-		}
-	}
-	
-	// divide the _coeff by weight and number of samples
-	DTfloat factor = weight / _num_samples;
-	int32_t num_coeff = num_coefficients();
-	for(int32_t i = 0; i < num_coeff; ++i) {
-		_coeff[i] = _coeff[i] * factor;
-	}
+    const DTfloat weight = 4.0F * PI;
+    // for each sample
+    for(int32_t i = 0; i < _num_samples; ++i) {
+        DTfloat theta = _samples[i]._sph.x;
+        DTfloat phi = _samples[i]._sph.y;
+        
+        int32_t num_coeff = num_coefficients();
+        for(int32_t n = 0; n < num_coeff; ++n) {
+            _coeff[n] += fn(theta,phi) * _samples[i]._coeff[n];
+        }
+    }
+    
+    // divide the _coeff by weight and number of samples
+    DTfloat factor = weight / _num_samples;
+    int32_t num_coeff = num_coefficients();
+    for(int32_t i = 0; i < num_coeff; ++i) {
+        _coeff[i] = _coeff[i] * factor;
+    }
 }
 
 //==============================================================================
 /// Main routines for setting up the sH coefficients. Takes an uninitialized
 /// 2D array and the size of one edge of the 2D array.
 //==============================================================================
-		
+        
 void SphericalHarmonics::clear_spherical_samples (void)
 {
     _samples.resize(0);
@@ -249,7 +249,7 @@ void SphericalHarmonics::clear_spherical_samples (void)
 //==============================================================================
 //==============================================================================
 
-void SphericalHarmonics::clear_coefficients		(void)
+void SphericalHarmonics::clear_coefficients        (void)
 {
     _coeff.resize(0);
 }

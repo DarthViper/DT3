@@ -3,7 +3,7 @@
 #define DT3_SCRIPTINGPARTICLEREPEL
 //==============================================================================
 ///
-///	File: ScriptingParticleRepel.hpp
+///    File: ScriptingParticleRepel.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -35,10 +35,10 @@ class ScriptingParticleRepel: public ScriptingBase {
         DEFINE_CREATE_AND_CLONE
         DEFINE_PLUG_NODE
 
-                                    ScriptingParticleRepel	(void);
-                                    ScriptingParticleRepel	(const ScriptingParticleRepel &rhs);
-        ScriptingParticleRepel &	operator =				(const ScriptingParticleRepel &rhs);
-        virtual						~ScriptingParticleRepel	(void);
+                                    ScriptingParticleRepel    (void);
+                                    ScriptingParticleRepel    (const ScriptingParticleRepel &rhs);
+        ScriptingParticleRepel &    operator =                (const ScriptingParticleRepel &rhs);
+        virtual                        ~ScriptingParticleRepel    (void);
 
         virtual void                archive                 (const std::shared_ptr<Archive> &archive);
 
@@ -60,13 +60,13 @@ class ScriptingParticleRepel: public ScriptingBase {
         DEFINE_ACCESSORS(active, set_active, bool, _active);
 
     private:
-        Plug<DTfloat>								_force;
-        Plug<Vector3>								_translation;
-        Plug<DTfloat>								_distance;
-        Plug<bool>								_active;
+        Plug<DTfloat>                                _force;
+        Plug<Vector3>                                _translation;
+        Plug<DTfloat>                                _distance;
+        Plug<bool>                                _active;
 
-        Plug<std::shared_ptr<Particles>>		_in;
-        Plug<std::shared_ptr<Particles>>		_out;
+        Plug<std::shared_ptr<Particles>>        _in;
+        Plug<std::shared_ptr<Particles>>        _out;
 
 };
 

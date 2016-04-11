@@ -3,7 +3,7 @@
 #define DT3_SCRIPTINGVECTOR2TOCOMPONENTS
 //==============================================================================
 ///
-///	File: ScriptingVector2ToComponents.hpp
+///    File: ScriptingVector2ToComponents.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -36,21 +36,21 @@ class ScriptingVector2ToComponents: public ScriptingBase {
 
                                         ScriptingVector2ToComponents    (void);
                                         ScriptingVector2ToComponents    (const ScriptingVector2ToComponents &rhs);
-        ScriptingVector2ToComponents &	operator =						(const ScriptingVector2ToComponents &rhs);
-        virtual							~ScriptingVector2ToComponents	(void);
+        ScriptingVector2ToComponents &    operator =                        (const ScriptingVector2ToComponents &rhs);
+        virtual                            ~ScriptingVector2ToComponents    (void);
 
-        virtual void					archive             (const std::shared_ptr<Archive> &archive);
+        virtual void                    archive             (const std::shared_ptr<Archive> &archive);
 
     public:
         /// Computes the value of the node
         /// \param plug plug to compute
-        bool					compute					(const PlugBase *plug);
+        bool                    compute                    (const PlugBase *plug);
 
     private:
-        Plug<Vector2>				_in;
+        Plug<Vector2>                _in;
 
-        Plug<DTfloat>				_out_x;
-        Plug<DTfloat>				_out_y;
+        Plug<DTfloat>                _out_x;
+        Plug<DTfloat>                _out_y;
 
 };
 

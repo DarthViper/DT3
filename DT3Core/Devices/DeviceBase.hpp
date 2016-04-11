@@ -3,7 +3,7 @@
 #define DT3_DEVICEBASE
 //==============================================================================
 ///
-///	File: DeviceBase.hpp
+///    File: DeviceBase.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -30,12 +30,12 @@ class DeviceBase: public BaseClass {
         DEFINE_TYPE(DeviceBase,BaseClass)
         //DEFINE_CREATE
 
-                                DeviceBase				(void);
+                                DeviceBase                (void);
     private:
-                                DeviceBase				(const DeviceBase &rhs);
-        DeviceBase &			operator =				(const DeviceBase &rhs);
+                                DeviceBase                (const DeviceBase &rhs);
+        DeviceBase &            operator =                (const DeviceBase &rhs);
     public:
-        virtual					~DeviceBase             (void);
+        virtual                    ~DeviceBase             (void);
 
 };
 

@@ -1,12 +1,12 @@
 //==============================================================================
-///	
-///	File: ScriptingGlobalWriter.cpp
-///	
+///    
+///    File: ScriptingGlobalWriter.cpp
+///    
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
 /// This file is subject to the terms and conditions defined in
 /// file 'LICENSE.txt', which is part of this source code package.
-///	
+///    
 //==============================================================================
 
 #include "DT3Core/Scripting/ScriptingGlobalWriter.hpp"
@@ -30,27 +30,27 @@ namespace DT3 {
 IMPLEMENT_FACTORY_CREATION_SCRIPT(ScriptingGlobalWriter,"Globals",NULL)
 IMPLEMENT_PLUG_NODE(ScriptingGlobalWriter)
 
-IMPLEMENT_PLUG_INFO_INDEX(_global)		
-IMPLEMENT_PLUG_INFO_INDEX(_value)		
-IMPLEMENT_PLUG_INFO_INDEX(_persistent)		
+IMPLEMENT_PLUG_INFO_INDEX(_global)        
+IMPLEMENT_PLUG_INFO_INDEX(_value)        
+IMPLEMENT_PLUG_INFO_INDEX(_persistent)        
 
-IMPLEMENT_EVENT_INFO_INDEX(_write_e)		
+IMPLEMENT_EVENT_INFO_INDEX(_write_e)        
 
 //==============================================================================
 //==============================================================================
 
 BEGIN_IMPLEMENT_PLUGS(ScriptingGlobalWriter)
 
-	PLUG_INIT(_global,"Global")
-		.set_input(true);
+    PLUG_INIT(_global,"Global")
+        .set_input(true);
 
-	PLUG_INIT(_value,"Value")
-		.set_input(true);
+    PLUG_INIT(_value,"Value")
+        .set_input(true);
         
-	PLUG_INIT(_persistent,"Persistent")
-		.set_input(true);
+    PLUG_INIT(_persistent,"Persistent")
+        .set_input(true);
         
-	EVENT_INIT(_write_e,"Write_Event")
+    EVENT_INIT(_write_e,"Write_Event")
         .set_input(true)
         .set_event(&ScriptingGlobalWriter::write);
 
@@ -62,16 +62,16 @@ END_IMPLEMENT_PLUGS
 
 ScriptingGlobalWriter::ScriptingGlobalWriter (void)
     :   _global         (PLUG_INFO_INDEX(_global), ""),
-		_value          (PLUG_INFO_INDEX(_value), ""),
-		_persistent     (PLUG_INFO_INDEX(_persistent), false),
+        _value          (PLUG_INFO_INDEX(_value), ""),
+        _persistent     (PLUG_INFO_INDEX(_persistent), false),
         _write_e        (EVENT_INFO_INDEX(_write_e))
 {  
 
 }
-		
+        
 ScriptingGlobalWriter::ScriptingGlobalWriter (const ScriptingGlobalWriter &rhs)
-    :   ScriptingBase	(rhs),
-		_global         (rhs._global),
+    :   ScriptingBase    (rhs),
+        _global         (rhs._global),
         _value          (rhs._value),
         _persistent     (rhs._persistent),
         _write_e        (rhs._write_e)
@@ -83,15 +83,15 @@ ScriptingGlobalWriter & ScriptingGlobalWriter::operator = (const ScriptingGlobal
 {
     // Make sure we are not assigning the class to itself
     if (&rhs != this) {        
-		ScriptingBase::operator = (rhs);
+        ScriptingBase::operator = (rhs);
 
-		_global = rhs._global;
+        _global = rhs._global;
         _value = rhs._value;
         _persistent = rhs._persistent;
-	}
+    }
     return (*this);
 }
-			
+            
 ScriptingGlobalWriter::~ScriptingGlobalWriter (void)
 {
 
@@ -104,12 +104,12 @@ void ScriptingGlobalWriter::archive (const std::shared_ptr<Archive> &archive)
 {
     ScriptingBase::archive(archive);
 
-	archive->push_domain (class_id ());
+    archive->push_domain (class_id ());
     
-	*archive << ARCHIVE_PLUG(_global, DATA_PERSISTENT | DATA_SETTABLE);
-	*archive << ARCHIVE_PLUG(_value, DATA_PERSISTENT | DATA_SETTABLE);
-	*archive << ARCHIVE_PLUG(_persistent, DATA_PERSISTENT | DATA_SETTABLE);
-		        					
+    *archive << ARCHIVE_PLUG(_global, DATA_PERSISTENT | DATA_SETTABLE);
+    *archive << ARCHIVE_PLUG(_value, DATA_PERSISTENT | DATA_SETTABLE);
+    *archive << ARCHIVE_PLUG(_persistent, DATA_PERSISTENT | DATA_SETTABLE);
+                                    
     archive->pop_domain ();
 }
 
@@ -118,7 +118,7 @@ void ScriptingGlobalWriter::archive (const std::shared_ptr<Archive> &archive)
 
 void ScriptingGlobalWriter::write (PlugNode *sender)
 {
-	PROFILER(SCRIPTING);
+    PROFILER(SCRIPTING);
 
     LOG_MESSAGE << "Writing global " << _global << " = " << _value;
 

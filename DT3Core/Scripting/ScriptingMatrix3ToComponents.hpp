@@ -3,7 +3,7 @@
 #define DT3_SCRIPTINGMATRIX3TOCOMPONENTS
 //==============================================================================
 ///
-///	File: ScriptingMatrix3ToComponents.hpp
+///    File: ScriptingMatrix3ToComponents.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -37,22 +37,22 @@ class ScriptingMatrix3ToComponents: public ScriptingBase {
 
                                         ScriptingMatrix3ToComponents    (void);
                                         ScriptingMatrix3ToComponents    (const ScriptingMatrix3ToComponents &rhs);
-        ScriptingMatrix3ToComponents &	operator =						(const ScriptingMatrix3ToComponents &rhs);
-        virtual							~ScriptingMatrix3ToComponents	(void);
+        ScriptingMatrix3ToComponents &    operator =                        (const ScriptingMatrix3ToComponents &rhs);
+        virtual                            ~ScriptingMatrix3ToComponents    (void);
 
-        virtual void					archive             (const std::shared_ptr<Archive> &archive);
+        virtual void                    archive             (const std::shared_ptr<Archive> &archive);
 
     public:
         /// Computes the value of the node
         /// \param plug plug to compute
-        bool					compute					(const PlugBase *plug);
+        bool                    compute                    (const PlugBase *plug);
 
     private:
-        Plug<Matrix3>				_in;
+        Plug<Matrix3>                _in;
 
-        Plug<Vector3>				_out_x_axis;
-        Plug<Vector3>				_out_y_axis;
-        Plug<Vector3>				_out_z_axis;
+        Plug<Vector3>                _out_x_axis;
+        Plug<Vector3>                _out_y_axis;
+        Plug<Vector3>                _out_z_axis;
 
 };
 

@@ -3,7 +3,7 @@
 #define DT3_SCRIPTINGBASE
 //==============================================================================
 ///
-///	File: ScriptingBase.hpp
+///    File: ScriptingBase.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -33,10 +33,10 @@ class ScriptingBase: public WorldNode {
         //DEFINE_CREATE_AND_CLONE
         DEFINE_PLUG_NODE
 
-                                    ScriptingBase			(void);
-                                    ScriptingBase			(const ScriptingBase &rhs);
-        ScriptingBase &				operator =				(const ScriptingBase &rhs);
-        virtual                     ~ScriptingBase			(void);
+                                    ScriptingBase            (void);
+                                    ScriptingBase            (const ScriptingBase &rhs);
+        ScriptingBase &                operator =                (const ScriptingBase &rhs);
+        virtual                     ~ScriptingBase            (void);
 
         virtual void                archive                 (const std::shared_ptr<Archive> &archive);
 

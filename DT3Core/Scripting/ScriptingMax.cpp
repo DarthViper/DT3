@@ -1,12 +1,12 @@
 //==============================================================================
-///	
-///	File: ScriptingMax.cpp
-///	
+///    
+///    File: ScriptingMax.cpp
+///    
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
 /// This file is subject to the terms and conditions defined in
 /// file 'LICENSE.txt', which is part of this source code package.
-///	
+///    
 //==============================================================================
 
 #include "DT3Core/Scripting/ScriptingMax.hpp"
@@ -36,16 +36,16 @@ IMPLEMENT_PLUG_INFO_INDEX(_out);
 
 BEGIN_IMPLEMENT_PLUGS(ScriptingMax)
 
-	PLUG_INIT(_in1,"In_1")
-		.set_input(true)
-		.affects(PLUG_INFO_INDEX(_out));
-		
-	PLUG_INIT(_in2,"In_2")
-		.set_input(true)
-		.affects(PLUG_INFO_INDEX(_out));
+    PLUG_INIT(_in1,"In_1")
+        .set_input(true)
+        .affects(PLUG_INFO_INDEX(_out));
+        
+    PLUG_INIT(_in2,"In_2")
+        .set_input(true)
+        .affects(PLUG_INFO_INDEX(_out));
 
-	PLUG_INIT(_out,"Out")
-		.set_output(true);
+    PLUG_INIT(_out,"Out")
+        .set_output(true);
         
 END_IMPLEMENT_PLUGS
 
@@ -54,18 +54,18 @@ END_IMPLEMENT_PLUGS
 //==============================================================================
 
 ScriptingMax::ScriptingMax (void)
-    :   _in1			(PLUG_INFO_INDEX(_in1), 0.0F),
-		_in2			(PLUG_INFO_INDEX(_in2), 0.0F),
-		_out			(PLUG_INFO_INDEX(_out), 0.0F)
+    :   _in1            (PLUG_INFO_INDEX(_in1), 0.0F),
+        _in2            (PLUG_INFO_INDEX(_in2), 0.0F),
+        _out            (PLUG_INFO_INDEX(_out), 0.0F)
 {  
 
 }
-		
+        
 ScriptingMax::ScriptingMax (const ScriptingMax &rhs)
-    :   ScriptingBase	(rhs),
-		_in1			(rhs._in1),
-		_in2			(rhs._in2),
-		_out			(rhs._out)
+    :   ScriptingBase    (rhs),
+        _in1            (rhs._in1),
+        _in2            (rhs._in2),
+        _out            (rhs._out)
 {   
 
 }
@@ -74,15 +74,15 @@ ScriptingMax & ScriptingMax::operator = (const ScriptingMax &rhs)
 {
     // Make sure we are not assigning the class to itself
     if (&rhs != this) {        
-		ScriptingBase::operator = (rhs);
+        ScriptingBase::operator = (rhs);
 
-		_in1 = rhs._in1;
-		_in2 = rhs._in2;
-		_out = rhs._out;
-	}
+        _in1 = rhs._in1;
+        _in2 = rhs._in2;
+        _out = rhs._out;
+    }
     return (*this);
 }
-			
+            
 ScriptingMax::~ScriptingMax (void)
 {
 
@@ -95,12 +95,12 @@ void ScriptingMax::archive (const std::shared_ptr<Archive> &archive)
 {
     ScriptingBase::archive(archive);
 
-	archive->push_domain (class_id ());
-	   
-	*archive << ARCHIVE_PLUG(_in1, DATA_PERSISTENT | DATA_SETTABLE);
-	*archive << ARCHIVE_PLUG(_in2, DATA_PERSISTENT | DATA_SETTABLE);
-	*archive << ARCHIVE_PLUG(_out, DATA_PERSISTENT | DATA_SETTABLE);
-														     					
+    archive->push_domain (class_id ());
+       
+    *archive << ARCHIVE_PLUG(_in1, DATA_PERSISTENT | DATA_SETTABLE);
+    *archive << ARCHIVE_PLUG(_in2, DATA_PERSISTENT | DATA_SETTABLE);
+    *archive << ARCHIVE_PLUG(_out, DATA_PERSISTENT | DATA_SETTABLE);
+                                                                                 
     archive->pop_domain ();
 }
 
@@ -109,17 +109,17 @@ void ScriptingMax::archive (const std::shared_ptr<Archive> &archive)
 
 bool ScriptingMax::compute (const PlugBase *plug)
 {
-	PROFILER(SCRIPTING);
+    PROFILER(SCRIPTING);
 
     if (super_type::compute(plug))  return true;
 
-	if (plug == &_out) {
-		_out = (_in1) > (_in2) ? _in1 : _in2;
-		_out.set_clean();
-		return true;
-	}
-	
-	return false;
+    if (plug == &_out) {
+        _out = (_in1) > (_in2) ? _in1 : _in2;
+        _out.set_clean();
+        return true;
+    }
+    
+    return false;
 }
 
 //==============================================================================

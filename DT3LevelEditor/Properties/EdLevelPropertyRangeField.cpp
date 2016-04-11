@@ -1,6 +1,6 @@
 //==============================================================================
 ///
-///	File: EdLevelPropertyRangeField.cpp
+///    File: EdLevelPropertyRangeField.cpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -54,14 +54,14 @@ EdLevelPropertyRangeField::EdLevelPropertyRangeField (EdLevelPropertiesWindow *p
     _value2->setMaximumWidth(60);
     _value2->setObjectName("prop");
 
-    connect(	_value2,        SIGNAL(editingFinished()),
-                this,           SLOT(doWriteParams2())	);
+    connect(    _value2,        SIGNAL(editingFinished()),
+                this,           SLOT(doWriteParams2())    );
 
-    connect(	_value,         SIGNAL(valueChanged(int)),
-                this,           SLOT(doWriteParams())	);
+    connect(    _value,         SIGNAL(valueChanged(int)),
+                this,           SLOT(doWriteParams())    );
 
-    connect(	this,           SIGNAL(doCommand(QString, bool)),
-                parent,         SLOT(onCommand(QString, bool))	);
+    connect(    this,           SIGNAL(doCommand(QString, bool)),
+                parent,         SLOT(onCommand(QString, bool))    );
 
     QGridLayout *layout = new QGridLayout;
     layout->setContentsMargins(0,0,0,0);
@@ -81,7 +81,7 @@ EdLevelPropertyRangeField::EdLevelPropertyRangeField (EdLevelPropertiesWindow *p
     doReadParams();
 }
 
-EdLevelPropertyRangeField::~EdLevelPropertyRangeField	(void)
+EdLevelPropertyRangeField::~EdLevelPropertyRangeField    (void)
 {
 
 }

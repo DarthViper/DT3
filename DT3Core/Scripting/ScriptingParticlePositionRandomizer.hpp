@@ -3,7 +3,7 @@
 #define DT3_SCRIPTINGPARTICLEPOSITIONRANDOMIZER
 //==============================================================================
 ///
-///	File: ScriptingParticlePositionRandomizer.hpp
+///    File: ScriptingParticlePositionRandomizer.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -35,17 +35,17 @@ class ScriptingParticlePositionRandomizer: public ScriptingBase {
         DEFINE_CREATE_AND_CLONE
         DEFINE_PLUG_NODE
 
-                                                ScriptingParticlePositionRandomizer	(void);
-                                                ScriptingParticlePositionRandomizer	(const ScriptingParticlePositionRandomizer &rhs);
-        ScriptingParticlePositionRandomizer &	operator =							(const ScriptingParticlePositionRandomizer &rhs);
-        virtual									~ScriptingParticlePositionRandomizer(void);
+                                                ScriptingParticlePositionRandomizer    (void);
+                                                ScriptingParticlePositionRandomizer    (const ScriptingParticlePositionRandomizer &rhs);
+        ScriptingParticlePositionRandomizer &    operator =                            (const ScriptingParticlePositionRandomizer &rhs);
+        virtual                                    ~ScriptingParticlePositionRandomizer(void);
 
         virtual void                archive                 (const std::shared_ptr<Archive> &archive);
 
     public:
         /// Computes the value of the node
         /// \param plug plug to compute
-        bool					compute					(const PlugBase *plug);
+        bool                    compute                    (const PlugBase *plug);
 
         DEFINE_ACCESSORS(continuous, set_continuous, bool, _continuous);
         DEFINE_ACCESSORS(min_x, set_min_x, DTfloat, _min_x);
@@ -56,17 +56,17 @@ class ScriptingParticlePositionRandomizer: public ScriptingBase {
         DEFINE_ACCESSORS(max_z, set_max_z, DTfloat, _max_z);
 
     private:
-        bool									_continuous;
+        bool                                    _continuous;
 
-        Plug<DTfloat>								_min_x;
-        Plug<DTfloat>								_max_x;
-        Plug<DTfloat>								_min_y;
-        Plug<DTfloat>								_max_y;
-        Plug<DTfloat>								_min_z;
-        Plug<DTfloat>								_max_z;
+        Plug<DTfloat>                                _min_x;
+        Plug<DTfloat>                                _max_x;
+        Plug<DTfloat>                                _min_y;
+        Plug<DTfloat>                                _max_y;
+        Plug<DTfloat>                                _min_z;
+        Plug<DTfloat>                                _max_z;
 
-        Plug<std::shared_ptr<Particles>>		_in;
-        Plug<std::shared_ptr<Particles>>		_out;
+        Plug<std::shared_ptr<Particles>>        _in;
+        Plug<std::shared_ptr<Particles>>        _out;
 
 };
 

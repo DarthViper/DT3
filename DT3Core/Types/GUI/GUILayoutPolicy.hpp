@@ -3,7 +3,7 @@
 #define DT3_GUILAYOUTPOLICY
 //==============================================================================
 ///
-///	File: GUILayoutPolicy.hpp
+///    File: GUILayoutPolicy.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey, Inc. All rights reserved.
 ///
@@ -33,10 +33,10 @@ class GUILayoutPolicy {
         };
 
                                     GUILayoutPolicy     (void);
-                                    GUILayoutPolicy		(Policy p, DTfloat v)   {   set_policy(p,v);            }
-                                    GUILayoutPolicy		(const GUILayoutPolicy &rhs);
-        GUILayoutPolicy&			operator =          (const GUILayoutPolicy &rhs);
-        virtual                     ~GUILayoutPolicy	(void);
+                                    GUILayoutPolicy        (Policy p, DTfloat v)   {   set_policy(p,v);            }
+                                    GUILayoutPolicy        (const GUILayoutPolicy &rhs);
+        GUILayoutPolicy&            operator =          (const GUILayoutPolicy &rhs);
+        virtual                     ~GUILayoutPolicy    (void);
 
     public:
 

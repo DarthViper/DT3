@@ -3,7 +3,7 @@
 #define DT3_SCRIPTINGGLOBALPOLL
 //==============================================================================
 ///
-///	File: ScriptingGlobalPoll.hpp
+///    File: ScriptingGlobalPoll.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -36,8 +36,8 @@ class ScriptingGlobalPoll: public ScriptingBase {
 
                                     ScriptingGlobalPoll     (void);
                                     ScriptingGlobalPoll     (const ScriptingGlobalPoll &rhs);
-        ScriptingGlobalPoll &		operator =				(const ScriptingGlobalPoll &rhs);
-        virtual                     ~ScriptingGlobalPoll	(void);
+        ScriptingGlobalPoll &        operator =                (const ScriptingGlobalPoll &rhs);
+        virtual                     ~ScriptingGlobalPoll    (void);
 
         virtual void                archive                 (const std::shared_ptr<Archive> &archive);
 
@@ -58,7 +58,7 @@ class ScriptingGlobalPoll: public ScriptingBase {
 
     private:
         Plug<std::string>           _global;
-        Plug<std::string>			_value;
+        Plug<std::string>            _value;
 
         Plug<bool>             _read;
         bool                   _substitute;

@@ -1,12 +1,12 @@
 //==============================================================================
-///	
-///	File: TimerLores.cpp
-///	
+///    
+///    File: TimerLores.cpp
+///    
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
 /// This file is subject to the terms and conditions defined in
 /// file 'LICENSE.txt', which is part of this source code package.
-///	
+///    
 //==============================================================================
 
 #include "DT3Core/Types/Utility/TimerLores.hpp"
@@ -34,18 +34,18 @@ TimerLores::TimerLores (void)
 }
 
 TimerLores::TimerLores (const TimerLores &rhs)
-	:	_last_time	(rhs._last_time),
-		_first_time	(rhs._first_time)
+    :    _last_time    (rhs._last_time),
+        _first_time    (rhs._first_time)
 {
 
 }
-		
+        
 TimerLores& TimerLores::operator = (const TimerLores &rhs)
-{	
-	_last_time = rhs._last_time;
-	_first_time = rhs._first_time;
+{    
+    _last_time = rhs._last_time;
+    _first_time = rhs._first_time;
     return (*this);
-}	
+}    
 
 TimerLores::~TimerLores (void)
 {

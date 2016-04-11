@@ -1,12 +1,12 @@
 //==============================================================================
-///	
-///	File: ScriptingRandom.cpp
-///	
+///    
+///    File: ScriptingRandom.cpp
+///    
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
 /// This file is subject to the terms and conditions defined in
 /// file 'LICENSE.txt', which is part of this source code package.
-///	
+///    
 //==============================================================================
 
 #include "DT3Core/Scripting/ScriptingRandom.hpp"
@@ -38,14 +38,14 @@ IMPLEMENT_EVENT_INFO_INDEX(_generate_e)
 //==============================================================================
 
 BEGIN_IMPLEMENT_PLUGS(ScriptingRandom)
-		
-	PLUG_INIT(_out,"Out")
-		.set_output(true);
         
-	PLUG_INIT(_continuous,"Continuous")
-		.set_input(true);
+    PLUG_INIT(_out,"Out")
+        .set_output(true);
+        
+    PLUG_INIT(_continuous,"Continuous")
+        .set_input(true);
 
-	EVENT_INIT(_generate_e,"Generate")
+    EVENT_INIT(_generate_e,"Generate")
         .set_input(true)
         .set_event(&ScriptingRandom::eventGenerate);
         
@@ -57,18 +57,18 @@ using namespace DT3;
 //==============================================================================
 
 ScriptingRandom::ScriptingRandom (void)
-    :   _out			(PLUG_INFO_INDEX(_out), 0.0F),
-        _continuous		(PLUG_INFO_INDEX(_continuous), true),
-		_generate_e     (EVENT_INFO_INDEX(_generate_e))
+    :   _out            (PLUG_INFO_INDEX(_out), 0.0F),
+        _continuous        (PLUG_INFO_INDEX(_continuous), true),
+        _generate_e     (EVENT_INFO_INDEX(_generate_e))
 {  
 
 }
-		
+        
 ScriptingRandom::ScriptingRandom (const ScriptingRandom &rhs)
-    :   ScriptingBase	(rhs),
-        _out			(rhs._out),
+    :   ScriptingBase    (rhs),
+        _out            (rhs._out),
         _continuous     (rhs._continuous),
-		_generate_e     (EVENT_INFO_INDEX(_generate_e))
+        _generate_e     (EVENT_INFO_INDEX(_generate_e))
 {   
 
 }
@@ -77,14 +77,14 @@ ScriptingRandom & ScriptingRandom::operator = (const ScriptingRandom &rhs)
 {
     // Make sure we are not assigning the class to itself
     if (&rhs != this) {        
-		ScriptingBase::operator = (rhs);
+        ScriptingBase::operator = (rhs);
 
-		_continuous = rhs._continuous;
-		_out = rhs._out;
-	}
+        _continuous = rhs._continuous;
+        _out = rhs._out;
+    }
     return (*this);
 }
-			
+            
 ScriptingRandom::~ScriptingRandom (void)
 {
 
@@ -97,11 +97,11 @@ void ScriptingRandom::archive (const std::shared_ptr<Archive> &archive)
 {
     ScriptingBase::archive(archive);
 
-	archive->push_domain (class_id ());
+    archive->push_domain (class_id ());
     
     *archive << ARCHIVE_PLUG(_continuous, DATA_PERSISTENT | DATA_SETTABLE);
     *archive << ARCHIVE_PLUG(_out, DATA_PERSISTENT | DATA_SETTABLE);
-														     					
+                                                                                 
     archive->pop_domain ();
 }
 
@@ -110,7 +110,7 @@ void ScriptingRandom::archive (const std::shared_ptr<Archive> &archive)
 
 void ScriptingRandom::eventGenerate (PlugNode *sender)
 {
-	PROFILER(SCRIPTING);
+    PROFILER(SCRIPTING);
 
     _out = MoreMath::random_float();
 }
@@ -120,7 +120,7 @@ void ScriptingRandom::eventGenerate (PlugNode *sender)
 
 void ScriptingRandom::tick (const DTfloat dt)
 {
-	PROFILER(SCRIPTING);
+    PROFILER(SCRIPTING);
 
     if (_continuous) {
         eventGenerate(NULL);

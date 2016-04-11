@@ -3,7 +3,7 @@
 #define DT3_SCRIPTINGMATERIALSWITCHER
 //==============================================================================
 ///
-///	File: ScriptingMaterialSwitcher.hpp
+///    File: ScriptingMaterialSwitcher.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -35,17 +35,17 @@ class ScriptingMaterialSwitcher: public ScriptingBase {
         DEFINE_CREATE_AND_CLONE
         DEFINE_PLUG_NODE
 
-                                    ScriptingMaterialSwitcher	(void);
-                                    ScriptingMaterialSwitcher	(const ScriptingMaterialSwitcher &rhs);
-        ScriptingMaterialSwitcher &	operator =					(const ScriptingMaterialSwitcher &rhs);
-        virtual                     ~ScriptingMaterialSwitcher	(void);
+                                    ScriptingMaterialSwitcher    (void);
+                                    ScriptingMaterialSwitcher    (const ScriptingMaterialSwitcher &rhs);
+        ScriptingMaterialSwitcher &    operator =                    (const ScriptingMaterialSwitcher &rhs);
+        virtual                     ~ScriptingMaterialSwitcher    (void);
 
         virtual void                archive                 (const std::shared_ptr<Archive> &archive);
 
     public:
         /// Computes the value of the node
         /// \param plug plug to compute
-        bool					compute					(const PlugBase *plug);
+        bool                    compute                    (const PlugBase *plug);
 
     private:
         Plug<bool>                             _in1;

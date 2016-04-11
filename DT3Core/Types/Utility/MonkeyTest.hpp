@@ -3,7 +3,7 @@
 #define DT3_MONKEYTEST
 //==============================================================================
 ///
-///	File: MonkeyTest.hpp
+///    File: MonkeyTest.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -30,12 +30,12 @@ class MonkeyTest {
     public:
         DEFINE_TYPE_SIMPLE_BASE(MonkeyTest)
 
-                            MonkeyTest				(void);
+                            MonkeyTest                (void);
     private:
-                            MonkeyTest				(const MonkeyTest &rhs);
-        MonkeyTest &		operator =				(const MonkeyTest &rhs);
+                            MonkeyTest                (const MonkeyTest &rhs);
+        MonkeyTest &        operator =                (const MonkeyTest &rhs);
     public:
-        virtual				~MonkeyTest             (void);
+        virtual                ~MonkeyTest             (void);
 
     public:
         /// Run the monkey test

@@ -1,12 +1,12 @@
 //==============================================================================
-///	
-///	File: ScriptingTexture2D.cpp
-///	
+///    
+///    File: ScriptingTexture2D.cpp
+///    
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
 /// This file is subject to the terms and conditions defined in
 /// file 'LICENSE.txt', which is part of this source code package.
-///	
+///    
 //==============================================================================
 
 #include "DT3Core/Scripting/ScriptingTexture2D.hpp"
@@ -35,8 +35,8 @@ IMPLEMENT_PLUG_INFO_INDEX(_out_texture)
 
 BEGIN_IMPLEMENT_PLUGS(ScriptingTexture2D)
 
-	PLUG_INIT(_out_texture,"Out_Texture")
-		.set_output(true);
+    PLUG_INIT(_out_texture,"Out_Texture")
+        .set_output(true);
         
 END_IMPLEMENT_PLUGS
 
@@ -45,16 +45,16 @@ END_IMPLEMENT_PLUGS
 //==============================================================================
 
 ScriptingTexture2D::ScriptingTexture2D (void)
-    :   _texture		(NULL),
-		_out_texture	(PLUG_INFO_INDEX(_out_texture))
+    :   _texture        (NULL),
+        _out_texture    (PLUG_INFO_INDEX(_out_texture))
 {  
 
 }
-		
+        
 ScriptingTexture2D::ScriptingTexture2D (const ScriptingTexture2D &rhs)
-    :   ScriptingBase	(rhs),
-		_texture		(rhs._texture),
-		_out_texture	(rhs._out_texture)
+    :   ScriptingBase    (rhs),
+        _texture        (rhs._texture),
+        _out_texture    (rhs._out_texture)
 {   
 
 }
@@ -63,14 +63,14 @@ ScriptingTexture2D & ScriptingTexture2D::operator = (const ScriptingTexture2D &r
 {
     // Make sure we are not assigning the class to itself
     if (&rhs != this) {        
-		ScriptingBase::operator = (rhs);
+        ScriptingBase::operator = (rhs);
 
-		_texture = rhs._texture;
-		_out_texture = rhs._out_texture;
-	}
+        _texture = rhs._texture;
+        _out_texture = rhs._out_texture;
+    }
     return (*this);
 }
-			
+            
 ScriptingTexture2D::~ScriptingTexture2D (void)
 {
 
@@ -83,10 +83,10 @@ void ScriptingTexture2D::archive (const std::shared_ptr<Archive> &archive)
 {
     ScriptingBase::archive(archive);
 
-	archive->push_domain (class_id ());
-	        
-	*archive << ARCHIVE_DATA_ACCESSORS("Texture", ScriptingTexture2D::texture_property, ScriptingTexture2D::set_texture_property, DATA_PERSISTENT | DATA_SETTABLE);
-													
+    archive->push_domain (class_id ());
+            
+    *archive << ARCHIVE_DATA_ACCESSORS("Texture", ScriptingTexture2D::texture_property, ScriptingTexture2D::set_texture_property, DATA_PERSISTENT | DATA_SETTABLE);
+                                                    
     archive->pop_domain ();
 }
 
@@ -95,8 +95,8 @@ void ScriptingTexture2D::archive (const std::shared_ptr<Archive> &archive)
 
 void ScriptingTexture2D::set_texture_property (const std::shared_ptr<TextureResource2D> &texture)
 {
-	_texture = texture;
-	_out_texture.set_dirty();
+    _texture = texture;
+    _out_texture.set_dirty();
 }
 
 //==============================================================================
@@ -104,18 +104,18 @@ void ScriptingTexture2D::set_texture_property (const std::shared_ptr<TextureReso
 
 bool ScriptingTexture2D::compute (const PlugBase *plug)
 {
-	PROFILER(SCRIPTING);
+    PROFILER(SCRIPTING);
 
     if (super_type::compute(plug))  return true;
 
-	if (plug == &_out_texture) {
-		_out_texture = _texture;
-		_out_texture.set_clean();
-		
-		return true;
-	}
-	
-	return false;
+    if (plug == &_out_texture) {
+        _out_texture = _texture;
+        _out_texture.set_clean();
+        
+        return true;
+    }
+    
+    return false;
 }
 
 //==============================================================================

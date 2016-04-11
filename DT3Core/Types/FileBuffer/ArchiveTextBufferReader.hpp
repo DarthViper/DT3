@@ -1,7 +1,7 @@
 #pragma once
 //==============================================================================
 ///
-///	File: ArchiveTextBufferReader.hpp
+///    File: ArchiveTextBufferReader.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -31,14 +31,14 @@ class ArchiveTextBufferReader: public Archive {
         //DEFINE_TYPE(ArchiveTextBufferReader,Archive)
         DEFINE_CREATE_T(ArchiveTextBufferReader)
 
-                                    ArchiveTextBufferReader		(void);
+                                    ArchiveTextBufferReader        (void);
 
     private:
-                                    ArchiveTextBufferReader		(const ArchiveTextBufferReader &rhs);
-        ArchiveTextBufferReader &	operator =                  (const ArchiveTextBufferReader &rhs);
+                                    ArchiveTextBufferReader        (const ArchiveTextBufferReader &rhs);
+        ArchiveTextBufferReader &    operator =                  (const ArchiveTextBufferReader &rhs);
 
     public:
-        virtual                     ~ArchiveTextBufferReader	(void);
+        virtual                     ~ArchiveTextBufferReader    (void);
 
     public:
 
@@ -64,7 +64,7 @@ class ArchiveTextBufferReader: public Archive {
 
         /// Returns the stream
         /// \return stream
-        TextBufferStream&           stream                      (void)		{	return _buffer;	}
+        TextBufferStream&           stream                      (void)        {    return _buffer;    }
 
     private:
         void                        eat_whitespace              (void);

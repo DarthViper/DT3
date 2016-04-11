@@ -3,7 +3,7 @@
 #define EDLEVELPERFORMANCEWINDOW
 //==============================================================================
 ///
-///	File: EdLevelPerformanceWindow.hpp
+///    File: EdLevelPerformanceWindow.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -52,8 +52,8 @@ class EdLevelPerformanceWindow : public QWidget
         void                        resizeEvent             (QResizeEvent *event);
 
     protected:
-        void						draw					(QPainter *painter);
-        void						paintEvent				(QPaintEvent *event);
+        void                        draw                    (QPainter *painter);
+        void                        paintEvent                (QPaintEvent *event);
 
         void                        wheelEvent              (QWheelEvent *event);
 

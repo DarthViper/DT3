@@ -1,12 +1,12 @@
 //==============================================================================
-///	
-///	File: PlugNodeUtils.cpp
-///	
+///    
+///    File: PlugNodeUtils.cpp
+///    
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
 /// This file is subject to the terms and conditions defined in
 /// file 'LICENSE.txt', which is part of this source code package.
-///	
+///    
 //==============================================================================
 
 #include "DT3Core/Types/Node/PlugNodeUtils.hpp"
@@ -47,7 +47,7 @@ void PlugNodeUtils::copy_nodes (    const std::list<std::shared_ptr<PlugNode>> &
             std::shared_ptr<ObjectBase> new_node_base = checked_static_cast<ObjectBase>(new_node);
             
             for (uint32_t i = 0; i < ComponentBase::NUM_COMPONENT_TYPES; ++i) {
-                std::shared_ptr<ComponentBase> orig_component_base = orig_node_base->component_by_type	( (ComponentBase::ComponentType) i);
+                std::shared_ptr<ComponentBase> orig_component_base = orig_node_base->component_by_type    ( (ComponentBase::ComponentType) i);
                 std::shared_ptr<ComponentBase> new_component_base = new_node_base->component_by_type ( (ComponentBase::ComponentType) i);
                 
                 if (orig_component_base && new_component_base)

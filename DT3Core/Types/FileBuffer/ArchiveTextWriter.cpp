@@ -1,12 +1,12 @@
 //==============================================================================
-///	
-///	File: ArchiveTextWriter.cpp
-///	
+///    
+///    File: ArchiveTextWriter.cpp
+///    
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
 /// This file is subject to the terms and conditions defined in
 /// file 'LICENSE.txt', which is part of this source code package.
-///	
+///    
 //==============================================================================
 
 #include "DT3Core/Types/FileBuffer/ArchiveTextWriter.hpp"
@@ -26,11 +26,11 @@ namespace DT3 {
 //==============================================================================
 
 ArchiveTextWriter::ArchiveTextWriter (void)
-	:	_indent	(0)
+    :    _indent    (0)
 {    
 
 }
-			
+            
 ArchiveTextWriter::~ArchiveTextWriter (void)
 {
 
@@ -40,25 +40,25 @@ ArchiveTextWriter::~ArchiveTextWriter (void)
 //==============================================================================
 
 DTerr ArchiveTextWriter::open (const FilePath &pathname)
-{	
+{    
     // open the file
-	DTerr error = FileManager::open(_outfile, pathname, false);
-	if (error != DT3_ERR_NONE)
-		return error;
+    DTerr error = FileManager::open(_outfile, pathname, false);
+    if (error != DT3_ERR_NONE)
+        return error;
 
-	// write out some header information
-	_outfile << Config::engine_version() << "\n";
-	_outfile << AppConfig::app_version() << "\n";
-	
-	// start the contents of the file
-	push_domain ("Archive");
-	
-	return DT3_ERR_NONE;
+    // write out some header information
+    _outfile << Config::engine_version() << "\n";
+    _outfile << AppConfig::app_version() << "\n";
+    
+    // start the contents of the file
+    push_domain ("Archive");
+    
+    return DT3_ERR_NONE;
 }
 
 void ArchiveTextWriter::close (void)
 {
-	pop_domain();
+    pop_domain();
     _outfile.close();
 }
 
@@ -67,31 +67,31 @@ void ArchiveTextWriter::close (void)
 
 std::string ArchiveTextWriter::indent (void) const
 {
-	std::string indent;
+    std::string indent;
     indent.resize(_indent*2, ' ');
-	return indent;
+    return indent;
 }
 
 //==============================================================================
 //==============================================================================
 
-Archive &	ArchiveTextWriter::operator << (const ArchiveData& data)
+Archive &    ArchiveTextWriter::operator << (const ArchiveData& data)
 {
-	if (data.flags() & DATA_PERSISTENT) {
-		if ( data.title() != "" ) {
-			TextBufferStream stream;
-			data.value(stream);
-		
-			_outfile << indent() << data.title() << "=" << stream.buffer() << "\n";
-		} else {
-			TextBufferStream stream;
-			data.value(stream);
+    if (data.flags() & DATA_PERSISTENT) {
+        if ( data.title() != "" ) {
+            TextBufferStream stream;
+            data.value(stream);
+        
+            _outfile << indent() << data.title() << "=" << stream.buffer() << "\n";
+        } else {
+            TextBufferStream stream;
+            data.value(stream);
 
-			_outfile << indent() << stream.buffer() << "\n";
-		}
-	}
-	
-	return *this;
+            _outfile << indent() << stream.buffer() << "\n";
+        }
+    }
+    
+    return *this;
 }
 
 //==============================================================================
@@ -99,14 +99,14 @@ Archive &	ArchiveTextWriter::operator << (const ArchiveData& data)
 
 void ArchiveTextWriter::push_domain (const std::string &domain)
 {
-	_outfile << indent() << domain << " {" << "\n";
-	++_indent;
+    _outfile << indent() << domain << " {" << "\n";
+    ++_indent;
 }
 
 void ArchiveTextWriter::pop_domain (void)
 {
-	--_indent;
-	_outfile << indent() << "}" << "\n";
+    --_indent;
+    _outfile << indent() << "}" << "\n";
 }
 
 //==============================================================================
@@ -114,12 +114,12 @@ void ArchiveTextWriter::pop_domain (void)
 
 bool ArchiveTextWriter::is_reading (void) const
 {
-	return false;
+    return false;
 }
 
 bool ArchiveTextWriter::is_writing (void) const
 {
-	return true;
+    return true;
 }
 
 //==============================================================================

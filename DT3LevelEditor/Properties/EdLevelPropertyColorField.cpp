@@ -1,6 +1,6 @@
 //==============================================================================
 ///
-///	File: EdLevelPropertyColorField.cpp
+///    File: EdLevelPropertyColorField.cpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -67,8 +67,8 @@ EdLevelPropertyColorField::EdLevelPropertyColorField (EdLevelPropertiesWindow *p
 
     connect(    _r,         SIGNAL(valueChanged(int)),
                 this,       SLOT(doColorChange(int)));
-    connect(	_r2,        SIGNAL(editingFinished()),
-                this,       SLOT(doWriteParams2())	);
+    connect(    _r2,        SIGNAL(editingFinished()),
+                this,       SLOT(doWriteParams2())    );
 
 
     _g = new QSlider(Qt::Horizontal, this);
@@ -81,8 +81,8 @@ EdLevelPropertyColorField::EdLevelPropertyColorField (EdLevelPropertiesWindow *p
 
     connect(    _g,         SIGNAL(valueChanged(int)),
                 this,       SLOT(doColorChange(int)));
-    connect(	_g2,        SIGNAL(editingFinished()),
-                this,       SLOT(doWriteParams2())	);
+    connect(    _g2,        SIGNAL(editingFinished()),
+                this,       SLOT(doWriteParams2())    );
 
     _b = new QSlider(Qt::Horizontal, this);
     _b->setMinimum(0);
@@ -94,8 +94,8 @@ EdLevelPropertyColorField::EdLevelPropertyColorField (EdLevelPropertiesWindow *p
 
     connect(    _b,         SIGNAL(valueChanged(int)),
                 this,       SLOT(doColorChange(int)));
-    connect(	_b2,        SIGNAL(editingFinished()),
-                this,       SLOT(doWriteParams2())	);
+    connect(    _b2,        SIGNAL(editingFinished()),
+                this,       SLOT(doWriteParams2())    );
 
     _a = new QSlider(Qt::Horizontal, this);
     _a->setMinimum(0);
@@ -107,8 +107,8 @@ EdLevelPropertyColorField::EdLevelPropertyColorField (EdLevelPropertiesWindow *p
 
     connect(    _a,         SIGNAL(valueChanged(int)),
                 this,       SLOT(doColorChange(int)));
-    connect(	_a2,        SIGNAL(editingFinished()),
-                this,       SLOT(doWriteParams2())	);
+    connect(    _a2,        SIGNAL(editingFinished()),
+                this,       SLOT(doWriteParams2())    );
 
     _fill = new EdLevelColorSwatch();
     _fill->setMaximumWidth(50);
@@ -116,8 +116,8 @@ EdLevelPropertyColorField::EdLevelPropertyColorField (EdLevelPropertiesWindow *p
     _fill->setMaximumHeight(40);
     _fill->setMinimumHeight(40);
 
-    connect(	this,           SIGNAL(doCommand(QString, bool)),
-                parent,         SLOT(onCommand(QString, bool))	);
+    connect(    this,           SIGNAL(doCommand(QString, bool)),
+                parent,         SLOT(onCommand(QString, bool))    );
 
     QGridLayout *layout = new QGridLayout;
     layout->setContentsMargins(0,0,0,0);
@@ -153,7 +153,7 @@ EdLevelPropertyColorField::EdLevelPropertyColorField (EdLevelPropertiesWindow *p
     doReadParams();
 }
 
-EdLevelPropertyColorField::~EdLevelPropertyColorField	(void)
+EdLevelPropertyColorField::~EdLevelPropertyColorField    (void)
 {
 
 }

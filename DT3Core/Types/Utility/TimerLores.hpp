@@ -3,7 +3,7 @@
 #define DT3_TIMERLORES
 //==============================================================================
 ///
-///	File: TimerLores.hpp
+///    File: TimerLores.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -29,13 +29,13 @@ class TimerLores {
 
                                 TimerLores                  (void);
                                 TimerLores                  (const TimerLores &rhs);
-        TimerLores &			operator =                  (const TimerLores &rhs);
+        TimerLores &            operator =                  (const TimerLores &rhs);
                                 ~TimerLores                 (void);
 
     public:
         /// Get the change in time since last called
         /// \return dt
-        inline DTdouble			delta_time                  (void)
+        inline DTdouble            delta_time                  (void)
         {
             DTdouble delta_time = _app_running_time - _last_time;
             _last_time = _app_running_time;
@@ -43,7 +43,7 @@ class TimerLores {
         }
 
         /// Reset the absolute timer
-        void					reset_abs_time              (void);
+        void                    reset_abs_time              (void);
 
         /// Get the absolute timer
         /// \return time
@@ -53,12 +53,12 @@ class TimerLores {
         }
 
         /// Update the program running time. This gets called from the mail loop
-        static void				update_program_running_time (void);
+        static void                update_program_running_time (void);
 
     private:
         static DTdouble         _app_running_time;
-        DTdouble				_last_time;
-        DTdouble				_first_time;
+        DTdouble                _last_time;
+        DTdouble                _first_time;
 
 };
 

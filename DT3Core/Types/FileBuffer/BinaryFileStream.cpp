@@ -1,6 +1,6 @@
 //==============================================================================
 ///
-///	File: BinaryFileStream.cpp
+///    File: BinaryFileStream.cpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -25,9 +25,9 @@ namespace DT3 {
 //==============================================================================
 
 BinaryFileStream::BinaryFileStream (void)
-    :	_start			(0),
-        _length			(0),
-        _last_update	(0),
+    :    _start            (0),
+        _length            (0),
+        _last_update    (0),
         _eof            (false)
 {
 
@@ -343,18 +343,18 @@ DTsize BinaryFileStream::g (void)
 void BinaryFileStream::seek_p (DToffset p, Relative r)
 {
     switch (r) {
-        case FROM_BEGINNING:	_file->seek_p(_start+p, FileHandle::FROM_BEGINNING);			break;
-        case FROM_CURRENT:		_file->seek_p(p, FileHandle::FROM_CURRENT);                     break;
-        case FROM_END:			_file->seek_p(_start+_length-p, FileHandle::FROM_BEGINNING);	break;
+        case FROM_BEGINNING:    _file->seek_p(_start+p, FileHandle::FROM_BEGINNING);            break;
+        case FROM_CURRENT:        _file->seek_p(p, FileHandle::FROM_CURRENT);                     break;
+        case FROM_END:            _file->seek_p(_start+_length-p, FileHandle::FROM_BEGINNING);    break;
     };
 }
 
 void BinaryFileStream::seek_g (DToffset g, Relative r)
 {
     switch (r) {
-        case FROM_BEGINNING:	_file->seek_g(_start+g, FileHandle::FROM_BEGINNING);			break;
-        case FROM_CURRENT:		_file->seek_g(g, FileHandle::FROM_CURRENT);                     break;
-        case FROM_END:			_file->seek_g(_start+_length-g, FileHandle::FROM_BEGINNING);	break;
+        case FROM_BEGINNING:    _file->seek_g(_start+g, FileHandle::FROM_BEGINNING);            break;
+        case FROM_CURRENT:        _file->seek_g(g, FileHandle::FROM_CURRENT);                     break;
+        case FROM_END:            _file->seek_g(_start+_length-g, FileHandle::FROM_BEGINNING);    break;
     };
 }
 

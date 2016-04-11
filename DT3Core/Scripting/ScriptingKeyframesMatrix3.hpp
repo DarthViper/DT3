@@ -3,7 +3,7 @@
 #define DT3_SCRIPTINGKEYFRAMESVECTOR3
 //==============================================================================
 ///
-///	File: ScriptingKeyframesMatrix3.hpp
+///    File: ScriptingKeyframesMatrix3.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -35,63 +35,63 @@ class ScriptingKeyframesMatrix3: public ScriptingKeyframes {
         DEFINE_CREATE_AND_CLONE
         DEFINE_PLUG_NODE
 
-                                    ScriptingKeyframesMatrix3	(void);
-                                    ScriptingKeyframesMatrix3	(const ScriptingKeyframesMatrix3 &rhs);
-        ScriptingKeyframesMatrix3 &	operator =					(const ScriptingKeyframesMatrix3 &rhs);
-        virtual						~ScriptingKeyframesMatrix3	(void);
+                                    ScriptingKeyframesMatrix3    (void);
+                                    ScriptingKeyframesMatrix3    (const ScriptingKeyframesMatrix3 &rhs);
+        ScriptingKeyframesMatrix3 &    operator =                    (const ScriptingKeyframesMatrix3 &rhs);
+        virtual                        ~ScriptingKeyframesMatrix3    (void);
 
-        virtual void				archive                 (const std::shared_ptr<Archive> &archive);
+        virtual void                archive                 (const std::shared_ptr<Archive> &archive);
 
     public:
         /// Computes the value of the node
         /// \param plug plug to compute
-        bool					compute					(const PlugBase *plug);
+        bool                    compute                    (const PlugBase *plug);
 
         /// Set a key at the current time
-        virtual void				set_key					(void);
+        virtual void                set_key                    (void);
 
         /// Clear a key at the current time
-        virtual void				clear_key				(void);
+        virtual void                clear_key                (void);
 
         /// Clear a key with index
         /// \param k key index
-        virtual void				clear_key				(int32_t k);
+        virtual void                clear_key                (int32_t k);
 
         /// Get the number of keys
         /// \return number of keys
-        virtual DTsize				num_keys                (void) const            {	return _keyframes.size();		}
+        virtual DTsize                num_keys                (void) const            {    return _keyframes.size();        }
 
         /// Returns a unique ID for this key
         /// \param k key index
         /// \return ID
-        virtual int32_t               key_id                  (int32_t k) const        {   return _keyframes[k]._id;		}
+        virtual int32_t               key_id                  (int32_t k) const        {   return _keyframes[k]._id;        }
 
         /// Get the time for the key
         /// \param k key index
         /// \return time
-        virtual DTfloat				key_time                (int32_t k) const        {	return _keyframes[k]._time;		}
+        virtual DTfloat                key_time                (int32_t k) const        {    return _keyframes[k]._time;        }
 
         /// Set the time for the key
         /// \param k key index
         /// \param time key time
         /// \return new index
-        virtual int32_t				set_key_time            (int32_t k, DTfloat time);
+        virtual int32_t                set_key_time            (int32_t k, DTfloat time);
 
     private:
-        Plug<DTfloat>				_t;
-        Plug<Matrix3>				_out;
-        int32_t						_id;
+        Plug<DTfloat>                _t;
+        Plug<Matrix3>                _out;
+        int32_t                        _id;
 
         struct keyframe {
-            int operator < (const keyframe& rhs) const	{	return _time < rhs._time;	}
+            int operator < (const keyframe& rhs) const    {    return _time < rhs._time;    }
 
             DTfloat                 _time;
             Quaternion              _value;
             int32_t                   _id;
         };
 
-        std::vector<keyframe>		_keyframes;
-        mutable int32_t				_keyframe_cache;
+        std::vector<keyframe>        _keyframes;
+        mutable int32_t                _keyframe_cache;
 };
 
 //==============================================================================

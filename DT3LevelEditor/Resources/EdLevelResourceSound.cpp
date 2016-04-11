@@ -1,6 +1,6 @@
 //==============================================================================
 ///
-///	File: EdLevelResourceSound.cpp
+///    File: EdLevelResourceSound.cpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -55,7 +55,7 @@ EdLevelResourceSound::EdLevelResourceSound (const FilePath &path)
     setMaximumWidth(200);
 }
 
-EdLevelResourceSound::~EdLevelResourceSound	(void)
+EdLevelResourceSound::~EdLevelResourceSound    (void)
 {
 
 }

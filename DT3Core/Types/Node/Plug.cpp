@@ -1,12 +1,12 @@
 //==============================================================================
-///	
-///	File: PlugBase.cpp
-///	
+///    
+///    File: PlugBase.cpp
+///    
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
 /// This file is subject to the terms and conditions defined in
 /// file 'LICENSE.txt', which is part of this source code package.
-///	
+///    
 //==============================================================================
 
 #include "DT3Core/Types/Node/Plug.hpp"
@@ -40,18 +40,18 @@ std::mutex PlugBase::_free_list_mutex;
 //==============================================================================
 
 PlugBase::PlugBase (void)
-	:	_is_dirty           (true),
-		_will_compute       (false),
+    :    _is_dirty           (true),
+        _will_compute       (false),
         _is_computing       (false),
         _info_index         (0),
         _connection_index   (0)
 {
 
 }
-		
+        
 PlugBase::PlugBase (const PlugBase &rhs)
-	:	_is_dirty           (true),
-		_will_compute       (false),
+    :    _is_dirty           (true),
+        _will_compute       (false),
         _is_computing       (false),
         _info_index         (rhs._info_index),
         _connection_index   (0)
@@ -63,10 +63,10 @@ PlugBase & PlugBase::operator = (const PlugBase &rhs)
 {
     return (*this);
 }
-			
+            
 PlugBase::~PlugBase (void)
 {
-	remove_incoming_connection();
+    remove_incoming_connection();
     remove_outgoing_connections();
 
     free_connections();
@@ -105,9 +105,9 @@ bool PlugBase::has_incoming_connection (void) const
 //==============================================================================
 //==============================================================================
 
-bool PlugBase::set_incoming_connection		(PlugBase* incoming)
+bool PlugBase::set_incoming_connection        (PlugBase* incoming)
 {
-	PROFILER(SCRIPTING);
+    PROFILER(SCRIPTING);
     
     //
     // Lock this owner and the incoming owner
@@ -133,46 +133,46 @@ bool PlugBase::set_incoming_connection		(PlugBase* incoming)
     
     PlugBase *&incoming_ref = connections()._incoming;
 
-	if (is_compatible(incoming) && incoming_ref != incoming) {
-	
-		// Disconnect old node
-		if (incoming_ref) {
+    if (is_compatible(incoming) && incoming_ref != incoming) {
+    
+        // Disconnect old node
+        if (incoming_ref) {
             owner()->incoming_plug_was_disconnected(incoming_ref, this);
-			incoming_ref->remove_outgoing_connection(this);
+            incoming_ref->remove_outgoing_connection(this);
         }
-		
-		// Connect new node
-		incoming_ref = incoming;
-		
-		// Add this plug to the outgoing connections
-		incoming_ref->add_outgoing_connection(this);
-		set_dirty();
-	
-		owner()->incoming_plug_was_attached(incoming_ref, this);
+        
+        // Connect new node
+        incoming_ref = incoming;
+        
+        // Add this plug to the outgoing connections
+        incoming_ref->add_outgoing_connection(this);
+        set_dirty();
+    
+        owner()->incoming_plug_was_attached(incoming_ref, this);
 
-		return true;
-	} else {
-		if (!is_compatible(incoming))
-			LOG_MESSAGE << plug_type() << " doesn't match " << incoming->plug_type();
-	}
-	
-	return false;
+        return true;
+    } else {
+        if (!is_compatible(incoming))
+            LOG_MESSAGE << plug_type() << " doesn't match " << incoming->plug_type();
+    }
+    
+    return false;
 }
 
 //==============================================================================
 //==============================================================================
 
-void PlugBase::remove_incoming_connection	(void)
+void PlugBase::remove_incoming_connection    (void)
 {
-	PROFILER(SCRIPTING);
+    PROFILER(SCRIPTING);
 
     if (_connection_index == 0)
         return;
     
     PlugBase *&incoming_ref = connections()._incoming;
 
-	// Disconnect old node
-	if (incoming_ref) {
+    // Disconnect old node
+    if (incoming_ref) {
 
         //
         // Lock this owner and the incoming owner
@@ -199,10 +199,10 @@ void PlugBase::remove_incoming_connection	(void)
         PlugBase *temp = incoming_ref;
         incoming_ref = NULL;
     
-		owner()->incoming_plug_was_disconnected(temp, this);
-		temp->remove_outgoing_connection(this);
-	}
-	
+        owner()->incoming_plug_was_disconnected(temp, this);
+        temp->remove_outgoing_connection(this);
+    }
+    
 }
 
 //==============================================================================
@@ -232,7 +232,7 @@ bool PlugBase::has_outgoing_connection (void) const
 
 bool PlugBase::add_outgoing_connection (PlugBase* outgoing)
 {
-	PROFILER(SCRIPTING);
+    PROFILER(SCRIPTING);
 
 
     //
@@ -278,16 +278,16 @@ bool PlugBase::add_outgoing_connection (PlugBase* outgoing)
         }
         
     }
-	
-	return false;
+    
+    return false;
 }
 
 //==============================================================================
 //==============================================================================
 
-void PlugBase::remove_outgoing_connection	(PlugBase* outgoing)
+void PlugBase::remove_outgoing_connection    (PlugBase* outgoing)
 {
-	PROFILER(SCRIPTING);
+    PROFILER(SCRIPTING);
 
     if (_connection_index == 0)
         return;
@@ -295,7 +295,7 @@ void PlugBase::remove_outgoing_connection	(PlugBase* outgoing)
     std::vector<PlugBase*> &outgoing_ref = connections()._outgoing;
 
     auto i = std::find(outgoing_ref.begin(), outgoing_ref.end(), outgoing);
-	if (i != outgoing_ref.end()) {
+    if (i != outgoing_ref.end()) {
     
         //
         // Lock this owner and the outgoing owner
@@ -319,20 +319,20 @@ void PlugBase::remove_outgoing_connection	(PlugBase* outgoing)
         // Do modifications
         //
 
-		owner()->outgoing_plug_was_disconnected(this,outgoing);
+        owner()->outgoing_plug_was_disconnected(this,outgoing);
 
-		outgoing_ref.erase(i);
-		outgoing->remove_incoming_connection();
+        outgoing_ref.erase(i);
+        outgoing->remove_incoming_connection();
     }
-	
+    
 }
 
 //==============================================================================
 //==============================================================================
 
-void PlugBase::remove_outgoing_connections	(void)
+void PlugBase::remove_outgoing_connections    (void)
 {
-	PROFILER(SCRIPTING);
+    PROFILER(SCRIPTING);
 
     if (_connection_index == 0)
         return;
@@ -340,10 +340,10 @@ void PlugBase::remove_outgoing_connections	(void)
     std::unique_lock<std::recursive_mutex> lock(owner()->lock());
     std::vector<PlugBase*> &outgoing_ref = connections()._outgoing;
 
-	while (outgoing_ref.begin() != outgoing_ref.end()) {
-		remove_outgoing_connection(*(outgoing_ref.begin()));
-	}
-				
+    while (outgoing_ref.begin() != outgoing_ref.end()) {
+        remove_outgoing_connection(*(outgoing_ref.begin()));
+    }
+                
 }
 
 //==============================================================================
@@ -418,7 +418,7 @@ bool PlugBase::try_set_dirty(void)
 }
 
 void PlugBase::set_dirty (void)
-{	
+{    
     if (!_is_dirty) {        
         // This will only loop if there's some thread contention for the nodes
         while (!try_set_dirty())
@@ -526,14 +526,14 @@ bool PlugBase::try_compute(PlugBase *p)
                 // Recursive checks
                 if (plug2->_is_computing != true) {
                     plug2->_is_computing = true;
-                    info2->set_requires_compute(plug2->owner()->compute(plug2));	// This will turn off computing if it does nothing
+                    info2->set_requires_compute(plug2->owner()->compute(plug2));    // This will turn off computing if it does nothing
                     plug2->_is_computing = false;
                 }
 
 #if DT3_DEBUG
                 if (!info2->requires_compute())
                     LOG_DEBUG << "Note: Compute turned off for " << plug2->owner()->class_id_child() << "." << plug2->name().c_str();
-#endif			
+#endif            
             }
         }
 
@@ -563,7 +563,7 @@ void PlugBase::compute (void) const
 }
 
 //==============================================================================
-//==============================================================================		
+//==============================================================================        
 
 void PlugBase::initialize_static (void)
 {

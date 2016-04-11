@@ -1,12 +1,12 @@
 //==============================================================================
-///	
-///	File: WAVWriter.cpp
-///	
+///    
+///    File: WAVWriter.cpp
+///    
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
 /// This file is subject to the terms and conditions defined in
 /// file 'LICENSE.txt', which is part of this source code package.
-///	
+///    
 //==============================================================================
 
 #include "DT3Core/Types/Media/WAVWriter.hpp"
@@ -33,7 +33,7 @@ WAVWriter::WAVWriter (const WAVWriter &rhs)
 }
             
 WAVWriter& WAVWriter::operator = (const WAVWriter &rhs)
-{	
+{    
     return (*this);
 }
 
@@ -44,7 +44,7 @@ WAVWriter::~WAVWriter (void)
 //==============================================================================
 //==============================================================================
 
-void	WAVWriter::write(std::ofstream &outfile, uint8_t &v)
+void    WAVWriter::write(std::ofstream &outfile, uint8_t &v)
 {
     outfile.write((const char*)&v, sizeof(int8_t));
 }
@@ -52,43 +52,43 @@ void	WAVWriter::write(std::ofstream &outfile, uint8_t &v)
 //==============================================================================
 //==============================================================================
 
-void	WAVWriter::write(std::ofstream &outfile, uint16_t &v)
+void    WAVWriter::write(std::ofstream &outfile, uint16_t &v)
 {
-	Endian::to_little_endian(v);
+    Endian::to_little_endian(v);
     outfile.write((const char*)&v, sizeof(uint16_t));
 }
 
 //==============================================================================
 //==============================================================================
 
-void	WAVWriter::write(std::ofstream &outfile, int16_t &v)
+void    WAVWriter::write(std::ofstream &outfile, int16_t &v)
 {
-	Endian::to_little_endian(v);
+    Endian::to_little_endian(v);
     outfile.write((const char*)&v, sizeof(int16_t));
 }
 
 //==============================================================================
 //==============================================================================
 
-void	WAVWriter::write(std::ofstream &outfile, uint32_t &v)
+void    WAVWriter::write(std::ofstream &outfile, uint32_t &v)
 {    
-	Endian::to_little_endian(v);
+    Endian::to_little_endian(v);
     outfile.write((const char*)&v, sizeof(uint32_t));
 }
 
 //==============================================================================
 //==============================================================================
 
-void	WAVWriter::write(std::ofstream &outfile, int32_t &v)
+void    WAVWriter::write(std::ofstream &outfile, int32_t &v)
 {    
-	Endian::to_little_endian(v);
+    Endian::to_little_endian(v);
     outfile.write((const char*)&v, sizeof(int32_t));
 }
 
 //==============================================================================
 //==============================================================================
 
-void	WAVWriter::write(std::ofstream &outfile, DTcharacter id[4])
+void    WAVWriter::write(std::ofstream &outfile, DTcharacter id[4])
 {
     outfile.write((const char*)&id[0], sizeof(DTcharacter));
     outfile.write((const char*)&id[1], sizeof(DTcharacter));
@@ -99,10 +99,10 @@ void	WAVWriter::write(std::ofstream &outfile, DTcharacter id[4])
 //==============================================================================
 //==============================================================================
 
-void	WAVWriter::write(std::ofstream &outfile, ChunkHeader &v)
+void    WAVWriter::write(std::ofstream &outfile, ChunkHeader &v)
 {
- 	write(outfile, v.id);
-	write(outfile, v.length);
+     write(outfile, v.id);
+    write(outfile, v.length);
 }
 
 //==============================================================================
@@ -110,7 +110,7 @@ void	WAVWriter::write(std::ofstream &outfile, ChunkHeader &v)
 
 void WAVWriter::set_type (DTcharacter id[4], const DTcharacter *id_str)
 {
-	id[0] = id_str[0];
+    id[0] = id_str[0];
     id[1] = id_str[1];
     id[2] = id_str[2];
     id[3] = id_str[3];
@@ -131,19 +131,19 @@ DTerr WAVWriter::begin_write (const FilePath &pathname, uint16_t num_channels, i
     _data_size = 0;
     
     // write header
-	ChunkHeader chunk_riff;
+    ChunkHeader chunk_riff;
     set_type(chunk_riff.id,"RIFF");
     chunk_riff.length = 0;   // To be filled in later
     write(_outfile, chunk_riff);
     _header_length_offset = static_cast<uint32_t>(_outfile.tellp()) - 4;
     
     // write WAVE data
-	DTcharacter	id_wave[4];
+    DTcharacter    id_wave[4];
     set_type(id_wave,"WAVE");
     write(_outfile, id_wave);
 
     // Format Chunk
-	ChunkHeader chunk_format;
+    ChunkHeader chunk_format;
     set_type(chunk_format.id,"fmt ");
     chunk_format.length = sizeof(Format);
     write(_outfile, chunk_format);
@@ -163,7 +163,7 @@ DTerr WAVWriter::begin_write (const FilePath &pathname, uint16_t num_channels, i
     write(_outfile, format.bitsPerSample);
     
     // Data Chunk
-	ChunkHeader chunk_data;
+    ChunkHeader chunk_data;
     set_type(chunk_data.id,"data");
     chunk_data.length = 0;  // To be filled in later
     write(_outfile, chunk_data);

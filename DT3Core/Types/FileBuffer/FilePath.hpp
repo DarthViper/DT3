@@ -3,7 +3,7 @@
 #define DT3_FILEPATH
 //==============================================================================
 ///
-///	File: FilePath.hpp
+///    File: FilePath.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -35,13 +35,13 @@ class FilePath {
         DEFINE_TYPE_SIMPLE_BASE(FilePath)
         //DEFINE_CREATE_AND_CLONE
 
-                                            FilePath				(void);
-        explicit                            FilePath				(const std::string &path);
-                                            FilePath				(const FilePath &rhs);
-                                            FilePath				(FilePath &&rhs);
-        FilePath &                          operator =				(const FilePath &rhs);
-        FilePath &                          operator =				(FilePath &&rhs);
-                                            ~FilePath				(void);
+                                            FilePath                (void);
+        explicit                            FilePath                (const std::string &path);
+                                            FilePath                (const FilePath &rhs);
+                                            FilePath                (FilePath &&rhs);
+        FilePath &                          operator =                (const FilePath &rhs);
+        FilePath &                          operator =                (FilePath &&rhs);
+                                            ~FilePath                (void);
 
     public:
         /// Sets the path to the file
@@ -90,7 +90,7 @@ class FilePath {
 
         /// Returns if the file is in a package
         /// \return is in package
-        bool                           in_package				(void) const;
+        bool                           in_package                (void) const;
 
         /// Returns the path to the package
         /// \return path to package
@@ -101,7 +101,7 @@ class FilePath {
 
         /// Tests for empty path
         /// \return Path is empty
-        bool                           is_blank                (void) const		{	return _original_path.empty();	}
+        bool                           is_blank                (void) const        {    return _original_path.empty();    }
 
 
         /// Returns modification date for file
@@ -114,12 +114,12 @@ class FilePath {
 
         /// Checks if the file exists
         /// \return file exists
-        bool                           exists					(void) const;
+        bool                           exists                    (void) const;
 
         /// Moves the file
         /// \param new_path new path to file
         /// \return Success
-        bool                           move					(const FilePath &new_path) const;
+        bool                           move                    (const FilePath &new_path) const;
 
         /// Deletes the file
         /// \return Success
@@ -140,8 +140,8 @@ class FilePath {
         friend int operator == (const FilePath& a, const FilePath& b);
         friend int operator != (const FilePath& a, const FilePath& b);
 
-        std::string						_original_path;
-        std::string						_path;
+        std::string                        _original_path;
+        std::string                        _path;
 
 };
 

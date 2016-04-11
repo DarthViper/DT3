@@ -3,7 +3,7 @@
 #define DT3_GLYPHCACHE
 //==============================================================================
 ///
-///	File: GlyphCache.hpp
+///    File: GlyphCache.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -36,12 +36,12 @@ class GlyphCache {
     public:
         DEFINE_TYPE_SIMPLE_BASE(GlyphCache)
 
-                                GlyphCache			(void);
-                                GlyphCache			(const GlyphCache &rhs);
-                                GlyphCache			(GlyphCache &&rhs);
-        GlyphCache &            operator =			(const GlyphCache &rhs);
-        GlyphCache &            operator =			(GlyphCache &&rhs);
-                                ~GlyphCache			(void);
+                                GlyphCache            (void);
+                                GlyphCache            (const GlyphCache &rhs);
+                                GlyphCache            (GlyphCache &&rhs);
+        GlyphCache &            operator =            (const GlyphCache &rhs);
+        GlyphCache &            operator =            (GlyphCache &&rhs);
+                                ~GlyphCache            (void);
 
     public:
 

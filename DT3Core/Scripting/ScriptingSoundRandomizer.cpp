@@ -1,12 +1,12 @@
 //==============================================================================
-///	
-///	File: ScriptingSoundRandomizer.cpp
-///	
+///    
+///    File: ScriptingSoundRandomizer.cpp
+///    
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
 /// This file is subject to the terms and conditions defined in
 /// file 'LICENSE.txt', which is part of this source code package.
-///	
+///    
 //==============================================================================
 
 #include "DT3Core/Scripting/ScriptingSoundRandomizer.hpp"
@@ -45,46 +45,46 @@ IMPLEMENT_EVENT_INFO_INDEX(_randomize_inputs)
 
 BEGIN_IMPLEMENT_PLUGS(ScriptingSoundRandomizer)
 
-	PLUG_INIT(_sound_packet_in_1,"Sound_Packet_In_1")
+    PLUG_INIT(_sound_packet_in_1,"Sound_Packet_In_1")
         .affects(PLUG_INFO_INDEX(_sound_packet_out))
-		.set_input(true)
+        .set_input(true)
         .set_always_dirty(true);
 
-	PLUG_INIT(_in_weight_1,"In_Weight_1")
+    PLUG_INIT(_in_weight_1,"In_Weight_1")
         .affects(PLUG_INFO_INDEX(_sound_packet_out))
-		.set_input(true);
+        .set_input(true);
 
-	PLUG_INIT(_sound_packet_in_2,"Sound_Packet_In_2")
+    PLUG_INIT(_sound_packet_in_2,"Sound_Packet_In_2")
         .affects(PLUG_INFO_INDEX(_sound_packet_out))
-		.set_input(true)
+        .set_input(true)
         .set_always_dirty(true);
 
-	PLUG_INIT(_in_weight_2,"In_Weight_2")
+    PLUG_INIT(_in_weight_2,"In_Weight_2")
         .affects(PLUG_INFO_INDEX(_sound_packet_out))
-		.set_input(true);
+        .set_input(true);
 
-	PLUG_INIT(_sound_packet_in_3,"Sound_Packet_In_3")
+    PLUG_INIT(_sound_packet_in_3,"Sound_Packet_In_3")
         .affects(PLUG_INFO_INDEX(_sound_packet_out))
-		.set_input(true)
+        .set_input(true)
         .set_always_dirty(true);
 
-	PLUG_INIT(_in_weight_3,"In_Weight_3")
+    PLUG_INIT(_in_weight_3,"In_Weight_3")
         .affects(PLUG_INFO_INDEX(_sound_packet_out))
-		.set_input(true);
+        .set_input(true);
 
-	PLUG_INIT(_sound_packet_in_4,"Sound_Packet_In_4")
+    PLUG_INIT(_sound_packet_in_4,"Sound_Packet_In_4")
         .affects(PLUG_INFO_INDEX(_sound_packet_out))
-		.set_input(true)
+        .set_input(true)
         .set_always_dirty(true);
 
-	PLUG_INIT(_in_weight_4,"In_Weight_4")
+    PLUG_INIT(_in_weight_4,"In_Weight_4")
         .affects(PLUG_INFO_INDEX(_sound_packet_out))
-		.set_input(true);
+        .set_input(true);
 
 
-	PLUG_INIT(_sound_packet_out,"Sound_Packet_Out")
+    PLUG_INIT(_sound_packet_out,"Sound_Packet_Out")
         .set_single_output(true)
-		.set_output(true)
+        .set_output(true)
         .set_always_dirty(true);
             
     EVENT_INIT(_randomize_inputs, "Randomize_Inputs")
@@ -112,44 +112,44 @@ ScriptingSoundRandomizer::ScriptingSoundRandomizer (void)
 {  
 
 }
-		
+        
 ScriptingSoundRandomizer::ScriptingSoundRandomizer (const ScriptingSoundRandomizer &rhs)
     :   ScriptingSoundBase  (rhs),
-		_sound_packet_in_1	(rhs._sound_packet_in_1),
-		_sound_packet_in_2	(rhs._sound_packet_in_2),
-		_sound_packet_in_3	(rhs._sound_packet_in_3),
-		_sound_packet_in_4	(rhs._sound_packet_in_4),
+        _sound_packet_in_1    (rhs._sound_packet_in_1),
+        _sound_packet_in_2    (rhs._sound_packet_in_2),
+        _sound_packet_in_3    (rhs._sound_packet_in_3),
+        _sound_packet_in_4    (rhs._sound_packet_in_4),
         _in_weight_1        (rhs._in_weight_1),
         _in_weight_2        (rhs._in_weight_2),
         _in_weight_3        (rhs._in_weight_3),
-		_in_weight_4        (rhs._in_weight_4),
+        _in_weight_4        (rhs._in_weight_4),
         _randomize_inputs   (EVENT_INFO_INDEX(_randomize_inputs)),
         _current_input      (0),
         _sound_packet_out   (PLUG_INFO_INDEX(_sound_packet_out))
 {   
 
-}	
+}    
 
 ScriptingSoundRandomizer & ScriptingSoundRandomizer::operator = (const ScriptingSoundRandomizer &rhs)
 {
     // Make sure we are not assigning the class to itself
     if (&rhs != this) {        
-		ScriptingSoundBase::operator = (rhs);
+        ScriptingSoundBase::operator = (rhs);
 
-		_sound_packet_in_1 = rhs._sound_packet_in_1;
-		_in_weight_1 = rhs._in_weight_1;
-		_sound_packet_in_2 = rhs._sound_packet_in_2;
-		_in_weight_2 = rhs._in_weight_2;
-		_sound_packet_in_3 = rhs._sound_packet_in_3;
-		_in_weight_3 = rhs._in_weight_3;
-		_sound_packet_in_4 = rhs._sound_packet_in_4;
-		_in_weight_4 = rhs._in_weight_4;
+        _sound_packet_in_1 = rhs._sound_packet_in_1;
+        _in_weight_1 = rhs._in_weight_1;
+        _sound_packet_in_2 = rhs._sound_packet_in_2;
+        _in_weight_2 = rhs._in_weight_2;
+        _sound_packet_in_3 = rhs._sound_packet_in_3;
+        _in_weight_3 = rhs._in_weight_3;
+        _sound_packet_in_4 = rhs._sound_packet_in_4;
+        _in_weight_4 = rhs._in_weight_4;
         
         _sound_packet_out = rhs._sound_packet_out;
-	}
+    }
     return (*this);
 }
-			
+            
 ScriptingSoundRandomizer::~ScriptingSoundRandomizer (void)
 {
 
@@ -162,13 +162,13 @@ void ScriptingSoundRandomizer::archive (const std::shared_ptr<Archive> &archive)
 {
     ScriptingSoundBase::archive(archive);
 
-	archive->push_domain (class_id ());
-	        
-	*archive << ARCHIVE_PLUG(_in_weight_1, DATA_PERSISTENT | DATA_SETTABLE);
-	*archive << ARCHIVE_PLUG(_in_weight_2, DATA_PERSISTENT | DATA_SETTABLE);
-	*archive << ARCHIVE_PLUG(_in_weight_3, DATA_PERSISTENT | DATA_SETTABLE);
-	*archive << ARCHIVE_PLUG(_in_weight_4, DATA_PERSISTENT | DATA_SETTABLE);
-                                                                			
+    archive->push_domain (class_id ());
+            
+    *archive << ARCHIVE_PLUG(_in_weight_1, DATA_PERSISTENT | DATA_SETTABLE);
+    *archive << ARCHIVE_PLUG(_in_weight_2, DATA_PERSISTENT | DATA_SETTABLE);
+    *archive << ARCHIVE_PLUG(_in_weight_3, DATA_PERSISTENT | DATA_SETTABLE);
+    *archive << ARCHIVE_PLUG(_in_weight_4, DATA_PERSISTENT | DATA_SETTABLE);
+                                                                            
     archive->pop_domain ();
 }
 
@@ -224,11 +224,11 @@ void ScriptingSoundRandomizer::randomizeInputs (PlugNode *sender)
 
 bool ScriptingSoundRandomizer::compute (const PlugBase *plug)
 {
-	PROFILER(SOUND);
+    PROFILER(SOUND);
 
     if (super_type::compute(plug))  return true;
 
-	if (plug == &_sound_packet_out) {
+    if (plug == &_sound_packet_out) {
     
         switch (_current_input) {
             case 0:     _sound_packet_out = _sound_packet_in_1.as_ref_no_compute();   break;
@@ -237,12 +237,12 @@ bool ScriptingSoundRandomizer::compute (const PlugBase *plug)
             default:    _sound_packet_out = _sound_packet_in_4.as_ref_no_compute();   break;
         }
     
-		_sound_packet_out.set_clean();
-		
-		return true;
-	}
-	
-	return false;
+        _sound_packet_out.set_clean();
+        
+        return true;
+    }
+    
+    return false;
 }
 
 //==============================================================================

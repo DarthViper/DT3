@@ -3,7 +3,7 @@
 #define DT3_IMPORTERGEOMETRY
 //==============================================================================
 ///
-///	File: ImporterGeometry.hpp
+///    File: ImporterGeometry.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -34,21 +34,21 @@ class ImporterGeometry: public BaseClass {
     public:
         DEFINE_TYPE(ImporterGeometry,BaseClass)
 
-                                ImporterGeometry	(void);
+                                ImporterGeometry    (void);
 
     private:
-                                ImporterGeometry	(const ImporterGeometry &rhs);
-        ImporterGeometry &		operator =			(const ImporterGeometry &rhs);
+                                ImporterGeometry    (const ImporterGeometry &rhs);
+        ImporterGeometry &        operator =            (const ImporterGeometry &rhs);
 
     public:
-        virtual					~ImporterGeometry	(void);
+        virtual                    ~ImporterGeometry    (void);
 
     public:
         /// Imports an geometry into an GeometryResource
         /// \param target object to import geometry into
         /// \param args arguments to importer
         /// \return error code
-        virtual DTerr			import				(GeometryResource *target, std::string args) = 0;
+        virtual DTerr            import                (GeometryResource *target, std::string args) = 0;
 
 };
 

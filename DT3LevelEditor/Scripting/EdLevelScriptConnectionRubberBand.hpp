@@ -3,7 +3,7 @@
 #define EDLEVELSCRIPTCONNECTIONRUBBERBAND
 //==============================================================================
 ///
-///	File: EdLevelScriptConnectionRubberBand.hpp
+///    File: EdLevelScriptConnectionRubberBand.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -37,12 +37,12 @@ class EdLevelScriptConnectionRubberBand : public QWidget
     Q_OBJECT
 
     public:
-                                        EdLevelScriptConnectionRubberBand		(void);
+                                        EdLevelScriptConnectionRubberBand        (void);
 
 
     public:
-        void							paintEvent					(QPaintEvent *event);
-        void							setEndpoints				(const QPoint &p0, const QPoint &p1, bool reverse_spline);
+        void                            paintEvent                    (QPaintEvent *event);
+        void                            setEndpoints                (const QPoint &p0, const QPoint &p1, bool reverse_spline);
 
     private:
         static const float SHADOW_OFFSET_X;
@@ -54,8 +54,8 @@ class EdLevelScriptConnectionRubberBand : public QWidget
         QPoint      _p1;
         bool        _reverse_spline;
 
-        QPoint		_p0_local;
-        QPoint		_p1_local;
+        QPoint        _p0_local;
+        QPoint        _p1_local;
 };
 
 //==============================================================================

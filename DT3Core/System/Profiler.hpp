@@ -3,7 +3,7 @@
 #define DT3_PROFILER
 //==============================================================================
 ///
-///	File: Profiler.hpp
+///    File: Profiler.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -101,7 +101,7 @@ class Profiler {
                                     Profiler         (void);
                                     Profiler         (const Profiler &rhs);
         Profiler &                  operator =       (const Profiler &rhs);
-        virtual						~Profiler        (void);
+        virtual                        ~Profiler        (void);
 
     public:
 

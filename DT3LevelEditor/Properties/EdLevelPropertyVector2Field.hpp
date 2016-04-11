@@ -3,7 +3,7 @@
 #define EDLEVELPROPERTYVECTOR2FIELD
 //==============================================================================
 ///
-///	File: EdLevelPropertyVector2Field.hpp
+///    File: EdLevelPropertyVector2Field.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -47,8 +47,8 @@ class EdLevelPropertyVector2Field : public EdLevelPropertyBase
     Q_OBJECT
 
     public:
-                                        EdLevelPropertyVector2Field		(EdLevelPropertiesWindow *parent, std::shared_ptr<PlugNode> node, std::shared_ptr<ArchiveData> data);
-                                        ~EdLevelPropertyVector2Field	(void);
+                                        EdLevelPropertyVector2Field        (EdLevelPropertiesWindow *parent, std::shared_ptr<PlugNode> node, std::shared_ptr<ArchiveData> data);
+                                        ~EdLevelPropertyVector2Field    (void);
 
         /// Gets the value of the field
         /// \return value of field

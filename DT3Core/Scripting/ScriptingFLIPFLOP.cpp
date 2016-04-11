@@ -1,12 +1,12 @@
 //==============================================================================
-///	
-///	File: ScriptingFLIPFLOP.cpp
-///	
+///    
+///    File: ScriptingFLIPFLOP.cpp
+///    
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
 /// This file is subject to the terms and conditions defined in
 /// file 'LICENSE.txt', which is part of this source code package.
-///	
+///    
 //==============================================================================
 
 #include "DT3Core/Scripting/ScriptingFLIPFLOP.hpp"
@@ -42,32 +42,32 @@ IMPLEMENT_EVENT_INFO_INDEX(_toggle_e)
 
 BEGIN_IMPLEMENT_PLUGS(ScriptingFLIPFLOP)
 
-	PLUG_INIT(_set,"set")
-		.set_input(true)
-		.affects(PLUG_INFO_INDEX(_out))
-		.affects(PLUG_INFO_INDEX(_out_inv));
+    PLUG_INIT(_set,"set")
+        .set_input(true)
+        .affects(PLUG_INFO_INDEX(_out))
+        .affects(PLUG_INFO_INDEX(_out_inv));
 
-	PLUG_INIT(_reset,"reset")
-		.set_input(true)
-		.affects(PLUG_INFO_INDEX(_out))
-		.affects(PLUG_INFO_INDEX(_out_inv));
+    PLUG_INIT(_reset,"reset")
+        .set_input(true)
+        .affects(PLUG_INFO_INDEX(_out))
+        .affects(PLUG_INFO_INDEX(_out_inv));
 
-	PLUG_INIT(_out,"Out")
-		.set_output(true);
-		
-	PLUG_INIT(_out_inv,"Out_Inv")
-		.set_output(true);
+    PLUG_INIT(_out,"Out")
+        .set_output(true);
         
-	EVENT_INIT(_set_e,"Set_Event")
+    PLUG_INIT(_out_inv,"Out_Inv")
+        .set_output(true);
+        
+    EVENT_INIT(_set_e,"Set_Event")
         .set_input(true)
         .set_event(&ScriptingFLIPFLOP::event_set);
 
-	EVENT_INIT(_reset_e,"Reset_Event")
+    EVENT_INIT(_reset_e,"Reset_Event")
         .set_input(true)
         .set_event(&ScriptingFLIPFLOP::event_reset);
 
 
-	EVENT_INIT(_toggle_e,"Toggle_Event")
+    EVENT_INIT(_toggle_e,"Toggle_Event")
         .set_input(true)
         .set_event(&ScriptingFLIPFLOP::event_toggle);
         
@@ -78,26 +78,26 @@ END_IMPLEMENT_PLUGS
 //==============================================================================
 
 ScriptingFLIPFLOP::ScriptingFLIPFLOP (void)
-    :   _set			(PLUG_INFO_INDEX(_set), false),
-		_reset			(PLUG_INFO_INDEX(_reset), false),
+    :   _set            (PLUG_INFO_INDEX(_set), false),
+        _reset            (PLUG_INFO_INDEX(_reset), false),
         _set_e          (EVENT_INFO_INDEX(_set_e)),
         _reset_e        (EVENT_INFO_INDEX(_reset_e)),
         _toggle_e       (EVENT_INFO_INDEX(_toggle_e)),
-		_out			(PLUG_INFO_INDEX(_out), false),
-        _out_inv		(PLUG_INFO_INDEX(_out_inv), false)
+        _out            (PLUG_INFO_INDEX(_out), false),
+        _out_inv        (PLUG_INFO_INDEX(_out_inv), false)
 {  
 
 }
-		
+        
 ScriptingFLIPFLOP::ScriptingFLIPFLOP (const ScriptingFLIPFLOP &rhs)
-    :   ScriptingBase	(rhs),
-		_set			(rhs._set),
-		_reset			(rhs._reset),
+    :   ScriptingBase    (rhs),
+        _set            (rhs._set),
+        _reset            (rhs._reset),
         _set_e          (rhs._set_e),
         _reset_e        (rhs._reset_e),
         _toggle_e       (rhs._toggle_e),
-		_out			(rhs._out),
-        _out_inv		(rhs._out_inv)
+        _out            (rhs._out),
+        _out_inv        (rhs._out_inv)
 {   
 
 }
@@ -106,16 +106,16 @@ ScriptingFLIPFLOP & ScriptingFLIPFLOP::operator = (const ScriptingFLIPFLOP &rhs)
 {
     // Make sure we are not assigning the class to itself
     if (&rhs != this) {        
-		ScriptingBase::operator = (rhs);
+        ScriptingBase::operator = (rhs);
 
-		_set = rhs._set;
-		_reset = rhs._reset;
-		_out = rhs._out;
-		_out_inv = rhs._out_inv;
-	}
+        _set = rhs._set;
+        _reset = rhs._reset;
+        _out = rhs._out;
+        _out_inv = rhs._out_inv;
+    }
     return (*this);
 }
-			
+            
 ScriptingFLIPFLOP::~ScriptingFLIPFLOP (void)
 {
 
@@ -128,15 +128,15 @@ void ScriptingFLIPFLOP::archive (const std::shared_ptr<Archive> &archive)
 {
     ScriptingBase::archive(archive);
 
-	archive->push_domain (class_id ());
-	
-	*archive << ARCHIVE_PLUG(_set, DATA_PERSISTENT | DATA_SETTABLE);
-	*archive << ARCHIVE_PLUG(_reset, DATA_PERSISTENT | DATA_SETTABLE);
-	*archive << ARCHIVE_PLUG(_out, DATA_PERSISTENT | DATA_SETTABLE);
-	*archive << ARCHIVE_PLUG(_out_inv, DATA_PERSISTENT | DATA_SETTABLE);
+    archive->push_domain (class_id ());
+    
+    *archive << ARCHIVE_PLUG(_set, DATA_PERSISTENT | DATA_SETTABLE);
+    *archive << ARCHIVE_PLUG(_reset, DATA_PERSISTENT | DATA_SETTABLE);
+    *archive << ARCHIVE_PLUG(_out, DATA_PERSISTENT | DATA_SETTABLE);
+    *archive << ARCHIVE_PLUG(_out_inv, DATA_PERSISTENT | DATA_SETTABLE);
 
-	*archive << ARCHIVE_EVENT(_set_e, DATA_SETTABLE);
-	*archive << ARCHIVE_EVENT(_reset_e, DATA_SETTABLE);
+    *archive << ARCHIVE_EVENT(_set_e, DATA_SETTABLE);
+    *archive << ARCHIVE_EVENT(_reset_e, DATA_SETTABLE);
 
     archive->pop_domain ();
 }
@@ -146,7 +146,7 @@ void ScriptingFLIPFLOP::archive (const std::shared_ptr<Archive> &archive)
 
 void ScriptingFLIPFLOP::event_set (PlugNode *sender)
 {
-	PROFILER(SCRIPTING);
+    PROFILER(SCRIPTING);
 
     _out = (!_reset);
     _out_inv = !(_out.value_without_compute());
@@ -154,7 +154,7 @@ void ScriptingFLIPFLOP::event_set (PlugNode *sender)
 
 void ScriptingFLIPFLOP::event_reset (PlugNode *sender)
 {
-	PROFILER(SCRIPTING);
+    PROFILER(SCRIPTING);
 
     _out = false;
     _out_inv = true;
@@ -162,7 +162,7 @@ void ScriptingFLIPFLOP::event_reset (PlugNode *sender)
 
 void ScriptingFLIPFLOP::event_toggle (PlugNode *sender)
 {
-	PROFILER(SCRIPTING);
+    PROFILER(SCRIPTING);
 
     _out = !_out;
     _out_inv = !_out_inv;
@@ -173,21 +173,21 @@ void ScriptingFLIPFLOP::event_toggle (PlugNode *sender)
 
 bool ScriptingFLIPFLOP::compute (const PlugBase *plug)
 {
-	PROFILER(SCRIPTING);
+    PROFILER(SCRIPTING);
 
     if (super_type::compute(plug))  return true;
 
-	if (plug == &_out || plug == &_out_inv) {
-		
-		_out = (_out.value_without_compute() || _set) && (!_reset);
-		_out_inv = !(_out.value_without_compute());
-		_out.set_clean();
-		_out_inv.set_clean();
-		
-		return true;
-	}
-	
-	return false;
+    if (plug == &_out || plug == &_out_inv) {
+        
+        _out = (_out.value_without_compute() || _set) && (!_reset);
+        _out_inv = !(_out.value_without_compute());
+        _out.set_clean();
+        _out_inv.set_clean();
+        
+        return true;
+    }
+    
+    return false;
 }
 
 //==============================================================================

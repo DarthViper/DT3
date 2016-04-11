@@ -1,6 +1,6 @@
 //==============================================================================
 ///
-///	File: EdLevelScriptConnectionRubberBand.cpp
+///    File: EdLevelScriptConnectionRubberBand.cpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -50,15 +50,15 @@ void EdLevelScriptConnectionRubberBand::paintEvent (QPaintEvent *event)
 
     if (_reverse_spline) {
         QPainterPath path1;
-        path1.moveTo(	_p0_local.x() + OFFSET, _p0_local.y());
-        path1.cubicTo (	_p0_local.x() + OFFSET - BEZIER_SIZE, _p0_local.y(),
+        path1.moveTo(    _p0_local.x() + OFFSET, _p0_local.y());
+        path1.cubicTo (    _p0_local.x() + OFFSET - BEZIER_SIZE, _p0_local.y(),
                         _p1_local.x() - OFFSET + BEZIER_SIZE, _p1_local.y(),
                         _p1_local.x() - OFFSET, _p1_local.y() );
         painter.drawPath(path1);
     } else {
         QPainterPath path1;
-        path1.moveTo(	_p0_local.x() + OFFSET, _p0_local.y());
-        path1.cubicTo (	_p0_local.x() + OFFSET + BEZIER_SIZE, _p0_local.y(),
+        path1.moveTo(    _p0_local.x() + OFFSET, _p0_local.y());
+        path1.cubicTo (    _p0_local.x() + OFFSET + BEZIER_SIZE, _p0_local.y(),
                         _p1_local.x() - OFFSET - BEZIER_SIZE, _p1_local.y(),
                         _p1_local.x() - OFFSET, _p1_local.y() );
         painter.drawPath(path1);

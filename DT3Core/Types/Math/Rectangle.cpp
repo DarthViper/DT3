@@ -1,12 +1,12 @@
 //==============================================================================
-///	
-///	File: Rectangle.cpp
-///	
+///    
+///    File: Rectangle.cpp
+///    
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
 /// This file is subject to the terms and conditions defined in
 /// file 'LICENSE.txt', which is part of this source code package.
-///	
+///    
 //==============================================================================
 
 #include "DT3Core/Types/Math/Rectangle.hpp"
@@ -34,7 +34,7 @@ Rectangle::Rectangle (void)
 }
 
 Rectangle::Rectangle (const DTfloat mx, const DTfloat px, const DTfloat my, const DTfloat py)
-    : 	_minus_x    (mx),
+    :     _minus_x    (mx),
         _plus_x     (px),
         _minus_y    (my),
         _plus_y     (py)
@@ -49,7 +49,7 @@ Rectangle::Rectangle (const Vector2 &v)
 }
 
 Rectangle::Rectangle (const Rectangle &rhs)
-    : 	_minus_x(rhs._minus_x),
+    :     _minus_x(rhs._minus_x),
         _plus_x(rhs._plus_x),
         _minus_y(rhs._minus_y),
         _plus_y(rhs._plus_y)
@@ -58,14 +58,14 @@ Rectangle::Rectangle (const Rectangle &rhs)
 }
             
 Rectangle& Rectangle::operator = (const Rectangle &rhs)
-{	
+{    
     // Make sure we are not assigning the class to itself
-	_minus_x = rhs._minus_x;
-	_plus_x = rhs._plus_x;
-	_minus_y = rhs._minus_y;
-	_plus_y = rhs._plus_y;
+    _minus_x = rhs._minus_x;
+    _plus_x = rhs._plus_x;
+    _minus_y = rhs._minus_y;
+    _plus_y = rhs._plus_y;
     return (*this);
-}	
+}    
 
 Rectangle::~Rectangle (void)
 {
@@ -77,25 +77,25 @@ Rectangle::~Rectangle (void)
 
 Stream& operator <<(Stream &s, const Rectangle&v)
 {
-	s	<< v.minus_x() << Stream::fs
-		<< v.plus_x() << Stream::fs
-		<< v.minus_y() << Stream::fs
-		<< v.plus_y();
-	return s;
+    s    << v.minus_x() << Stream::fs
+        << v.plus_x() << Stream::fs
+        << v.minus_y() << Stream::fs
+        << v.plus_y();
+    return s;
 }
 
 Stream& operator >>(Stream &s, Rectangle&v)
 {
-	DTfloat minus_x, plus_x;
-	DTfloat minus_y, plus_y;
-	s >> minus_x >> plus_x >> minus_y >> plus_y;
-	
-	v.set_minus_x(minus_x);
-	v.set_plus_x(plus_x);
-	v.set_minus_y(minus_y);
-	v.set_plus_y(plus_y);
-	
-	return s;
+    DTfloat minus_x, plus_x;
+    DTfloat minus_y, plus_y;
+    s >> minus_x >> plus_x >> minus_y >> plus_y;
+    
+    v.set_minus_x(minus_x);
+    v.set_plus_x(plus_x);
+    v.set_minus_y(minus_y);
+    v.set_plus_y(plus_y);
+    
+    return s;
 }
 
 //==============================================================================
@@ -108,7 +108,7 @@ bool Rectangle::operator == (const Rectangle& rhs) const
             (_minus_y == rhs._minus_y) &&
             (_plus_y == rhs._plus_y);
 }
-		
+        
 bool Rectangle::operator != (const Rectangle& rhs) const
 {
     return  (_minus_x != rhs._minus_x) ||
@@ -120,7 +120,7 @@ bool Rectangle::operator != (const Rectangle& rhs) const
 //==============================================================================
 //==============================================================================
             
-void Rectangle::set (	const DTfloat minus_x,
+void Rectangle::set (    const DTfloat minus_x,
                         const DTfloat plus_x,
                         const DTfloat minus_y,
                         const DTfloat plus_y)
@@ -220,7 +220,7 @@ bool Rectangle::is_touching (const Vector2 &pt) const
         return true;
     else
         return false;
-	
+    
 }
 
 //==============================================================================
@@ -231,11 +231,11 @@ DTfloat Rectangle::distance_to_point (const Vector2 &pt) const
     DTfloat xdist, ydist;
     
     if (pt.x > _plus_x)         xdist = pt.x - _plus_x;
-    else if (pt.x < _minus_x)	xdist = _minus_x - pt.x;
+    else if (pt.x < _minus_x)    xdist = _minus_x - pt.x;
     else                        xdist = 0.0F;
 
     if (pt.y > _plus_y)         ydist = pt.y - _plus_y;
-    else if (pt.y < _minus_y)	ydist = _minus_y - pt.y;
+    else if (pt.y < _minus_y)    ydist = _minus_y - pt.y;
     else                        ydist = 0.0F;
     
     DTfloat abs = (Vector2 {xdist,ydist}).abs();
@@ -251,11 +251,11 @@ const Vector2 Rectangle::closest_point (const Vector2 &pt) const
     DTfloat x, y;
     
     if (pt.x > _plus_x)         x = _plus_x;
-    else if (pt.x < _minus_x)	x = _minus_x;
+    else if (pt.x < _minus_x)    x = _minus_x;
     else                        x = pt.x;
 
     if (pt.y > _plus_y)         y = _plus_y;
-    else if (pt.y < _minus_y)	y = _minus_y;
+    else if (pt.y < _minus_y)    y = _minus_y;
     else                        y = pt.y;
         
     return {x,y};

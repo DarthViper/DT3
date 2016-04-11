@@ -3,7 +3,7 @@
 #define DT3_SCRIPTINGFILTER2POLE
 //==============================================================================
 ///
-///	File: ScriptingFilter2Pole.hpp
+///    File: ScriptingFilter2Pole.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -35,12 +35,12 @@ class ScriptingFilter2Pole: public ScriptingBase {
         DEFINE_CREATE_AND_CLONE
         DEFINE_PLUG_NODE
 
-                                    ScriptingFilter2Pole		(void);
-                                    ScriptingFilter2Pole		(const ScriptingFilter2Pole &rhs);
-        ScriptingFilter2Pole &		operator =					(const ScriptingFilter2Pole &rhs);
-        virtual						~ScriptingFilter2Pole		(void);
+                                    ScriptingFilter2Pole        (void);
+                                    ScriptingFilter2Pole        (const ScriptingFilter2Pole &rhs);
+        ScriptingFilter2Pole &        operator =                    (const ScriptingFilter2Pole &rhs);
+        virtual                        ~ScriptingFilter2Pole        (void);
 
-        virtual void				archive                     (const std::shared_ptr<Archive> &archive);
+        virtual void                archive                     (const std::shared_ptr<Archive> &archive);
 
         /// Object was added to a world
         /// world world that object was added to
@@ -56,45 +56,45 @@ class ScriptingFilter2Pole: public ScriptingBase {
 
         /// Set the type of filter
         /// \param type filter type
-        void						set_filter_type             (const Filters::FilterType type)    {	_type = type;	_initialized = false;	}
+        void                        set_filter_type             (const Filters::FilterType type)    {    _type = type;    _initialized = false;    }
 
         /// Get the type of filter
         /// \return filter type
-        inline Filters::FilterType  filter_type                 (void) 	const                       {	return _type;		}
+        inline Filters::FilterType  filter_type                 (void)     const                       {    return _type;        }
 
         /// Set the number of filter passes
         /// \param num_passes number of passes
-        void						set_num_passes              (const int32_t num_passes)    {	_num_passes = num_passes;	_passes.resize(num_passes);   _initialized = false;	}
+        void                        set_num_passes              (const int32_t num_passes)    {    _num_passes = num_passes;    _passes.resize(num_passes);   _initialized = false;    }
 
         /// Get the number of filter passes
         /// \return number of passes
-        inline int32_t				num_passes                  (void) 	const               {	return _num_passes;	}
+        inline int32_t                num_passes                  (void)     const               {    return _num_passes;    }
 
         /// Set the cutoff frequency
         /// \param freq_3db cutoff frequency
-        void						set_freq3db                 (const DTfloat freq_3db)    {	_freq_3db = freq_3db;	_initialized = false;	}
+        void                        set_freq3db                 (const DTfloat freq_3db)    {    _freq_3db = freq_3db;    _initialized = false;    }
 
         /// Get the cutoff frequency
         /// \return cutoff frequency
-        inline DTfloat				freq3db                     (void) 	const               {	return _freq_3db;	}
+        inline DTfloat                freq3db                     (void)     const               {    return _freq_3db;    }
 
         /// Set frequency sampling
         /// \param freq_sampling frequency sampling
-        void						set_freq_sampling           (const DTfloat freq_sampling){	_freq_sampling = freq_sampling;	_initialized = false;	}
+        void                        set_freq_sampling           (const DTfloat freq_sampling){    _freq_sampling = freq_sampling;    _initialized = false;    }
 
         /// Get frequency sampling
         /// \return frequency sampling
-        inline DTfloat				freq_sampling               (void) 	const				{	return _freq_sampling;		}
+        inline DTfloat                freq_sampling               (void)     const                {    return _freq_sampling;        }
 
 
     private:
-        Plug<DTfloat>				_in;
-        Plug<DTfloat>				_out;
+        Plug<DTfloat>                _in;
+        Plug<DTfloat>                _out;
 
         Filters::FilterType         _type;
-        int32_t						_num_passes;
-        DTfloat						_freq_3db;
-        DTfloat						_freq_sampling;
+        int32_t                        _num_passes;
+        DTfloat                        _freq_3db;
+        DTfloat                        _freq_sampling;
 
         bool                   _initialized;
 

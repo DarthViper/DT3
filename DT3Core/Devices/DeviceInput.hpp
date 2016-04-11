@@ -1,7 +1,7 @@
 #pragma once
 //==============================================================================
 ///
-///	File: DeviceInput.hpp
+///    File: DeviceInput.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -35,12 +35,12 @@ class DeviceInput: public DeviceBase {
         DEFINE_TYPE(DeviceInput,DeviceBase)
         DEFINE_CREATE
 
-                                    DeviceInput			(void);
+                                    DeviceInput            (void);
     private:
-                                    DeviceInput			(const DeviceInput &rhs);
-        DeviceInput &				operator =				(const DeviceInput &rhs);
+                                    DeviceInput            (const DeviceInput &rhs);
+        DeviceInput &                operator =                (const DeviceInput &rhs);
     public:
-        virtual						~DeviceInput			(void);
+        virtual                        ~DeviceInput            (void);
 
     public:
 
@@ -89,12 +89,12 @@ class DeviceInput: public DeviceBase {
             INPUT_AT            = 64,
             // Skip uppercase letters
 
-            INPUT_LEFTBRACKET	= 91,
-            INPUT_BACKSLASH		= 92,
-            INPUT_RIGHTBRACKET	= 93,
+            INPUT_LEFTBRACKET    = 91,
+            INPUT_BACKSLASH        = 92,
+            INPUT_RIGHTBRACKET    = 93,
             INPUT_CARET         = 94,
-            INPUT_UNDERSCORE	= 95,
-            INPUT_BACKQUOTE		= 96,
+            INPUT_UNDERSCORE    = 95,
+            INPUT_BACKQUOTE        = 96,
             INPUT_A             = 97,
             INPUT_B             = 98,
             INPUT_C             = 99,
@@ -121,106 +121,106 @@ class DeviceInput: public DeviceBase {
             INPUT_X             = 120,
             INPUT_Y             = 121,
             INPUT_Z             = 122,
-            INPUT_DELETE		= 127,
+            INPUT_DELETE        = 127,
             // end of ASCII mapped keysyms
 
             // International keyboard syms
-            INPUT_WORLD_0		= 160,		// 0xA0
-            INPUT_WORLD_1		= 161,
-            INPUT_WORLD_2		= 162,
-            INPUT_WORLD_3		= 163,
-            INPUT_WORLD_4		= 164,
-            INPUT_WORLD_5		= 165,
-            INPUT_WORLD_6		= 166,
-            INPUT_WORLD_7		= 167,
-            INPUT_WORLD_8		= 168,
-            INPUT_WORLD_9		= 169,
-            INPUT_WORLD_10		= 170,
-            INPUT_WORLD_11		= 171,
-            INPUT_WORLD_12		= 172,
-            INPUT_WORLD_13		= 173,
-            INPUT_WORLD_14		= 174,
-            INPUT_WORLD_15		= 175,
-            INPUT_WORLD_16		= 176,
-            INPUT_WORLD_17		= 177,
-            INPUT_WORLD_18		= 178,
-            INPUT_WORLD_19		= 179,
-            INPUT_WORLD_20		= 180,
-            INPUT_WORLD_21		= 181,
-            INPUT_WORLD_22		= 182,
-            INPUT_WORLD_23		= 183,
-            INPUT_WORLD_24		= 184,
-            INPUT_WORLD_25		= 185,
-            INPUT_WORLD_26		= 186,
-            INPUT_WORLD_27		= 187,
-            INPUT_WORLD_28		= 188,
-            INPUT_WORLD_29		= 189,
-            INPUT_WORLD_30		= 190,
-            INPUT_WORLD_31		= 191,
-            INPUT_WORLD_32		= 192,
-            INPUT_WORLD_33		= 193,
-            INPUT_WORLD_34		= 194,
-            INPUT_WORLD_35		= 195,
-            INPUT_WORLD_36		= 196,
-            INPUT_WORLD_37		= 197,
-            INPUT_WORLD_38		= 198,
-            INPUT_WORLD_39		= 199,
-            INPUT_WORLD_40		= 200,
-            INPUT_WORLD_41		= 201,
-            INPUT_WORLD_42		= 202,
-            INPUT_WORLD_43		= 203,
-            INPUT_WORLD_44		= 204,
-            INPUT_WORLD_45		= 205,
-            INPUT_WORLD_46		= 206,
-            INPUT_WORLD_47		= 207,
-            INPUT_WORLD_48		= 208,
-            INPUT_WORLD_49		= 209,
-            INPUT_WORLD_50		= 210,
-            INPUT_WORLD_51		= 211,
-            INPUT_WORLD_52		= 212,
-            INPUT_WORLD_53		= 213,
-            INPUT_WORLD_54		= 214,
-            INPUT_WORLD_55		= 215,
-            INPUT_WORLD_56		= 216,
-            INPUT_WORLD_57		= 217,
-            INPUT_WORLD_58		= 218,
-            INPUT_WORLD_59		= 219,
-            INPUT_WORLD_60		= 220,
-            INPUT_WORLD_61		= 221,
-            INPUT_WORLD_62		= 222,
-            INPUT_WORLD_63		= 223,
-            INPUT_WORLD_64		= 224,
-            INPUT_WORLD_65		= 225,
-            INPUT_WORLD_66		= 226,
-            INPUT_WORLD_67		= 227,
-            INPUT_WORLD_68		= 228,
-            INPUT_WORLD_69		= 229,
-            INPUT_WORLD_70		= 230,
-            INPUT_WORLD_71		= 231,
-            INPUT_WORLD_72		= 232,
-            INPUT_WORLD_73		= 233,
-            INPUT_WORLD_74		= 234,
-            INPUT_WORLD_75		= 235,
-            INPUT_WORLD_76		= 236,
-            INPUT_WORLD_77		= 237,
-            INPUT_WORLD_78		= 238,
-            INPUT_WORLD_79		= 239,
-            INPUT_WORLD_80		= 240,
-            INPUT_WORLD_81		= 241,
-            INPUT_WORLD_82		= 242,
-            INPUT_WORLD_83		= 243,
-            INPUT_WORLD_84		= 244,
-            INPUT_WORLD_85		= 245,
-            INPUT_WORLD_86		= 246,
-            INPUT_WORLD_87		= 247,
-            INPUT_WORLD_88		= 248,
-            INPUT_WORLD_89		= 249,
-            INPUT_WORLD_90		= 250,
-            INPUT_WORLD_91		= 251,
-            INPUT_WORLD_92		= 252,
-            INPUT_WORLD_93		= 253,
-            INPUT_WORLD_94		= 254,
-            INPUT_WORLD_95		= 255,		// 0xFF
+            INPUT_WORLD_0        = 160,        // 0xA0
+            INPUT_WORLD_1        = 161,
+            INPUT_WORLD_2        = 162,
+            INPUT_WORLD_3        = 163,
+            INPUT_WORLD_4        = 164,
+            INPUT_WORLD_5        = 165,
+            INPUT_WORLD_6        = 166,
+            INPUT_WORLD_7        = 167,
+            INPUT_WORLD_8        = 168,
+            INPUT_WORLD_9        = 169,
+            INPUT_WORLD_10        = 170,
+            INPUT_WORLD_11        = 171,
+            INPUT_WORLD_12        = 172,
+            INPUT_WORLD_13        = 173,
+            INPUT_WORLD_14        = 174,
+            INPUT_WORLD_15        = 175,
+            INPUT_WORLD_16        = 176,
+            INPUT_WORLD_17        = 177,
+            INPUT_WORLD_18        = 178,
+            INPUT_WORLD_19        = 179,
+            INPUT_WORLD_20        = 180,
+            INPUT_WORLD_21        = 181,
+            INPUT_WORLD_22        = 182,
+            INPUT_WORLD_23        = 183,
+            INPUT_WORLD_24        = 184,
+            INPUT_WORLD_25        = 185,
+            INPUT_WORLD_26        = 186,
+            INPUT_WORLD_27        = 187,
+            INPUT_WORLD_28        = 188,
+            INPUT_WORLD_29        = 189,
+            INPUT_WORLD_30        = 190,
+            INPUT_WORLD_31        = 191,
+            INPUT_WORLD_32        = 192,
+            INPUT_WORLD_33        = 193,
+            INPUT_WORLD_34        = 194,
+            INPUT_WORLD_35        = 195,
+            INPUT_WORLD_36        = 196,
+            INPUT_WORLD_37        = 197,
+            INPUT_WORLD_38        = 198,
+            INPUT_WORLD_39        = 199,
+            INPUT_WORLD_40        = 200,
+            INPUT_WORLD_41        = 201,
+            INPUT_WORLD_42        = 202,
+            INPUT_WORLD_43        = 203,
+            INPUT_WORLD_44        = 204,
+            INPUT_WORLD_45        = 205,
+            INPUT_WORLD_46        = 206,
+            INPUT_WORLD_47        = 207,
+            INPUT_WORLD_48        = 208,
+            INPUT_WORLD_49        = 209,
+            INPUT_WORLD_50        = 210,
+            INPUT_WORLD_51        = 211,
+            INPUT_WORLD_52        = 212,
+            INPUT_WORLD_53        = 213,
+            INPUT_WORLD_54        = 214,
+            INPUT_WORLD_55        = 215,
+            INPUT_WORLD_56        = 216,
+            INPUT_WORLD_57        = 217,
+            INPUT_WORLD_58        = 218,
+            INPUT_WORLD_59        = 219,
+            INPUT_WORLD_60        = 220,
+            INPUT_WORLD_61        = 221,
+            INPUT_WORLD_62        = 222,
+            INPUT_WORLD_63        = 223,
+            INPUT_WORLD_64        = 224,
+            INPUT_WORLD_65        = 225,
+            INPUT_WORLD_66        = 226,
+            INPUT_WORLD_67        = 227,
+            INPUT_WORLD_68        = 228,
+            INPUT_WORLD_69        = 229,
+            INPUT_WORLD_70        = 230,
+            INPUT_WORLD_71        = 231,
+            INPUT_WORLD_72        = 232,
+            INPUT_WORLD_73        = 233,
+            INPUT_WORLD_74        = 234,
+            INPUT_WORLD_75        = 235,
+            INPUT_WORLD_76        = 236,
+            INPUT_WORLD_77        = 237,
+            INPUT_WORLD_78        = 238,
+            INPUT_WORLD_79        = 239,
+            INPUT_WORLD_80        = 240,
+            INPUT_WORLD_81        = 241,
+            INPUT_WORLD_82        = 242,
+            INPUT_WORLD_83        = 243,
+            INPUT_WORLD_84        = 244,
+            INPUT_WORLD_85        = 245,
+            INPUT_WORLD_86        = 246,
+            INPUT_WORLD_87        = 247,
+            INPUT_WORLD_88        = 248,
+            INPUT_WORLD_89        = 249,
+            INPUT_WORLD_90        = 250,
+            INPUT_WORLD_91        = 251,
+            INPUT_WORLD_92        = 252,
+            INPUT_WORLD_93        = 253,
+            INPUT_WORLD_94        = 254,
+            INPUT_WORLD_95        = 255,        // 0xFF
 
             // Numeric keypad
             INPUT_KP0           = 256,
@@ -233,35 +233,35 @@ class DeviceInput: public DeviceBase {
             INPUT_KP7           = 263,
             INPUT_KP8           = 264,
             INPUT_KP9           = 265,
-            INPUT_KP_PERIOD		= 266,
-            INPUT_KP_DIVIDE		= 267,
-            INPUT_KP_MULTIPLY	= 268,
-            INPUT_KP_MINUS		= 269,
-            INPUT_KP_PLUS		= 270,
-            INPUT_KP_ENTER		= 271,
-            INPUT_KP_EQUALS		= 272,
+            INPUT_KP_PERIOD        = 266,
+            INPUT_KP_DIVIDE        = 267,
+            INPUT_KP_MULTIPLY    = 268,
+            INPUT_KP_MINUS        = 269,
+            INPUT_KP_PLUS        = 270,
+            INPUT_KP_ENTER        = 271,
+            INPUT_KP_EQUALS        = 272,
 
             // Arrows + Home/end pad
-            INPUT_UP			= 273,
+            INPUT_UP            = 273,
             INPUT_DOWN          = 274,
             INPUT_RIGHT         = 275,
             INPUT_LEFT          = 276,
-            INPUT_INSERT		= 277,
+            INPUT_INSERT        = 277,
             INPUT_HOME          = 278,
             INPUT_END           = 279,
-            INPUT_PAGEUP		= 280,
-            INPUT_PAGEDOWN		= 281,
+            INPUT_PAGEUP        = 280,
+            INPUT_PAGEDOWN        = 281,
 
             // Function keys
-            INPUT_F1			= 282,
-            INPUT_F2			= 283,
-            INPUT_F3			= 284,
-            INPUT_F4			= 285,
-            INPUT_F5			= 286,
-            INPUT_F6			= 287,
-            INPUT_F7			= 288,
-            INPUT_F8			= 289,
-            INPUT_F9			= 290,
+            INPUT_F1            = 282,
+            INPUT_F2            = 283,
+            INPUT_F3            = 284,
+            INPUT_F4            = 285,
+            INPUT_F5            = 286,
+            INPUT_F6            = 287,
+            INPUT_F7            = 288,
+            INPUT_F8            = 289,
+            INPUT_F9            = 290,
             INPUT_F10           = 291,
             INPUT_F11           = 292,
             INPUT_F12           = 293,
@@ -270,31 +270,31 @@ class DeviceInput: public DeviceBase {
             INPUT_F15           = 296,
 
             // Key state modifier keys
-            INPUT_NUMLOCK		= 300,
-            INPUT_CAPSLOCK		= 301,
-            INPUT_SCROLLOCK		= 302,
-            INPUT_RSHIFT		= 303,
-            INPUT_LSHIFT		= 304,
+            INPUT_NUMLOCK        = 300,
+            INPUT_CAPSLOCK        = 301,
+            INPUT_SCROLLOCK        = 302,
+            INPUT_RSHIFT        = 303,
+            INPUT_LSHIFT        = 304,
             INPUT_RCTRL         = 305,
             INPUT_LCTRL         = 306,
             INPUT_RALT          = 307,
             INPUT_LALT          = 308,
             INPUT_RMETA         = 309,
             INPUT_LMETA         = 310,
-            INPUT_LSUPER		= 311,		// Left "Windows" key
-            INPUT_RSUPER		= 312,		// Right "Windows" key
-            INPUT_MODE          = 313,		// "Alt Gr" key
-            INPUT_COMPOSE		= 314,		// Multi-key compose key
+            INPUT_LSUPER        = 311,        // Left "Windows" key
+            INPUT_RSUPER        = 312,        // Right "Windows" key
+            INPUT_MODE          = 313,        // "Alt Gr" key
+            INPUT_COMPOSE        = 314,        // Multi-key compose key
 
             // Miscellaneous function keys
             INPUT_HELP          = 315,
             INPUT_PRINT         = 316,
-            INPUT_SYSREQ		= 317,
+            INPUT_SYSREQ        = 317,
             INPUT_BREAK         = 318,
             INPUT_MENU          = 319,
-            INPUT_POWER         = 320,		// Power Macintosh power key
-            INPUT_EURO          = 321,		// Some european keyboards
-            INPUT_UNDO          = 322,		// Atari keyboard has Undo
+            INPUT_POWER         = 320,        // Power Macintosh power key
+            INPUT_EURO          = 321,        // Some european keyboards
+            INPUT_UNDO          = 322,        // Atari keyboard has Undo
 
             INPUT_LAST
         };
@@ -316,19 +316,19 @@ class DeviceInput: public DeviceBase {
             MOD_RESERVED        = 0x8000
         };
 
-        virtual void				set_touch_event             (TouchEvent *event);
+        virtual void                set_touch_event             (TouchEvent *event);
 
         virtual void                set_key_down_event          (uint32_t modifiers, uint16_t key);
 
         virtual void                set_key_up_event            (uint32_t modifiers, uint16_t key);
 
-        virtual void				do_back_button              (void);
-        virtual void				do_menu_button              (void);
+        virtual void                do_back_button              (void);
+        virtual void                do_menu_button              (void);
 
 
-        virtual void				set_acceleration_event      (const Vector3 &a);
-        virtual void				set_gyro_event              (const Vector3 &w);
-        virtual void				set_magnetometer_event      (const Vector3 &m);
+        virtual void                set_acceleration_event      (const Vector3 &a);
+        virtual void                set_gyro_event              (const Vector3 &w);
+        virtual void                set_magnetometer_event      (const Vector3 &m);
 
         virtual void                begin_capture_mouse         (void);
         virtual void                end_capture_mouse           (void);

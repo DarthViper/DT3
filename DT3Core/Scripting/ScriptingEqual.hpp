@@ -3,7 +3,7 @@
 #define DT3_SCRIPTINGEQUAL
 //==============================================================================
 ///
-///	File: ScriptingEqual.hpp
+///    File: ScriptingEqual.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -33,22 +33,22 @@ class ScriptingEqual: public ScriptingBase {
         DEFINE_CREATE_AND_CLONE
         DEFINE_PLUG_NODE
 
-                                    ScriptingEqual			(void);
-                                    ScriptingEqual			(const ScriptingEqual &rhs);
-        ScriptingEqual &			operator =				(const ScriptingEqual &rhs);
-        virtual						~ScriptingEqual         (void);
+                                    ScriptingEqual            (void);
+                                    ScriptingEqual            (const ScriptingEqual &rhs);
+        ScriptingEqual &            operator =                (const ScriptingEqual &rhs);
+        virtual                        ~ScriptingEqual         (void);
 
-        virtual void				archive                 (const std::shared_ptr<Archive> &archive);
+        virtual void                archive                 (const std::shared_ptr<Archive> &archive);
 
     public:
         /// Computes the value of the node
         /// \param plug plug to compute
-        bool					compute					(const PlugBase *plug);
+        bool                    compute                    (const PlugBase *plug);
 
     private:
-        Plug<DTfloat>				_in1;
-        Plug<DTfloat>				_in2;
-        Plug<bool>				_out;
+        Plug<DTfloat>                _in1;
+        Plug<DTfloat>                _in2;
+        Plug<bool>                _out;
 };
 
 //==============================================================================

@@ -1,6 +1,6 @@
 //==============================================================================
 ///
-///	File: Event.cpp
+///    File: Event.cpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -37,7 +37,7 @@ std::mutex Event::_free_list_mutex;
 //==============================================================================
 
 Event::Event (void)
-    :	_is_computing       (false),
+    :    _is_computing       (false),
         _info_index         (0),
         _connection_index   (0)
 {
@@ -45,7 +45,7 @@ Event::Event (void)
 }
 
 Event::Event (uint16_t info)
-    :	_is_computing       (false),
+    :    _is_computing       (false),
         _info_index         (info),
         _connection_index   (0)
 {
@@ -53,7 +53,7 @@ Event::Event (uint16_t info)
 }
 
 Event::Event (const Event &rhs)
-    :	_is_computing       (false),
+    :    _is_computing       (false),
         _info_index         (rhs._info_index),
         _connection_index   (0)
 {
@@ -76,11 +76,11 @@ std::string Event::full_name (void) const
     return owner()->full_name() + "." + name();
 }
 
-bool Event::is_no_draw() const    {	return info().is_no_draw();		}
+bool Event::is_no_draw() const    {    return info().is_no_draw();        }
 
-bool Event::is_input() const    {	return info().is_input();		}
+bool Event::is_input() const    {    return info().is_input();        }
 
-bool Event::is_output() const    {	return info().is_output();		}
+bool Event::is_output() const    {    return info().is_output();        }
 
 //==============================================================================
 //==============================================================================
@@ -259,9 +259,9 @@ void Event::initialize_static (void)
     _pool[DT3_EVENT_CONNECTION_POOL_SIZE-1]._next_free = NULL;
 }
 
-PlugNode *Event::owner() const    {	return info().event_to_node(this);  }
+PlugNode *Event::owner() const    {    return info().event_to_node(this);  }
 
-const std::string &Event::name() const    {	return info().name();           }
+const std::string &Event::name() const    {    return info().name();           }
 
 Event::EventConnections& Event::connections (void)
 {

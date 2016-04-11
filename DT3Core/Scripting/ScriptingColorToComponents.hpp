@@ -3,7 +3,7 @@
 #define DT3_SCRIPTINGCOLORTOCOMPONENTS
 //==============================================================================
 ///
-///	File: ScriptingColorToComponents.hpp
+///    File: ScriptingColorToComponents.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -29,12 +29,12 @@ class ScriptingColorToComponents: public ScriptingBase {
         DEFINE_CREATE_AND_CLONE
         DEFINE_PLUG_NODE
 
-                                        ScriptingColorToComponents		(void);
-                                        ScriptingColorToComponents		(const ScriptingColorToComponents &rhs);
-        ScriptingColorToComponents &	operator =						(const ScriptingColorToComponents &rhs);
-        virtual							~ScriptingColorToComponents     (void);
+                                        ScriptingColorToComponents        (void);
+                                        ScriptingColorToComponents        (const ScriptingColorToComponents &rhs);
+        ScriptingColorToComponents &    operator =                        (const ScriptingColorToComponents &rhs);
+        virtual                            ~ScriptingColorToComponents     (void);
 
-        virtual void					archive                         (const std::shared_ptr<Archive> &archive);
+        virtual void                    archive                         (const std::shared_ptr<Archive> &archive);
 
     public:
         /// Computes the value of the node

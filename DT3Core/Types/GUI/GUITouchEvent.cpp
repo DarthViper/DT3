@@ -1,12 +1,12 @@
 //==============================================================================
-///	
-///	File: GUITouchEvent.cpp
-///	
+///    
+///    File: GUITouchEvent.cpp
+///    
 /// Copyright (C) 2000-2014 by Smells Like Donkey, Inc. All rights reserved.
 ///
 /// This file is subject to the terms and conditions defined in
 /// file 'LICENSE.txt', which is part of this source code package.
-///	
+///    
 //==============================================================================
 
 #include "DT3Core/Types/GUI/GUITouchEvent.hpp"
@@ -30,7 +30,7 @@ GUITouchEvent::GUITouchEvent (void)
 {
 
 }
-	
+    
 GUITouchEvent::GUITouchEvent (const GUITouchEvent &rhs)
     :   _focused            (rhs._focused),
         _initial_position   (rhs._initial_position),
@@ -51,14 +51,14 @@ GUITouchEvent& GUITouchEvent::operator = (const GUITouchEvent &rhs)
     _velocity = rhs._velocity;
     _state = rhs._state;
     
-	return *this;
+    return *this;
 }
-		
+        
 GUITouchEvent::~GUITouchEvent (void)
 {
 
 }
-	
+    
 //==============================================================================
 //==============================================================================
 

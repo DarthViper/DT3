@@ -3,7 +3,7 @@
 #define DT3_SCRIPTINGPARTICLETIMEROTATOR
 //==============================================================================
 ///
-///	File: ScriptingParticleTimeRotator.hpp
+///    File: ScriptingParticleTimeRotator.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -35,17 +35,17 @@ class ScriptingParticleTimeRotator: public ScriptingBase {
         DEFINE_CREATE_AND_CLONE
         DEFINE_PLUG_NODE
 
-                                        ScriptingParticleTimeRotator	(void);
-                                        ScriptingParticleTimeRotator	(const ScriptingParticleTimeRotator &rhs);
-        ScriptingParticleTimeRotator &	operator =						(const ScriptingParticleTimeRotator &rhs);
-        virtual							~ScriptingParticleTimeRotator	(void);
+                                        ScriptingParticleTimeRotator    (void);
+                                        ScriptingParticleTimeRotator    (const ScriptingParticleTimeRotator &rhs);
+        ScriptingParticleTimeRotator &    operator =                        (const ScriptingParticleTimeRotator &rhs);
+        virtual                            ~ScriptingParticleTimeRotator    (void);
 
         virtual void                archive                 (const std::shared_ptr<Archive> &archive);
 
     public:
         /// Computes the value of the node
         /// \param plug plug to compute
-        bool					compute					(const PlugBase *plug);
+        bool                    compute                    (const PlugBase *plug);
 
         DEFINE_ACCESSORS(rotation_speed_mul, set_rotation_speed_mul, DTfloat, _rotation_speed_mul);
         DEFINE_ACCESSORS(rotation_phase_mul, set_rotation_phase_mul, DTfloat, _rotation_phase_mul);
@@ -57,11 +57,11 @@ class ScriptingParticleTimeRotator: public ScriptingBase {
 #endif
 
     private:
-        DTfloat						_rotation_speed_mul;
-        DTfloat						_rotation_phase_mul;
+        DTfloat                        _rotation_speed_mul;
+        DTfloat                        _rotation_phase_mul;
 
-        Plug<std::shared_ptr<Particles>>		_in;
-        Plug<std::shared_ptr<Particles>>		_out;
+        Plug<std::shared_ptr<Particles>>        _in;
+        Plug<std::shared_ptr<Particles>>        _out;
 
 };
 

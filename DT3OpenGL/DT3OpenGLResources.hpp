@@ -2,14 +2,14 @@
 #ifndef DT3_DT3OPENGLRESOURCES
 #define DT3_DT3OPENGLRESOURCES
 //==============================================================================
-///	
-///	File: 			DT3OpenGLResources.hpp
-///	
+///    
+///    File:             DT3OpenGLResources.hpp
+///    
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
 /// This file is subject to the terms and conditions defined in
 /// file 'LICENSE.txt', which is part of this source code package.
-///	
+///    
 //==============================================================================
 
 #include "DT3Core/Types/Base/BaseInclude.hpp"
@@ -17,10 +17,10 @@
 #include <list>
 
 #if DT3_OS == DT3_ANDROID
-	#include <GLES2/gl2.h>
-	#include <GLES2/gl2ext.h>
+    #include <GLES2/gl2.h>
+    #include <GLES2/gl2ext.h>
 #elif DT3_OS == DT3_IOS
-	#include <OpenGLES/ES2/gl.h>
+    #include <OpenGLES/ES2/gl.h>
     #include <OpenGLES/ES2/glext.h>
 #else
     #include <GL/glew.h>

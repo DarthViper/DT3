@@ -3,7 +3,7 @@
 #define DT3_FONTRESOURCE
 //==============================================================================
 ///
-///	File: FontResource.hpp
+///    File: FontResource.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -49,7 +49,7 @@ class FontResource: public Resource {
                                 FontResource            (void);
     private:
                                 FontResource            (const FontResource &rhs);
-        FontResource &          operator =				(const FontResource &rhs);
+        FontResource &          operator =                (const FontResource &rhs);
     public:
         virtual                 ~FontResource           (void);
 
@@ -64,7 +64,7 @@ class FontResource: public Resource {
         /// \param pathname path to resource
         /// \param args importer args
         /// \return error code
-        DTerr                   import					(const FilePath &pathname, std::string args);
+        DTerr                   import                    (const FilePath &pathname, std::string args);
 
         /// Gets the freetype typeface
         /// \return freetype typeface

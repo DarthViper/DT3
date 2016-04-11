@@ -1,6 +1,6 @@
 //==============================================================================
 ///
-///	File: ScriptingSoundHRTF.cpp
+///    File: ScriptingSoundHRTF.cpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -83,7 +83,7 @@ END_IMPLEMENT_PLUGS
 ScriptingSoundHRTF::ScriptingSoundHRTF (void)
     :   _sound_packet_in    (PLUG_INFO_INDEX(_sound_packet_in)),
         _sound_packet_out   (PLUG_INFO_INDEX(_sound_packet_out)),
-        _source_position 	(PLUG_INFO_INDEX(_source_position), {0.0F,0.0F,0.0F} ),
+        _source_position     (PLUG_INFO_INDEX(_source_position), {0.0F,0.0F,0.0F} ),
         _listener_transform (PLUG_INFO_INDEX(_listener_transform), Matrix4::identity()),
         _rolloff            (0.0)
 {
@@ -97,10 +97,10 @@ ScriptingSoundHRTF::ScriptingSoundHRTF (void)
 
 ScriptingSoundHRTF::ScriptingSoundHRTF (const ScriptingSoundHRTF &rhs)
     :   ScriptingSoundBase  (rhs),
-        _sound_packet_in	(rhs._sound_packet_in),
+        _sound_packet_in    (rhs._sound_packet_in),
         _sound_packet_out   (rhs._sound_packet_out),
-        _source_position   	(rhs._source_position),
-        _listener_transform	(rhs._listener_transform),
+        _source_position       (rhs._source_position),
+        _listener_transform    (rhs._listener_transform),
         _rolloff            (0.0F)
 {
     for (int16_t &i : _buffer) {

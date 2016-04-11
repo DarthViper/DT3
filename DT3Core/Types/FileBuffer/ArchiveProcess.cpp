@@ -1,12 +1,12 @@
 //==============================================================================
-///	
-///	File: ArchiveProcess.cpp
+///    
+///    File: ArchiveProcess.cpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
 /// This file is subject to the terms and conditions defined in
 /// file 'LICENSE.txt', which is part of this source code package.
-///	
+///    
 //==============================================================================
 
 #include "DT3Core/Types/FileBuffer/ArchiveProcess.hpp"
@@ -24,7 +24,7 @@ ArchiveProcess::ArchiveProcess (void)
 {    
 
 }
-		
+        
 ArchiveProcess::ArchiveProcess (const ArchiveProcess &rhs)
 {
 
@@ -38,7 +38,7 @@ ArchiveProcess & ArchiveProcess::operator = (const ArchiveProcess &rhs)
     }
     return (*this);
 }
-			
+            
 ArchiveProcess::~ArchiveProcess (void)
 {
 

@@ -3,7 +3,7 @@
 #define DT3_SPHERICALHARMONICS
 //==============================================================================
 ///
-///	File: SphericalHarmonics.hpp
+///    File: SphericalHarmonics.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -36,50 +36,50 @@ class SphericalHarmonics {
         typedef DTfloat (*Polar_Function)(DTfloat theta, DTfloat phi);
 
 
-                                                SphericalHarmonics		(void);
+                                                SphericalHarmonics        (void);
     private:
-                                                SphericalHarmonics		(const SphericalHarmonics &rhs);
-        SphericalHarmonics &					operator =              (const SphericalHarmonics &rhs);
+                                                SphericalHarmonics        (const SphericalHarmonics &rhs);
+        SphericalHarmonics &                    operator =              (const SphericalHarmonics &rhs);
     public:
-                                                ~SphericalHarmonics		(void);
+                                                ~SphericalHarmonics        (void);
 
     public:
         /// Step 1. Build the list of samples that will be used to sample the environment
         /// \param num_bands Number of bands in the SH function
         /// \param num_samples Number of samples used to approximate the function
-        void									build_spherical_samples	(int32_t num_bands, int32_t num_samples);
+        void                                    build_spherical_samples    (int32_t num_bands, int32_t num_samples);
 
         /// Step 2. Sample the function and build the coefficients
         /// \param fn The function used to build the coefficients
-        void									build_coefficients		(Polar_Function fn);
+        void                                    build_coefficients        (Polar_Function fn);
 
         /// Clear the samples
-        void									clear_spherical_samples	(void);
+        void                                    clear_spherical_samples    (void);
 
         /// Return the number of bands in the function
         /// \return Number of bands
-        int32_t									num_bands				(void)	{	return _num_bands;				}
+        int32_t                                    num_bands                (void)    {    return _num_bands;                }
 
         /// Return the number of coefficients in the function
         /// \return Number of coefficients
-        int32_t									num_coefficients		(void)	{	return _num_bands*_num_bands;	}
+        int32_t                                    num_coefficients        (void)    {    return _num_bands*_num_bands;    }
 
         /// Returns the coefficients
         /// \return coefficients
-        const std::vector<DTfloat> &            coefficients            (void)	{	return _coeff;					}
+        const std::vector<DTfloat> &            coefficients            (void)    {    return _coeff;                    }
 
         /// Clear all of the calculated coefficients
-        void									clear_coefficients		(void);
+        void                                    clear_coefficients        (void);
 
     private:
 
-        DTfloat									legendre				(int32_t l,int32_t m,DTfloat x);
-        DTfloat									legendre_scale			(int32_t l, int32_t m);
-        DTfloat									sH						(int32_t l, int32_t m, DTfloat theta, DTfloat phi);
+        DTfloat                                    legendre                (int32_t l,int32_t m,DTfloat x);
+        DTfloat                                    legendre_scale            (int32_t l, int32_t m);
+        DTfloat                                    sH                        (int32_t l, int32_t m, DTfloat theta, DTfloat phi);
 
-        int32_t									_num_bands;
-        int32_t									_num_samples;
-        int32_t									_num_samples_sqrt;
+        int32_t                                    _num_bands;
+        int32_t                                    _num_samples;
+        int32_t                                    _num_samples_sqrt;
 
         struct SHSample {
             Vector3                 _sph;
@@ -87,8 +87,8 @@ class SphericalHarmonics {
             std::vector<DTfloat>    _coeff;     // numCoefficients large
         };
 
-        std::vector<SHSample>					_samples;
-        std::vector<DTfloat>					_coeff;
+        std::vector<SHSample>                    _samples;
+        std::vector<DTfloat>                    _coeff;
 
 };
 

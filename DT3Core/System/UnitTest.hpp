@@ -1,7 +1,7 @@
 #pragma once
 //==============================================================================
 ///
-///	File: UnitTest.hpp
+///    File: UnitTest.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -29,23 +29,23 @@ class UnitTest: public BaseClass {
 
                                     UnitTest            (void);
                                     UnitTest            (const UnitTest &rhs);
-        UnitTest &					operator =          (const UnitTest &rhs);
+        UnitTest &                    operator =          (const UnitTest &rhs);
         virtual                     ~UnitTest           (void);
 
     public:
         /// Pure virtual function that contains the test in the subclass of this object.
-        virtual void				run_test            (void) = 0;
+        virtual void                run_test            (void) = 0;
 
 
         /// Runs all of the tests registered in the object factory.
-        static void					run_all_tests		(void);
+        static void                    run_all_tests        (void);
 
 
         /// Runs the test specified by "test".
         /// \param test name of test class to instantiate and run. First the
         /// string is used as is, if it fails then "_test" is appended and tried
         /// again.
-        static void					run_one_test		(std::string test);
+        static void                    run_one_test        (std::string test);
 };
 
 //==============================================================================

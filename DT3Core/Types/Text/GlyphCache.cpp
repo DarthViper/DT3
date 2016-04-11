@@ -1,12 +1,12 @@
 //==============================================================================
-///	
-///	File: GlyphCache.cpp
-///	
+///    
+///    File: GlyphCache.cpp
+///    
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
 /// This file is subject to the terms and conditions defined in
 /// file 'LICENSE.txt', which is part of this source code package.
-///	
+///    
 //==============================================================================
 
 #include "DT3Core/Types/Text/GlyphCache.hpp"
@@ -44,13 +44,13 @@ GlyphCache& GlyphCache::operator = (const GlyphCache &rhs)
 {
     _hash_table = rhs._hash_table;
     return (*this);
-}	
+}    
 
 GlyphCache& GlyphCache::operator = (GlyphCache &&rhs)
-{	
+{    
     _hash_table = std::move(rhs._hash_table);
     return (*this);
-}	
+}    
 
 GlyphCache::~GlyphCache (void)
 {

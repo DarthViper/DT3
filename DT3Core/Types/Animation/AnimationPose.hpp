@@ -1,7 +1,7 @@
 #pragma once
 //==============================================================================
 ///
-///	File: AnimationPose.hpp
+///    File: AnimationPose.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -35,27 +35,27 @@ class AnimationPose: public BaseClass {
         DEFINE_TYPE(AnimationPose,BaseClass)
         DEFINE_CREATE_AND_CLONE
 
-                                AnimationPose		(void);
-                                AnimationPose		(const AnimationPose &rhs);
-                                AnimationPose		(AnimationPose &&rhs);
-        AnimationPose &			operator =			(const AnimationPose &rhs);
-        AnimationPose &			operator =			(AnimationPose &&rhs);
-                                ~AnimationPose		(void);
+                                AnimationPose        (void);
+                                AnimationPose        (const AnimationPose &rhs);
+                                AnimationPose        (AnimationPose &&rhs);
+        AnimationPose &            operator =            (const AnimationPose &rhs);
+        AnimationPose &            operator =            (AnimationPose &&rhs);
+                                ~AnimationPose        (void);
 
     public:
         /// Calculates the pose for the object
         /// \param time time which the pose will be calculated for
         /// \param animation animation to use for calculating the pose
-        void					update				(const DTfloat time, const std::shared_ptr<AnimationResource> &animation);
+        void                    update                (const DTfloat time, const std::shared_ptr<AnimationResource> &animation);
 
         /// Returns the transform of the joint given the hash of its name
         /// \param joint_name_hash hash of the name of the joint
         /// \param transform returned transform
         /// \return success
-        bool				joint_transform     (uint32_t joint_name_hash, Matrix4 &transform) const;
+        bool                joint_transform     (uint32_t joint_name_hash, Matrix4 &transform) const;
 
     private:
-        std::map<uint32_t, AnimationPoseJoint>	_joints;
+        std::map<uint32_t, AnimationPoseJoint>    _joints;
 };
 
 //==============================================================================

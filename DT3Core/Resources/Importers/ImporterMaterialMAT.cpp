@@ -1,12 +1,12 @@
 //==============================================================================
-///	
-///	File: ImporterMaterialMAT.cpp
-///	
+///    
+///    File: ImporterMaterialMAT.cpp
+///    
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
 /// This file is subject to the terms and conditions defined in
 /// file 'LICENSE.txt', which is part of this source code package.
-///	
+///    
 //==============================================================================
 
 #include "DT3Core/Resources/Importers/ImporterMaterialMAT.hpp"
@@ -35,9 +35,9 @@ IMPLEMENT_FACTORY_IMPORTER(ImporterMaterialMAT,mat)
 
 ImporterMaterialMAT::ImporterMaterialMAT (void)
 {    
-	
+    
 }
-			
+            
 ImporterMaterialMAT::~ImporterMaterialMAT (void)
 { 
 
@@ -48,17 +48,17 @@ ImporterMaterialMAT::~ImporterMaterialMAT (void)
 
 void ImporterMaterialMAT::parse_depth_stencil_block (MaterialResource *target)
 {
-	_tokenizer.assume_next_token("{");
+    _tokenizer.assume_next_token("{");
 
-	while (true) {
-		std::string token = _tokenizer.next_token_string();
-		
-		// Handle Preprocessor
-		if (_tokenizer.parse_preprocessor_macros(token))
-			continue;
-		
-		// Are we at the end of the block
-		if (token == "}")	break;
+    while (true) {
+        std::string token = _tokenizer.next_token_string();
+        
+        // Handle Preprocessor
+        if (_tokenizer.parse_preprocessor_macros(token))
+            continue;
+        
+        // Are we at the end of the block
+        if (token == "}")    break;
         
         if (MoreStrings::iequals(token,"DepthEnable"))                {     _tokenizer.assume_next_token("=");
                                                                             target->set_depth_enable(static_cast<bool>(_tokenizer.next_token_number()));
@@ -106,23 +106,23 @@ void ImporterMaterialMAT::parse_depth_stencil_block (MaterialResource *target)
                                                                             target->set_back_face_stencil_func((DT3GLComparison) _tokenizer.next_token_number());
                                                                             continue;   }
         
-		_tokenizer.syntax_error("Unknown Token " + token);
-	};
+        _tokenizer.syntax_error("Unknown Token " + token);
+    };
 }
 
 void ImporterMaterialMAT::parse_blend_block (MaterialResource *target)
 {
-	_tokenizer.assume_next_token("{");
+    _tokenizer.assume_next_token("{");
 
-	while (true) {
-		std::string token = _tokenizer.next_token_string();
-		
-		// Handle Preprocessor
-		if (_tokenizer.parse_preprocessor_macros(token))
-			continue;
-		
-		// Are we at the end of the block
-		if (token == "}")	break;
+    while (true) {
+        std::string token = _tokenizer.next_token_string();
+        
+        // Handle Preprocessor
+        if (_tokenizer.parse_preprocessor_macros(token))
+            continue;
+        
+        // Are we at the end of the block
+        if (token == "}")    break;
         
         if (MoreStrings::iequals(token,"BlendEnable"))                {     _tokenizer.assume_next_token("=");
                                                                             target->set_blend_enable(static_cast<bool>(_tokenizer.next_token_number()));
@@ -142,23 +142,23 @@ void ImporterMaterialMAT::parse_blend_block (MaterialResource *target)
                                                                             target->set_render_target_write_mask_a(static_cast<bool>(_tokenizer.next_token_number()));
                                                                             continue;   }
     
-		_tokenizer.syntax_error("Unknown Token " + token);
-	};
+        _tokenizer.syntax_error("Unknown Token " + token);
+    };
 }
 
 void ImporterMaterialMAT::parse_rasterizer_block (MaterialResource *target)
 {
-	_tokenizer.assume_next_token("{");
+    _tokenizer.assume_next_token("{");
 
-	while (true) {
-		std::string token = _tokenizer.next_token_string();
-		
-		// Handle Preprocessor
-		if (_tokenizer.parse_preprocessor_macros(token))
-			continue;
-		
-		// Are we at the end of the block
-		if (token == "}")	break;
+    while (true) {
+        std::string token = _tokenizer.next_token_string();
+        
+        // Handle Preprocessor
+        if (_tokenizer.parse_preprocessor_macros(token))
+            continue;
+        
+        // Are we at the end of the block
+        if (token == "}")    break;
         
         if (MoreStrings::iequals(token,"CullMode"))                   {     _tokenizer.assume_next_token("=");
                                                                             target->set_cull_mode((DT3GLCullMode) _tokenizer.next_token_number());
@@ -176,23 +176,23 @@ void ImporterMaterialMAT::parse_rasterizer_block (MaterialResource *target)
                                                                             target->set_scissor_enable(static_cast<bool>(_tokenizer.next_token_number()));
                                                                             continue;   }
         
-		_tokenizer.syntax_error("Unknown Token " + token);
-	};
+        _tokenizer.syntax_error("Unknown Token " + token);
+    };
 }
 
 void ImporterMaterialMAT::parse_sampler_block (MaterialResource *target)
 {
-	_tokenizer.assume_next_token("{");
+    _tokenizer.assume_next_token("{");
 
-	while (true) {
-		std::string token = _tokenizer.next_token_string();
-		
-		// Handle Preprocessor
-		if (_tokenizer.parse_preprocessor_macros(token))
-			continue;
-		
-		// Are we at the end of the block
-		if (token == "}")	break;
+    while (true) {
+        std::string token = _tokenizer.next_token_string();
+        
+        // Handle Preprocessor
+        if (_tokenizer.parse_preprocessor_macros(token))
+            continue;
+        
+        // Are we at the end of the block
+        if (token == "}")    break;
         
         if (MoreStrings::iequals(token,"Filter"))                     {     _tokenizer.assume_next_token("=");
                                                                             target->set_filter((DT3GLFilterMode) _tokenizer.next_token_number());
@@ -213,8 +213,8 @@ void ImporterMaterialMAT::parse_sampler_block (MaterialResource *target)
                                                                             target->set_max_anisotropy(_tokenizer.next_token_number());
                                                                             continue;   }
         
-		_tokenizer.syntax_error("Unknown Token " + token);
-	};
+        _tokenizer.syntax_error("Unknown Token " + token);
+    };
 }
 
 void ImporterMaterialMAT::parse_tex_block (MaterialResource *target)
@@ -223,17 +223,17 @@ void ImporterMaterialMAT::parse_tex_block (MaterialResource *target)
     
     target->set_current_unit(tex_slot);
 
-	_tokenizer.assume_next_token("{");
+    _tokenizer.assume_next_token("{");
 
-	while (true) {
-		std::string token = _tokenizer.next_token_string();
-		
-		// Handle Preprocessor
-		if (_tokenizer.parse_preprocessor_macros(token))
-			continue;
-		
-		// Are we at the end of the block
-		if (token == "}")	break;
+    while (true) {
+        std::string token = _tokenizer.next_token_string();
+        
+        // Handle Preprocessor
+        if (_tokenizer.parse_preprocessor_macros(token))
+            continue;
+        
+        // Are we at the end of the block
+        if (token == "}")    break;
         
         if (MoreStrings::iequals(token,"Tex2DArgs"))                  {     _tokenizer.assume_next_token("=");
                                                                             std::string file = _tokenizer.next_token_string_no_substitute();
@@ -261,8 +261,8 @@ void ImporterMaterialMAT::parse_tex_block (MaterialResource *target)
                                                                             target->set_scale({scale_x,scale_y,1.0F});
                                                                             continue;   }
         
-		_tokenizer.syntax_error("Unknown Token " + token);
-	};
+        _tokenizer.syntax_error("Unknown Token " + token);
+    };
 }
 
 //==============================================================================
@@ -270,24 +270,24 @@ void ImporterMaterialMAT::parse_tex_block (MaterialResource *target)
 
 void ImporterMaterialMAT::parse_material_block (MaterialResource *target)
 {
-	_tokenizer.assume_next_token("{");
+    _tokenizer.assume_next_token("{");
 
-	while (true) {
-		std::string token = _tokenizer.next_token_string();
-	
-		// Handle Preprocessor
-		if (_tokenizer.parse_preprocessor_macros(token))
-			continue;
-			
-		// Are we at the end of the block
-		if (token == "}")	break;
-		
-		if (MoreStrings::iequals(token,"DepthStencil"))    {	parse_depth_stencil_block(target);  continue;	}
-		if (MoreStrings::iequals(token,"Blend"))           {	parse_blend_block(target);          continue;	}
-		if (MoreStrings::iequals(token,"Rasterizer"))      {	parse_rasterizer_block(target);     continue;	}
-		if (MoreStrings::iequals(token,"Tex"))             {	parse_tex_block(target);            continue;	}
-	};
-	
+    while (true) {
+        std::string token = _tokenizer.next_token_string();
+    
+        // Handle Preprocessor
+        if (_tokenizer.parse_preprocessor_macros(token))
+            continue;
+            
+        // Are we at the end of the block
+        if (token == "}")    break;
+        
+        if (MoreStrings::iequals(token,"DepthStencil"))    {    parse_depth_stencil_block(target);  continue;    }
+        if (MoreStrings::iequals(token,"Blend"))           {    parse_blend_block(target);          continue;    }
+        if (MoreStrings::iequals(token,"Rasterizer"))      {    parse_rasterizer_block(target);     continue;    }
+        if (MoreStrings::iequals(token,"Tex"))             {    parse_tex_block(target);            continue;    }
+    };
+    
 }
 
 //==============================================================================
@@ -351,24 +351,24 @@ DTerr ImporterMaterialMAT::import(MaterialResource *target, std::string args)
     _tokenizer.set_token_stream(header, true);
 
 
-	DTerr err;
-	if ((err = _tokenizer.load_token_stream (target->path(), true)) != DT3_ERR_NONE)
-		return DT3_ERR_FILE_OPEN_FAILED;
-			
-	while (!_tokenizer.is_done()) {
-		std::string token = _tokenizer.next_token_string();
-		
-		// Handle Preprocessor
-		if (_tokenizer.parse_preprocessor_macros(token))
-			continue;
-		
-		if (MoreStrings::iequals(token,"Material"))		{	parse_material_block(target);		continue;	}
-		
-	};
-	
+    DTerr err;
+    if ((err = _tokenizer.load_token_stream (target->path(), true)) != DT3_ERR_NONE)
+        return DT3_ERR_FILE_OPEN_FAILED;
+            
+    while (!_tokenizer.is_done()) {
+        std::string token = _tokenizer.next_token_string();
+        
+        // Handle Preprocessor
+        if (_tokenizer.parse_preprocessor_macros(token))
+            continue;
+        
+        if (MoreStrings::iequals(token,"Material"))        {    parse_material_block(target);        continue;    }
+        
+    };
+    
     target->add_dependencies(_tokenizer.dependencies());
 
-	return DT3_ERR_NONE;
+    return DT3_ERR_NONE;
 }
 
 //==============================================================================

@@ -3,7 +3,7 @@
 #define DT3_PARTICLESYSTEM
 //==============================================================================
 ///
-///	File: ParticleSystem.hpp
+///    File: ParticleSystem.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -36,10 +36,10 @@ class ParticleSystem: public PlaceableObject {
         DEFINE_CREATE_AND_CLONE
         DEFINE_PLUG_NODE
 
-                                    ParticleSystem					(void);
-                                    ParticleSystem					(const ParticleSystem &rhs);
-        ParticleSystem &			operator =						(const ParticleSystem &rhs);
-        virtual                     ~ParticleSystem					(void);
+                                    ParticleSystem                    (void);
+                                    ParticleSystem                    (const ParticleSystem &rhs);
+        ParticleSystem &            operator =                        (const ParticleSystem &rhs);
+        virtual                     ~ParticleSystem                    (void);
 
         virtual void                archive                         (const std::shared_ptr<Archive> &archive);
 
@@ -50,11 +50,11 @@ class ParticleSystem: public PlaceableObject {
 
         /// Draw Callback for object
         /// \param camera Camera used for drawing
-        virtual void				draw							(const std::shared_ptr<CameraObject> &camera, const DTfloat lag);
+        virtual void                draw                            (const std::shared_ptr<CameraObject> &camera, const DTfloat lag);
 
         /// Callback called when the object is getting a tick
         /// \param dt delta time
-        virtual void                tick							(const DTfloat dt);
+        virtual void                tick                            (const DTfloat dt);
 
         /// Object was added to a world
         /// world world that object was added to
@@ -70,11 +70,11 @@ class ParticleSystem: public PlaceableObject {
 #endif
 
     private:
-        void						eval_particles					(const DTfloat dt);
+        void                        eval_particles                    (const DTfloat dt);
 
         DTfloat                                     _run_up;
         Plug<std::shared_ptr<Particles>>            _particles;
-        Plug<std::shared_ptr<MaterialResource>>		_material;
+        Plug<std::shared_ptr<MaterialResource>>        _material;
 };
 
 //==============================================================================

@@ -3,7 +3,7 @@
 #define DT3_MATRIX2
 //==============================================================================
 ///
-///	File: Matrix2.hpp
+///    File: Matrix2.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -45,7 +45,7 @@ class Matrix2 {
         explicit                Matrix2                     (const Matrix3 &rhs);
         explicit                Matrix2                     (const Matrix4 &rhs);
         explicit                Matrix2                     (const Quaternion &rhs);
-                                Matrix2                     (	const DTfloat m11,const DTfloat m12,
+                                Matrix2                     (    const DTfloat m11,const DTfloat m12,
                                                                 const DTfloat m21,const DTfloat m22);
                                 Matrix2                     (const Vector2 &vx, const Vector2 &vy);
 
@@ -81,7 +81,7 @@ class Matrix2 {
         /// Description
         /// \param param description
         /// \return description
-        void                    inverse                     (void)          {	*this = inversed();     }
+        void                    inverse                     (void)          {    *this = inversed();     }
 
         /// Description
         /// \param param description
@@ -91,17 +91,17 @@ class Matrix2 {
         /// Description
         /// \param param description
         /// \return description
-        void                    transpose                   (void)          {	*this = transposed();   }
+        void                    transpose                   (void)          {    *this = transposed();   }
 
         /// Description
         /// \param param description
         /// \return description
-        Vector2                 x_axis                      (void) const    {	return {_m11, _m21};		}
+        Vector2                 x_axis                      (void) const    {    return {_m11, _m21};        }
 
         /// Description
         /// \param param description
         /// \return description
-        Vector2                 y_axis                      (void) const    {	return {_m12, _m22};		}
+        Vector2                 y_axis                      (void) const    {    return {_m12, _m22};        }
 
         /// Description
         /// \param param description
@@ -131,18 +131,18 @@ class Matrix2 {
         /// Description
         /// \param param description
         /// \return description
-        static const Matrix2&	identity                    (void);
+        static const Matrix2&    identity                    (void);
 
         /// Description
         /// \param param description
         /// \return description
-        static const Matrix2&	zero                        (void);
+        static const Matrix2&    zero                        (void);
 
     public:
         union {
             struct {
-                DTfloat			_m11, _m21;
-                DTfloat			_m12, _m22;
+                DTfloat            _m11, _m21;
+                DTfloat            _m12, _m22;
             };
             DTfloat _m[2][2];
             DTfloat _mi[4];
@@ -174,9 +174,9 @@ Matrix2 operator + (const Matrix2 &a, const Matrix2 &b);
 namespace TypeTraitsInfo {
 
 template <> struct Info<Matrix2> {
-    static Matrix2				default_value(void)	{	return Matrix2::identity();			}
-    static const DTcharacter*	name(void)          {	return "Matrix2";}
-    static const DTcharacter*	name_caps(void)     {	return "Matrix2";}
+    static Matrix2                default_value(void)    {    return Matrix2::identity();            }
+    static const DTcharacter*    name(void)          {    return "Matrix2";}
+    static const DTcharacter*    name_caps(void)     {    return "Matrix2";}
     enum { isFundamental = 0 };
 };
 

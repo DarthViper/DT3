@@ -3,7 +3,7 @@
 #define DT3_MATRIX3
 //==============================================================================
 ///
-///	File: Matrix3.hpp
+///    File: Matrix3.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -82,7 +82,7 @@ class Matrix3 {
         /// Description
         /// \param param description
         /// \return description
-        void                    inverse                     (void)          {	*this = inversed();     }
+        void                    inverse                     (void)          {    *this = inversed();     }
 
         /// Description
         /// \param param description
@@ -92,22 +92,22 @@ class Matrix3 {
         /// Description
         /// \param param description
         /// \return description
-        void                    transpose                   (void)          {	*this = transposed();   }
+        void                    transpose                   (void)          {    *this = transposed();   }
 
         /// Description
         /// \param param description
         /// \return description
-        Vector3                 x_axis                      (void) const    {	return {_m11, _m21, _m31};		}
+        Vector3                 x_axis                      (void) const    {    return {_m11, _m21, _m31};        }
 
         /// Description
         /// \param param description
         /// \return description
-        Vector3                 y_axis                      (void) const    {	return {_m12, _m22, _m32};		}
+        Vector3                 y_axis                      (void) const    {    return {_m12, _m22, _m32};        }
 
         /// Description
         /// \param param description
         /// \return description
-        Vector3                 z_axis                      (void) const    {	return {_m13, _m23, _m33};		}
+        Vector3                 z_axis                      (void) const    {    return {_m13, _m23, _m33};        }
 
         /// Description
         /// \param param description
@@ -167,19 +167,19 @@ class Matrix3 {
         /// Description
         /// \param param description
         /// \return description
-        static const Matrix3&	identity                    (void);
+        static const Matrix3&    identity                    (void);
 
         /// Description
         /// \param param description
         /// \return description
-        static const Matrix3&	zero                        (void);
+        static const Matrix3&    zero                        (void);
 
     public:
         union {
             struct {
-                DTfloat			_m11, _m21, _m31;
-                DTfloat			_m12, _m22, _m32;
-                DTfloat			_m13, _m23, _m33;
+                DTfloat            _m11, _m21, _m31;
+                DTfloat            _m12, _m22, _m32;
+                DTfloat            _m13, _m23, _m33;
             };
             DTfloat _m[3][3];
             DTfloat _mi[9];
@@ -214,9 +214,9 @@ Matrix3 operator - (const Matrix3 &a, const Matrix3 &b);
 namespace TypeTraitsInfo {
 
 template <> struct Info<Matrix3> {
-    static Matrix3				default_value(void)	{	return Matrix3::identity();			}
-    static const DTcharacter*	name(void)          {	return "Matrix3";}
-    static const DTcharacter*	name_caps(void)     {	return "Matrix3";}
+    static Matrix3                default_value(void)    {    return Matrix3::identity();            }
+    static const DTcharacter*    name(void)          {    return "Matrix3";}
+    static const DTcharacter*    name_caps(void)     {    return "Matrix3";}
     enum { isFundamental = 0 };
 };
 

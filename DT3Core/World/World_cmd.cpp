@@ -1,12 +1,12 @@
 //==============================================================================
-///	
-///	File: World_cmd.cpp
-///	
+///    
+///    File: World_cmd.cpp
+///    
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
 /// This file is subject to the terms and conditions defined in
 /// file 'LICENSE.txt', which is part of this source code package.
-///	
+///    
 //==============================================================================
 
 #include "DT3Core/System/Command.hpp"
@@ -253,7 +253,7 @@ CommandResult World_cmd::doRemove (CommandContext &ctx, const CommandParams &p)
         }
     
     }
-	
+    
     // Add to undo queue, all nodes from the built list
     FOR_EACH (node,nodes) {
     
@@ -669,10 +669,10 @@ CommandResult World_cmd::doSave (CommandContext &ctx, const CommandParams &p)
     FilePath temp_file("{APPDIR}/temp.lvl");
     
     std::shared_ptr<ArchiveTextWriter> writer = ArchiveTextWriter::create();
-	writer->set_ignore_streamable_flag(true);
-	writer->open(FilePath(p[1]));
-	ArchiveObjectQueue::queue_out_tree(writer, ctx.world() );
-	writer->close();
+    writer->set_ignore_streamable_flag(true);
+    writer->open(FilePath(p[1]));
+    ArchiveObjectQueue::queue_out_tree(writer, ctx.world() );
+    writer->close();
     
     HAL::delete_file(FilePath(p[1]));
     HAL::move_file(temp_file,FilePath(p[1]));
@@ -688,15 +688,15 @@ CommandResult World_cmd::doLoad (CommandContext &ctx, const CommandParams &p)
     
     CommandResult cr;
     
-	std::shared_ptr<BaseClass> base_class = Factory::create_object_from_stream(FilePath(p[1]));
-	if (base_class && base_class->isa(World::kind())) {
-		std::shared_ptr<World> obj = checked_static_cast<World>(base_class);
-		obj->set_streamable(true);
+    std::shared_ptr<BaseClass> base_class = Factory::create_object_from_stream(FilePath(p[1]));
+    if (base_class && base_class->isa(World::kind())) {
+        std::shared_ptr<World> obj = checked_static_cast<World>(base_class);
+        obj->set_streamable(true);
         
         ctx.set_world(obj);
         
         cr = CommandResult(true, "Loaded " + p[1], CommandResult::UPDATE_ALL);
-	} else {
+    } else {
         cr = CommandResult(false, "unable to load " + p[1], CommandResult::UPDATE_NONE);
     }
     
@@ -741,7 +741,7 @@ CommandResult World_cmd::doExport (CommandContext &ctx, const CommandParams &p)
     std::shared_ptr<ArchiveTextWriter> writer = ArchiveTextWriter::create();
     DTerr error = writer->open(FilePath(p[1]));
     if (error != DT3_ERR_NONE)
-		return CommandResult(false, "Unable to export " + p[1], CommandResult::UPDATE_NONE);
+        return CommandResult(false, "Unable to export " + p[1], CommandResult::UPDATE_NONE);
     
     writer->set_ignore_streamable_flag(true);
     ArchiveObjectQueue::queue_out_tree(writer, group );
@@ -759,7 +759,7 @@ CommandResult World_cmd::doImport (CommandContext &ctx, const CommandParams &p)
     std::shared_ptr<ArchiveTextReader> reader = ArchiveTextReader::create();
     DTerr error = reader->open(FilePath(p[1]));
     if (error != DT3_ERR_NONE)
-		return CommandResult(false, "Unable to import " + p[1], CommandResult::UPDATE_NONE);
+        return CommandResult(false, "Unable to import " + p[1], CommandResult::UPDATE_NONE);
     
     std::shared_ptr<Group> group = checked_cast<Group>(ArchiveObjectQueue::queue_in_tree(reader));
     if (!group)
@@ -792,9 +792,9 @@ CommandResult World_cmd::doRunScript (CommandContext &ctx, const CommandParams &
     TextFileStream reader;
 
     // open the file
-	DTerr error = FileManager::open(reader, FilePath(p[1]), true, NULL);
-	if (error != DT3_ERR_NONE) {
-		return CommandResult(false, "Unable to run " + p[1], CommandResult::UPDATE_NONE);
+    DTerr error = FileManager::open(reader, FilePath(p[1]), true, NULL);
+    if (error != DT3_ERR_NONE) {
+        return CommandResult(false, "Unable to run " + p[1], CommandResult::UPDATE_NONE);
     }
 
     while (!reader.is_eof()) {

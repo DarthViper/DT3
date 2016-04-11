@@ -1,7 +1,7 @@
 #pragma once
 //==============================================================================
 ///
-///	File: PlugNodeUtils.hpp
+///    File: PlugNodeUtils.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -28,10 +28,10 @@ namespace DT3 {
 
 class PlugNodeUtils {
     private:
-                                PlugNodeUtils		(void);
+                                PlugNodeUtils        (void);
                                 PlugNodeUtils       (const PlugNodeUtils &rhs);
-        PlugNodeUtils &         operator =			(const PlugNodeUtils &rhs);
-                                ~PlugNodeUtils		(void);
+        PlugNodeUtils &         operator =            (const PlugNodeUtils &rhs);
+                                ~PlugNodeUtils        (void);
 
     public:
         /// Duplicate a list of nodes

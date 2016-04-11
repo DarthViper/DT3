@@ -3,7 +3,7 @@
 #define DT3_SCRIPTINGPARTICLEVELOCITYRANDOMIZER
 //==============================================================================
 ///
-///	File: ScriptingParticleVelocityWake.hpp
+///    File: ScriptingParticleVelocityWake.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -35,25 +35,25 @@ class ScriptingParticleVelocityWake: public ScriptingBase {
         DEFINE_CREATE_AND_CLONE
         DEFINE_PLUG_NODE
 
-                                            ScriptingParticleVelocityWake	(void);
-                                            ScriptingParticleVelocityWake	(const ScriptingParticleVelocityWake &rhs);
-        ScriptingParticleVelocityWake &		operator =						(const ScriptingParticleVelocityWake &rhs);
-        virtual								~ScriptingParticleVelocityWake	(void);
+                                            ScriptingParticleVelocityWake    (void);
+                                            ScriptingParticleVelocityWake    (const ScriptingParticleVelocityWake &rhs);
+        ScriptingParticleVelocityWake &        operator =                        (const ScriptingParticleVelocityWake &rhs);
+        virtual                                ~ScriptingParticleVelocityWake    (void);
 
         virtual void                archive                 (const std::shared_ptr<Archive> &archive);
 
     public:
         /// Computes the value of the node
         /// \param plug plug to compute
-        bool					compute					(const PlugBase *plug);
+        bool                    compute                    (const PlugBase *plug);
 
     private:
-        Plug<Vector3>								_up;
-        Plug<Vector3>								_in_velocity;
-        Plug<DTfloat>								_scale;
+        Plug<Vector3>                                _up;
+        Plug<Vector3>                                _in_velocity;
+        Plug<DTfloat>                                _scale;
 
-        Plug<std::shared_ptr<Particles>>		_in;
-        Plug<std::shared_ptr<Particles>>		_out;
+        Plug<std::shared_ptr<Particles>>        _in;
+        Plug<std::shared_ptr<Particles>>        _out;
 
 };
 

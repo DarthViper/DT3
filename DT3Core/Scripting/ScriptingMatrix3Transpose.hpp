@@ -3,7 +3,7 @@
 #define DT3_SCRIPTINGMATRIXTRANSPOSE
 //==============================================================================
 ///
-///	File: ScriptingMatrix3Transpose.hpp
+///    File: ScriptingMatrix3Transpose.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -34,21 +34,21 @@ class ScriptingMatrix3Transpose: public ScriptingBase {
         DEFINE_CREATE_AND_CLONE
         DEFINE_PLUG_NODE
 
-                                    ScriptingMatrix3Transpose	(void);
-                                    ScriptingMatrix3Transpose	(const ScriptingMatrix3Transpose &rhs);
-        ScriptingMatrix3Transpose &	operator =					(const ScriptingMatrix3Transpose &rhs);
-        virtual						~ScriptingMatrix3Transpose	(void);
+                                    ScriptingMatrix3Transpose    (void);
+                                    ScriptingMatrix3Transpose    (const ScriptingMatrix3Transpose &rhs);
+        ScriptingMatrix3Transpose &    operator =                    (const ScriptingMatrix3Transpose &rhs);
+        virtual                        ~ScriptingMatrix3Transpose    (void);
 
-        virtual void				archive                 (const std::shared_ptr<Archive> &archive);
+        virtual void                archive                 (const std::shared_ptr<Archive> &archive);
 
     public:
         /// Computes the value of the node
         /// \param plug plug to compute
-        bool					compute					(const PlugBase *plug);
+        bool                    compute                    (const PlugBase *plug);
 
     private:
-        Plug<Matrix3>				_in;
-        Plug<Matrix3>				_out;
+        Plug<Matrix3>                _in;
+        Plug<Matrix3>                _out;
 };
 
 //==============================================================================

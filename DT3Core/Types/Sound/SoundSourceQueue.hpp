@@ -3,7 +3,7 @@
 #define DT3_SOUNDSOURCEQUEUE
 //==============================================================================
 ///
-///	File: SoundSourceQueue.hpp
+///    File: SoundSourceQueue.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///

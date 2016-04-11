@@ -3,7 +3,7 @@
 #define DT3_TOUCHEVENT
 //==============================================================================
 ///
-///	File: TouchEvent.hpp
+///    File: TouchEvent.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -37,7 +37,7 @@ class TouchEvent {
     public:
 
         /// Clear the touch state
-        void					clear                   (void);
+        void                    clear                   (void);
 
         /// Convenience finction to re-range input to 0 - 1
         /// \param pos position from touch event

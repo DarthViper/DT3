@@ -1,12 +1,12 @@
 //==============================================================================
-///	
-///	File: SoundSourceObject.cpp
-///	
+///    
+///    File: SoundSourceObject.cpp
+///    
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
 /// This file is subject to the terms and conditions defined in
 /// file 'LICENSE.txt', which is part of this source code package.
-///	
+///    
 //==============================================================================
 
 #include "DT3Core/Objects/SoundSourceObject.hpp"
@@ -45,29 +45,29 @@ IMPLEMENT_EVENT_INFO_INDEX(_stopped)
 
 BEGIN_IMPLEMENT_PLUGS(SoundSourceObject)
 
-	PLUG_INIT(_sound_packet,"Sound_Packet")
-		.set_input(true)
-		.set_output(true)
+    PLUG_INIT(_sound_packet,"Sound_Packet")
+        .set_input(true)
+        .set_output(true)
         .set_always_dirty(true);
 
-	PLUG_INIT(_gain,"Gain")
-		.set_input(true);
+    PLUG_INIT(_gain,"Gain")
+        .set_input(true);
 
-	PLUG_INIT(_pitch,"Pitch")
-		.set_input(true);
+    PLUG_INIT(_pitch,"Pitch")
+        .set_input(true);
 
-	PLUG_INIT(_rolloff,"Rolloff")
-		.set_input(true);
+    PLUG_INIT(_rolloff,"Rolloff")
+        .set_input(true);
 
-	EVENT_INIT(_play,"Play")
+    EVENT_INIT(_play,"Play")
         .set_input(true)
         .set_event(&SoundSourceObject::play);
 
-	EVENT_INIT(_stop,"Stop")
+    EVENT_INIT(_stop,"Stop")
         .set_input(true)
         .set_event(&SoundSourceObject::stop);
 
-	EVENT_INIT(_stopped,"Stopped")
+    EVENT_INIT(_stopped,"Stopped")
         .set_input(true)
         .set_no_draw(true)
         .set_event(&SoundSourceObject::stopped);
@@ -91,10 +91,10 @@ SoundSourceObject::SoundSourceObject (void)
     set_node_color(Color4f(0.360784F,0.729412F,0.92549F,1.0F));
 
 }
-		
+        
 SoundSourceObject::SoundSourceObject (const SoundSourceObject &rhs)
-	:	PlaceableObject	(rhs),
-		_sound_packet   (rhs._sound_packet),
+    :    PlaceableObject    (rhs),
+        _sound_packet   (rhs._sound_packet),
         _gain           (rhs._gain),
         _pitch          (rhs._pitch),
         _rolloff        (rhs._rolloff),
@@ -111,7 +111,7 @@ SoundSourceObject & SoundSourceObject::operator = (const SoundSourceObject &rhs)
 {
     // Make sure we are not assigning the class to itself
     if (&rhs != this) {        
-		PlaceableObject::operator = (rhs);
+        PlaceableObject::operator = (rhs);
 
         _gain = rhs._gain;
         _pitch = rhs._pitch;
@@ -120,7 +120,7 @@ SoundSourceObject & SoundSourceObject::operator = (const SoundSourceObject &rhs)
     }
     return (*this);
 }
-			
+            
 SoundSourceObject::~SoundSourceObject (void)
 {
     stop(NULL);
@@ -131,18 +131,18 @@ SoundSourceObject::~SoundSourceObject (void)
 
 void SoundSourceObject::archive (const std::shared_ptr<Archive> &archive)
 {
-	PlaceableObject::archive(archive);
+    PlaceableObject::archive(archive);
 
-	archive->push_domain (class_id ());
-			
+    archive->push_domain (class_id ());
+            
     *archive << ARCHIVE_PLUG(_gain, DATA_PERSISTENT | DATA_SETTABLE);
     *archive << ARCHIVE_PLUG(_pitch, DATA_PERSISTENT | DATA_SETTABLE);
     *archive << ARCHIVE_PLUG(_rolloff, DATA_PERSISTENT | DATA_SETTABLE);
     
-	*archive << ARCHIVE_EVENT(_play, DATA_SETTABLE);
-	*archive << ARCHIVE_EVENT(_stop, DATA_SETTABLE);
+    *archive << ARCHIVE_EVENT(_play, DATA_SETTABLE);
+    *archive << ARCHIVE_EVENT(_stop, DATA_SETTABLE);
 
-	archive->pop_domain ();
+    archive->pop_domain ();
 }
 
 //==============================================================================

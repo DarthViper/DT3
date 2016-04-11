@@ -1,6 +1,6 @@
 //==============================================================================
 ///
-///	File: TextureResource2D.cpp
+///    File: TextureResource2D.cpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -49,10 +49,10 @@ std::map<std::string, std::shared_ptr<TextureResource2D>>  TextureResource2D::_t
 //==============================================================================
 
 TextureResource2D::TextureResource2D (void)
-    :	_format				(DT3GL_FORMAT_RGBA),
-        _width				(0),
-        _height				(0),
-        _mipmapped			(false),
+    :    _format                (DT3GL_FORMAT_RGBA),
+        _width                (0),
+        _height                (0),
+        _mipmapped            (false),
         _flags              (0)
 {
     SystemCallbacks::screen_opened_cb().add(make_callback(this, &type::screen_opened));

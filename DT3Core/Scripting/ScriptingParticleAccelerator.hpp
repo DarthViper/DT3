@@ -3,7 +3,7 @@
 #define DT3_SCRIPTINGPARTICLEACCELERATOR
 //==============================================================================
 ///
-///	File: ScriptingParticleAccelerator.hpp
+///    File: ScriptingParticleAccelerator.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -35,10 +35,10 @@ class ScriptingParticleAccelerator: public ScriptingBase {
         DEFINE_CREATE_AND_CLONE
         DEFINE_PLUG_NODE
 
-                                        ScriptingParticleAccelerator	(void);
-                                        ScriptingParticleAccelerator	(const ScriptingParticleAccelerator &rhs);
-        ScriptingParticleAccelerator &	operator =                      (const ScriptingParticleAccelerator &rhs);
-        virtual                         ~ScriptingParticleAccelerator	(void);
+                                        ScriptingParticleAccelerator    (void);
+                                        ScriptingParticleAccelerator    (const ScriptingParticleAccelerator &rhs);
+        ScriptingParticleAccelerator &    operator =                      (const ScriptingParticleAccelerator &rhs);
+        virtual                         ~ScriptingParticleAccelerator    (void);
 
         virtual void                    archive                         (const std::shared_ptr<Archive> &archive);
 
@@ -63,8 +63,8 @@ class ScriptingParticleAccelerator: public ScriptingBase {
     private:
         Plug<Vector3>                           _acceleration;
 
-        Plug<std::shared_ptr<Particles>>		_in;
-        Plug<std::shared_ptr<Particles>>		_out;
+        Plug<std::shared_ptr<Particles>>        _in;
+        Plug<std::shared_ptr<Particles>>        _out;
 
 };
 

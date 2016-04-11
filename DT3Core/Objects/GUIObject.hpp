@@ -3,7 +3,7 @@
 #define DT3_GUIOBJECT
 //==============================================================================
 ///
-///	File: GUIObject.hpp
+///    File: GUIObject.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey, Inc. All rights reserved.
 ///
@@ -43,13 +43,13 @@ class GUIObject: public PlaceableObject {
 
                                     GUIObject                   (void);
                                     GUIObject                   (const GUIObject &rhs);
-        GUIObject &                 operator =					(const GUIObject &rhs);
+        GUIObject &                 operator =                    (const GUIObject &rhs);
         virtual                     ~GUIObject                  (void);
 
-        virtual void				archive                     (const std::shared_ptr<Archive> &archive);
+        virtual void                archive                     (const std::shared_ptr<Archive> &archive);
 
         /// Called to initialize the object
-        virtual void				initialize                  (void) noexcept(true);
+        virtual void                initialize                  (void) noexcept(true);
 
         /// Called to animate the object
         void                        animate                     (DTfloat dt);
@@ -63,11 +63,11 @@ class GUIObject: public PlaceableObject {
 
         /// Returns the state of the object.
         /// \return Object state
-        State						state                       (void) const                    {   return _state;                  }
+        State                        state                       (void) const                    {   return _state;                  }
 
         /// Sets the state of the object.
         /// \param state object state
-        void						set_state                   (State state)                   {   _state = state;                 }
+        void                        set_state                   (State state)                   {   _state = state;                 }
 
 
         /// Returns the bounds of the object.
@@ -80,20 +80,20 @@ class GUIObject: public PlaceableObject {
 
         /// Returns the width of the object.
         /// \return width
-        DTfloat						width                       (void) const                    {   return _width;                  }
+        DTfloat                        width                       (void) const                    {   return _width;                  }
 
         /// Sets the width of the object.
         /// \param width width
-        void						set_width                   (const DTfloat width)           {   _width = width;                 }
+        void                        set_width                   (const DTfloat width)           {   _width = width;                 }
 
 
         /// Returns the height of the object.
         /// \return height
-        DTfloat						height                      (void) const                    {   return _height;                 }
+        DTfloat                        height                      (void) const                    {   return _height;                 }
 
         /// Sets the height of the object.
         /// \param height height
-        void						set_height                  (const DTfloat height)          {   _height = height;           }
+        void                        set_height                  (const DTfloat height)          {   _height = height;           }
 
 
         enum {
@@ -109,7 +109,7 @@ class GUIObject: public PlaceableObject {
 
         /// Sets the size mode for the object.
         /// \param size_mode size mode
-        void						set_size_mode               (const int32_t size_mode)         {   _size_mode = size_mode;     }
+        void                        set_size_mode               (const int32_t size_mode)         {   _size_mode = size_mode;     }
 
 
         enum {
@@ -122,11 +122,11 @@ class GUIObject: public PlaceableObject {
 
         /// Returns the pivot for the object.
         /// \return pivot
-        int32_t						pivot                       (void) const                    {   return _pivot;              }
+        int32_t                        pivot                       (void) const                    {   return _pivot;              }
 
         /// Sets the pivot for the object.
         /// \param pivot pivot
-        void						set_pivot                   (const int32_t pivot)             {   _pivot = pivot;             }
+        void                        set_pivot                   (const int32_t pivot)             {   _pivot = pivot;             }
 
 
 
@@ -184,7 +184,7 @@ class GUIObject: public PlaceableObject {
 
         /// Add an animation key to the object
         /// \return animation key
-        GUIAnimKey&					add_anim_key                (void);
+        GUIAnimKey&                    add_anim_key                (void);
 
         /// Add an animation key to the object
         /// \param key animation key
@@ -192,13 +192,13 @@ class GUIObject: public PlaceableObject {
 
         /// Checks if there are animations queued on this object
         /// \return has animations
-        bool					has_anim_key                (void) const        {	return _anim_keys.size() > 0;	}
+        bool                    has_anim_key                (void) const        {    return _anim_keys.size() > 0;    }
 
         /// Removes all of the animations from this object
-        void						clear_anims                 (void);
+        void                        clear_anims                 (void);
 
         /// Removes the "repeating" flag from any queued animations
-        void						cancel_repeating_anims		(void);
+        void                        cancel_repeating_anims        (void);
 
         //
         // From GUI Controller
@@ -318,8 +318,8 @@ class GUIObject: public PlaceableObject {
     private:
         DrawBatcher                 _b;
 
-        Plug<DTfloat>				_width;
-        Plug<DTfloat>				_height;
+        Plug<DTfloat>                _width;
+        Plug<DTfloat>                _height;
 
         Plug<Color4f>               _color;
         Plug<std::string>           _label;
@@ -332,7 +332,7 @@ class GUIObject: public PlaceableObject {
         bool                   _no_focus;
 
         std::list<GUIAnimKey>       _anim_keys;
-        //DTfloat						_animation_time;
+        //DTfloat                        _animation_time;
 
         //
         // Callbacks

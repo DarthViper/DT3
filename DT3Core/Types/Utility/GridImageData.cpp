@@ -1,12 +1,12 @@
 //==============================================================================
-///	
-///	File: GridImageData.cpp
-///	
+///    
+///    File: GridImageData.cpp
+///    
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
 /// This file is subject to the terms and conditions defined in
 /// file 'LICENSE.txt', which is part of this source code package.
-///	
+///    
 //==============================================================================
 
 #include "DT3Core/Types/Utility/GridImageData.hpp"
@@ -33,7 +33,7 @@ GridImageData::GridImageData (void)
 {  
     clear();
 }
-		
+        
 GridImageData::GridImageData (const GridImageData &rhs)
     :   _num_x  (rhs._num_x),
         _num_y  (rhs._num_y),
@@ -52,7 +52,7 @@ GridImageData & GridImageData::operator = (const GridImageData &rhs)
     }
     return (*this);
 }
-			
+            
 GridImageData::~GridImageData (void)
 {
 
@@ -70,20 +70,20 @@ Stream& operator << (Stream &s, const GridImageData&v)
     }
     
 
-	return s;
+    return s;
 }
 
 Stream& operator >> (Stream &s, GridImageData&v)
 {
-	s >> v._num_x >> v._num_y;
+    s >> v._num_x >> v._num_y;
     v.clear();
-	
+    
     for (auto &grid : v._grid) {
         s >> grid.x;
         s >> grid.y;
     }
-	
-	return s;
+    
+    return s;
 }
 
 //==============================================================================

@@ -3,7 +3,7 @@
 #define DT3_TRANSITIONFADEOUTIN
 //==============================================================================
 ///
-///	File: TransitionFadeOutIn.hpp
+///    File: TransitionFadeOutIn.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -36,44 +36,44 @@ class TransitionFadeOutIn: public TransitionBase {
         DEFINE_TYPE(TransitionFadeOutIn,TransitionBase)
         DEFINE_CREATE
 
-                                TransitionFadeOutIn			(void);
+                                TransitionFadeOutIn            (void);
     private:
-                                TransitionFadeOutIn			(const TransitionFadeOutIn &rhs);
-        TransitionFadeOutIn &	operator =					(const TransitionFadeOutIn &rhs);
+                                TransitionFadeOutIn            (const TransitionFadeOutIn &rhs);
+        TransitionFadeOutIn &    operator =                    (const TransitionFadeOutIn &rhs);
     public:
-        virtual					~TransitionFadeOutIn		(void);
+        virtual                    ~TransitionFadeOutIn        (void);
 
     public:
 
         /// Description
         /// \param param description
         /// \return description
-        virtual bool		begin_new_world             (void);
+        virtual bool        begin_new_world             (void);
 
         /// Description
         /// \param param description
         /// \return description
-        virtual void			end_new_world               (void);
+        virtual void            end_new_world               (void);
 
         /// Description
         /// \param param description
         /// \return description
-        virtual bool		begin_old_world             (void);
+        virtual bool        begin_old_world             (void);
 
         /// Description
         /// \param param description
         /// \return description
-        virtual void			end_old_world				(void);
+        virtual void            end_old_world                (void);
 
         /// Description
         /// \param param description
         /// \return description
-        virtual void			transition				(const DTfloat transition);
+        virtual void            transition                (const DTfloat transition);
 
         /// Description
         /// \param param description
         /// \return description
-        virtual void			draw					(void);
+        virtual void            draw                    (void);
 
     private:
         std::shared_ptr<MaterialResource>   _material;

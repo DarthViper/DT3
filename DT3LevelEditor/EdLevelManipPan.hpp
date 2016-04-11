@@ -3,7 +3,7 @@
 #define EDLEVELMANIPPAN
 //==============================================================================
 ///
-///	File: EdLevelManipPan.hpp
+///    File: EdLevelManipPan.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -50,7 +50,7 @@ class EdLevelManipPan: public EdLevelTool
 
     public:
 
-                        EdLevelManipPan	(QObject *p=nullptr);
+                        EdLevelManipPan    (QObject *p=nullptr);
         virtual         ~EdLevelManipPan(void) = default;
 
     public:

@@ -3,7 +3,7 @@
 #define DT3_PLUG
 //==============================================================================
 ///
-///	File: Plug.hpp
+///    File: Plug.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -50,11 +50,11 @@ class PlugBase {
 
         /// Return a pointer to the owning node of the Plug
         /// \return Owner node
-        PlugNode*                       owner                       (void) const                {	return info().plug_to_node(this);           }
+        PlugNode*                       owner                       (void) const                {    return info().plug_to_node(this);           }
 
         /// Returns the name of the plug
         /// \return Name of the plug
-        const std::string&              name                        (void) const                {	return info().name();                       }
+        const std::string&              name                        (void) const                {    return info().name();                       }
 
         /// Returns the full name of object that uniquely identifies it
         /// \return full name of object
@@ -72,7 +72,7 @@ class PlugBase {
 
         /// Returns the dirty flag for the plug
         /// \return dirty flag
-        bool                       is_dirty                    (void) const                {	return _is_dirty;                           }
+        bool                       is_dirty                    (void) const                {    return _is_dirty;                           }
 
         /// Sets the dirty flag for the plug and connected plugs
         void                            set_dirty                   (void);
@@ -84,19 +84,19 @@ class PlugBase {
 
         /// Returns no draw flag
         /// \return No draw flag
-        bool                       is_no_draw                  (void) const                {	return info().is_no_draw();                 }
+        bool                       is_no_draw                  (void) const                {    return info().is_no_draw();                 }
 
         /// Returns is input flag
         /// \return is input
-        bool                       is_input                    (void) const                {	return info().is_input();                   }
+        bool                       is_input                    (void) const                {    return info().is_input();                   }
 
         /// Returns is output flag
         /// \return is output
-        bool                       is_output                   (void) const                {	return info().is_output();                  }
+        bool                       is_output                   (void) const                {    return info().is_output();                  }
 
         /// Returns is single output flag (i.e. can only connect to one other plug)
         /// \return is single output
-        bool                       is_single_output            (void) const                {	return info().is_single_output();           }
+        bool                       is_single_output            (void) const                {    return info().is_single_output();           }
 
 
 
@@ -143,7 +143,7 @@ class PlugBase {
         /// Checks to see if this plug is compatible with another one
         /// \param p Other plug
         /// \return True if compatible, false if not
-        bool                       is_compatible               (const PlugBase* p) const   {	return p->plug_type() == plug_type();       }
+        bool                       is_compatible               (const PlugBase* p) const   {    return p->plug_type() == plug_type();       }
 
         // Compute the nodes feeding this one. This could take a while.
         void                            compute                     (void) const;
@@ -151,7 +151,7 @@ class PlugBase {
     protected:
         /// Return a pointer to the owning node of the Plug
         /// \return Owner node
-        PlugInfo&                       info                        (void) const                {	return PlugInfo::get_info(_info_index); }
+        PlugInfo&                       info                        (void) const                {    return PlugInfo::get_info(_info_index); }
 
         // Data indices
         uint32_t                          _info_index:14;         // Index into Plug info pool
@@ -195,9 +195,9 @@ class Plug: public PlugBase {
     public:
         DEFINE_TYPE_SIMPLE(Plug,PlugBase)
 
-                            Plug                (uint16_t info)                 {	_info_index = info;              }
+                            Plug                (uint16_t info)                 {    _info_index = info;              }
 
-                            Plug                (uint16_t info, const T &rhs)   {	_info_index = info;
+                            Plug                (uint16_t info, const T &rhs)   {    _info_index = info;
                                                                                     _is_dirty = true;
                                                                                     _value = rhs;
                                                                                 }
@@ -208,7 +208,7 @@ class Plug: public PlugBase {
                                                                                     _value = rhs;
                                                                                 }
 
-        Plug<T>&            operator =          (const T &rhs)                  {	if (_value != rhs) {
+        Plug<T>&            operator =          (const T &rhs)                  {    if (_value != rhs) {
                                                                                         set_dirty();
                                                                                         _value = rhs;
                                                                                         set_clean();
@@ -216,7 +216,7 @@ class Plug: public PlugBase {
                                                                                     return *this;
                                                                                 }
 
-        Plug<T>&            operator =          (const Plug<T> &rhs)            {	if (_value != rhs._value) {
+        Plug<T>&            operator =          (const Plug<T> &rhs)            {    if (_value != rhs._value) {
                                                                                         set_dirty();
                                                                                         _value = rhs._value;
                                                                                         set_clean();
@@ -226,28 +226,28 @@ class Plug: public PlugBase {
                             ~Plug() = default;
 
         // Dereference operator
-        const T&            as_ref_no_compute	(void) const            {	return _value;                  }
-        const T&            as_ref              (void) const            {	compute();		return _value;	}
-        T&                  as_ref_no_compute	(void)                  {	return _value;                  }
-        T&                  as_ref              (void)                  {	compute();		return _value;	}
+        const T&            as_ref_no_compute    (void) const            {    return _value;                  }
+        const T&            as_ref              (void) const            {    compute();        return _value;    }
+        T&                  as_ref_no_compute    (void)                  {    return _value;                  }
+        T&                  as_ref              (void)                  {    compute();        return _value;    }
 
-                            operator T          (void) const			{	compute();		return _value;	}
-        const T&            operator *          (void) const			{	compute();		return _value;	}
-        const T*            operator ->         (void) const			{	compute();		return &_value;	}
-        T&                  operator *          (void)                  {	compute();		return _value;	}
-        T*                  operator ->         (void)                  {	compute();		return &_value;	}
+                            operator T          (void) const            {    compute();        return _value;    }
+        const T&            operator *          (void) const            {    compute();        return _value;    }
+        const T*            operator ->         (void) const            {    compute();        return &_value;    }
+        T&                  operator *          (void)                  {    compute();        return _value;    }
+        T*                  operator ->         (void)                  {    compute();        return &_value;    }
 
 
         // Comparison operators
-        int                 operator ==         (const T &rhs)			{	compute(); return _value == rhs;                               }
-        int                 operator ==         (const Plug<T> &rhs)	{	compute(); rhs.compute(); return _value == rhs._value;    }
+        int                 operator ==         (const T &rhs)            {    compute(); return _value == rhs;                               }
+        int                 operator ==         (const Plug<T> &rhs)    {    compute(); rhs.compute(); return _value == rhs._value;    }
 
-        int                 operator !=         (const T &rhs)			{	compute(); return _value != rhs;                               }
-        int                 operator !=         (const Plug<T> &rhs)	{	compute(); rhs.compute(); return _value != rhs._value;    }
+        int                 operator !=         (const T &rhs)            {    compute(); return _value != rhs;                               }
+        int                 operator !=         (const Plug<T> &rhs)    {    compute(); rhs.compute(); return _value != rhs._value;    }
 
         /// Returns the value without compute function beign called
         /// \return value of the plug
-        const T&            value_without_compute(void) const           {	return _value;	}
+        const T&            value_without_compute(void) const           {    return _value;    }
 
 
         //
@@ -284,10 +284,10 @@ class Plug: public PlugBase {
 
 
         /// Underlying type of plug
-        typedef T	BaseType;
+        typedef T    BaseType;
 
     private:
-        T	_value;
+        T    _value;
 
 };
 

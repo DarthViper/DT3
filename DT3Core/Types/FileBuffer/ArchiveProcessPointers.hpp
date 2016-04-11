@@ -3,7 +3,7 @@
 #define DT3_ARCHIVEPROCESSPOINTERSREF
 //==============================================================================
 ///
-///	File: ArchiveProcessPointers.hpp
+///    File: ArchiveProcessPointers.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -28,18 +28,18 @@ class ArchiveProcessPointers: public ArchiveProcess {
     public:
         //DEFINE_TYPE(ArchiveProcessPointers,ArchiveProcess)
 
-                                    ArchiveProcessPointers	(const std::shared_ptr<Archive> &archive, std::shared_ptr<T> &ptr);
+                                    ArchiveProcessPointers    (const std::shared_ptr<Archive> &archive, std::shared_ptr<T> &ptr);
 
-                                    ArchiveProcessPointers	(const ArchiveProcessPointers &rhs);
-        ArchiveProcessPointers &	operator =				(const ArchiveProcessPointers &rhs);
+                                    ArchiveProcessPointers    (const ArchiveProcessPointers &rhs);
+        ArchiveProcessPointers &    operator =                (const ArchiveProcessPointers &rhs);
 
-        virtual						~ArchiveProcessPointers	(void);
+        virtual                        ~ArchiveProcessPointers    (void);
 
     public:
         /// Post process for archiving
         /// \param archive Archive that owns the post process
         /// \param archive Objects Map of objects that have been archived
-        virtual void				process			(const std::shared_ptr<Archive> &archive, std::map<uint64_t, std::shared_ptr<BaseClass>> &objects);
+        virtual void                process            (const std::shared_ptr<Archive> &archive, std::map<uint64_t, std::shared_ptr<BaseClass>> &objects);
 
     private:
         uint64_t            _ref;
@@ -55,7 +55,7 @@ std::shared_ptr<ArchiveProcess> archive_process_pointers_creator (const std::sha
     return std::shared_ptr<ArchiveProcess> (new ("archive_process_pointers_creator") ArchiveProcessPointers<T>(archive, ptr));
 }
 
-#define ARCHIVE_PROCESS_POINTERS(A,V)			archive_process_pointers_creator(A, V)
+#define ARCHIVE_PROCESS_POINTERS(A,V)            archive_process_pointers_creator(A, V)
 
 //==============================================================================
 //==============================================================================

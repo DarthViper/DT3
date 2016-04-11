@@ -3,7 +3,7 @@
 #define DT3_SCRIPTINGSOUNDMIXER
 //==============================================================================
 ///
-///	File: ScriptingSoundMixer.hpp
+///    File: ScriptingSoundMixer.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -38,7 +38,7 @@ class ScriptingSoundMixer: public ScriptingSoundBase {
 
                                     ScriptingSoundMixer     (void);
                                     ScriptingSoundMixer     (const ScriptingSoundMixer &rhs);
-        ScriptingSoundMixer &		operator =				(const ScriptingSoundMixer &rhs);
+        ScriptingSoundMixer &        operator =                (const ScriptingSoundMixer &rhs);
         virtual                     ~ScriptingSoundMixer    (void);
 
         virtual void                archive                 (const std::shared_ptr<Archive> &archive);
@@ -46,7 +46,7 @@ class ScriptingSoundMixer: public ScriptingSoundBase {
     public:
         /// Computes the value of the node
         /// \param plug plug to compute
-        bool					compute					(const PlugBase *plug);
+        bool                    compute                    (const PlugBase *plug);
 
     private:
         Plug<SoundPacket>         _sound_packet_in_1;

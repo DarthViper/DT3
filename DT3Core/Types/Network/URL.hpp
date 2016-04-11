@@ -3,7 +3,7 @@
 #define DT3_URL
 //==============================================================================
 ///
-///	File: URL.hpp
+///    File: URL.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -34,22 +34,22 @@ class URL {
     public:
         DEFINE_TYPE_SIMPLE_BASE(URL)
 
-                                URL					(void);
-        explicit				URL					(const std::string &url) {   set_full_url(url);    }
+                                URL                    (void);
+        explicit                URL                    (const std::string &url) {   set_full_url(url);    }
                                 URL                 (const URL &rhs);
                                 URL                 (URL &&rhs);
-        URL &					operator =          (const URL &rhs);
-        URL &					operator =          (URL &&rhs);
+        URL &                    operator =          (const URL &rhs);
+        URL &                    operator =          (URL &&rhs);
                                 ~URL                (void);
 
     public:
         /// Set the full URL
         /// \param url full URL
-        void					set_full_url        (const std::string &url);
+        void                    set_full_url        (const std::string &url);
 
         /// Gets the full URL
         /// \return full URL
-        const std::string&      full_url            (void) const        {   return _url;		}
+        const std::string&      full_url            (void) const        {   return _url;        }
 
         /// Returns hostname
         /// \return hostname
@@ -65,15 +65,15 @@ class URL {
 
         /// Returns URL without protocol
         /// \return URL without protocol
-        std::string             strip_protocol		(void) const;
+        std::string             strip_protocol        (void) const;
 
         /// Returns URL without protocol or parameters
         /// \return URL without protocol or parameters
-        std::string             strip_protocol_and_parameters		(void) const;
+        std::string             strip_protocol_and_parameters        (void) const;
 
         /// Specified port
         /// \return Returns port if specified or 0 if none
-        uint16_t				port                (void) const;
+        uint16_t                port                (void) const;
 
         /// Returns parameters from URL
         /// \return Parameters

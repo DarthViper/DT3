@@ -1,12 +1,12 @@
 //==============================================================================
-///	
-///	File: ScriptingOrientTowards.cpp
-///	
+///    
+///    File: ScriptingOrientTowards.cpp
+///    
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
 /// This file is subject to the terms and conditions defined in
 /// file 'LICENSE.txt', which is part of this source code package.
-///	
+///    
 //==============================================================================
 
 #include "DT3Core/Scripting/ScriptingOrientTowards.hpp"
@@ -36,16 +36,16 @@ IMPLEMENT_PLUG_INFO_INDEX(_out)
 
 BEGIN_IMPLEMENT_PLUGS(ScriptingOrientTowards)
 
-	PLUG_INIT(_direction,"Direction")
-		.set_input(true)
-		.affects(PLUG_INFO_INDEX(_out));
-		
-	PLUG_INIT(_up,"Up")
-		.set_input(true)
-		.affects(PLUG_INFO_INDEX(_out));
+    PLUG_INIT(_direction,"Direction")
+        .set_input(true)
+        .affects(PLUG_INFO_INDEX(_out));
+        
+    PLUG_INIT(_up,"Up")
+        .set_input(true)
+        .affects(PLUG_INFO_INDEX(_out));
 
-	PLUG_INIT(_out,"Out")
-		.set_output(true);
+    PLUG_INIT(_out,"Out")
+        .set_output(true);
         
 END_IMPLEMENT_PLUGS
 
@@ -56,16 +56,16 @@ END_IMPLEMENT_PLUGS
 ScriptingOrientTowards::ScriptingOrientTowards (void)
     :   _direction      (PLUG_INFO_INDEX(_direction), {0.0F,0.0F,-1.0F}),
         _up             (PLUG_INFO_INDEX(_up), {0.0F,1.0F,0.0F}),
-		_out			(PLUG_INFO_INDEX(_out), Matrix3::identity())
+        _out            (PLUG_INFO_INDEX(_out), Matrix3::identity())
 {  
 
 }
-		
+        
 ScriptingOrientTowards::ScriptingOrientTowards (const ScriptingOrientTowards &rhs)
-    :   ScriptingBase	(rhs),
-		_direction      (rhs._direction),
-		_up             (rhs._up),
-		_out			(rhs._out)
+    :   ScriptingBase    (rhs),
+        _direction      (rhs._direction),
+        _up             (rhs._up),
+        _out            (rhs._out)
 {   
 
 }
@@ -74,15 +74,15 @@ ScriptingOrientTowards & ScriptingOrientTowards::operator = (const ScriptingOrie
 {
     // Make sure we are not assigning the class to itself
     if (&rhs != this) {        
-		ScriptingBase::operator = (rhs);
+        ScriptingBase::operator = (rhs);
 
-		_direction = rhs._direction;
-		_up = rhs._up;
-		_out = rhs._out;
-	}
+        _direction = rhs._direction;
+        _up = rhs._up;
+        _out = rhs._out;
+    }
     return (*this);
 }
-			
+            
 ScriptingOrientTowards::~ScriptingOrientTowards (void)
 {
 
@@ -95,12 +95,12 @@ void ScriptingOrientTowards::archive (const std::shared_ptr<Archive> &archive)
 {
     ScriptingBase::archive(archive);
 
-	archive->push_domain (class_id ());
-	   
-	*archive << ARCHIVE_PLUG(_direction, DATA_PERSISTENT | DATA_SETTABLE);
-	*archive << ARCHIVE_PLUG(_up, DATA_PERSISTENT | DATA_SETTABLE);
-	*archive << ARCHIVE_PLUG(_out, DATA_PERSISTENT);
-														     					
+    archive->push_domain (class_id ());
+       
+    *archive << ARCHIVE_PLUG(_direction, DATA_PERSISTENT | DATA_SETTABLE);
+    *archive << ARCHIVE_PLUG(_up, DATA_PERSISTENT | DATA_SETTABLE);
+    *archive << ARCHIVE_PLUG(_out, DATA_PERSISTENT);
+                                                                                 
     archive->pop_domain ();
 }
 
@@ -109,20 +109,20 @@ void ScriptingOrientTowards::archive (const std::shared_ptr<Archive> &archive)
 
 bool ScriptingOrientTowards::compute (const PlugBase *plug)
 {
-	PROFILER(SCRIPTING);
+    PROFILER(SCRIPTING);
 
     if (super_type::compute(plug))  return true;
 
-	if (plug == &_out) {
+    if (plug == &_out) {
         Matrix3 orientation;
         orientation = Matrix3::set_orientation (-_direction,  _up);
     
         _out = orientation;
-		_out.set_clean();
-		return true;
-	}
-	
-	return false;
+        _out.set_clean();
+        return true;
+    }
+    
+    return false;
 }
 
 //==============================================================================

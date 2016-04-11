@@ -1,12 +1,12 @@
 //==============================================================================
-///	
-///	File: GlyphCacheEntry.cpp
-///	
+///    
+///    File: GlyphCacheEntry.cpp
+///    
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
 /// This file is subject to the terms and conditions defined in
 /// file 'LICENSE.txt', which is part of this source code package.
-///	
+///    
 //==============================================================================
 
 #include "DT3Core/Types/Text/GlyphCacheEntry.hpp"
@@ -61,7 +61,7 @@ GlyphCacheEntry::GlyphCacheEntry (const GlyphCacheEntry &rhs)
 GlyphCacheEntry& GlyphCacheEntry::operator = (const GlyphCacheEntry &rhs)
 {
     // Make sure we are not assigning the class to itself
-    if (&rhs != this) {		
+    if (&rhs != this) {        
         clear_glyph();
         
         BaseClass::operator=(rhs);

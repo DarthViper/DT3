@@ -3,7 +3,7 @@
 #define DT3_SCRIPTINGTEXTURE
 //==============================================================================
 ///
-///	File: ScriptingTexture2D.hpp
+///    File: ScriptingTexture2D.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -38,7 +38,7 @@ class ScriptingTexture2D: public ScriptingBase {
 
                                     ScriptingTexture2D  (void);
                                     ScriptingTexture2D  (const ScriptingTexture2D &rhs);
-        ScriptingTexture2D &		operator =          (const ScriptingTexture2D &rhs);
+        ScriptingTexture2D &        operator =          (const ScriptingTexture2D &rhs);
         virtual                     ~ScriptingTexture2D (void);
 
         virtual void                archive             (const std::shared_ptr<Archive> &archive);
@@ -46,7 +46,7 @@ class ScriptingTexture2D: public ScriptingBase {
     public:
         /// Computes the value of the node
         /// \param plug plug to compute
-        bool                                   compute					(const PlugBase *plug);
+        bool                                   compute                    (const PlugBase *plug);
 
 
         /// Set the texture
@@ -55,7 +55,7 @@ class ScriptingTexture2D: public ScriptingBase {
 
         /// Get the texture
         /// \return texture
-        const std::shared_ptr<TextureResource2D>&   texture_property        (void) const    {   return _texture;	}
+        const std::shared_ptr<TextureResource2D>&   texture_property        (void) const    {   return _texture;    }
 
     private:
         std::shared_ptr<TextureResource2D>          _texture;

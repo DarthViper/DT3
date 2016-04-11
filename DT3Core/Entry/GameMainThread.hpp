@@ -3,7 +3,7 @@
 #define DT3_GAMEMAINTHREAD
 //==============================================================================
 ///
-///	File: GameMainThread.hpp
+///    File: GameMainThread.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -83,10 +83,10 @@ class GameMainThread {
 
 
         /// Send a back button event (Android only)
-        static void             do_back_button			(void);
+        static void             do_back_button            (void);
 
         /// Send a menu button event (Android only)
-        static void             do_menu_button			(void);
+        static void             do_menu_button            (void);
 
 
         /// Send a orientation changed event
@@ -124,7 +124,7 @@ class GameMainThread {
         //
 
         /// Synchronous loop iteration
-        static void				loop                    (void);
+        static void                loop                    (void);
 
     private:
         static void             initialize_engine_impl  (void);

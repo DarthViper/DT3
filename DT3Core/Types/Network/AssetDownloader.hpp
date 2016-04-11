@@ -3,7 +3,7 @@
 #define DT3_ASSETDOWNLOADER
 //==============================================================================
 ///
-///	File: AssetDownloader.hpp
+///    File: AssetDownloader.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -39,10 +39,10 @@ class AssetDownloader:public BaseClass {
                                     AssetDownloader         (void);
     private:
                                     AssetDownloader         (const AssetDownloader &rhs);
-        AssetDownloader &			operator =				(const AssetDownloader &rhs);
+        AssetDownloader &            operator =                (const AssetDownloader &rhs);
 
     public:
-        virtual						~AssetDownloader        (void);
+        virtual                        ~AssetDownloader        (void);
 
     public:
 

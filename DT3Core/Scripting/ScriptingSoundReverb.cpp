@@ -1,12 +1,12 @@
 //==============================================================================
-///	
-///	File: ScriptingSoundReverb.cpp
-///	
+///    
+///    File: ScriptingSoundReverb.cpp
+///    
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
 /// This file is subject to the terms and conditions defined in
 /// file 'LICENSE.txt', which is part of this source code package.
-///	
+///    
 //==============================================================================
 
 #include "DT3Core/Scripting/ScriptingSoundReverb.hpp"
@@ -39,23 +39,23 @@ IMPLEMENT_PLUG_INFO_INDEX(_output_gain)
 
 BEGIN_IMPLEMENT_PLUGS(ScriptingSoundReverb)
 
-	PLUG_INIT(_sound_packet_in,"Sound_Packet_In")
+    PLUG_INIT(_sound_packet_in,"Sound_Packet_In")
         .affects(PLUG_INFO_INDEX(_sound_packet_out))
-		.set_input(true)
+        .set_input(true)
         .set_always_dirty(true);
 
-	PLUG_INIT(_sound_packet_out,"Sound_Packet_Out")
+    PLUG_INIT(_sound_packet_out,"Sound_Packet_Out")
         .set_single_output(true)
-		.set_output(true)
+        .set_output(true)
         .set_always_dirty(true);
 
-	PLUG_INIT(_delay,"Delay")
-		.set_input(true);
+    PLUG_INIT(_delay,"Delay")
+        .set_input(true);
 
-	PLUG_INIT(_reverb_gain,"Reverb_Gain")
+    PLUG_INIT(_reverb_gain,"Reverb_Gain")
         .set_input(true);
     
-	PLUG_INIT(_output_gain,"Output_Gain")
+    PLUG_INIT(_output_gain,"Output_Gain")
         .set_input(true);
     
 END_IMPLEMENT_PLUGS
@@ -66,43 +66,43 @@ END_IMPLEMENT_PLUGS
 
 ScriptingSoundReverb::ScriptingSoundReverb (void)
     :   _sound_packet_in    (PLUG_INFO_INDEX(_sound_packet_in)),
-		_sound_packet_out   (PLUG_INFO_INDEX(_sound_packet_out)),
-		_delay              (PLUG_INFO_INDEX(_delay), 1000),
-		_reverb_gain        (PLUG_INFO_INDEX(_reverb_gain), 0.5F),
-		_output_gain        (PLUG_INFO_INDEX(_output_gain), 0.5F),
+        _sound_packet_out   (PLUG_INFO_INDEX(_sound_packet_out)),
+        _delay              (PLUG_INFO_INDEX(_delay), 1000),
+        _reverb_gain        (PLUG_INFO_INDEX(_reverb_gain), 0.5F),
+        _output_gain        (PLUG_INFO_INDEX(_output_gain), 0.5F),
         _sample_index       (0)
 {  
 
 }
-		
+        
 ScriptingSoundReverb::ScriptingSoundReverb (const ScriptingSoundReverb &rhs)
     :   ScriptingSoundBase  (rhs),
-		_sound_packet_in	(rhs._sound_packet_in),
-		_sound_packet_out   (rhs._sound_packet_out),
+        _sound_packet_in    (rhs._sound_packet_in),
+        _sound_packet_out   (rhs._sound_packet_out),
         _delay              (rhs._delay),
         _reverb_gain        (rhs._reverb_gain),
         _output_gain        (rhs._output_gain),
         _sample_index       (0)
 {   
 
-}	
+}    
 
 ScriptingSoundReverb & ScriptingSoundReverb::operator = (const ScriptingSoundReverb &rhs)
 {
     // Make sure we are not assigning the class to itself
     if (&rhs != this) {        
-		ScriptingSoundBase::operator = (rhs);
+        ScriptingSoundBase::operator = (rhs);
 
-		_sound_packet_in = rhs._sound_packet_in;
-		_sound_packet_out = rhs._sound_packet_out;
+        _sound_packet_in = rhs._sound_packet_in;
+        _sound_packet_out = rhs._sound_packet_out;
         _delay = rhs._delay;
         _reverb_gain = rhs._reverb_gain;
         _output_gain = rhs._output_gain;
         _sample_index = rhs._sample_index;
-	}
+    }
     return (*this);
 }
-			
+            
 ScriptingSoundReverb::~ScriptingSoundReverb (void)
 {
 
@@ -115,12 +115,12 @@ void ScriptingSoundReverb::archive (const std::shared_ptr<Archive> &archive)
 {
     ScriptingSoundBase::archive(archive);
 
-	archive->push_domain (class_id ());
-	        
-	*archive << ARCHIVE_PLUG(_delay, DATA_PERSISTENT | DATA_SETTABLE);
-	*archive << ARCHIVE_PLUG(_reverb_gain, DATA_PERSISTENT | DATA_SETTABLE);
-	*archive << ARCHIVE_PLUG(_output_gain, DATA_PERSISTENT | DATA_SETTABLE);
-                                                                			
+    archive->push_domain (class_id ());
+            
+    *archive << ARCHIVE_PLUG(_delay, DATA_PERSISTENT | DATA_SETTABLE);
+    *archive << ARCHIVE_PLUG(_reverb_gain, DATA_PERSISTENT | DATA_SETTABLE);
+    *archive << ARCHIVE_PLUG(_output_gain, DATA_PERSISTENT | DATA_SETTABLE);
+                                                                            
     archive->pop_domain ();
 }
 
@@ -129,11 +129,11 @@ void ScriptingSoundReverb::archive (const std::shared_ptr<Archive> &archive)
 
 bool ScriptingSoundReverb::compute (const PlugBase *plug)
 {
-	PROFILER(SOUND);
+    PROFILER(SOUND);
 
     if (super_type::compute(plug))  return true;
 
-	if (plug == &_sound_packet_out) {
+    if (plug == &_sound_packet_out) {
     
         SoundPacket &sound_packet_in = _sound_packet_in.as_ref_no_compute();
         SoundPacket &sound_packet_out = _sound_packet_out.as_ref_no_compute();
@@ -229,12 +229,12 @@ bool ScriptingSoundReverb::compute (const PlugBase *plug)
             
         }
                 
-		_sound_packet_out.set_clean();
-		
-		return true;
-	}
-	
-	return false;
+        _sound_packet_out.set_clean();
+        
+        return true;
+    }
+    
+    return false;
 }
 
 //==============================================================================

@@ -3,7 +3,7 @@
 #define EDLEVELSOUNDWINDOW
 //==============================================================================
 ///
-///	File: EdLevelSoundWindow.hpp
+///    File: EdLevelSoundWindow.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -65,7 +65,7 @@ class EdLevelSoundWindow : public QWidget
             BusCache(void)                                          {   _node = NULL; _widget = NULL;   }
             BusCache(std::shared_ptr<ScriptingSoundBusOut> node)    {   _node = node; _widget = NULL;   }
 
-            bool   operator == (const BusCache& rhs) const          {	return _node == rhs._node;		}
+            bool   operator == (const BusCache& rhs) const          {    return _node == rhs._node;        }
 
             std::shared_ptr<ScriptingSoundBusOut>   _node;
             EdLevelSoundBus                         *_widget;

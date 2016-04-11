@@ -1,12 +1,12 @@
 //==============================================================================
-///	
-///	File: ImporterImagePVR.cpp
-///	
+///    
+///    File: ImporterImagePVR.cpp
+///    
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
 /// This file is subject to the terms and conditions defined in
 /// file 'LICENSE.txt', which is part of this source code package.
-///	
+///    
 //==============================================================================
 
 #include "DT3Core/Resources/Importers/ImporterImagePVR.hpp"
@@ -42,7 +42,7 @@ ImporterImagePVR::ImporterImagePVR (void)
 {    
 
 }
-		
+        
 ImporterImagePVR::~ImporterImagePVR (void)
 { 
 
@@ -54,7 +54,7 @@ ImporterImagePVR::~ImporterImagePVR (void)
 DTerr ImporterImagePVR::import (TextureResource2D *target, std::string args)
 {
     // Convert path to this platform
-	FilePath pathname(target->path());
+    FilePath pathname(target->path());
     
     uint32_t                      width;
     uint32_t                      height;
@@ -67,13 +67,13 @@ DTerr ImporterImagePVR::import (TextureResource2D *target, std::string args)
 
     target->set_textels(width, height, data, format, mipmapped);
 
-	return DT3_ERR_NONE;
+    return DT3_ERR_NONE;
 }
 
 DTerr ImporterImagePVR::import (TextureResource3D *target, std::string args)
 {
     // Convert path to this platform
-	FilePath pathname(target->path());
+    FilePath pathname(target->path());
     
     uint32_t                      width;
     uint32_t                      height;
@@ -84,13 +84,13 @@ DTerr ImporterImagePVR::import (TextureResource3D *target, std::string args)
     
     // TODO: Set textels
 
-	return DT3_ERR_NONE;
+    return DT3_ERR_NONE;
 }
 
 DTerr ImporterImagePVR::import (TextureResourceCube *target, std::string args)
 {
     // Convert path to this platform
-	FilePath pathname(target->path());
+    FilePath pathname(target->path());
     
     uint32_t                      width;
     uint32_t                      height;
@@ -101,24 +101,24 @@ DTerr ImporterImagePVR::import (TextureResourceCube *target, std::string args)
 
     // TODO: Set textels
 
-	return DT3_ERR_NONE;
+    return DT3_ERR_NONE;
 }
 
 //==============================================================================
 //==============================================================================
-	
+    
 DTerr ImporterImagePVR::import(const FilePath &pathname, const std::string &args, uint32_t &width, uint32_t &height, std::shared_ptr<uint8_t> &data, DT3GLTextelFormat &format)
 {
-	// open the file
-	BinaryFileStream file;
-	DTerr err;
-	if ((err = FileManager::open(file, pathname, true)) != DT3_ERR_NONE)
-		return err;
-	
-	// read the header
-	PVRTexHeader header;
-	file.read_raw((uint8_t*) &header, sizeof(header));
-	
+    // open the file
+    BinaryFileStream file;
+    DTerr err;
+    if ((err = FileManager::open(file, pathname, true)) != DT3_ERR_NONE)
+        return err;
+    
+    // read the header
+    PVRTexHeader header;
+    file.read_raw((uint8_t*) &header, sizeof(header));
+    
     uint32_t pvrTag = header.pvrTag;
 
     if (gPVRTexIdentifier[0] != ((pvrTag >>  0) & 0xff) ||
@@ -128,54 +128,54 @@ DTerr ImporterImagePVR::import(const FilePath &pathname, const std::string &args
     {
         return DT3_ERR_FILE_WRONG_TYPE;
     }
-	
-	uint32_t flags = header.flags;
-	uint32_t formatFlags = flags & PVR_TEXTURE_FLAG_TYPE_MASK;
-	
-	ASSERT (formatFlags == kPVRTextureFlagTypePVR_4 || formatFlags == kPVRTextureFlagTypePVR_2);
-	
-	// allocate a buffer
+    
+    uint32_t flags = header.flags;
+    uint32_t formatFlags = flags & PVR_TEXTURE_FLAG_TYPE_MASK;
+    
+    ASSERT (formatFlags == kPVRTextureFlagTypePVR_4 || formatFlags == kPVRTextureFlagTypePVR_2);
+    
+    // allocate a buffer
     uint32_t blockSize = 0, widthBlocks = 0, heightBlocks = 0;
     width = header.width;
     height = header.height;
     uint32_t bpp = 4;
 
-	if (formatFlags == kPVRTextureFlagTypePVR_4)
-	{
-		blockSize = 4 * 4; // Pixel by pixel block size for 4bpp
-		widthBlocks = width / 4;
-		heightBlocks = height / 4;
-		bpp = 4;
-	} else {
-		blockSize = 8 * 4; // Pixel by pixel block size for 2bpp
-		widthBlocks = width / 8;
-		heightBlocks = height / 4;
-		bpp = 2;
-	}
-	
-	// Clamp to minimum number of blocks
-	if (widthBlocks < 2)
-		widthBlocks = 2;
-	if (heightBlocks < 2)
-		heightBlocks = 2;
+    if (formatFlags == kPVRTextureFlagTypePVR_4)
+    {
+        blockSize = 4 * 4; // Pixel by pixel block size for 4bpp
+        widthBlocks = width / 4;
+        heightBlocks = height / 4;
+        bpp = 4;
+    } else {
+        blockSize = 8 * 4; // Pixel by pixel block size for 2bpp
+        widthBlocks = width / 8;
+        heightBlocks = height / 4;
+        bpp = 2;
+    }
+    
+    // Clamp to minimum number of blocks
+    if (widthBlocks < 2)
+        widthBlocks = 2;
+    if (heightBlocks < 2)
+        heightBlocks = 2;
 
-	uint32_t size = widthBlocks * heightBlocks * ((blockSize  * bpp) / 8);
+    uint32_t size = widthBlocks * heightBlocks * ((blockSize  * bpp) / 8);
     
     std::shared_ptr<uint32_t> buffer = std::shared_ptr<uint32_t>(new uint32_t[size]);
 
-	// Read the entire file
-	file.read_raw((uint8_t*) buffer.get(), size);
+    // Read the entire file
+    file.read_raw((uint8_t*) buffer.get(), size);
     
-	if (header.bitmaskAlpha) {
-        if (formatFlags == kPVRTextureFlagTypePVR_4)		format = DT3GL_FORMAT_PVR4_RGBA;
-		else												format = DT3GL_FORMAT_PVR2_RGBA;
-	} else {
-		if (formatFlags == kPVRTextureFlagTypePVR_4)		format = DT3GL_FORMAT_PVR4_RGB;
-		else												format = DT3GL_FORMAT_PVR4_RGB;
-	}
+    if (header.bitmaskAlpha) {
+        if (formatFlags == kPVRTextureFlagTypePVR_4)        format = DT3GL_FORMAT_PVR4_RGBA;
+        else                                                format = DT3GL_FORMAT_PVR2_RGBA;
+    } else {
+        if (formatFlags == kPVRTextureFlagTypePVR_4)        format = DT3GL_FORMAT_PVR4_RGB;
+        else                                                format = DT3GL_FORMAT_PVR4_RGB;
+    }
 
 
-	return DT3_ERR_NONE;
+    return DT3_ERR_NONE;
 }
 
 //==============================================================================

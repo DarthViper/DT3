@@ -3,7 +3,7 @@
 #define DT3_SCRIPTINGXOR
 //==============================================================================
 ///
-///	File: ScriptingXOR.hpp
+///    File: ScriptingXOR.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -33,24 +33,24 @@ class ScriptingXOR: public ScriptingBase {
         DEFINE_CREATE_AND_CLONE
         DEFINE_PLUG_NODE
 
-                                    ScriptingXOR			(void);
-                                    ScriptingXOR			(const ScriptingXOR &rhs);
-        ScriptingXOR &				operator =				(const ScriptingXOR &rhs);
-        virtual                     ~ScriptingXOR			(void);
+                                    ScriptingXOR            (void);
+                                    ScriptingXOR            (const ScriptingXOR &rhs);
+        ScriptingXOR &                operator =                (const ScriptingXOR &rhs);
+        virtual                     ~ScriptingXOR            (void);
 
         virtual void                archive                 (const std::shared_ptr<Archive> &archive);
 
     public:
         /// Computes the value of the node
         /// \param plug plug to compute
-        bool					compute					(const PlugBase *plug);
+        bool                    compute                    (const PlugBase *plug);
 
     private:
-        Plug<bool>				_in1;
-        Plug<bool>				_in2;
+        Plug<bool>                _in1;
+        Plug<bool>                _in2;
 
-        Plug<bool>				_out;
-        Plug<bool>				_out_inv;
+        Plug<bool>                _out;
+        Plug<bool>                _out_inv;
 
 };
 

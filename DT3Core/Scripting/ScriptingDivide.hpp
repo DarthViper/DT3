@@ -3,7 +3,7 @@
 #define DT3_SCRIPTINGDIVIDE
 //==============================================================================
 ///
-///	File: ScriptingDivide.hpp
+///    File: ScriptingDivide.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -35,20 +35,20 @@ class ScriptingDivide: public ScriptingBase {
 
                                     ScriptingDivide         (void);
                                     ScriptingDivide         (const ScriptingDivide &rhs);
-        ScriptingDivide &			operator =				(const ScriptingDivide &rhs);
-        virtual						~ScriptingDivide		(void);
+        ScriptingDivide &            operator =                (const ScriptingDivide &rhs);
+        virtual                        ~ScriptingDivide        (void);
 
-        virtual void				archive                 (const std::shared_ptr<Archive> &archive);
+        virtual void                archive                 (const std::shared_ptr<Archive> &archive);
 
     public:
         /// Computes the value of the node
         /// \param plug plug to compute
-        bool					compute					(const PlugBase *plug);
+        bool                    compute                    (const PlugBase *plug);
 
     private:
-        Plug<DTfloat>				_in1;
-        Plug<DTfloat>				_in2;
-        Plug<DTfloat>				_out;
+        Plug<DTfloat>                _in1;
+        Plug<DTfloat>                _in2;
+        Plug<DTfloat>                _out;
 };
 
 //==============================================================================

@@ -1,7 +1,7 @@
 #pragma once
 //==============================================================================
 ///
-///	File: ScriptingNOT.hpp
+///    File: ScriptingNOT.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -31,21 +31,21 @@ class ScriptingNOT: public ScriptingBase {
         DEFINE_CREATE_AND_CLONE
         DEFINE_PLUG_NODE
 
-                                    ScriptingNOT			(void);
-                                    ScriptingNOT			(const ScriptingNOT &rhs);
-        ScriptingNOT &				operator =				(const ScriptingNOT &rhs);
-        virtual                     ~ScriptingNOT			(void) = default;
+                                    ScriptingNOT            (void);
+                                    ScriptingNOT            (const ScriptingNOT &rhs);
+        ScriptingNOT &                operator =                (const ScriptingNOT &rhs);
+        virtual                     ~ScriptingNOT            (void) = default;
 
         virtual void                archive                 (const std::shared_ptr<Archive> &archive);
 
     public:
         /// Computes the value of the node
         /// \param plug plug to compute
-        bool					compute					(const PlugBase *plug) override;
+        bool                    compute                    (const PlugBase *plug) override;
 
     private:
-        Plug<bool>				_in;
-        Plug<bool>				_out;
+        Plug<bool>                _in;
+        Plug<bool>                _out;
 
 };
 

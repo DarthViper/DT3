@@ -1,7 +1,7 @@
 #pragma once
 //==============================================================================
 ///
-///	File: ScriptingTimerSuper.hpp
+///    File: ScriptingTimerSuper.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -34,8 +34,8 @@ class ScriptingTimerSuper: public ScriptingBase {
 
                                     ScriptingTimerSuper     (void);
                                     ScriptingTimerSuper     (const ScriptingTimerSuper &rhs);
-        ScriptingTimerSuper &		operator =				(const ScriptingTimerSuper &rhs);
-        virtual                     ~ScriptingTimerSuper	(void);
+        ScriptingTimerSuper &        operator =                (const ScriptingTimerSuper &rhs);
+        virtual                     ~ScriptingTimerSuper    (void);
 
         virtual void                archive                 (const std::shared_ptr<Archive> &archive);
 

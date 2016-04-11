@@ -1,6 +1,6 @@
 //==============================================================================
 ///
-///	File: NetworkSocket.cpp
+///    File: NetworkSocket.cpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -39,13 +39,13 @@ NetworkSocket::NetworkSocket (const uint8_t *socket_structure, uint32_t length)
 }
 
 NetworkSocket::NetworkSocket (const NetworkSocket &rhs)
-    :	_data(rhs._data)
+    :    _data(rhs._data)
 {
 
 }
 
 NetworkSocket::NetworkSocket (NetworkSocket &&rhs)
-    :	_data(std::move(rhs._data))
+    :    _data(std::move(rhs._data))
 {
 
 }

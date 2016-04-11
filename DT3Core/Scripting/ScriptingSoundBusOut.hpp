@@ -3,7 +3,7 @@
 #define DT3_SCRIPTINGSOUNDBUSOUT
 //==============================================================================
 ///
-///	File: ScriptingSoundBusOut.hpp
+///    File: ScriptingSoundBusOut.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -38,7 +38,7 @@ class ScriptingSoundBusOut: public ScriptingSoundBase {
 
                                     ScriptingSoundBusOut    (void);
                                     ScriptingSoundBusOut    (const ScriptingSoundBusOut &rhs);
-        ScriptingSoundBusOut &		operator =				(const ScriptingSoundBusOut &rhs);
+        ScriptingSoundBusOut &        operator =                (const ScriptingSoundBusOut &rhs);
         virtual                     ~ScriptingSoundBusOut   (void);
 
         virtual void                archive                 (const std::shared_ptr<Archive> &archive);
@@ -53,7 +53,7 @@ class ScriptingSoundBusOut: public ScriptingSoundBase {
     public:
         /// Computes the value of the node
         /// \param plug plug to compute
-        bool					compute					(const PlugBase *plug);
+        bool                    compute                    (const PlugBase *plug);
 
         DEFINE_ACCESSORS(gain_left, set_gain_left, DTfloat, _gain_left)
         DEFINE_ACCESSORS(gain_right, set_gain_right, DTfloat, _gain_right)

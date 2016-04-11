@@ -3,7 +3,7 @@
 #define DT3_SCRIPTINGSOUNDLOWPASSFILTER3DB
 //==============================================================================
 ///
-///	File: ScriptingSoundLowPassFilter3db.hpp
+///    File: ScriptingSoundLowPassFilter3db.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -47,7 +47,7 @@ class ScriptingSoundLowPassFilter3db: public ScriptingSoundBase {
 
         /// Computes the value of the node
         /// \param plug plug to compute
-        bool					compute					(const PlugBase *plug);
+        bool                    compute                    (const PlugBase *plug);
 
     private:
         Plug<SoundPacket>         _sound_packet_in;

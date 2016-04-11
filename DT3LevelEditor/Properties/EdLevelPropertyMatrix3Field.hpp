@@ -3,7 +3,7 @@
 #define EDLEVELPROPERTYMATRIX3FIELD
 //==============================================================================
 ///
-///	File: EdLevelPropertyMatrix3Field.hpp
+///    File: EdLevelPropertyMatrix3Field.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -47,8 +47,8 @@ class EdLevelPropertyMatrix3Field : public EdLevelPropertyBase
     Q_OBJECT
 
     public:
-                                        EdLevelPropertyMatrix3Field		(EdLevelPropertiesWindow *parent, std::shared_ptr<PlugNode> node, std::shared_ptr<ArchiveData> data);
-                                        ~EdLevelPropertyMatrix3Field	(void);
+                                        EdLevelPropertyMatrix3Field        (EdLevelPropertiesWindow *parent, std::shared_ptr<PlugNode> node, std::shared_ptr<ArchiveData> data);
+                                        ~EdLevelPropertyMatrix3Field    (void);
 
         /// Gets the value of the field
         /// \return value of field

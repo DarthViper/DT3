@@ -1,12 +1,12 @@
 //==============================================================================
-///	
-///	File: ArchiveData.cpp
+///    
+///    File: ArchiveData.cpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
 /// This file is subject to the terms and conditions defined in
 /// file 'LICENSE.txt', which is part of this source code package.
-///	
+///    
 //==============================================================================
 
 #include "DT3Core/Types/FileBuffer/ArchiveData.hpp"
@@ -31,17 +31,17 @@ const int32_t DATA_DIRTY = 1 << 31;
 //==============================================================================
 
 ArchiveData::ArchiveData (void)
-	:	_flags      (0),
+    :    _flags      (0),
         _range_min  (0.0F),
         _range_max  (0.0F),
         _bitfield   (false)
 {    
 
 }
-		
+        
 ArchiveData::ArchiveData (const ArchiveData &rhs)
-	:	_flags      (rhs._flags),
-		_title      (rhs._title),
+    :    _flags      (rhs._flags),
+        _title      (rhs._title),
         _enums      (rhs._enums),
         _range_min  (rhs._range_min),
         _range_max  (rhs._range_max),
@@ -54,8 +54,8 @@ ArchiveData & ArchiveData::operator = (const ArchiveData &rhs)
 {
     // Make sure we are not assigning the class to itself
     if (&rhs != this) {
-		_flags = rhs._flags;
-		_title = rhs._title;
+        _flags = rhs._flags;
+        _title = rhs._title;
         _enums = rhs._enums;
         _range_min = rhs._range_min;
         _range_max = rhs._range_max;
@@ -63,7 +63,7 @@ ArchiveData & ArchiveData::operator = (const ArchiveData &rhs)
     }
     return (*this);
 }
-			
+            
 ArchiveData::~ArchiveData (void)
 {
 

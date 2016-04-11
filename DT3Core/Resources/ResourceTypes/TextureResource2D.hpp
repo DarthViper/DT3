@@ -3,7 +3,7 @@
 #define DT3_TEXTURERESOURCE2D
 //==============================================================================
 ///
-///	File: TextureResource2D.hpp
+///    File: TextureResource2D.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -43,9 +43,9 @@ class TextureResource2D: public Resource {
                                     TextureResource2D       (void);
     private:
                                     TextureResource2D       (const TextureResource2D &rhs);
-        TextureResource2D &			operator =              (const TextureResource2D &rhs);
+        TextureResource2D &            operator =              (const TextureResource2D &rhs);
     public:
-        virtual						~TextureResource2D      (void);
+        virtual                        ~TextureResource2D      (void);
 
     public:
         /// Called to initialize the class
@@ -58,7 +58,7 @@ class TextureResource2D: public Resource {
         /// \param pathname path to resource
         /// \param args importer args
         /// \return error code
-        DTerr						import                  (const FilePath &pathname, std::string args);
+        DTerr                        import                  (const FilePath &pathname, std::string args);
 
         // Texture building functions
 
@@ -89,24 +89,24 @@ class TextureResource2D: public Resource {
 
         /// Width of the buffer
         /// \return buffer width
-        int32_t						width                   (void) const	{	return _width;	}
+        int32_t                        width                   (void) const    {    return _width;    }
 
         /// Height of the buffer
         /// \return buffer height
-        int32_t						height                  (void) const	{	return _height;	}
+        int32_t                        height                  (void) const    {    return _height;    }
 
         /// Returns the buffer (if available)
         /// \return buffer
-        uint8_t*                    buffer                  (void)          {	_dirty_rectangle.set(0, _width, 0, _height);    return _textels.get();  }
+        uint8_t*                    buffer                  (void)          {    _dirty_rectangle.set(0, _width, 0, _height);    return _textels.get();  }
 
 
         /// Returns format of the texture file
         /// \return format of texture file
-        int32_t						format                  (void) const    {	return _format;     }
+        int32_t                        format                  (void) const    {    return _format;     }
 
         /// Get the mipmapped flag
         /// \return mipmapped
-        bool					is_mipmapped            (void) const    {	return _mipmapped;  }
+        bool                    is_mipmapped            (void) const    {    return _mipmapped;  }
 
 
         /// Gets a pixel from the buffer

@@ -3,7 +3,7 @@
 #define DT3_SOUNDPACKET
 //==============================================================================
 ///
-///	File: SoundPacket.hpp
+///    File: SoundPacket.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -36,10 +36,10 @@ class SoundPacket: public BaseClass {
         DEFINE_TYPE(SoundPacket,BaseClass)
         DEFINE_CREATE_AND_CLONE
 
-                            SoundPacket				(void);
-                            SoundPacket				(const SoundPacket &rhs);
-        SoundPacket &		operator =				(const SoundPacket &rhs);
-        virtual				~SoundPacket			(void);
+                            SoundPacket                (void);
+                            SoundPacket                (const SoundPacket &rhs);
+        SoundPacket &        operator =                (const SoundPacket &rhs);
+        virtual                ~SoundPacket            (void);
 
     public:
         /// Copies the Soundpacket
@@ -50,14 +50,14 @@ class SoundPacket: public BaseClass {
         uint8_t*            buffer                  (void)                  {   return _buffer ? &(*_buffer)[0] : NULL;        }
         const uint8_t*      buffer                  (void) const            {   return _buffer ? &(*_buffer)[0] : NULL;        }
 
-        DTsize              num_bytes               (void) const			{	return _logical_size;           }
+        DTsize              num_bytes               (void) const            {    return _logical_size;           }
         void                set_num_bytes           (DTsize bytes);
 
         DTsize              num_samples             (void) const;
         void                set_num_samples         (DTsize samples);
 
-        DEFINE_ACCESSORS	(format, set_format, SoundResource::Format, _format);
-        DEFINE_ACCESSORS	(frequency, set_frequency, uint32_t, _frequency);
+        DEFINE_ACCESSORS    (format, set_format, SoundResource::Format, _format);
+        DEFINE_ACCESSORS    (frequency, set_frequency, uint32_t, _frequency);
 
         // Merges sound packets
         void                append_packet           (const SoundPacket &rhs);
@@ -109,9 +109,9 @@ Stream& operator >>(Stream &s, SoundPacket&v);
 namespace TypeTraitsInfo {
 
 template <> struct Info<SoundPacket> {
-    static SoundPacket				default_value(void)	{	return SoundPacket();	}
-    static const DTcharacter*       name(void)          {	return "SoundPacket";   }
-    static const DTcharacter*       name_caps(void)     {	return "SoundPacket";}
+    static SoundPacket                default_value(void)    {    return SoundPacket();    }
+    static const DTcharacter*       name(void)          {    return "SoundPacket";   }
+    static const DTcharacter*       name_caps(void)     {    return "SoundPacket";}
     enum { isFundamental = 0 };
 };
 

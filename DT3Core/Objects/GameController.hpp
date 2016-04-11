@@ -3,7 +3,7 @@
 #define DT3_GAMECONTROLLER
 //==============================================================================
 ///
-///	File: GameController.hpp
+///    File: GameController.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -30,12 +30,12 @@ class GameController: public ObjectBase {
     public:
         DEFINE_TYPE(GameController,ObjectBase)
 
-                                        GameController			(void);
-                                        GameController			(const GameController &rhs);
-        GameController &				operator =				(const GameController &rhs);
-        virtual							~GameController			(void);
+                                        GameController            (void);
+                                        GameController            (const GameController &rhs);
+        GameController &                operator =                (const GameController &rhs);
+        virtual                            ~GameController            (void);
 
-        virtual void					archive                 (const std::shared_ptr<Archive> &archive);
+        virtual void                    archive                 (const std::shared_ptr<Archive> &archive);
 
     public:
 

@@ -3,7 +3,7 @@
 #define DT3_MORESTRINGS
 //==============================================================================
 ///
-///	File: MoreStrings.hpp
+///    File: MoreStrings.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -47,19 +47,19 @@ class MoreStrings {
         /// \param s hex string
         /// \param data pointer to data
         /// \param length length of data
-        static void				from_hex_string					(const std::string &s, void* data, DTsize length);
+        static void                from_hex_string                    (const std::string &s, void* data, DTsize length);
 
         /// Simple Obfuscator
         /// \param key key used to obfuscate data
         /// \param s data
         /// \return Obfuscated data
-        static std::string      to_obfuscated					(const std::string &key, const std::string &s);
+        static std::string      to_obfuscated                    (const std::string &key, const std::string &s);
 
         /// Simple Unobfuscator
         /// \param key key used to obfuscate data
         /// \param s data
         /// \return Unobfuscated data
-        static std::string      from_obfuscated					(const std::string &key, const std::string &s);
+        static std::string      from_obfuscated                    (const std::string &key, const std::string &s);
 
         /// Simple Unobfuscator for raw data
         /// \param data data to obfuscate data

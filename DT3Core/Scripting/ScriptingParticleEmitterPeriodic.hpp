@@ -3,7 +3,7 @@
 #define DT3_SCRIPTINGPARTICLEEMITTERPERIODIC
 //==============================================================================
 ///
-///	File: ScriptingParticleEmitterPeriodic.hpp
+///    File: ScriptingParticleEmitterPeriodic.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -35,10 +35,10 @@ class ScriptingParticleEmitterPeriodic: public ScriptingParticleEmitter {
         DEFINE_CREATE_AND_CLONE
         DEFINE_PLUG_NODE
 
-                                            ScriptingParticleEmitterPeriodic	(void);
-                                            ScriptingParticleEmitterPeriodic	(const ScriptingParticleEmitterPeriodic &rhs);
-        ScriptingParticleEmitterPeriodic &	operator =							(const ScriptingParticleEmitterPeriodic &rhs);
-        virtual								~ScriptingParticleEmitterPeriodic	(void);
+                                            ScriptingParticleEmitterPeriodic    (void);
+                                            ScriptingParticleEmitterPeriodic    (const ScriptingParticleEmitterPeriodic &rhs);
+        ScriptingParticleEmitterPeriodic &    operator =                            (const ScriptingParticleEmitterPeriodic &rhs);
+        virtual                                ~ScriptingParticleEmitterPeriodic    (void);
 
         virtual void                archive                 (const std::shared_ptr<Archive> &archive);
 
@@ -55,7 +55,7 @@ class ScriptingParticleEmitterPeriodic: public ScriptingParticleEmitter {
         virtual void                tick                    (const DTfloat dt);
 
         /// Emits a particle
-        void						emitParticle			(void);
+        void                        emitParticle            (void);
 
 
         DEFINE_ACCESSORS(period, set_period, DTfloat, _period);
@@ -67,20 +67,20 @@ class ScriptingParticleEmitterPeriodic: public ScriptingParticleEmitter {
         DEFINE_ACCESSORS(batch_size, set_batch_size, int32_t, _batch_size);
 
     private:
-        Plug<DTfloat>								_period;
-        Plug<DTfloat>								_variation;
-        int32_t										_batch_size;
+        Plug<DTfloat>                                _period;
+        Plug<DTfloat>                                _variation;
+        int32_t                                        _batch_size;
 
-        Plug<Vector3>								_spawn_translation;
-        Plug<DTfloat>								_max_lifetime;
+        Plug<Vector3>                                _spawn_translation;
+        Plug<DTfloat>                                _max_lifetime;
 
-        Plug<bool>								_active;
+        Plug<bool>                                _active;
 
-        int32_t										_max_num;
+        int32_t                                        _max_num;
 
         Plug<std::shared_ptr<Particles>>            _out;
 
-        DTfloat										_timer;
+        DTfloat                                        _timer;
 
 };
 

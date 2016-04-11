@@ -3,7 +3,7 @@
 #define DT3_SCRIPTINGPOWER
 //==============================================================================
 ///
-///	File: ScriptingPower.hpp
+///    File: ScriptingPower.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -37,20 +37,20 @@ class ScriptingPower: public ScriptingBase {
 
                                     ScriptingPower          (void);
                                     ScriptingPower          (const ScriptingPower &rhs);
-        ScriptingPower &			operator =				(const ScriptingPower &rhs);
-        virtual						~ScriptingPower         (void);
+        ScriptingPower &            operator =                (const ScriptingPower &rhs);
+        virtual                        ~ScriptingPower         (void);
 
-        virtual void				archive                 (const std::shared_ptr<Archive> &archive);
+        virtual void                archive                 (const std::shared_ptr<Archive> &archive);
 
     public:
         /// Computes the value of the node
         /// \param plug plug to compute
-        bool					compute					(const PlugBase *plug);
+        bool                    compute                    (const PlugBase *plug);
 
     private:
-        Plug<DTfloat>				_in;
-        Plug<DTfloat>				_exp;
-        Plug<DTfloat>				_out;
+        Plug<DTfloat>                _in;
+        Plug<DTfloat>                _exp;
+        Plug<DTfloat>                _out;
 };
 
 //==============================================================================

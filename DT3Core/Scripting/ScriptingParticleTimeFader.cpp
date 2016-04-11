@@ -1,12 +1,12 @@
 //==============================================================================
-///	
-///	File: ScriptingParticleTimeFader.cpp
-///	
+///    
+///    File: ScriptingParticleTimeFader.cpp
+///    
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
 /// This file is subject to the terms and conditions defined in
 /// file 'LICENSE.txt', which is part of this source code package.
-///	
+///    
 //==============================================================================
 
 #include "DT3Core/Scripting/ScriptingParticleTimeFader.hpp"
@@ -39,20 +39,20 @@ IMPLEMENT_PLUG_INFO_INDEX(_out)
 
 BEGIN_IMPLEMENT_PLUGS(ScriptingParticleTimeFader)
 
-	PLUG_INIT(_time_begin_fade,"Time_Begin_Fade")
-		.set_input(true)
-		.affects(PLUG_INFO_INDEX(_out));
+    PLUG_INIT(_time_begin_fade,"Time_Begin_Fade")
+        .set_input(true)
+        .affects(PLUG_INFO_INDEX(_out));
 
-	PLUG_INIT(_time_end_fade,"Time_End_Fade")
-		.set_input(true)
-		.affects(PLUG_INFO_INDEX(_out));
-		
-	PLUG_INIT(_in,"In")
-		.set_input(true)
-		.affects(PLUG_INFO_INDEX(_out));
-	
-	PLUG_INIT(_out,"Out")
-		.set_output(true);
+    PLUG_INIT(_time_end_fade,"Time_End_Fade")
+        .set_input(true)
+        .affects(PLUG_INFO_INDEX(_out));
+        
+    PLUG_INIT(_in,"In")
+        .set_input(true)
+        .affects(PLUG_INFO_INDEX(_out));
+    
+    PLUG_INIT(_out,"Out")
+        .set_output(true);
         
 END_IMPLEMENT_PLUGS
 
@@ -61,20 +61,20 @@ END_IMPLEMENT_PLUGS
 //==============================================================================
 
 ScriptingParticleTimeFader::ScriptingParticleTimeFader (void)
-    :   _time_begin_fade	(PLUG_INFO_INDEX(_time_begin_fade), 2.0F),
-		_time_end_fade		(PLUG_INFO_INDEX(_time_end_fade), 3.0F),
-		_in					(PLUG_INFO_INDEX(_in)),
-		_out				(PLUG_INFO_INDEX(_out))
+    :   _time_begin_fade    (PLUG_INFO_INDEX(_time_begin_fade), 2.0F),
+        _time_end_fade        (PLUG_INFO_INDEX(_time_end_fade), 3.0F),
+        _in                    (PLUG_INFO_INDEX(_in)),
+        _out                (PLUG_INFO_INDEX(_out))
 {  
 
 }
-		
+        
 ScriptingParticleTimeFader::ScriptingParticleTimeFader (const ScriptingParticleTimeFader &rhs)
-    :   ScriptingBase		(rhs),
-		_time_begin_fade	(rhs._time_begin_fade),
-		_time_end_fade		(rhs._time_end_fade),
-		_in					(rhs._in),
-		_out				(rhs._out)
+    :   ScriptingBase        (rhs),
+        _time_begin_fade    (rhs._time_begin_fade),
+        _time_end_fade        (rhs._time_end_fade),
+        _in                    (rhs._in),
+        _out                (rhs._out)
 {   
 
 }
@@ -83,16 +83,16 @@ ScriptingParticleTimeFader & ScriptingParticleTimeFader::operator = (const Scrip
 {
     // Make sure we are not assigning the class to itself
     if (&rhs != this) {        
-		ScriptingBase::operator = (rhs);
+        ScriptingBase::operator = (rhs);
 
-		_time_begin_fade = rhs._time_begin_fade;
-		_time_end_fade = rhs._time_end_fade;
-		_in	= rhs._in;
-		_out = rhs._out;
-	}
+        _time_begin_fade = rhs._time_begin_fade;
+        _time_end_fade = rhs._time_end_fade;
+        _in    = rhs._in;
+        _out = rhs._out;
+    }
     return (*this);
 }
-			
+            
 ScriptingParticleTimeFader::~ScriptingParticleTimeFader (void)
 {
 
@@ -105,11 +105,11 @@ void ScriptingParticleTimeFader::archive (const std::shared_ptr<Archive> &archiv
 {
     ScriptingBase::archive(archive);
 
-	archive->push_domain (class_id ());
-	
-	*archive << ARCHIVE_PLUG(_time_begin_fade, DATA_PERSISTENT | DATA_SETTABLE);
-	*archive << ARCHIVE_PLUG(_time_end_fade, DATA_PERSISTENT | DATA_SETTABLE);
-	        					
+    archive->push_domain (class_id ());
+    
+    *archive << ARCHIVE_PLUG(_time_begin_fade, DATA_PERSISTENT | DATA_SETTABLE);
+    *archive << ARCHIVE_PLUG(_time_end_fade, DATA_PERSISTENT | DATA_SETTABLE);
+                                
     archive->pop_domain ();
 }
 
@@ -118,45 +118,45 @@ void ScriptingParticleTimeFader::archive (const std::shared_ptr<Archive> &archiv
 
 bool ScriptingParticleTimeFader::compute (const PlugBase *plug)
 {
-	PROFILER(PARTICLES);
+    PROFILER(PARTICLES);
 
     if (super_type::compute(plug))  return true;
 
-	if (plug == &_out) {
-		
-		// Make sure there are input particles
-		std::shared_ptr<Particles> particles = _in;
-		if (!particles || particles->translations_stream().size() <= 0) {
-			_out.set_clean();
+    if (plug == &_out) {
+        
+        // Make sure there are input particles
+        std::shared_ptr<Particles> particles = _in;
+        if (!particles || particles->translations_stream().size() <= 0) {
+            _out.set_clean();
             return true;
-		}
-		
-		// Build the velocities stream
-		if (particles->color_stream().size() <= 0) {
-			particles->build_colors_stream();
-		}
-		
-		// Do processing
-		std::vector<DTfloat> &lifetimes = particles->lifetimes_stream();
-		std::vector<Color4b> colors = particles->color_stream();
-		
-		DTfloat fade_time = _time_end_fade - _time_begin_fade;
+        }
+        
+        // Build the velocities stream
+        if (particles->color_stream().size() <= 0) {
+            particles->build_colors_stream();
+        }
+        
+        // Do processing
+        std::vector<DTfloat> &lifetimes = particles->lifetimes_stream();
+        std::vector<Color4b> colors = particles->color_stream();
+        
+        DTfloat fade_time = _time_end_fade - _time_begin_fade;
 
-		for (int32_t i = particles->active_start(); i != particles->active_end(); i = (i + 1) % particles->translations_stream().size()) {
-			Color4b &color = colors[i];
-			DTfloat fade = 1.0F - (lifetimes[i] - _time_begin_fade) / fade_time;
-			fade = MoreMath::clamp_zero_one(fade);
-							
-			color.set_a(fade);
-		}
+        for (int32_t i = particles->active_start(); i != particles->active_end(); i = (i + 1) % particles->translations_stream().size()) {
+            Color4b &color = colors[i];
+            DTfloat fade = 1.0F - (lifetimes[i] - _time_begin_fade) / fade_time;
+            fade = MoreMath::clamp_zero_one(fade);
+                            
+            color.set_a(fade);
+        }
 
-		_out = particles;
-		_out.set_clean();
-		
-		return true;
-	}
-	
-	return false;
+        _out = particles;
+        _out.set_clean();
+        
+        return true;
+    }
+    
+    return false;
 }
 
 //==============================================================================

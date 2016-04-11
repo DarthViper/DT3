@@ -3,7 +3,7 @@
 #define DT3_HAL
 //==============================================================================
 ///
-///	File: HAL.hpp
+///    File: HAL.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -41,8 +41,8 @@ class HAL {
         private:
                                                                         HAL                     (void);
                                                                         HAL                     (const HAL&);
-        HAL&                        operator =				(const HAL&);
-        virtual						~HAL                    (void);
+        HAL&                        operator =                (const HAL&);
+        virtual                        ~HAL                    (void);
 
         public:
 
@@ -74,7 +74,7 @@ class HAL {
                 /// Run a command on the command line
                 /// \param command command to run
                 /// \return args Array or arguments to command line
-        static void					run_on_command_line     (const std::string &command, const std::vector<std::string> &args);
+        static void                    run_on_command_line     (const std::string &command, const std::vector<std::string> &args);
 
 
         //

@@ -3,7 +3,7 @@
 #define DT3_PROPERTYANIMATOR
 //==============================================================================
 ///
-///	File: PropertyAnimator.hpp
+///    File: PropertyAnimator.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -126,7 +126,7 @@ class PropertyAnimatorHandleBase: public BaseClass {
         PropertyAnimatorHandleBase& operator =              (const PropertyAnimatorHandleBase &rhs);
 
     public:
-        virtual					~PropertyAnimatorHandleBase (void)  {}
+        virtual                    ~PropertyAnimatorHandleBase (void)  {}
 
     public:
 
@@ -297,7 +297,7 @@ class PropertyAnimator {
                                 PropertyAnimator    (void);
                                 PropertyAnimator    (const PropertyAnimator &rhs);
         PropertyAnimator &      operator =          (const PropertyAnimator &rhs);
-        virtual					~PropertyAnimator   (void);
+        virtual                    ~PropertyAnimator   (void);
 
     public:
 

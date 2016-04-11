@@ -1,12 +1,12 @@
 //==============================================================================
-///	
-///	File: ScriptingClamp.cpp
-///	
+///    
+///    File: ScriptingClamp.cpp
+///    
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
 /// This file is subject to the terms and conditions defined in
 /// file 'LICENSE.txt', which is part of this source code package.
-///	
+///    
 //==============================================================================
 
 #include "DT3Core/Scripting/ScriptingClamp.hpp"
@@ -37,20 +37,20 @@ IMPLEMENT_PLUG_INFO_INDEX(_out)
 
 BEGIN_IMPLEMENT_PLUGS(ScriptingClamp)
 
-	PLUG_INIT(_in,"In")
-		.set_input(true)
-		.affects(PLUG_INFO_INDEX(_out));
-		
-	PLUG_INIT(_min,"Min")
-		.set_input(true)
-		.affects(PLUG_INFO_INDEX(_out));
+    PLUG_INIT(_in,"In")
+        .set_input(true)
+        .affects(PLUG_INFO_INDEX(_out));
+        
+    PLUG_INIT(_min,"Min")
+        .set_input(true)
+        .affects(PLUG_INFO_INDEX(_out));
 
-	PLUG_INIT(_max,"Max")
-		.set_input(true)
-		.affects(PLUG_INFO_INDEX(_out));
+    PLUG_INIT(_max,"Max")
+        .set_input(true)
+        .affects(PLUG_INFO_INDEX(_out));
 
-	PLUG_INIT(_out,"Out")
-		.set_output(true);
+    PLUG_INIT(_out,"Out")
+        .set_output(true);
         
 END_IMPLEMENT_PLUGS
 
@@ -59,20 +59,20 @@ END_IMPLEMENT_PLUGS
 //==============================================================================
 
 ScriptingClamp::ScriptingClamp (void)
-    :   _in				(PLUG_INFO_INDEX(_in), 0.0F),
-		_min			(PLUG_INFO_INDEX(_min), 0.0F),
-		_max			(PLUG_INFO_INDEX(_max), 1.0F),
-		_out			(PLUG_INFO_INDEX(_out), true)
+    :   _in                (PLUG_INFO_INDEX(_in), 0.0F),
+        _min            (PLUG_INFO_INDEX(_min), 0.0F),
+        _max            (PLUG_INFO_INDEX(_max), 1.0F),
+        _out            (PLUG_INFO_INDEX(_out), true)
 {  
 
 }
-		
+        
 ScriptingClamp::ScriptingClamp (const ScriptingClamp &rhs)
-    :   ScriptingBase	(rhs),
-		_in				(PLUG_INFO_INDEX(_in), rhs._in),
-		_min			(PLUG_INFO_INDEX(_min), rhs._min),
-		_max			(PLUG_INFO_INDEX(_max), rhs._max),
-		_out			(PLUG_INFO_INDEX(_out), rhs._out)
+    :   ScriptingBase    (rhs),
+        _in                (PLUG_INFO_INDEX(_in), rhs._in),
+        _min            (PLUG_INFO_INDEX(_min), rhs._min),
+        _max            (PLUG_INFO_INDEX(_max), rhs._max),
+        _out            (PLUG_INFO_INDEX(_out), rhs._out)
 {   
 
 }
@@ -81,16 +81,16 @@ ScriptingClamp & ScriptingClamp::operator = (const ScriptingClamp &rhs)
 {
     // Make sure we are not assigning the class to itself
     if (&rhs != this) {        
-		ScriptingBase::operator = (rhs);
+        ScriptingBase::operator = (rhs);
 
-		_in = rhs._in;
-		_min = rhs._min;
-		_max = rhs._max;
-		_out = rhs._out;
-	}
+        _in = rhs._in;
+        _min = rhs._min;
+        _max = rhs._max;
+        _out = rhs._out;
+    }
     return (*this);
 }
-			
+            
 ScriptingClamp::~ScriptingClamp (void)
 {
 
@@ -103,13 +103,13 @@ void ScriptingClamp::archive (const std::shared_ptr<Archive> &archive)
 {
     ScriptingBase::archive(archive);
 
-	archive->push_domain (class_id ());
-	    
-	*archive << ARCHIVE_PLUG(_in, DATA_PERSISTENT | DATA_SETTABLE);
-	*archive << ARCHIVE_PLUG(_min, DATA_PERSISTENT | DATA_SETTABLE);
-	*archive << ARCHIVE_PLUG(_max, DATA_PERSISTENT | DATA_SETTABLE);
-	*archive << ARCHIVE_PLUG(_out, DATA_PERSISTENT);
-														    					
+    archive->push_domain (class_id ());
+        
+    *archive << ARCHIVE_PLUG(_in, DATA_PERSISTENT | DATA_SETTABLE);
+    *archive << ARCHIVE_PLUG(_min, DATA_PERSISTENT | DATA_SETTABLE);
+    *archive << ARCHIVE_PLUG(_max, DATA_PERSISTENT | DATA_SETTABLE);
+    *archive << ARCHIVE_PLUG(_out, DATA_PERSISTENT);
+                                                                                
     archive->pop_domain ();
 }
 
@@ -118,22 +118,22 @@ void ScriptingClamp::archive (const std::shared_ptr<Archive> &archive)
 
 bool ScriptingClamp::compute (const PlugBase *plug)
 {
-	PROFILER(SCRIPTING);
+    PROFILER(SCRIPTING);
 
     if (super_type::compute(plug))  return true;
 
-	if (plug == &_out) {
-		DTfloat val = _in;
-		
-		if (val < _min)			val = _min;
-		else if (val > _max)	val = _max;
-		
-		_out = val;
-		_out.set_clean();
-		return true;
-	}
-	
-	return false;
+    if (plug == &_out) {
+        DTfloat val = _in;
+        
+        if (val < _min)            val = _min;
+        else if (val > _max)    val = _max;
+        
+        _out = val;
+        _out.set_clean();
+        return true;
+    }
+    
+    return false;
 }
 
 //==============================================================================

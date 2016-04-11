@@ -1,7 +1,7 @@
 #pragma once
 //==============================================================================
 ///
-///	File: ScriptingIsTransitioning.hpp
+///    File: ScriptingIsTransitioning.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -34,8 +34,8 @@ class ScriptingIsTransitioning: public ScriptingBase {
 
                                     ScriptingIsTransitioning    (void);
                                     ScriptingIsTransitioning    (const ScriptingIsTransitioning &rhs);
-        ScriptingIsTransitioning &	operator =                  (const ScriptingIsTransitioning &rhs);
-        virtual                     ~ScriptingIsTransitioning	(void);
+        ScriptingIsTransitioning &    operator =                  (const ScriptingIsTransitioning &rhs);
+        virtual                     ~ScriptingIsTransitioning    (void);
 
         virtual void                archive                     (const std::shared_ptr<Archive> &archive);
 
@@ -52,7 +52,7 @@ class ScriptingIsTransitioning: public ScriptingBase {
         void                        tick                        (const DTfloat dt);
 
     private:
-        Plug<bool>				_is_transitioning;
+        Plug<bool>                _is_transitioning;
         bool                   _last_is_transitioning;
 
         Event                       _begin_transition_e;

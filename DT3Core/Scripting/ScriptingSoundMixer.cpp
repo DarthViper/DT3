@@ -1,12 +1,12 @@
 //==============================================================================
-///	
-///	File: ScriptingSoundMixer.cpp
-///	
+///    
+///    File: ScriptingSoundMixer.cpp
+///    
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
 /// This file is subject to the terms and conditions defined in
 /// file 'LICENSE.txt', which is part of this source code package.
-///	
+///    
 //==============================================================================
 
 #include "DT3Core/Scripting/ScriptingSoundMixer.hpp"
@@ -40,31 +40,31 @@ IMPLEMENT_PLUG_INFO_INDEX(_output_gain)
 
 BEGIN_IMPLEMENT_PLUGS(ScriptingSoundMixer)
 
-	PLUG_INIT(_sound_packet_in_1,"Sound_Packet_In_1")
+    PLUG_INIT(_sound_packet_in_1,"Sound_Packet_In_1")
         .affects(PLUG_INFO_INDEX(_sound_packet_out))
-		.set_input(true)
+        .set_input(true)
         .set_always_dirty(true);
 
-	PLUG_INIT(_in_gain_1,"In_Gain_1")
+    PLUG_INIT(_in_gain_1,"In_Gain_1")
         .affects(PLUG_INFO_INDEX(_sound_packet_out))
-		.set_input(true);
+        .set_input(true);
 
-	PLUG_INIT(_sound_packet_in_2,"Sound_Packet_In_2")
+    PLUG_INIT(_sound_packet_in_2,"Sound_Packet_In_2")
         .affects(PLUG_INFO_INDEX(_sound_packet_out))
-		.set_input(true)
+        .set_input(true)
         .set_always_dirty(true);
 
-	PLUG_INIT(_in_gain_2,"In_Gain_2")
+    PLUG_INIT(_in_gain_2,"In_Gain_2")
         .affects(PLUG_INFO_INDEX(_sound_packet_out))
-		.set_input(true);
+        .set_input(true);
 
 
-	PLUG_INIT(_sound_packet_out,"Sound_Packet_Out")
+    PLUG_INIT(_sound_packet_out,"Sound_Packet_Out")
         .set_single_output(true)
-		.set_output(true)
+        .set_output(true)
         .set_always_dirty(true);
     
-	PLUG_INIT(_output_gain,"Output_Gain")
+    PLUG_INIT(_output_gain,"Output_Gain")
         .set_input(true);
     
 END_IMPLEMENT_PLUGS
@@ -78,41 +78,41 @@ ScriptingSoundMixer::ScriptingSoundMixer (void)
         _in_gain_1          (PLUG_INFO_INDEX(_in_gain_1), 1.0F),
         _sound_packet_in_2  (PLUG_INFO_INDEX(_sound_packet_in_2)),
         _in_gain_2          (PLUG_INFO_INDEX(_in_gain_2), 1.0F),
-		_sound_packet_out   (PLUG_INFO_INDEX(_sound_packet_out)),
-		_output_gain        (PLUG_INFO_INDEX(_output_gain), 0.5F)
+        _sound_packet_out   (PLUG_INFO_INDEX(_sound_packet_out)),
+        _output_gain        (PLUG_INFO_INDEX(_output_gain), 0.5F)
 {  
 
 }
-		
+        
 ScriptingSoundMixer::ScriptingSoundMixer (const ScriptingSoundMixer &rhs)
     :   ScriptingSoundBase  (rhs),
-		_sound_packet_in_1	(rhs._sound_packet_in_1),
-		_in_gain_1          (rhs._in_gain_1),
-		_sound_packet_in_2	(rhs._sound_packet_in_2),
-		_in_gain_2          (rhs._in_gain_2),
-		_sound_packet_out   (PLUG_INFO_INDEX(_sound_packet_out)),
+        _sound_packet_in_1    (rhs._sound_packet_in_1),
+        _in_gain_1          (rhs._in_gain_1),
+        _sound_packet_in_2    (rhs._sound_packet_in_2),
+        _in_gain_2          (rhs._in_gain_2),
+        _sound_packet_out   (PLUG_INFO_INDEX(_sound_packet_out)),
         _output_gain        (rhs._output_gain)
 {   
 
-}	
+}    
 
 ScriptingSoundMixer & ScriptingSoundMixer::operator = (const ScriptingSoundMixer &rhs)
 {
     // Make sure we are not assigning the class to itself
     if (&rhs != this) {        
-		ScriptingSoundBase::operator = (rhs);
+        ScriptingSoundBase::operator = (rhs);
 
-		_sound_packet_in_1 = rhs._sound_packet_in_1;
-		_in_gain_1 = rhs._in_gain_1;
-		_sound_packet_in_2 = rhs._sound_packet_in_2;
-		_in_gain_2 = rhs._in_gain_2;
+        _sound_packet_in_1 = rhs._sound_packet_in_1;
+        _in_gain_1 = rhs._in_gain_1;
+        _sound_packet_in_2 = rhs._sound_packet_in_2;
+        _in_gain_2 = rhs._in_gain_2;
         
         _sound_packet_out = rhs._sound_packet_out;
         _output_gain = rhs._output_gain;
-	}
+    }
     return (*this);
 }
-			
+            
 ScriptingSoundMixer::~ScriptingSoundMixer (void)
 {
 
@@ -125,12 +125,12 @@ void ScriptingSoundMixer::archive (const std::shared_ptr<Archive> &archive)
 {
     ScriptingSoundBase::archive(archive);
 
-	archive->push_domain (class_id ());
-	        
-	*archive << ARCHIVE_PLUG(_in_gain_1, DATA_PERSISTENT | DATA_SETTABLE);
-	*archive << ARCHIVE_PLUG(_in_gain_2, DATA_PERSISTENT | DATA_SETTABLE);
-	*archive << ARCHIVE_PLUG(_output_gain, DATA_PERSISTENT | DATA_SETTABLE);
-                                                                			
+    archive->push_domain (class_id ());
+            
+    *archive << ARCHIVE_PLUG(_in_gain_1, DATA_PERSISTENT | DATA_SETTABLE);
+    *archive << ARCHIVE_PLUG(_in_gain_2, DATA_PERSISTENT | DATA_SETTABLE);
+    *archive << ARCHIVE_PLUG(_output_gain, DATA_PERSISTENT | DATA_SETTABLE);
+                                                                            
     archive->pop_domain ();
 }
 
@@ -139,11 +139,11 @@ void ScriptingSoundMixer::archive (const std::shared_ptr<Archive> &archive)
 
 bool ScriptingSoundMixer::compute (const PlugBase *plug)
 {
-	PROFILER(SOUND);
+    PROFILER(SOUND);
 
     if (super_type::compute(plug))  return true;
 
-	if (plug == &_sound_packet_out) {
+    if (plug == &_sound_packet_out) {
     
         SoundPacket &sound_packet_in_1 = _sound_packet_in_1.as_ref_no_compute();
         SoundPacket &sound_packet_in_2 = _sound_packet_in_2.as_ref_no_compute();
@@ -210,12 +210,12 @@ bool ScriptingSoundMixer::compute (const PlugBase *plug)
             sound_packet_out = _sound_packet_in_1;
         }
         
-		_sound_packet_out.set_clean();
-		
-		return true;
-	}
-	
-	return false;
+        _sound_packet_out.set_clean();
+        
+        return true;
+    }
+    
+    return false;
 }
 
 //==============================================================================

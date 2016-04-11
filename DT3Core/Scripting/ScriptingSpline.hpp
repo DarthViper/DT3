@@ -3,7 +3,7 @@
 #define DT3_SCRIPTINGSPLINE
 //==============================================================================
 ///
-///	File: ScriptingSpline.hpp
+///    File: ScriptingSpline.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -34,15 +34,15 @@ class ScriptingSpline: public ScriptingBase {
                                     ScriptingSpline         (void);
                                     ScriptingSpline         (const ScriptingSpline &rhs);
         ScriptingSpline &           operator =              (const ScriptingSpline &rhs);
-        virtual						~ScriptingSpline        (void);
+        virtual                        ~ScriptingSpline        (void);
 
-        virtual void				archive                 (const std::shared_ptr<Archive> &archive);
-        virtual void				archive_done            (const std::shared_ptr<Archive> &archive);
+        virtual void                archive                 (const std::shared_ptr<Archive> &archive);
+        virtual void                archive_done            (const std::shared_ptr<Archive> &archive);
 
     public:
         /// Computes the value of the node
         /// \param plug plug to compute
-        bool					compute					(const PlugBase *plug);
+        bool                    compute                    (const PlugBase *plug);
 
         /// Sets number of points along the path
         /// \param s number of points
@@ -55,22 +55,22 @@ class ScriptingSpline: public ScriptingBase {
         /// Sets the transform of a point along the path
         /// \param k index of point
         /// \param transform transform
-        void						set_point_transform     (uint32_t k, const Matrix4 &transform);
+        void                        set_point_transform     (uint32_t k, const Matrix4 &transform);
 
         /// Gets the transform of a point along the path
         /// \param k index of point
         /// \return transform
-        const Matrix4 &				point_transform         (uint32_t k) const;
+        const Matrix4 &                point_transform         (uint32_t k) const;
 
         /// Sets the tangent of a point along the path
         /// \param k index of point
         /// \param tangent tangent
-        void						set_point_tangent       (uint32_t k, const Vector3 &tangent);
+        void                        set_point_tangent       (uint32_t k, const Vector3 &tangent);
 
         /// Gets the tangent of a point along the path
         /// \param k index of point
         /// \return tangent
-        const Vector3 &				point_tangent           (uint32_t k) const;
+        const Vector3 &                point_tangent           (uint32_t k) const;
 
         /// Length of spline
         /// \return length
@@ -79,7 +79,7 @@ class ScriptingSpline: public ScriptingBase {
         /// Interpolate the spline
         /// \param d distance
         /// \param transform interpolated transform
-        void						interpolate				(DTfloat d, Matrix4 &transform);
+        void                        interpolate                (DTfloat d, Matrix4 &transform);
 
     private:
 
@@ -87,11 +87,11 @@ class ScriptingSpline: public ScriptingBase {
         void                        process_distances       (void);
 
         bool                   _constant_speed;
-        Plug<DTfloat>				_d;
+        Plug<DTfloat>                _d;
 
         Plug<Matrix4>               _transform;
-        Plug<Matrix3>				_orientation;
-        Plug<Vector3>				_translation;
+        Plug<Matrix3>                _orientation;
+        Plug<Vector3>                _translation;
 
         struct Pt {
             Pt (void)
@@ -118,7 +118,7 @@ class ScriptingSpline: public ScriptingBase {
 
         std::vector<Pt>             _transforms;
 
-        mutable int32_t				_keyframe_cache;
+        mutable int32_t                _keyframe_cache;
 
         bool                   _dirty;
 

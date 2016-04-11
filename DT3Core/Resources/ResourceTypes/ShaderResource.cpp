@@ -1,6 +1,6 @@
 //==============================================================================
 ///
-///	File: ShaderResource.cpp
+///    File: ShaderResource.cpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -267,11 +267,11 @@ int32_t ShaderResource::attrib_slot (DT3GLStandardAttrib standard_attrib)
 {
     recompile_if_needed();
 
-//	for (int32_t i = 0; i < _attribs.size(); ++i)
-//		if (_attribs[i]._standard_attrib == standard_attrib)
-//			return i;
+//    for (int32_t i = 0; i < _attribs.size(); ++i)
+//        if (_attribs[i]._standard_attrib == standard_attrib)
+//            return i;
 //
-//	return -1;
+//    return -1;
 
     return _standard_attribs[standard_attrib];
 }
@@ -304,11 +304,11 @@ int32_t ShaderResource::uniform_slot (DT3GLStandardUniform standard_uniform)
 {
     recompile_if_needed();
 
-//	for (int32_t i = 0; i < _uniforms.size(); ++i)
-//		if (_uniforms[i]._standard_uniform == standard_uniform)
-//			return i;
+//    for (int32_t i = 0; i < _uniforms.size(); ++i)
+//        if (_uniforms[i]._standard_uniform == standard_uniform)
+//            return i;
 //
-//	return -1;
+//    return -1;
 
     return _standard_uniforms[standard_uniform];
 }

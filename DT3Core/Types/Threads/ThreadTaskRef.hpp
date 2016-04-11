@@ -3,7 +3,7 @@
 #define DT3_THREADTASKREF
 //==============================================================================
 ///
-///	File: ThreadTaskRef.hpp
+///    File: ThreadTaskRef.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///

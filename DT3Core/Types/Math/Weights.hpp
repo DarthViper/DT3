@@ -3,7 +3,7 @@
 #define DT3_WEIGHTS
 //==============================================================================
 ///
-///	File: Weights.hpp
+///    File: Weights.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -31,19 +31,19 @@ class Weights {
     public:
         DEFINE_TYPE_SIMPLE_BASE(Weights)
 
-        inline					Weights				(void)  {}
-                                Weights				(   uint16_t bone_1, DTfloat w1,
+        inline                    Weights                (void)  {}
+                                Weights                (   uint16_t bone_1, DTfloat w1,
                                                         uint16_t bone_2, DTfloat w2,
                                                         uint16_t bone_3, DTfloat w3,
-                                                        uint16_t bone_4, DTfloat w4	);
+                                                        uint16_t bone_4, DTfloat w4    );
 
-                                Weights				(const Weights &rhs);
-        Weights &				operator =			(const Weights &rhs);
-                                ~Weights			(void)  {}
+                                Weights                (const Weights &rhs);
+        Weights &                operator =            (const Weights &rhs);
+                                ~Weights            (void)  {}
 
     public:
 
-        bool				operator ==			(const Weights& rhs) const   {	return	_weight_1 == rhs._weight_1 &&
+        bool                operator ==            (const Weights& rhs) const   {    return    _weight_1 == rhs._weight_1 &&
                                                                                             _weight_2 == rhs._weight_2 &&
                                                                                             _weight_3 == rhs._weight_3 &&
                                                                                             _weight_4 == rhs._weight_4 &&
@@ -52,7 +52,7 @@ class Weights {
                                                                                             _bone_3 == rhs._bone_3 &&
                                                                                             _bone_4 == rhs._bone_4;     }
 
-        bool				operator !=			(const Weights& rhs) const   {	return	_weight_1 != rhs._weight_1 ||
+        bool                operator !=            (const Weights& rhs) const   {    return    _weight_1 != rhs._weight_1 ||
                                                                                             _weight_2 != rhs._weight_2 ||
                                                                                             _weight_3 != rhs._weight_3 ||
                                                                                             _weight_4 != rhs._weight_4 ||
@@ -70,13 +70,13 @@ class Weights {
         /// \param w3 weight of bone
         /// \param bone_4 index of bone
         /// \param w4 weight of bone
-        void					set					(   uint16_t bone_1, DTfloat w1,
+        void                    set                    (   uint16_t bone_1, DTfloat w1,
                                                         uint16_t bone_2, DTfloat w2,
                                                         uint16_t bone_3, DTfloat w3,
-                                                        uint16_t bone_4, DTfloat w4	);
+                                                        uint16_t bone_4, DTfloat w4    );
 
         /// Normalize the weights of the bones to that the weights sum to 1.0
-        void					normalize_weights	(void);
+        void                    normalize_weights    (void);
 
 
         DEFINE_ACCESSORS(bone_1, set_bone_1, uint16_t, _bone_1)
@@ -91,15 +91,15 @@ class Weights {
 
     private:
 
-        uint16_t			_bone_1;
-        uint16_t			_bone_2;
-        uint16_t			_bone_3;
-        uint16_t			_bone_4;
+        uint16_t            _bone_1;
+        uint16_t            _bone_2;
+        uint16_t            _bone_3;
+        uint16_t            _bone_4;
 
-        DTfloat				_weight_1;
-        DTfloat				_weight_2;
-        DTfloat				_weight_3;
-        DTfloat				_weight_4;
+        DTfloat                _weight_1;
+        DTfloat                _weight_2;
+        DTfloat                _weight_3;
+        DTfloat                _weight_4;
 };
 
 //==============================================================================

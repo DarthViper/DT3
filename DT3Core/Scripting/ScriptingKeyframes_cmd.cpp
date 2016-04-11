@@ -1,12 +1,12 @@
 //==============================================================================
-///	
-///	File: ScriptingKeyframes_cmd.cpp
-///	
+///    
+///    File: ScriptingKeyframes_cmd.cpp
+///    
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
 /// This file is subject to the terms and conditions defined in
 /// file 'LICENSE.txt', which is part of this source code package.
-///	
+///    
 //==============================================================================
 
 #include "DT3Core/System/Command.hpp"
@@ -220,9 +220,9 @@ CommandResult ScriptingKeyframes_cmd::do_clear_all_keyframes (CommandContext &ct
         return CommandResult(false, "Cannot find plug for " + p[1], CommandResult::UPDATE_NONE);
 
 
-	if (!plug->incoming_connection() || !plug->incoming_connection()->owner()->isa(ScriptingKeyframes::kind())) {
+    if (!plug->incoming_connection() || !plug->incoming_connection()->owner()->isa(ScriptingKeyframes::kind())) {
         return CommandResult(false, "Cannot find keyframes for " + p[1], CommandResult::UPDATE_NONE);
-	}
+    }
 
     CommandResult result = Console::do_command(ctx, CommandParams("Remove \"" + plug->incoming_connection()->owner()->full_name() + "\"" ) );
 

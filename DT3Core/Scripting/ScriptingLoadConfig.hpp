@@ -1,7 +1,7 @@
 #pragma once
 //==============================================================================
 ///
-///	File: ScriptingLoadConfig.hpp
+///    File: ScriptingLoadConfig.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -47,7 +47,7 @@ class ScriptingLoadConfig: public ScriptingBase {
         void                        event_load                  (PlugNode *sender);
 
     private:
-        Plug<FilePath>				_config_path;
+        Plug<FilePath>                _config_path;
         Event                       _load;
 };
 

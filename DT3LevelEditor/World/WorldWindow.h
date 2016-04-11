@@ -1,7 +1,7 @@
 #pragma once
 //==============================================================================
 ///
-///	File: EdLevelWorldWindow.hpp
+///    File: EdLevelWorldWindow.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -51,24 +51,24 @@ class WorldWindow : public QOpenGLWidget
     Q_OBJECT
 
     public:
-                                        WorldWindow	(QWidget *parent, QToolBar *toolbar, EdLevelDocument *document);
+                                        WorldWindow    (QWidget *parent, QToolBar *toolbar, EdLevelDocument *document);
 
     protected:
-        void							draw				(QPainter *painter);
+        void                            draw                (QPainter *painter);
 
-        void							initializeGL		(void);
-        void							paintGL				(void);
-        void							resizeGL			(int w, int h);
+        void                            initializeGL        (void);
+        void                            paintGL                (void);
+        void                            resizeGL            (int w, int h);
 
-        void							mousePressEvent		(QMouseEvent *event);
-        void							mouseMoveEvent		(QMouseEvent *event);
-        void							mouseReleaseEvent	(QMouseEvent *event);
+        void                            mousePressEvent        (QMouseEvent *event);
+        void                            mouseMoveEvent        (QMouseEvent *event);
+        void                            mouseReleaseEvent    (QMouseEvent *event);
 
         void                            keyPressEvent       (QKeyEvent *event);
         void                            changeEvent(QEvent *e);
 
-        //void							resizeEvent			(QResizeEvent *event);
-        QSize							sizeHint			(void) const;
+        //void                            resizeEvent            (QResizeEvent *event);
+        QSize                            sizeHint            (void) const;
 
     private:
         void                            refreshCameras      (void);

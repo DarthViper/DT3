@@ -3,7 +3,7 @@
 #define DT3_SHADERRESOURCE
 //==============================================================================
 ///
-///	File: ShaderResource.hpp
+///    File: ShaderResource.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -57,7 +57,7 @@ class ShaderResource: public Resource {
         /// \param pathname path to resource
         /// \param args importer args
         /// \return error code
-        DTerr                                   import					(const FilePath &pathname, std::string args);
+        DTerr                                   import                    (const FilePath &pathname, std::string args);
 
 
         /// Sets the fragment shader

@@ -3,7 +3,7 @@
 #define DT3_SCRIPTINGPARTICLEVELOCITYRANDOMIZER
 //==============================================================================
 ///
-///	File: ScriptingParticleVelocityRandomizer.hpp
+///    File: ScriptingParticleVelocityRandomizer.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -35,17 +35,17 @@ class ScriptingParticleVelocityRandomizer: public ScriptingBase {
         DEFINE_CREATE_AND_CLONE
         DEFINE_PLUG_NODE
 
-                                                ScriptingParticleVelocityRandomizer	(void);
-                                                ScriptingParticleVelocityRandomizer	(const ScriptingParticleVelocityRandomizer &rhs);
-        ScriptingParticleVelocityRandomizer &	operator =							(const ScriptingParticleVelocityRandomizer &rhs);
-        virtual									~ScriptingParticleVelocityRandomizer(void);
+                                                ScriptingParticleVelocityRandomizer    (void);
+                                                ScriptingParticleVelocityRandomizer    (const ScriptingParticleVelocityRandomizer &rhs);
+        ScriptingParticleVelocityRandomizer &    operator =                            (const ScriptingParticleVelocityRandomizer &rhs);
+        virtual                                    ~ScriptingParticleVelocityRandomizer(void);
 
         virtual void                archive                 (const std::shared_ptr<Archive> &archive);
 
     public:
         /// Computes the value of the node
         /// \param plug plug to compute
-        bool					compute					(const PlugBase *plug);
+        bool                    compute                    (const PlugBase *plug);
 
         DEFINE_ACCESSORS(continuous, set_continuous, bool, _continuous);
         DEFINE_ACCESSORS(rand_scale_x, set_rand_scale_x, DTfloat, _rand_scale_x);
@@ -59,14 +59,14 @@ class ScriptingParticleVelocityRandomizer: public ScriptingBase {
 #endif
 
     private:
-        bool								_continuous;
+        bool                                _continuous;
 
-        Plug<DTfloat>							_rand_scale_x;
-        Plug<DTfloat>							_rand_scale_y;
-        Plug<DTfloat>							_rand_scale_z;
+        Plug<DTfloat>                            _rand_scale_x;
+        Plug<DTfloat>                            _rand_scale_y;
+        Plug<DTfloat>                            _rand_scale_z;
 
-        Plug<std::shared_ptr<Particles>>		_in;
-        Plug<std::shared_ptr<Particles>>		_out;
+        Plug<std::shared_ptr<Particles>>        _in;
+        Plug<std::shared_ptr<Particles>>        _out;
 
 };
 

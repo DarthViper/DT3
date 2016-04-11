@@ -1,6 +1,6 @@
 //==============================================================================
 ///
-///	File: EdLevelSoundWindow.cpp
+///    File: EdLevelSoundWindow.cpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -100,8 +100,8 @@ void EdLevelSoundWindow::onAddNode (WorldNode *node_raw)
 
         c._widget = new EdLevelSoundBus(_scroll_widget, bus);
 
-        QObject::connect(	c._widget,      SIGNAL(doCommand(QString)),
-                            this,           SLOT(onCommand(QString))	);
+        QObject::connect(    c._widget,      SIGNAL(doCommand(QString)),
+                            this,           SLOT(onCommand(QString))    );
 
         _layout->insertWidget(0,c._widget);
 

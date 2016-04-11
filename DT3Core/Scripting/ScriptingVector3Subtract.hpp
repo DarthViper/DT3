@@ -3,7 +3,7 @@
 #define DT3_SCRIPTINGVECTOR3SUBTRACT
 //==============================================================================
 ///
-///	File: ScriptingVector3Subtract.hpp
+///    File: ScriptingVector3Subtract.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -35,20 +35,20 @@ class ScriptingVector3Subtract: public ScriptingBase {
 
                                     ScriptingVector3Subtract    (void);
                                     ScriptingVector3Subtract    (const ScriptingVector3Subtract &rhs);
-        ScriptingVector3Subtract &	operator =					(const ScriptingVector3Subtract &rhs);
-        virtual						~ScriptingVector3Subtract	(void);
+        ScriptingVector3Subtract &    operator =                    (const ScriptingVector3Subtract &rhs);
+        virtual                        ~ScriptingVector3Subtract    (void);
 
-        virtual void				archive                 (const std::shared_ptr<Archive> &archive);
+        virtual void                archive                 (const std::shared_ptr<Archive> &archive);
 
     public:
         /// Computes the value of the node
         /// \param plug plug to compute
-        bool					compute					(const PlugBase *plug);
+        bool                    compute                    (const PlugBase *plug);
 
     private:
-        Plug<Vector3>				_in1;
-        Plug<Vector3>				_in2;
-        Plug<Vector3>				_out;
+        Plug<Vector3>                _in1;
+        Plug<Vector3>                _in2;
+        Plug<Vector3>                _out;
 };
 
 //==============================================================================

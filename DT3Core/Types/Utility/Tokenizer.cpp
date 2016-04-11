@@ -1,6 +1,6 @@
 //==============================================================================
 ///
-///	File: Tokenizer.cpp
+///    File: Tokenizer.cpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -108,7 +108,7 @@ bool Tokenizer::parse_symbol(const std::string &buffer, int32_t &pos, std::list<
     std::string token;
     token.reserve(128);
 
-    while (	(pos < (int32_t) buffer.size()) && (isalpha(buffer[pos]) || isdigit(buffer[pos]) || buffer[pos]=='#' || buffer[pos]=='_' || buffer[pos]=='.' || buffer[pos]=='-' || buffer[pos]=='+' || buffer[pos]==':')) {
+    while (    (pos < (int32_t) buffer.size()) && (isalpha(buffer[pos]) || isdigit(buffer[pos]) || buffer[pos]=='#' || buffer[pos]=='_' || buffer[pos]=='.' || buffer[pos]=='-' || buffer[pos]=='+' || buffer[pos]==':')) {
         token += buffer[pos];
         ++pos;
     }
@@ -129,7 +129,7 @@ bool Tokenizer::parse_equals(const std::string &buffer, int32_t &pos, std::list<
     std::string token;
     token.reserve(128);
 
-    while (	(pos < (int32_t) buffer.size()) && buffer[pos] == '=') {
+    while (    (pos < (int32_t) buffer.size()) && buffer[pos] == '=') {
         token += buffer[pos];
         ++pos;
     }
@@ -150,7 +150,7 @@ bool Tokenizer::parse_braces(const std::string &buffer, int32_t &pos, std::list<
     std::string token;
     token.reserve(128);
 
-    while (	(pos < (int32_t) buffer.size()) && (buffer[pos] == '{' || buffer[pos] == '}')) {
+    while (    (pos < (int32_t) buffer.size()) && (buffer[pos] == '{' || buffer[pos] == '}')) {
         token += buffer[pos];
         ++pos;
     }
@@ -168,7 +168,7 @@ bool Tokenizer::parse_braces(const std::string &buffer, int32_t &pos, std::list<
 
 bool Tokenizer::parse_string(const std::string &buffer, int32_t &pos, std::list<std::string> &tokens)
 {
-    if (buffer[pos] != '\"')	return false;
+    if (buffer[pos] != '\"')    return false;
     ++pos;
 
     bool escaped = false;
@@ -199,7 +199,7 @@ bool Tokenizer::parse_string(const std::string &buffer, int32_t &pos, std::list<
 
 bool Tokenizer::parse_multi_param(const std::string &buffer, int32_t &pos, std::list<std::string> &tokens)
 {
-    if (buffer[pos] != '(')	return false;
+    if (buffer[pos] != '(')    return false;
     ++pos;
 
     std::string token;
@@ -293,18 +293,18 @@ DTerr Tokenizer::set_token_stream (const std::string &s, bool append)
 DTerr Tokenizer::parse_token_stream (const std::string &contents, bool append)
 {
     // Parse out tokens
-    std::list<std::string>	tokens;
+    std::list<std::string>    tokens;
     int32_t pos = 0;
     int32_t old_pos = 0;
 
     while (pos < (int32_t) contents.size()) {
 
-        if (parse_whitespace(contents, pos, tokens))	{   old_pos = pos;  continue;   }
-        if (parse_string(contents, pos, tokens))		{   old_pos = pos;  continue;   }
-        if (parse_symbol(contents, pos, tokens))		{   old_pos = pos;  continue;   }
-        if (parse_equals(contents, pos, tokens))		{   old_pos = pos;  continue;   }
-        if (parse_braces(contents, pos, tokens))		{   old_pos = pos;  continue;   }
-        if (parse_multi_param(contents, pos, tokens))	{   old_pos = pos;  continue;   }
+        if (parse_whitespace(contents, pos, tokens))    {   old_pos = pos;  continue;   }
+        if (parse_string(contents, pos, tokens))        {   old_pos = pos;  continue;   }
+        if (parse_symbol(contents, pos, tokens))        {   old_pos = pos;  continue;   }
+        if (parse_equals(contents, pos, tokens))        {   old_pos = pos;  continue;   }
+        if (parse_braces(contents, pos, tokens))        {   old_pos = pos;  continue;   }
+        if (parse_multi_param(contents, pos, tokens))    {   old_pos = pos;  continue;   }
 
         syntax_error("Invalid Token: " + contents.substr(old_pos, 1000));
 
@@ -405,7 +405,7 @@ void Tokenizer::assume_next_token (const std::string &expected_token)
 /// Implement the preprocessor
 //==============================================================================
 
-void Tokenizer::preprocessor_include			(void)
+void Tokenizer::preprocessor_include            (void)
 {
     FilePath file = FilePath(next_token_string());
 
@@ -413,7 +413,7 @@ void Tokenizer::preprocessor_include			(void)
     _dependencies.push_back(file);
 }
 
-void Tokenizer::preprocessor_if				(void)
+void Tokenizer::preprocessor_if                (void)
 {
     std::string arg = next_token_string();
 
@@ -455,7 +455,7 @@ void Tokenizer::preprocessor_if				(void)
     }
 }
 
-void Tokenizer::preprocessor_define			(void)
+void Tokenizer::preprocessor_define            (void)
 {
     std::string symbol = next_token_string();
     std::string value = next_token_string();
@@ -473,12 +473,12 @@ void Tokenizer::preprocessor_print          (void)
 
 bool Tokenizer::parse_preprocessor_macros (std::string token)
 {
-    if (MoreStrings::iequals(token,"#include"))		{	preprocessor_include();		return true;	}
-    if (MoreStrings::iequals(token,"#if"))			{	preprocessor_if();			return true;	}
-    if (MoreStrings::iequals(token,"#define"))		{	preprocessor_define();		return true;	}
-    if (MoreStrings::iequals(token,"#endif"))       {	return true;	}   // Ignore any endifs
+    if (MoreStrings::iequals(token,"#include"))        {    preprocessor_include();        return true;    }
+    if (MoreStrings::iequals(token,"#if"))            {    preprocessor_if();            return true;    }
+    if (MoreStrings::iequals(token,"#define"))        {    preprocessor_define();        return true;    }
+    if (MoreStrings::iequals(token,"#endif"))       {    return true;    }   // Ignore any endifs
 
-    if (MoreStrings::iequals(token,"#print"))		{	preprocessor_print();		return true;	}
+    if (MoreStrings::iequals(token,"#print"))        {    preprocessor_print();        return true;    }
 
     return false;
 }

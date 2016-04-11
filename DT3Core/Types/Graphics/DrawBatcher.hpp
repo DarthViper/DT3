@@ -3,7 +3,7 @@
 #define DT3_DRAWBATCHER
 //==============================================================================
 ///
-///	File: DrawBatcher.hpp
+///    File: DrawBatcher.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -65,14 +65,14 @@ class DrawBatcher {
     public:
         DEFINE_TYPE_SIMPLE_BASE(DrawBatcher)
 
-                            DrawBatcher			(void);
+                            DrawBatcher            (void);
 
     private:
-                            DrawBatcher			(const DrawBatcher &rhs);
-        DrawBatcher &		operator =			(const DrawBatcher &rhs);
+                            DrawBatcher            (const DrawBatcher &rhs);
+        DrawBatcher &        operator =            (const DrawBatcher &rhs);
 
     public:
-                            ~DrawBatcher		(void);
+                            ~DrawBatcher        (void);
 
     public:
         enum BatchFormat {
@@ -94,7 +94,7 @@ class DrawBatcher {
         /// \param transform Transform for drawing
         /// \param type Batch type
         /// \param fmt Batch format
-        void			batch_begin			(   const std::shared_ptr<CameraObject> &camera,
+        void            batch_begin            (   const std::shared_ptr<CameraObject> &camera,
                                                 const std::shared_ptr<MaterialResource> &material,
                                                 const std::shared_ptr<ShaderResource> &shader,
                                                 const Matrix4 &transform,
@@ -106,7 +106,7 @@ class DrawBatcher {
         void            batch_split         (void);
 
         /// End the batch
-        void			batch_end			(void);
+        void            batch_end            (void);
 
 
         /// Vertex definition
@@ -133,7 +133,7 @@ class DrawBatcher {
         DrawBatcher&    cf  (DTfloat r, DTfloat g, DTfloat b, DTfloat a)    {   ASSERT(_format & FMT_CF); ASSERT(_cur_index < _size_hint); BATCH_CF[_cur_index] = Color4f(r,g,b,a);return *this;    }
 
         /// Perform the drawing of the batch
-        void			draw				(bool clear_when_done = true);
+        void            draw                (bool clear_when_done = true);
 
     private:
         void            screen_opened       (uint32_t width, uint32_t height);

@@ -1,12 +1,12 @@
 //==============================================================================
-///	
-///	File: MoreMath.cpp
-///	
+///    
+///    File: MoreMath.cpp
+///    
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
 /// This file is subject to the terms and conditions defined in
 /// file 'LICENSE.txt', which is part of this source code package.
-///	
+///    
 //==============================================================================
 // MT Random number generator from http://www.qbrundage.com/michaelb/pubs/essays/random_number_generation.html
 //==============================================================================
@@ -26,28 +26,28 @@ namespace DT3 {
 //==============================================================================
 //==============================================================================
 
-const DTfloat	PI = 3.14159265F;	
-const DTfloat	PI_INV = 1.0F/PI;	
-const DTfloat	TWO_PI = 2.0F * PI;	
-const DTfloat	TWO_PI_INV = 1.0F/TWO_PI;	
-const DTfloat	HALF_PI = 0.5F * PI;	
-const DTfloat	E = 2.71828183F;	
-const DTfloat	SQRT_2 = 1.41421356F;	
-const DTfloat	SQRT_HALF = 0.707106781F;	
-const DTfloat	DEG_TO_RAD = PI/180.0F;
-const DTfloat	RAD_TO_DEG = 180.0F/PI;
+const DTfloat    PI = 3.14159265F;    
+const DTfloat    PI_INV = 1.0F/PI;    
+const DTfloat    TWO_PI = 2.0F * PI;    
+const DTfloat    TWO_PI_INV = 1.0F/TWO_PI;    
+const DTfloat    HALF_PI = 0.5F * PI;    
+const DTfloat    E = 2.71828183F;    
+const DTfloat    SQRT_2 = 1.41421356F;    
+const DTfloat    SQRT_HALF = 0.707106781F;    
+const DTfloat    DEG_TO_RAD = PI/180.0F;
+const DTfloat    RAD_TO_DEG = 180.0F/PI;
 const DTfloat   EPSILON = 0.000001F;
 
 //==============================================================================
 //==============================================================================
 
-uint32_t		MoreMath::_crc_table[CRC_TABLE_SIZE];
-uint32_t		MoreMath::_random_seed = 0;
-DTfloat		MoreMath::_factorial[FACTORIAL_TABLE_SIZE];
-DTfloat		MoreMath::_factorial_inv[FACTORIAL_TABLE_SIZE];
+uint32_t        MoreMath::_crc_table[CRC_TABLE_SIZE];
+uint32_t        MoreMath::_random_seed = 0;
+DTfloat        MoreMath::_factorial[FACTORIAL_TABLE_SIZE];
+DTfloat        MoreMath::_factorial_inv[FACTORIAL_TABLE_SIZE];
 
-uint8_t		MoreMath::_4_to_8_bit[16];
-uint8_t		MoreMath::_5_to_8_bit[32];
+uint8_t        MoreMath::_4_to_8_bit[16];
+uint8_t        MoreMath::_5_to_8_bit[32];
 uint8_t     MoreMath::_6_to_8_bit[64];
 
 // For Mersenne Twister
@@ -67,24 +67,24 @@ GLOBAL_INITIALIZATION(MoreMath::init_tables())
 
 void MoreMath::init_tables(void)
 {    
-	// initialize CRC Table
-	for (int32_t i = 0; i < CRC_TABLE_SIZE; ++i) {
-		uint32_t crc = i;
-		for (int32_t j = 8; j > 0; --j) {
-			if (crc & 1)    crc = (crc >> 1) ^ 0xEDB88320L;
-			else            crc >>= 1;
-		}
-		_crc_table[i] = crc;
-	}
-	
-	// initialize factorial table
-	_factorial[0] = 0.0F;
-	_factorial[1] = 1.0F;
-	for (uint32_t i = 2; i < FACTORIAL_TABLE_SIZE; ++i) {
-		_factorial[i] = _factorial[i-1] * i;
-		_factorial_inv[i] = 1.0F / _factorial[i];
-	}
-	
+    // initialize CRC Table
+    for (int32_t i = 0; i < CRC_TABLE_SIZE; ++i) {
+        uint32_t crc = i;
+        for (int32_t j = 8; j > 0; --j) {
+            if (crc & 1)    crc = (crc >> 1) ^ 0xEDB88320L;
+            else            crc >>= 1;
+        }
+        _crc_table[i] = crc;
+    }
+    
+    // initialize factorial table
+    _factorial[0] = 0.0F;
+    _factorial[1] = 1.0F;
+    for (uint32_t i = 2; i < FACTORIAL_TABLE_SIZE; ++i) {
+        _factorial[i] = _factorial[i-1] * i;
+        _factorial_inv[i] = 1.0F / _factorial[i];
+    }
+    
     // Conversion tables
     for (uint32_t i = 0; i < ARRAY_SIZE(_4_to_8_bit); ++i) {
         _4_to_8_bit[i] = static_cast<uint8_t>(255 * i / (ARRAY_SIZE(_4_to_8_bit)-1));
@@ -104,7 +104,7 @@ void MoreMath::init_tables(void)
     for (int32_t i = 0; i < MT_LEN; i++)
         _mt_buffer[i] = random_int();
     _mt_index = 0;
-}	
+}    
 
 //==============================================================================
 //==============================================================================
@@ -135,16 +135,16 @@ void MoreMath::entropy (uint8_t *data, DTsize data_size)
 // Not sure where I got this from...
 //==============================================================================
 
-DTfloat	MoreMath::random_float (void)
+DTfloat    MoreMath::random_float (void)
 {
     IntOrFloat r;
     
     const uint32_t jflone = 0x3f800000;
     const uint32_t jflmsk = 0x007fffff;
     
-    _random_seed = 1664525L*_random_seed + 1013904223L;	// Just magic numbers good for this purpose
+    _random_seed = 1664525L*_random_seed + 1013904223L;    // Just magic numbers good for this purpose
     r.i = jflone | (jflmsk & _random_seed);    
-	ASSERT( r.f >= 1.0F && r.f < 2.0F);
+    ASSERT( r.f >= 1.0F && r.f < 2.0F);
     return r.f-1.0F;
 }
 
@@ -163,7 +163,7 @@ DTfloat MoreMath::random_MT_float (void)
     int32_t idx = _mt_index;
     uint32_t s;
     int32_t i;
-	
+    
     if (idx == MT_LEN*sizeof(uint32_t))
     {
         idx = 0;
@@ -186,23 +186,23 @@ DTfloat MoreMath::random_MT_float (void)
     const uint32_t jflmsk = 0x007fffff;
     
     _random_seed = r.i = jflone | (jflmsk & (*(uint32_t *)((unsigned char *)b + idx) ^ _random_seed));
-	ASSERT( r.f >= 1.0F && r.f < 2.0F);
+    ASSERT( r.f >= 1.0F && r.f < 2.0F);
     return r.f-1.0F;
 }
 
-uint32_t	MoreMath::random_int (void)
+uint32_t    MoreMath::random_int (void)
 {
-    _random_seed = 1664525L*_random_seed + 1013904223L;	// Just magic numbers good for this purpose
+    _random_seed = 1664525L*_random_seed + 1013904223L;    // Just magic numbers good for this purpose
     return _random_seed;
 }
 
-uint32_t	MoreMath::random_MT_int (void)
+uint32_t    MoreMath::random_MT_int (void)
 {
     uint32_t *b = _mt_buffer;
     int32_t idx = _mt_index;
     uint32_t s;
     int32_t i;
-	
+    
     if (idx == MT_LEN*sizeof(uint32_t))
     {
         idx = 0;
@@ -238,15 +238,15 @@ void MoreMath::set_random_seed (void)
 
 DTfloat MoreMath::factorial (int32_t f)
 {
-	if (f < FACTORIAL_TABLE_SIZE) {
-		return _factorial[f];
-	} else {
-		DTfloat result = 1.0F;
-		for (int32_t i = 2; i <= f; ++i) {
-			result *= i;
-		}
-		return result;
-	}
+    if (f < FACTORIAL_TABLE_SIZE) {
+        return _factorial[f];
+    } else {
+        DTfloat result = 1.0F;
+        for (int32_t i = 2; i <= f; ++i) {
+            result *= i;
+        }
+        return result;
+    }
 }
 
 //==============================================================================
@@ -321,7 +321,7 @@ void MoreMath::regression (std::vector<Vector2> &data, DTfloat &a, DTfloat &b, D
 //==============================================================================
 //==============================================================================
 
-uint32_t	MoreMath::calc_crc32 (const void* data, DTsize length)
+uint32_t    MoreMath::calc_crc32 (const void* data, DTsize length)
 {
     uint8_t*    p;
     uint32_t      temp1;
@@ -350,11 +350,11 @@ Vector3 MoreMath::transform_4h(const Matrix4 &a, const Vector3 &b)
     cy = a._m21 * b.x + a._m22 * b.y + a._m23 * b.z + a._m24; // Implied * 1.0
     cz = a._m31 * b.x + a._m32 * b.y + a._m33 * b.z + a._m34; // Implied * 1.0
     cw = a._m41 * b.x + a._m42 * b.y + a._m43 * b.z + a._m44; // Implied * 1.0
-	
+    
     Vector3 c;
-	c.x = cx / cw;
-	c.y = cy / cw;
-	c.z = cz / cw;
+    c.x = cx / cw;
+    c.y = cy / cw;
+    c.z = cz / cw;
     
     return c;
 }

@@ -3,7 +3,7 @@
 #define DT3_GUIANIMKEY
 //==============================================================================
 ///
-///	File: GUIAnimKey.hpp
+///    File: GUIAnimKey.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey, Inc. All rights reserved.
 ///
@@ -40,75 +40,75 @@ class GUIAnimKey {
 
                                     GUIAnimKey              (void);
                                     GUIAnimKey              (const GUIAnimKey &rhs);
-        GUIAnimKey &				operator =              (const GUIAnimKey &rhs);
+        GUIAnimKey &                operator =              (const GUIAnimKey &rhs);
         virtual                     ~GUIAnimKey             (void);
 
     public:
         /// Sets repeating animation
         /// \return this object
-        GUIAnimKey&					set_repeat              (bool s = true);
+        GUIAnimKey&                    set_repeat              (bool s = true);
 
         /// Description
         /// \param param description
         /// \return description
-        bool					is_repeat               (void) const	{	return _repeat_flag;	}
+        bool                    is_repeat               (void) const    {    return _repeat_flag;    }
 
         /// Sets spline interpolation
         /// \return this object
-        GUIAnimKey&					set_spline              (bool s = true);
+        GUIAnimKey&                    set_spline              (bool s = true);
 
         /// Sets latent call to be called
         /// \return this object
-        GUIAnimKey&					set_call                (std::shared_ptr<LatentCall> latent_call);
+        GUIAnimKey&                    set_call                (std::shared_ptr<LatentCall> latent_call);
 
         /// Sets delay before starting
         /// \return this object
-        GUIAnimKey&					set_delay               (DTfloat delay);
+        GUIAnimKey&                    set_delay               (DTfloat delay);
 
         /// Sets frame duration
         /// \return this object
-        GUIAnimKey&					set_duration            (DTfloat duration);
+        GUIAnimKey&                    set_duration            (DTfloat duration);
 
         /// Sets local translation
         /// \return this object
-        GUIAnimKey&					set_translation_local   (const Vector3 &translation);
+        GUIAnimKey&                    set_translation_local   (const Vector3 &translation);
 
         /// Sets orientation
         /// \return this object
-        GUIAnimKey&					set_orientation         (const Matrix3 &orientation);
+        GUIAnimKey&                    set_orientation         (const Matrix3 &orientation);
 
         /// Sets color
         /// \return this object
-        GUIAnimKey&					set_color               (const Color4f &color);
+        GUIAnimKey&                    set_color               (const Color4f &color);
 
         /// Sets scale
         /// \return this object
-        GUIAnimKey&					set_scale               (const Vector3 &scale);
+        GUIAnimKey&                    set_scale               (const Vector3 &scale);
 
         /// Sets label
         /// \return this object
-        GUIAnimKey&					set_label               (const std::string &label);
+        GUIAnimKey&                    set_label               (const std::string &label);
 
         /// Sets width
         /// \return this object
-        GUIAnimKey&					set_width               (DTfloat width);
+        GUIAnimKey&                    set_width               (DTfloat width);
 
         /// Sets height
         /// \return this object
-        GUIAnimKey&					set_height              (DTfloat height);
+        GUIAnimKey&                    set_height              (DTfloat height);
 
         /// Sets bounds
         /// \return this object
-        GUIAnimKey&					set_bounds              (DTfloat xpos, DTfloat ypos, DTfloat width, DTfloat height);
+        GUIAnimKey&                    set_bounds              (DTfloat xpos, DTfloat ypos, DTfloat width, DTfloat height);
 
         /// Remembers state of object before animating the frame
         /// \param object to remember state of
-        void						cache_frame_state       (GUIObject *frame);
+        void                        cache_frame_state       (GUIObject *frame);
 
         /// Pass time in the animation frame
         /// \param dt delta time
         /// \return Still animating
-        bool					animate                 (DTfloat dt, GUIObject *frame);
+        bool                    animate                 (DTfloat dt, GUIObject *frame);
 
         /// Returns wether this frame is used in an active animation
         /// \return is used in animation

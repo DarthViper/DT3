@@ -1,7 +1,7 @@
 #pragma once
 //==============================================================================
 ///
-///	File: ScriptingGlobalWriter.hpp
+///    File: ScriptingGlobalWriter.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -33,10 +33,10 @@ class ScriptingGlobalWriter: public ScriptingBase {
         DEFINE_CREATE_AND_CLONE
         DEFINE_PLUG_NODE
 
-                                    ScriptingGlobalWriter	(void);
-                                    ScriptingGlobalWriter	(const ScriptingGlobalWriter &rhs);
-        ScriptingGlobalWriter &		operator =				(const ScriptingGlobalWriter &rhs);
-        virtual                     ~ScriptingGlobalWriter	(void);
+                                    ScriptingGlobalWriter    (void);
+                                    ScriptingGlobalWriter    (const ScriptingGlobalWriter &rhs);
+        ScriptingGlobalWriter &        operator =                (const ScriptingGlobalWriter &rhs);
+        virtual                     ~ScriptingGlobalWriter    (void);
 
         virtual void                archive                 (const std::shared_ptr<Archive> &archive);
 
@@ -45,10 +45,10 @@ class ScriptingGlobalWriter: public ScriptingBase {
         void                        write                   (PlugNode *sender);
 
     private:
-        Plug<std::string>			_global;
-        Plug<std::string>			_value;
+        Plug<std::string>            _global;
+        Plug<std::string>            _value;
 
-        Plug<bool>				_persistent;
+        Plug<bool>                _persistent;
 
         Event                       _write_e;
 };

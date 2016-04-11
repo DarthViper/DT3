@@ -1,7 +1,7 @@
 #pragma once
 //==============================================================================
 ///
-///	File: SoundBusSourceObject.hpp
+///    File: SoundBusSourceObject.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -32,12 +32,12 @@ class SoundBusSourceObject: public PlaceableObject {
         DEFINE_CREATE_AND_CLONE
         DEFINE_PLUG_NODE
 
-                                    SoundBusSourceObject			(void);
-                                    SoundBusSourceObject			(const SoundBusSourceObject &rhs);
-        SoundBusSourceObject &      operator =						(const SoundBusSourceObject &rhs);
-        virtual                     ~SoundBusSourceObject			(void);
+                                    SoundBusSourceObject            (void);
+                                    SoundBusSourceObject            (const SoundBusSourceObject &rhs);
+        SoundBusSourceObject &      operator =                        (const SoundBusSourceObject &rhs);
+        virtual                     ~SoundBusSourceObject            (void);
 
-        virtual void				archive                         (const std::shared_ptr<Archive> &archive);
+        virtual void                archive                         (const std::shared_ptr<Archive> &archive);
 
         /// Play the bus
         /// \param sender node (if any) that caused this event

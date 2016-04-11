@@ -3,7 +3,7 @@
 #define DT3_IMPORTERFONT
 //==============================================================================
 ///
-///	File: ImporterFont.hpp
+///    File: ImporterFont.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -35,21 +35,21 @@ class ImporterFont: public BaseClass {
         DEFINE_TYPE(ImporterFont,BaseClass)
 
 
-                                    ImporterFont	(void);
+                                    ImporterFont    (void);
 
     private:
-                                    ImporterFont	(const ImporterFont &rhs);
-        ImporterFont &        		operator =		(const ImporterFont &rhs);
+                                    ImporterFont    (const ImporterFont &rhs);
+        ImporterFont &                operator =        (const ImporterFont &rhs);
 
     public:
-        virtual						~ImporterFont	(void);
+        virtual                        ~ImporterFont    (void);
 
     public:
         /// Imports a font into a FontResource
         /// \param target object to import sound into
         /// \param args arguments to importer
         /// \return error code
-        virtual DTerr				import				(FontResource *target, std::string args) = 0;
+        virtual DTerr                import                (FontResource *target, std::string args) = 0;
 
 };
 

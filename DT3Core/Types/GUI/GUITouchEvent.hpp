@@ -3,7 +3,7 @@
 #define DT3_GUITOUCHEVENT
 //==============================================================================
 ///
-///	File: GUITouchEvent.hpp
+///    File: GUITouchEvent.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey, Inc. All rights reserved.
 ///

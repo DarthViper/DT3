@@ -1,7 +1,7 @@
 #pragma once
 //==============================================================================
 ///
-///	File: EdLevelMainWindow.hpp
+///    File: EdLevelMainWindow.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -83,66 +83,66 @@ class EdLevelMainWindow : public QMainWindow
         void                                    setSaveIcon         (bool icon_state);
 
     protected:
-        void									closeEvent(QCloseEvent *event);
+        void                                    closeEvent(QCloseEvent *event);
 
     private:
         // Create GUI
-        void 									createActions();
-        void 									createMenus();
-        void 									createContextMenu();
+        void                                     createActions();
+        void                                     createMenus();
+        void                                     createContextMenu();
 
         // Read and Write prefs
-        void 									readSettings();
-        void 									writeSettings();
+        void                                     readSettings();
+        void                                     writeSettings();
 
         // Loading and saving data
-        bool 									isOkToContinue();
+        bool                                     isOkToContinue();
 
         void                                    loadObject(std::shared_ptr<BaseClass> obj);
-        bool 									loadLevel(const QString &filename);
+        bool                                     loadLevel(const QString &filename);
 
-        bool 									saveLevel(const QString &filename);
+        bool                                     saveLevel(const QString &filename);
         void                                    autosave(void);
 
         // File management
-        void 									setCurrentLevelFile(const QString &filename);
-        void 									updateRecentFileActions();
-        QString 								strippedName(const QString &fullFileName);
-        QString 								strippedDir(const QString &fullFileName);
+        void                                     setCurrentLevelFile(const QString &filename);
+        void                                     updateRecentFileActions();
+        QString                                 strippedName(const QString &fullFileName);
+        QString                                 strippedDir(const QString &fullFileName);
 
         void                                    updateWidgets (unsigned int h);
 
         // GUI Widgets
-        WorldWindow						*_world_widget;
-        EdLevelScriptWindow						*_script_widget;
+        WorldWindow                        *_world_widget;
+        EdLevelScriptWindow                        *_script_widget;
         EdLevelAnimationWindow                  *_animation_widget;
         EdLevelSoundWindow                      *_sound_widget;
-        EdLevelConsoleWindow					*_console_widget;
+        EdLevelConsoleWindow                    *_console_widget;
         EdLevelResourcesWindow                  *_resources_widget;
         EdLevelLibraryWindow                    *_library_widget;
-        EdLevelPerformanceWindow				*_performance_widget;
+        EdLevelPerformanceWindow                *_performance_widget;
         EdLevelPropertiesWindow                 *_properties_widget;
         EdLevelHierarchyWindow                  *_hierarchy_widget;
 
-        QString									_current_level_file;
-        QStringList								_recent_files;
+        QString                                    _current_level_file;
+        QStringList                                _recent_files;
 
         QBasicTimer                             _timer;
         QBasicTimer                             _autosave_timer;
 
         static const int MaxRecentFiles = 5;
-        QAction *								_recent_file_actions[MaxRecentFiles];
+        QAction *                                _recent_file_actions[MaxRecentFiles];
 
-        QToolBar *								_world_toolbar;
-        QToolBar *								_script_toolbar;
-        QToolBar *								_animation_toolbar;
-        QToolBar *								_sound_toolbar;
-        QToolBar *								_sound_fx_toolbar;
-        QToolBar *								_console_toolbar;
-        QToolBar *								_resources_toolbar;
-        QToolBar *								_library_toolbar;
-        QToolBar *								_hierarchy_toolbar;
-        QToolBar *								_performance_toolbar;
+        QToolBar *                                _world_toolbar;
+        QToolBar *                                _script_toolbar;
+        QToolBar *                                _animation_toolbar;
+        QToolBar *                                _sound_toolbar;
+        QToolBar *                                _sound_fx_toolbar;
+        QToolBar *                                _console_toolbar;
+        QToolBar *                                _resources_toolbar;
+        QToolBar *                                _library_toolbar;
+        QToolBar *                                _hierarchy_toolbar;
+        QToolBar *                                _performance_toolbar;
 
 
         // Undo Queue
@@ -196,14 +196,14 @@ class EdLevelMainWindow : public QMainWindow
     /// Qt Signals and slots
     //==========================================================================
     private slots:
-        void									onOpen();
-        bool									onSaveLevel();
-        bool									onSaveLevelAs();
-        bool									onExportSelection();
-        void									onImportSelection();
-        void									onRunScript();
-        void									onAbout();
-        void									onOpenRecent();
+        void                                    onOpen();
+        bool                                    onSaveLevel();
+        bool                                    onSaveLevelAs();
+        bool                                    onExportSelection();
+        void                                    onImportSelection();
+        void                                    onRunScript();
+        void                                    onAbout();
+        void                                    onOpenRecent();
 
         void                                    onUndo();
         void                                    onCut();
@@ -217,16 +217,16 @@ class EdLevelMainWindow : public QMainWindow
         void                                    onGroup();
         void                                    onUngroup();
 
-        void 									onDocumentModified();
-        void									onUpdateStatusBar();
+        void                                     onDocumentModified();
+        void                                    onUpdateStatusBar();
         void                                    onUpdateMenus();
 
-        void									onCreateObject();
-        void									onCreateComponent();
+        void                                    onCreateObject();
+        void                                    onCreateComponent();
         void                                    onClearComponent (void);
 
-        void									onCreateScripts();
-        void									onCreateWorld();
+        void                                    onCreateScripts();
+        void                                    onCreateWorld();
 
         bool                                    onCommand(QString command);
         void                                    onUndoBlock();

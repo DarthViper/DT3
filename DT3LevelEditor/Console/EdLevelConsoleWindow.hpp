@@ -3,7 +3,7 @@
 #define EDLEVELCONSOLEWINDOW
 //==============================================================================
 ///
-///	File: EdLevelConsoleWindow.hpp
+///    File: EdLevelConsoleWindow.hpp
 ///
 /// Copyright (C) 2000-2014 by Smells Like Donkey Software Inc. All rights reserved.
 ///
@@ -37,7 +37,7 @@ class EdLevelConsoleWindow : public QWidget
     Q_OBJECT
 
     public:
-                                    EdLevelConsoleWindow		(QWidget *parent, QToolBar *toolbar, EdLevelDocument *document);
+                                    EdLevelConsoleWindow        (QWidget *parent, QToolBar *toolbar, EdLevelDocument *document);
                                     ~EdLevelConsoleWindow       (void);
 
         /// Description
