@@ -1542,7 +1542,7 @@ void EdLevelMainWindow::showAssert (const char* file, const char* func, const in
                     QMessageBox::Abort | QMessageBox::Ignore | QMessageBox::Ok);
 
         if (r == QMessageBox::Abort) {
-            exit(1);
+            abort();
         } else if (r == QMessageBox::Ignore) {
             errors.push_back(error_entry);
         } else if (r == QMessageBox::Ok) {

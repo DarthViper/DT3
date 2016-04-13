@@ -26,14 +26,8 @@ namespace DT3 {
 template <typename... T>
 class CallbackList {
     public:
-        CallbackList(void)
-        {
-        }
-
-        ~CallbackList(void)
-        {
-
-        }
+        CallbackList(void) = default;
+        ~CallbackList(void) = default;
 
         void add (std::shared_ptr<Callback<T...>> cb)
         {

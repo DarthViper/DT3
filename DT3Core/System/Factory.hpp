@@ -41,46 +41,25 @@ class Factory {
                                 ~Factory                    (void);
 
     public:
+        typedef std::shared_ptr<BaseClass> pBaseClass;
 
-        /// Description
-        /// \param param description
-        /// \return description
-        static std::shared_ptr<BaseClass>        create_world                (const std::string cid);
-
-        /// Description
-        /// \param param description
-        /// \return description
-        static std::shared_ptr<BaseClass>        create_object               (const std::string cid, bool net_create = false);
-
-        /// Description
-        /// \param param description
-        /// \return description
-        static std::shared_ptr<BaseClass>        create_object_from_stream   (   const FilePath &pathname,
+        static pBaseClass        create_world                (const std::string cid);
+        static pBaseClass        create_object               (const std::string cid, bool net_create = false);
+        static pBaseClass        create_object_from_stream   (const FilePath &pathname,
                                                                                 std::shared_ptr<Progress> progress = NULL,
-                                                                                std::shared_ptr<Callback<std::shared_ptr<BaseClass>>> obj_loaded_cb = NULL);
+                                                                                std::shared_ptr<Callback<pBaseClass>> obj_loaded_cb = NULL);
+
+        static pBaseClass        create_importer             (const std::string ext);
+        static pBaseClass        create_unit_test            (const std::string cid);
+        static pBaseClass        create_command              (const std::string cid);
 
         /// Description
         /// \param param description
         /// \return description
-        static std::shared_ptr<BaseClass>        create_importer             (const std::string ext);
-
-        /// Description
-        /// \param param description
-        /// \return description
-        static std::shared_ptr<BaseClass>        create_unit_test            (const std::string cid);
-
-        /// Description
-        /// \param param description
-        /// \return description
-        static std::shared_ptr<BaseClass>        create_command              (const std::string cid);
-
-        /// Description
-        /// \param param description
-        /// \return description
-        static void                             set_creation_callback       (std::shared_ptr<Callback<std::shared_ptr<BaseClass>>> cb)    {   _factory_created_callback = cb; }
+        static void                             set_creation_callback       (std::shared_ptr<Callback<pBaseClass>> cb)    {   _factory_created_callback = cb; }
 
     private:
-        static std::shared_ptr<Callback<std::shared_ptr<BaseClass>>>     _factory_created_callback;
+        static std::shared_ptr<Callback<pBaseClass>>     _factory_created_callback;
 
 };
 

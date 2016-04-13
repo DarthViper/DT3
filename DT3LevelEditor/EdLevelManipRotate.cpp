@@ -61,11 +61,13 @@ void EdLevelManipRotate::draw (const std::shared_ptr<CameraObject> &camera, floa
 
     // X Axis
     ::glLoadName(ROTATE_X);
-    axis = Matrix4(     Matrix3(    0.0F, 1.0F, 0.0F,
-                                    1.0F, 0.0F, 0.0F,
-                                    0.0F, 0.0F, -1.0F),
-                               {0.0F,0.0F,0.0F},
-                        1.0F);
+    axis = Matrix4(
+                Matrix3(
+                    0.0F, 1.0F, 0.0F,
+                    1.0F, 0.0F, 0.0F,
+                    0.0F, 0.0F, -1.0F),
+                    {0.0F,0.0F,0.0F},
+                    1.0F);
 
     DrawUtils::draw_ring (  b,
                             camera,
@@ -206,7 +208,3 @@ Matrix4 EdLevelManipRotate::getManipulatorTransform  (void) const
 
     return Matrix4(orientation,translation);
 }
-
-//==============================================================================
-//==============================================================================
-

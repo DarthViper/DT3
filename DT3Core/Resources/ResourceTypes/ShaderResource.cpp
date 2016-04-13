@@ -133,12 +133,12 @@ std::shared_ptr<ShaderResource> ShaderResource::import_resource (const FilePath 
 
 void ShaderResource::initialize_static (void)
 {
-    SystemCallbacks::reload_resources_cb().add(make_callback(&type::reload_if_changed));
+    SystemCallbacks::reload_resources_cb().add(make_callback(&ShaderResource::reload_if_changed));
 }
 
 void ShaderResource::uninitialize_static (void)
 {
-    SystemCallbacks::reload_resources_cb().remove(make_callback(&type::reload_if_changed));
+    SystemCallbacks::reload_resources_cb().remove(make_callback(&ShaderResource::reload_if_changed));
 }
 
 //==============================================================================

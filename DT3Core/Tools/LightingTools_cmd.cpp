@@ -44,7 +44,7 @@ class LightingTools_cmd: public Command {
         DEFINE_TYPE(LightingTools_cmd,Command);
         DEFINE_CREATE
         
-        void register_commands (void) {
+        void register_commands (void) override {
             CommandRegistry::register_command("GenerateIrradianceMap", &LightingTools_cmd::do_generate_irradiance_map);
             CommandRegistry::register_command("UnitLUT", &LightingTools_cmd::do_unit_LUT);
             CommandRegistry::register_command("UnitLUT2D", &LightingTools_cmd::do_unit_LUT2D);

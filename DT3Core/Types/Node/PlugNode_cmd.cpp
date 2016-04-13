@@ -38,7 +38,7 @@ namespace DT3 {
 
 class PlugNode_cmd: public Command {
     public:
-        DEFINE_TYPE(PlugNode_cmd,Command);
+        DEFINE_TYPE(PlugNode_cmd,Command)
         DEFINE_CREATE
         
         void register_commands (void) override {

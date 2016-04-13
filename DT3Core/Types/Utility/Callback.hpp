@@ -30,7 +30,7 @@ class Callback {
         DEFINE_TYPE_BASE(Callback)
         virtual ~Callback(void)    {}
         virtual void operator ()(T... t) = 0;
-        virtual bool    operator ==    (const Callback& rhs) const = 0;
+        virtual bool operator ==    (const Callback& rhs) const = 0;
 };
 
 template <typename CLASS,typename... T>

@@ -38,8 +38,8 @@ using namespace DT3;
 
 EdLevelManipScale::EdLevelManipScale (QObject *p) : EdLevelTool(p)
 {
-    _shader = ShaderResource::import_resource(FilePath("{ED_TOOL_SHADER}"));
-    _tool_material = MaterialResource::import_resource(FilePath("{ED_TOOL_MATERIAL}"));
+    _shader         = ShaderResource::import_resource(FilePath("{ED_TOOL_SHADER}"));
+    _tool_material  = MaterialResource::import_resource(FilePath("{ED_TOOL_MATERIAL}"));
 }
 
 //==============================================================================
@@ -61,11 +61,7 @@ void EdLevelManipScale::draw (const std::shared_ptr<CameraObject> &camera, float
 
     // Center
     ::glLoadName(CENTER);
-    axis = Matrix4(     Matrix3(    1.0F, 0.0F, 0.0F,
-                                    0.0F, 1.0F, 0.0F,
-                                    0.0F, 0.0F, 1.0F),
-    {0.0F,0.0F,0.0F},
-                        1.0F);
+    axis = Matrix4::unity();
 
     DrawUtils::draw_cube (  b,
                             camera,

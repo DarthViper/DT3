@@ -27,7 +27,7 @@ using namespace DT3;
 //==============================================================================
 
 EdLevelToolWindow::EdLevelToolWindow(QWidget *parent, EdLevelDocument *document)
-    :   QGLWidget       (parent)
+    :   QGLWidget(parent)
 {
 
 }

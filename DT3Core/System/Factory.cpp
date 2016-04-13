@@ -92,6 +92,9 @@ std::map<std::string, std::string>&                     adapter_map    (void)
 /// C interface to factory
 //==============================================================================
 
+/// Description
+/// \param param description
+/// \return description
 std::shared_ptr<BaseClass> Factory::create_world (const std::string cid)
 {
     std::string real_cid = Globals::substitute_global(cid);
@@ -111,6 +114,9 @@ std::shared_ptr<BaseClass> Factory::create_world (const std::string cid)
 //==============================================================================
 //==============================================================================
 
+/// Description
+/// \param param description
+/// \return description
 std::shared_ptr<BaseClass> Factory::create_object (const std::string cid, bool net_create)
 {
     std::string real_cid = Globals::substitute_global(cid);
@@ -130,6 +136,9 @@ std::shared_ptr<BaseClass> Factory::create_object (const std::string cid, bool n
 //==============================================================================
 //==============================================================================
 
+/// Description
+/// \param param description
+/// \return description
 std::shared_ptr<BaseClass> Factory::create_object_from_stream ( const FilePath &pathname,
                                                                 std::shared_ptr<Progress> progress,
                                                                 std::shared_ptr<Callback<std::shared_ptr<BaseClass>>> obj_loaded_cb)
@@ -154,6 +163,9 @@ std::shared_ptr<BaseClass> Factory::create_object_from_stream ( const FilePath &
 //==============================================================================
 //==============================================================================
 
+/// Description
+/// \param param description
+/// \return description
 std::shared_ptr<BaseClass> Factory::create_importer (const std::string ext)
 {
     std::string real_ext = Globals::substitute_global(ext);
@@ -173,6 +185,9 @@ std::shared_ptr<BaseClass> Factory::create_importer (const std::string ext)
 //==============================================================================
 //==============================================================================
 
+/// Description
+/// \param param description
+/// \return description
 std::shared_ptr<BaseClass> Factory::create_unit_test (const std::string cid)
 {
     std::string real_cid = Globals::substitute_global(cid);
@@ -192,6 +207,9 @@ std::shared_ptr<BaseClass> Factory::create_unit_test (const std::string cid)
 //==============================================================================
 //==============================================================================
 
+/// Description
+/// \param param description
+/// \return description
 std::shared_ptr<BaseClass> Factory::create_command (const std::string cid)
 {
     std::string real_cid = Globals::substitute_global(cid);

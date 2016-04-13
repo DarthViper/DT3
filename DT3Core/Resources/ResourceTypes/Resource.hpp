@@ -31,13 +31,12 @@ class Resource: public BaseClass {
         DEFINE_TYPE(Resource,BaseClass)
         DEFINE_CREATE
 
-
                                     Resource            (void);
     private:
                                     Resource            (const Resource &rhs);
-        Resource &                    operator =          (const Resource &rhs);
+        Resource &                  operator =          (const Resource &rhs);
     public:
-        virtual                        ~Resource           (void);
+        virtual                     ~Resource           (void);
 
     public:
 
@@ -45,15 +44,15 @@ class Resource: public BaseClass {
         /// \param pathname path to resource
         /// \param args importer args
         /// \return error code
-        virtual DTerr                import              (const FilePath &pathname, std::string args);
+        virtual DTerr               import              (const FilePath &pathname, std::string args);
 
         /// Reload the resource
         /// \return error code
-        virtual DTerr                reload              (void);
+        virtual DTerr               reload              (void);
 
         /// Checks if a reload is needed
         /// \return reload needed
-        virtual bool           is_changed        (void) const;
+        virtual bool                is_changed        (void) const;
 
         //
         // Queries for the paths
@@ -65,7 +64,7 @@ class Resource: public BaseClass {
 
         /// Gets the path for the resource
         /// \return path
-        const FilePath&                path                (void) const                        {    return _file_path;                        }
+        const FilePath &            path                (void) const                        {    return _file_path;                        }
 
         //
         // Args

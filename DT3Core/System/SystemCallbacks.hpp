@@ -43,23 +43,23 @@ class SystemCallbacks {
     private:
                                         SystemCallbacks             (void);
                                         SystemCallbacks             (const SystemCallbacks &rhs);
-        SystemCallbacks &               operator =                    (const SystemCallbacks &rhs);
-        virtual                            ~SystemCallbacks            (void);
+        SystemCallbacks &               operator =                  (const SystemCallbacks &rhs);
+        virtual                         ~SystemCallbacks            (void);
 
     public:
 
         static CallbackList<>&                                      screen_inited_cb                (void)  {  return _screenInitedCB;      }
-        static CallbackList<uint32_t,uint32_t>&                         screen_opened_cb                (void)  {  return _screenOpenedCB;      }
+        static CallbackList<uint32_t,uint32_t>&                     screen_opened_cb                (void)  {  return _screenOpenedCB;      }
         static CallbackList<>&                                      screen_closed_cb                (void)  {  return _screenClosedCB;      }
         static CallbackList<>&                                      screen_swap_cb                  (void)  {  return _screenSwapCB;        }
-        static CallbackList<uint32_t,uint32_t>&                         screen_changed_cb               (void)  {  return _screenChangedCB;     }
+        static CallbackList<uint32_t,uint32_t>&                     screen_changed_cb               (void)  {  return _screenChangedCB;     }
 
         static CallbackList<World*, ComponentBase*>&                add_component_cb                (void)  {  return _addComponentCB;      }
         static CallbackList<World*, ComponentBase*>&                remove_component_cb             (void)  {  return _removeComponentCB;   }
 
         static CallbackList<World*, WorldNode*, WorldNode*, WorldNode*>&    reparent_node_cb        (void)  {  return _reparentNodeCB;      }
-        static CallbackList<World*, WorldNode*>&                            add_node_cb             (void)  {  return _addNodeCB;           }
-        static CallbackList<World*, WorldNode*>&                            remove_node_cb          (void)  {  return _removeNodeCB;        }
+        static CallbackList<World*, WorldNode*>&                    add_node_cb                     (void)  {  return _addNodeCB;           }
+        static CallbackList<World*, WorldNode*>&                    remove_node_cb                  (void)  {  return _removeNodeCB;        }
 
         static CallbackList<World*, Group*>&                        add_group_cb                    (void)  {  return _addGroupCB;          }
         static CallbackList<World*, Group*>&                        remove_group_cb                 (void)  {  return _removeGroupCB;       }
@@ -70,8 +70,8 @@ class SystemCallbacks {
         static CallbackList<Event*,Event*>&                         disconnect_event_cb             (void)  {  return _disconnectEventCB;   }
 
         static CallbackList<const TouchEvent*>&                     touch_event_cb                  (void)  {  return _touchEventCB;            }
-        static CallbackList<uint32_t,uint16_t>&                       key_down_event_cb               (void)  {  return _keyDownEventCB;          }
-        static CallbackList<uint32_t,uint16_t>&                       key_up_event_cb                 (void)  {  return _keyUpEventCB;            }
+        static CallbackList<uint32_t,uint16_t>&                     key_down_event_cb               (void)  {  return _keyDownEventCB;          }
+        static CallbackList<uint32_t,uint16_t>&                     key_up_event_cb                 (void)  {  return _keyUpEventCB;            }
         static CallbackList<>&                                      back_button_event_cb            (void)  {  return _backButtonEventCB;       }
         static CallbackList<>&                                      menu_button_event_cb            (void)  {  return _menuButtonEventCB;       }
 
@@ -93,10 +93,10 @@ class SystemCallbacks {
 
         // Screen callbacks
         static CallbackList<>                                       _screenInitedCB;
-        static CallbackList<uint32_t,uint32_t>                          _screenOpenedCB;
+        static CallbackList<uint32_t,uint32_t>                      _screenOpenedCB;
         static CallbackList<>                                       _screenClosedCB;
         static CallbackList<>                                       _screenSwapCB;
-        static CallbackList<uint32_t,uint32_t>                          _screenChangedCB;
+        static CallbackList<uint32_t,uint32_t>                      _screenChangedCB;
 
         // Component Callbacks
         static CallbackList<World*, ComponentBase*>                 _addComponentCB;
@@ -118,8 +118,8 @@ class SystemCallbacks {
         static CallbackList<Event*,Event*>                          _disconnectEventCB;
 
         static CallbackList<const TouchEvent*>                      _touchEventCB;
-        static CallbackList<uint32_t,uint16_t>                        _keyDownEventCB;
-        static CallbackList<uint32_t,uint16_t>                        _keyUpEventCB;
+        static CallbackList<uint32_t,uint16_t>                      _keyDownEventCB;
+        static CallbackList<uint32_t,uint16_t>                      _keyUpEventCB;
         static CallbackList<>                                       _backButtonEventCB;
         static CallbackList<>                                       _menuButtonEventCB;
 

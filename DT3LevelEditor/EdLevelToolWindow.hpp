@@ -25,10 +25,9 @@ class EdLevelToolWindow : public QGLWidget
     public:
                                         EdLevelToolWindow       (QWidget *parent, EdLevelDocument *document);
 
-    public slots:
+    public Q_SLOTS:
         void                            onCommand               (QString command);
-
-    signals:
+    Q_SIGNALS:
         void                            doCommand              (QString command);
 };
 
